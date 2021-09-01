@@ -1,0 +1,8 @@
+version: "3.4"
+
+services:
+
+  simapy:
+    build: . 
+    volumes:
+      - ./output:/dmtpy/output/
