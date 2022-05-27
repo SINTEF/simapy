@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.supernode import SuperNodeBlueprint
+from typing import Dict
 from sima.riflex.boundarycondition import BoundaryCondition
 from sima.riflex.boundaryconditionframe import BoundaryConditionFrame
 from sima.riflex.nodeconstraint import NodeConstraint
@@ -100,46 +101,46 @@ class SuperNode(NamedObject,SuperNodeReference):
          XY-plane reference vector z-component  in reference system(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", constraint:NodeConstraint=NodeConstraint.FREE, automaticInitialPosition:bool=False, xConstraint:BoundaryCondition=BoundaryCondition.FREE, yConstraint:BoundaryCondition=BoundaryCondition.FREE, zConstraint:BoundaryCondition=BoundaryCondition.FREE, rxConstraint:BoundaryCondition=BoundaryCondition.FREE, ryConstraint:BoundaryCondition=BoundaryCondition.FREE, rzConstraint:BoundaryCondition=BoundaryCondition.FREE, xGInitial:float=0.0, yGInitial:float=0.0, zGInitial:float=0.0, xGStatic:float=0.0, yGStatic:float=0.0, zGStatic:float=0.0, rotation:float=0.0, direction:float=0.0, beta:float=0.0, radial:bool=False, radialAngle:float=0.0, verticalOffset:float=0.0, radialDistance:float=0.0, boundaryConditionFrame:BoundaryConditionFrame=BoundaryConditionFrame.GLOBAL, xx:float=0.0, xy:float=0.0, xz:float=0.0, xp:float=0.0, yp:float=0.0, zp:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", constraint: NodeConstraint =NodeConstraint.FIXED_PRESCRIBED, automaticInitialPosition=False, xConstraint=BoundaryCondition.FREE, yConstraint=BoundaryCondition.FREE, zConstraint=BoundaryCondition.FREE, rxConstraint=BoundaryCondition.FREE, ryConstraint=BoundaryCondition.FREE, rzConstraint=BoundaryCondition.FREE, xGInitial=0.0, yGInitial=0.0, zGInitial=0.0, xGStatic=0.0, yGStatic=0.0, zGStatic=0.0, rotation=0.0, direction=0.0, beta=0.0, radial=False, radialAngle=0.0, verticalOffset=0.0, radialDistance=0.0, boundaryConditionFrame=BoundaryConditionFrame.GLOBAL, xx=0.0, xy=0.0, xz=0.0, xp=0.0, yp=0.0, zp=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__constraint = constraint
-        self.__referenceFrame = None
-        self.__supportVessel = None
-        self.__automaticInitialPosition = automaticInitialPosition
-        self.__masterNode = None
-        self.__xConstraint = xConstraint
-        self.__yConstraint = yConstraint
-        self.__zConstraint = zConstraint
-        self.__rxConstraint = rxConstraint
-        self.__ryConstraint = ryConstraint
-        self.__rzConstraint = rzConstraint
-        self.__xGInitial = xGInitial
-        self.__yGInitial = yGInitial
-        self.__zGInitial = zGInitial
-        self.__xGStatic = xGStatic
-        self.__yGStatic = yGStatic
-        self.__zGStatic = zGStatic
-        self.__rotation = rotation
-        self.__direction = direction
-        self.__referenceLine = None
-        self.__beta = beta
-        self.__radial = radial
-        self.__radialReference1 = None
-        self.__radialReference2 = None
-        self.__radialAngle = radialAngle
-        self.__verticalOffset = verticalOffset
-        self.__radialDistance = radialDistance
-        self.__boundaryConditionFrame = boundaryConditionFrame
-        self.__xx = xx
-        self.__xy = xy
-        self.__xz = xz
-        self.__xp = xp
-        self.__yp = yp
-        self.__zp = zp
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.constraint = constraint
+        self.referenceFrame = None
+        self.supportVessel = None
+        self.automaticInitialPosition = automaticInitialPosition
+        self.masterNode = None
+        self.xConstraint = xConstraint
+        self.yConstraint = yConstraint
+        self.zConstraint = zConstraint
+        self.rxConstraint = rxConstraint
+        self.ryConstraint = ryConstraint
+        self.rzConstraint = rzConstraint
+        self.xGInitial = xGInitial
+        self.yGInitial = yGInitial
+        self.zGInitial = zGInitial
+        self.xGStatic = xGStatic
+        self.yGStatic = yGStatic
+        self.zGStatic = zGStatic
+        self.rotation = rotation
+        self.direction = direction
+        self.referenceLine = None
+        self.beta = beta
+        self.radial = radial
+        self.radialReference1 = None
+        self.radialReference2 = None
+        self.radialAngle = radialAngle
+        self.verticalOffset = verticalOffset
+        self.radialDistance = radialDistance
+        self.boundaryConditionFrame = boundaryConditionFrame
+        self.xx = xx
+        self.xy = xy
+        self.xz = xz
+        self.xp = xp
+        self.yp = yp
+        self.zp = zp
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

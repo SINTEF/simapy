@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.complexvalues import ComplexValuesBlueprint
+from numpy import ndarray,asarray
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -19,18 +20,18 @@ class ComplexValues(MOAO):
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    realValues : Sequence[float]
-    imagValues : Sequence[float]
+    realValues : ndarray
+    imagValues : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__realValues = list()
-        self.__imagValues = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.realValues = ndarray(1)
+        self.imagValues = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -85,25 +86,21 @@ class ComplexValues(MOAO):
         self.__scriptableValues = value
 
     @property
-    def realValues(self) -> Sequence[float]:
+    def realValues(self) -> ndarray:
         """"""
         return self.__realValues
 
     @realValues.setter
-    def realValues(self, value: Sequence[float]):
+    def realValues(self, value: ndarray):
         """Set realValues"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__realValues = value
+        self.__realValues = asarray(value)
 
     @property
-    def imagValues(self) -> Sequence[float]:
+    def imagValues(self) -> ndarray:
         """"""
         return self.__imagValues
 
     @imagValues.setter
-    def imagValues(self, value: Sequence[float]):
+    def imagValues(self, value: ndarray):
         """Set imagValues"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__imagValues = value
+        self.__imagValues = asarray(value)

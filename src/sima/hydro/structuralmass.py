@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.structuralmass import StructuralMassBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -38,20 +39,20 @@ class StructuralMass(MOAO):
          Coordinates of centre of gravity, (L)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", mass:float=0.0, ixx:float=0.0, iyx:float=0.0, iyy:float=0.0, izx:float=0.0, izy:float=0.0, izz:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", mass=0.0, ixx=0.0, iyx=0.0, iyy=0.0, izx=0.0, izy=0.0, izz=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__mass = mass
-        self.__ixx = ixx
-        self.__iyx = iyx
-        self.__iyy = iyy
-        self.__izx = izx
-        self.__izy = izy
-        self.__izz = izz
-        self.__cog = Point3()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.mass = mass
+        self.ixx = ixx
+        self.iyx = iyx
+        self.iyy = iyy
+        self.izx = izx
+        self.izy = izy
+        self.izz = izz
+        self.cog = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -15,6 +15,6 @@ class ThrusterAllocationBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("weight","number","Factor in weight function for thruster allocation",default=1.0))
         self.attributes.append(BlueprintAttribute("thruster","sima/simo/IThruster","Thruster controlled by the allocation system",False))

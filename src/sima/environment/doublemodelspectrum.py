@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.doublemodelspectrum import DoubleModelSpectrumBlueprint
+from typing import Dict
 from sima.environment.wave import Wave
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -41,22 +42,22 @@ class DoubleModelSpectrum(Wave):
          Slope of the lower frequency part of the swell part of wave spectrum(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", significantWaveHeight:float=0.0, windDrivenRatio:float=0.0, windPeakPeriod:float=0.0, swellPeakPeriod:float=0.0, gammaWind:float=3.3, gammaSwell:float=0.0, upperSlopeWind:float=0.0, lowerSlopeWind:float=0.0, upperSlopeSwell:float=0.0, lowerSlopeSwell:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", significantWaveHeight=0.0, windDrivenRatio=0.0, windPeakPeriod=0.0, swellPeakPeriod=0.0, gammaWind=3.3, gammaSwell=0.0, upperSlopeWind=0.0, lowerSlopeWind=0.0, upperSlopeSwell=0.0, lowerSlopeSwell=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__significantWaveHeight = significantWaveHeight
-        self.__windDrivenRatio = windDrivenRatio
-        self.__windPeakPeriod = windPeakPeriod
-        self.__swellPeakPeriod = swellPeakPeriod
-        self.__gammaWind = gammaWind
-        self.__gammaSwell = gammaSwell
-        self.__upperSlopeWind = upperSlopeWind
-        self.__lowerSlopeWind = lowerSlopeWind
-        self.__upperSlopeSwell = upperSlopeSwell
-        self.__lowerSlopeSwell = lowerSlopeSwell
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.significantWaveHeight = significantWaveHeight
+        self.windDrivenRatio = windDrivenRatio
+        self.windPeakPeriod = windPeakPeriod
+        self.swellPeakPeriod = swellPeakPeriod
+        self.gammaWind = gammaWind
+        self.gammaSwell = gammaSwell
+        self.upperSlopeWind = upperSlopeWind
+        self.lowerSlopeWind = lowerSlopeWind
+        self.upperSlopeSwell = upperSlopeSwell
+        self.lowerSlopeSwell = lowerSlopeSwell
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

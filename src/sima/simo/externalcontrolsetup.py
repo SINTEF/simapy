@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalcontrolsetup import ExternalControlSetupBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -27,15 +28,15 @@ class ExternalControlSetup(MOAO):
          Port number of the central unit for the external process(default 9876)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", executable:str="", arguments:str="", port:int=9876, **kwargs):
+    def __init__(self , name="", description="", _id="", executable="", arguments="", port=9876, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__executable = executable
-        self.__arguments = arguments
-        self.__port = port
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.executable = executable
+        self.arguments = arguments
+        self.port = port
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

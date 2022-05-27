@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalhlaforce import ExternalHLAForceBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -49,25 +50,25 @@ class ExternalHLAForce(NamedObject):
          Moment about Z-axis(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", referenceFrame:ReferenceFrameType=ReferenceFrameType.LOCAL, nStorageParameters:int=0, importAttackPoint:bool=False, fx:float=0.0, fy:float=0.0, fz:float=0.0, mx:float=0.0, my:float=0.0, mz:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", referenceFrame=ReferenceFrameType.LOCAL, nStorageParameters=0, importAttackPoint=False, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__attachmentPoint = Point3()
-        self.__referenceFrame = referenceFrame
-        self.__nStorageParameters = nStorageParameters
-        self.__intParameters = list()
-        self.__doubleParameters = list()
-        self.__stringParameters = list()
-        self.__importAttackPoint = importAttackPoint
-        self.__fx = fx
-        self.__fy = fy
-        self.__fz = fz
-        self.__mx = mx
-        self.__my = my
-        self.__mz = mz
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.attachmentPoint = None
+        self.referenceFrame = referenceFrame
+        self.nStorageParameters = nStorageParameters
+        self.intParameters = list()
+        self.doubleParameters = list()
+        self.stringParameters = list()
+        self.importAttackPoint = importAttackPoint
+        self.fx = fx
+        self.fy = fy
+        self.fz = fz
+        self.mx = mx
+        self.my = my
+        self.mz = mz
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

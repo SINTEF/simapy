@@ -15,7 +15,7 @@ class StaticEquilibriumBodyBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("body","sima/simo/SIMOBody","Selected body to compute equilibrium for",False))
         self.attributes.append(Attribute("x","number","Excursion along global X axis",default=1.0))
         self.attributes.append(Attribute("y","number","Excursion along global Y axis",default=1.0))

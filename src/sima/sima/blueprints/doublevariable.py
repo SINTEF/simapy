@@ -15,6 +15,6 @@ class DoubleVariableBlueprint(VariableBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("value","number","The current value for the variable",default=0.0))
         self.attributes.append(Attribute("unit","string","unit of variable",default='-'))

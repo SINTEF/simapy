@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.currentprofile import CurrentProfileBlueprint
+from typing import Dict
 from sima.environment.currentitem import CurrentItem
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -27,15 +28,15 @@ class CurrentProfile(MOAO):
     items : List[CurrentItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", globalXPosition:float=0.0, globalYPosition:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", globalXPosition=0.0, globalYPosition=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__globalXPosition = globalXPosition
-        self.__globalYPosition = globalYPosition
-        self.__items = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.globalXPosition = globalXPosition
+        self.globalYPosition = globalYPosition
+        self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

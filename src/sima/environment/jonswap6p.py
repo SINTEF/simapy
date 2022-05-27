@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.jonswap6p import Jonswap6PBlueprint
+from typing import Dict
 from sima.environment.wave import Wave
 from sima.environment.wavespreadingtype import WaveSpreadingType
 from sima.sima.scriptablevalue import ScriptableValue
@@ -42,22 +43,22 @@ class Jonswap6P(Wave):
          Spectrum parameter σb(default 0.09)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, spreadingExponent:float=2.0, numDirections:int=11, spreadingType:WaveSpreadingType=WaveSpreadingType.UNIDIRECTIONAL, omega:float=0.0, alpha:float=0.008, beta:float=1.25, gamma:float=3.3, sigmaa:float=0.07, sigmab:float=0.09, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, omega=0.0, alpha=0.008, beta=1.25, gamma=3.3, sigmaa=0.07, sigmab=0.09, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__spreadingExponent = spreadingExponent
-        self.__numDirections = numDirections
-        self.__spreadingType = spreadingType
-        self.__omega = omega
-        self.__alpha = alpha
-        self.__beta = beta
-        self.__gamma = gamma
-        self.__sigmaa = sigmaa
-        self.__sigmab = sigmab
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.spreadingExponent = spreadingExponent
+        self.numDirections = numDirections
+        self.spreadingType = spreadingType
+        self.omega = omega
+        self.alpha = alpha
+        self.beta = beta
+        self.gamma = gamma
+        self.sigmaa = sigmaa
+        self.sigmab = sigmab
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

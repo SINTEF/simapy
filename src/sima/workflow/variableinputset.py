@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.variableinputset import VariableInputSetBlueprint
+from numpy import ndarray,asarray
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -24,17 +25,17 @@ class VariableInputSet(MOAO):
          (default "")
     scriptableValues : List[ScriptableValue]
     parameter : SingleParameter
-    variations : Sequence[str]
+    variations : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__parameter = None
-        self.__variations = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.parameter = None
+        self.variations = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -99,13 +100,11 @@ class VariableInputSet(MOAO):
         self.__parameter = value
 
     @property
-    def variations(self) -> Sequence[str]:
+    def variations(self) -> ndarray:
         """"""
         return self.__variations
 
     @variations.setter
-    def variations(self, value: Sequence[str]):
+    def variations(self, value: ndarray):
         """Set variations"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__variations = value
+        self.__variations = asarray(value)

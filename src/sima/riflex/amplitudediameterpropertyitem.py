@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.amplitudediameterpropertyitem import AmplitudeDiameterPropertyItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class AmplitudeDiameterPropertyItem(MOAO):
          Excitation coefficient for A/D=0(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", nonDimensionalFrequency:float=0.0, adRatioCl0:float=0.0, adRatioClMax:float=0.0, maxExcitationCoefficient:float=0.0, excitCoeffAd0:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", nonDimensionalFrequency=0.0, adRatioCl0=0.0, adRatioClMax=0.0, maxExcitationCoefficient=0.0, excitCoeffAd0=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__nonDimensionalFrequency = nonDimensionalFrequency
-        self.__adRatioCl0 = adRatioCl0
-        self.__adRatioClMax = adRatioClMax
-        self.__maxExcitationCoefficient = maxExcitationCoefficient
-        self.__excitCoeffAd0 = excitCoeffAd0
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.nonDimensionalFrequency = nonDimensionalFrequency
+        self.adRatioCl0 = adRatioCl0
+        self.adRatioClMax = adRatioClMax
+        self.maxExcitationCoefficient = maxExcitationCoefficient
+        self.excitCoeffAd0 = excitCoeffAd0
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

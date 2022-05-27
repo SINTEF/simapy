@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.nodereference import NodeReferenceBlueprint
+from typing import Dict
 from sima.riflex.segmentreference import SegmentReference
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -35,17 +36,17 @@ class NodeReference(SegmentReference):
          All nodes(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, nodeNumber:int=1, allNodes:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__nodeNumber = nodeNumber
-        self.__allNodes = allNodes
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.nodeNumber = nodeNumber
+        self.allNodes = allNodes
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,17 +5,17 @@ from enum import auto
 
 class PointStyle(Enum):
     """"""
-    none = auto()
-    point = auto()
-    circle = auto()
-    square = auto()
+    NONE = auto()
+    POINT = auto()
+    CIRCLE = auto()
+    SQUARE = auto()
 
     def label(self):
-        if self == PointStyle.none:
+        if self == PointStyle.NONE:
             return "None"
-        if self == PointStyle.point:
+        if self == PointStyle.POINT:
             return "Point"
-        if self == PointStyle.circle:
+        if self == PointStyle.CIRCLE:
             return "Circle"
-        if self == PointStyle.square:
+        if self == PointStyle.SQUARE:
             return "Square"

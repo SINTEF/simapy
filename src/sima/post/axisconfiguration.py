@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.axisconfiguration import AxisConfigurationBlueprint
+from typing import Dict
 from sima.sima.fontdescription import FontDescription
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -39,21 +40,21 @@ class AxisConfiguration(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", log:bool=False, autoFormat:bool=True, format:str='0.####E0', showGrid:bool=True, dashGridLine:bool=False, autoScale:bool=True, minimum:float=0.0, maximum:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", log=False, autoFormat=True, format='0.####E0', showGrid=True, dashGridLine=False, autoScale=True, minimum=0.0, maximum=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__font = FontDescription()
-        self.__log = log
-        self.__autoFormat = autoFormat
-        self.__format = format
-        self.__showGrid = showGrid
-        self.__dashGridLine = dashGridLine
-        self.__autoScale = autoScale
-        self.__minimum = minimum
-        self.__maximum = maximum
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.font = None
+        self.log = log
+        self.autoFormat = autoFormat
+        self.format = format
+        self.showGrid = showGrid
+        self.dashGridLine = dashGridLine
+        self.autoScale = autoScale
+        self.minimum = minimum
+        self.maximum = maximum
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

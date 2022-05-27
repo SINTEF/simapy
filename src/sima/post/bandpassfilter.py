@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bandpassfilter import BandPassFilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -47,25 +48,25 @@ class BandPassFilter(OperationNode):
          Upper cut off frequency(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, renameOutput:bool=True, taperingFactor:float=0.5, coefficientCount:int=0, normalizedWindowDuration:int=4, lowerCutoffFrequency:float=0.0, upperCutoffFrequency:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, renameOutput=True, taperingFactor=0.5, coefficientCount=0, normalizedWindowDuration=4, lowerCutoffFrequency=0.0, upperCutoffFrequency=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__renameOutput = renameOutput
-        self.__taperingFactor = taperingFactor
-        self.__coefficientCount = coefficientCount
-        self.__normalizedWindowDuration = normalizedWindowDuration
-        self.__lowerCutoffFrequency = lowerCutoffFrequency
-        self.__upperCutoffFrequency = upperCutoffFrequency
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.renameOutput = renameOutput
+        self.taperingFactor = taperingFactor
+        self.coefficientCount = coefficientCount
+        self.normalizedWindowDuration = normalizedWindowDuration
+        self.lowerCutoffFrequency = lowerCutoffFrequency
+        self.upperCutoffFrequency = upperCutoffFrequency
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

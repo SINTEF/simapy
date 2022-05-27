@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fixedbodyelement import FixedBodyElementBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -65,32 +66,32 @@ class FixedBodyElement(NamedObject):
          Added mass z(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", volume:float=0.0, mass:float=0.0, waveIntegrationMethod:WaveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType:LoadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod:FixedBodyWaveParticleMethod=FixedBodyWaveParticleMethod.NOT_INCLUDED, zcoef:float=0.0, c2x:float=0.0, c2y:float=0.0, c2z:float=0.0, c1x:float=0.0, c1y:float=0.0, c1z:float=0.0, amx:float=0.0, amy:float=0.0, amz:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", volume=0.0, mass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=FixedBodyWaveParticleMethod.VELOCITY_AND_ACCELERATION, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__volume = volume
-        self.__mass = mass
-        self.__waveIntegrationMethod = waveIntegrationMethod
-        self.__loadType = loadType
-        self.__waveParticleMethod = waveParticleMethod
-        self.__position = Point3()
-        self.__refPointXAxis = Point3()
-        self.__refPointXYPlane = Point3()
-        self.__zcoef = zcoef
-        self.__depthDependentHydrodynamicCoefficients = list()
-        self.__diffractedWave = None
-        self.__c2x = c2x
-        self.__c2y = c2y
-        self.__c2z = c2z
-        self.__c1x = c1x
-        self.__c1y = c1y
-        self.__c1z = c1z
-        self.__amx = amx
-        self.__amy = amy
-        self.__amz = amz
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.volume = volume
+        self.mass = mass
+        self.waveIntegrationMethod = waveIntegrationMethod
+        self.loadType = loadType
+        self.waveParticleMethod = waveParticleMethod
+        self.position = None
+        self.refPointXAxis = None
+        self.refPointXYPlane = None
+        self.zcoef = zcoef
+        self.depthDependentHydrodynamicCoefficients = list()
+        self.diffractedWave = None
+        self.c2x = c2x
+        self.c2y = c2y
+        self.c2z = c2z
+        self.c1x = c1x
+        self.c1y = c1y
+        self.c1z = c1z
+        self.amx = amx
+        self.amy = amy
+        self.amz = amz
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

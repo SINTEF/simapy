@@ -15,7 +15,7 @@ class SIMOHeaveCompensatorBlueprint(NamedObjectBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(EnumAttribute("_type","sima/simo/CompensatorType",""))
         self.attributes.append(EnumAttribute("limitationMode","sima/simo/CompensatorLimitation","Limitation handling mode for the compensator"))
         self.attributes.append(Attribute("factor","number","Reduction factor for compensator action at high sea states",default=0.0))

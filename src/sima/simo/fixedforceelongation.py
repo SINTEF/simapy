@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fixedforceelongation import FixedForceElongationBlueprint
+from typing import Dict
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.activationfailuremode import ActivationFailureMode
@@ -44,23 +45,23 @@ class FixedForceElongation(PositioningElement):
     characteristic : ForceDampingCharacteristic
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", failureMode:ActivationFailureMode=ActivationFailureMode.NONE, failureTime:float=0.0, breakingStrength:float=0.0, method:FixedForceElongationMethod=FixedForceElongationMethod.PRETENSION_LOCAL, pretension:float=0.0, direction:float=0.0, angle:float=0.0, velocityLimit:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, method=FixedForceElongationMethod.PRETENSION_LOCAL, pretension=0.0, direction=0.0, angle=0.0, velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__localPoint = Point3()
-        self.__globalPoint = Point3()
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__breakingStrength = breakingStrength
-        self.__method = method
-        self.__pretension = pretension
-        self.__direction = direction
-        self.__angle = angle
-        self.__velocityLimit = velocityLimit
-        self.__characteristic = ForceDampingCharacteristic()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.localPoint = None
+        self.globalPoint = None
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.breakingStrength = breakingStrength
+        self.method = method
+        self.pretension = pretension
+        self.direction = direction
+        self.angle = angle
+        self.velocityLimit = velocityLimit
+        self.characteristic = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

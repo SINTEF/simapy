@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fileoutputslot import FileOutputSlotBlueprint
+from typing import Dict
 from sima.post.outputslot import OutputSlot
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class FileOutputSlot(OutputSlot):
          Import the path to the specified file and not the content(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", filename:str="", pathOnly:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", filename="", pathOnly=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__filename = filename
-        self.__pathOnly = pathOnly
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.filename = filename
+        self.pathOnly = pathOnly
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

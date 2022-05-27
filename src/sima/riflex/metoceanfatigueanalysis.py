@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.metoceanfatigueanalysis import MetoceanFatigueAnalysisBlueprint
+from typing import Dict
 from sima.sima.condition import Condition
 from sima.sima.resultcontainer import ResultContainer
 from sima.sima.scriptablevalue import ScriptableValue
@@ -31,16 +32,16 @@ class MetoceanFatigueAnalysis(Condition):
     analysisCondition : Condition
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", changeNumber:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", changeNumber=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__changeNumber = changeNumber
-        self.__resultContainer = None
-        self.__metoceanCondition = None
-        self.__analysisCondition = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.changeNumber = changeNumber
+        self.resultContainer = None
+        self.metoceanCondition = None
+        self.analysisCondition = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

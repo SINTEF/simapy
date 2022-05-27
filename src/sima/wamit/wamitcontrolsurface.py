@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitcontrolsurface import WamitControlSurfaceBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.wamit.directionsofnormalsoption import DirectionsOfNormalsOption
@@ -41,22 +42,22 @@ class WamitControlSurface(MOAO):
          (default 10.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", geometryFilename:str="", surfacesToIncludeFromMs2File:SurfacesToIncludeFromMs2FileOption=SurfacesToIncludeFromMs2FileOption.ALLVISIBLESURFACES, symmetryAboutX:bool=False, symmetryAboutY:bool=False, entitySelectionList:str="", evaluationMode:EvaluationModeOption=EvaluationModeOption.FAST, divisionsMultiplier:int=0, directionOfNormals:DirectionsOfNormalsOption=DirectionsOfNormalsOption.OUTWARD, panelSize:float=10.0, **kwargs):
+    def __init__(self , name="", description="", _id="", geometryFilename="", surfacesToIncludeFromMs2File=SurfacesToIncludeFromMs2FileOption.ALLVISIBLESURFACES, symmetryAboutX=False, symmetryAboutY=False, entitySelectionList="", evaluationMode=EvaluationModeOption.FAST, divisionsMultiplier=0, directionOfNormals=DirectionsOfNormalsOption.OUTWARD, panelSize=10.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__geometryFilename = geometryFilename
-        self.__surfacesToIncludeFromMs2File = surfacesToIncludeFromMs2File
-        self.__symmetryAboutX = symmetryAboutX
-        self.__symmetryAboutY = symmetryAboutY
-        self.__entitySelectionList = entitySelectionList
-        self.__evaluationMode = evaluationMode
-        self.__divisionsMultiplier = divisionsMultiplier
-        self.__directionOfNormals = directionOfNormals
-        self.__parameterLines = list()
-        self.__panelSize = panelSize
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.geometryFilename = geometryFilename
+        self.surfacesToIncludeFromMs2File = surfacesToIncludeFromMs2File
+        self.symmetryAboutX = symmetryAboutX
+        self.symmetryAboutY = symmetryAboutY
+        self.entitySelectionList = entitySelectionList
+        self.evaluationMode = evaluationMode
+        self.divisionsMultiplier = divisionsMultiplier
+        self.directionOfNormals = directionOfNormals
+        self.parameterLines = list()
+        self.panelSize = panelSize
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

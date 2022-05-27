@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hydrodynamiccrosssectionproperties import HydrodynamicCrossSectionPropertiesBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -45,20 +46,20 @@ class HydrodynamicCrossSectionProperties(MOAO):
          Strouhal number
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", itemNumber:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", itemNumber=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__itemNumber = itemNumber
-        self.__excitationZoneProperty = None
-        self.__addedMassCrossFlowProperty = None
-        self.__excitationCoefficientCrossFlowProperty = None
-        self.__dampingFactorProperty = None
-        self.__addedMassInLineProperty = None
-        self.__excitationCoefficientInLineProperty = None
-        self.__strouhalSpecificationProperty = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.itemNumber = itemNumber
+        self.excitationZoneProperty = None
+        self.addedMassCrossFlowProperty = None
+        self.excitationCoefficientCrossFlowProperty = None
+        self.dampingFactorProperty = None
+        self.addedMassInLineProperty = None
+        self.excitationCoefficientInLineProperty = None
+        self.strouhalSpecificationProperty = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

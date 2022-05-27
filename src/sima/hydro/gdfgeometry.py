@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.gdfgeometry import GDFGeometryBlueprint
+from numpy import ndarray,asarray
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,25 +26,25 @@ class GDFGeometry(MOAO):
          (default 0)
     nValues : int
          (default 0)
-    values : Sequence[float]
+    values : ndarray
     dimensionalLength : float
          (default 1.0)
     gravitationalAcceleration : float
          (default 9.81)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", xSymmetry:int=0, ySymmetry:int=0, nValues:int=0, dimensionalLength:float=1.0, gravitationalAcceleration:float=9.81, **kwargs):
+    def __init__(self , name="", description="", _id="", xSymmetry=0, ySymmetry=0, nValues=0, dimensionalLength=1.0, gravitationalAcceleration=9.81, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__xSymmetry = xSymmetry
-        self.__ySymmetry = ySymmetry
-        self.__nValues = nValues
-        self.__values = list()
-        self.__dimensionalLength = dimensionalLength
-        self.__gravitationalAcceleration = gravitationalAcceleration
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.xSymmetry = xSymmetry
+        self.ySymmetry = ySymmetry
+        self.nValues = nValues
+        self.values = ndarray(1)
+        self.dimensionalLength = dimensionalLength
+        self.gravitationalAcceleration = gravitationalAcceleration
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -128,16 +129,14 @@ class GDFGeometry(MOAO):
         self.__nValues = int(value)
 
     @property
-    def values(self) -> Sequence[float]:
+    def values(self) -> ndarray:
         """"""
         return self.__values
 
     @values.setter
-    def values(self, value: Sequence[float]):
+    def values(self, value: ndarray):
         """Set values"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__values = value
+        self.__values = asarray(value)
 
     @property
     def dimensionalLength(self) -> float:

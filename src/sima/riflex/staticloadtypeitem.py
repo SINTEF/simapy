@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.staticloadtypeitem import StaticLoadTypeItemBlueprint
+from typing import Dict
 from sima.riflex.boundarychangegroup import BoundaryChangeGroup
 from sima.riflex.convergencenorm import ConvergenceNorm
 from sima.riflex.pressurevariationitem import PressureVariationItem
@@ -50,26 +51,26 @@ class StaticLoadTypeItem(MOAO):
          Enables wind force on turbine blades(default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", runWithPrevious:bool=False, loadType:StaticLoadType=StaticLoadType.VOLU, nStep:int=10, maxIterations:int=10, accuracy:float=1e-05, convergenceNorm:ConvergenceNorm=ConvergenceNorm.DISP, energyAccuracy:float=1e-05, entered:bool=True, growthFactor:float=1.0, windOnTurbineBlades:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", runWithPrevious=False, loadType=StaticLoadType.VOLU, nStep=10, maxIterations=10, accuracy=1e-05, convergenceNorm=ConvergenceNorm.DISP, energyAccuracy=1e-05, entered=True, growthFactor=1.0, windOnTurbineBlades=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__runWithPrevious = runWithPrevious
-        self.__boundaryChangeGroup = None
-        self.__loadType = loadType
-        self.__nStep = nStep
-        self.__maxIterations = maxIterations
-        self.__accuracy = accuracy
-        self.__convergenceNorm = convergenceNorm
-        self.__energyAccuracy = energyAccuracy
-        self.__entered = entered
-        self.__temperatureVariations = list()
-        self.__pressureVariations = list()
-        self.__winchVariations = list()
-        self.__growthFactor = growthFactor
-        self.__windOnTurbineBlades = windOnTurbineBlades
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.runWithPrevious = runWithPrevious
+        self.boundaryChangeGroup = None
+        self.loadType = loadType
+        self.nStep = nStep
+        self.maxIterations = maxIterations
+        self.accuracy = accuracy
+        self.convergenceNorm = convergenceNorm
+        self.energyAccuracy = energyAccuracy
+        self.entered = entered
+        self.temperatureVariations = list()
+        self.pressureVariations = list()
+        self.winchVariations = list()
+        self.growthFactor = growthFactor
+        self.windOnTurbineBlades = windOnTurbineBlades
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

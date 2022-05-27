@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.coordinatesystemtransform import CoordinateSystemTransformBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -49,26 +50,26 @@ class CoordinateSystemTransform(OperationNode):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, inputCoordinateSystem:bool=False, offsetX:float=0.0, offsetY:float=0.0, offsetZ:float=0.0, rotationX:float=0.0, rotationY:float=0.0, rotationZ:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, inputCoordinateSystem=False, offsetX=0.0, offsetY=0.0, offsetZ=0.0, rotationX=0.0, rotationY=0.0, rotationZ=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__inputCoordinateSystem = inputCoordinateSystem
-        self.__offsetX = offsetX
-        self.__offsetY = offsetY
-        self.__offsetZ = offsetZ
-        self.__rotationX = rotationX
-        self.__rotationY = rotationY
-        self.__rotationZ = rotationZ
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.inputCoordinateSystem = inputCoordinateSystem
+        self.offsetX = offsetX
+        self.offsetY = offsetY
+        self.offsetZ = offsetZ
+        self.rotationX = rotationX
+        self.rotationY = rotationY
+        self.rotationZ = rotationZ
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

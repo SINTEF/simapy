@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bladepitchfault import BladePitchFaultBlueprint
+from typing import Dict
 from sima.riflex.biasbladepitchfaultitem import BiasBladePitchFaultItem
 from sima.riflex.runawaybladepitchfaultitem import RunawayBladePitchFaultItem
 from sima.riflex.seizebladepitchfaultitem import SeizeBladePitchFaultItem
@@ -27,15 +28,15 @@ class BladePitchFault(MOAO):
     biasFaults : List[BiasBladePitchFaultItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__seizeFaults = list()
-        self.__runawayFaults = list()
-        self.__biasFaults = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.seizeFaults = list()
+        self.runawayFaults = list()
+        self.biasFaults = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

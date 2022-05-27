@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.conditionsetresultcontainer import ConditionSetResultContainerBlueprint
+from typing import Dict
 from sima.sima.conditionresultcontainer import ConditionResultContainer
 from sima.sima.property import Property
 from sima.sima.resultcontainer import ResultContainer
@@ -25,14 +26,14 @@ class ConditionSetResultContainer(ResultContainer):
     resultContainers : List[ConditionResultContainer]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__resultContainers = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.resultContainers = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

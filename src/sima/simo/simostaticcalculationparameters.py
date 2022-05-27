@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simostaticcalculationparameters import SIMOStaticCalculationParametersBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.bodyeigenvalueitem import BodyEigenvalueItem
@@ -60,32 +61,32 @@ class SIMOStaticCalculationParameters(MOAO):
          When checked, static calculation will fail if no equilibrium position is found(default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", runStaticAutomatically:bool=False, calculateEquilibrium:bool=True, maxPeriod:float=10.0, posTol:float=0.1, dirTol:float=0.1, timeStep:float=0.01, maxStep:int=10000, criticalDamping:bool=True, writeVisFile:bool=True, calculateEigenvalues:bool=False, equilibriumCalculationMethod:EquilibriumCalculationOption=EquilibriumCalculationOption.TRANSIENT, forceTolerance:float=100.0, momentTolerance:float=1000.0, multipleEquilibriumCalculations:bool=False, requireSuccessfulCalculation:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", runStaticAutomatically=False, calculateEquilibrium=True, maxPeriod=10.0, posTol=0.1, dirTol=0.1, timeStep=0.01, maxStep=10000, criticalDamping=True, writeVisFile=True, calculateEigenvalues=False, equilibriumCalculationMethod=EquilibriumCalculationOption.TRANSIENT, forceTolerance=100.0, momentTolerance=1000.0, multipleEquilibriumCalculations=False, requireSuccessfulCalculation=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__runStaticAutomatically = runStaticAutomatically
-        self.__calculateEquilibrium = calculateEquilibrium
-        self.__maxPeriod = maxPeriod
-        self.__posTol = posTol
-        self.__dirTol = dirTol
-        self.__timeStep = timeStep
-        self.__maxStep = maxStep
-        self.__criticalDamping = criticalDamping
-        self.__writeVisFile = writeVisFile
-        self.__calculateEigenvalues = calculateEigenvalues
-        self.__eliminations = list()
-        self.__eigenvalueItems = list()
-        self.__equilibriumCalculationMethod = equilibriumCalculationMethod
-        self.__forceTolerance = forceTolerance
-        self.__momentTolerance = momentTolerance
-        self.__staticEquilibriumBody = list()
-        self.__restrainFromGlobalDOFBodies = list()
-        self.__multipleEquilibriumCalculations = multipleEquilibriumCalculations
-        self.__equilibriumGridDefinition = EquilibriumGridDefinition()
-        self.__requireSuccessfulCalculation = requireSuccessfulCalculation
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.runStaticAutomatically = runStaticAutomatically
+        self.calculateEquilibrium = calculateEquilibrium
+        self.maxPeriod = maxPeriod
+        self.posTol = posTol
+        self.dirTol = dirTol
+        self.timeStep = timeStep
+        self.maxStep = maxStep
+        self.criticalDamping = criticalDamping
+        self.writeVisFile = writeVisFile
+        self.calculateEigenvalues = calculateEigenvalues
+        self.eliminations = list()
+        self.eigenvalueItems = list()
+        self.equilibriumCalculationMethod = equilibriumCalculationMethod
+        self.forceTolerance = forceTolerance
+        self.momentTolerance = momentTolerance
+        self.staticEquilibriumBody = list()
+        self.restrainFromGlobalDOFBodies = list()
+        self.multipleEquilibriumCalculations = multipleEquilibriumCalculations
+        self.equilibriumGridDefinition = None
+        self.requireSuccessfulCalculation = requireSuccessfulCalculation
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

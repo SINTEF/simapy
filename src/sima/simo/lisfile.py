@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.lisfile import LisFileBlueprint
+from typing import Dict
 from sima.sima.property import Property
 from sima.sima.result import Result
 from sima.sima.scriptablevalue import ScriptableValue
@@ -41,22 +42,22 @@ class LisFile(Result):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", resource:str="", relative:bool=False, _type:str="", time:int=-1, size:int=-1, runNumber:int=-1, runFailed:bool=True, version:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", resource="", relative=False, _type="", time=-1, size=-1, runNumber=-1, runFailed=True, version="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__resource = resource
-        self.__relative = relative
-        self.___type = _type
-        self.__time = time
-        self.__size = size
-        self.__runNumber = runNumber
-        self.__messages = list()
-        self.__runFailed = runFailed
-        self.__version = version
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.resource = resource
+        self.relative = relative
+        self._type = _type
+        self.time = time
+        self.size = size
+        self.runNumber = runNumber
+        self.messages = list()
+        self.runFailed = runFailed
+        self.version = version
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

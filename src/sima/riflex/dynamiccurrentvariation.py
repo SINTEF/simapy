@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynamiccurrentvariation import DynamicCurrentVariationBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class DynamicCurrentVariation(MOAO):
          File name for dynamic current variation(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", active:bool=True, fileName:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", active=True, fileName="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__active = active
-        self.__fileName = fileName
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.active = active
+        self.fileName = fileName
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

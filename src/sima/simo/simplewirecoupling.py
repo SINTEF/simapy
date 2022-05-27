@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simplewirecoupling import SimpleWireCouplingBlueprint
+from typing import Dict
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.activationfailuremode import ActivationFailureMode
 from sima.simo.guidepointspecification import GuidePointSpecification
@@ -56,28 +57,28 @@ class SimpleWireCoupling(SimpleCoupling):
          Deactivation time for constant tension control. If value is less then or equal to activation time, controller will remain active throughout simulation(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", failureMode:ActivationFailureMode=ActivationFailureMode.NONE, failureTime:float=0.0, breakingStrength:float=0.0, ea:float=0.0, length:float=0.0, damping:float=0.0, flexibility:float=0.0, constantTensionControl:bool=True, tensionLevel:float=0.0, tensionDeadband:float=0.0, maxSpeed:float=0.0, activationTime:float=0.0, deactivationTime:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, ea=0.0, length=0.0, damping=0.0, flexibility=0.0, constantTensionControl=True, tensionLevel=0.0, tensionDeadband=0.0, maxSpeed=0.0, activationTime=0.0, deactivationTime=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__endPoint1 = None
-        self.__endPoint2 = None
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__breakingStrength = breakingStrength
-        self.__ea = ea
-        self.__length = length
-        self.__damping = damping
-        self.__flexibility = flexibility
-        self.__guidePointSpecifications = list()
-        self.__constantTensionControl = constantTensionControl
-        self.__tensionLevel = tensionLevel
-        self.__tensionDeadband = tensionDeadband
-        self.__maxSpeed = maxSpeed
-        self.__activationTime = activationTime
-        self.__deactivationTime = deactivationTime
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.endPoint1 = None
+        self.endPoint2 = None
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.breakingStrength = breakingStrength
+        self.ea = ea
+        self.length = length
+        self.damping = damping
+        self.flexibility = flexibility
+        self.guidePointSpecifications = list()
+        self.constantTensionControl = constantTensionControl
+        self.tensionLevel = tensionLevel
+        self.tensionDeadband = tensionDeadband
+        self.maxSpeed = maxSpeed
+        self.activationTime = activationTime
+        self.deactivationTime = deactivationTime
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

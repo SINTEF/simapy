@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.nonequidistantsignal import NonEquidistantSignalBlueprint
+from typing import Dict
 from sima.post.generatorsignal import GeneratorSignal
 from sima.post.signalproperties import SignalProperties
 from sima.post.xyitem import XYItem
@@ -33,18 +34,18 @@ class NonEquidistantSignal(GeneratorSignal):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", xunit:str='s', yunit:str='-', ylabel:str="", xlabel:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", xunit='s', yunit='-', ylabel="", xlabel="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__xunit = xunit
-        self.__yunit = yunit
-        self.__values = list()
-        self.__ylabel = ylabel
-        self.__xlabel = xlabel
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.xunit = xunit
+        self.yunit = yunit
+        self.values = list()
+        self.ylabel = ylabel
+        self.xlabel = xlabel
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -15,7 +15,7 @@ class VolumeConeItemBlueprint(VolumeMassPortionBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(EnumAttribute("volume","sima/simo/Volume","Add or subtract volume"))
         self.attributes.append(BlueprintAttribute("centerPoint","sima/sima/Point3","Location of center of bottom plane in local coordinates",True))
         self.attributes.append(Attribute("length","number","Length of cone",default=0.0))

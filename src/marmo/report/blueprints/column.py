@@ -11,8 +11,8 @@ class ColumnBlueprint(Blueprint):
 
     def __init__(self, name="Column", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string",""))
-        self.attributes.append(Attribute("description","string",""))
-        self.attributes.append(Attribute("header","string",""))
-        self.attributes.append(Attribute("label","string",""))
-        self.attributes.append(BlueprintAttribute("headerfont","/report/Font","",True))
+        self.attributes.append(Attribute("name","string","",default=""))
+        self.attributes.append(Attribute("description","string","",default=""))
+        self.attributes.append(Attribute("header","string","",default=""))
+        self.attributes.append(Attribute("label","string","",default=""))
+        self.attributes.append(BlueprintAttribute("headerfont","marmo/report/Font","",True))

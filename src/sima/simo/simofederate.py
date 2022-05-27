@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simofederate import SIMOFederateBlueprint
+from typing import Dict
 from sima.hla.hlafederate import HLAFederate
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -28,14 +29,14 @@ class SIMOFederate(HLAFederate):
     task : ConditionTask
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", timeStep:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", timeStep=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__timeStep = timeStep
-        self.__task = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.timeStep = timeStep
+        self.task = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.modesofmotion import ModesOfMotionBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -33,18 +34,18 @@ class ModesOfMotion(MOAO):
          (default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", surge:bool=True, sway:bool=True, heave:bool=True, roll:bool=True, pitch:bool=True, yaw:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", surge=True, sway=True, heave=True, roll=True, pitch=True, yaw=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__surge = surge
-        self.__sway = sway
-        self.__heave = heave
-        self.__roll = roll
-        self.__pitch = pitch
-        self.__yaw = yaw
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.surge = surge
+        self.sway = sway
+        self.heave = heave
+        self.roll = roll
+        self.pitch = pitch
+        self.yaw = yaw
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

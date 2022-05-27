@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.slugforcespecification import SlugForceSpecificationBlueprint
+from typing import Dict
 from sima.riflex.slugforcedensitycontrol import SlugForceDensityControl
 from sima.riflex.slugforceinterruption import SlugForceInterruption
 from sima.riflex.slugforcevelocitycontrol import SlugForceVelocityControl
@@ -58,29 +59,29 @@ class SlugForceSpecification(MOAO):
          Specified flow is in addition to that given on main riser line (default is replacement)(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", enterTime:float=0.0, interruption:SlugForceInterruption=SlugForceInterruption.SLUG, length:float=0.0, mass:float=0.0, velocity:float=0.0, densityControl:SlugForceDensityControl=SlugForceDensityControl.CONSTANT, velocityControl:SlugForceVelocityControl=SlugForceVelocityControl.CONSTANT, cycles:int=1, cycleTime:float=0.0, secondPosition:float=0.0, massAtSecondPosition:float=0.0, referenceDepth:float=0.0, velocitySpecification:float=0.0, velocityExponent:float=0.0, importFlow:bool=False, flowFile:str="", addedFlow:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", enterTime=0.0, interruption=SlugForceInterruption.SLUG, length=0.0, mass=0.0, velocity=0.0, densityControl=SlugForceDensityControl.CONSTANT, velocityControl=SlugForceVelocityControl.CONSTANT, cycles=1, cycleTime=0.0, secondPosition=0.0, massAtSecondPosition=0.0, referenceDepth=0.0, velocitySpecification=0.0, velocityExponent=0.0, importFlow=False, flowFile="", addedFlow=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__enterTime = enterTime
-        self.__interruption = interruption
-        self.__length = length
-        self.__mass = mass
-        self.__velocity = velocity
-        self.__densityControl = densityControl
-        self.__velocityControl = velocityControl
-        self.__cycles = cycles
-        self.__cycleTime = cycleTime
-        self.__secondPosition = secondPosition
-        self.__massAtSecondPosition = massAtSecondPosition
-        self.__referenceDepth = referenceDepth
-        self.__velocitySpecification = velocitySpecification
-        self.__velocityExponent = velocityExponent
-        self.__importFlow = importFlow
-        self.__flowFile = flowFile
-        self.__addedFlow = addedFlow
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.enterTime = enterTime
+        self.interruption = interruption
+        self.length = length
+        self.mass = mass
+        self.velocity = velocity
+        self.densityControl = densityControl
+        self.velocityControl = velocityControl
+        self.cycles = cycles
+        self.cycleTime = cycleTime
+        self.secondPosition = secondPosition
+        self.massAtSecondPosition = massAtSecondPosition
+        self.referenceDepth = referenceDepth
+        self.velocitySpecification = velocitySpecification
+        self.velocityExponent = velocityExponent
+        self.importFlow = importFlow
+        self.flowFile = flowFile
+        self.addedFlow = addedFlow
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

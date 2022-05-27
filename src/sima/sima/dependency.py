@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dependency import DependencyBlueprint
-from sima.sima.moao import MOAO
+from typing import Dict
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.scriptablevalue import ScriptableValue
-    
-class Dependency(MOAO):
+    from sima.sima.moao import MOAO
+
+class Dependency(Entity):
     """
     Keyword arguments
     -----------------
@@ -21,20 +21,18 @@ class Dependency(MOAO):
          (default "")
     _id : str
          (default "")
-    scriptableValues : List[ScriptableValue]
     object : MOAO
     feature : str
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", feature:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", feature="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__object = None
-        self.__feature = feature
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.object = None
+        self.feature = feature
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -75,18 +73,6 @@ class Dependency(MOAO):
     def _id(self, value: str):
         """Set _id"""
         self.___id = str(value)
-
-    @property
-    def scriptableValues(self) -> List[ScriptableValue]:
-        """"""
-        return self.__scriptableValues
-
-    @scriptableValues.setter
-    def scriptableValues(self, value: List[ScriptableValue]):
-        """Set scriptableValues"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__scriptableValues = value
 
     @property
     def object(self) -> MOAO:

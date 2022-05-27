@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.equilibriumgriddefinitionrow import EquilibriumGridDefinitionRowBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -27,15 +28,15 @@ class EquilibriumGridDefinitionRow(MOAO):
          (default 11)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", minimumValue:float=-10.0, maximumValue:float=10.0, numberOfValues:int=11, **kwargs):
+    def __init__(self , name="", description="", _id="", minimumValue=-10.0, maximumValue=10.0, numberOfValues=11, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__minimumValue = minimumValue
-        self.__maximumValue = maximumValue
-        self.__numberOfValues = numberOfValues
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.minimumValue = minimumValue
+        self.maximumValue = maximumValue
+        self.numberOfValues = numberOfValues
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

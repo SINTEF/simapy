@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.numbersignalinputslot import NumberSignalInputSlotBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.signalproperties import SignalProperties
 from sima.sima.scriptablevalue import ScriptableValue
@@ -29,16 +30,16 @@ class NumberSignalInputSlot(ControlSignalInputSlot):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", specifyAdditionalProperties:bool=False, array:bool=False, value:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", specifyAdditionalProperties=False, array=False, value=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__specifyAdditionalProperties = specifyAdditionalProperties
-        self.__array = array
-        self.__value = value
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.specifyAdditionalProperties = specifyAdditionalProperties
+        self.array = array
+        self.value = value
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

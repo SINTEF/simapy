@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.spectralpeakperiodrelation import SpectralPeakPeriodRelationBlueprint
+from numpy import ndarray,asarray
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -19,22 +20,22 @@ class SpectralPeakPeriodRelation(MOAO):
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    hs : Sequence[float]
-    interval5 : Sequence[float]
-    mean : Sequence[float]
-    interval95 : Sequence[float]
+    hs : ndarray
+    interval5 : ndarray
+    mean : ndarray
+    interval95 : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__hs = list()
-        self.__interval5 = list()
-        self.__mean = list()
-        self.__interval95 = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.hs = ndarray(1)
+        self.interval5 = ndarray(1)
+        self.mean = ndarray(1)
+        self.interval95 = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -89,49 +90,41 @@ class SpectralPeakPeriodRelation(MOAO):
         self.__scriptableValues = value
 
     @property
-    def hs(self) -> Sequence[float]:
+    def hs(self) -> ndarray:
         """"""
         return self.__hs
 
     @hs.setter
-    def hs(self, value: Sequence[float]):
+    def hs(self, value: ndarray):
         """Set hs"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__hs = value
+        self.__hs = asarray(value)
 
     @property
-    def interval5(self) -> Sequence[float]:
+    def interval5(self) -> ndarray:
         """"""
         return self.__interval5
 
     @interval5.setter
-    def interval5(self, value: Sequence[float]):
+    def interval5(self, value: ndarray):
         """Set interval5"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__interval5 = value
+        self.__interval5 = asarray(value)
 
     @property
-    def mean(self) -> Sequence[float]:
+    def mean(self) -> ndarray:
         """"""
         return self.__mean
 
     @mean.setter
-    def mean(self, value: Sequence[float]):
+    def mean(self, value: ndarray):
         """Set mean"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__mean = value
+        self.__mean = asarray(value)
 
     @property
-    def interval95(self) -> Sequence[float]:
+    def interval95(self) -> ndarray:
         """"""
         return self.__interval95
 
     @interval95.setter
-    def interval95(self, value: Sequence[float]):
+    def interval95(self, value: ndarray):
         """Set interval95"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__interval95 = value
+        self.__interval95 = asarray(value)

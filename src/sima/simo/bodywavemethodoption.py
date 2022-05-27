@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bodywavemethodoption import BodyWaveMethodOptionBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.kinematicmethod import KinematicMethod
@@ -43,21 +44,21 @@ class BodyWaveMethodOption(MOAO):
          Options for diffracted wave
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", waveParticleMotions:KinematicMethod=KinematicMethod.FFT, waveParticleMotionDistributed:KinematicMethod=KinematicMethod.FFT, firstOrderWaveForce:KinematicMethod=KinematicMethod.FFT, firstOrderMotion:KinematicMethod=KinematicMethod.FFT, waveDriftForce:KinematicMethod=KinematicMethod.FFT, waveDriftDamping:KinematicMethod=KinematicMethod.FFT, qtf:KinematicMethod=KinematicMethod.FFT, diffractedWave:KinematicMethod=KinematicMethod.FFT, **kwargs):
+    def __init__(self , name="", description="", _id="", waveParticleMotions=KinematicMethod.FFT, waveParticleMotionDistributed=KinematicMethod.FFT, firstOrderWaveForce=KinematicMethod.FFT, firstOrderMotion=KinematicMethod.FFT, waveDriftForce=KinematicMethod.FFT, waveDriftDamping=KinematicMethod.FFT, qtf=KinematicMethod.FFT, diffractedWave=KinematicMethod.FFT, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__body = None
-        self.__waveParticleMotions = waveParticleMotions
-        self.__waveParticleMotionDistributed = waveParticleMotionDistributed
-        self.__firstOrderWaveForce = firstOrderWaveForce
-        self.__firstOrderMotion = firstOrderMotion
-        self.__waveDriftForce = waveDriftForce
-        self.__waveDriftDamping = waveDriftDamping
-        self.__qtf = qtf
-        self.__diffractedWave = diffractedWave
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.body = None
+        self.waveParticleMotions = waveParticleMotions
+        self.waveParticleMotionDistributed = waveParticleMotionDistributed
+        self.firstOrderWaveForce = firstOrderWaveForce
+        self.firstOrderMotion = firstOrderMotion
+        self.waveDriftForce = waveDriftForce
+        self.waveDriftDamping = waveDriftDamping
+        self.qtf = qtf
+        self.diffractedWave = diffractedWave
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

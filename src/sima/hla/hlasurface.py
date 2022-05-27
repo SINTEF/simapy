@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlasurface import HLASurfaceBlueprint
+from typing import Dict
 from sima.hla.hlaobject import HLAObject
 from sima.hla.surfacetype import SurfaceType
 from sima.sima.scriptablevalue import ScriptableValue
@@ -29,16 +30,16 @@ class HLASurface(HLAObject):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", _type:SurfaceType=SurfaceType.OCEAN_SURFACE, transparency:float=0.0, sizeX:float=0.0, sizeY:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", _type=SurfaceType.OCEAN_SURFACE, transparency=0.0, sizeX=0.0, sizeY=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.___type = _type
-        self.__transparency = transparency
-        self.__sizeX = sizeX
-        self.__sizeY = sizeY
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self._type = _type
+        self.transparency = transparency
+        self.sizeX = sizeX
+        self.sizeY = sizeY
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

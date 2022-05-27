@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.parametervariation import ParameterVariationBlueprint
+from typing import Dict
 from sima.riflex.boundarychangegroup import BoundaryChangeGroup
 from sima.riflex.convergencenorm import ConvergenceNorm
 from sima.riflex.currentvariationitem import CurrentVariationItem
@@ -49,26 +50,26 @@ class ParameterVariation(MOAO):
          Activate material memory formulation (isotropic / kinematic hardening)(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", numVariations:int=0, maxIterations:int=1, convergenceNorm:ConvergenceNorm=ConvergenceNorm.DISP, accuracy:float=0.0001, energyAccuracy:float=0.0001, offset:bool=False, current:bool=False, specifiedForce:bool=False, fricActivation:bool=False, springActivation:bool=False, memoActivation:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", numVariations=0, maxIterations=1, convergenceNorm=ConvergenceNorm.DISP, accuracy=0.0001, energyAccuracy=0.0001, offset=False, current=False, specifiedForce=False, fricActivation=False, springActivation=False, memoActivation=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__numVariations = numVariations
-        self.__maxIterations = maxIterations
-        self.__convergenceNorm = convergenceNorm
-        self.__accuracy = accuracy
-        self.__energyAccuracy = energyAccuracy
-        self.__offset = offset
-        self.__current = current
-        self.__specifiedForce = specifiedForce
-        self.__offsetVariation = OffsetVariationItem()
-        self.__currentVariation = CurrentVariationItem()
-        self.__boundaryChangeGroup = BoundaryChangeGroup()
-        self.__fricActivation = fricActivation
-        self.__springActivation = springActivation
-        self.__memoActivation = memoActivation
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.numVariations = numVariations
+        self.maxIterations = maxIterations
+        self.convergenceNorm = convergenceNorm
+        self.accuracy = accuracy
+        self.energyAccuracy = energyAccuracy
+        self.offset = offset
+        self.current = current
+        self.specifiedForce = specifiedForce
+        self.offsetVariation = None
+        self.currentVariation = None
+        self.boundaryChangeGroup = None
+        self.fricActivation = fricActivation
+        self.springActivation = springActivation
+        self.memoActivation = memoActivation
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

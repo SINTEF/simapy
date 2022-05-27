@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.variableinputitem import VariableInputItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -28,14 +29,14 @@ class VariableInputItem(MOAO):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", variation:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", variation="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__parameter = None
-        self.__variation = variation
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.parameter = None
+        self.variation = variation
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

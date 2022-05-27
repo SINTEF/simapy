@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.integervariable import IntegerVariableBlueprint
+from typing import Dict
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.variable import Variable
 
@@ -23,13 +24,13 @@ class IntegerVariable(Variable):
          The current value for the variable(default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", value:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", value=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__value = value
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.value = value
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

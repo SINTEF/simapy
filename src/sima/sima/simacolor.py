@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simacolor import SIMAColorBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -27,15 +28,15 @@ class SIMAColor(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", red:float=1.0, green:float=0.0, blue:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", red=1.0, green=0.0, blue=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__red = red
-        self.__green = green
-        self.__blue = blue
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.red = red
+        self.green = green
+        self.blue = blue
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.elongationcharacteristic import ElongationCharacteristicBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.elongationcharacteristictype import ElongationCharacteristicType
@@ -33,16 +34,16 @@ class ElongationCharacteristic(NamedObject):
     fibreRopeModel : FibreRopeModel
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", inputType:ElongationCharacteristicType=ElongationCharacteristicType.STRESS_STRAIN, tensionMax:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", inputType=ElongationCharacteristicType.STRESS_STRAIN, tensionMax=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__inputType = inputType
-        self.__items = list()
-        self.__tensionMax = tensionMax
-        self.__fibreRopeModel = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.inputType = inputType
+        self.items = list()
+        self.tensionMax = tensionMax
+        self.fibreRopeModel = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

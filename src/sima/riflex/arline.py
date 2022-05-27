@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.arline import ARLineBlueprint
+from typing import Dict
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.lineforceprovider import LineForceProvider
 from typing import TYPE_CHECKING
@@ -34,16 +35,16 @@ class ARLine(LineForceProvider):
          Do not include this line in the calculations(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", disabled:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", disabled=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__lineType = None
-        self.__end1 = None
-        self.__end2 = None
-        self.__disabled = disabled
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.lineType = None
+        self.end1 = None
+        self.end2 = None
+        self.disabled = disabled
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

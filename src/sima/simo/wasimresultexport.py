@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wasimresultexport import WasimResultExportBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.bodyforcecomponentreference import BodyForceComponentReference
@@ -30,15 +31,15 @@ class WasimResultExport(MOAO):
          Limit the number of wave components exported to file(default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", maxNumberOfWaveComponents:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", maxNumberOfWaveComponents=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__floaterBody = None
-        self.__pointForces = list()
-        self.__maxNumberOfWaveComponents = maxNumberOfWaveComponents
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.floaterBody = None
+        self.pointForces = list()
+        self.maxNumberOfWaveComponents = maxNumberOfWaveComponents
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

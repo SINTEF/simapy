@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.sncurve import SNCurveBlueprint
+from typing import Dict
 from sima.riflex.fatiguelimitindicator import FatigueLimitIndicator
 from sima.riflex.sncurveitem import SNCurveItem
 from sima.sima.namedobject import NamedObject
@@ -36,19 +37,19 @@ class SNCurve(NamedObject):
     curveItems : List[SNCurveItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", fatigueLimitIndicator:FatigueLimitIndicator=FatigueLimitIndicator.NO_LIMIT, fatigueLimit:float=0.0, referenceThickness:float=0.0, thicknessCorrectionExponent:float=0.0, firstSlope:float=0.0, constant:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", fatigueLimitIndicator=FatigueLimitIndicator.NO_LIMIT, fatigueLimit=0.0, referenceThickness=0.0, thicknessCorrectionExponent=0.0, firstSlope=0.0, constant=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__fatigueLimitIndicator = fatigueLimitIndicator
-        self.__fatigueLimit = fatigueLimit
-        self.__referenceThickness = referenceThickness
-        self.__thicknessCorrectionExponent = thicknessCorrectionExponent
-        self.__firstSlope = firstSlope
-        self.__constant = constant
-        self.__curveItems = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.fatigueLimitIndicator = fatigueLimitIndicator
+        self.fatigueLimit = fatigueLimit
+        self.referenceThickness = referenceThickness
+        self.thicknessCorrectionExponent = thicknessCorrectionExponent
+        self.firstSlope = firstSlope
+        self.constant = constant
+        self.curveItems = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

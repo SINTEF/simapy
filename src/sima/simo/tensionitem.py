@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.tensionitem import TensionItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class TensionItem(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", tension:float=0.0, angle:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", tension=0.0, angle=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__tension = tension
-        self.__angle = angle
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.tension = tension
+        self.angle = angle
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

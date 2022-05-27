@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.zerocrossingoperation import ZeroCrossingOperationBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -44,23 +45,23 @@ class ZeroCrossingOperation(OperationNode):
          Trigger when the value cross the threshold from below or from above
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, renameOutput:bool=True, firstCrossing:bool=False, threshold:float=0.0, zeroCrossing:ZeroCrossing=ZeroCrossing.UP, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, renameOutput=True, firstCrossing=False, threshold=0.0, zeroCrossing=ZeroCrossing.UP, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__renameOutput = renameOutput
-        self.__firstCrossing = firstCrossing
-        self.__threshold = threshold
-        self.__zeroCrossing = zeroCrossing
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.renameOutput = renameOutput
+        self.firstCrossing = firstCrossing
+        self.threshold = threshold
+        self.zeroCrossing = zeroCrossing
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

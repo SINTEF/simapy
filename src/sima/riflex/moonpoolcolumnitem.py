@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.moonpoolcolumnitem import MoonpoolColumnItemBlueprint
+from typing import Dict
 from sima.riflex.linereference import LineReference
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -32,16 +33,16 @@ class MoonpoolColumnItem(MOAO):
     lineReferences : List[LineReference]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", lowerZ:float=0.0, upperZ:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", lowerZ=0.0, upperZ=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__body = None
-        self.__lowerZ = lowerZ
-        self.__upperZ = upperZ
-        self.__lineReferences = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.body = None
+        self.lowerZ = lowerZ
+        self.upperZ = upperZ
+        self.lineReferences = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

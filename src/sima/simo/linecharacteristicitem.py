@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.linecharacteristicitem import LineCharacteristicItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.linetensionitem import LineTensionItem
@@ -31,17 +32,17 @@ class LineCharacteristicItem(MOAO):
     lineTensionItems : List[LineTensionItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", seaBedX:float=0.0, seaBedY:float=0.0, vesselX:float=0.0, vesselY:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", seaBedX=0.0, seaBedY=0.0, vesselX=0.0, vesselY=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__seaBedX = seaBedX
-        self.__seaBedY = seaBedY
-        self.__vesselX = vesselX
-        self.__vesselY = vesselY
-        self.__lineTensionItems = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.seaBedX = seaBedX
+        self.seaBedY = seaBedY
+        self.vesselX = vesselX
+        self.vesselY = vesselY
+        self.lineTensionItems = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

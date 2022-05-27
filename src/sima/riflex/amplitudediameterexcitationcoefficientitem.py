@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.amplitudediameterexcitationcoefficientitem import AmplitudeDiameterExcitationCoefficientItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class AmplitudeDiameterExcitationCoefficientItem(MOAO):
          Excitation coefficient(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", amplitudeDiameterRatio:float=0.0, excitationCoefficient:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", amplitudeDiameterRatio=0.0, excitationCoefficient=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__amplitudeDiameterRatio = amplitudeDiameterRatio
-        self.__excitationCoefficient = excitationCoefficient
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.amplitudeDiameterRatio = amplitudeDiameterRatio
+        self.excitationCoefficient = excitationCoefficient
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

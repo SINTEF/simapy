@@ -16,7 +16,7 @@ class TurbSimWindGeneratorBlueprint(NamedObjectBlueprint,ConditionSelectableBlue
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("randSeed1","integer","First random seed (-2147483648 to 2147483647)",default=0))
         self.attributes.append(EnumAttribute("seedGeneration","sima/windturbine/RandomSeedGeneration",""))
         self.attributes.append(Attribute("randSeed2","integer","Second random seed (-2147483648 to 2147483647) for intrinsic pRNG, or an alternative pRNG: 'RanLux' or 'RNSNLW'",default=0))

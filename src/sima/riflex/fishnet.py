@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fishnet import FishNetBlueprint
+from typing import Dict
 from sima.riflex.axialstiffness import AxialStiffness
 from sima.riflex.axialstiffnessitem import AxialStiffnessItem
 from sima.riflex.crosssection import CrossSection
@@ -73,37 +74,37 @@ class FishNet(CrossSection,CRSAxialFrictionModel):
          Maximum curvature(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", staticFriction:float=0.0, staticElongation:float=0.0, dynamicFriction:float=0.0, dynamicElongation:float=0.0, axialFriction:bool=False, massDampingSpecification:bool=False, stiffnessDampingSpecification:bool=False, axialDampingSpecification:bool=False, temperature:float=0.0, mass:float=0.0, externalVolume:float=0.0, axialStiffnessInput:AxialStiffness=AxialStiffness.CONSTANT, axialStiffness:float=0.0, solidityRatio:float=0.0, netWidthEnd1:float=0.0, netWidthEnd2:float=0.0, currentVelocityReduction:float=1.0, amx:float=0.0, amy:float=0.0, tensionCapacity:float=0.0, maxCurvature:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, mass=0.0, externalVolume=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, axialStiffness=0.0, solidityRatio=0.0, netWidthEnd1=0.0, netWidthEnd2=0.0, currentVelocityReduction=1.0, amx=0.0, amy=0.0, tensionCapacity=0.0, maxCurvature=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__staticFriction = staticFriction
-        self.__staticElongation = staticElongation
-        self.__dynamicFriction = dynamicFriction
-        self.__dynamicElongation = dynamicElongation
-        self.__axialFriction = axialFriction
-        self.__massDampingSpecification = massDampingSpecification
-        self.__stiffnessDampingSpecification = stiffnessDampingSpecification
-        self.__axialDampingSpecification = axialDampingSpecification
-        self.__temperature = temperature
-        self.__mass = mass
-        self.__externalVolume = externalVolume
-        self.__axialStiffnessInput = axialStiffnessInput
-        self.__axialStiffness = axialStiffness
-        self.__axialStiffnessCharacteristics = list()
-        self.__solidityRatio = solidityRatio
-        self.__netWidthEnd1 = netWidthEnd1
-        self.__netWidthEnd2 = netWidthEnd2
-        self.__currentVelocityReduction = currentVelocityReduction
-        self.__massDamping = CRSMassDamping()
-        self.__stiffnessDamping = CRSStiffnessDamping()
-        self.__axialDamping = CRSAxialDamping()
-        self.__amx = amx
-        self.__amy = amy
-        self.__tensionCapacity = tensionCapacity
-        self.__maxCurvature = maxCurvature
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.staticFriction = staticFriction
+        self.staticElongation = staticElongation
+        self.dynamicFriction = dynamicFriction
+        self.dynamicElongation = dynamicElongation
+        self.axialFriction = axialFriction
+        self.massDampingSpecification = massDampingSpecification
+        self.stiffnessDampingSpecification = stiffnessDampingSpecification
+        self.axialDampingSpecification = axialDampingSpecification
+        self.temperature = temperature
+        self.mass = mass
+        self.externalVolume = externalVolume
+        self.axialStiffnessInput = axialStiffnessInput
+        self.axialStiffness = axialStiffness
+        self.axialStiffnessCharacteristics = list()
+        self.solidityRatio = solidityRatio
+        self.netWidthEnd1 = netWidthEnd1
+        self.netWidthEnd2 = netWidthEnd2
+        self.currentVelocityReduction = currentVelocityReduction
+        self.massDamping = None
+        self.stiffnessDamping = None
+        self.axialDamping = None
+        self.amx = amx
+        self.amy = amy
+        self.tensionCapacity = tensionCapacity
+        self.maxCurvature = maxCurvature
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

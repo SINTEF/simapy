@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.globalspringstiffnessitem import GlobalSpringStiffnessItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class GlobalSpringStiffnessItem(MOAO):
          Spring displacement.(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", force:float=0.0, displacement:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", force=0.0, displacement=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__force = force
-        self.__displacement = displacement
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.force = force
+        self.displacement = displacement
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

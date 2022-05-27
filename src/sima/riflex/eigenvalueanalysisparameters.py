@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.eigenvalueanalysisparameters import EigenvalueAnalysisParametersBlueprint
+from typing import Dict
 from sima.riflex.eigenvaluestartvector import EigenvalueStartVector
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -48,25 +49,25 @@ class EigenvalueAnalysisParameters(MOAO):
          Scaling of eigenvectors in visual results(default 10.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", numberOfEigenvalues:int=10, numberOfEigenvectors:int=10, maxRelativeError:float=0.0, limitValue:float=0.0, orthogonalityLimit:float=0.0, startVector:EigenvalueStartVector=EigenvalueStartVector.PSEUDORANDOM_STARTVECTOR, maxNumberOfIterations:int=5, frequencyControlParameter:int=0, shiftValue:float=0.0, numberOfLanczoSteps:int=0, premultiplyStartVector:bool=True, storeVisualisationResponses:bool=True, visualisationScaling:float=10.0, **kwargs):
+    def __init__(self , name="", description="", _id="", numberOfEigenvalues=10, numberOfEigenvectors=10, maxRelativeError=0.0, limitValue=0.0, orthogonalityLimit=0.0, startVector=EigenvalueStartVector.PSEUDORANDOM_STARTVECTOR, maxNumberOfIterations=5, frequencyControlParameter=0, shiftValue=0.0, numberOfLanczoSteps=0, premultiplyStartVector=True, storeVisualisationResponses=True, visualisationScaling=10.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__numberOfEigenvalues = numberOfEigenvalues
-        self.__numberOfEigenvectors = numberOfEigenvectors
-        self.__maxRelativeError = maxRelativeError
-        self.__limitValue = limitValue
-        self.__orthogonalityLimit = orthogonalityLimit
-        self.__startVector = startVector
-        self.__maxNumberOfIterations = maxNumberOfIterations
-        self.__frequencyControlParameter = frequencyControlParameter
-        self.__shiftValue = shiftValue
-        self.__numberOfLanczoSteps = numberOfLanczoSteps
-        self.__premultiplyStartVector = premultiplyStartVector
-        self.__storeVisualisationResponses = storeVisualisationResponses
-        self.__visualisationScaling = visualisationScaling
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.numberOfEigenvalues = numberOfEigenvalues
+        self.numberOfEigenvectors = numberOfEigenvectors
+        self.maxRelativeError = maxRelativeError
+        self.limitValue = limitValue
+        self.orthogonalityLimit = orthogonalityLimit
+        self.startVector = startVector
+        self.maxNumberOfIterations = maxNumberOfIterations
+        self.frequencyControlParameter = frequencyControlParameter
+        self.shiftValue = shiftValue
+        self.numberOfLanczoSteps = numberOfLanczoSteps
+        self.premultiplyStartVector = premultiplyStartVector
+        self.storeVisualisationResponses = storeVisualisationResponses
+        self.visualisationScaling = visualisationScaling
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

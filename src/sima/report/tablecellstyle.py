@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.tablecellstyle import TableCellStyleBlueprint
+from typing import Dict
 from sima.report.horizontalalignment import HorizontalAlignment
 from sima.report.verticalalignment import VerticalAlignment
 from sima.sima.fontdescription import FontDescription
@@ -27,15 +28,15 @@ class TableCellStyle(MOAO):
     verticalTextAlignment : VerticalAlignment
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", horizontalTextAlignment:HorizontalAlignment=HorizontalAlignment.LEFT, verticalTextAlignment:VerticalAlignment=VerticalAlignment.TOP, **kwargs):
+    def __init__(self , name="", description="", _id="", horizontalTextAlignment=HorizontalAlignment.LEFT, verticalTextAlignment=VerticalAlignment.TOP, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__font = FontDescription()
-        self.__horizontalTextAlignment = horizontalTextAlignment
-        self.__verticalTextAlignment = verticalTextAlignment
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.font = None
+        self.horizontalTextAlignment = horizontalTextAlignment
+        self.verticalTextAlignment = verticalTextAlignment
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -19,11 +19,11 @@ class PackageInfo(Entity):
          (default 0)
     """
 
-    def __init__(self , name:str="", description:str="", version:int=0, **kwargs):
+    def __init__(self , name="", description="", version=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__version = version
+        self.name = name
+        self.description = description
+        self.version = version
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -11,6 +11,6 @@ class AttributeBlueprint(Blueprint):
 
     def __init__(self, name="Attribute", package_path="marmo/containers", description="Represents a key/value entry"):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string",""))
-        self.attributes.append(Attribute("description","string",""))
-        self.attributes.append(Attribute("value","string",""))
+        self.attributes.append(Attribute("name","string","",default=""))
+        self.attributes.append(Attribute("description","string","",default=""))
+        self.attributes.append(Attribute("value","string","",default=""))

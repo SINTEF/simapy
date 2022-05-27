@@ -15,7 +15,7 @@ class ContactSurfaceLineBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("line","sima/riflex/ARLine","Reference to line to be checked for contact with the contact surface.",False))
         self.attributes.append(Attribute("firstSegmentContact","integer","First segment to be checked for contact",default=1))
         self.attributes.append(Attribute("firstElementContact","integer","First element within first contact segment to be chekced for contact",default=1))

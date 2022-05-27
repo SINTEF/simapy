@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.forceresult import ForceResultBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -35,19 +36,19 @@ class ForceResult(MOAO):
          Mass of object(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", fx:float=0.0, fy:float=0.0, fz:float=0.0, mx:float=0.0, my:float=0.0, mz:float=0.0, mass:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, mass=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__fx = fx
-        self.__fy = fy
-        self.__fz = fz
-        self.__mx = mx
-        self.__my = my
-        self.__mz = mz
-        self.__mass = mass
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.fx = fx
+        self.fy = fy
+        self.fz = fz
+        self.mx = mx
+        self.my = my
+        self.mz = mz
+        self.mass = mass
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

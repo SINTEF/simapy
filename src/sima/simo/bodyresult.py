@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bodyresult import BodyResultBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.position import Position
 from sima.sima.scriptablevalue import ScriptableValue
@@ -38,21 +39,21 @@ class BodyResult(MOAO):
     externalForces : List[ForceResult]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", body:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", body="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__body = body
-        self.__initialPosition = None
-        self.__staticPosition = None
-        self.__bodyForces = list()
-        self.__positioningElementResults = list()
-        self.__couplingResults = list()
-        self.__specifiedForces = list()
-        self.__thrusterForces = list()
-        self.__externalForces = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.body = body
+        self.initialPosition = None
+        self.staticPosition = None
+        self.bodyForces = list()
+        self.positioningElementResults = list()
+        self.couplingResults = list()
+        self.specifiedForces = list()
+        self.thrusterForces = list()
+        self.externalForces = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

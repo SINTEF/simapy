@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.slendersystem import SlenderSystemBlueprint
+from typing import Dict
 from sima.riflex.arline import ARLine
 from sima.riflex.arlinetype import ARLineType
 from sima.riflex.arwinch import ARWinch
@@ -79,41 +80,41 @@ class SlenderSystem(MOAO):
     soilTypes : List[SoilType]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__superNodes = list()
-        self.__lines = list()
-        self.__lineTypes = list()
-        self.__crossSections = list()
-        self.__mainRiserLines = list()
-        self.__externalWrappings = list()
-        self.__ballJointConnectors = list()
-        self.__flexJointConnectors = list()
-        self.__nodalBodies = list()
-        self.__internalFluids = list()
-        self.__pipeInPipeContacts = list()
-        self.__winches = list()
-        self.__elasticContactSurfaces = list()
-        self.__tensioners = list()
-        self.__rollerContacts = list()
-        self.__tubularContacts = list()
-        self.__globalSprings = list()
-        self.__windTurbines = list()
-        self.__localElementAxes = list()
-        self.__dragChains = list()
-        self.__geotechnicalSprings = list()
-        self.__seafloorContactComponents = list()
-        self.__seafloorContactSpecification = None
-        self.__materials = list()
-        self.__geotechnicals = list()
-        self.__geotechnicalLineSpecification = None
-        self.__marineGrowthItems = list()
-        self.__soilLayerProfiles = list()
-        self.__soilTypes = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.superNodes = list()
+        self.lines = list()
+        self.lineTypes = list()
+        self.crossSections = list()
+        self.mainRiserLines = list()
+        self.externalWrappings = list()
+        self.ballJointConnectors = list()
+        self.flexJointConnectors = list()
+        self.nodalBodies = list()
+        self.internalFluids = list()
+        self.pipeInPipeContacts = list()
+        self.winches = list()
+        self.elasticContactSurfaces = list()
+        self.tensioners = list()
+        self.rollerContacts = list()
+        self.tubularContacts = list()
+        self.globalSprings = list()
+        self.windTurbines = list()
+        self.localElementAxes = list()
+        self.dragChains = list()
+        self.geotechnicalSprings = list()
+        self.seafloorContactComponents = list()
+        self.seafloorContactSpecification = None
+        self.materials = list()
+        self.geotechnicals = list()
+        self.geotechnicalLineSpecification = None
+        self.marineGrowthItems = list()
+        self.soilLayerProfiles = list()
+        self.soilTypes = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

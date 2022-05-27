@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlapiperoute import HLAPipeRouteBlueprint
+from typing import Dict
 from sima.hla.hlaobject import HLAObject
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -35,18 +36,18 @@ class HLAPipeRoute(HLAObject):
     routeWidthColor : SIMAColor
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", routeFile:str="", coordsUTM:str='no', mapOnTerrain:str='auto', routeWidth:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", routeFile="", coordsUTM='no', mapOnTerrain='auto', routeWidth=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__routeFile = routeFile
-        self.__coordsUTM = coordsUTM
-        self.__mapOnTerrain = mapOnTerrain
-        self.__routeWidth = routeWidth
-        self.__color = None
-        self.__routeWidthColor = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.routeFile = routeFile
+        self.coordsUTM = coordsUTM
+        self.mapOnTerrain = mapOnTerrain
+        self.routeWidth = routeWidth
+        self.color = None
+        self.routeWidthColor = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

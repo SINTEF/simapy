@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dockingcone import DockingConeBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -54,27 +55,27 @@ class DockingCone(NamedObject):
     crossSections : List[DockingConeCrossSection]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dampingExponent:float=1.0, dampingInterpolation:Interpolation=Interpolation.LINEAR, forceInterpolation:Interpolation=Interpolation.LINEAR, velocityLimit:float=0.0, maxRadialDistance:float=0.0, friction:float=0.0, failureMode:ActivationFailureMode=ActivationFailureMode.NONE, failureTime:float=0.0, breakingStrength:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, velocityLimit=0.0, maxRadialDistance=0.0, friction=0.0, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dampingExponent = dampingExponent
-        self.__dampingInterpolation = dampingInterpolation
-        self.__forceInterpolation = forceInterpolation
-        self.__velocityLimit = velocityLimit
-        self.__maxRadialDistance = maxRadialDistance
-        self.__friction = friction
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__breakingStrength = breakingStrength
-        self.__dockingPinBody = None
-        self.__dockingPinPoint = Point3()
-        self.__dockingConePoint = Point3()
-        self.__dockingConeDirectionVector = Vector3()
-        self.__dockingConeBody = None
-        self.__crossSections = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dampingExponent = dampingExponent
+        self.dampingInterpolation = dampingInterpolation
+        self.forceInterpolation = forceInterpolation
+        self.velocityLimit = velocityLimit
+        self.maxRadialDistance = maxRadialDistance
+        self.friction = friction
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.breakingStrength = breakingStrength
+        self.dockingPinBody = None
+        self.dockingPinPoint = None
+        self.dockingConePoint = None
+        self.dockingConeDirectionVector = None
+        self.dockingConeBody = None
+        self.crossSections = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.postworkflowoutput import PostWorkflowOutputBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -36,19 +37,19 @@ class PostWorkflowOutput(OperationNode,OutputNode):
     filterOutputSlots : List[OutputSlot]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

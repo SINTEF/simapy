@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlaelementforce import HLAElementForceBlueprint
+from typing import Dict
 from sima.riflex.elementreference import ElementReference
 from sima.riflex.end import End
 from sima.sima.namedobject import NamedObject
@@ -41,19 +42,19 @@ class HLAElementForce(ElementReference,NamedObject):
          End number 1 or 2
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, elementNumber:int=1, allElements:bool=False, allEnds:bool=False, elementEnd:End=End.ONE, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__elementNumber = elementNumber
-        self.__allElements = allElements
-        self.__allEnds = allEnds
-        self.__elementEnd = elementEnd
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.elementNumber = elementNumber
+        self.allElements = allElements
+        self.allEnds = allEnds
+        self.elementEnd = elementEnd
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

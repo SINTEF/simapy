@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.crsaxialfrictionmodel import CRSAxialFrictionModelBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class CRSAxialFrictionModel(MOAO):
          Local axial friction model(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", staticFriction:float=0.0, staticElongation:float=0.0, dynamicFriction:float=0.0, dynamicElongation:float=0.0, axialFriction:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__staticFriction = staticFriction
-        self.__staticElongation = staticElongation
-        self.__dynamicFriction = dynamicFriction
-        self.__dynamicElongation = dynamicElongation
-        self.__axialFriction = axialFriction
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.staticFriction = staticFriction
+        self.staticElongation = staticElongation
+        self.dynamicFriction = dynamicFriction
+        self.dynamicElongation = dynamicElongation
+        self.axialFriction = axialFriction
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

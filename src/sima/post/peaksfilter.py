@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.peaksfilter import PeaksFilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -49,25 +50,25 @@ class PeaksFilter(OperationNode):
          Number of partitions when finding block maxima/minima(default 10)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, renameOutput:bool=True, extreme:PeakExtreme=PeakExtreme.MAX, _type:PeakType=PeakType.LOCAL, crossingLevel:float=0.0, useMean:bool=False, partitions:int=10, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, renameOutput=True, extreme=PeakExtreme.MAX, _type=PeakType.LOCAL, crossingLevel=0.0, useMean=False, partitions=10, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__renameOutput = renameOutput
-        self.__extreme = extreme
-        self.___type = _type
-        self.__crossingLevel = crossingLevel
-        self.__useMean = useMean
-        self.__partitions = partitions
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.renameOutput = renameOutput
+        self.extreme = extreme
+        self._type = _type
+        self.crossingLevel = crossingLevel
+        self.useMean = useMean
+        self.partitions = partitions
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

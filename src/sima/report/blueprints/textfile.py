@@ -15,6 +15,6 @@ class TextFileBlueprint(ReportItemBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("path","string","Absolute path to the text file to be read in.",default=""))
         self.attributes.append(Attribute("plainText","boolean","Whether or not the text file contains Wiki markup code to be parsed.",default=False))

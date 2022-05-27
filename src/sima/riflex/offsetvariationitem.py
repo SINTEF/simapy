@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.offsetvariationitem import OffsetVariationItemBlueprint
+from typing import Dict
 from sima.riflex.referencetype import ReferenceType
 from sima.riflex.rotationcode import RotationCode
 from sima.sima.moao import MOAO
@@ -42,20 +43,20 @@ class OffsetVariationItem(MOAO):
     supportVessel : SupportVessel
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", referenceType:ReferenceType=ReferenceType.SUPER_NODE, dx:float=0.0, dy:float=0.0, dz:float=0.0, rotationCode:RotationCode=RotationCode.NONE, rotationIncrement:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", referenceType=ReferenceType.SUPER_NODE, dx=0.0, dy=0.0, dz=0.0, rotationCode=RotationCode.NONE, rotationIncrement=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__referenceType = referenceType
-        self.__dx = dx
-        self.__dy = dy
-        self.__dz = dz
-        self.__rotationCode = rotationCode
-        self.__rotationIncrement = rotationIncrement
-        self.__supernode = None
-        self.__supportVessel = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.referenceType = referenceType
+        self.dx = dx
+        self.dy = dy
+        self.dz = dz
+        self.rotationCode = rotationCode
+        self.rotationIncrement = rotationIncrement
+        self.supernode = None
+        self.supportVessel = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

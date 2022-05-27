@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.geotechnicalspring import GeotechnicalSpringBlueprint
+from typing import Dict
 from sima.riflex.dampingdisplacementitem import DampingDisplacementItem
 from sima.riflex.geotechnicalspringstiffnessitem import GeotechnicalSpringStiffnessItem
 from sima.riflex.nodereference import NodeReference
@@ -44,21 +45,21 @@ class GeotechnicalSpring(NodeReference,NamedObject):
          Relative length for result scaling(default 1.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, nodeNumber:int=1, allNodes:bool=False, strainVelocityExponent:float=1.0, relativeLength:float=1.0, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, strainVelocityExponent=1.0, relativeLength=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__nodeNumber = nodeNumber
-        self.__allNodes = allNodes
-        self.__stiffnessItems = list()
-        self.__dampingDisplacementItems = list()
-        self.__strainVelocityExponent = strainVelocityExponent
-        self.__relativeLength = relativeLength
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.nodeNumber = nodeNumber
+        self.allNodes = allNodes
+        self.stiffnessItems = list()
+        self.dampingDisplacementItems = list()
+        self.strainVelocityExponent = strainVelocityExponent
+        self.relativeLength = relativeLength
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

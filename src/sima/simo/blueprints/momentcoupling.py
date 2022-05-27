@@ -15,7 +15,7 @@ class MomentCouplingBlueprint(NamedObjectBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("body1","sima/simo/SIMOBody","",False))
         self.attributes.append(BlueprintAttribute("rotationVector","sima/sima/Vector3","",True))
         self.attributes.append(BlueprintAttribute("body2","sima/simo/SIMOBody","",False))

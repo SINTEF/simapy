@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.kalman import KalmanBlueprint
+from typing import Dict
 from sima.hydro.matrix3 import Matrix3
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.estimator import Estimator
@@ -39,20 +40,20 @@ class Kalman(Estimator):
     lines : List[LineMeasurementItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", lineTension:KalmanLineTension=KalmanLineTension.NONE, estimationMethod:KalmanEstimationMethod=KalmanEstimationMethod.CURRENT, wfStartingPeriod:float=0.0, nominalVelocity:float=0.25, **kwargs):
+    def __init__(self , name="", description="", _id="", lineTension=KalmanLineTension.NONE, estimationMethod=KalmanEstimationMethod.FORCE, wfStartingPeriod=0.0, nominalVelocity=0.25, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__lineTension = lineTension
-        self.__estimationMethod = estimationMethod
-        self.__wfStartingPeriod = wfStartingPeriod
-        self.__nominalVelocity = nominalVelocity
-        self.__lineCharacteristicItems = list()
-        self.__hawserForceMeasurements = list()
-        self.__stiffnessMatrix = Matrix3()
-        self.__lines = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.lineTension = lineTension
+        self.estimationMethod = estimationMethod
+        self.wfStartingPeriod = wfStartingPeriod
+        self.nominalVelocity = nominalVelocity
+        self.lineCharacteristicItems = list()
+        self.hawserForceMeasurements = list()
+        self.stiffnessMatrix = None
+        self.lines = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

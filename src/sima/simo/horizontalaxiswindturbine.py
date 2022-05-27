@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.horizontalaxiswindturbine import HorizontalAxisWindTurbineBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.bladeitem import BladeItem
@@ -40,20 +41,20 @@ class HorizontalAxisWindTurbine(NamedObject):
          Number of blades(default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", referenceHeight:float=0.0, windArea:float=0.0, outerAirfoilRadius:float=0.0, coneAngle:float=0.0, numBlades:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", referenceHeight=0.0, windArea=0.0, outerAirfoilRadius=0.0, coneAngle=0.0, numBlades=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__controller = HorizontalAxisWindTurbineController()
-        self.__momentCoupling = None
-        self.__referenceHeight = referenceHeight
-        self.__windArea = windArea
-        self.__outerAirfoilRadius = outerAirfoilRadius
-        self.__coneAngle = coneAngle
-        self.__bladeItems = list()
-        self.__numBlades = numBlades
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.controller = None
+        self.momentCoupling = None
+        self.referenceHeight = referenceHeight
+        self.windArea = windArea
+        self.outerAirfoilRadius = outerAirfoilRadius
+        self.coneAngle = coneAngle
+        self.bladeItems = list()
+        self.numBlades = numBlades
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

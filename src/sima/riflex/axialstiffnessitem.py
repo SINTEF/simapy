@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.axialstiffnessitem import AxialStiffnessItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class AxialStiffnessItem(MOAO):
          Relative elongation(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", axialForce:float=0.0, relativeElongation:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", axialForce=0.0, relativeElongation=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__axialForce = axialForce
-        self.__relativeElongation = relativeElongation
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.axialForce = axialForce
+        self.relativeElongation = relativeElongation
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

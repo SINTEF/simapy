@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.sectorextreme import SectorExtremeBlueprint
+from typing import Dict
 from sima.metocean.extremevalue import ExtremeValue
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -27,15 +28,15 @@ class SectorExtreme(MOAO):
     extremeValues : List[ExtremeValue]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", sector:float=0.0, probability:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", sector=0.0, probability=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__sector = sector
-        self.__probability = probability
-        self.__extremeValues = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.sector = sector
+        self.probability = probability
+        self.extremeValues = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

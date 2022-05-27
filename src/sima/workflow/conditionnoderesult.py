@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.conditionnoderesult import ConditionNodeResultBlueprint
+from numpy import ndarray,asarray
 from sima.post.signalstorage import SignalStorage
 from sima.sima.resultcontainer import ResultContainer
 from sima.sima.scriptablevalue import ScriptableValue
@@ -21,17 +22,17 @@ class ConditionNodeResult(SignalStorage):
          (default "")
     scriptableValues : List[ScriptableValue]
     resultContainer : ResultContainer
-    filenames : Sequence[str]
+    filenames : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__resultContainer = None
-        self.__filenames = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.resultContainer = None
+        self.filenames = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -96,13 +97,11 @@ class ConditionNodeResult(SignalStorage):
         self.__resultContainer = value
 
     @property
-    def filenames(self) -> Sequence[str]:
+    def filenames(self) -> ndarray:
         """"""
         return self.__filenames
 
     @filenames.setter
-    def filenames(self, value: Sequence[str]):
+    def filenames(self, value: ndarray):
         """Set filenames"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__filenames = value
+        self.__filenames = asarray(value)

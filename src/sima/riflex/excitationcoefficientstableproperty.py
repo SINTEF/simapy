@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.excitationcoefficientstableproperty import ExcitationCoefficientsTablePropertyBlueprint
+from typing import Dict
 from sima.riflex.excitationcoefficientsnondimensionalfrequencyitem import ExcitationCoefficientsNonDimensionalFrequencyItem
 from sima.riflex.excitationcoefficientsproperty import ExcitationCoefficientsProperty
 from sima.sima.scriptablevalue import ScriptableValue
@@ -23,13 +24,13 @@ class ExcitationCoefficientsTableProperty(ExcitationCoefficientsProperty):
     nonDimensionalFrequencyProperties : List[ExcitationCoefficientsNonDimensionalFrequencyItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__nonDimensionalFrequencyProperties = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.nonDimensionalFrequencyProperties = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

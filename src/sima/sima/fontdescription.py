@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fontdescription import FontDescriptionBlueprint
+from typing import Dict
 from sima.sima.fontstyle import FontStyle
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -29,16 +30,16 @@ class FontDescription(MOAO):
     color : SIMAColor
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", font:str="", size:int=0, style:FontStyle=FontStyle.NORMAL, **kwargs):
+    def __init__(self , name="", description="", _id="", font="", size=0, style=FontStyle.NORMAL, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__font = font
-        self.__size = size
-        self.__style = style
-        self.__color = SIMAColor()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.font = font
+        self.size = size
+        self.style = style
+        self.color = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,9 +5,8 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from .moao import MOAOBlueprint
 
-class DependencyBlueprint(MOAOBlueprint):
+class DependencyBlueprint(Blueprint):
     """"""
 
     def __init__(self, name="Dependency", package_path="sima/sima", description=""):
@@ -15,6 +14,5 @@ class DependencyBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
         self.attributes.append(BlueprintAttribute("object","sima/sima/MOAO","",False))
         self.attributes.append(Attribute("feature","string","",default=""))

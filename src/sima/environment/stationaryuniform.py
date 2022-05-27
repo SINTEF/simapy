@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.stationaryuniform import StationaryUniformBlueprint
+from typing import Dict
 from sima.environment.shearprofile import ShearProfile
 from sima.environment.shearwindvelocityprofile import ShearWindVelocityProfile
 from sima.environment.wind import Wind
@@ -43,23 +44,23 @@ class StationaryUniform(Wind):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, horizontalVelocity:float=0.0, verticalVelocity:float=0.0, lowerEdgeZ:float=0.0, domainResolution:float=0.0, numGridPoints:int=0, shearProfile:ShearProfile=ShearProfile.NONE, referenceHeight:float=0.0, windShearExponent:float=0.0, roughnessLength:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, horizontalVelocity=0.0, verticalVelocity=0.0, lowerEdgeZ=0.0, domainResolution=0.0, numGridPoints=0, shearProfile=ShearProfile.NONE, referenceHeight=0.0, windShearExponent=0.0, roughnessLength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__horizontalVelocity = horizontalVelocity
-        self.__verticalVelocity = verticalVelocity
-        self.__velocityProfiles = list()
-        self.__lowerEdgeZ = lowerEdgeZ
-        self.__domainResolution = domainResolution
-        self.__numGridPoints = numGridPoints
-        self.__shearProfile = shearProfile
-        self.__referenceHeight = referenceHeight
-        self.__windShearExponent = windShearExponent
-        self.__roughnessLength = roughnessLength
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.horizontalVelocity = horizontalVelocity
+        self.verticalVelocity = verticalVelocity
+        self.velocityProfiles = list()
+        self.lowerEdgeZ = lowerEdgeZ
+        self.domainResolution = domainResolution
+        self.numGridPoints = numGridPoints
+        self.shearProfile = shearProfile
+        self.referenceHeight = referenceHeight
+        self.windShearExponent = windShearExponent
+        self.roughnessLength = roughnessLength
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

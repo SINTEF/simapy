@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.omnidirectionalwavelongtermstatistics import OmniDirectionalWaveLongTermStatisticsBlueprint
+from typing import Dict
 from sima.metocean.contourdata import ContourData
 from sima.metocean.significantwaveheightweibulldata import SignificantWaveHeightWeibullData
 from sima.metocean.spectralpeakperiodrelation import SpectralPeakPeriodRelation
@@ -27,15 +28,15 @@ class OmniDirectionalWaveLongTermStatistics(WaveLongTermStatistics):
     significantWaveHeightWeibullData : SignificantWaveHeightWeibullData
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__contours = list()
-        self.__spectralPeakRelation = None
-        self.__significantWaveHeightWeibullData = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.contours = list()
+        self.spectralPeakRelation = None
+        self.significantWaveHeightWeibullData = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

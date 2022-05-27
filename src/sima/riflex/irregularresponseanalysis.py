@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.irregularresponseanalysis import IrregularResponseAnalysisBlueprint
+from typing import Dict
 from sima.riflex.irregularmotionindicator import IrregularMotionIndicator
 from sima.riflex.irregularwaveindicator import IrregularWaveIndicator
 from sima.riflex.irregularwaveprocedure import IrregularWaveProcedure
@@ -50,25 +51,25 @@ class IrregularResponseAnalysis(MOAO):
     lfMotionTimeSeries : List[LFMotionTimeSeries]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", waveTimeSeriesFile:bool=False, simulationLength:float=11000.0, timeStep:float=0.1, irrWaveIndicator:IrregularWaveIndicator=IrregularWaveIndicator.NEW, irrMotionIndicator:IrregularMotionIndicator=IrregularMotionIndicator.STAT, lowFrequencyMotionIndicator:LowFrequencyMotionIndicator=LowFrequencyMotionIndicator.NONE, simulationStartTime:float=0.0, motionScaling:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", waveTimeSeriesFile=False, simulationLength=11000.0, timeStep=0.1, irrWaveIndicator=IrregularWaveIndicator.NEW, irrMotionIndicator=IrregularMotionIndicator.STAT, lowFrequencyMotionIndicator=LowFrequencyMotionIndicator.NONE, simulationStartTime=0.0, motionScaling=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__waveTimeSeriesFile = waveTimeSeriesFile
-        self.__simulationLength = simulationLength
-        self.__timeStep = timeStep
-        self.__irrWaveIndicator = irrWaveIndicator
-        self.__irrMotionIndicator = irrMotionIndicator
-        self.__lowFrequencyMotionIndicator = lowFrequencyMotionIndicator
-        self.__simulationStartTime = simulationStartTime
-        self.__motionScaling = motionScaling
-        self.__supportVesselMotionScalingItems = list()
-        self.__irregularWaveProcedure = IrregularWaveProcedure()
-        self.__waveTimeSeries = WaveTimeSeries()
-        self.__wfMotionTimeSeries = list()
-        self.__lfMotionTimeSeries = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.waveTimeSeriesFile = waveTimeSeriesFile
+        self.simulationLength = simulationLength
+        self.timeStep = timeStep
+        self.irrWaveIndicator = irrWaveIndicator
+        self.irrMotionIndicator = irrMotionIndicator
+        self.lowFrequencyMotionIndicator = lowFrequencyMotionIndicator
+        self.simulationStartTime = simulationStartTime
+        self.motionScaling = motionScaling
+        self.supportVesselMotionScalingItems = list()
+        self.irregularWaveProcedure = None
+        self.waveTimeSeries = None
+        self.wfMotionTimeSeries = list()
+        self.lfMotionTimeSeries = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

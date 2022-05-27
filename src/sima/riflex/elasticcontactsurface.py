@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.elasticcontactsurface import ElasticContactSurfaceBlueprint
+from typing import Dict
 from sima.riflex.contactsurfaceline import ContactSurfaceLine
 from sima.riflex.contactsurfacepoint import ContactSurfacePoint
 from sima.sima.namedobject import NamedObject
@@ -25,14 +26,14 @@ class ElasticContactSurface(NamedObject):
     lines : List[ContactSurfaceLine]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__points = list()
-        self.__lines = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.points = list()
+        self.lines = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

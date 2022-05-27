@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.soilcapacityelement import SoilCapacityElementBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class SoilCapacityElement(MOAO):
          Suction pressure(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dCap:float=0.0, soilFr:float=0.0, frcDep:float=0.0, pSuct:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", dCap=0.0, soilFr=0.0, frcDep=0.0, pSuct=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dCap = dCap
-        self.__soilFr = soilFr
-        self.__frcDep = frcDep
-        self.__pSuct = pSuct
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dCap = dCap
+        self.soilFr = soilFr
+        self.frcDep = frcDep
+        self.pSuct = pSuct
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

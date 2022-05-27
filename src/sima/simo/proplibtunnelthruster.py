@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.proplibtunnelthruster import ProplibTunnelThrusterBlueprint
+from typing import Dict
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.ithruster import IThruster
@@ -61,32 +62,32 @@ class ProplibTunnelThruster(IThruster):
          Vertical distance from propeller center to hull(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", minForce:float=0.0, maxForce:float=0.0, force:float=0.0, forceDirection:float=0.0, includeSurfaceProximityLoss:bool=True, includeThrusterHullInteraction:bool=True, includeThrusterThrusterInteraction:bool=True, maxRps:float=0.0, diameter:float=0.0, tunnelLength:float=0.0, baselineAngle:float=0.0, centerlineAngle:float=0.0, numberOfGrids:int=0, pitchRatio:float=0.0, bilgeRadius:float=0.0, verticalDistanceHull:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=True, includeThrusterHullInteraction=True, includeThrusterThrusterInteraction=True, maxRps=0.0, diameter=0.0, tunnelLength=0.0, baselineAngle=0.0, centerlineAngle=0.0, numberOfGrids=0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__minForce = minForce
-        self.__maxForce = maxForce
-        self.__position = Point3()
-        self.__force = force
-        self.__forceDirection = forceDirection
-        self.__thrusterDynamics = ThrusterDynamics()
-        self.__controlSequence = ThrusterControlSequence()
-        self.__failureSpecification = ThrusterFailureSpecification()
-        self.__includeSurfaceProximityLoss = includeSurfaceProximityLoss
-        self.__includeThrusterHullInteraction = includeThrusterHullInteraction
-        self.__includeThrusterThrusterInteraction = includeThrusterThrusterInteraction
-        self.__maxRps = maxRps
-        self.__diameter = diameter
-        self.__tunnelLength = tunnelLength
-        self.__baselineAngle = baselineAngle
-        self.__centerlineAngle = centerlineAngle
-        self.__numberOfGrids = numberOfGrids
-        self.__pitchRatio = pitchRatio
-        self.__bilgeRadius = bilgeRadius
-        self.__verticalDistanceHull = verticalDistanceHull
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.minForce = minForce
+        self.maxForce = maxForce
+        self.position = None
+        self.force = force
+        self.forceDirection = forceDirection
+        self.thrusterDynamics = None
+        self.controlSequence = None
+        self.failureSpecification = None
+        self.includeSurfaceProximityLoss = includeSurfaceProximityLoss
+        self.includeThrusterHullInteraction = includeThrusterHullInteraction
+        self.includeThrusterThrusterInteraction = includeThrusterThrusterInteraction
+        self.maxRps = maxRps
+        self.diameter = diameter
+        self.tunnelLength = tunnelLength
+        self.baselineAngle = baselineAngle
+        self.centerlineAngle = centerlineAngle
+        self.numberOfGrids = numberOfGrids
+        self.pitchRatio = pitchRatio
+        self.bilgeRadius = bilgeRadius
+        self.verticalDistanceHull = verticalDistanceHull
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

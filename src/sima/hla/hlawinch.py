@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlawinch import HLAWinchBlueprint
+from typing import Dict
 from sima.hla.hlaobject import HLAObject
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class HLAWinch(HLAObject):
          Max. wire length that can be added to drum(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", initialLength:float=0.0, maximumSpeed:float=0.0, acceleration:float=0.0, maximumLength:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", initialLength=0.0, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__initialLength = initialLength
-        self.__maximumSpeed = maximumSpeed
-        self.__acceleration = acceleration
-        self.__maximumLength = maximumLength
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.initialLength = initialLength
+        self.maximumSpeed = maximumSpeed
+        self.acceleration = acceleration
+        self.maximumLength = maximumLength
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

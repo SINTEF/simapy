@@ -15,7 +15,7 @@ class ThrusterControlBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("thruster","sima/simo/IThruster","Thruster to be controlled",False))
         self.attributes.append(EnumAttribute("thrusterControlType","sima/simo/DPThrusterType","Thruster control type"))
         self.attributes.append(Attribute("direction","number","Direction of thruster. Start value for azimuthing thrusters.",default=0.0))

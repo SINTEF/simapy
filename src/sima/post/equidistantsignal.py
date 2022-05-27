@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.equidistantsignal import EquidistantSignalBlueprint
+from numpy import ndarray,asarray
 from sima.post.generatorsignal import GeneratorSignal
 from sima.post.signalproperties import SignalProperties
 from sima.sima.scriptablevalue import ScriptableValue
@@ -23,7 +24,7 @@ class EquidistantSignal(GeneratorSignal):
     properties : List[SignalProperties]
     directInput : bool
          (default True)
-    values : Sequence[float]
+    values : ndarray
     xunit : str
          Defines the unit of the x axis(default 's')
     yunit : str
@@ -38,21 +39,21 @@ class EquidistantSignal(GeneratorSignal):
          Apply the given function to each element of the input(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", directInput:bool=True, xunit:str='s', yunit:str='-', offset:float=0.0, increment:float=1.0, size:int=0, function:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", directInput=True, xunit='s', yunit='-', offset=0.0, increment=1.0, size=0, function="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__directInput = directInput
-        self.__values = list()
-        self.__xunit = xunit
-        self.__yunit = yunit
-        self.__offset = offset
-        self.__increment = increment
-        self.__size = size
-        self.__function = function
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.directInput = directInput
+        self.values = ndarray(1)
+        self.xunit = xunit
+        self.yunit = yunit
+        self.offset = offset
+        self.increment = increment
+        self.size = size
+        self.function = function
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -129,16 +130,14 @@ class EquidistantSignal(GeneratorSignal):
         self.__directInput = bool(value)
 
     @property
-    def values(self) -> Sequence[float]:
+    def values(self) -> ndarray:
         """"""
         return self.__values
 
     @values.setter
-    def values(self, value: Sequence[float]):
+    def values(self, value: ndarray):
         """Set values"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__values = value
+        self.__values = asarray(value)
 
     @property
     def xunit(self) -> str:

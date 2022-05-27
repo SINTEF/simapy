@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.contactsurfaceline import ContactSurfaceLineBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -35,17 +36,17 @@ class ContactSurfaceLine(MOAO):
          Last element within last contact segment to be checked for contact(default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", firstSegmentContact:int=1, firstElementContact:int=1, lastSegmentContact:int=0, lastElementContact:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", firstSegmentContact=1, firstElementContact=1, lastSegmentContact=0, lastElementContact=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__firstSegmentContact = firstSegmentContact
-        self.__firstElementContact = firstElementContact
-        self.__lastSegmentContact = lastSegmentContact
-        self.__lastElementContact = lastElementContact
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.firstSegmentContact = firstSegmentContact
+        self.firstElementContact = firstElementContact
+        self.lastSegmentContact = lastSegmentContact
+        self.lastElementContact = lastElementContact
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

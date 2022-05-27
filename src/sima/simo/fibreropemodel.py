@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fibreropemodel import FibreRopeModelBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.axialstiffnessitem import AxialStiffnessItem
@@ -29,17 +30,17 @@ class FibreRopeModel(NamedObject):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dynamicStiffnessCoefficientA:float=0.0, dynamicStiffnessCoefficientB:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", dynamicStiffnessCoefficientA=0.0, dynamicStiffnessCoefficientB=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__originalCurve = list()
-        self.__originalWorkingCurve = list()
-        self.__workingCurve = list()
-        self.__dynamicStiffnessCoefficientA = dynamicStiffnessCoefficientA
-        self.__dynamicStiffnessCoefficientB = dynamicStiffnessCoefficientB
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.originalCurve = list()
+        self.originalWorkingCurve = list()
+        self.workingCurve = list()
+        self.dynamicStiffnessCoefficientA = dynamicStiffnessCoefficientA
+        self.dynamicStiffnessCoefficientB = dynamicStiffnessCoefficientB
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

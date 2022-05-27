@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pressurevariationitem import PressureVariationItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -33,16 +34,16 @@ class PressureVariationItem(MOAO):
          Final fluid velocity(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", inletPressure:float=0.0, pressureDrop:float=0.0, fluidVelocity:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", inletPressure=0.0, pressureDrop=0.0, fluidVelocity=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__mainRiserLine = None
-        self.__inletPressure = inletPressure
-        self.__pressureDrop = pressureDrop
-        self.__fluidVelocity = fluidVelocity
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.mainRiserLine = None
+        self.inletPressure = inletPressure
+        self.pressureDrop = pressureDrop
+        self.fluidVelocity = fluidVelocity
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.nodeboundarychangeitem import NodeBoundaryChangeItemBlueprint
+from typing import Dict
 from sima.riflex.boundarychangeoption import BoundaryChangeOption
 from sima.riflex.boundarychangereference import BoundaryChangeReference
 from sima.riflex.boundarycondition import BoundaryCondition
@@ -51,26 +52,26 @@ class NodeBoundaryChangeItem(MOAO):
     masterNodeReference : NodeReference
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", boundaryChangeOption:BoundaryChangeOption=BoundaryChangeOption.FREE, surgeConstraint:BoundaryCondition=BoundaryCondition.FREE, swayConstraint:BoundaryCondition=BoundaryCondition.FREE, heaveConstraint:BoundaryCondition=BoundaryCondition.FREE, rollConstraint:BoundaryCondition=BoundaryCondition.FREE, pitchConstraint:BoundaryCondition=BoundaryCondition.FREE, yawConstraint:BoundaryCondition=BoundaryCondition.FREE, _type:BoundaryChangeReference=BoundaryChangeReference.SUPERNODE, masterType:BoundaryChangeReference=BoundaryChangeReference.SUPERNODE, **kwargs):
+    def __init__(self , name="", description="", _id="", boundaryChangeOption=BoundaryChangeOption.FREE, surgeConstraint=BoundaryCondition.FIXED, swayConstraint=BoundaryCondition.FIXED, heaveConstraint=BoundaryCondition.FIXED, rollConstraint=BoundaryCondition.FIXED, pitchConstraint=BoundaryCondition.FIXED, yawConstraint=BoundaryCondition.FIXED, _type=BoundaryChangeReference.SUPERNODE, masterType=BoundaryChangeReference.SUPERNODE, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__boundaryChangeOption = boundaryChangeOption
-        self.__surgeConstraint = surgeConstraint
-        self.__swayConstraint = swayConstraint
-        self.__heaveConstraint = heaveConstraint
-        self.__rollConstraint = rollConstraint
-        self.__pitchConstraint = pitchConstraint
-        self.__yawConstraint = yawConstraint
-        self.__supportVessel = None
-        self.___type = _type
-        self.__superNode = None
-        self.__node = NodeReference()
-        self.__masterType = masterType
-        self.__master = None
-        self.__masterNodeReference = NodeReference()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.boundaryChangeOption = boundaryChangeOption
+        self.surgeConstraint = surgeConstraint
+        self.swayConstraint = swayConstraint
+        self.heaveConstraint = heaveConstraint
+        self.rollConstraint = rollConstraint
+        self.pitchConstraint = pitchConstraint
+        self.yawConstraint = yawConstraint
+        self.supportVessel = None
+        self._type = _type
+        self.superNode = None
+        self.node = None
+        self.masterType = masterType
+        self.master = None
+        self.masterNodeReference = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

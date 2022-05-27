@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.infrastructurebody import InfrastructureBodyBlueprint
+from typing import Dict
 from sima.sima.appearance import Appearance
 from sima.sima.body import Body
 from sima.sima.bodyviewpoint import BodyViewpoint
@@ -37,20 +38,20 @@ class InfrastructureBody(Body):
          UTM y coordinates(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", length:float=10.0, width:float=5.0, height:float=5.0, utmX:float=0.0, utmY:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", length=10.0, width=5.0, height=5.0, utmX=0.0, utmY=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__length = length
-        self.__width = width
-        self.__height = height
-        self.__appearance = Appearance()
-        self.__initialPosition = Position()
-        self.__viewpoints = list()
-        self.__utmX = utmX
-        self.__utmY = utmY
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.length = length
+        self.width = width
+        self.height = height
+        self.appearance = None
+        self.initialPosition = None
+        self.viewpoints = list()
+        self.utmX = utmX
+        self.utmY = utmY
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

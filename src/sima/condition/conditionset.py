@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.conditionset import ConditionSetBlueprint
+from typing import Dict
 from sima.condition.conditiontaskcondition import ConditionTaskCondition
 from sima.condition.variableitemset import VariableItemSet
 from sima.sima.namedobject import NamedObject
@@ -42,20 +43,20 @@ class ConditionSet(ConditionTaskCondition,NamedObject):
          Import variable values from file. Expected file format:\n' any comment specified with '\n'Hs    Tp     seed : values specified in rows ( Need to match the variables specified)  \n1.0      2.0    3\n4.0      5.0    4\n'any comment\n           (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", changeNumber:int=0, inputFromFile:bool=False, path:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", changeNumber=0, inputFromFile=False, path="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__changeNumber = changeNumber
-        self.__resultContainer = None
-        self.__selection = None
-        self.__variableItems = list()
-        self.__probabilityVariable = None
-        self.__variableItemSets = list()
-        self.__inputFromFile = inputFromFile
-        self.__path = path
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.changeNumber = changeNumber
+        self.resultContainer = None
+        self.selection = None
+        self.variableItems = list()
+        self.probabilityVariable = None
+        self.variableItemSets = list()
+        self.inputFromFile = inputFromFile
+        self.path = path
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

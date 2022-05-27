@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customwizardpage import CustomWizardPageBlueprint
+from typing import Dict
 from sima.custom.customcomponent import CustomComponent
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -25,14 +26,14 @@ class CustomWizardPage(MOAO):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", title:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", title="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__children = list()
-        self.__title = title
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.children = list()
+        self.title = title
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

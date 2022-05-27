@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dockingconepositioning import DockingConePositioningBlueprint
+from typing import Dict
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.vector3 import Vector3
@@ -50,26 +51,26 @@ class DockingConePositioning(PositioningElement):
          Friction coefficient(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", failureMode:ActivationFailureMode=ActivationFailureMode.NONE, failureTime:float=0.0, breakingStrength:float=0.0, dampingExponent:float=1.0, dampingInterpolation:Interpolation=Interpolation.LINEAR, forceInterpolation:Interpolation=Interpolation.LINEAR, velocityLimit:float=0.0, numberOfPoints:int=0, maxRadialDistance:float=0.0, friction:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, velocityLimit=0.0, numberOfPoints=0, maxRadialDistance=0.0, friction=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__localPoint = Point3()
-        self.__globalPoint = Point3()
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__breakingStrength = breakingStrength
-        self.__dampingExponent = dampingExponent
-        self.__dampingInterpolation = dampingInterpolation
-        self.__forceInterpolation = forceInterpolation
-        self.__velocityLimit = velocityLimit
-        self.__numberOfPoints = numberOfPoints
-        self.__crossSections = list()
-        self.__directionVector = Vector3()
-        self.__maxRadialDistance = maxRadialDistance
-        self.__friction = friction
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.localPoint = None
+        self.globalPoint = None
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.breakingStrength = breakingStrength
+        self.dampingExponent = dampingExponent
+        self.dampingInterpolation = dampingInterpolation
+        self.forceInterpolation = forceInterpolation
+        self.velocityLimit = velocityLimit
+        self.numberOfPoints = numberOfPoints
+        self.crossSections = list()
+        self.directionVector = None
+        self.maxRadialDistance = maxRadialDistance
+        self.friction = friction
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.periodeigenvalueresult import PeriodEigenvalueResultBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -35,19 +36,19 @@ class PeriodEigenvalueResult(MOAO):
          Value in yaw(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", period:float=0.0, surge:float=0.0, sway:float=0.0, heave:float=0.0, roll:float=0.0, pitch:float=0.0, yaw:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", period=0.0, surge=0.0, sway=0.0, heave=0.0, roll=0.0, pitch=0.0, yaw=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__period = period
-        self.__surge = surge
-        self.__sway = sway
-        self.__heave = heave
-        self.__roll = roll
-        self.__pitch = pitch
-        self.__yaw = yaw
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.period = period
+        self.surge = surge
+        self.sway = sway
+        self.heave = heave
+        self.roll = roll
+        self.pitch = pitch
+        self.yaw = yaw
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

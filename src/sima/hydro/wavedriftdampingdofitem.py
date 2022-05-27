@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wavedriftdampingdofitem import WaveDriftDampingDofItemBlueprint
+from typing import Dict
 from sima.hydro.directiondependentvalues import DirectionDependentValues
 from sima.hydro.dof import DOF
 from sima.hydro.values import Values
@@ -26,15 +27,15 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     dof2 : DOF
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dof1:DOF=DOF.X, dof2:DOF=DOF.X, **kwargs):
+    def __init__(self , name="", description="", _id="", dof1=DOF.X, dof2=DOF.X, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__directionalValues = list()
-        self.__dof1 = dof1
-        self.__dof2 = dof2
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.directionalValues = list()
+        self.dof1 = dof1
+        self.dof2 = dof2
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

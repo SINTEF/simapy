@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.header import HeaderBlueprint
+from typing import Dict
 from sima.packageinfo import PackageInfo
 
 class Header(Entity):
@@ -18,11 +19,11 @@ class Header(Entity):
     packages : List[PackageInfo]
     """
 
-    def __init__(self , name:str="", description:str="", **kwargs):
+    def __init__(self , name="", description="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__packages = list()
+        self.name = name
+        self.description = description
+        self.packages = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

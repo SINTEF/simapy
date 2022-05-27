@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windturbineshutdown import WindTurbineShutdownBlueprint
+from typing import Dict
 from sima.riflex.bladepitchchangeitem import BladePitchChangeItem
 from sima.riflex.generatortorquefault import GeneratorTorqueFault
 from sima.riflex.mechanicalbrakeoption import MechanicalBrakeOption
@@ -35,19 +36,19 @@ class WindTurbineShutdown(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", startTime:float=0.0, faultOption:GeneratorTorqueFault=GeneratorTorqueFault.NONE, scalingFactor:float=0.0, brakeOption:MechanicalBrakeOption=MechanicalBrakeOption.NONE, linearTorqueDampingCoefficient:float=0.0, timeToFullBrakeTorque:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", startTime=0.0, faultOption=GeneratorTorqueFault.NONE, scalingFactor=0.0, brakeOption=MechanicalBrakeOption.NONE, linearTorqueDampingCoefficient=0.0, timeToFullBrakeTorque=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__startTime = startTime
-        self.__bladePitchChangeItems = list()
-        self.__faultOption = faultOption
-        self.__scalingFactor = scalingFactor
-        self.__brakeOption = brakeOption
-        self.__linearTorqueDampingCoefficient = linearTorqueDampingCoefficient
-        self.__timeToFullBrakeTorque = timeToFullBrakeTorque
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.startTime = startTime
+        self.bladePitchChangeItems = list()
+        self.faultOption = faultOption
+        self.scalingFactor = scalingFactor
+        self.brakeOption = brakeOption
+        self.linearTorqueDampingCoefficient = linearTorqueDampingCoefficient
+        self.timeToFullBrakeTorque = timeToFullBrakeTorque
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

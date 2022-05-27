@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.api_rp2dfilter import API_RP2DFilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.fabricationfactor import FabricationFactor
 from sima.post.inputslot import InputSlot
@@ -70,35 +71,35 @@ class API_RP2DFilter(OperationNode):
          Internal pressure design factor
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, nomOD:float=0.0, pipeThickness:float=0.0, yieldStrength:float=500000000.0, youngsFactor:float=210000000000.0, poissonsRatio:float=0.3, fabricationFactor:FabricationFactor=FabricationFactor.SEAMLESSPIPE, ultimateStrength:float=700000000.0, ovality:float=0.0025, pipeVariability:float=0.45, minInternalPressure:float=0.0, maxInternalPressure:float=5000000.0, pipeType:PipeType=PipeType.COLD_EXPANDED, extFluidDensity:float=1024.0, accelerationOfGravity:float=9.81, limitStateCategory:LimitStateCategory=LimitStateCategory.SLS, internalPressureDesignFactor:InternalPressureDesignFactor=InternalPressureDesignFactor.DESIGN_PRESSURE, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, nomOD=0.0, pipeThickness=0.0, yieldStrength=500000000.0, youngsFactor=210000000000.0, poissonsRatio=0.3, fabricationFactor=FabricationFactor.SEAMLESSPIPE, ultimateStrength=700000000.0, ovality=0.0025, pipeVariability=0.45, minInternalPressure=0.0, maxInternalPressure=5000000.0, pipeType=PipeType.COLD_EXPANDED, extFluidDensity=1024.0, accelerationOfGravity=9.81, limitStateCategory=LimitStateCategory.SLS, internalPressureDesignFactor=InternalPressureDesignFactor.DESIGN_PRESSURE, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__nomOD = nomOD
-        self.__pipeThickness = pipeThickness
-        self.__yieldStrength = yieldStrength
-        self.__youngsFactor = youngsFactor
-        self.__poissonsRatio = poissonsRatio
-        self.__fabricationFactor = fabricationFactor
-        self.__ultimateStrength = ultimateStrength
-        self.__ovality = ovality
-        self.__pipeVariability = pipeVariability
-        self.__minInternalPressure = minInternalPressure
-        self.__maxInternalPressure = maxInternalPressure
-        self.__pipeType = pipeType
-        self.__extFluidDensity = extFluidDensity
-        self.__accelerationOfGravity = accelerationOfGravity
-        self.__limitStateCategory = limitStateCategory
-        self.__internalPressureDesignFactor = internalPressureDesignFactor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.nomOD = nomOD
+        self.pipeThickness = pipeThickness
+        self.yieldStrength = yieldStrength
+        self.youngsFactor = youngsFactor
+        self.poissonsRatio = poissonsRatio
+        self.fabricationFactor = fabricationFactor
+        self.ultimateStrength = ultimateStrength
+        self.ovality = ovality
+        self.pipeVariability = pipeVariability
+        self.minInternalPressure = minInternalPressure
+        self.maxInternalPressure = maxInternalPressure
+        self.pipeType = pipeType
+        self.extFluidDensity = extFluidDensity
+        self.accelerationOfGravity = accelerationOfGravity
+        self.limitStateCategory = limitStateCategory
+        self.internalPressureDesignFactor = internalPressureDesignFactor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

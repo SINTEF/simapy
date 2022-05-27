@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitbody import WamitBodyBlueprint
+from typing import Dict
 from sima.hydro.hydrostaticstiffnessmatrix import HydrostaticStiffnessMatrix
 from sima.hydro.lineardampingmatrix import LinearDampingMatrix
 from sima.hydro.massmatrix import MassMatrix
@@ -82,42 +83,42 @@ class WamitBody(Body):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", length:float=10.0, width:float=5.0, height:float=5.0, geometryFilename:str="", surfacesToIncludeFromMs2File:SurfacesToIncludeFromMs2FileOption=SurfacesToIncludeFromMs2FileOption.ALLVISIBLESURFACES, symmetryAboutX:bool=False, symmetryAboutY:bool=False, entitySelectionList:str="", evaluationMode:EvaluationModeOption=EvaluationModeOption.FAST, divisionsMultiplier:int=0, directionOfNormals:DirectionsOfNormalsOption=DirectionsOfNormalsOption.OUTWARD, includeExternalDampingMatrix:bool=False, includeExternalStiffnessMatrix:bool=False, includeExternalMassMatrix:bool=False, characteristicLength:float=1.0, removeIrregularFrequencies:RemoveIrregularFrequenciesOption=RemoveIrregularFrequenciesOption.NO, trimWaterline:bool=False, draftChange:float=0.0, heelChange:float=0.0, trimChange:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", length=10.0, width=5.0, height=5.0, geometryFilename="", surfacesToIncludeFromMs2File=SurfacesToIncludeFromMs2FileOption.ALLVISIBLESURFACES, symmetryAboutX=False, symmetryAboutY=False, entitySelectionList="", evaluationMode=EvaluationModeOption.FAST, divisionsMultiplier=0, directionOfNormals=DirectionsOfNormalsOption.OUTWARD, includeExternalDampingMatrix=False, includeExternalStiffnessMatrix=False, includeExternalMassMatrix=False, characteristicLength=1.0, removeIrregularFrequencies=RemoveIrregularFrequenciesOption.NO, trimWaterline=False, draftChange=0.0, heelChange=0.0, trimChange=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__length = length
-        self.__width = width
-        self.__height = height
-        self.__appearance = Appearance()
-        self.__initialPosition = Position()
-        self.__viewpoints = list()
-        self.__geometryFilename = geometryFilename
-        self.__surfacesToIncludeFromMs2File = surfacesToIncludeFromMs2File
-        self.__symmetryAboutX = symmetryAboutX
-        self.__symmetryAboutY = symmetryAboutY
-        self.__entitySelectionList = entitySelectionList
-        self.__evaluationMode = evaluationMode
-        self.__divisionsMultiplier = divisionsMultiplier
-        self.__directionOfNormals = directionOfNormals
-        self.__parameterLines = list()
-        self.__cog = Point3()
-        self.__massData = MassMatrix()
-        self.__externalStiffness = HydrostaticStiffnessMatrix()
-        self.__linearDamping = LinearDampingMatrix()
-        self.__includeExternalDampingMatrix = includeExternalDampingMatrix
-        self.__includeExternalStiffnessMatrix = includeExternalStiffnessMatrix
-        self.__includeExternalMassMatrix = includeExternalMassMatrix
-        self.__modes = ModesOfMotion()
-        self.__characteristicLength = characteristicLength
-        self.__controlSurface = None
-        self.__removeIrregularFrequencies = removeIrregularFrequencies
-        self.__trimWaterline = trimWaterline
-        self.__draftChange = draftChange
-        self.__heelChange = heelChange
-        self.__trimChange = trimChange
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.length = length
+        self.width = width
+        self.height = height
+        self.appearance = None
+        self.initialPosition = None
+        self.viewpoints = list()
+        self.geometryFilename = geometryFilename
+        self.surfacesToIncludeFromMs2File = surfacesToIncludeFromMs2File
+        self.symmetryAboutX = symmetryAboutX
+        self.symmetryAboutY = symmetryAboutY
+        self.entitySelectionList = entitySelectionList
+        self.evaluationMode = evaluationMode
+        self.divisionsMultiplier = divisionsMultiplier
+        self.directionOfNormals = directionOfNormals
+        self.parameterLines = list()
+        self.cog = None
+        self.massData = None
+        self.externalStiffness = None
+        self.linearDamping = None
+        self.includeExternalDampingMatrix = includeExternalDampingMatrix
+        self.includeExternalStiffnessMatrix = includeExternalStiffnessMatrix
+        self.includeExternalMassMatrix = includeExternalMassMatrix
+        self.modes = None
+        self.characteristicLength = characteristicLength
+        self.controlSurface = None
+        self.removeIrregularFrequencies = removeIrregularFrequencies
+        self.trimWaterline = trimWaterline
+        self.draftChange = draftChange
+        self.heelChange = heelChange
+        self.trimChange = trimChange
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

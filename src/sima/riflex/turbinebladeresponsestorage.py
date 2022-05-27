@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.turbinebladeresponsestorage import TurbineBladeResponseStorageBlueprint
+from typing import Dict
 from sima.riflex.elementreference import ElementReference
 from sima.riflex.responseamount import ResponseAmount
 from sima.riflex.storagetype import StorageType
@@ -32,17 +33,17 @@ class TurbineBladeResponseStorage(MOAO):
          Specification of elements for turbine blade response storage
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", store:bool=False, responseAmount:ResponseAmount=ResponseAmount.MIN, timeInterval:float=0.0, fileFormat:StorageType=StorageType.BINARY, **kwargs):
+    def __init__(self , name="", description="", _id="", store=False, responseAmount=ResponseAmount.MIN, timeInterval=0.0, fileFormat=StorageType.BINARY, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__store = store
-        self.__responseAmount = responseAmount
-        self.__timeInterval = timeInterval
-        self.__fileFormat = fileFormat
-        self.__elements = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.store = store
+        self.responseAmount = responseAmount
+        self.timeInterval = timeInterval
+        self.fileFormat = fileFormat
+        self.elements = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

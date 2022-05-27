@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regularwave import RegularWaveBlueprint
+from typing import Dict
 from sima.environment.regularwaveitem import RegularWaveItem
 from sima.environment.wave import Wave
 from sima.sima.scriptablevalue import ScriptableValue
@@ -23,13 +24,13 @@ class RegularWave(Wave):
     items : List[RegularWaveItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__items = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

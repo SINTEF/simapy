@@ -15,7 +15,7 @@ class DynamicWinchVariationItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("winch","sima/riflex/ARWinch","",False))
         self.attributes.append(Attribute("startTime","number","Start time for winching",default=0.0))
         self.attributes.append(Attribute("endTime","number","End time for winching",default=0.0))

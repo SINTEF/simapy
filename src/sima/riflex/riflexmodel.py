@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.riflexmodel import RIFLEXModelBlueprint
+from typing import Dict
 from sima.environment.environment import Environment
 from sima.riflex.combinedloading import CombinedLoading
 from sima.riflex.fatigueanalysis import FatigueAnalysis
@@ -12,6 +13,7 @@ from sima.riflex.potentialflowlibrary import PotentialFlowLibrary
 from sima.riflex.referenceframe import ReferenceFrame
 from sima.riflex.riflexdynamiccalculationparameters import RIFLEXDynamicCalculationParameters
 from sima.riflex.riflexeigenvaluecalculationparameters import RIFLEXEigenvalueCalculationParameters
+from sima.riflex.riflexlocation import RIFLEXLocation
 from sima.riflex.riflexstaticcalculationparameters import RIFLEXStaticCalculationParameters
 from sima.riflex.riflexvivanacalculationparameters import RIFLEXVivanaCalculationParameters
 from sima.riflex.slendersystem import SlenderSystem
@@ -20,7 +22,6 @@ from sima.riflex.supportvessel import SupportVessel
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.advancedbumper import AdvancedBumper
 from sima.simo.bumpergroup import BumperGroup
-from sima.riflex.riflexlocation import RIFLEXLocation
 from sima.simo.dockingcone import DockingCone
 from sima.simo.fibreropemodel import FibreRopeModel
 from sima.simo.fixedelongationcoupling import FixedElongationCoupling
@@ -85,44 +86,44 @@ class RIFLEXModel(SIMOModel):
     snCurves : List[SNCurve]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__environments = list()
-        self.__airfoils = list()
-        self.__location = None
-        self.__bodies = list()
-        self.__hydrodynamicCouplings = list()
-        self.__simpleWireCouplings = list()
-        self.__fixedElongationCouplings = list()
-        self.__dockingCones = list()
-        self.__pointFenders = list()
-        self.__rollerFenders = list()
-        self.__ratchets = list()
-        self.__multipleWireCouplings = list()
-        self.__bumperGroups = list()
-        self.__advancedBumpers = list()
-        self.__liftLineCouplings = list()
-        self.__momentCouplings = list()
-        self.__sIMOStaticCalculationParameters = SIMOStaticCalculationParameters()
-        self.__sIMODynamicCalculationParameters = SIMODynamicCalculationParameters()
-        self.__stabilityCalculationParameters = None
-        self.__simoFrequencyDomainCalculation = None
-        self.__fibreRopeModels = list()
-        self.__slenderSystem = SlenderSystem()
-        self.__supportVessels = list()
-        self.__referenceFrames = list()
-        self.__combinedLoadingAnalyses = list()
-        self.__riflexStaticCalculationParameters = RIFLEXStaticCalculationParameters()
-        self.__riflexDynamicCalculationParameters = RIFLEXDynamicCalculationParameters()
-        self.__riflexEigenvalueCalculationParameters = None
-        self.__riflexVivanaCalculationParameters = None
-        self.__potentialFlowLibrary = None
-        self.__fatigueAnalyses = list()
-        self.__snCurves = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.environments = list()
+        self.airfoils = list()
+        self.location = None
+        self.bodies = list()
+        self.hydrodynamicCouplings = list()
+        self.simpleWireCouplings = list()
+        self.fixedElongationCouplings = list()
+        self.dockingCones = list()
+        self.pointFenders = list()
+        self.rollerFenders = list()
+        self.ratchets = list()
+        self.multipleWireCouplings = list()
+        self.bumperGroups = list()
+        self.advancedBumpers = list()
+        self.liftLineCouplings = list()
+        self.momentCouplings = list()
+        self.sIMOStaticCalculationParameters = None
+        self.sIMODynamicCalculationParameters = None
+        self.stabilityCalculationParameters = None
+        self.simoFrequencyDomainCalculation = None
+        self.fibreRopeModels = list()
+        self.slenderSystem = None
+        self.supportVessels = list()
+        self.referenceFrames = list()
+        self.combinedLoadingAnalyses = list()
+        self.riflexStaticCalculationParameters = None
+        self.riflexDynamicCalculationParameters = None
+        self.riflexEigenvalueCalculationParameters = None
+        self.riflexVivanaCalculationParameters = None
+        self.potentialFlowLibrary = None
+        self.fatigueAnalyses = list()
+        self.snCurves = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

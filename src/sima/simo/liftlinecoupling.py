@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.liftlinecoupling import LiftLineCouplingBlueprint
+from typing import Dict
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.activationfailuremode import ActivationFailureMode
 from sima.simo.simplecoupling import SimpleCoupling
@@ -58,29 +59,29 @@ class LiftLineCoupling(SimpleCoupling):
          Longitudinal drag coefficient(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", failureMode:ActivationFailureMode=ActivationFailureMode.NONE, failureTime:float=0.0, breakingStrength:float=0.0, numElements:int=0, accIncluded:bool=True, diameter:float=0.0, eMod:float=0.0, emFac:int=1, length:float=0.0, flexibility:float=0.0, damping:float=0.0, uwia:float=0.0, watfac:float=0.0, transverseDrag:float=0.0, longitudinalDrag:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, numElements=0, accIncluded=True, diameter=0.0, eMod=0.0, emFac=1, length=0.0, flexibility=0.0, damping=0.0, uwia=0.0, watfac=0.0, transverseDrag=0.0, longitudinalDrag=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__endPoint1 = None
-        self.__endPoint2 = None
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__breakingStrength = breakingStrength
-        self.__numElements = numElements
-        self.__accIncluded = accIncluded
-        self.__diameter = diameter
-        self.__eMod = eMod
-        self.__emFac = emFac
-        self.__length = length
-        self.__flexibility = flexibility
-        self.__damping = damping
-        self.__uwia = uwia
-        self.__watfac = watfac
-        self.__transverseDrag = transverseDrag
-        self.__longitudinalDrag = longitudinalDrag
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.endPoint1 = None
+        self.endPoint2 = None
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.breakingStrength = breakingStrength
+        self.numElements = numElements
+        self.accIncluded = accIncluded
+        self.diameter = diameter
+        self.eMod = eMod
+        self.emFac = emFac
+        self.length = length
+        self.flexibility = flexibility
+        self.damping = damping
+        self.uwia = uwia
+        self.watfac = watfac
+        self.transverseDrag = transverseDrag
+        self.longitudinalDrag = longitudinalDrag
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

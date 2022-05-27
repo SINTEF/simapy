@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.custom3dview import Custom3DViewBlueprint
+from typing import Dict
 from sima.custom.customcomponent import CustomComponent
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -30,15 +31,15 @@ class Custom3DView(CustomComponent):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", result:str="", _type:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", result="", _type="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__model = None
-        self.__result = result
-        self.___type = _type
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.model = None
+        self.result = result
+        self._type = _type
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.omnidirectionalextremevalues import OmniDirectionalExtremeValuesBlueprint
+from typing import Dict
 from sima.metocean.extremevalue import ExtremeValue
 from sima.metocean.levelextreme import LevelExtreme
 from sima.sima.scriptablevalue import ScriptableValue
@@ -29,16 +30,16 @@ class OmniDirectionalExtremeValues(LevelExtreme):
     extremeValues : List[ExtremeValue]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", level:float=0.0, duration:float=0.0, probability:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", level=0.0, duration=0.0, probability=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__level = level
-        self.__duration = duration
-        self.__probability = probability
-        self.__extremeValues = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.level = level
+        self.duration = duration
+        self.probability = probability
+        self.extremeValues = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

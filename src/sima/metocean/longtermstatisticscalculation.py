@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.longtermstatisticscalculation import LongTermStatisticsCalculationBlueprint
+from typing import Dict
 from sima.metocean.inputreferencesystem import InputReferenceSystem
 from sima.metocean.longtermstatisticscurrentcalculation import LongTermStatisticsCurrentCalculation
 from sima.metocean.longtermstatisticswavecalculation import LongTermStatisticsWaveCalculation
@@ -42,20 +43,20 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
     currentCalculation : LongTermStatisticsCurrentCalculation
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", relativeCompassAngle:float=0.0, inputReferenceSystem:InputReferenceSystem=InputReferenceSystem.METOCEAN, applyNorsok:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, applyNorsok=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__relativeCompassAngle = relativeCompassAngle
-        self.__inputReferenceSystem = inputReferenceSystem
-        self.__applyNorsok = applyNorsok
-        self.__longTermStatistics = None
-        self.__period = None
-        self.__waveCalculation = LongTermStatisticsWaveCalculation()
-        self.__windCalculation = LongTermStatisticsWindCalculation()
-        self.__currentCalculation = LongTermStatisticsCurrentCalculation()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.relativeCompassAngle = relativeCompassAngle
+        self.inputReferenceSystem = inputReferenceSystem
+        self.applyNorsok = applyNorsok
+        self.longTermStatistics = None
+        self.period = None
+        self.waveCalculation = None
+        self.windCalculation = None
+        self.currentCalculation = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

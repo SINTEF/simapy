@@ -15,7 +15,7 @@ class ParameterLinesBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("entityName","string","",default=""))
         self.attributes.append(Attribute("floatIndex","integer","",default=0))
         self.attributes.append(Attribute("value","number","",default=0.0))

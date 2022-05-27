@@ -15,7 +15,7 @@ class ReferenceFrameBlueprint(NamedObjectBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("parent","sima/riflex/ReferenceFrame","",False))
         self.attributes.append(Attribute("xGlobal","number","Global coordinate X",default=0.0))
         self.attributes.append(Attribute("yGlobal","number","Global coordinate Y",default=0.0))

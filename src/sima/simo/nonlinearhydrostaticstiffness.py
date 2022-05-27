@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.nonlinearhydrostaticstiffness import NonLinearHydrostaticStiffnessBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.position import Position
 from sima.sima.scriptablevalue import ScriptableValue
@@ -27,15 +28,15 @@ class NonLinearHydrostaticStiffness(MOAO):
          Geometry transparency, [0-1], where 1 is full transparency.(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", geometryFile:str="", transparency:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", geometryFile="", transparency=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__geometryPosition = Position()
-        self.__geometryFile = geometryFile
-        self.__transparency = transparency
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.geometryPosition = None
+        self.geometryFile = geometryFile
+        self.transparency = transparency
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

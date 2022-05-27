@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.stressjointlinetype import StressJointLineTypeBlueprint
+from typing import Dict
 from sima.riflex.arlinetype import ARLineType
 from sima.riflex.stressjointloadformulation import StressJointLoadFormulation
 from sima.riflex.stressjointsegment import StressJointSegment
@@ -41,20 +42,20 @@ class StressJointLineType(ARLineType):
     vivCoefficients : TimeDomainVIVLoadCoefficients
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", quadraticDrag:float=0.0, addedMass:float=0.0, extDiameterEnd1:float=0.0, wallThicknessEnd1:float=0.0, loadFormulation:StressJointLoadFormulation=StressJointLoadFormulation.MORISON, **kwargs):
+    def __init__(self , name="", description="", _id="", quadraticDrag=0.0, addedMass=0.0, extDiameterEnd1=0.0, wallThicknessEnd1=0.0, loadFormulation=StressJointLoadFormulation.MORISON, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__internalFluid = None
-        self.__quadraticDrag = quadraticDrag
-        self.__addedMass = addedMass
-        self.__extDiameterEnd1 = extDiameterEnd1
-        self.__wallThicknessEnd1 = wallThicknessEnd1
-        self.__segments = list()
-        self.__loadFormulation = loadFormulation
-        self.__vivCoefficients = TimeDomainVIVLoadCoefficients()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.internalFluid = None
+        self.quadraticDrag = quadraticDrag
+        self.addedMass = addedMass
+        self.extDiameterEnd1 = extDiameterEnd1
+        self.wallThicknessEnd1 = wallThicknessEnd1
+        self.segments = list()
+        self.loadFormulation = loadFormulation
+        self.vivCoefficients = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

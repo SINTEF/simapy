@@ -15,7 +15,7 @@ class DynamicWindChangeBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("include","boolean","",default=False))
         self.attributes.append(EnumAttribute("eventType","sima/riflex/IEC2005WindEventType",""))
         self.attributes.append(Attribute("eventStartTime","number","Time for event to start",default=0.0))

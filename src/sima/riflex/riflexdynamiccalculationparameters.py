@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.riflexdynamiccalculationparameters import RIFLEXDynamicCalculationParametersBlueprint
+from typing import Dict
 from sima.riflex.bladepitchfault import BladePitchFault
 from sima.riflex.bodyforcestorage import BodyForceStorage
 from sima.riflex.boundarychangegroup import BoundaryChangeGroup
@@ -85,44 +86,44 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     dynamicLoads : DynamicLoads
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", volumeForcesScaling:float=1.0, specifiedForcesScaling:float=1.0, currentVelocitiesScaling:float=1.0, changeStaticLoads:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", volumeForcesScaling=1.0, specifiedForcesScaling=1.0, currentVelocitiesScaling=1.0, changeStaticLoads=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__irregularTimeSeries = IrregularTimeSeriesParameters()
-        self.__irregularResponseAnalysis = IrregularResponseAnalysis()
-        self.__timeDomainProcedure = TimeDomainProcedure()
-        self.__envelopeCurveSpecification = EnvelopeCurveSpecification()
-        self.__displacementResponseStorage = DisplacementResponseStorage()
-        self.__forceResponseStorage = ForceResponseStorage()
-        self.__sumForceResponseStorage = SumForceResponseStorage()
-        self.__curvatureResponseStorage = CurvatureResponseStorage()
-        self.__stressStorage = StressStorage()
-        self.__turbineResponseStorage = TurbineResponseStorage()
-        self.__turbineBladeResponseStorage = TurbineBladeResponseStorage()
-        self.__supportVesselForceStorage = SupportVesselForceStorage()
-        self.__bodyForceStorage = BodyForceStorage()
-        self.__hlaElementForces = list()
-        self.__hlaImportedBodies = list()
-        self.__segmentLengthVariations = list()
-        self.__temperatureVariations = list()
-        self.__pressureVariations = list()
-        self.__winchVariations = list()
-        self.__dynamicWindChange = DynamicWindChange()
-        self.__windTurbineShutdown = WindTurbineShutdown()
-        self.__bladePitchFault = BladePitchFault()
-        self.__boundaryChangeGroups = list()
-        self.__visualisationResponses = DynmodVisualisationResponses()
-        self.__regularWaveAnalysis = RegularWaveAnalaysis()
-        self.__regularWaveLoading = RegularWaveLoading()
-        self.__regularVesselMotions = list()
-        self.__volumeForcesScaling = volumeForcesScaling
-        self.__specifiedForcesScaling = specifiedForcesScaling
-        self.__currentVelocitiesScaling = currentVelocitiesScaling
-        self.__changeStaticLoads = changeStaticLoads
-        self.__dynamicLoads = DynamicLoads()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.irregularTimeSeries = None
+        self.irregularResponseAnalysis = None
+        self.timeDomainProcedure = None
+        self.envelopeCurveSpecification = None
+        self.displacementResponseStorage = None
+        self.forceResponseStorage = None
+        self.sumForceResponseStorage = None
+        self.curvatureResponseStorage = None
+        self.stressStorage = None
+        self.turbineResponseStorage = None
+        self.turbineBladeResponseStorage = None
+        self.supportVesselForceStorage = None
+        self.bodyForceStorage = None
+        self.hlaElementForces = list()
+        self.hlaImportedBodies = list()
+        self.segmentLengthVariations = list()
+        self.temperatureVariations = list()
+        self.pressureVariations = list()
+        self.winchVariations = list()
+        self.dynamicWindChange = None
+        self.windTurbineShutdown = None
+        self.bladePitchFault = None
+        self.boundaryChangeGroups = list()
+        self.visualisationResponses = None
+        self.regularWaveAnalysis = None
+        self.regularWaveLoading = None
+        self.regularVesselMotions = list()
+        self.volumeForcesScaling = volumeForcesScaling
+        self.specifiedForcesScaling = specifiedForcesScaling
+        self.currentVelocitiesScaling = currentVelocitiesScaling
+        self.changeStaticLoads = changeStaticLoads
+        self.dynamicLoads = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windrotorspeeditem import WindRotorSpeedItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class WindRotorSpeedItem(MOAO):
          Rotor speed(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", windSpeed:float=0.0, rotorSpeed:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", windSpeed=0.0, rotorSpeed=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__windSpeed = windSpeed
-        self.__rotorSpeed = rotorSpeed
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.windSpeed = windSpeed
+        self.rotorSpeed = rotorSpeed
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

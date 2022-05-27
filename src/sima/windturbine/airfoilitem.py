@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.airfoilitem import AirFoilItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class AirFoilItem(MOAO):
          Moment coefficient(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", angle:float=0.0, cl:float=0.0, cd:float=0.0, cm:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", angle=0.0, cl=0.0, cd=0.0, cm=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__angle = angle
-        self.__cl = cl
-        self.__cd = cd
-        self.__cm = cm
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.angle = angle
+        self.cl = cl
+        self.cd = cd
+        self.cm = cm
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.volumeboxitem import VolumeBoxItemBlueprint
+from typing import Dict
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.volume import Volume
@@ -33,17 +34,17 @@ class VolumeBoxItem(VolumeMassPortion):
          Length of box i z-direction(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", volume:Volume=Volume.ADD, lengthX:float=0.0, lengthY:float=0.0, lengthZ:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", volume=Volume.ADD, lengthX=0.0, lengthY=0.0, lengthZ=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__volume = volume
-        self.__centerPoint = Point3()
-        self.__lengthX = lengthX
-        self.__lengthY = lengthY
-        self.__lengthZ = lengthZ
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.volume = volume
+        self.centerPoint = None
+        self.lengthX = lengthX
+        self.lengthY = lengthY
+        self.lengthZ = lengthZ
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

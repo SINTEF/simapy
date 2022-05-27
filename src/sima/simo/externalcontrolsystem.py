@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalcontrolsystem import ExternalControlSystemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.nameddoubleparameter import NamedDoubleParameter
@@ -27,15 +28,15 @@ class ExternalControlSystem(MOAO):
     stringParameters : List[NamedStringParameter]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__intParameters = list()
-        self.__doubleParameters = list()
-        self.__stringParameters = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.intParameters = list()
+        self.doubleParameters = list()
+        self.stringParameters = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

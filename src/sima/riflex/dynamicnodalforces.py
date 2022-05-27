@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicnodalforces import DynamicNodalForcesBlueprint
+from typing import Dict
 from sima.riflex.dynamicnodalforceitem import DynamicNodalForceItem
 from sima.riflex.forcespecificationtype import ForceSpecificationType
 from sima.sima.moao import MOAO
@@ -28,15 +29,15 @@ class DynamicNodalForces(MOAO):
     items : List[DynamicNodalForceItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", _type:ForceSpecificationType=ForceSpecificationType.SIMPLE_EXPRESSION, fileName:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", _type=ForceSpecificationType.SIMPLE_EXPRESSION, fileName="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.___type = _type
-        self.__fileName = fileName
-        self.__items = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self._type = _type
+        self.fileName = fileName
+        self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

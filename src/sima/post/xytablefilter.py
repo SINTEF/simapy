@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.xytablefilter import XYTableFilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -42,22 +43,22 @@ class XYTableFilter(OperationNode,OutputNode):
          the values of this signal will be shown in the field matching the related variable values(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, columnVariable:str="", rowVariable:str="", dataSeries:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, columnVariable="", rowVariable="", dataSeries="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__columnVariable = columnVariable
-        self.__rowVariable = rowVariable
-        self.__dataSeries = dataSeries
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.columnVariable = columnVariable
+        self.rowVariable = rowVariable
+        self.dataSeries = dataSeries
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

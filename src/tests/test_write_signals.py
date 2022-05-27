@@ -1,18 +1,15 @@
 from os import path
-from marmo.containers.container import Container
-from marmo.containers.dimensionalscalar import DimensionalScalar
-from marmo.containers.equallyspacedsignal import EquallySpacedSignal
-from marmo.containers.nonequallyspacedsignal import NonEquallySpacedSignal
+from math import sin
+from marmo import containers
 from simapy.sima_writer import SIMAWriter
 
-from math import sin
 
 def test_signal_creation(tmpdir):
     """Demonstrates how to create signals that can go straight into a sima post processor or workflow"""
-    container = Container(name = "Top")
+    container = containers.Container(name = "Top")
     container.signals.append(__create_scalar())
 
-    child = Container(name="child")
+    child = containers.Container(name="child")
     child.signals.append(__create_equally_spaced())
     child.signals.append(__create_non_equally_spaced())
 
@@ -20,16 +17,16 @@ def test_signal_creation(tmpdir):
     SIMAWriter().write([container],filename)
     assert path.exists(filename)
 
-def __create_scalar() -> DimensionalScalar:
-    scalar = DimensionalScalar()
+def __create_scalar() -> containers.DimensionalScalar:
+    scalar = containers.DimensionalScalar()
     scalar.name = "myScalar"
     scalar.unit = "-"
     scalar.value = 42.0
     return scalar
 
-def __create_equally_spaced() -> EquallySpacedSignal:
+def __create_equally_spaced() -> containers.EquallySpacedSignal:
     # EqualySpacedSignals x-axis is defined by xstart and xdelta
-    force = EquallySpacedSignal()
+    force = containers.EquallySpacedSignal()
     force.name = "force"
     # Y-axis unit
     force.unit = "N"
@@ -43,9 +40,9 @@ def __create_equally_spaced() -> EquallySpacedSignal:
     force.xdelta = dt
     return force
 
-def __create_non_equally_spaced() -> NonEquallySpacedSignal:
+def __create_non_equally_spaced() -> containers.NonEquallySpacedSignal:
     # NonEqualySpacedSignals has both x and y axis defined
-    xy = NonEquallySpacedSignal()
+    xy = containers.NonEquallySpacedSignal()
     xy.name = "xy"
     # Y-axis unit
     xy.unit = "N"
@@ -53,4 +50,3 @@ def __create_non_equally_spaced() -> NonEquallySpacedSignal:
     xy.xvalue = [10.0, 12.0, 17.0]
     xy.value = [10.0, 1.0, 5.0]
     return xy
-

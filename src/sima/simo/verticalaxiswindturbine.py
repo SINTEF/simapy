@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.verticalaxiswindturbine import VerticalAxisWindTurbineBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.verticalbladeitem import VerticalBladeItem
@@ -46,23 +47,23 @@ class VerticalAxisWindTurbine(NamedObject):
          Prandtl factor(default -1.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", referenceHeight:float=0.0, windArea:float=0.0, radius:float=0.0, elevation:float=0.0, offset:float=0.0, numBlades:int=0, numAzimuthalElements:int=0, prandtlFactor:float=-1.0, **kwargs):
+    def __init__(self , name="", description="", _id="", referenceHeight=0.0, windArea=0.0, radius=0.0, elevation=0.0, offset=0.0, numBlades=0, numAzimuthalElements=0, prandtlFactor=-1.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__controller = VerticalAxisWindTurbineController()
-        self.__momentCoupling = None
-        self.__referenceHeight = referenceHeight
-        self.__windArea = windArea
-        self.__radius = radius
-        self.__elevation = elevation
-        self.__offset = offset
-        self.__bladeItems = list()
-        self.__numBlades = numBlades
-        self.__numAzimuthalElements = numAzimuthalElements
-        self.__prandtlFactor = prandtlFactor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.controller = None
+        self.momentCoupling = None
+        self.referenceHeight = referenceHeight
+        self.windArea = windArea
+        self.radius = radius
+        self.elevation = elevation
+        self.offset = offset
+        self.bladeItems = list()
+        self.numBlades = numBlades
+        self.numAzimuthalElements = numAzimuthalElements
+        self.prandtlFactor = prandtlFactor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.genericexternalcontrolsystem import GenericExternalControlSystemBlueprint
+from typing import Dict
 from sima.sima.librarypaths import LibraryPaths
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
@@ -36,20 +37,20 @@ class GenericExternalControlSystem(NamedObject):
     libraryPaths : LibraryPaths
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", jarFile:str="", className:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", jarFile="", className="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__jarFile = jarFile
-        self.__className = className
-        self.__measurementEntities = list()
-        self.__feedbackEntities = list()
-        self.__intParameters = list()
-        self.__doubleParameters = list()
-        self.__stringParameters = list()
-        self.__libraryPaths = LibraryPaths()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.jarFile = jarFile
+        self.className = className
+        self.measurementEntities = list()
+        self.feedbackEntities = list()
+        self.intParameters = list()
+        self.doubleParameters = list()
+        self.stringParameters = list()
+        self.libraryPaths = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

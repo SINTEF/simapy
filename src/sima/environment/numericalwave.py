@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.numericalwave import NumericalWaveBlueprint
+from numpy import ndarray,asarray
 from sima.environment.wave import Wave
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -19,22 +20,22 @@ class NumericalWave(Wave):
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    directions : Sequence[float]
+    directions : ndarray
          Number of wave directions
-    frequencies : Sequence[float]
+    frequencies : ndarray
          Number of wave frequencies
-    values : Sequence[float]
+    values : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__directions = list()
-        self.__frequencies = list()
-        self.__values = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.directions = ndarray(1)
+        self.frequencies = ndarray(1)
+        self.values = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -89,37 +90,31 @@ class NumericalWave(Wave):
         self.__scriptableValues = value
 
     @property
-    def directions(self) -> Sequence[float]:
+    def directions(self) -> ndarray:
         """Number of wave directions"""
         return self.__directions
 
     @directions.setter
-    def directions(self, value: Sequence[float]):
+    def directions(self, value: ndarray):
         """Set directions"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__directions = value
+        self.__directions = asarray(value)
 
     @property
-    def frequencies(self) -> Sequence[float]:
+    def frequencies(self) -> ndarray:
         """Number of wave frequencies"""
         return self.__frequencies
 
     @frequencies.setter
-    def frequencies(self, value: Sequence[float]):
+    def frequencies(self, value: ndarray):
         """Set frequencies"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__frequencies = value
+        self.__frequencies = asarray(value)
 
     @property
-    def values(self) -> Sequence[float]:
+    def values(self) -> ndarray:
         """"""
         return self.__values
 
     @values.setter
-    def values(self, value: Sequence[float]):
+    def values(self, value: ndarray):
         """Set values"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__values = value
+        self.__values = asarray(value)

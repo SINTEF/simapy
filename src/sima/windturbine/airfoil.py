@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.airfoil import AirfoilBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.windturbine.foilpoint import FoilPoint
@@ -39,21 +40,21 @@ class Airfoil(NamedObject):
     points : List[FoilPoint]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", deepstallRegime:bool=False, inputStallPoints:bool=False, upperTailAngle:float=0.0, lowerTailAngle:float=0.0, upperNoseAngle:float=0.0, lowerNoseAngle:float=0.0, noseRadiusRatio:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", deepstallRegime=False, inputStallPoints=False, upperTailAngle=0.0, lowerTailAngle=0.0, upperNoseAngle=0.0, lowerNoseAngle=0.0, noseRadiusRatio=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__deepstallRegime = deepstallRegime
-        self.__inputStallPoints = inputStallPoints
-        self.__upperTailAngle = upperTailAngle
-        self.__lowerTailAngle = lowerTailAngle
-        self.__upperNoseAngle = upperNoseAngle
-        self.__lowerNoseAngle = lowerNoseAngle
-        self.__noseRadiusRatio = noseRadiusRatio
-        self.__reynoldItems = list()
-        self.__points = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.deepstallRegime = deepstallRegime
+        self.inputStallPoints = inputStallPoints
+        self.upperTailAngle = upperTailAngle
+        self.lowerTailAngle = lowerTailAngle
+        self.upperNoseAngle = upperNoseAngle
+        self.lowerNoseAngle = lowerNoseAngle
+        self.noseRadiusRatio = noseRadiusRatio
+        self.reynoldItems = list()
+        self.points = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

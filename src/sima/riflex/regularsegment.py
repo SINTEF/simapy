@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regularsegment import RegularSegmentBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -51,24 +52,24 @@ class RegularSegment(MOAO):
          Offset in line local Z-axis segment end 2(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", length:float=0.0, numElements:int=10, numSubElementsStatic:int=3, numSubElementsDynamic:int=5, stressfreeLength:float=0.0, twistEnd1:float=0.0, twistEnd2:float=0.0, offsetY:float=0.0, offsetZ:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", length=0.0, numElements=10, numSubElementsStatic=3, numSubElementsDynamic=5, stressfreeLength=0.0, twistEnd1=0.0, twistEnd2=0.0, offsetY=0.0, offsetZ=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__length = length
-        self.__numElements = numElements
-        self.__crossSection = None
-        self.__nodalComponent = None
-        self.__externalWrapping = None
-        self.__numSubElementsStatic = numSubElementsStatic
-        self.__numSubElementsDynamic = numSubElementsDynamic
-        self.__stressfreeLength = stressfreeLength
-        self.__twistEnd1 = twistEnd1
-        self.__twistEnd2 = twistEnd2
-        self.__offsetY = offsetY
-        self.__offsetZ = offsetZ
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.length = length
+        self.numElements = numElements
+        self.crossSection = None
+        self.nodalComponent = None
+        self.externalWrapping = None
+        self.numSubElementsStatic = numSubElementsStatic
+        self.numSubElementsDynamic = numSubElementsDynamic
+        self.stressfreeLength = stressfreeLength
+        self.twistEnd1 = twistEnd1
+        self.twistEnd2 = twistEnd2
+        self.offsetY = offsetY
+        self.offsetZ = offsetZ
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fatigueanalysisresultcontainer import FatigueAnalysisResultContainerBlueprint
+from typing import Dict
 from sima.condition.conditionsetresultcontainer import ConditionSetResultContainer
 from sima.sima.conditionresultcontainer import ConditionResultContainer
 from sima.sima.property import Property
@@ -31,17 +32,17 @@ class FatigueAnalysisResultContainer(ConditionResultContainer):
     fatigueResults : ResultEntry
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", modelOutputFile:str="", probability:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", modelOutputFile="", probability=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__modelOutputFile = modelOutputFile
-        self.__probability = probability
-        self.__runResults = None
-        self.__fatigueResults = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.modelOutputFile = modelOutputFile
+        self.probability = probability
+        self.runResults = None
+        self.fatigueResults = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

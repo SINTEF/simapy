@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.linearcurrentcoefficientitem import LinearCurrentCoefficientItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -35,19 +36,19 @@ class LinearCurrentCoefficientItem(MOAO):
          Linear current force coefficient for 6. degree of freedom(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, c11:float=0.0, c12:float=0.0, c13:float=0.0, c14:float=0.0, c15:float=0.0, c16:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, c11=0.0, c12=0.0, c13=0.0, c14=0.0, c15=0.0, c16=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__c11 = c11
-        self.__c12 = c12
-        self.__c13 = c13
-        self.__c14 = c14
-        self.__c15 = c15
-        self.__c16 = c16
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.c11 = c11
+        self.c12 = c12
+        self.c13 = c13
+        self.c14 = c14
+        self.c15 = c15
+        self.c16 = c16
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

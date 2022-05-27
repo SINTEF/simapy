@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.controlsequenceitem import ControlSequenceItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class ControlSequenceItem(MOAO):
          Should signals from DP system be accepted?(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", time:float=0.0, thrust:float=0.0, direction:float=0.0, acceptDPSystemInput:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", time=0.0, thrust=0.0, direction=0.0, acceptDPSystemInput=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__time = time
-        self.__thrust = thrust
-        self.__direction = direction
-        self.__acceptDPSystemInput = acceptDPSystemInput
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.time = time
+        self.thrust = thrust
+        self.direction = direction
+        self.acceptDPSystemInput = acceptDPSystemInput
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

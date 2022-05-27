@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.timedependentpointmass import TimeDependentPointMassBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -36,19 +37,19 @@ class TimeDependentPointMass(NamedObject):
          Minimum allowable mass rate, (may be negative) (HLA only).(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", mass0:float=0.0, massMax:float=0.0, massMin:float=0.0, massRateMax:float=0.0, massRateMin:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", mass0=0.0, massMax=0.0, massMin=0.0, massRateMax=0.0, massRateMin=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__point = Point3()
-        self.__flowRates = list()
-        self.__mass0 = mass0
-        self.__massMax = massMax
-        self.__massMin = massMin
-        self.__massRateMax = massRateMax
-        self.__massRateMin = massRateMin
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.point = None
+        self.flowRates = list()
+        self.mass0 = mass0
+        self.massMax = massMax
+        self.massMin = massMin
+        self.massRateMax = massRateMax
+        self.massRateMin = massRateMin
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

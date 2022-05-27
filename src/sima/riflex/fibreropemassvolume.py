@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fibreropemassvolume import FibreRopeMassVolumeBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -27,15 +28,15 @@ class FibreRopeMassVolume(MOAO):
          External contact radius (default = 0.0)(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", massCoefficient:float=0.0, extCrossSectionalArea:float=0.0, extContactRadius:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", massCoefficient=0.0, extCrossSectionalArea=0.0, extContactRadius=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__massCoefficient = massCoefficient
-        self.__extCrossSectionalArea = extCrossSectionalArea
-        self.__extContactRadius = extContactRadius
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.massCoefficient = massCoefficient
+        self.extCrossSectionalArea = extCrossSectionalArea
+        self.extContactRadius = extContactRadius
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

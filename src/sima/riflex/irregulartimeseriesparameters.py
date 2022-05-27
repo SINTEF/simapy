@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.irregulartimeseriesparameters import IrregularTimeSeriesParametersBlueprint
+from typing import Dict
 from sima.riflex.waveamplitudecomputation import WaveAmplitudeComputation
 from sima.riflex.wavecomputationmethod import WaveComputationMethod
 from sima.sima.moao import MOAO
@@ -49,25 +50,25 @@ class IrregularTimeSeriesParameters(MOAO):
          Ratio between length of small patch and length of large patch.(default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", randomSeedWaves:int=1, useStochasticAmplitudes:bool=False, waveLength:float=16384.0, timeIncrement:float=0.5, waveComputationMethod:WaveComputationMethod=WaveComputationMethod.FFT, waveAmplitudeComputation:WaveAmplitudeComputation=WaveAmplitudeComputation.DETERMINISTIC, numWindWaveFreqComponents:int=0, numSwellFreqComponents:int=0, waveCutFactor:float=0.0, largePatchPoints:int=0, largePatchLength:float=0.0, smallPatchPoints:int=0, patchRatio:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", randomSeedWaves=1, useStochasticAmplitudes=False, waveLength=16384.0, timeIncrement=0.5, waveComputationMethod=WaveComputationMethod.FFT, waveAmplitudeComputation=WaveAmplitudeComputation.DETERMINISTIC, numWindWaveFreqComponents=0, numSwellFreqComponents=0, waveCutFactor=0.0, largePatchPoints=0, largePatchLength=0.0, smallPatchPoints=0, patchRatio=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__randomSeedWaves = randomSeedWaves
-        self.__useStochasticAmplitudes = useStochasticAmplitudes
-        self.__waveLength = waveLength
-        self.__timeIncrement = timeIncrement
-        self.__waveComputationMethod = waveComputationMethod
-        self.__waveAmplitudeComputation = waveAmplitudeComputation
-        self.__numWindWaveFreqComponents = numWindWaveFreqComponents
-        self.__numSwellFreqComponents = numSwellFreqComponents
-        self.__waveCutFactor = waveCutFactor
-        self.__largePatchPoints = largePatchPoints
-        self.__largePatchLength = largePatchLength
-        self.__smallPatchPoints = smallPatchPoints
-        self.__patchRatio = patchRatio
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.randomSeedWaves = randomSeedWaves
+        self.useStochasticAmplitudes = useStochasticAmplitudes
+        self.waveLength = waveLength
+        self.timeIncrement = timeIncrement
+        self.waveComputationMethod = waveComputationMethod
+        self.waveAmplitudeComputation = waveAmplitudeComputation
+        self.numWindWaveFreqComponents = numWindWaveFreqComponents
+        self.numSwellFreqComponents = numSwellFreqComponents
+        self.waveCutFactor = waveCutFactor
+        self.largePatchPoints = largePatchPoints
+        self.largePatchLength = largePatchLength
+        self.smallPatchPoints = smallPatchPoints
+        self.patchRatio = patchRatio
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

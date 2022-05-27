@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.requirementoutputslot import RequirementOutputSlotBlueprint
+from typing import Dict
 from sima.post.outputslot import OutputSlot
 from sima.post.requirement import Requirement
 from sima.sima.scriptablevalue import ScriptableValue
@@ -29,16 +30,16 @@ class RequirementOutputSlot(OutputSlot):
          (default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", useQuery:bool=False, query:str="", flatten:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", useQuery=False, query="", flatten=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__useQuery = useQuery
-        self.__query = query
-        self.__userRequirements = list()
-        self.__flatten = flatten
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.useQuery = useQuery
+        self.query = query
+        self.userRequirements = list()
+        self.flatten = flatten
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.mannwindgenerator import MannWindGeneratorBlueprint
+from typing import Dict
 from sima.sima.conditionselectable import ConditionSelectable
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
@@ -64,33 +65,33 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
          Longitudenal Turbulence Scale Parameter(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", baseFileName:str='sima', alphaEpsilon:float=0.0, lengthScale:float=0.0, gamma:float=3.9, seed:int=0, gridPointsX:int=0, gridPointsY:int=0, gridPointsZ:int=0, pointDistanceX:float=0.0, pointDistanceY:float=0.0, pointDistanceZ:float=0.0, hfCompensation:bool=True, turbulenceIntensity:float=0.0, meanWindSpeed:float=0.0, transient:float=0.0, inputFormat:MannInputFormat=MannInputFormat.DIRECT, windSeriesDuration:float=0.0, gridWidth:float=0.0, gridHeight:float=0.0, lengthFactor:float=0.8, longTurbScaleParam:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", baseFileName='sima', alphaEpsilon=0.0, lengthScale=0.0, gamma=3.9, seed=0, gridPointsX=0, gridPointsY=0, gridPointsZ=0, pointDistanceX=0.0, pointDistanceY=0.0, pointDistanceZ=0.0, hfCompensation=True, turbulenceIntensity=0.0, meanWindSpeed=0.0, transient=0.0, inputFormat=MannInputFormat.DIRECT, windSeriesDuration=0.0, gridWidth=0.0, gridHeight=0.0, lengthFactor=0.8, longTurbScaleParam=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__baseFileName = baseFileName
-        self.__alphaEpsilon = alphaEpsilon
-        self.__lengthScale = lengthScale
-        self.__gamma = gamma
-        self.__seed = seed
-        self.__gridPointsX = gridPointsX
-        self.__gridPointsY = gridPointsY
-        self.__gridPointsZ = gridPointsZ
-        self.__pointDistanceX = pointDistanceX
-        self.__pointDistanceY = pointDistanceY
-        self.__pointDistanceZ = pointDistanceZ
-        self.__hfCompensation = hfCompensation
-        self.__turbulenceIntensity = turbulenceIntensity
-        self.__meanWindSpeed = meanWindSpeed
-        self.__transient = transient
-        self.__inputFormat = inputFormat
-        self.__windSeriesDuration = windSeriesDuration
-        self.__gridWidth = gridWidth
-        self.__gridHeight = gridHeight
-        self.__lengthFactor = lengthFactor
-        self.__longTurbScaleParam = longTurbScaleParam
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.baseFileName = baseFileName
+        self.alphaEpsilon = alphaEpsilon
+        self.lengthScale = lengthScale
+        self.gamma = gamma
+        self.seed = seed
+        self.gridPointsX = gridPointsX
+        self.gridPointsY = gridPointsY
+        self.gridPointsZ = gridPointsZ
+        self.pointDistanceX = pointDistanceX
+        self.pointDistanceY = pointDistanceY
+        self.pointDistanceZ = pointDistanceZ
+        self.hfCompensation = hfCompensation
+        self.turbulenceIntensity = turbulenceIntensity
+        self.meanWindSpeed = meanWindSpeed
+        self.transient = transient
+        self.inputFormat = inputFormat
+        self.windSeriesDuration = windSeriesDuration
+        self.gridWidth = gridWidth
+        self.gridHeight = gridHeight
+        self.lengthFactor = lengthFactor
+        self.longTurbScaleParam = longTurbScaleParam
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

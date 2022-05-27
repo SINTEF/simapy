@@ -15,6 +15,6 @@ class WaveKinematicsNodePointBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("line","sima/riflex/ARLine","Line",False))
         self.attributes.append(Attribute("nodeStep","integer","Calculating wave kinematics for each node step value. If value is 0 there is no kinematics for this line.",default=0))

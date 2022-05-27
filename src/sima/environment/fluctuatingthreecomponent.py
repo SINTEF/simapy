@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fluctuatingthreecomponent import FluctuatingThreeComponentBlueprint
+from typing import Dict
 from sima.environment.fluctuatingwindvelocityprofile import FluctuatingWindVelocityProfile
 from sima.environment.wind import Wind
 from sima.sima.scriptablevalue import ScriptableValue
@@ -53,28 +54,28 @@ class FluctuatingThreeComponent(Wind):
          Buffer size: Number of wind crossectional planes (Slices) in memory(default 800)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, meanSpeed:float=0.0, longitudinalFileName:str="", lateralFileName:str="", verticalFileName:str="", lowerLeftX:float=0.0, lowerLeftY:float=0.0, lowerLeftZ:float=0.0, numPointsX:int=0, numPointsY:int=0, numPointsZ:int=0, sizeX:float=0.0, sizeY:float=0.0, sizeZ:float=0.0, numSlices:int=800, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, meanSpeed=0.0, longitudinalFileName="", lateralFileName="", verticalFileName="", lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__meanSpeed = meanSpeed
-        self.__velocityProfiles = list()
-        self.__longitudinalFileName = longitudinalFileName
-        self.__lateralFileName = lateralFileName
-        self.__verticalFileName = verticalFileName
-        self.__lowerLeftX = lowerLeftX
-        self.__lowerLeftY = lowerLeftY
-        self.__lowerLeftZ = lowerLeftZ
-        self.__numPointsX = numPointsX
-        self.__numPointsY = numPointsY
-        self.__numPointsZ = numPointsZ
-        self.__sizeX = sizeX
-        self.__sizeY = sizeY
-        self.__sizeZ = sizeZ
-        self.__numSlices = numSlices
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.meanSpeed = meanSpeed
+        self.velocityProfiles = list()
+        self.longitudinalFileName = longitudinalFileName
+        self.lateralFileName = lateralFileName
+        self.verticalFileName = verticalFileName
+        self.lowerLeftX = lowerLeftX
+        self.lowerLeftY = lowerLeftY
+        self.lowerLeftZ = lowerLeftZ
+        self.numPointsX = numPointsX
+        self.numPointsY = numPointsY
+        self.numPointsZ = numPointsZ
+        self.sizeX = sizeX
+        self.sizeY = sizeY
+        self.sizeZ = sizeZ
+        self.numSlices = numSlices
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

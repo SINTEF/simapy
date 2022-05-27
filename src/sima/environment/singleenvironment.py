@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.singleenvironment import SingleEnvironmentBlueprint
+from typing import Dict
 from sima.environment.current import Current
 from sima.environment.environment import Environment
 from sima.environment.wave import Wave
@@ -28,16 +29,16 @@ class SingleEnvironment(Environment):
     current : Current
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__wave = None
-        self.__swell = None
-        self.__wind = None
-        self.__current = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.wave = None
+        self.swell = None
+        self.wind = None
+        self.current = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -15,7 +15,7 @@ class HorizontalAxisYawControllerBlueprint(YawControllerBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(EnumAttribute("yawControllerType","sima/windturbine/YawControllerType",""))
         self.attributes.append(Attribute("timeStep","number","",default=0.0))
         self.attributes.append(Attribute("setPoint","number","Desired yaw misalignment",default=0.0))

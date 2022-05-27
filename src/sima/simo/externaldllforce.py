@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externaldllforce import ExternalDLLForceBlueprint
+from typing import Dict
 from sima.sima.librarypaths import LibraryPaths
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
@@ -41,21 +42,21 @@ class ExternalDLLForce(NamedObject):
     libraryPaths : LibraryPaths
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", referenceFrame:ReferenceFrameType=ReferenceFrameType.LOCAL, nStorageParameters:int=0, nCurrentPoints:int=1, dllFile:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", referenceFrame=ReferenceFrameType.LOCAL, nStorageParameters=0, nCurrentPoints=1, dllFile="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__attachmentPoint = Point3()
-        self.__referenceFrame = referenceFrame
-        self.__nStorageParameters = nStorageParameters
-        self.__intParameters = list()
-        self.__doubleParameters = list()
-        self.__stringParameters = list()
-        self.__nCurrentPoints = nCurrentPoints
-        self.__dllFile = dllFile
-        self.__libraryPaths = LibraryPaths()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.attachmentPoint = None
+        self.referenceFrame = referenceFrame
+        self.nStorageParameters = nStorageParameters
+        self.intParameters = list()
+        self.doubleParameters = list()
+        self.stringParameters = list()
+        self.nCurrentPoints = nCurrentPoints
+        self.dllFile = dllFile
+        self.libraryPaths = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

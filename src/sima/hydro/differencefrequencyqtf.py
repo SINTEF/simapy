@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.differencefrequencyqtf import DifferenceFrequencyQTFBlueprint
+from numpy import ndarray,asarray
 from sima.hydro.qtfdof import QTFDof
 from sima.hydro.sparseqtf import SparseQTF
 from sima.sima.scriptablevalue import ScriptableValue
@@ -30,12 +31,12 @@ class DifferenceFrequencyQTF(SparseQTF):
          (default False)
     bichromatic : bool
          (default False)
-    directions : Sequence[float]
-    frequencies : Sequence[float]
-    di : Sequence[int]
-    dj : Sequence[int]
-    wi : Sequence[int]
-    wj : Sequence[int]
+    directions : ndarray
+    frequencies : ndarray
+    di : ndarray
+    dj : ndarray
+    wi : ndarray
+    wj : ndarray
     surge : QTFDof
     sway : QTFDof
     heave : QTFDof
@@ -44,29 +45,29 @@ class DifferenceFrequencyQTF(SparseQTF):
     yaw : QTFDof
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", nFreq:int=0, nDir:int=0, nValues:int=0, bidirectional:bool=False, bichromatic:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", nFreq=0, nDir=0, nValues=0, bidirectional=False, bichromatic=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__nFreq = nFreq
-        self.__nDir = nDir
-        self.__nValues = nValues
-        self.__bidirectional = bidirectional
-        self.__bichromatic = bichromatic
-        self.__directions = list()
-        self.__frequencies = list()
-        self.__di = list()
-        self.__dj = list()
-        self.__wi = list()
-        self.__wj = list()
-        self.__surge = QTFDof()
-        self.__sway = QTFDof()
-        self.__heave = QTFDof()
-        self.__roll = QTFDof()
-        self.__pitch = QTFDof()
-        self.__yaw = QTFDof()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.nFreq = nFreq
+        self.nDir = nDir
+        self.nValues = nValues
+        self.bidirectional = bidirectional
+        self.bichromatic = bichromatic
+        self.directions = ndarray(1)
+        self.frequencies = ndarray(1)
+        self.di = ndarray(1)
+        self.dj = ndarray(1)
+        self.wi = ndarray(1)
+        self.wj = ndarray(1)
+        self.surge = None
+        self.sway = None
+        self.heave = None
+        self.roll = None
+        self.pitch = None
+        self.yaw = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -171,76 +172,64 @@ class DifferenceFrequencyQTF(SparseQTF):
         self.__bichromatic = bool(value)
 
     @property
-    def directions(self) -> Sequence[float]:
+    def directions(self) -> ndarray:
         """"""
         return self.__directions
 
     @directions.setter
-    def directions(self, value: Sequence[float]):
+    def directions(self, value: ndarray):
         """Set directions"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__directions = value
+        self.__directions = asarray(value)
 
     @property
-    def frequencies(self) -> Sequence[float]:
+    def frequencies(self) -> ndarray:
         """"""
         return self.__frequencies
 
     @frequencies.setter
-    def frequencies(self, value: Sequence[float]):
+    def frequencies(self, value: ndarray):
         """Set frequencies"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__frequencies = value
+        self.__frequencies = asarray(value)
 
     @property
-    def di(self) -> Sequence[int]:
+    def di(self) -> ndarray:
         """"""
         return self.__di
 
     @di.setter
-    def di(self, value: Sequence[int]):
+    def di(self, value: ndarray):
         """Set di"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__di = value
+        self.__di = asarray(value)
 
     @property
-    def dj(self) -> Sequence[int]:
+    def dj(self) -> ndarray:
         """"""
         return self.__dj
 
     @dj.setter
-    def dj(self, value: Sequence[int]):
+    def dj(self, value: ndarray):
         """Set dj"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__dj = value
+        self.__dj = asarray(value)
 
     @property
-    def wi(self) -> Sequence[int]:
+    def wi(self) -> ndarray:
         """"""
         return self.__wi
 
     @wi.setter
-    def wi(self, value: Sequence[int]):
+    def wi(self, value: ndarray):
         """Set wi"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__wi = value
+        self.__wi = asarray(value)
 
     @property
-    def wj(self) -> Sequence[int]:
+    def wj(self) -> ndarray:
         """"""
         return self.__wj
 
     @wj.setter
-    def wj(self, value: Sequence[int]):
+    def wj(self, value: ndarray):
         """Set wj"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__wj = value
+        self.__wj = asarray(value)
 
     @property
     def surge(self) -> QTFDof:

@@ -15,7 +15,7 @@ class SoilFrictionElementBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("dfric","number","Penetration relative to ZCONT (positive upwards)",default=0.0))
         self.attributes.append(Attribute("ftipdo","number","Depth dependent friction force for DOWNward motion",default=0.0))
         self.attributes.append(Attribute("ftipup","number","Depth dependent friction force for UPward motion",default=0.0))

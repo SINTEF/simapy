@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windturbine import WindTurbineBlueprint
+from typing import Dict
 from sima.riflex.bladeitem import BladeItem
 from sima.riflex.horizontalaxisyawcontroller import HorizontalAxisYawController
 from sima.riflex.measurementelement import MeasurementElement
@@ -62,29 +63,29 @@ class WindTurbine(NamedObject):
     yawController : HorizontalAxisYawController
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", windLoadOption:WindTurbineLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation:TurbineOrientation=TurbineOrientation.UPWIND, bakFactor:float=0.1, dragEffect:bool=True, advancedOptions:bool=True, inductionCalculation:bool=True, prandtlTip:bool=True, prandtlRoot:bool=True, prandtlYaw:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=True, advancedOptions=True, inductionCalculation=True, prandtlTip=True, prandtlRoot=True, prandtlYaw=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__shaftLine = None
-        self.__blades = list()
-        self.__controller = HorizontalAxisWindTurbineController()
-        self.__body = None
-        self.__towerLine = None
-        self.__windLoadOption = windLoadOption
-        self.__turbineOrientation = turbineOrientation
-        self.__bakFactor = bakFactor
-        self.__dragEffect = dragEffect
-        self.__advancedOptions = advancedOptions
-        self.__inductionCalculation = inductionCalculation
-        self.__prandtlTip = prandtlTip
-        self.__prandtlRoot = prandtlRoot
-        self.__prandtlYaw = prandtlYaw
-        self.__measurementNodes = list()
-        self.__measurementElements = list()
-        self.__yawController = HorizontalAxisYawController()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.shaftLine = None
+        self.blades = list()
+        self.controller = None
+        self.body = None
+        self.towerLine = None
+        self.windLoadOption = windLoadOption
+        self.turbineOrientation = turbineOrientation
+        self.bakFactor = bakFactor
+        self.dragEffect = dragEffect
+        self.advancedOptions = advancedOptions
+        self.inductionCalculation = inductionCalculation
+        self.prandtlTip = prandtlTip
+        self.prandtlRoot = prandtlRoot
+        self.prandtlYaw = prandtlYaw
+        self.measurementNodes = list()
+        self.measurementElements = list()
+        self.yawController = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

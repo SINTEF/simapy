@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.workflowsetitem import WorkflowSetItemBlueprint
+from numpy import ndarray,asarray
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -21,17 +22,17 @@ class WorkflowSetItem(MOAO):
     scriptableValues : List[ScriptableValue]
     parameterId : str
          (default "")
-    values : Sequence[str]
+    values : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", parameterId:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", parameterId="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__parameterId = parameterId
-        self.__values = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.parameterId = parameterId
+        self.values = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -96,13 +97,11 @@ class WorkflowSetItem(MOAO):
         self.__parameterId = str(value)
 
     @property
-    def values(self) -> Sequence[str]:
+    def values(self) -> ndarray:
         """"""
         return self.__values
 
     @values.setter
-    def values(self, value: Sequence[str]):
+    def values(self, value: ndarray):
         """Set values"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__values = value
+        self.__values = asarray(value)

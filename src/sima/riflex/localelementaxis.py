@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.localelementaxis import LocalElementAxisBlueprint
+from typing import Dict
 from sima.riflex.elementreference import ElementReference
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -44,21 +45,21 @@ class LocalElementAxis(ElementReference):
          Reference vector z component(default 1.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, elementNumber:int=1, allElements:bool=False, rnx:float=0.0, rny:float=0.0, rnz:float=1.0, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, rnx=0.0, rny=0.0, rnz=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__elementNumber = elementNumber
-        self.__allElements = allElements
-        self.__referenceFrame = None
-        self.__rnx = rnx
-        self.__rny = rny
-        self.__rnz = rnz
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.elementNumber = elementNumber
+        self.allElements = allElements
+        self.referenceFrame = None
+        self.rnx = rnx
+        self.rny = rny
+        self.rnz = rnz
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

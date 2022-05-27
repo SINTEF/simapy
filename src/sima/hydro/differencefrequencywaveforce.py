@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.differencefrequencywaveforce import DifferenceFrequencyWaveForceBlueprint
+from numpy import ndarray,asarray
 from sima.hydro.qtfdofitem import QTFDofItem
 from sima.hydro.quadratictransferfunction import QuadraticTransferFunction
 from sima.sima.scriptablevalue import ScriptableValue
@@ -28,8 +29,8 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
          (default False)
     bidirectional : bool
          (default False)
-    frequencies : Sequence[float]
-    directions : Sequence[float]
+    frequencies : ndarray
+    directions : ndarray
     onFile : bool
          (default False)
     file : str
@@ -42,26 +43,26 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
     yaw : QTFDofItem
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", nFreq:int=0, nDir:int=0, bichromatic:bool=False, bidirectional:bool=False, onFile:bool=False, file:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", nFreq=0, nDir=0, bichromatic=False, bidirectional=False, onFile=False, file="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__nFreq = nFreq
-        self.__nDir = nDir
-        self.__bichromatic = bichromatic
-        self.__bidirectional = bidirectional
-        self.__frequencies = list()
-        self.__directions = list()
-        self.__onFile = onFile
-        self.__file = file
-        self.__surge = QTFDofItem()
-        self.__sway = QTFDofItem()
-        self.__heave = QTFDofItem()
-        self.__roll = QTFDofItem()
-        self.__pitch = QTFDofItem()
-        self.__yaw = QTFDofItem()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.nFreq = nFreq
+        self.nDir = nDir
+        self.bichromatic = bichromatic
+        self.bidirectional = bidirectional
+        self.frequencies = ndarray(1)
+        self.directions = ndarray(1)
+        self.onFile = onFile
+        self.file = file
+        self.surge = None
+        self.sway = None
+        self.heave = None
+        self.roll = None
+        self.pitch = None
+        self.yaw = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -156,28 +157,24 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
         self.__bidirectional = bool(value)
 
     @property
-    def frequencies(self) -> Sequence[float]:
+    def frequencies(self) -> ndarray:
         """"""
         return self.__frequencies
 
     @frequencies.setter
-    def frequencies(self, value: Sequence[float]):
+    def frequencies(self, value: ndarray):
         """Set frequencies"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__frequencies = value
+        self.__frequencies = asarray(value)
 
     @property
-    def directions(self) -> Sequence[float]:
+    def directions(self) -> ndarray:
         """"""
         return self.__directions
 
     @directions.setter
-    def directions(self, value: Sequence[float]):
+    def directions(self, value: ndarray):
         """Set directions"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__directions = value
+        self.__directions = asarray(value)
 
     @property
     def onFile(self) -> bool:

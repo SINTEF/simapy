@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dockingconecrosssection import DockingConeCrossSectionBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.forcedampingitem import ForceDampingItem
@@ -25,14 +26,14 @@ class DockingConeCrossSection(MOAO):
     items : List[ForceDampingItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", axialDistance:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", axialDistance=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__axialDistance = axialDistance
-        self.__items = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.axialDistance = axialDistance
+        self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

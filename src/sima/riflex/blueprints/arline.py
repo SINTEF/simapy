@@ -15,7 +15,7 @@ class ARLineBlueprint(LineForceProviderBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("lineType","sima/riflex/ARLineType","Line type.",False))
         self.attributes.append(BlueprintAttribute("end1","sima/riflex/SuperNode","Supernode at end 1.",False))
         self.attributes.append(BlueprintAttribute("end2","sima/riflex/SuperNode","Supernode at end 2.",False))

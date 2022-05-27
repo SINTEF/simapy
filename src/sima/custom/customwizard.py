@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customwizard import CustomWizardBlueprint
+from typing import Dict
 from sima.custom.customwizardpage import CustomWizardPage
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -35,19 +36,19 @@ class CustomWizard(MOAO):
          This script will be run when finishing the wizard. Use the variable selection to get hold of the object selected in the navigator(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", title:str="", selectionType:str="", menuLabel:str="", inline:bool=True, path:str="", finishScript:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", title="", selectionType="", menuLabel="", inline=True, path="", finishScript="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__title = title
-        self.__selectionType = selectionType
-        self.__menuLabel = menuLabel
-        self.__pages = list()
-        self.__inline = inline
-        self.__path = path
-        self.__finishScript = finishScript
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.title = title
+        self.selectionType = selectionType
+        self.menuLabel = menuLabel
+        self.pages = list()
+        self.inline = inline
+        self.path = path
+        self.finishScript = finishScript
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

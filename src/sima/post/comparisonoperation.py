@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.comparisonoperation import ComparisonOperationBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -42,23 +43,23 @@ class ComparisonOperation(OperationNode):
          If checked the operation will fail the current run when the inputs are different(default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, factor:float=1e-05, threshold:float=1e-15, fail:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, factor=1e-05, threshold=1e-15, fail=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__first = InputSlot()
-        self.__second = InputSlot()
-        self.__outputSlot = OutputSlot()
-        self.__factor = factor
-        self.__threshold = threshold
-        self.__fail = fail
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.first = None
+        self.second = None
+        self.outputSlot = None
+        self.factor = factor
+        self.threshold = threshold
+        self.fail = fail
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

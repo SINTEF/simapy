@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlaplot import HLAPlotBlueprint
+from numpy import ndarray,asarray
 from sima.hla.hlaobject import HLAObject
 from sima.hla.range import Range
 from sima.sima.scriptablevalue import ScriptableValue
@@ -20,7 +21,7 @@ class HLAPlot(HLAObject):
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    curves : Sequence[str]
+    curves : ndarray
     crossPlotXAxisValues : str
          (default "")
     minMaxX : Range
@@ -39,22 +40,22 @@ class HLAPlot(HLAObject):
          (default 5)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", crossPlotXAxisValues:str="", axisTitleX:str="", axisTitleY:str="", valueTypeX:str="", showTimeMarker:bool=False, fadePrecedingCurves:bool=False, fadePrecedingCurvesCount:int=5, **kwargs):
+    def __init__(self , name="", description="", _id="", crossPlotXAxisValues="", axisTitleX="", axisTitleY="", valueTypeX="", showTimeMarker=False, fadePrecedingCurves=False, fadePrecedingCurvesCount=5, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__curves = list()
-        self.__crossPlotXAxisValues = crossPlotXAxisValues
-        self.__minMaxX = None
-        self.__minMaxY = None
-        self.__axisTitleX = axisTitleX
-        self.__axisTitleY = axisTitleY
-        self.__valueTypeX = valueTypeX
-        self.__showTimeMarker = showTimeMarker
-        self.__fadePrecedingCurves = fadePrecedingCurves
-        self.__fadePrecedingCurvesCount = fadePrecedingCurvesCount
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.curves = ndarray(1)
+        self.crossPlotXAxisValues = crossPlotXAxisValues
+        self.minMaxX = None
+        self.minMaxY = None
+        self.axisTitleX = axisTitleX
+        self.axisTitleY = axisTitleY
+        self.valueTypeX = valueTypeX
+        self.showTimeMarker = showTimeMarker
+        self.fadePrecedingCurves = fadePrecedingCurves
+        self.fadePrecedingCurvesCount = fadePrecedingCurvesCount
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -109,16 +110,14 @@ class HLAPlot(HLAObject):
         self.__scriptableValues = value
 
     @property
-    def curves(self) -> Sequence[str]:
+    def curves(self) -> ndarray:
         """"""
         return self.__curves
 
     @curves.setter
-    def curves(self, value: Sequence[str]):
+    def curves(self, value: ndarray):
         """Set curves"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__curves = value
+        self.__curves = asarray(value)
 
     @property
     def crossPlotXAxisValues(self) -> str:

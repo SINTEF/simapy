@@ -12,7 +12,7 @@ class SimpleStringBlueprint(SignalBlueprint):
 
     def __init__(self, name="SimpleString", package_path="marmo/containers", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string",""))
-        self.attributes.append(Attribute("description","string",""))
-        self.attributes.append(BlueprintAttribute("attributes","/containers/Attribute","",True,Dimension("size","")))
-        self.attributes.append(Attribute("value","string",""))
+        self.attributes.append(Attribute("name","string","",default=""))
+        self.attributes.append(Attribute("description","string","",default=""))
+        self.attributes.append(BlueprintAttribute("attributes","marmo/containers/Attribute","",True,Dimension("*")))
+        self.attributes.append(Attribute("value","string","",default=""))

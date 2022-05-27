@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.massfrequencyproperty import MassFrequencyPropertyBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class MassFrequencyProperty(MOAO):
          Added mass coefficient(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", nonDimensionalFrequency:float=0.0, addedMassCoefficient:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", nonDimensionalFrequency=0.0, addedMassCoefficient=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__nonDimensionalFrequency = nonDimensionalFrequency
-        self.__addedMassCoefficient = addedMassCoefficient
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.nonDimensionalFrequency = nonDimensionalFrequency
+        self.addedMassCoefficient = addedMassCoefficient
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

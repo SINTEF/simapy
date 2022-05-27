@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.contourdatapoint import ContourDataPointBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class ContourDataPoint(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", peakPeriod:float=0.0, significantWaveHeight:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", peakPeriod=0.0, significantWaveHeight=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__peakPeriod = peakPeriod
-        self.__significantWaveHeight = significantWaveHeight
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.peakPeriod = peakPeriod
+        self.significantWaveHeight = significantWaveHeight
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

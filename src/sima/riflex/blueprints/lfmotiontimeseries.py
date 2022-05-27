@@ -15,7 +15,7 @@ class LFMotionTimeSeriesBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("timeSeriesFile","boolean","",default=False))
         self.attributes.append(BlueprintAttribute("supportVessel","sima/riflex/SupportVessel","",False))
         self.attributes.append(Attribute("fileName","string","Motion time series file",default=""))

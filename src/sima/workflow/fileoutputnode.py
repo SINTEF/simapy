@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fileoutputnode import FileOutputNodeBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.decimalseparator import DecimalSeparator
 from sima.post.fileformat import FileFormat
@@ -56,28 +57,28 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
     outputSlot : OutputSlot
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, filePath:str="", fileFormat:FileFormat=FileFormat.CSV, shellCommand:str="", addMetaTags:bool=False, decimalSeparator:DecimalSeparator=DecimalSeparator.PERIOD, skipHeader:bool=False, specifyAdditionalProperties:bool=False, writeRawText:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, filePath="", fileFormat=FileFormat.CSV, shellCommand="", addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__inputSlot = InputSlot()
-        self.__filePath = filePath
-        self.__fileFormat = fileFormat
-        self.__shellCommand = shellCommand
-        self.__addMetaTags = addMetaTags
-        self.__decimalSeparator = decimalSeparator
-        self.__skipHeader = skipHeader
-        self.__specifyAdditionalProperties = specifyAdditionalProperties
-        self.__writeRawText = writeRawText
-        self.__outputSlot = OutputSlot()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.inputSlot = None
+        self.filePath = filePath
+        self.fileFormat = fileFormat
+        self.shellCommand = shellCommand
+        self.addMetaTags = addMetaTags
+        self.decimalSeparator = decimalSeparator
+        self.skipHeader = skipHeader
+        self.specifyAdditionalProperties = specifyAdditionalProperties
+        self.writeRawText = writeRawText
+        self.outputSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

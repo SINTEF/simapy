@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.slenderelement import SlenderElementBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -72,36 +73,36 @@ class SlenderElement(NamedObject):
     aerodynamicDescription : AerodynamicDescription
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", specificVolume:float=0.0, distributedMass:float=0.0, waveIntegrationMethod:WaveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType:LoadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod:WaveParticleMethod=WaveParticleMethod.VELOCITY_AND_ACCELERATION, numberOfStrips:int=10, zcoef:float=0.0, c2x:float=0.0, c2y:float=0.0, c2z:float=0.0, c1x:float=0.0, c1y:float=0.0, c1z:float=0.0, amx:float=0.0, amy:float=0.0, amz:float=0.0, windForces:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", specificVolume=0.0, distributedMass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=WaveParticleMethod.VELOCITY_AND_ACCELERATION, numberOfStrips=10, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, windForces=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__specificVolume = specificVolume
-        self.__distributedMass = distributedMass
-        self.__waveIntegrationMethod = waveIntegrationMethod
-        self.__loadType = loadType
-        self.__waveParticleMethod = waveParticleMethod
-        self.__numberOfStrips = numberOfStrips
-        self.__endPoint1 = Point3()
-        self.__endPoint2 = Point3()
-        self.__referencePoint = Point3()
-        self.__zcoef = zcoef
-        self.__depthDependentHydrodynamicCoefficients = list()
-        self.__diffractedWaveEnd1 = None
-        self.__diffractedWaveEnd2 = None
-        self.__c2x = c2x
-        self.__c2y = c2y
-        self.__c2z = c2z
-        self.__c1x = c1x
-        self.__c1y = c1y
-        self.__c1z = c1z
-        self.__amx = amx
-        self.__amy = amy
-        self.__amz = amz
-        self.__windForces = windForces
-        self.__aerodynamicDescription = AerodynamicDescription()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.specificVolume = specificVolume
+        self.distributedMass = distributedMass
+        self.waveIntegrationMethod = waveIntegrationMethod
+        self.loadType = loadType
+        self.waveParticleMethod = waveParticleMethod
+        self.numberOfStrips = numberOfStrips
+        self.endPoint1 = None
+        self.endPoint2 = None
+        self.referencePoint = None
+        self.zcoef = zcoef
+        self.depthDependentHydrodynamicCoefficients = list()
+        self.diffractedWaveEnd1 = None
+        self.diffractedWaveEnd2 = None
+        self.c2x = c2x
+        self.c2y = c2y
+        self.c2z = c2z
+        self.c1x = c1x
+        self.c1y = c1y
+        self.c1z = c1z
+        self.amx = amx
+        self.amy = amy
+        self.amz = amz
+        self.windForces = windForces
+        self.aerodynamicDescription = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

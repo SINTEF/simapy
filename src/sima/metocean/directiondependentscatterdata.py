@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.directiondependentscatterdata import DirectionDependentScatterDataBlueprint
+from typing import Dict
 from sima.metocean.scatterdata import ScatterData
 from sima.metocean.scattersector import ScatterSector
 from sima.sima.scriptablevalue import ScriptableValue
@@ -23,13 +24,13 @@ class DirectionDependentScatterData(ScatterData):
     sectors : List[ScatterSector]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__sectors = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.sectors = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

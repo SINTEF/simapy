@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.point import PointBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class Point(MOAO):
          (default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

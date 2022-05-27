@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dampingfactorvenugopalproperty import DampingFactorVenugopalPropertyBlueprint
+from typing import Dict
 from sima.riflex.dampingfactorproperty import DampingFactorProperty
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -27,15 +28,15 @@ class DampingFactorVenugopalProperty(DampingFactorProperty):
          Factor Venugopal high velocity region(default 1.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", stillWaterDampingContribution:float=1.0, lowVelocityRegion:float=1.0, highVelocityRegion:float=1.0, **kwargs):
+    def __init__(self , name="", description="", _id="", stillWaterDampingContribution=1.0, lowVelocityRegion=1.0, highVelocityRegion=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__stillWaterDampingContribution = stillWaterDampingContribution
-        self.__lowVelocityRegion = lowVelocityRegion
-        self.__highVelocityRegion = highVelocityRegion
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.stillWaterDampingContribution = stillWaterDampingContribution
+        self.lowVelocityRegion = lowVelocityRegion
+        self.highVelocityRegion = highVelocityRegion
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

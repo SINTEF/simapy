@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hindcastdatacalculation import HindcastDataCalculationBlueprint
+from typing import Dict
 from sima.metocean.calculationlevel import CalculationLevel
 from sima.metocean.currentmodel import CurrentModel
 from sima.metocean.inputreferencesystem import InputReferenceSystem
@@ -52,26 +53,26 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
     windLevels : List[CalculationLevel]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", currentModel:CurrentModel=CurrentModel.FROM_INPUT, kfactor:float=1.0, directionRelativeToWind:float=0.0, windReferenceLevel:float=0.0, baseCurrentSpeed:float=0.0, relativeCompassAngle:float=0.0, inputReferenceSystem:InputReferenceSystem=InputReferenceSystem.METOCEAN, from_:str="", to:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", currentModel=CurrentModel.FROM_INPUT, kfactor=1.0, directionRelativeToWind=0.0, windReferenceLevel=0.0, baseCurrentSpeed=0.0, relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, from_="", to="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__currentModel = currentModel
-        self.__kfactor = kfactor
-        self.__directionRelativeToWind = directionRelativeToWind
-        self.__windReferenceLevel = windReferenceLevel
-        self.__windCurrentProfile = None
-        self.__baseCurrentSpeed = baseCurrentSpeed
-        self.__baseCurrentProfile = None
-        self.__currentLevels = list()
-        self.__relativeCompassAngle = relativeCompassAngle
-        self.__inputReferenceSystem = inputReferenceSystem
-        self.__hindcastData = None
-        self.__from_ = from_
-        self.__to = to
-        self.__windLevels = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.currentModel = currentModel
+        self.kfactor = kfactor
+        self.directionRelativeToWind = directionRelativeToWind
+        self.windReferenceLevel = windReferenceLevel
+        self.windCurrentProfile = None
+        self.baseCurrentSpeed = baseCurrentSpeed
+        self.baseCurrentProfile = None
+        self.currentLevels = list()
+        self.relativeCompassAngle = relativeCompassAngle
+        self.inputReferenceSystem = inputReferenceSystem
+        self.hindcastData = None
+        self.from_ = from_
+        self.to = to
+        self.windLevels = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

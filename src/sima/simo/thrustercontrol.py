@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thrustercontrol import ThrusterControlBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.dpthrustertype import DPThrusterType
@@ -46,22 +47,22 @@ class ThrusterControl(MOAO):
          Z-coordinate of thruster in body system(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", thrusterControlType:DPThrusterType=DPThrusterType.FIXED, direction:float=0.0, minForce:float=0.0, maxForce:float=0.0, maxForceRate:float=0.0, maxAngleRate:float=0.0, x:float=0.0, y:float=0.0, z:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", thrusterControlType=DPThrusterType.FIXED, direction=0.0, minForce=0.0, maxForce=0.0, maxForceRate=0.0, maxAngleRate=0.0, x=0.0, y=0.0, z=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__thruster = None
-        self.__thrusterControlType = thrusterControlType
-        self.__direction = direction
-        self.__minForce = minForce
-        self.__maxForce = maxForce
-        self.__maxForceRate = maxForceRate
-        self.__maxAngleRate = maxAngleRate
-        self.__x = x
-        self.__y = y
-        self.__z = z
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.thruster = None
+        self.thrusterControlType = thrusterControlType
+        self.direction = direction
+        self.minForce = minForce
+        self.maxForce = maxForce
+        self.maxForceRate = maxForceRate
+        self.maxAngleRate = maxAngleRate
+        self.x = x
+        self.y = y
+        self.z = z
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

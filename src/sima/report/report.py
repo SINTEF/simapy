@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.report import ReportBlueprint
+from typing import Dict
 from sima.report.reportitem import ReportItem
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
@@ -29,16 +30,16 @@ class Report(NamedObject):
          Optional path to the generated report file(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", title:str="", subtitle:str="", filePath:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", title="", subtitle="", filePath="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__items = list()
-        self.__title = title
-        self.__subtitle = subtitle
-        self.__filePath = filePath
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.items = list()
+        self.title = title
+        self.subtitle = subtitle
+        self.filePath = filePath
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

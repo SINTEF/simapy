@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.envelopecurvespecification import EnvelopeCurveSpecificationBlueprint
+from typing import Dict
 from sima.riflex.matrixplotfileoption import MatrixPlotFileOption
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -39,21 +40,21 @@ class EnvelopeCurveSpecification(MOAO):
     plotOption : MatrixPlotFileOption
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", compDisplacement:bool=False, compForce:bool=False, compCurvature:bool=False, startTime:float=0.0, endTime:float=10000000.0, printDisplacement:bool=False, printForce:bool=False, printCurvature:bool=False, plotOption:MatrixPlotFileOption=MatrixPlotFileOption.NO_PRINT, **kwargs):
+    def __init__(self , name="", description="", _id="", compDisplacement=False, compForce=False, compCurvature=False, startTime=0.0, endTime=10000000.0, printDisplacement=False, printForce=False, printCurvature=False, plotOption=MatrixPlotFileOption.MAX_AND_STANDARD_DEV, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__compDisplacement = compDisplacement
-        self.__compForce = compForce
-        self.__compCurvature = compCurvature
-        self.__startTime = startTime
-        self.__endTime = endTime
-        self.__printDisplacement = printDisplacement
-        self.__printForce = printForce
-        self.__printCurvature = printCurvature
-        self.__plotOption = plotOption
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.compDisplacement = compDisplacement
+        self.compForce = compForce
+        self.compCurvature = compCurvature
+        self.startTime = startTime
+        self.endTime = endTime
+        self.printDisplacement = printDisplacement
+        self.printForce = printForce
+        self.printCurvature = printCurvature
+        self.plotOption = plotOption
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

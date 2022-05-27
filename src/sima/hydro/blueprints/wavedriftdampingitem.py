@@ -15,7 +15,7 @@ class WaveDriftDampingItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("period","number","Period",default=0.0))
         self.attributes.append(Attribute("wd1","number","Wave drift damping coefficient surge. Relative change in drift force for unit velocity.",default=0.0))
         self.attributes.append(Attribute("wd2","number","Wave drift damping coefficient sway. Relative change in drift force for unit velocity.",default=0.0))

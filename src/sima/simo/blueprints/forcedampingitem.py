@@ -15,7 +15,7 @@ class ForceDampingItemBlueprint(ForceItemBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("distance","number","i'th vertical position in the force vs. vertical position table, (L) For NFZ=1, ZBUOY is dummy, but must be given",default=0.0))
         self.attributes.append(Attribute("force","number","Corresponding vertical force, positive upwards, (F)",default=0.0))
         self.attributes.append(Attribute("damping","number","Damping coefficient",default=0.0))

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.sletringen import SletringenBlueprint
+from typing import Dict
 from sima.environment.wind import Wind
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -33,18 +34,18 @@ class Sletringen(Wind):
          Reference height for wind velocity(default 10.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, profileExponent:float=0.11, averageVelocity:float=0.0, friction:float=0.002, gamma:float=10.0, referenceHeight:float=10.0, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, profileExponent=0.11, averageVelocity=0.0, friction=0.002, gamma=10.0, referenceHeight=10.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__profileExponent = profileExponent
-        self.__averageVelocity = averageVelocity
-        self.__friction = friction
-        self.__gamma = gamma
-        self.__referenceHeight = referenceHeight
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.profileExponent = profileExponent
+        self.averageVelocity = averageVelocity
+        self.friction = friction
+        self.gamma = gamma
+        self.referenceHeight = referenceHeight
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

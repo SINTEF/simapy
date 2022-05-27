@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.articulatedstructuredata import ArticulatedStructureDataBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -48,25 +49,25 @@ class ArticulatedStructureData(MOAO):
          Slip (turn-back) angle(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", _type:ArticulatedStructureType=ArticulatedStructureType.NRUN, motionMode:MotionMode=MotionMode.X, initialPosition:float=0.0, lowerPositionLimit:float=0.0, upperPositionLimit:float=0.0, maxSpeed:float=0.0, maxAcceleration:float=0.0, motionSequenceType:MotionSequenceType=MotionSequenceType.TSTOP, maximumAngle:float=0.0, slipAngle:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", _type=ArticulatedStructureType.NRUN, motionMode=MotionMode.PHI, initialPosition=0.0, lowerPositionLimit=0.0, upperPositionLimit=0.0, maxSpeed=0.0, maxAcceleration=0.0, motionSequenceType=MotionSequenceType.TSTOP, maximumAngle=0.0, slipAngle=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.___type = _type
-        self.__masterPoint = Point3()
-        self.__localPoint = Point3()
-        self.__motionMode = motionMode
-        self.__initialPosition = initialPosition
-        self.__lowerPositionLimit = lowerPositionLimit
-        self.__upperPositionLimit = upperPositionLimit
-        self.__maxSpeed = maxSpeed
-        self.__maxAcceleration = maxAcceleration
-        self.__sequenceItems = list()
-        self.__motionSequenceType = motionSequenceType
-        self.__maximumAngle = maximumAngle
-        self.__slipAngle = slipAngle
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self._type = _type
+        self.masterPoint = None
+        self.localPoint = None
+        self.motionMode = motionMode
+        self.initialPosition = initialPosition
+        self.lowerPositionLimit = lowerPositionLimit
+        self.upperPositionLimit = upperPositionLimit
+        self.maxSpeed = maxSpeed
+        self.maxAcceleration = maxAcceleration
+        self.sequenceItems = list()
+        self.motionSequenceType = motionSequenceType
+        self.maximumAngle = maximumAngle
+        self.slipAngle = slipAngle
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

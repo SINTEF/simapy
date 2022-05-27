@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.roller import RollerBlueprint
+from typing import Dict
 from sima.riflex.springstiffnessitem import SpringStiffnessItem
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
@@ -39,21 +40,21 @@ class Roller(NamedObject):
     stiffnessItems : List[SpringStiffnessItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, y:float=0.0, z:float=0.0, length:float=0.0, constantStiffness:bool=False, damping:float=0.0, stiffness:float=0.0, radius:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, y=0.0, z=0.0, length=0.0, constantStiffness=False, damping=0.0, stiffness=0.0, radius=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__y = y
-        self.__z = z
-        self.__length = length
-        self.__constantStiffness = constantStiffness
-        self.__damping = damping
-        self.__stiffness = stiffness
-        self.__radius = radius
-        self.__stiffnessItems = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.y = y
+        self.z = z
+        self.length = length
+        self.constantStiffness = constantStiffness
+        self.damping = damping
+        self.stiffness = stiffness
+        self.radius = radius
+        self.stiffnessItems = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

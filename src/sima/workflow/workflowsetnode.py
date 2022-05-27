@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.workflowsetnode import WorkflowSetNodeBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.workflow.iteration import Iteration
@@ -73,36 +74,36 @@ class WorkflowSetNode(WorkflowReferenceNode):
     workflowInputVariationSlots : List[WorkflowInputSlot]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, inputWorkflow:bool=False, setFolderName:bool=False, folderName:str="", writeRunStatus:bool=False, runStatusFolder:str="", input:WorkflowSetInput=WorkflowSetInput.MANUAL, filename:str="", iteration:Iteration=Iteration.COLUMN, distribute:bool=False, grouping:int=1, iterateOverInput:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName="", writeRunStatus=False, runStatusFolder="", input=WorkflowSetInput.MANUAL, filename="", iteration=Iteration.COLUMN, distribute=False, grouping=1, iterateOverInput=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__variableInputSlots = list()
-        self.__modelReferenceInputSlot = None
-        self.__workflow = None
-        self.__workflowOutputSlots = list()
-        self.__workflowInputSlots = list()
-        self.__inputWorkflow = inputWorkflow
-        self.__setFolderName = setFolderName
-        self.__folderName = folderName
-        self.__variableInputSets = list()
-        self.__writeRunStatus = writeRunStatus
-        self.__runStatusFolder = runStatusFolder
-        self.__input = input
-        self.__filename = filename
-        self.__variableInputSetSlots = list()
-        self.__iteration = iteration
-        self.__distribute = distribute
-        self.__grouping = grouping
-        self.__iterateOverInput = iterateOverInput
-        self.__workflowInputVariationSlots = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.variableInputSlots = list()
+        self.modelReferenceInputSlot = None
+        self.workflow = None
+        self.workflowOutputSlots = list()
+        self.workflowInputSlots = list()
+        self.inputWorkflow = inputWorkflow
+        self.setFolderName = setFolderName
+        self.folderName = folderName
+        self.variableInputSets = list()
+        self.writeRunStatus = writeRunStatus
+        self.runStatusFolder = runStatusFolder
+        self.input = input
+        self.filename = filename
+        self.variableInputSetSlots = list()
+        self.iteration = iteration
+        self.distribute = distribute
+        self.grouping = grouping
+        self.iterateOverInput = iterateOverInput
+        self.workflowInputVariationSlots = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

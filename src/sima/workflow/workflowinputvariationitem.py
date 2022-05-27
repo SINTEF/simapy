@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.workflowinputvariationitem import WorkflowInputVariationItemBlueprint
+from numpy import ndarray,asarray
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.workflow.workflowlinkitem import WorkflowLinkItem
 
@@ -23,18 +24,18 @@ class WorkflowInputVariationItem(WorkflowLinkItem):
          (default "")
     toId : str
          (default "")
-    runRoots : Sequence[str]
+    runRoots : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", fromId:str="", toId:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", fromId="", toId="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__fromId = fromId
-        self.__toId = toId
-        self.__runRoots = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.fromId = fromId
+        self.toId = toId
+        self.runRoots = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -109,13 +110,11 @@ class WorkflowInputVariationItem(WorkflowLinkItem):
         self.__toId = str(value)
 
     @property
-    def runRoots(self) -> Sequence[str]:
+    def runRoots(self) -> ndarray:
         """"""
         return self.__runRoots
 
     @runRoots.setter
-    def runRoots(self, value: Sequence[str]):
+    def runRoots(self, value: ndarray):
         """Set runRoots"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__runRoots = value
+        self.__runRoots = asarray(value)

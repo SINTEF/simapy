@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.timedependentvolumemass import TimeDependentVolumeMassBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -45,23 +46,23 @@ class TimeDependentVolumeMass(NamedObject):
     portions : List[VolumeMassPortion]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", vol0:float=0.0, volMax:float=0.0, volMin:float=0.0, volRateMax:float=0.0, volRateMin:float=0.0, density:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", vol0=0.0, volMax=0.0, volMin=0.0, volRateMax=0.0, volRateMin=0.0, density=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__point = Point3()
-        self.__flowRates = list()
-        self.__vol0 = vol0
-        self.__volMax = volMax
-        self.__volMin = volMin
-        self.__volRateMax = volRateMax
-        self.__volRateMin = volRateMin
-        self.__density = density
-        self.__vectorZ = Vector3()
-        self.__vectorXZ = Vector3()
-        self.__portions = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.point = None
+        self.flowRates = list()
+        self.vol0 = vol0
+        self.volMax = volMax
+        self.volMin = volMin
+        self.volRateMax = volRateMax
+        self.volRateMin = volRateMin
+        self.density = density
+        self.vectorZ = None
+        self.vectorXZ = None
+        self.portions = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

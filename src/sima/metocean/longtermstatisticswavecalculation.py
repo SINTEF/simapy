@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.longtermstatisticswavecalculation import LongTermStatisticsWaveCalculationBlueprint
+from typing import Dict
 from sima.metocean.calculationdirection import CalculationDirection
 from sima.metocean.wavestatisticsmethod import WaveStatisticsMethod
 from sima.sima.moao import MOAO
@@ -34,17 +35,17 @@ class LongTermStatisticsWaveCalculation(MOAO):
     directions : List[CalculationDirection]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", returnPeriod:float=0.0, method:WaveStatisticsMethod=WaveStatisticsMethod.FROM_DISTRIBUTION, **kwargs):
+    def __init__(self , name="", description="", _id="", returnPeriod=0.0, method=WaveStatisticsMethod.FROM_DISTRIBUTION, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__returnPeriod = returnPeriod
-        self.__statistics = None
-        self.__omni = None
-        self.__method = method
-        self.__directions = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.returnPeriod = returnPeriod
+        self.statistics = None
+        self.omni = None
+        self.method = method
+        self.directions = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

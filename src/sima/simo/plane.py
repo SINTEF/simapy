@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.plane import PlaneBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -32,18 +33,18 @@ class Plane(MOAO):
     parallelVector : Vector3
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", unlimited:bool=False, width:float=0.0, length:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", unlimited=False, width=0.0, length=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__unlimited = unlimited
-        self.__width = width
-        self.__length = length
-        self.__point = Point3()
-        self.__normalVector = Vector3()
-        self.__parallelVector = Vector3()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.unlimited = unlimited
+        self.width = width
+        self.length = length
+        self.point = None
+        self.normalVector = None
+        self.parallelVector = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

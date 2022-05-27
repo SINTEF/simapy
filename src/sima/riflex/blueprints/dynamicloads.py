@@ -15,7 +15,7 @@ class DynamicLoadsBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("dynamicNodalForces","sima/riflex/DynamicNodalForces","",True))
         self.attributes.append(BlueprintAttribute("dynamicCurrentVariation","sima/riflex/DynamicCurrentVariation","",True))
         self.attributes.append(BlueprintAttribute("rigidMoonpoolColumns","sima/riflex/RigidMoonpoolColumn","",True))

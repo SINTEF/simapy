@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.qtfvalue import QTFValueBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -33,18 +34,18 @@ class QTFValue(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dir1:int=0, dir2:int=0, freq1:int=0, freq2:int=0, re:float=0.0, im:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", dir1=0, dir2=0, freq1=0, freq2=0, re=0.0, im=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dir1 = dir1
-        self.__dir2 = dir2
-        self.__freq1 = freq1
-        self.__freq2 = freq2
-        self.__re = re
-        self.__im = im
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dir1 = dir1
+        self.dir2 = dir2
+        self.freq1 = freq1
+        self.freq2 = freq2
+        self.re = re
+        self.im = im
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

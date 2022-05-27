@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wavedriftdampingitem import WaveDriftDampingItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -35,19 +36,19 @@ class WaveDriftDampingItem(MOAO):
          Wave drift damping coefficient yaw. Relative change in drift force for unit velocity.(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", period:float=0.0, wd1:float=0.0, wd2:float=0.0, wd3:float=0.0, wd4:float=0.0, wd5:float=0.0, wd6:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", period=0.0, wd1=0.0, wd2=0.0, wd3=0.0, wd4=0.0, wd5=0.0, wd6=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__period = period
-        self.__wd1 = wd1
-        self.__wd2 = wd2
-        self.__wd3 = wd3
-        self.__wd4 = wd4
-        self.__wd5 = wd5
-        self.__wd6 = wd6
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.period = period
+        self.wd1 = wd1
+        self.wd2 = wd2
+        self.wd3 = wd3
+        self.wd4 = wd4
+        self.wd5 = wd5
+        self.wd6 = wd6
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

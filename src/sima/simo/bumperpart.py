@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bumperpart import BumperPartBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -30,17 +31,17 @@ class BumperPart(MOAO):
     end2 : Point3
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", radius:float=0.0, stiffness:float=0.0, damping:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", radius=0.0, stiffness=0.0, damping=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__radius = radius
-        self.__stiffness = stiffness
-        self.__damping = damping
-        self.__end1 = Point3()
-        self.__end2 = Point3()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.radius = radius
+        self.stiffness = stiffness
+        self.damping = damping
+        self.end1 = None
+        self.end2 = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

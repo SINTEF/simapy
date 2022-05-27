@@ -2,32 +2,31 @@
 # Containers contain signals and other containers
 # Generated with Container
 from __future__ import annotations
+from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.container import ContainerBlueprint
-from typing import Dict,Sequence,List
+from typing import Dict
 from marmo.containers.attribute import Attribute
 from marmo.containers.signal import Signal
+from marmo.containers.signalitem import SignalItem
 
-class Container(Entity):
+class Container(SignalItem):
     """
     Containers contain signals and other containers
-    
     Keyword arguments
     -----------------
-    name : str 
+    name : str
          (default "")
-    description : str 
+    description : str
          (default "")
-    attributes : List[Attribute] 
-         
-    signals : List[Signal] 
-         
-    containers : List[Container] 
-         
+    attributes : List[Attribute]
+    signals : List[Signal]
+    containers : List[Container]
     """
 
     def __init__(self , name:str="", description:str="", **kwargs):
+        super().__init__(**kwargs)
         self.__name = name
         self.__description = description
         self.__attributes = list()

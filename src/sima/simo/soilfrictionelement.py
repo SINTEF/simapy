@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.soilfrictionelement import SoilFrictionElementBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class SoilFrictionElement(MOAO):
          Depth dependent friction force in horizontal direction (>=0)(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dfric:float=0.0, ftipdo:float=0.0, ftipup:float=0.0, fwall:float=0.0, frich:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", dfric=0.0, ftipdo=0.0, ftipup=0.0, fwall=0.0, frich=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dfric = dfric
-        self.__ftipdo = ftipdo
-        self.__ftipup = ftipup
-        self.__fwall = fwall
-        self.__frich = frich
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dfric = dfric
+        self.ftipdo = ftipdo
+        self.ftipup = ftipup
+        self.fwall = fwall
+        self.frich = frich
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

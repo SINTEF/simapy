@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regularlinetype import RegularLineTypeBlueprint
+from typing import Dict
 from sima.riflex.arlinetype import ARLineType
 from sima.riflex.regularsegment import RegularSegment
 from sima.sima.scriptablevalue import ScriptableValue
@@ -32,15 +33,15 @@ class RegularLineType(ARLineType):
     segments : List[RegularSegment]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__internalFluid = None
-        self.__endComponent = None
-        self.__segments = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.internalFluid = None
+        self.endComponent = None
+        self.segments = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

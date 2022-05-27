@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fatigueanalysis import FatigueAnalysisBlueprint
+from typing import Dict
 from sima.riflex.fatigueanalysisitem import FatigueAnalysisItem
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -34,18 +35,18 @@ class FatigueAnalysis(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", numberOfPoints:int=8, includeAllPoints:bool=False, specifyTimeWindow:bool=False, startTime:float=0.0, endTime:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", numberOfPoints=8, includeAllPoints=False, specifyTimeWindow=False, startTime=0.0, endTime=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__numberOfPoints = numberOfPoints
-        self.__includeAllPoints = includeAllPoints
-        self.__items = list()
-        self.__specifyTimeWindow = specifyTimeWindow
-        self.__startTime = startTime
-        self.__endTime = endTime
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.numberOfPoints = numberOfPoints
+        self.includeAllPoints = includeAllPoints
+        self.items = list()
+        self.specifyTimeWindow = specifyTimeWindow
+        self.startTime = startTime
+        self.endTime = endTime
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

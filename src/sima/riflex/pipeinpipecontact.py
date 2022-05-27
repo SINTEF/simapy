@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pipeinpipecontact import PipeInPipeContactBlueprint
+from typing import Dict
 from sima.riflex.contactspringstiffnessitem import ContactSpringStiffnessItem
 from sima.riflex.innerouter import InnerOuter
 from sima.riflex.innerpipeloading import InnerPipeLoading
@@ -74,35 +75,35 @@ class PipeInPipeContact(NamedObject):
     innerPipeLoading : InnerPipeLoading
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", firstMasterSegment:int=0, lastMasterSegment:int=0, firstSlaveSegment:int=0, lastSlaveSegment:int=0, masterPipePosition:InnerOuter=InnerOuter.INNER, stiffnessType:StiffnessType=StiffnessType.LINEAR, relativeDamping:float=0.0, damping:float=0.0, frictionStiffness:float=0.0, staticFriction:float=0.0, dynamicFriction:float=0.0, axialFrictionEnabled:bool=False, rotationalFrictionEnabled:bool=False, velocityLimitFriction:float=0.0, linearStiffness:float=0.0, masterAsMainRiser:bool=False, slaveAsMainRiser:bool=False, innerPipeLoading:InnerPipeLoading=InnerPipeLoading.EXPOSED, **kwargs):
+    def __init__(self , name="", description="", _id="", firstMasterSegment=0, lastMasterSegment=0, firstSlaveSegment=0, lastSlaveSegment=0, masterPipePosition=InnerOuter.INNER, stiffnessType=StiffnessType.LINEAR, relativeDamping=0.0, damping=0.0, frictionStiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, axialFrictionEnabled=False, rotationalFrictionEnabled=False, velocityLimitFriction=0.0, linearStiffness=0.0, masterAsMainRiser=False, slaveAsMainRiser=False, innerPipeLoading=InnerPipeLoading.EXPOSED, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__masterLine = None
-        self.__slaveLine = None
-        self.__firstMasterSegment = firstMasterSegment
-        self.__lastMasterSegment = lastMasterSegment
-        self.__firstSlaveSegment = firstSlaveSegment
-        self.__lastSlaveSegment = lastSlaveSegment
-        self.__masterPipePosition = masterPipePosition
-        self.__stiffnessType = stiffnessType
-        self.__relativeDamping = relativeDamping
-        self.__damping = damping
-        self.__frictionStiffness = frictionStiffness
-        self.__staticFriction = staticFriction
-        self.__dynamicFriction = dynamicFriction
-        self.__axialFrictionEnabled = axialFrictionEnabled
-        self.__rotationalFrictionEnabled = rotationalFrictionEnabled
-        self.__velocityLimitFriction = velocityLimitFriction
-        self.__linearStiffness = linearStiffness
-        self.__stiffnessCharacteristics = list()
-        self.__masterAsMainRiser = masterAsMainRiser
-        self.__slaveAsMainRiser = slaveAsMainRiser
-        self.__masterMainRiser = None
-        self.__slaveMainRiser = None
-        self.__innerPipeLoading = innerPipeLoading
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.masterLine = None
+        self.slaveLine = None
+        self.firstMasterSegment = firstMasterSegment
+        self.lastMasterSegment = lastMasterSegment
+        self.firstSlaveSegment = firstSlaveSegment
+        self.lastSlaveSegment = lastSlaveSegment
+        self.masterPipePosition = masterPipePosition
+        self.stiffnessType = stiffnessType
+        self.relativeDamping = relativeDamping
+        self.damping = damping
+        self.frictionStiffness = frictionStiffness
+        self.staticFriction = staticFriction
+        self.dynamicFriction = dynamicFriction
+        self.axialFrictionEnabled = axialFrictionEnabled
+        self.rotationalFrictionEnabled = rotationalFrictionEnabled
+        self.velocityLimitFriction = velocityLimitFriction
+        self.linearStiffness = linearStiffness
+        self.stiffnessCharacteristics = list()
+        self.masterAsMainRiser = masterAsMainRiser
+        self.slaveAsMainRiser = slaveAsMainRiser
+        self.masterMainRiser = None
+        self.slaveMainRiser = None
+        self.innerPipeLoading = innerPipeLoading
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

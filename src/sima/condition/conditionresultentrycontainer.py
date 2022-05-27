@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.conditionresultentrycontainer import ConditionResultEntryContainerBlueprint
+from typing import Dict
 from sima.sima.conditionresultcontainer import ConditionResultContainer
 from sima.sima.property import Property
 from sima.sima.result import Result
@@ -38,20 +39,20 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", resource:str="", relative:bool=False, changeNumber:int=0, modelOutputFile:str="", probability:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", resource="", relative=False, changeNumber=0, modelOutputFile="", probability=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__resource = resource
-        self.__relative = relative
-        self.__changeNumber = changeNumber
-        self.__results = list()
-        self.__entries = list()
-        self.__modelOutputFile = modelOutputFile
-        self.__probability = probability
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.resource = resource
+        self.relative = relative
+        self.changeNumber = changeNumber
+        self.results = list()
+        self.entries = list()
+        self.modelOutputFile = modelOutputFile
+        self.probability = probability
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

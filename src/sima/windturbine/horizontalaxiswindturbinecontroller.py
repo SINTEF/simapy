@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.horizontalaxiswindturbinecontroller import HorizontalAxisWindTurbineControllerBlueprint
+from typing import Dict
 from sima.sima.librarypaths import LibraryPaths
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -75,39 +76,39 @@ class HorizontalAxisWindTurbineController(MOAO):
     controllerType : ControllerType
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", kp:float=0.0, ki:float=0.0, filterPeriod:float=0.0, ratedOmega:float=0.0, ratedTorque:float=0.0, gearBoxRatio:float=0.0, maxPitchRate:float=0.0, maxPitch:float=0.0, maxTorqueRate:float=0.0, maxTorque:float=0.0, gainScheduling:TableFormat=TableFormat.DEFAULT, external:bool=False, controllerFile:str="", className:str="", configuration:str="", reg3MinPitch:float=0.0, transitionalSpeed15:float=0.0, transitionalSpeed20:float=0.0, transitionalSpeed25:float=0.0, transitionalSpeed30:float=0.0, reg2Torque:float=0.0, powerExtraction:PowerExtraction=PowerExtraction.POWER, minPitch:float=0.0, sampleInterval:float=0.0, controllerType:ControllerType=ControllerType.JAR_FILE_CONTROLLER, **kwargs):
+    def __init__(self , name="", description="", _id="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, controllerFile="", className="", configuration="", reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__kp = kp
-        self.__ki = ki
-        self.__filterPeriod = filterPeriod
-        self.__ratedOmega = ratedOmega
-        self.__ratedTorque = ratedTorque
-        self.__gearBoxRatio = gearBoxRatio
-        self.__maxPitchRate = maxPitchRate
-        self.__maxPitch = maxPitch
-        self.__maxTorqueRate = maxTorqueRate
-        self.__maxTorque = maxTorque
-        self.__gainScheduling = gainScheduling
-        self.__gainItems = list()
-        self.__external = external
-        self.__controllerFile = controllerFile
-        self.__className = className
-        self.__configuration = configuration
-        self.__libraryPaths = LibraryPaths()
-        self.__reg3MinPitch = reg3MinPitch
-        self.__transitionalSpeed15 = transitionalSpeed15
-        self.__transitionalSpeed20 = transitionalSpeed20
-        self.__transitionalSpeed25 = transitionalSpeed25
-        self.__transitionalSpeed30 = transitionalSpeed30
-        self.__reg2Torque = reg2Torque
-        self.__powerExtraction = powerExtraction
-        self.__minPitch = minPitch
-        self.__sampleInterval = sampleInterval
-        self.__controllerType = controllerType
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.kp = kp
+        self.ki = ki
+        self.filterPeriod = filterPeriod
+        self.ratedOmega = ratedOmega
+        self.ratedTorque = ratedTorque
+        self.gearBoxRatio = gearBoxRatio
+        self.maxPitchRate = maxPitchRate
+        self.maxPitch = maxPitch
+        self.maxTorqueRate = maxTorqueRate
+        self.maxTorque = maxTorque
+        self.gainScheduling = gainScheduling
+        self.gainItems = list()
+        self.external = external
+        self.controllerFile = controllerFile
+        self.className = className
+        self.configuration = configuration
+        self.libraryPaths = None
+        self.reg3MinPitch = reg3MinPitch
+        self.transitionalSpeed15 = transitionalSpeed15
+        self.transitionalSpeed20 = transitionalSpeed20
+        self.transitionalSpeed25 = transitionalSpeed25
+        self.transitionalSpeed30 = transitionalSpeed30
+        self.reg2Torque = reg2Torque
+        self.powerExtraction = powerExtraction
+        self.minPitch = minPitch
+        self.sampleInterval = sampleInterval
+        self.controllerType = controllerType
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

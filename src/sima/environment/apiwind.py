@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.apiwind import APIWindBlueprint
+from typing import Dict
 from sima.environment.wind import Wind
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -33,18 +34,18 @@ class APIWind(Wind):
          Surface drag coefficient.\nAlso used for transverse gust spectrum, if specified in DYNMOD.(default 0.002)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, frequencyParameter:float=0.025, layerThickness:float=20.0, profileExponent:float=0.125, averageVelocity:float=0.0, friction:float=0.002, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, frequencyParameter=0.025, layerThickness=20.0, profileExponent=0.125, averageVelocity=0.0, friction=0.002, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__frequencyParameter = frequencyParameter
-        self.__layerThickness = layerThickness
-        self.__profileExponent = profileExponent
-        self.__averageVelocity = averageVelocity
-        self.__friction = friction
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.frequencyParameter = frequencyParameter
+        self.layerThickness = layerThickness
+        self.profileExponent = profileExponent
+        self.averageVelocity = averageVelocity
+        self.friction = friction
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

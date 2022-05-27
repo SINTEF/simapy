@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bodyshapedata import BodyShapeDataBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.point2 import Point2
@@ -39,21 +40,21 @@ class BodyShapeData(MOAO):
     waterlinePoints : List[Point2]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", lengthBetweenPerpendiculars:float=0.0, maximumBeamAtWaterline:float=0.0, draftAtAftPerpendicular:float=0.0, draftAtForePerpendicular:float=0.0, blockCoefficient:float=0.0, distanceAftPerpendicular:float=0.0, distanceBaseline:float=0.0, specifyWaterline:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", lengthBetweenPerpendiculars=0.0, maximumBeamAtWaterline=0.0, draftAtAftPerpendicular=0.0, draftAtForePerpendicular=0.0, blockCoefficient=0.0, distanceAftPerpendicular=0.0, distanceBaseline=0.0, specifyWaterline=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__lengthBetweenPerpendiculars = lengthBetweenPerpendiculars
-        self.__maximumBeamAtWaterline = maximumBeamAtWaterline
-        self.__draftAtAftPerpendicular = draftAtAftPerpendicular
-        self.__draftAtForePerpendicular = draftAtForePerpendicular
-        self.__blockCoefficient = blockCoefficient
-        self.__distanceAftPerpendicular = distanceAftPerpendicular
-        self.__distanceBaseline = distanceBaseline
-        self.__specifyWaterline = specifyWaterline
-        self.__waterlinePoints = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.lengthBetweenPerpendiculars = lengthBetweenPerpendiculars
+        self.maximumBeamAtWaterline = maximumBeamAtWaterline
+        self.draftAtAftPerpendicular = draftAtAftPerpendicular
+        self.draftAtForePerpendicular = draftAtForePerpendicular
+        self.blockCoefficient = blockCoefficient
+        self.distanceAftPerpendicular = distanceAftPerpendicular
+        self.distanceBaseline = distanceBaseline
+        self.specifyWaterline = specifyWaterline
+        self.waterlinePoints = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

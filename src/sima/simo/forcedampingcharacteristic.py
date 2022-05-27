@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.forcedampingcharacteristic import ForceDampingCharacteristicBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.forcedampingitem import ForceDampingItem
@@ -30,16 +31,16 @@ class ForceDampingCharacteristic(MOAO):
     items : List[ForceDampingItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dampingExponent:float=1.0, dampingInterpolation:Interpolation=Interpolation.LINEAR, forceInterpolation:Interpolation=Interpolation.LINEAR, **kwargs):
+    def __init__(self , name="", description="", _id="", dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dampingExponent = dampingExponent
-        self.__dampingInterpolation = dampingInterpolation
-        self.__forceInterpolation = forceInterpolation
-        self.__items = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dampingExponent = dampingExponent
+        self.dampingInterpolation = dampingInterpolation
+        self.forceInterpolation = forceInterpolation
+        self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

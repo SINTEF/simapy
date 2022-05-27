@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.supportvessel import SupportVesselBlueprint
+from typing import Dict
 from sima.hydro.diffractedwavefield import DiffractedWaveField
 from sima.hydro.firstordermotiontransferfunction import FirstOrderMotionTransferFunction
 from sima.sima.appearance import Appearance
@@ -37,20 +38,20 @@ class SupportVessel(Body):
     diffractedWaveFields : List[DiffractedWaveField]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", length:float=10.0, width:float=5.0, height:float=5.0, **kwargs):
+    def __init__(self , name="", description="", _id="", length=10.0, width=5.0, height=5.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__length = length
-        self.__width = width
-        self.__height = height
-        self.__appearance = Appearance()
-        self.__initialPosition = Position()
-        self.__viewpoints = list()
-        self.__firstOrderMotionTransferFunction = None
-        self.__diffractedWaveFields = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.length = length
+        self.width = width
+        self.height = height
+        self.appearance = None
+        self.initialPosition = None
+        self.viewpoints = list()
+        self.firstOrderMotionTransferFunction = None
+        self.diffractedWaveFields = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

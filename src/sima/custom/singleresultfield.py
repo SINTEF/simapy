@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.singleresultfield import SingleResultFieldBlueprint
+from typing import Dict
 from sima.custom.customcomponent import CustomComponent
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -36,18 +37,18 @@ class SingleResultField(CustomComponent):
          Decimal numer format. Please refer to https://docs.oracle.com/javase/tutorial/i18n/format/decimalFormat.html for a description(default '0.000')
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", path:str="", label:str="", tooltip:str="", autoFormat:bool=True, format:str='0.000', **kwargs):
+    def __init__(self , name="", description="", _id="", path="", label="", tooltip="", autoFormat=True, format='0.000', **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__output = None
-        self.__path = path
-        self.__label = label
-        self.__tooltip = tooltip
-        self.__autoFormat = autoFormat
-        self.__format = format
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.output = None
+        self.path = path
+        self.label = label
+        self.tooltip = tooltip
+        self.autoFormat = autoFormat
+        self.format = format
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

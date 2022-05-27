@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.verticalbladeitem import VerticalBladeItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -36,18 +37,18 @@ class VerticalBladeItem(MOAO):
          Static twist angle(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", radius:float=0.0, elevation:float=0.0, offset:float=0.0, chordLength:float=0.0, twist:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", radius=0.0, elevation=0.0, offset=0.0, chordLength=0.0, twist=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__airfoil = None
-        self.__radius = radius
-        self.__elevation = elevation
-        self.__offset = offset
-        self.__chordLength = chordLength
-        self.__twist = twist
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.airfoil = None
+        self.radius = radius
+        self.elevation = elevation
+        self.offset = offset
+        self.chordLength = chordLength
+        self.twist = twist
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

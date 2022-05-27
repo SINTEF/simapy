@@ -1,22 +1,22 @@
-from sima.simo import SIMOModel,SIMOBody,SIMOTask
-from sima.sima import SIMAWorkspace, TaskFolder
+from os import path
+from sima import simo
+from sima import sima
 
 from simapy.sima_writer import SIMAWriter
 from simapy.sima_reader import SIMAReader
 
-from os import path
 
 def test_that_creation_export_and_import_works(tmpdir):
     """Demonstrate how to create sima models that can be imported using the sima json model import wizard"""
-    ws = SIMAWorkspace()
+    ws = sima.SIMAWorkspace()
 
-    task = SIMOTask(name = "MyTask")
-    model = SIMOModel()
+    task = simo.SIMOTask(name = "MyTask")
+    model = simo.SIMOModel()
     task.model = model
-    body = SIMOBody(name="body1")
+    body = simo.SIMOBody(name="body1")
     model.bodies.append(body)
 
-    cf = TaskFolder(name= "MyFolder")
+    cf = sima.TaskFolder(name= "MyFolder")
     cf.childTasks.append(task)
     ws.childFolders.append(cf)
 
@@ -30,4 +30,4 @@ def test_that_creation_export_and_import_works(tmpdir):
     reader = SIMAReader()
     res=reader.read(filename)
     ws2 = res[0]
-    assert isinstance(ws2, SIMAWorkspace)
+    assert isinstance(ws2, sima.SIMAWorkspace)

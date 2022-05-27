@@ -15,3 +15,7 @@ from .reportitemcontainer import ReportItemContainer # noqa
 from .section import Section # noqa
 from .stringcolumn import StringColumn # noqa
 from .table import Table # noqa
+from .fontstyle import FontStyle # noqa
+from .linestyle import LineStyle # noqa
+from .plotsize import PlotSize # noqa
+from .pointstyle import PointStyle # noqa

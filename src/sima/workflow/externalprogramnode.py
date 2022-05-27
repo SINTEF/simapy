@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalprogramnode import ExternalProgramNodeBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.fileformat import FileFormat
 from sima.post.inputslot import InputSlot
@@ -50,26 +51,26 @@ class ExternalProgramNode(RunNode):
          Environment variables to set when executing. Separate each variable with a semicolon and path segments with colon.(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, executable:str="", arguments:str="", fileFormat:FileFormat=FileFormat.CSV, failOnErrorCode:bool=True, addInputFiles:bool=False, environmentVariables:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, executable="", arguments="", fileFormat=FileFormat.HDF5, failOnErrorCode=True, addInputFiles=False, environmentVariables="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__executable = executable
-        self.__arguments = arguments
-        self.__fileInputSlots = list()
-        self.__fileOutputSlots = list()
-        self.__fileFormat = fileFormat
-        self.__failOnErrorCode = failOnErrorCode
-        self.__addInputFiles = addInputFiles
-        self.__inputFileSlot = None
-        self.__environmentVariables = environmentVariables
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.executable = executable
+        self.arguments = arguments
+        self.fileInputSlots = list()
+        self.fileOutputSlots = list()
+        self.fileFormat = fileFormat
+        self.failOnErrorCode = failOnErrorCode
+        self.addInputFiles = addInputFiles
+        self.inputFileSlot = None
+        self.environmentVariables = environmentVariables
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

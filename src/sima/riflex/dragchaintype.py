@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dragchaintype import DragChainTypeBlueprint
+from typing import Dict
 from sima.riflex.nodalcomponenttype import NodalComponentType
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class DragChainType(NodalComponentType):
          Cable weight.(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", length:float=0.0, unitWeight:float=0.0, friction:float=0.0, cableLength:float=0.0, cableWeight:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", length=0.0, unitWeight=0.0, friction=0.0, cableLength=0.0, cableWeight=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__length = length
-        self.__unitWeight = unitWeight
-        self.__friction = friction
-        self.__cableLength = cableLength
-        self.__cableWeight = cableWeight
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.length = length
+        self.unitWeight = unitWeight
+        self.friction = friction
+        self.cableLength = cableLength
+        self.cableWeight = cableWeight
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.nonlinearintegrationprocedure import NonLinearIntegrationProcedureBlueprint
+from typing import Dict
 from sima.riflex.convergencenorm import ConvergenceNorm
 from sima.riflex.iterationcontinuationcode import IterationContinuationCode
 from sima.riflex.iterationtype import IterationType
@@ -41,21 +42,21 @@ class NonLinearIntegrationProcedure(MOAO):
          Code for time integration information(default 1)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", equilibriumIterationFrequency:int=1, iterationType:IterationType=IterationType.TRUE_NEWTON_RAPHSON, maxIterations:int=10, convergenceNorm:ConvergenceNorm=ConvergenceNorm.DISP, equilibriumIterationAccuracy:float=1e-05, energyAccuracy:float=1e-05, iterationContinuation:IterationContinuationCode=IterationContinuationCode.CONTINUED, autoTimeStepSubdivision:int=0, timeIntegrationInfo:int=1, **kwargs):
+    def __init__(self , name="", description="", _id="", equilibriumIterationFrequency=1, iterationType=IterationType.TRUE_NEWTON_RAPHSON, maxIterations=10, convergenceNorm=ConvergenceNorm.DISP, equilibriumIterationAccuracy=1e-05, energyAccuracy=1e-05, iterationContinuation=IterationContinuationCode.CONTINUED, autoTimeStepSubdivision=0, timeIntegrationInfo=1, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__equilibriumIterationFrequency = equilibriumIterationFrequency
-        self.__iterationType = iterationType
-        self.__maxIterations = maxIterations
-        self.__convergenceNorm = convergenceNorm
-        self.__equilibriumIterationAccuracy = equilibriumIterationAccuracy
-        self.__energyAccuracy = energyAccuracy
-        self.__iterationContinuation = iterationContinuation
-        self.__autoTimeStepSubdivision = autoTimeStepSubdivision
-        self.__timeIntegrationInfo = timeIntegrationInfo
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.equilibriumIterationFrequency = equilibriumIterationFrequency
+        self.iterationType = iterationType
+        self.maxIterations = maxIterations
+        self.convergenceNorm = convergenceNorm
+        self.equilibriumIterationAccuracy = equilibriumIterationAccuracy
+        self.energyAccuracy = energyAccuracy
+        self.iterationContinuation = iterationContinuation
+        self.autoTimeStepSubdivision = autoTimeStepSubdivision
+        self.timeIntegrationInfo = timeIntegrationInfo
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

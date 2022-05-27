@@ -15,7 +15,7 @@ class EquilibriumGridDefinitionBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("roll","sima/simo/EquilibriumGridDefinitionRow","",True))
         self.attributes.append(BlueprintAttribute("pitch","sima/simo/EquilibriumGridDefinitionRow","",True))
         self.attributes.append(BlueprintAttribute("body","sima/simo/SIMOBody","Body for which the grid will be defined",False))

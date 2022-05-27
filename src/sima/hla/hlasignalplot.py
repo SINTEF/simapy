@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlasignalplot import HLASignalPlotBlueprint
+from typing import Dict
 from sima.hla.hlasignal import HLASignal
 from sima.post.figuretemplate import FigureTemplate
 from sima.post.traceconfiguration import TraceConfiguration
@@ -39,21 +40,21 @@ class HLASignalPlot(MOAO):
          Maximum size of time window when displaying plot.(default 60.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", fixed:bool=False, title:str="", xLabel:str="", yLabel:str="", selectAll:bool=False, timeWindow:float=60.0, **kwargs):
+    def __init__(self , name="", description="", _id="", fixed=False, title="", xLabel="", yLabel="", selectAll=False, timeWindow=60.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__figureTemplate = FigureTemplate()
-        self.__traces = list()
-        self.__fixed = fixed
-        self.__title = title
-        self.__xLabel = xLabel
-        self.__yLabel = yLabel
-        self.__selectAll = selectAll
-        self.__signals = list()
-        self.__timeWindow = timeWindow
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.figureTemplate = None
+        self.traces = list()
+        self.fixed = fixed
+        self.title = title
+        self.xLabel = xLabel
+        self.yLabel = yLabel
+        self.selectAll = selectAll
+        self.signals = list()
+        self.timeWindow = timeWindow
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -15,7 +15,7 @@ class DOFEliminationBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("body","sima/simo/SIMOBody","",False))
         self.attributes.append(Attribute("x","boolean","Select to omit X degree of freedom",default=False))
         self.attributes.append(Attribute("y","boolean","Select to omit Y degree of freedom",default=False))

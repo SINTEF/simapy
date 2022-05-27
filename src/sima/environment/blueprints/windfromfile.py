@@ -15,6 +15,6 @@ class WindFromFileBlueprint(WindBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("direction","number","Wind propagation direction",default=0.0))
         self.attributes.append(Attribute("fileName","string","Name of external file with specified wind data",default=""))

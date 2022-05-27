@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlamodel import HLAModelBlueprint
+from typing import Dict
 from sima.hla.hlaforce import HLAForce
 from sima.hla.hlalocation import HLALocation
 from sima.sima.moao import MOAO
@@ -25,14 +26,14 @@ class HLAModel(MOAO):
     forces : List[HLAForce]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__location = HLALocation()
-        self.__forces = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.location = None
+        self.forces = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.crsaxialdamping import CRSAxialDampingBlueprint
+from typing import Dict
 from sima.riflex.crsaxialdampingitem import CRSAxialDampingItem
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -29,16 +30,16 @@ class CRSAxialDamping(MOAO):
     dampingCoefficientCharacteristics : List[CRSAxialDampingItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", constantDamping:bool=False, strainVelocityExponent:float=1.0, dampingCoefficient:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", constantDamping=False, strainVelocityExponent=1.0, dampingCoefficient=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__constantDamping = constantDamping
-        self.__strainVelocityExponent = strainVelocityExponent
-        self.__dampingCoefficient = dampingCoefficient
-        self.__dampingCoefficientCharacteristics = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.constantDamping = constantDamping
+        self.strainVelocityExponent = strainVelocityExponent
+        self.dampingCoefficient = dampingCoefficient
+        self.dampingCoefficientCharacteristics = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

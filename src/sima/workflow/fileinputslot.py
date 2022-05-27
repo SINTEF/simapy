@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fileinputslot import FileInputSlotBlueprint
+from typing import Dict
 from sima.post.inputslot import InputSlot
 from sima.post.signalproperties import SignalProperties
 from sima.post.signalpropertiescontainer import SignalPropertiesContainer
@@ -28,15 +29,15 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
          Specify additional properties in the file root(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", filename:str="", specifyAdditionalProperties:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", filename="", specifyAdditionalProperties=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__filename = filename
-        self.__specifyAdditionalProperties = specifyAdditionalProperties
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.filename = filename
+        self.specifyAdditionalProperties = specifyAdditionalProperties
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

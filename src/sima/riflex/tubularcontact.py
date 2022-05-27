@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.tubularcontact import TubularContactBlueprint
+from typing import Dict
 from sima.riflex.contactdirection import ContactDirection
 from sima.riflex.controlparameter import ControlParameter
 from sima.riflex.springstiffnessitem import SpringStiffnessItem
@@ -49,25 +50,25 @@ class TubularContact(NamedObject):
     stiffnessItems : List[SpringStiffnessItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", radius:float=0.0, direction:ContactDirection=ContactDirection.INWARDS, constantStiffness:bool=False, desiredDamping:float=0.0, dampingCoefficient:float=0.0, stiffness:float=0.0, staticFriction:float=0.0, dynamicFriction:float=0.0, slidingFriction:ControlParameter=ControlParameter.ON, rotationFriction:ControlParameter=ControlParameter.ON, velocityLimit:float=0.0, compressionStiffness:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", radius=0.0, direction=ContactDirection.INWARDS, constantStiffness=False, desiredDamping=0.0, dampingCoefficient=0.0, stiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, slidingFriction=ControlParameter.ON, rotationFriction=ControlParameter.ON, velocityLimit=0.0, compressionStiffness=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__radius = radius
-        self.__direction = direction
-        self.__constantStiffness = constantStiffness
-        self.__desiredDamping = desiredDamping
-        self.__dampingCoefficient = dampingCoefficient
-        self.__stiffness = stiffness
-        self.__staticFriction = staticFriction
-        self.__dynamicFriction = dynamicFriction
-        self.__slidingFriction = slidingFriction
-        self.__rotationFriction = rotationFriction
-        self.__velocityLimit = velocityLimit
-        self.__compressionStiffness = compressionStiffness
-        self.__stiffnessItems = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.radius = radius
+        self.direction = direction
+        self.constantStiffness = constantStiffness
+        self.desiredDamping = desiredDamping
+        self.dampingCoefficient = dampingCoefficient
+        self.stiffness = stiffness
+        self.staticFriction = staticFriction
+        self.dynamicFriction = dynamicFriction
+        self.slidingFriction = slidingFriction
+        self.rotationFriction = rotationFriction
+        self.velocityLimit = velocityLimit
+        self.compressionStiffness = compressionStiffness
+        self.stiffnessItems = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

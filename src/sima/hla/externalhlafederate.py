@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalhlafederate import ExternalHLAFederateBlueprint
+from typing import Dict
 from sima.hla.hlafederate import HLAFederate
 from sima.hla.hlaobject import HLAObject
 from sima.sima.scriptablevalue import ScriptableValue
@@ -39,21 +40,21 @@ class ExternalHLAFederate(HLAFederate):
     hlaObjects : List[HLAObject]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", timeStep:float=0.0, launch:bool=True, jarFile:str="", className:str="", classPath:str="", arguments:str="", libraryPath:str="", showOutput:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", timeStep=0.0, launch=True, jarFile="", className="", classPath="", arguments="", libraryPath="", showOutput=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__timeStep = timeStep
-        self.__launch = launch
-        self.__jarFile = jarFile
-        self.__className = className
-        self.__classPath = classPath
-        self.__arguments = arguments
-        self.__libraryPath = libraryPath
-        self.__showOutput = showOutput
-        self.__hlaObjects = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.timeStep = timeStep
+        self.launch = launch
+        self.jarFile = jarFile
+        self.className = className
+        self.classPath = classPath
+        self.arguments = arguments
+        self.libraryPath = libraryPath
+        self.showOutput = showOutput
+        self.hlaObjects = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.timedomainvivloadcoefficients import TimeDomainVIVLoadCoefficientsBlueprint
+from typing import Dict
 from sima.riflex.vivloadformulation import VIVLoadFormulation
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -45,24 +46,24 @@ class TimeDomainVIVLoadCoefficients(MOAO):
          Maximum in-line vortex shedding frequency (nondimensional)(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", vivLoadFormulation:VIVLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv:float=0.0, fnull:float=0.0, fmin:float=0.0, fmax:float=0.0, nmem:int=500, cvil:float=0.0, alphil:float=0.0, chh:float=0.0, fnullil:float=0.0, fminil:float=0.0, fmaxil:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__vivLoadFormulation = vivLoadFormulation
-        self.__cv = cv
-        self.__fnull = fnull
-        self.__fmin = fmin
-        self.__fmax = fmax
-        self.__nmem = nmem
-        self.__cvil = cvil
-        self.__alphil = alphil
-        self.__chh = chh
-        self.__fnullil = fnullil
-        self.__fminil = fminil
-        self.__fmaxil = fmaxil
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.vivLoadFormulation = vivLoadFormulation
+        self.cv = cv
+        self.fnull = fnull
+        self.fmin = fmin
+        self.fmax = fmax
+        self.nmem = nmem
+        self.cvil = cvil
+        self.alphil = alphil
+        self.chh = chh
+        self.fnullil = fnullil
+        self.fminil = fminil
+        self.fmaxil = fmaxil
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

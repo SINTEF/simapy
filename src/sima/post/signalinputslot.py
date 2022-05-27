@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.signalinputslot import SignalInputSlotBlueprint
+from typing import Dict
 from sima.post.generatorsignal import GeneratorSignal
 from sima.post.inputslot import InputSlot
 from sima.post.signalgeneratorcontainer import SignalGeneratorContainer
@@ -29,16 +30,16 @@ class SignalInputSlot(InputSlot,SignalGeneratorContainer):
          Will add a root folder to the output(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", includeRootFolder:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", includeRootFolder=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__signals = list()
-        self.__children = list()
-        self.__includeRootFolder = includeRootFolder
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.signals = list()
+        self.children = list()
+        self.includeRootFolder = includeRootFolder
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

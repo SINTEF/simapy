@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dunkirksoilcoefficientsitem import DunkirkSoilCoefficientsItemBlueprint
+from typing import Dict
 from sima.riflex.commonsoilcoefficientsitem import CommonSoilCoefficientsItem
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class DunkirkSoilCoefficientsItem(CommonSoilCoefficientsItem):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", c1:float=0.0, c2:float=0.0, c3:float=0.0, c4:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", c1=0.0, c2=0.0, c3=0.0, c4=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__c1 = c1
-        self.__c2 = c2
-        self.__c3 = c3
-        self.__c4 = c4
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.c1 = c1
+        self.c2 = c2
+        self.c3 = c3
+        self.c4 = c4
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

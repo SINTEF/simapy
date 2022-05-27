@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.slendersystemconnection import SlenderSystemConnectionBlueprint
+from typing import Dict
 from sima.riflex.bodylocation import BodyLocation
 from sima.riflex.elementreference import ElementReference
 from sima.riflex.end import End
@@ -71,32 +72,32 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     finalPosition : Position
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, elementNumber:int=1, allElements:bool=False, nodeNumber:int=1, allNodes:bool=False, allEnds:bool=False, elementEnd:End=End.ONE, location:BodyLocation=BodyLocation.ELEMENT, artificialStiffness:bool=False, stx:float=0.0, sty:float=0.0, stz:float=0.0, srx:float=0.0, sry:float=0.0, srz:float=0.0, constraint:NodeConstraint=NodeConstraint.FREE, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, nodeNumber=1, allNodes=False, allEnds=False, elementEnd=End.ONE, location=BodyLocation.ELEMENT, artificialStiffness=False, stx=0.0, sty=0.0, stz=0.0, srx=0.0, sry=0.0, srz=0.0, constraint=NodeConstraint.FREE, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__elementNumber = elementNumber
-        self.__allElements = allElements
-        self.__nodeNumber = nodeNumber
-        self.__allNodes = allNodes
-        self.__allEnds = allEnds
-        self.__elementEnd = elementEnd
-        self.__location = location
-        self.__superNode = None
-        self.__artificialStiffness = artificialStiffness
-        self.__stx = stx
-        self.__sty = sty
-        self.__stz = stz
-        self.__srx = srx
-        self.__sry = sry
-        self.__srz = srz
-        self.__constraint = constraint
-        self.__finalPosition = Position()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.elementNumber = elementNumber
+        self.allElements = allElements
+        self.nodeNumber = nodeNumber
+        self.allNodes = allNodes
+        self.allEnds = allEnds
+        self.elementEnd = elementEnd
+        self.location = location
+        self.superNode = None
+        self.artificialStiffness = artificialStiffness
+        self.stx = stx
+        self.sty = sty
+        self.stz = stz
+        self.srx = srx
+        self.sry = sry
+        self.srz = srz
+        self.constraint = constraint
+        self.finalPosition = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

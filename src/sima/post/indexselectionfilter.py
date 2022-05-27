@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.indexselectionfilter import IndexSelectionFilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -44,23 +45,23 @@ class IndexSelectionFilter(OperationNode):
          Select the given zero-based index of the input signal(default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, renameOutput:bool=True, axis:SignalAxis=SignalAxis.Y, lastIndex:bool=False, index:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, renameOutput=True, axis=SignalAxis.Y, lastIndex=False, index=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__renameOutput = renameOutput
-        self.__axis = axis
-        self.__lastIndex = lastIndex
-        self.__index = index
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.renameOutput = renameOutput
+        self.axis = axis
+        self.lastIndex = lastIndex
+        self.index = index
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.range import RangeBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -27,15 +28,15 @@ class Range(MOAO):
          (default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", min:float=0.0, max:float=0.0, automatic:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", min=0.0, max=0.0, automatic=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__min = min
-        self.__max = max
-        self.__automatic = automatic
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.min = min
+        self.max = max
+        self.automatic = automatic
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

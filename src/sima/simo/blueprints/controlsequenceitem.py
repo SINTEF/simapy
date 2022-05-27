@@ -15,7 +15,7 @@ class ControlSequenceItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("time","number","Time when signal is activated",default=0.0))
         self.attributes.append(Attribute("thrust","number","Thrust demand",default=0.0))
         self.attributes.append(Attribute("direction","number","Demanded thrust force direction",default=0.0))

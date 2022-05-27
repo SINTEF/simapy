@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.elementangle import ElementAngleBlueprint
+from typing import Dict
 from sima.riflex.axis import Axis
 from sima.riflex.elementreference import ElementReference
 from sima.riflex.plane import Plane
@@ -41,19 +42,19 @@ class ElementAngle(ElementReference):
          Projection in plane
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, elementNumber:int=1, allElements:bool=False, plane:Plane=Plane.XY, axis:Axis=Axis.X, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, plane=Plane.XY, axis=Axis.X, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__elementNumber = elementNumber
-        self.__allElements = allElements
-        self.__plane = plane
-        self.__axis = axis
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.elementNumber = elementNumber
+        self.allElements = allElements
+        self.plane = plane
+        self.axis = axis
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -15,7 +15,7 @@ class PisaSoilLayerBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("soilType","sima/riflex/SoilType","",False))
         self.attributes.append(Attribute("deltaZ","number","Height of soil layer",default=0.0))
         self.attributes.append(Attribute("shearModulusTop","number","Shear modulus at top of soil layer",default=0.0))

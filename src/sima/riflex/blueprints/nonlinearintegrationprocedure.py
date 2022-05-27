@@ -15,7 +15,7 @@ class NonLinearIntegrationProcedureBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("equilibriumIterationFrequency","integer","Frequency of equilibrium iteration",default=1))
         self.attributes.append(EnumAttribute("iterationType","sima/riflex/IterationType","Type of iteration if iteration is to be performed"))
         self.attributes.append(Attribute("maxIterations","integer","Maximum number of iterations for steps with iteration",default=10))

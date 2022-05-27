@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.momentcoupling import MomentCouplingBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.vector3 import Vector3
@@ -41,21 +42,21 @@ class MomentCoupling(NamedObject):
          Exponent in damping for negative rotation(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", initialMoment:float=0.0, stiffness:float=0.0, positiveDamping:float=0.0, positiveExponent:float=0.0, negativeDamping:float=0.0, negativeExponent:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", initialMoment=0.0, stiffness=0.0, positiveDamping=0.0, positiveExponent=0.0, negativeDamping=0.0, negativeExponent=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__body1 = None
-        self.__rotationVector = Vector3()
-        self.__body2 = None
-        self.__initialMoment = initialMoment
-        self.__stiffness = stiffness
-        self.__positiveDamping = positiveDamping
-        self.__positiveExponent = positiveExponent
-        self.__negativeDamping = negativeDamping
-        self.__negativeExponent = negativeExponent
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.body1 = None
+        self.rotationVector = None
+        self.body2 = None
+        self.initialMoment = initialMoment
+        self.stiffness = stiffness
+        self.positiveDamping = positiveDamping
+        self.positiveExponent = positiveExponent
+        self.negativeDamping = negativeDamping
+        self.negativeExponent = negativeExponent
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

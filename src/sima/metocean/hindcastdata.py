@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hindcastdata import HindcastDataBlueprint
+from typing import Dict
 from sima.metocean.hindcastlevelcontainer import HindcastLevelContainer
 from sima.metocean.hindcastwavecontainer import HindcastWaveContainer
 from sima.sima.namedobject import NamedObject
@@ -34,19 +35,19 @@ class HindcastData(NamedObject):
     currentData : HindcastLevelContainer
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dataFile:str="", path:str="", firstDate:str="", lastDate:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", dataFile="", path="", firstDate="", lastDate="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dataFile = dataFile
-        self.__path = path
-        self.__firstDate = firstDate
-        self.__lastDate = lastDate
-        self.__waveData = HindcastWaveContainer()
-        self.__windData = HindcastLevelContainer()
-        self.__currentData = HindcastLevelContainer()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dataFile = dataFile
+        self.path = path
+        self.firstDate = firstDate
+        self.lastDate = lastDate
+        self.waveData = None
+        self.windData = None
+        self.currentData = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

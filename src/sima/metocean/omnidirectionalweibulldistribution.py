@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.omnidirectionalweibulldistribution import OmniDirectionalWeibullDistributionBlueprint
+from typing import Dict
 from sima.metocean.weibulldistribution import WeibullDistribution
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -35,19 +36,19 @@ class OmniDirectionalWeibullDistribution(WeibullDistribution):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", returnPeriod:float=0.0, level:float=0.0, duration:float=0.0, probability:float=0.0, shape:float=0.0, scale:float=0.0, location:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", returnPeriod=0.0, level=0.0, duration=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__returnPeriod = returnPeriod
-        self.__level = level
-        self.__duration = duration
-        self.__probability = probability
-        self.__shape = shape
-        self.__scale = scale
-        self.__location = location
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.returnPeriod = returnPeriod
+        self.level = level
+        self.duration = duration
+        self.probability = probability
+        self.shape = shape
+        self.scale = scale
+        self.location = location
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

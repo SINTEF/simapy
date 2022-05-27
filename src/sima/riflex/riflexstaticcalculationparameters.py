@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.riflexstaticcalculationparameters import RIFLEXStaticCalculationParametersBlueprint
+from typing import Dict
 from sima.riflex.loadandmassformulation import LoadAndMassFormulation
 from sima.riflex.matrixplotstorage import MatrixPlotStorage
 from sima.riflex.matrixstorage import MatrixStorage
@@ -44,23 +45,23 @@ class RIFLEXStaticCalculationParameters(MOAO):
          Start arc length at zero for each line(default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", matrixStorage:MatrixStorage=MatrixStorage.SKYLINE, currentProfileScaling:float=1.0, stressFreeConfiguration:bool=False, stressfreeFile:str="", loadAndMassFormulation:LoadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses:bool=True, matrixPlotStorage:MatrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, stressfreeFile="", loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__loadTypeItems = list()
-        self.__matrixStorage = matrixStorage
-        self.__currentProfileScaling = currentProfileScaling
-        self.__staticLoadComponents = list()
-        self.__stressFreeConfiguration = stressFreeConfiguration
-        self.__stressfreeFile = stressfreeFile
-        self.__loadAndMassFormulation = loadAndMassFormulation
-        self.__parameterVariation = ParameterVariation()
-        self.__storeVisualisationResponses = storeVisualisationResponses
-        self.__matrixPlotStorage = matrixPlotStorage
-        self.__startAtZero = startAtZero
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.loadTypeItems = list()
+        self.matrixStorage = matrixStorage
+        self.currentProfileScaling = currentProfileScaling
+        self.staticLoadComponents = list()
+        self.stressFreeConfiguration = stressFreeConfiguration
+        self.stressfreeFile = stressfreeFile
+        self.loadAndMassFormulation = loadAndMassFormulation
+        self.parameterVariation = None
+        self.storeVisualisationResponses = storeVisualisationResponses
+        self.matrixPlotStorage = matrixPlotStorage
+        self.startAtZero = startAtZero
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

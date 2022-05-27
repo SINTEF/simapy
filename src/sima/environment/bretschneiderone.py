@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bretschneiderone import BretschneiderOneBlueprint
+from typing import Dict
 from sima.environment.wave import Wave
 from sima.environment.wavespreadingtype import WaveSpreadingType
 from sima.sima.scriptablevalue import ScriptableValue
@@ -34,18 +35,18 @@ class BretschneiderOne(Wave):
          Wind speed(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, spreadingExponent:float=2.0, numDirections:int=11, spreadingType:WaveSpreadingType=WaveSpreadingType.UNIDIRECTIONAL, fetch:float=0.0, windSpeed:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, fetch=0.0, windSpeed=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__spreadingExponent = spreadingExponent
-        self.__numDirections = numDirections
-        self.__spreadingType = spreadingType
-        self.__fetch = fetch
-        self.__windSpeed = windSpeed
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.spreadingExponent = spreadingExponent
+        self.numDirections = numDirections
+        self.spreadingType = spreadingType
+        self.fetch = fetch
+        self.windSpeed = windSpeed
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

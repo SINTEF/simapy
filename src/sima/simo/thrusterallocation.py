@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thrusterallocation import ThrusterAllocationBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -29,14 +30,14 @@ class ThrusterAllocation(MOAO):
          Thruster controlled by the allocation system
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", weight:float=1.0, **kwargs):
+    def __init__(self , name="", description="", _id="", weight=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__weight = weight
-        self.__thruster = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.weight = weight
+        self.thruster = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.qtfdof import QTFDofBlueprint
+from numpy import ndarray,asarray
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -21,19 +22,19 @@ class QTFDof(MOAO):
     scriptableValues : List[ScriptableValue]
     nValues : int
          (default 0)
-    re : Sequence[float]
-    im : Sequence[float]
+    re : ndarray
+    im : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", nValues:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", nValues=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__nValues = nValues
-        self.__re = list()
-        self.__im = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.nValues = nValues
+        self.re = ndarray(1)
+        self.im = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -98,25 +99,21 @@ class QTFDof(MOAO):
         self.__nValues = int(value)
 
     @property
-    def re(self) -> Sequence[float]:
+    def re(self) -> ndarray:
         """"""
         return self.__re
 
     @re.setter
-    def re(self, value: Sequence[float]):
+    def re(self, value: ndarray):
         """Set re"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__re = value
+        self.__re = asarray(value)
 
     @property
-    def im(self) -> Sequence[float]:
+    def im(self) -> ndarray:
         """"""
         return self.__im
 
     @im.setter
-    def im(self, value: Sequence[float]):
+    def im(self, value: ndarray):
         """Set im"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__im = value
+        self.__im = asarray(value)
