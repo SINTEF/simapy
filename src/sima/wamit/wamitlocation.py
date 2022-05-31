@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitlocation import WamitLocationBlueprint
+from typing import Dict
 from sima.sima.infrastructurebody import InfrastructureBody
 from sima.sima.initialviewpoint import InitialViewpoint
 from sima.sima.location import Location
@@ -43,23 +44,23 @@ class WamitLocation(Location):
     physicalConstants : PhysicalConstants
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", relativeCompassAngle:float=0.0, utmX:float=0.0, utmY:float=0.0, gridZone:str="", waterDepth:float=1000.0, **kwargs):
+    def __init__(self , name="", description="", _id="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, gridZone="", waterDepth=1000.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__initialViewpoint = InitialViewpoint()
-        self.__initialRotationpoint = Point3()
-        self.__viewpoints = list()
-        self.__relativeCompassAngle = relativeCompassAngle
-        self.__utmX = utmX
-        self.__utmY = utmY
-        self.__gridZone = gridZone
-        self.__infrastructureBodies = list()
-        self.__waterDepth = waterDepth
-        self.__seaSurface = SeaSurface()
-        self.__physicalConstants = PhysicalConstants()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.initialViewpoint = None
+        self.initialRotationpoint = None
+        self.viewpoints = list()
+        self.relativeCompassAngle = relativeCompassAngle
+        self.utmX = utmX
+        self.utmY = utmY
+        self.gridZone = gridZone
+        self.infrastructureBodies = list()
+        self.waterDepth = waterDepth
+        self.seaSurface = None
+        self.physicalConstants = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

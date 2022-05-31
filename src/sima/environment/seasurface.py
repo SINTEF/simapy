@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.seasurface import SeaSurfaceBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.simacolor import SIMAColor
@@ -45,24 +46,24 @@ class SeaSurface(MOAO):
          Number of points in long-crested wave field(default 61)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", centerX:float=0.0, centerY:float=0.0, sizeX:float=500.0, sizeY:float=500.0, transparency:float=0.0, meshGridSize:float=100.0, showMesh:bool=True, z:float=-100.0, lcWaveLength:float=300.0, lcWaveWidth:float=100.0, lcWaveNumPoints:int=61, **kwargs):
+    def __init__(self , name="", description="", _id="", centerX=0.0, centerY=0.0, sizeX=500.0, sizeY=500.0, transparency=0.0, meshGridSize=100.0, showMesh=True, z=-100.0, lcWaveLength=300.0, lcWaveWidth=100.0, lcWaveNumPoints=61, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__centerX = centerX
-        self.__centerY = centerY
-        self.__sizeX = sizeX
-        self.__sizeY = sizeY
-        self.__color = SIMAColor()
-        self.__transparency = transparency
-        self.__meshGridSize = meshGridSize
-        self.__showMesh = showMesh
-        self.__z = z
-        self.__lcWaveLength = lcWaveLength
-        self.__lcWaveWidth = lcWaveWidth
-        self.__lcWaveNumPoints = lcWaveNumPoints
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.centerX = centerX
+        self.centerY = centerY
+        self.sizeX = sizeX
+        self.sizeY = sizeY
+        self.color = None
+        self.transparency = transparency
+        self.meshGridSize = meshGridSize
+        self.showMesh = showMesh
+        self.z = z
+        self.lcWaveLength = lcWaveLength
+        self.lcWaveWidth = lcWaveWidth
+        self.lcWaveNumPoints = lcWaveNumPoints
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

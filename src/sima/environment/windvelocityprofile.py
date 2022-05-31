@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windvelocityprofile import WindVelocityProfileBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class WindVelocityProfile(MOAO):
          Wind speed scaling factor for the vertical wind velocity(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", verticalCoordinate:float=0.0, longitudinalVelocityFactor:float=0.0, lateralVelocityFactor:float=0.0, verticalVelocityFactor:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", verticalCoordinate=0.0, longitudinalVelocityFactor=0.0, lateralVelocityFactor=0.0, verticalVelocityFactor=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__verticalCoordinate = verticalCoordinate
-        self.__longitudinalVelocityFactor = longitudinalVelocityFactor
-        self.__lateralVelocityFactor = lateralVelocityFactor
-        self.__verticalVelocityFactor = verticalVelocityFactor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.verticalCoordinate = verticalCoordinate
+        self.longitudinalVelocityFactor = longitudinalVelocityFactor
+        self.lateralVelocityFactor = lateralVelocityFactor
+        self.verticalVelocityFactor = verticalVelocityFactor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -15,7 +15,7 @@ class RegularVesselMotionBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("supportVessel","sima/riflex/SupportVessel","",False))
         self.attributes.append(Attribute("amplitudeX","number","Motion amplitude, x-direction",default=0.0))
         self.attributes.append(Attribute("amplitudeY","number","Motion amplitude, y-direction",default=0.0))

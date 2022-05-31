@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.clay import ClayBlueprint
+from typing import Dict
 from sima.riflex.soil import Soil
 from sima.riflex.soildampingitem import SoilDampingItem
 from sima.sima.scriptablevalue import ScriptableValue
@@ -49,26 +50,26 @@ class Clay(Soil):
          Strain at one-half the maximum stress in undrained compression(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", strainVelocityExponent:float=1.0, calculateDamping:bool=False, upperWeight:float=0.0, lowerWeight:float=0.0, displacement:float=0.0, frequency:float=0.0, initialShearModulus:float=0.0, upperShearStrength:float=0.0, upperJConstant:float=0.0, upperStrain:float=0.0, lowerShearStrength:float=0.0, lowerJConstant:float=0.0, lowerStrain:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperShearStrength=0.0, upperJConstant=0.0, upperStrain=0.0, lowerShearStrength=0.0, lowerJConstant=0.0, lowerStrain=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__strainVelocityExponent = strainVelocityExponent
-        self.__calculateDamping = calculateDamping
-        self.__dampingItems = list()
-        self.__upperWeight = upperWeight
-        self.__lowerWeight = lowerWeight
-        self.__displacement = displacement
-        self.__frequency = frequency
-        self.__initialShearModulus = initialShearModulus
-        self.__upperShearStrength = upperShearStrength
-        self.__upperJConstant = upperJConstant
-        self.__upperStrain = upperStrain
-        self.__lowerShearStrength = lowerShearStrength
-        self.__lowerJConstant = lowerJConstant
-        self.__lowerStrain = lowerStrain
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.strainVelocityExponent = strainVelocityExponent
+        self.calculateDamping = calculateDamping
+        self.dampingItems = list()
+        self.upperWeight = upperWeight
+        self.lowerWeight = lowerWeight
+        self.displacement = displacement
+        self.frequency = frequency
+        self.initialShearModulus = initialShearModulus
+        self.upperShearStrength = upperShearStrength
+        self.upperJConstant = upperJConstant
+        self.upperStrain = upperStrain
+        self.lowerShearStrength = lowerShearStrength
+        self.lowerJConstant = lowerJConstant
+        self.lowerStrain = lowerStrain
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

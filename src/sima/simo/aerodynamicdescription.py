@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.aerodynamicdescription import AerodynamicDescriptionBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.aerodynamicdescriptiontype import AerodynamicDescriptionType
@@ -30,16 +31,16 @@ class AerodynamicDescription(MOAO):
          Type of aerodynamic forces
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", quadraticLongitudinalDrag:float=0.0, quadraticTransverseY:float=0.0, quadraticTransverseZ:float=0.0, aerodynamicType:AerodynamicDescriptionType=AerodynamicDescriptionType.DRAG, **kwargs):
+    def __init__(self , name="", description="", _id="", quadraticLongitudinalDrag=0.0, quadraticTransverseY=0.0, quadraticTransverseZ=0.0, aerodynamicType=AerodynamicDescriptionType.DRAG, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__quadraticLongitudinalDrag = quadraticLongitudinalDrag
-        self.__quadraticTransverseY = quadraticTransverseY
-        self.__quadraticTransverseZ = quadraticTransverseZ
-        self.__aerodynamicType = aerodynamicType
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.quadraticLongitudinalDrag = quadraticLongitudinalDrag
+        self.quadraticTransverseY = quadraticTransverseY
+        self.quadraticTransverseZ = quadraticTransverseZ
+        self.aerodynamicType = aerodynamicType
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

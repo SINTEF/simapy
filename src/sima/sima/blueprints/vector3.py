@@ -15,7 +15,7 @@ class Vector3Blueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("x","number","X component",default=0.0))
         self.attributes.append(Attribute("y","number","Y component",default=0.0))
         self.attributes.append(Attribute("z","number","Z component",default=0.0))

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.proplibpropellerandrudderthruster import ProplibPropellerAndRudderThrusterBlueprint
+from typing import Dict
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.ithruster import IThruster
@@ -83,43 +84,43 @@ class ProplibPropellerAndRudderThruster(IThruster):
          Thrust deduction factor(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", minForce:float=0.0, maxForce:float=0.0, force:float=0.0, forceDirection:float=0.0, includeSurfaceProximityLoss:bool=True, includeThrusterHullInteraction:bool=True, includeThrusterThrusterInteraction:bool=True, maxRps:float=0.0, diameter:float=0.0, bladeAreaRatio:float=0.0, headboxHeight:float=0.0, headboxRootChord:float=0.0, headboxTipChord:float=0.0, headboxArea:float=0.0, rudderHeight:float=0.0, rudderRootChord:float=0.0, rudderTipChord:float=0.0, rudderHornArea:float=0.0, rudderTotalArea:float=0.0, rudderPropellerHorizontalDistance:float=0.0, rudderPropellerVerticalDistance:float=0.0, rudderHeadboxGap:float=0.0, wakeFraction:float=0.0, pitchRatio:float=0.0, bilgeRadius:float=0.0, verticalDistanceHull:float=0.0, thrustDeductionFactor:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=True, includeThrusterHullInteraction=True, includeThrusterThrusterInteraction=True, maxRps=0.0, diameter=0.0, bladeAreaRatio=0.0, headboxHeight=0.0, headboxRootChord=0.0, headboxTipChord=0.0, headboxArea=0.0, rudderHeight=0.0, rudderRootChord=0.0, rudderTipChord=0.0, rudderHornArea=0.0, rudderTotalArea=0.0, rudderPropellerHorizontalDistance=0.0, rudderPropellerVerticalDistance=0.0, rudderHeadboxGap=0.0, wakeFraction=0.0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, thrustDeductionFactor=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__minForce = minForce
-        self.__maxForce = maxForce
-        self.__position = Point3()
-        self.__force = force
-        self.__forceDirection = forceDirection
-        self.__thrusterDynamics = ThrusterDynamics()
-        self.__controlSequence = ThrusterControlSequence()
-        self.__failureSpecification = ThrusterFailureSpecification()
-        self.__includeSurfaceProximityLoss = includeSurfaceProximityLoss
-        self.__includeThrusterHullInteraction = includeThrusterHullInteraction
-        self.__includeThrusterThrusterInteraction = includeThrusterThrusterInteraction
-        self.__maxRps = maxRps
-        self.__diameter = diameter
-        self.__bladeAreaRatio = bladeAreaRatio
-        self.__headboxHeight = headboxHeight
-        self.__headboxRootChord = headboxRootChord
-        self.__headboxTipChord = headboxTipChord
-        self.__headboxArea = headboxArea
-        self.__rudderHeight = rudderHeight
-        self.__rudderRootChord = rudderRootChord
-        self.__rudderTipChord = rudderTipChord
-        self.__rudderHornArea = rudderHornArea
-        self.__rudderTotalArea = rudderTotalArea
-        self.__rudderPropellerHorizontalDistance = rudderPropellerHorizontalDistance
-        self.__rudderPropellerVerticalDistance = rudderPropellerVerticalDistance
-        self.__rudderHeadboxGap = rudderHeadboxGap
-        self.__wakeFraction = wakeFraction
-        self.__pitchRatio = pitchRatio
-        self.__bilgeRadius = bilgeRadius
-        self.__verticalDistanceHull = verticalDistanceHull
-        self.__thrustDeductionFactor = thrustDeductionFactor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.minForce = minForce
+        self.maxForce = maxForce
+        self.position = None
+        self.force = force
+        self.forceDirection = forceDirection
+        self.thrusterDynamics = None
+        self.controlSequence = None
+        self.failureSpecification = None
+        self.includeSurfaceProximityLoss = includeSurfaceProximityLoss
+        self.includeThrusterHullInteraction = includeThrusterHullInteraction
+        self.includeThrusterThrusterInteraction = includeThrusterThrusterInteraction
+        self.maxRps = maxRps
+        self.diameter = diameter
+        self.bladeAreaRatio = bladeAreaRatio
+        self.headboxHeight = headboxHeight
+        self.headboxRootChord = headboxRootChord
+        self.headboxTipChord = headboxTipChord
+        self.headboxArea = headboxArea
+        self.rudderHeight = rudderHeight
+        self.rudderRootChord = rudderRootChord
+        self.rudderTipChord = rudderTipChord
+        self.rudderHornArea = rudderHornArea
+        self.rudderTotalArea = rudderTotalArea
+        self.rudderPropellerHorizontalDistance = rudderPropellerHorizontalDistance
+        self.rudderPropellerVerticalDistance = rudderPropellerVerticalDistance
+        self.rudderHeadboxGap = rudderHeadboxGap
+        self.wakeFraction = wakeFraction
+        self.pitchRatio = pitchRatio
+        self.bilgeRadius = bilgeRadius
+        self.verticalDistanceHull = verticalDistanceHull
+        self.thrustDeductionFactor = thrustDeductionFactor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.elementstressstorage import ElementStressStorageBlueprint
+from typing import Dict
 from sima.riflex.elementreference import ElementReference
 from sima.riflex.end import End
 from sima.riflex.stresstype import StressType
@@ -54,26 +55,26 @@ class ElementStressStorage(ElementReference):
     position : WallPoint
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, elementNumber:int=1, allElements:bool=False, allEnds:bool=False, elementEnd:End=End.ONE, _type:StressType=StressType.AXIAL_BENDING, outerDiameter:float=0.0, thickness:float=0.0, internalPressure:float=0.0, externalPressure:float=0.0, numberOfPoints:int=8, position:WallPoint=WallPoint.OUTER_WALL, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, _type=StressType.AXIAL_BENDING, outerDiameter=0.0, thickness=0.0, internalPressure=0.0, externalPressure=0.0, numberOfPoints=8, position=WallPoint.OUTER_WALL, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__elementNumber = elementNumber
-        self.__allElements = allElements
-        self.__allEnds = allEnds
-        self.__elementEnd = elementEnd
-        self.___type = _type
-        self.__outerDiameter = outerDiameter
-        self.__thickness = thickness
-        self.__internalPressure = internalPressure
-        self.__externalPressure = externalPressure
-        self.__numberOfPoints = numberOfPoints
-        self.__position = position
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.elementNumber = elementNumber
+        self.allElements = allElements
+        self.allEnds = allEnds
+        self.elementEnd = elementEnd
+        self._type = _type
+        self.outerDiameter = outerDiameter
+        self.thickness = thickness
+        self.internalPressure = internalPressure
+        self.externalPressure = externalPressure
+        self.numberOfPoints = numberOfPoints
+        self.position = position
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

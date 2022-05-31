@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.scriptnode import ScriptNodeBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.outputslot import OutputSlot
 from sima.post.runnode import RunNode
@@ -44,23 +45,23 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     outputSlot : OutputSlot
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, inline:bool=True, path:str="", script:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, inline=True, path="", script="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__inline = inline
-        self.__path = path
-        self.__script = script
-        self.__variableInputSlots = list()
-        self.__outputSlot = OutputSlot()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.inline = inline
+        self.path = path
+        self.script = script
+        self.variableInputSlots = list()
+        self.outputSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

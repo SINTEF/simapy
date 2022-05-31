@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.reporttableinputslot import ReportTableInputSlotBlueprint
+from typing import Dict
 from sima.post.inputslot import InputSlot
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.workflow.reportfragmentitem import ReportFragmentItem
@@ -24,13 +25,13 @@ class ReportTableInputSlot(ReportFragmentItem,InputSlot):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", caption:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", caption="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__caption = caption
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.caption = caption
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

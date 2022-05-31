@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.staticconditionresult import StaticConditionResultBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.bodyresult import BodyResult
@@ -31,17 +32,17 @@ class StaticConditionResult(MOAO):
          (default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", header:str="", dateTag:str="", filepart:str="", globalForces:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", header="", dateTag="", filepart="", globalForces=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__bodyResults = list()
-        self.__header = header
-        self.__dateTag = dateTag
-        self.__filepart = filepart
-        self.__globalForces = globalForces
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.bodyResults = list()
+        self.header = header
+        self.dateTag = dateTag
+        self.filepart = filepart
+        self.globalForces = globalForces
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

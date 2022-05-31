@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.stressjointsegment import StressJointSegmentBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -33,18 +34,18 @@ class StressJointSegment(MOAO):
          Density of pipe material.(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", length:float=0.0, numElements:int=10, extDiameterEnd2:float=0.0, wallThicknessEnd2:float=0.0, elasticModulus:float=0.0, materialDensity:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", length=0.0, numElements=10, extDiameterEnd2=0.0, wallThicknessEnd2=0.0, elasticModulus=0.0, materialDensity=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__length = length
-        self.__numElements = numElements
-        self.__extDiameterEnd2 = extDiameterEnd2
-        self.__wallThicknessEnd2 = wallThicknessEnd2
-        self.__elasticModulus = elasticModulus
-        self.__materialDensity = materialDensity
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.length = length
+        self.numElements = numElements
+        self.extDiameterEnd2 = extDiameterEnd2
+        self.wallThicknessEnd2 = wallThicknessEnd2
+        self.elasticModulus = elasticModulus
+        self.materialDensity = materialDensity
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.mainriserline import MainRiserLineBlueprint
+from typing import Dict
 from sima.riflex.arlineitem import ARLineItem
 from sima.riflex.end import End
 from sima.sima.namedobject import NamedObject
@@ -32,17 +33,17 @@ class MainRiserLine(NamedObject):
          Pressure drop(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", flowRho:float=0.0, flowPressure:float=0.0, flowPressureEnd:End=End.ONE, flowPressureDrop:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", flowRho=0.0, flowPressure=0.0, flowPressureEnd=End.ONE, flowPressureDrop=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__riserLines = list()
-        self.__flowRho = flowRho
-        self.__flowPressure = flowPressure
-        self.__flowPressureEnd = flowPressureEnd
-        self.__flowPressureDrop = flowPressureDrop
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.riserLines = list()
+        self.flowRho = flowRho
+        self.flowPressure = flowPressure
+        self.flowPressureEnd = flowPressureEnd
+        self.flowPressureDrop = flowPressureDrop
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

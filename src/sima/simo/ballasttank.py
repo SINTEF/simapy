@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.ballasttank import BallastTankBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.position import Position
 from sima.sima.scriptablevalue import ScriptableValue
@@ -46,24 +47,24 @@ class BallastTank(NamedObject):
          State of ballast tank
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", tag:str="", x:float=0.0, y:float=0.0, z:float=0.0, volumeTolerance:float=0.001, permeabilityFactor:float=1.0, initialBallastQuantity:float=0.0, quantityType:BallastQuantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity:float=1025.0, geometryFile:str="", state:BallastTankState=BallastTankState.INTACT, **kwargs):
+    def __init__(self , name="", description="", _id="", tag="", x=0.0, y=0.0, z=0.0, volumeTolerance=0.001, permeabilityFactor=1.0, initialBallastQuantity=0.0, quantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity=1025.0, geometryFile="", state=BallastTankState.INTACT, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__tag = tag
-        self.__x = x
-        self.__y = y
-        self.__z = z
-        self.__volumeTolerance = volumeTolerance
-        self.__permeabilityFactor = permeabilityFactor
-        self.__initialBallastQuantity = initialBallastQuantity
-        self.__quantityType = quantityType
-        self.__ballastFluidDensity = ballastFluidDensity
-        self.__geometryPosition = Position()
-        self.__geometryFile = geometryFile
-        self.__state = state
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.tag = tag
+        self.x = x
+        self.y = y
+        self.z = z
+        self.volumeTolerance = volumeTolerance
+        self.permeabilityFactor = permeabilityFactor
+        self.initialBallastQuantity = initialBallastQuantity
+        self.quantityType = quantityType
+        self.ballastFluidDensity = ballastFluidDensity
+        self.geometryPosition = None
+        self.geometryFile = geometryFile
+        self.state = state
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

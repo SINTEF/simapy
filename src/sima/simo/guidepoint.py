@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.guidepoint import GuidePointBlueprint
+from typing import Dict
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.vector3 import Vector3
 from sima.simo.simobodypoint import SIMOBodyPoint
@@ -38,20 +39,20 @@ class GuidePoint(SIMOBodyPoint):
          Vector normal to hole in body fixed coordinate system
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:float=0.0, y:float=0.0, z:float=0.0, diameter:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0.0, y=0.0, z=0.0, diameter=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__winch = None
-        self.__tensioner = None
-        self.__heaveCompensator = None
-        self.__x = x
-        self.__y = y
-        self.__z = z
-        self.__diameter = diameter
-        self.__normalVector = Vector3()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.winch = None
+        self.tensioner = None
+        self.heaveCompensator = None
+        self.x = x
+        self.y = y
+        self.z = z
+        self.diameter = diameter
+        self.normalVector = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

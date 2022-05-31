@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.guidepointspecification import GuidePointSpecificationBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -29,14 +30,14 @@ class GuidePointSpecification(MOAO):
          Guide point entered on line(default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", enteredOnLine:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", enteredOnLine=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__guidePoint = None
-        self.__enteredOnLine = enteredOnLine
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.guidePoint = None
+        self.enteredOnLine = enteredOnLine
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

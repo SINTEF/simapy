@@ -15,7 +15,7 @@ class ImageBlueprint(ReportItemBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("caption","string","Caption",default=""))
         self.attributes.append(Attribute("filePath","string","Path to the image",default=""))
         self.attributes.append(Attribute("width","integer","The image witdth in twips (1/1440 inch). If only the width is specified the height will be automatically calculated.",default=0))

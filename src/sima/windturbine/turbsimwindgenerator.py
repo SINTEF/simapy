@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.turbsimwindgenerator import TurbSimWindGeneratorBlueprint
+from typing import Dict
 from sima.sima.conditionselectable import ConditionSelectable
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
@@ -66,34 +67,34 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
          Surface roughness length (or 'default')(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", randSeed1:int=0, seedGeneration:RandomSeedGeneration=RandomSeedGeneration.INTRINSIC, randSeed2:int=0, gridPointsZ:int=0, gridPointsY:int=0, timeStep:float=0.0, analysisTime:float=0.0, usableTime:float=0.0, hubHeight:float=0.0, gridHeight:float=0.0, gridWidth:float=0.0, turbulenceModel:TurbulenceModel=TurbulenceModel.IECKAI, iecStandard:IECStandard=IECStandard.IEC_61400_1, turbulenceCharacteristics:IECTurbulenceCharacteristics=IECTurbulenceCharacteristics.A, turbulencePercentage:float=0.0, windType:IECWindType=IECWindType.NTM, etmC:float=0.0, windProfileType:IECWindProfileType=IECWindProfileType.LOG, referenceHeight:float=0.0, meanWindSpeed:float=0.0, powerLawExponent:float=0.0, surfaceRoughnessLength:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", randSeed1=0, seedGeneration=RandomSeedGeneration.INTRINSIC, randSeed2=0, gridPointsZ=0, gridPointsY=0, timeStep=0.0, analysisTime=0.0, usableTime=0.0, hubHeight=0.0, gridHeight=0.0, gridWidth=0.0, turbulenceModel=TurbulenceModel.IECKAI, iecStandard=IECStandard.IEC_61400_1, turbulenceCharacteristics=IECTurbulenceCharacteristics.A, turbulencePercentage=0.0, windType=IECWindType.NTM, etmC=0.0, windProfileType=IECWindProfileType.LOG, referenceHeight=0.0, meanWindSpeed=0.0, powerLawExponent=0.0, surfaceRoughnessLength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__randSeed1 = randSeed1
-        self.__seedGeneration = seedGeneration
-        self.__randSeed2 = randSeed2
-        self.__gridPointsZ = gridPointsZ
-        self.__gridPointsY = gridPointsY
-        self.__timeStep = timeStep
-        self.__analysisTime = analysisTime
-        self.__usableTime = usableTime
-        self.__hubHeight = hubHeight
-        self.__gridHeight = gridHeight
-        self.__gridWidth = gridWidth
-        self.__turbulenceModel = turbulenceModel
-        self.__iecStandard = iecStandard
-        self.__turbulenceCharacteristics = turbulenceCharacteristics
-        self.__turbulencePercentage = turbulencePercentage
-        self.__windType = windType
-        self.__etmC = etmC
-        self.__windProfileType = windProfileType
-        self.__referenceHeight = referenceHeight
-        self.__meanWindSpeed = meanWindSpeed
-        self.__powerLawExponent = powerLawExponent
-        self.__surfaceRoughnessLength = surfaceRoughnessLength
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.randSeed1 = randSeed1
+        self.seedGeneration = seedGeneration
+        self.randSeed2 = randSeed2
+        self.gridPointsZ = gridPointsZ
+        self.gridPointsY = gridPointsY
+        self.timeStep = timeStep
+        self.analysisTime = analysisTime
+        self.usableTime = usableTime
+        self.hubHeight = hubHeight
+        self.gridHeight = gridHeight
+        self.gridWidth = gridWidth
+        self.turbulenceModel = turbulenceModel
+        self.iecStandard = iecStandard
+        self.turbulenceCharacteristics = turbulenceCharacteristics
+        self.turbulencePercentage = turbulencePercentage
+        self.windType = windType
+        self.etmC = etmC
+        self.windProfileType = windProfileType
+        self.referenceHeight = referenceHeight
+        self.meanWindSpeed = meanWindSpeed
+        self.powerLawExponent = powerLawExponent
+        self.surfaceRoughnessLength = surfaceRoughnessLength
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

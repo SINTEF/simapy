@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.waypoint import WaypointBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -35,19 +36,19 @@ class Waypoint(MOAO):
          Line of sight length (Determines the line from the vessel to the intersection of the line between the current waypoint and the next)(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:float=0.0, y:float=0.0, velocity:float=0.0, heading:float=0.0, turningRadius:float=0.0, radiusOfAcceptance:float=0.0, lineOfSight:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0.0, y=0.0, velocity=0.0, heading=0.0, turningRadius=0.0, radiusOfAcceptance=0.0, lineOfSight=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__velocity = velocity
-        self.__heading = heading
-        self.__turningRadius = turningRadius
-        self.__radiusOfAcceptance = radiusOfAcceptance
-        self.__lineOfSight = lineOfSight
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.velocity = velocity
+        self.heading = heading
+        self.turningRadius = turningRadius
+        self.radiusOfAcceptance = radiusOfAcceptance
+        self.lineOfSight = lineOfSight
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

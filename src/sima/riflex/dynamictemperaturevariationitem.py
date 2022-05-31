@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynamictemperaturevariationitem import DynamicTemperatureVariationItemBlueprint
+from typing import Dict
 from sima.riflex.elementreference import ElementReference
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -41,20 +42,20 @@ class DynamicTemperatureVariationItem(ElementReference):
          Temperature at end of temperature variation(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, elementNumber:int=1, allElements:bool=False, startTime:float=0.0, endTime:float=0.0, lastTemperature:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, startTime=0.0, endTime=0.0, lastTemperature=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__elementNumber = elementNumber
-        self.__allElements = allElements
-        self.__startTime = startTime
-        self.__endTime = endTime
-        self.__lastTemperature = lastTemperature
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.elementNumber = elementNumber
+        self.allElements = allElements
+        self.startTime = startTime
+        self.endTime = endTime
+        self.lastTemperature = lastTemperature
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

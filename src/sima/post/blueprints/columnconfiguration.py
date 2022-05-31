@@ -15,7 +15,7 @@ class ColumnConfigurationBlueprint(PathSpecificationBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("path","string","",default=""))
         self.attributes.append(Attribute("header","string","Column header. The default value is the header,legend or name attribute of the signal",default=""))
         self.attributes.append(Attribute("label","string","Column label. The default value is the unit of the y axis, or the label attribute, or ylabel + unit if specified",default=""))

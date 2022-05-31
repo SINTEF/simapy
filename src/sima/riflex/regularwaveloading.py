@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regularwaveloading import RegularWaveLoadingBlueprint
+from typing import Dict
 from sima.riflex.kinematicsinwavezone import KinematicsInWaveZone
 from sima.riflex.riserposition import RiserPosition
 from sima.riflex.wavetheory import WaveTheory
@@ -30,15 +31,15 @@ class RegularWaveLoading(MOAO):
          Kinematics Position:\n - Wave induced velocities and accelerations calculated at static riser position, but the riser is kept fixed in static position for computation of surface penetrating element\n - Wave induced velocities and accelerations calculated at static riser position\n - Wave induced velocities and accelerations calculated at updated (dynamic) positions
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", waveTheory:WaveTheory=WaveTheory.AIRY_LINEAR, seaSurfaceDefinition:KinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, riserPosition:RiserPosition=RiserPosition.DYNAMIC_POSITIONS, **kwargs):
+    def __init__(self , name="", description="", _id="", waveTheory=WaveTheory.AIRY_LINEAR, seaSurfaceDefinition=KinematicsInWaveZone.MEAN_WATER_LEVEL, riserPosition=RiserPosition.DYNAMIC_POSITIONS, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__waveTheory = waveTheory
-        self.__seaSurfaceDefinition = seaSurfaceDefinition
-        self.__riserPosition = riserPosition
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.waveTheory = waveTheory
+        self.seaSurfaceDefinition = seaSurfaceDefinition
+        self.riserPosition = riserPosition
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

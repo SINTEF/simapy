@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.responseanalysisparameters import ResponseAnalysisParametersBlueprint
+from typing import Dict
 from sima.riflex.additionalstructuraldampingparameters import AdditionalStructuralDampingParameters
 from sima.riflex.convergencecriterion import ConvergenceCriterion
 from sima.riflex.forceswitch import ForceSwitch
@@ -58,28 +59,28 @@ class ResponseAnalysisParameters(MOAO):
     additionalStructuralDampingParameters : List[AdditionalStructuralDampingParameters]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", iterationMethod:ResponseIterationMethod=ResponseIterationMethod.FIXED_POINT, retry:bool=False, maxNumberOfIterations:int=30, convergenceCriterion:ConvergenceCriterion=ConvergenceCriterion.AMPNOR, convergenceLimit:float=0.0001, initialResponseEstimate:float=0.5, responseFrequencyOption:ResponseFrequencyOption=ResponseFrequencyOption.CONCURRENT, numberOfDominatingFrequencies:int=0, amplitudeLimit:float=0.01, lowerFrequencyCutoff:float=0.0, upperFrequencyCutoff:float=0.0, relativeStructuralDamping:float=0.0, forceSwitch:ForceSwitch=ForceSwitch.USE_STIFFNESS_MATRIX, printSwitch:PrintSwitch=PrintSwitch.FINAL_RESULTS, additionalStructuralDampingSpecification:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", iterationMethod=ResponseIterationMethod.NEWTON_RAPHSON, retry=False, maxNumberOfIterations=30, convergenceCriterion=ConvergenceCriterion.AMPNOR, convergenceLimit=0.0001, initialResponseEstimate=0.5, responseFrequencyOption=ResponseFrequencyOption.CONCURRENT, numberOfDominatingFrequencies=0, amplitudeLimit=0.01, lowerFrequencyCutoff=0.0, upperFrequencyCutoff=0.0, relativeStructuralDamping=0.0, forceSwitch=ForceSwitch.USE_CURVATURE, printSwitch=PrintSwitch.FINAL_RESULTS, additionalStructuralDampingSpecification=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__iterationMethod = iterationMethod
-        self.__retry = retry
-        self.__maxNumberOfIterations = maxNumberOfIterations
-        self.__convergenceCriterion = convergenceCriterion
-        self.__convergenceLimit = convergenceLimit
-        self.__initialResponseEstimate = initialResponseEstimate
-        self.__responseFrequencyOption = responseFrequencyOption
-        self.__numberOfDominatingFrequencies = numberOfDominatingFrequencies
-        self.__amplitudeLimit = amplitudeLimit
-        self.__lowerFrequencyCutoff = lowerFrequencyCutoff
-        self.__upperFrequencyCutoff = upperFrequencyCutoff
-        self.__relativeStructuralDamping = relativeStructuralDamping
-        self.__forceSwitch = forceSwitch
-        self.__printSwitch = printSwitch
-        self.__additionalStructuralDampingSpecification = additionalStructuralDampingSpecification
-        self.__additionalStructuralDampingParameters = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.iterationMethod = iterationMethod
+        self.retry = retry
+        self.maxNumberOfIterations = maxNumberOfIterations
+        self.convergenceCriterion = convergenceCriterion
+        self.convergenceLimit = convergenceLimit
+        self.initialResponseEstimate = initialResponseEstimate
+        self.responseFrequencyOption = responseFrequencyOption
+        self.numberOfDominatingFrequencies = numberOfDominatingFrequencies
+        self.amplitudeLimit = amplitudeLimit
+        self.lowerFrequencyCutoff = lowerFrequencyCutoff
+        self.upperFrequencyCutoff = upperFrequencyCutoff
+        self.relativeStructuralDamping = relativeStructuralDamping
+        self.forceSwitch = forceSwitch
+        self.printSwitch = printSwitch
+        self.additionalStructuralDampingSpecification = additionalStructuralDampingSpecification
+        self.additionalStructuralDampingParameters = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

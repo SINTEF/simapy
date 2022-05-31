@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simolineardampingmatrix import SIMOLinearDampingMatrixBlueprint
+from numpy import ndarray,asarray
 from sima.hydro.lineardampingmatrix import LinearDampingMatrix
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.dampingmatrixmotionmode import DampingMatrixMotionMode
@@ -20,19 +21,19 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix):
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    values : Sequence[float]
+    values : ndarray
     mode : DampingMatrixMotionMode
          Select which motions the damping matrix force should be calculated from. When 'default' is selected, low frequency motion is used for bodies of type '6 DOF - separated analysis' and total motion otherwise.
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", mode:DampingMatrixMotionMode=DampingMatrixMotionMode.DEFAULT, **kwargs):
+    def __init__(self , name="", description="", _id="", mode=DampingMatrixMotionMode.DEFAULT, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__values = list()
-        self.__mode = mode
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.values = ndarray(1)
+        self.mode = mode
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -87,16 +88,14 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix):
         self.__scriptableValues = value
 
     @property
-    def values(self) -> Sequence[float]:
+    def values(self) -> ndarray:
         """"""
         return self.__values
 
     @values.setter
-    def values(self, value: Sequence[float]):
+    def values(self, value: ndarray):
         """Set values"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__values = value
+        self.__values = asarray(value)
 
     @property
     def mode(self) -> DampingMatrixMotionMode:

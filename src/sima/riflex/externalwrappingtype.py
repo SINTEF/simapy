@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalwrappingtype import ExternalWrappingTypeBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -43,23 +44,23 @@ class ExternalWrappingType(NamedObject):
          Linear drag force coefficients in tangential direction(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", mass:float=0.0, buoyancy:float=0.0, gyrationRadius:float=0.0, coveredFraction:float=0.0, wrappingItemLength:float=1.0, tangentialDrag:float=0.0, normalDrag:float=0.0, tangentialAddedMass:float=0.0, normalAddedMass:float=0.0, tangentialLinearDrag:float=0.0, normalLinearDrag:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", mass=0.0, buoyancy=0.0, gyrationRadius=0.0, coveredFraction=0.0, wrappingItemLength=1.0, tangentialDrag=0.0, normalDrag=0.0, tangentialAddedMass=0.0, normalAddedMass=0.0, tangentialLinearDrag=0.0, normalLinearDrag=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__mass = mass
-        self.__buoyancy = buoyancy
-        self.__gyrationRadius = gyrationRadius
-        self.__coveredFraction = coveredFraction
-        self.__wrappingItemLength = wrappingItemLength
-        self.__tangentialDrag = tangentialDrag
-        self.__normalDrag = normalDrag
-        self.__tangentialAddedMass = tangentialAddedMass
-        self.__normalAddedMass = normalAddedMass
-        self.__tangentialLinearDrag = tangentialLinearDrag
-        self.__normalLinearDrag = normalLinearDrag
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.mass = mass
+        self.buoyancy = buoyancy
+        self.gyrationRadius = gyrationRadius
+        self.coveredFraction = coveredFraction
+        self.wrappingItemLength = wrappingItemLength
+        self.tangentialDrag = tangentialDrag
+        self.normalDrag = normalDrag
+        self.tangentialAddedMass = tangentialAddedMass
+        self.normalAddedMass = normalAddedMass
+        self.tangentialLinearDrag = tangentialLinearDrag
+        self.normalLinearDrag = normalLinearDrag
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

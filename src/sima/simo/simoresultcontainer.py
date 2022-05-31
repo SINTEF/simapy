@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simoresultcontainer import SIMOResultContainerBlueprint
+from typing import Dict
 from sima.sima.conditionresultcontainer import ConditionResultContainer
 from sima.sima.property import Property
 from sima.sima.resultentry import ResultEntry
@@ -34,19 +35,19 @@ class SIMOResultContainer(ConditionResultContainer):
     preRunResults : ResultEntry
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", modelOutputFile:str="", probability:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", modelOutputFile="", probability=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__modelOutputFile = modelOutputFile
-        self.__probability = probability
-        self.__static = None
-        self.__dynamic = None
-        self.__stability = None
-        self.__preRunResults = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.modelOutputFile = modelOutputFile
+        self.probability = probability
+        self.static = None
+        self.dynamic = None
+        self.stability = None
+        self.preRunResults = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

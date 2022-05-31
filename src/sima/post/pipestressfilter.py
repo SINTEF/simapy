@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pipestressfilter import PipeStressFilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -47,25 +48,25 @@ class PipeStressFilter(OperationNode):
     positionForStressCalculation : WallPoint
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, outerDiameter:float=0.0, pipeThickness:float=0.0, internalPressure:float=0.0, externalPressure:float=0.0, numberOfPoints:int=8, positionForStressCalculation:WallPoint=WallPoint.OUTER_WALL, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, outerDiameter=0.0, pipeThickness=0.0, internalPressure=0.0, externalPressure=0.0, numberOfPoints=8, positionForStressCalculation=WallPoint.OUTER_WALL, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__outerDiameter = outerDiameter
-        self.__pipeThickness = pipeThickness
-        self.__internalPressure = internalPressure
-        self.__externalPressure = externalPressure
-        self.__numberOfPoints = numberOfPoints
-        self.__positionForStressCalculation = positionForStressCalculation
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.outerDiameter = outerDiameter
+        self.pipeThickness = pipeThickness
+        self.internalPressure = internalPressure
+        self.externalPressure = externalPressure
+        self.numberOfPoints = numberOfPoints
+        self.positionForStressCalculation = positionForStressCalculation
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

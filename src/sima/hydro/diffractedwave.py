@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.diffractedwave import DiffractedWaveBlueprint
+from typing import Dict
 from sima.hydro.diffractedwaveelevation import DiffractedWaveElevation
 from sima.hydro.diffractedwavevelocity import DiffractedWaveVelocity
 from sima.sima.moao import MOAO
@@ -27,15 +28,15 @@ class DiffractedWave(MOAO):
     velocity : DiffractedWaveVelocity
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__referencePoint = Point3()
-        self.__elevation = None
-        self.__velocity = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.referencePoint = None
+        self.elevation = None
+        self.velocity = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

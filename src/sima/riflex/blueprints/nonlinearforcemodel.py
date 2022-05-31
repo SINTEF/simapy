@@ -15,7 +15,7 @@ class NonLinearForceModelBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("internalSlugFlow","boolean","Indicator for modelling forces from internal slug flow",default=False))
         self.attributes.append(EnumAttribute("hydrodynamicForce","sima/riflex/HydrodynamicForceIndicator","Indicator for hydrodynamic force model"))
         self.attributes.append(Attribute("maxHit","integer","Maximum number of load iterations (linear analysis). A negative value gives print of convergence for each step.",default=5))

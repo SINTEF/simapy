@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simofrequencydomaincalculation import SIMOFrequencyDomainCalculationBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.frequencyanalysistype import FrequencyAnalysisType
@@ -40,22 +41,22 @@ class SIMOFrequencyDomainCalculation(MOAO):
     linesToSimulate : List[FrequnecyDomainLineItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", analysisType:FrequencyAnalysisType=FrequencyAnalysisType.WAVE_FREQUENCY, linearization:Linearization=Linearization.STOCHASTIC, maximumNumberOfIterations:int=10, calculateLineDynamics:bool=True, estimationTime:float=10800.0, specifyLinesToSimulate:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", analysisType=FrequencyAnalysisType.WAVE_FREQUENCY, linearization=Linearization.STOCHASTIC, maximumNumberOfIterations=10, calculateLineDynamics=True, estimationTime=10800.0, specifyLinesToSimulate=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__analysisType = analysisType
-        self.__linearization = linearization
-        self.__maximumNumberOfIterations = maximumNumberOfIterations
-        self.__bodies = list()
-        self.__frequencyRangeLF = FrequencyRangeDefinition()
-        self.__frequencyRangeWF = FrequencyRangeDefinition()
-        self.__calculateLineDynamics = calculateLineDynamics
-        self.__estimationTime = estimationTime
-        self.__specifyLinesToSimulate = specifyLinesToSimulate
-        self.__linesToSimulate = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.analysisType = analysisType
+        self.linearization = linearization
+        self.maximumNumberOfIterations = maximumNumberOfIterations
+        self.bodies = list()
+        self.frequencyRangeLF = None
+        self.frequencyRangeWF = None
+        self.calculateLineDynamics = calculateLineDynamics
+        self.estimationTime = estimationTime
+        self.specifyLinesToSimulate = specifyLinesToSimulate
+        self.linesToSimulate = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

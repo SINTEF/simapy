@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.optimizationcalculationparameters import OptimizationCalculationParametersBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -37,20 +38,20 @@ class OptimizationCalculationParameters(MOAO):
          Try another solution if the underlying calculation fails(default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", desiredFinalAccuracy:float=0.01, tolerance:float=1e-12, minStepLength:float=1e-12, maxFunctionCalls:int=20, maxIterations:int=20, stackSize:int=10, automaticNormalization:bool=True, handleFailure:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", desiredFinalAccuracy=0.01, tolerance=1e-12, minStepLength=1e-12, maxFunctionCalls=20, maxIterations=20, stackSize=10, automaticNormalization=True, handleFailure=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__desiredFinalAccuracy = desiredFinalAccuracy
-        self.__tolerance = tolerance
-        self.__minStepLength = minStepLength
-        self.__maxFunctionCalls = maxFunctionCalls
-        self.__maxIterations = maxIterations
-        self.__stackSize = stackSize
-        self.__automaticNormalization = automaticNormalization
-        self.__handleFailure = handleFailure
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.desiredFinalAccuracy = desiredFinalAccuracy
+        self.tolerance = tolerance
+        self.minStepLength = minStepLength
+        self.maxFunctionCalls = maxFunctionCalls
+        self.maxIterations = maxIterations
+        self.stackSize = stackSize
+        self.automaticNormalization = automaticNormalization
+        self.handleFailure = handleFailure
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

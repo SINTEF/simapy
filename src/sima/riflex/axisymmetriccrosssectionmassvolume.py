@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.axisymmetriccrosssectionmassvolume import AxisymmetricCrossSectionMassVolumeBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -43,23 +44,23 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
          Inner contact radius (default = 0.0)(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", massCoefficient:float=0.0, extCrossSectionalArea:float=0.0, intCrossSectionalArea:float=0.0, gyrationRadius:float=0.0, crossSectionArea:float=0.0, crossSectionModulus:float=0.0, diameter:float=0.0, thickness:float=0.0, defaultStressCalculation:bool=True, extContactRadius:float=0.0, innerContactRadius:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, crossSectionArea=0.0, crossSectionModulus=0.0, diameter=0.0, thickness=0.0, defaultStressCalculation=True, extContactRadius=0.0, innerContactRadius=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__massCoefficient = massCoefficient
-        self.__extCrossSectionalArea = extCrossSectionalArea
-        self.__intCrossSectionalArea = intCrossSectionalArea
-        self.__gyrationRadius = gyrationRadius
-        self.__crossSectionArea = crossSectionArea
-        self.__crossSectionModulus = crossSectionModulus
-        self.__diameter = diameter
-        self.__thickness = thickness
-        self.__defaultStressCalculation = defaultStressCalculation
-        self.__extContactRadius = extContactRadius
-        self.__innerContactRadius = innerContactRadius
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.massCoefficient = massCoefficient
+        self.extCrossSectionalArea = extCrossSectionalArea
+        self.intCrossSectionalArea = intCrossSectionalArea
+        self.gyrationRadius = gyrationRadius
+        self.crossSectionArea = crossSectionArea
+        self.crossSectionModulus = crossSectionModulus
+        self.diameter = diameter
+        self.thickness = thickness
+        self.defaultStressCalculation = defaultStressCalculation
+        self.extContactRadius = extContactRadius
+        self.innerContactRadius = innerContactRadius
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

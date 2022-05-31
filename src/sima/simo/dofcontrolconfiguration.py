@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dofcontrolconfiguration import DOFControlConfigurationBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.controldof import ControlDOF
@@ -46,24 +47,24 @@ class DOFControlConfiguration(MOAO):
          Turn off proportional control and use damping only(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dof:ControlDOF=ControlDOF.NONE, mass:float=0.0, drag:float=0.0, stiffness:float=0.0, naturalPeriod:float=100.0, dampingFactor:float=0.7, integrationTime:float=0.0, cutOffPeriod:float=0.0, filterDampingFactor:float=0.0, integralLF:float=0.0, proportionalHF:float=0.1, dampingOnly:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", dof=ControlDOF.NONE, mass=0.0, drag=0.0, stiffness=0.0, naturalPeriod=100.0, dampingFactor=0.7, integrationTime=0.0, cutOffPeriod=0.0, filterDampingFactor=0.0, integralLF=0.0, proportionalHF=0.1, dampingOnly=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dof = dof
-        self.__mass = mass
-        self.__drag = drag
-        self.__stiffness = stiffness
-        self.__naturalPeriod = naturalPeriod
-        self.__dampingFactor = dampingFactor
-        self.__integrationTime = integrationTime
-        self.__cutOffPeriod = cutOffPeriod
-        self.__filterDampingFactor = filterDampingFactor
-        self.__integralLF = integralLF
-        self.__proportionalHF = proportionalHF
-        self.__dampingOnly = dampingOnly
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dof = dof
+        self.mass = mass
+        self.drag = drag
+        self.stiffness = stiffness
+        self.naturalPeriod = naturalPeriod
+        self.dampingFactor = dampingFactor
+        self.integrationTime = integrationTime
+        self.cutOffPeriod = cutOffPeriod
+        self.filterDampingFactor = filterDampingFactor
+        self.integralLF = integralLF
+        self.proportionalHF = proportionalHF
+        self.dampingOnly = dampingOnly
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

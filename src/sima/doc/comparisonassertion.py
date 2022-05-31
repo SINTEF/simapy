@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.comparisonassertion import ComparisonAssertionBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.severity import Severity
@@ -36,18 +37,18 @@ class ComparisonAssertion(MOAO):
          Expected output represented by the content of this file(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", severity:Severity=Severity.WARNING, message:str="", path:str="", read:bool=False, expectedOutput:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", severity=Severity.WARNING, message="", path="", read=False, expectedOutput="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__severity = severity
-        self.__message = message
-        self.__outputNode = None
-        self.__path = path
-        self.__read = read
-        self.__expectedOutput = expectedOutput
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.severity = severity
+        self.message = message
+        self.outputNode = None
+        self.path = path
+        self.read = read
+        self.expectedOutput = expectedOutput
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

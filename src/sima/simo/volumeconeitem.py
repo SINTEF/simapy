@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.volumeconeitem import VolumeConeItemBlueprint
+from typing import Dict
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.axis import Axis
@@ -36,18 +37,18 @@ class VolumeConeItem(VolumeMassPortion):
          Cone axis direction:\nX: parallell to Tank x-axis\nY: parallell to Tank y-axis\nZ: parallell to Tank z-axis
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", volume:Volume=Volume.ADD, length:float=0.0, diameterBottomPlane:float=0.0, diameterTopPlane:float=0.0, axis:Axis=Axis.X, **kwargs):
+    def __init__(self , name="", description="", _id="", volume=Volume.ADD, length=0.0, diameterBottomPlane=0.0, diameterTopPlane=0.0, axis=Axis.Z, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__volume = volume
-        self.__centerPoint = Point3()
-        self.__length = length
-        self.__diameterBottomPlane = diameterBottomPlane
-        self.__diameterTopPlane = diameterTopPlane
-        self.__axis = axis
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.volume = volume
+        self.centerPoint = None
+        self.length = length
+        self.diameterBottomPlane = diameterBottomPlane
+        self.diameterTopPlane = diameterTopPlane
+        self.axis = axis
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

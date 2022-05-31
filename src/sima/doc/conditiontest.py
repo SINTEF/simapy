@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.conditiontest import ConditionTestBlueprint
+from typing import Dict
 from sima.doc.comparisonassertion import ComparisonAssertion
 from sima.doc.duration import Duration
 from sima.doc.outputnodevalueassertion import OutputNodeValueAssertion
@@ -36,18 +37,18 @@ class ConditionTest(Test):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", disabled:bool=False, duration:Duration=Duration.MEDIUM, analysis:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", disabled=False, duration=Duration.MEDIUM, analysis="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__disabled = disabled
-        self.__duration = duration
-        self.__assertions = list()
-        self.__comparisons = list()
-        self.__condition = None
-        self.__analysis = analysis
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.disabled = disabled
+        self.duration = duration
+        self.assertions = list()
+        self.comparisons = list()
+        self.condition = None
+        self.analysis = analysis
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

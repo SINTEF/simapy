@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bodyforcestorageitem import BodyForceStorageItemBlueprint
+from typing import Dict
 from sima.riflex.bodyforcereferencesystem import BodyForceReferenceSystem
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -28,14 +29,14 @@ class BodyForceStorageItem(MOAO):
     referenceSystem : BodyForceReferenceSystem
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", referenceSystem:BodyForceReferenceSystem=BodyForceReferenceSystem.BODY_LOCAL, **kwargs):
+    def __init__(self , name="", description="", _id="", referenceSystem=BodyForceReferenceSystem.BODY_LOCAL, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__body = None
-        self.__referenceSystem = referenceSystem
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.body = None
+        self.referenceSystem = referenceSystem
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

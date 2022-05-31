@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.riflexvivanacalculationparameters import RIFLEXVivanaCalculationParametersBlueprint
+from typing import Dict
 from sima.riflex.addedmassfrequencydependency import AddedMassFrequencyDependency
 from sima.riflex.addedmassproperty import AddedMassProperty
 from sima.riflex.dampingfactorproperty import DampingFactorProperty
@@ -52,27 +53,27 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     addedMassFrequencyDependence : AddedMassFrequencyDependency
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", vivLoadType:VIVLoadType=VIVLoadType.CROSS_FLOW, waterTemperature:float=4.0, randomGenerator:RandomGenerator=RandomGenerator.LEGACY, addedMassFirstModeNumber:int=1000000, addedMassLastModeNumber:int=1000000, addedMassFrequencyDependence:AddedMassFrequencyDependency=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
+    def __init__(self , name="", description="", _id="", vivLoadType=VIVLoadType.CROSS_FLOW, waterTemperature=4.0, randomGenerator=RandomGenerator.LEGACY, addedMassFirstModeNumber=1000000, addedMassLastModeNumber=1000000, addedMassFrequencyDependence=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__eigenvalueAnalysisParameters = EigenvalueAnalysisParameters()
-        self.__responseAnalysisParameters = ResponseAnalysisParameters()
-        self.__fatigueProperties = FatigueProperties()
-        self.__vivLoadType = vivLoadType
-        self.__waterTemperature = waterTemperature
-        self.__randomGenerator = randomGenerator
-        self.__hydrodynamicCrossSectionProperties = list()
-        self.__excitationZoneProperties = list()
-        self.__addedMassProperties = list()
-        self.__excitationCoefficientProperties = list()
-        self.__dampingFactorProperties = list()
-        self.__strouhalSpecificationProperties = list()
-        self.__addedMassFirstModeNumber = addedMassFirstModeNumber
-        self.__addedMassLastModeNumber = addedMassLastModeNumber
-        self.__addedMassFrequencyDependence = addedMassFrequencyDependence
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.eigenvalueAnalysisParameters = None
+        self.responseAnalysisParameters = None
+        self.fatigueProperties = None
+        self.vivLoadType = vivLoadType
+        self.waterTemperature = waterTemperature
+        self.randomGenerator = randomGenerator
+        self.hydrodynamicCrossSectionProperties = list()
+        self.excitationZoneProperties = list()
+        self.addedMassProperties = list()
+        self.excitationCoefficientProperties = list()
+        self.dampingFactorProperties = list()
+        self.strouhalSpecificationProperties = list()
+        self.addedMassFirstModeNumber = addedMassFirstModeNumber
+        self.addedMassLastModeNumber = addedMassLastModeNumber
+        self.addedMassFrequencyDependence = addedMassFrequencyDependence
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

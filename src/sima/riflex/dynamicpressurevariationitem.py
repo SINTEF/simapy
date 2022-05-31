@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicpressurevariationitem import DynamicPressureVariationItemBlueprint
+from typing import Dict
 from sima.riflex.pressurevariationitem import PressureVariationItem
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -37,18 +38,18 @@ class DynamicPressureVariationItem(PressureVariationItem):
          End time for pressure variation(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", inletPressure:float=0.0, pressureDrop:float=0.0, fluidVelocity:float=0.0, startTime:float=0.0, endTime:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", inletPressure=0.0, pressureDrop=0.0, fluidVelocity=0.0, startTime=0.0, endTime=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__mainRiserLine = None
-        self.__inletPressure = inletPressure
-        self.__pressureDrop = pressureDrop
-        self.__fluidVelocity = fluidVelocity
-        self.__startTime = startTime
-        self.__endTime = endTime
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.mainRiserLine = None
+        self.inletPressure = inletPressure
+        self.pressureDrop = pressureDrop
+        self.fluidVelocity = fluidVelocity
+        self.startTime = startTime
+        self.endTime = endTime
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

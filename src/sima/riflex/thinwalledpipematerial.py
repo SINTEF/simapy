@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thinwalledpipematerial import ThinWalledPipeMaterialBlueprint
+from typing import Dict
 from sima.riflex.materialmodel import MaterialModel
 from sima.riflex.strainstressitem import StrainStressItem
 from sima.sima.moao import MOAO
@@ -39,20 +40,20 @@ class ThinWalledPipeMaterial(MOAO):
          Strain-stress curve.
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", materialModel:MaterialModel=MaterialModel.LINEAR_MATERIAL, elasticityModulus:float=0.0, shearModulus:float=0.0, yieldStress:float=0.0, strainStressCurveRise:float=0.0, materialHardening:float=1.0, numIntegrationPoints:int=16, **kwargs):
+    def __init__(self , name="", description="", _id="", materialModel=MaterialModel.LINEAR_MATERIAL, elasticityModulus=0.0, shearModulus=0.0, yieldStress=0.0, strainStressCurveRise=0.0, materialHardening=1.0, numIntegrationPoints=16, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__materialModel = materialModel
-        self.__elasticityModulus = elasticityModulus
-        self.__shearModulus = shearModulus
-        self.__yieldStress = yieldStress
-        self.__strainStressCurveRise = strainStressCurveRise
-        self.__materialHardening = materialHardening
-        self.__numIntegrationPoints = numIntegrationPoints
-        self.__strainStressCharacteristics = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.materialModel = materialModel
+        self.elasticityModulus = elasticityModulus
+        self.shearModulus = shearModulus
+        self.yieldStress = yieldStress
+        self.strainStressCurveRise = strainStressCurveRise
+        self.materialHardening = materialHardening
+        self.numIntegrationPoints = numIntegrationPoints
+        self.strainStressCharacteristics = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

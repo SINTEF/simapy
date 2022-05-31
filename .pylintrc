@@ -1,2 +1,5 @@
 [MASTER]
 max-line-length=240
+disable=
+    invalid-name,
+    C0114

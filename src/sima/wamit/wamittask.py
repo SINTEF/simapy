@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamittask import WamitTaskBlueprint
+from typing import Dict
 from sima.condition.conditiontask import ConditionTask
 from sima.condition.conditiontaskcondition import ConditionTaskCondition
 from sima.condition.initialcondition import InitialCondition
@@ -41,22 +42,22 @@ class WamitTask(ConditionTask):
     model : WamitModel
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", runNumber:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", runNumber=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__doubleVariables = list()
-        self.__integerVariables = list()
-        self.__stringVariables = list()
-        self.__runNumber = runNumber
-        self.__scripts = list()
-        self.__variations = list()
-        self.__referenceVariables = list()
-        self.__initialCondition = InitialCondition()
-        self.__conditions = list()
-        self.__model = WamitModel()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.doubleVariables = list()
+        self.integerVariables = list()
+        self.stringVariables = list()
+        self.runNumber = runNumber
+        self.scripts = list()
+        self.variations = list()
+        self.referenceVariables = list()
+        self.initialCondition = None
+        self.conditions = list()
+        self.model = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

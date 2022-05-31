@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.gdfcylinder import GDFCylinderBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -37,20 +38,20 @@ class GDFCylinder(MOAO):
          Exponent in depth distribution(default 2.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dimensionalLength:float=1.0, centerX:float=0.0, centerY:float=0.0, radius:float=40.0, numberOfRadialPanels:int=20, depth:float=20.0, numberOfVerticalPanels:int=10, exponent:float=2.0, **kwargs):
+    def __init__(self , name="", description="", _id="", dimensionalLength=1.0, centerX=0.0, centerY=0.0, radius=40.0, numberOfRadialPanels=20, depth=20.0, numberOfVerticalPanels=10, exponent=2.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dimensionalLength = dimensionalLength
-        self.__centerX = centerX
-        self.__centerY = centerY
-        self.__radius = radius
-        self.__numberOfRadialPanels = numberOfRadialPanels
-        self.__depth = depth
-        self.__numberOfVerticalPanels = numberOfVerticalPanels
-        self.__exponent = exponent
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dimensionalLength = dimensionalLength
+        self.centerX = centerX
+        self.centerY = centerY
+        self.radius = radius
+        self.numberOfRadialPanels = numberOfRadialPanels
+        self.depth = depth
+        self.numberOfVerticalPanels = numberOfVerticalPanels
+        self.exponent = exponent
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

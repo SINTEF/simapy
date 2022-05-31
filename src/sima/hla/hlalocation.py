@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlalocation import HLALocationBlueprint
+from typing import Dict
 from sima.environment.seasurface import SeaSurface
 from sima.hla.sim3dbottom import SIM3DBottom
 from sima.sima.flatbottom import FlatBottom
@@ -43,23 +44,23 @@ class HLALocation(Location):
     sim3DBottom : SIM3DBottom
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", relativeCompassAngle:float=0.0, utmX:float=0.0, utmY:float=0.0, gridZone:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, gridZone="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__initialViewpoint = InitialViewpoint()
-        self.__initialRotationpoint = Point3()
-        self.__viewpoints = list()
-        self.__relativeCompassAngle = relativeCompassAngle
-        self.__utmX = utmX
-        self.__utmY = utmY
-        self.__gridZone = gridZone
-        self.__infrastructureBodies = list()
-        self.__seaSurface = SeaSurface()
-        self.__flatBottom = None
-        self.__sim3DBottom = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.initialViewpoint = None
+        self.initialRotationpoint = None
+        self.viewpoints = list()
+        self.relativeCompassAngle = relativeCompassAngle
+        self.utmX = utmX
+        self.utmY = utmY
+        self.gridZone = gridZone
+        self.infrastructureBodies = list()
+        self.seaSurface = None
+        self.flatBottom = None
+        self.sim3DBottom = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

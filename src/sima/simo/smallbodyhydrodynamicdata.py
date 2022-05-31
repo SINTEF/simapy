@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.smallbodyhydrodynamicdata import SmallBodyHydrodynamicDataBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.depthdependency import DepthDependency
@@ -55,27 +56,27 @@ class SmallBodyHydrodynamicData(MOAO):
     diffractedWave : DiffractedWave
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", svol:float=0.0, am1:float=0.0, am2:float=0.0, am3:float=0.0, c11:float=0.0, c12:float=0.0, c13:float=0.0, c21:float=0.0, c22:float=0.0, c23:float=0.0, zcoef:float=0.0, depthDependency:DepthDependency=DepthDependency.WAVE_ELEVATION, **kwargs):
+    def __init__(self , name="", description="", _id="", svol=0.0, am1=0.0, am2=0.0, am3=0.0, c11=0.0, c12=0.0, c13=0.0, c21=0.0, c22=0.0, c23=0.0, zcoef=0.0, depthDependency=DepthDependency.WAVE_ELEVATION, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__svol = svol
-        self.__am1 = am1
-        self.__am2 = am2
-        self.__am3 = am3
-        self.__c11 = c11
-        self.__c12 = c12
-        self.__c13 = c13
-        self.__c21 = c21
-        self.__c22 = c22
-        self.__c23 = c23
-        self.__zcoef = zcoef
-        self.__depthDependency = depthDependency
-        self.__depthDependentHydrodynamicCoefficients = list()
-        self.__soilPenetration = None
-        self.__diffractedWave = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.svol = svol
+        self.am1 = am1
+        self.am2 = am2
+        self.am3 = am3
+        self.c11 = c11
+        self.c12 = c12
+        self.c13 = c13
+        self.c21 = c21
+        self.c22 = c22
+        self.c23 = c23
+        self.zcoef = zcoef
+        self.depthDependency = depthDependency
+        self.depthDependentHydrodynamicCoefficients = list()
+        self.soilPenetration = None
+        self.diffractedWave = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

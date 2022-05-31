@@ -15,7 +15,7 @@ class SlugForceSpecificationBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("enterTime","number","Time when slug enters first end of main riser line",default=0.0))
         self.attributes.append(EnumAttribute("interruption","sima/riflex/SlugForceInterruption","Interruption parameter"))
         self.attributes.append(Attribute("length","number","Initial slug length",default=0.0))

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.sand import SandBlueprint
+from typing import Dict
 from sima.riflex.soil import Soil
 from sima.riflex.soildampingitem import SoilDampingItem
 from sima.sima.scriptablevalue import ScriptableValue
@@ -49,26 +50,26 @@ class Sand(Soil):
          Limiting tip resistance(default 1900000.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", strainVelocityExponent:float=1.0, calculateDamping:bool=False, upperWeight:float=0.0, lowerWeight:float=0.0, displacement:float=0.0, frequency:float=0.0, initialShearModulus:float=0.0, upperFrictionAngle:float=0.0, lowerFrictionAngle:float=0.0, angleOfSoilFriction:float=15.0, limitingSkinFriction:float=48000.0, bearingFactor:float=8.0, limitingTipResistance:float=1900000.0, **kwargs):
+    def __init__(self , name="", description="", _id="", strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperFrictionAngle=0.0, lowerFrictionAngle=0.0, angleOfSoilFriction=15.0, limitingSkinFriction=48000.0, bearingFactor=8.0, limitingTipResistance=1900000.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__strainVelocityExponent = strainVelocityExponent
-        self.__calculateDamping = calculateDamping
-        self.__dampingItems = list()
-        self.__upperWeight = upperWeight
-        self.__lowerWeight = lowerWeight
-        self.__displacement = displacement
-        self.__frequency = frequency
-        self.__initialShearModulus = initialShearModulus
-        self.__upperFrictionAngle = upperFrictionAngle
-        self.__lowerFrictionAngle = lowerFrictionAngle
-        self.__angleOfSoilFriction = angleOfSoilFriction
-        self.__limitingSkinFriction = limitingSkinFriction
-        self.__bearingFactor = bearingFactor
-        self.__limitingTipResistance = limitingTipResistance
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.strainVelocityExponent = strainVelocityExponent
+        self.calculateDamping = calculateDamping
+        self.dampingItems = list()
+        self.upperWeight = upperWeight
+        self.lowerWeight = lowerWeight
+        self.displacement = displacement
+        self.frequency = frequency
+        self.initialShearModulus = initialShearModulus
+        self.upperFrictionAngle = upperFrictionAngle
+        self.lowerFrictionAngle = lowerFrictionAngle
+        self.angleOfSoilFriction = angleOfSoilFriction
+        self.limitingSkinFriction = limitingSkinFriction
+        self.bearingFactor = bearingFactor
+        self.limitingTipResistance = limitingTipResistance
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

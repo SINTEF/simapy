@@ -15,7 +15,7 @@ class OffsetVariationItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(EnumAttribute("referenceType","sima/riflex/ReferenceType","Reference to moving point"))
         self.attributes.append(Attribute("dx","number","Displacement increment, x-direction",default=0.0))
         self.attributes.append(Attribute("dy","number","Displacement increment, y-direction",default=0.0))

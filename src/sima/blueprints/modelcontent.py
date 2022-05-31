@@ -14,4 +14,4 @@ class ModelContentBlueprint(Blueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(BlueprintAttribute("header","sima/Header","",True))
-        self.attributes.append(BlueprintAttribute("contents","simasystem/SIMOS/NamedEntity","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("contents","simasystem/SIMOS/NamedEntity","",True,Dimension("*")))

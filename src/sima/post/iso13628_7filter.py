@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.iso13628_7filter import ISO13628_7FilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -47,25 +48,25 @@ class ISO13628_7Filter(OperationNode):
          Design factor(default 0.8)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, ultimateTensionCapacity:float=0.0, ultimateBendingCapacity:float=0.0, ultimatePressureCapacity:float=0.0, internalPressure:float=0.0, externalPressure:float=0.0, designFactor:float=0.8, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, ultimateTensionCapacity=0.0, ultimateBendingCapacity=0.0, ultimatePressureCapacity=0.0, internalPressure=0.0, externalPressure=0.0, designFactor=0.8, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__ultimateTensionCapacity = ultimateTensionCapacity
-        self.__ultimateBendingCapacity = ultimateBendingCapacity
-        self.__ultimatePressureCapacity = ultimatePressureCapacity
-        self.__internalPressure = internalPressure
-        self.__externalPressure = externalPressure
-        self.__designFactor = designFactor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.ultimateTensionCapacity = ultimateTensionCapacity
+        self.ultimateBendingCapacity = ultimateBendingCapacity
+        self.ultimatePressureCapacity = ultimatePressureCapacity
+        self.internalPressure = internalPressure
+        self.externalPressure = externalPressure
+        self.designFactor = designFactor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

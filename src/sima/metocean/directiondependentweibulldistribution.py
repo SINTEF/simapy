@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.directiondependentweibulldistribution import DirectionDependentWeibullDistributionBlueprint
+from typing import Dict
 from sima.metocean.weibulldistribution import WeibullDistribution
 from sima.metocean.weibulldistributionitem import WeibullDistributionItem
 from sima.sima.scriptablevalue import ScriptableValue
@@ -29,16 +30,16 @@ class DirectionDependentWeibullDistribution(WeibullDistribution):
     items : List[WeibullDistributionItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", returnPeriod:float=0.0, level:float=0.0, duration:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", returnPeriod=0.0, level=0.0, duration=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__returnPeriod = returnPeriod
-        self.__level = level
-        self.__duration = duration
-        self.__items = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.returnPeriod = returnPeriod
+        self.level = level
+        self.duration = duration
+        self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

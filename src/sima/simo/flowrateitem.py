@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.flowrateitem import FlowRateItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class FlowRateItem(MOAO):
          Mass rate used until next time instant(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", time:float=0.0, rate:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", time=0.0, rate=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__time = time
-        self.__rate = rate
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.time = time
+        self.rate = rate
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

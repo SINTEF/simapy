@@ -15,7 +15,7 @@ class GrowthLevelBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("levelZCoordinate","number","Z coordinate of level given in global coordinate system",default=0.0))
         self.attributes.append(Attribute("thickness","number","Growth thickness at this level",default=0.0))
         self.attributes.append(Attribute("density","number","Growth density at this level",default=0.0))

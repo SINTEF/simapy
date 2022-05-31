@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.referenceframe import ReferenceFrameBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -35,19 +36,19 @@ class ReferenceFrame(NamedObject):
          Global  Z-axis rotation(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", xGlobal:float=0.0, yGlobal:float=0.0, zGlobal:float=0.0, rxGlobal:float=0.0, ryGlobal:float=0.0, rzGlobal:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", xGlobal=0.0, yGlobal=0.0, zGlobal=0.0, rxGlobal=0.0, ryGlobal=0.0, rzGlobal=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__parent = None
-        self.__xGlobal = xGlobal
-        self.__yGlobal = yGlobal
-        self.__zGlobal = zGlobal
-        self.__rxGlobal = rxGlobal
-        self.__ryGlobal = ryGlobal
-        self.__rzGlobal = rzGlobal
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.parent = None
+        self.xGlobal = xGlobal
+        self.yGlobal = yGlobal
+        self.zGlobal = zGlobal
+        self.rxGlobal = rxGlobal
+        self.ryGlobal = ryGlobal
+        self.rzGlobal = rzGlobal
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

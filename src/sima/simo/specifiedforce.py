@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.specifiedforce import SpecifiedForceBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -42,22 +43,22 @@ class SpecifiedForce(NamedObject):
     attachmentPoint : Point3
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", referenceFrame:ReferenceFrameType=ReferenceFrameType.LOCAL, activationTime:float=0.0, deactivationTime:float=100000.0, loadType:SpecifiedLoadType=SpecifiedLoadType.CONSTANT, period:float=0.0, phase:float=0.0, magnitude:float=0.0, forceDerivative:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", referenceFrame=ReferenceFrameType.LOCAL, activationTime=0.0, deactivationTime=100000.0, loadType=SpecifiedLoadType.CONSTANT, period=0.0, phase=0.0, magnitude=0.0, forceDerivative=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__referenceFrame = referenceFrame
-        self.__directionVector = Vector3()
-        self.__activationTime = activationTime
-        self.__deactivationTime = deactivationTime
-        self.__loadType = loadType
-        self.__period = period
-        self.__phase = phase
-        self.__magnitude = magnitude
-        self.__forceDerivative = forceDerivative
-        self.__attachmentPoint = Point3()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.referenceFrame = referenceFrame
+        self.directionVector = None
+        self.activationTime = activationTime
+        self.deactivationTime = deactivationTime
+        self.loadType = loadType
+        self.period = period
+        self.phase = phase
+        self.magnitude = magnitude
+        self.forceDerivative = forceDerivative
+        self.attachmentPoint = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

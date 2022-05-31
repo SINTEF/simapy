@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simoheavecompensator import SIMOHeaveCompensatorBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.compensatorlimitation import CompensatorLimitation
@@ -52,27 +53,27 @@ class SIMOHeaveCompensator(NamedObject):
          Number of wire parts from crane top to hook(default 1)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", _type:CompensatorType=CompensatorType.GENERIC, limitationMode:CompensatorLimitation=CompensatorLimitation.FACTOR, factor:float=0.0, clippingLevel:float=0.0, numWiresCylinder:int=2, strokeLength:float=0.0, cylinderArea:float=0.0, feedbackGainFactor:float=0.0, feedbackTimeDerivative:float=0.0, feedforwardGainFactor:float=0.0, feedforwardTimeDerivative:float=0.0, valveCharacteristics:float=0.0, valveTimeConstant:float=0.0, lowPassTimeConstant:float=0.0, numWiresTopHook:int=1, **kwargs):
+    def __init__(self , name="", description="", _id="", _type=CompensatorType.GENERIC, limitationMode=CompensatorLimitation.FACTOR, factor=0.0, clippingLevel=0.0, numWiresCylinder=2, strokeLength=0.0, cylinderArea=0.0, feedbackGainFactor=0.0, feedbackTimeDerivative=0.0, feedforwardGainFactor=0.0, feedforwardTimeDerivative=0.0, valveCharacteristics=0.0, valveTimeConstant=0.0, lowPassTimeConstant=0.0, numWiresTopHook=1, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.___type = _type
-        self.__limitationMode = limitationMode
-        self.__factor = factor
-        self.__clippingLevel = clippingLevel
-        self.__numWiresCylinder = numWiresCylinder
-        self.__strokeLength = strokeLength
-        self.__cylinderArea = cylinderArea
-        self.__feedbackGainFactor = feedbackGainFactor
-        self.__feedbackTimeDerivative = feedbackTimeDerivative
-        self.__feedforwardGainFactor = feedforwardGainFactor
-        self.__feedforwardTimeDerivative = feedforwardTimeDerivative
-        self.__valveCharacteristics = valveCharacteristics
-        self.__valveTimeConstant = valveTimeConstant
-        self.__lowPassTimeConstant = lowPassTimeConstant
-        self.__numWiresTopHook = numWiresTopHook
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self._type = _type
+        self.limitationMode = limitationMode
+        self.factor = factor
+        self.clippingLevel = clippingLevel
+        self.numWiresCylinder = numWiresCylinder
+        self.strokeLength = strokeLength
+        self.cylinderArea = cylinderArea
+        self.feedbackGainFactor = feedbackGainFactor
+        self.feedbackTimeDerivative = feedbackTimeDerivative
+        self.feedforwardGainFactor = feedforwardGainFactor
+        self.feedforwardTimeDerivative = feedforwardTimeDerivative
+        self.valveCharacteristics = valveCharacteristics
+        self.valveTimeConstant = valveTimeConstant
+        self.lowPassTimeConstant = lowPassTimeConstant
+        self.numWiresTopHook = numWiresTopHook
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

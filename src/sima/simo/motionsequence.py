@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.motionsequence import MotionSequenceBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class MotionSequence(MOAO):
          Acceleration / retardation for start and stop of sequence(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", start:float=0.0, stop:float=0.0, deltaPos:float=0.0, speed:float=0.0, acceleration:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", start=0.0, stop=0.0, deltaPos=0.0, speed=0.0, acceleration=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__start = start
-        self.__stop = stop
-        self.__deltaPos = deltaPos
-        self.__speed = speed
-        self.__acceleration = acceleration
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.start = start
+        self.stop = stop
+        self.deltaPos = deltaPos
+        self.speed = speed
+        self.acceleration = acceleration
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

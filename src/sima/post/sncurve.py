@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.sncurve import SNCurveBlueprint
+from typing import Dict
 from sima.post.fatiguelimitindicator import FatigueLimitIndicator
 from sima.post.sncurveitem import SNCurveItem
 from sima.post.sncurvetype import SNCurveType
@@ -41,22 +42,22 @@ class SNCurve(NamedObject):
          Logarithm of number of stress cycles for which the SN curve becomes horizontal.(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", usePredefinedCurve:bool=False, predefinedCurve:SNCurveType=SNCurveType.DNV_B1, negativeInverseSlope:float=0.0, interceptStress:float=0.0, thicknessExponent:float=1.0, referenceThicknessFactor:float=1.0, fatigueLimitIndicator:FatigueLimitIndicator=FatigueLimitIndicator.STRESS_RANGE, fatigueLimitStress:float=0.0, fatigueLimitCycles:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", usePredefinedCurve=False, predefinedCurve=SNCurveType.DNV_B1, negativeInverseSlope=0.0, interceptStress=0.0, thicknessExponent=1.0, referenceThicknessFactor=1.0, fatigueLimitIndicator=FatigueLimitIndicator.STRESS_RANGE, fatigueLimitStress=0.0, fatigueLimitCycles=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__usePredefinedCurve = usePredefinedCurve
-        self.__predefinedCurve = predefinedCurve
-        self.__negativeInverseSlope = negativeInverseSlope
-        self.__interceptStress = interceptStress
-        self.__thicknessExponent = thicknessExponent
-        self.__referenceThicknessFactor = referenceThicknessFactor
-        self.__curveItems = list()
-        self.__fatigueLimitIndicator = fatigueLimitIndicator
-        self.__fatigueLimitStress = fatigueLimitStress
-        self.__fatigueLimitCycles = fatigueLimitCycles
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.usePredefinedCurve = usePredefinedCurve
+        self.predefinedCurve = predefinedCurve
+        self.negativeInverseSlope = negativeInverseSlope
+        self.interceptStress = interceptStress
+        self.thicknessExponent = thicknessExponent
+        self.referenceThicknessFactor = referenceThicknessFactor
+        self.curveItems = list()
+        self.fatigueLimitIndicator = fatigueLimitIndicator
+        self.fatigueLimitStress = fatigueLimitStress
+        self.fatigueLimitCycles = fatigueLimitCycles
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

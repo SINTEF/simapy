@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.stabilitycalculationparameters import StabilityCalculationParametersBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.dofelimination import DOFElimination
@@ -47,23 +48,23 @@ class StabilityCalculationParameters(MOAO):
          (default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", forceTolerance:float=100.0, momentTolerance:float=1000.0, minAzimuthAngle:float=0.0, maxAzimuthAngle:float=0.0, numAzimuthValues:int=0, minRotationAngle:float=0.0, maxRotationAngle:float=0.0, numRotationvalues:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", forceTolerance=100.0, momentTolerance=1000.0, minAzimuthAngle=0.0, maxAzimuthAngle=0.0, numAzimuthValues=0, minRotationAngle=0.0, maxRotationAngle=0.0, numRotationvalues=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__forceTolerance = forceTolerance
-        self.__momentTolerance = momentTolerance
-        self.__staticEquilibriumBodies = list()
-        self.__restrainFromGlobalDOFBodies = list()
-        self.__body = None
-        self.__minAzimuthAngle = minAzimuthAngle
-        self.__maxAzimuthAngle = maxAzimuthAngle
-        self.__numAzimuthValues = numAzimuthValues
-        self.__minRotationAngle = minRotationAngle
-        self.__maxRotationAngle = maxRotationAngle
-        self.__numRotationvalues = numRotationvalues
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.forceTolerance = forceTolerance
+        self.momentTolerance = momentTolerance
+        self.staticEquilibriumBodies = list()
+        self.restrainFromGlobalDOFBodies = list()
+        self.body = None
+        self.minAzimuthAngle = minAzimuthAngle
+        self.maxAzimuthAngle = maxAzimuthAngle
+        self.numAzimuthValues = numAzimuthValues
+        self.minRotationAngle = minRotationAngle
+        self.maxRotationAngle = maxRotationAngle
+        self.numRotationvalues = numRotationvalues
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

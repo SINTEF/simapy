@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.filecopynode import FileCopyNodeBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.outputslot import OutputSlot
@@ -45,24 +46,24 @@ class FileCopyNode(RunNode):
     outputSlot : OutputSlot
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, ignoreEmptyInput:bool=False, folder:bool=False, path:str="", retainStructure:bool=False, cleanUpFolder:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, ignoreEmptyInput=False, folder=False, path="", retainStructure=False, cleanUpFolder=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__ignoreEmptyInput = ignoreEmptyInput
-        self.__folder = folder
-        self.__path = path
-        self.__retainStructure = retainStructure
-        self.__cleanUpFolder = cleanUpFolder
-        self.__inputSlot = InputSlot()
-        self.__outputSlot = OutputSlot()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.ignoreEmptyInput = ignoreEmptyInput
+        self.folder = folder
+        self.path = path
+        self.retainStructure = retainStructure
+        self.cleanUpFolder = cleanUpFolder
+        self.inputSlot = None
+        self.outputSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

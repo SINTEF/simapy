@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.yawcontroller import YawControllerBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.windturbine.yawcontrollertype import YawControllerType
@@ -35,19 +36,19 @@ class YawController(MOAO):
          Filter period for yaw misalignment signal. Used to determine end time for yawing back to set point(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", yawControllerType:YawControllerType=YawControllerType.NONE, timeStep:float=0.0, setPoint:float=0.0, yawRate:float=0.0, errorThreshold:float=0.0, fastLowPassFilterPeriod:float=0.0, slowLowPassFilterPeriod:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", yawControllerType=YawControllerType.NONE, timeStep=0.0, setPoint=0.0, yawRate=0.0, errorThreshold=0.0, fastLowPassFilterPeriod=0.0, slowLowPassFilterPeriod=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__yawControllerType = yawControllerType
-        self.__timeStep = timeStep
-        self.__setPoint = setPoint
-        self.__yawRate = yawRate
-        self.__errorThreshold = errorThreshold
-        self.__fastLowPassFilterPeriod = fastLowPassFilterPeriod
-        self.__slowLowPassFilterPeriod = slowLowPassFilterPeriod
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.yawControllerType = yawControllerType
+        self.timeStep = timeStep
+        self.setPoint = setPoint
+        self.yawRate = yawRate
+        self.errorThreshold = errorThreshold
+        self.fastLowPassFilterPeriod = fastLowPassFilterPeriod
+        self.slowLowPassFilterPeriod = slowLowPassFilterPeriod
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

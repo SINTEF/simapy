@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.ratchetcoupling import RatchetCouplingBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.failuremode import FailureMode
@@ -49,24 +50,24 @@ class RatchetCoupling(NamedObject):
          Maximum force(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", _type:RatchetType=RatchetType.TENSION, staticForce:float=0.0, stiffness:float=0.0, startTime:float=0.0, dampingCoefficient:float=0.0, exponent:float=0.0, minVelocity:float=0.0, failureMode:FailureMode=FailureMode.NONE, failureTime:float=0.0, maximumForce:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", _type=RatchetType.TENSION, staticForce=0.0, stiffness=0.0, startTime=0.0, dampingCoefficient=0.0, exponent=0.0, minVelocity=0.0, failureMode=FailureMode.NONE, failureTime=0.0, maximumForce=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__endPoint1 = None
-        self.__endPoint2 = None
-        self.___type = _type
-        self.__staticForce = staticForce
-        self.__stiffness = stiffness
-        self.__startTime = startTime
-        self.__dampingCoefficient = dampingCoefficient
-        self.__exponent = exponent
-        self.__minVelocity = minVelocity
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__maximumForce = maximumForce
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.endPoint1 = None
+        self.endPoint2 = None
+        self._type = _type
+        self.staticForce = staticForce
+        self.stiffness = stiffness
+        self.startTime = startTime
+        self.dampingCoefficient = dampingCoefficient
+        self.exponent = exponent
+        self.minVelocity = minVelocity
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.maximumForce = maximumForce
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

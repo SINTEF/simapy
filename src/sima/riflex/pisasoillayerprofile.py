@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pisasoillayerprofile import PisaSoilLayerProfileBlueprint
+from typing import Dict
 from sima.riflex.pisalineitem import PisaLineItem
 from sima.riflex.pisasoillayer import PisaSoilLayer
 from sima.riflex.soillayerprofile import SoilLayerProfile
@@ -29,16 +30,16 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     embeddedLines : List[PisaLineItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", topLevelSoilPosition:TopLevelSoilPosition=TopLevelSoilPosition.RELATIVE_TO_SEAFLOOR, offsetSeafloorToTopSoil:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", topLevelSoilPosition=TopLevelSoilPosition.RELATIVE_TO_SEAFLOOR, offsetSeafloorToTopSoil=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__topLevelSoilPosition = topLevelSoilPosition
-        self.__offsetSeafloorToTopSoil = offsetSeafloorToTopSoil
-        self.__soilLayers = list()
-        self.__embeddedLines = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.topLevelSoilPosition = topLevelSoilPosition
+        self.offsetSeafloorToTopSoil = offsetSeafloorToTopSoil
+        self.soilLayers = list()
+        self.embeddedLines = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

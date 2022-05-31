@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wavetimeseries import WaveTimeSeriesBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -39,21 +40,21 @@ class WaveTimeSeries(MOAO):
          Upper cut off period for filtering of wave signal(default 40.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", scaleFactor:float=1.0, refPointX:float=0.0, refPointY:float=0.0, waterDepth:float=0.0, fileName:str="", filterInputTimeseries:bool=True, specifyLowerPeriod:bool=True, lowerCutOffPeriod:float=0.0, upperCutOffPeriod:float=40.0, **kwargs):
+    def __init__(self , name="", description="", _id="", scaleFactor=1.0, refPointX=0.0, refPointY=0.0, waterDepth=0.0, fileName="", filterInputTimeseries=True, specifyLowerPeriod=True, lowerCutOffPeriod=0.0, upperCutOffPeriod=40.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__scaleFactor = scaleFactor
-        self.__refPointX = refPointX
-        self.__refPointY = refPointY
-        self.__waterDepth = waterDepth
-        self.__fileName = fileName
-        self.__filterInputTimeseries = filterInputTimeseries
-        self.__specifyLowerPeriod = specifyLowerPeriod
-        self.__lowerCutOffPeriod = lowerCutOffPeriod
-        self.__upperCutOffPeriod = upperCutOffPeriod
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.scaleFactor = scaleFactor
+        self.refPointX = refPointX
+        self.refPointY = refPointY
+        self.waterDepth = waterDepth
+        self.fileName = fileName
+        self.filterInputTimeseries = filterInputTimeseries
+        self.specifyLowerPeriod = specifyLowerPeriod
+        self.lowerCutOffPeriod = lowerCutOffPeriod
+        self.upperCutOffPeriod = upperCutOffPeriod
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

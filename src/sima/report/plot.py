@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.plot import PlotBlueprint
+from typing import Dict
 from sima.report.reportitem import ReportItem
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -34,17 +35,17 @@ class Plot(ReportItem):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", caption:str="", mergeSeries:bool=False, xLabel:str="", yLabel:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", caption="", mergeSeries=False, xLabel="", yLabel="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__object = None
-        self.__caption = caption
-        self.__mergeSeries = mergeSeries
-        self.__xLabel = xLabel
-        self.__yLabel = yLabel
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.object = None
+        self.caption = caption
+        self.mergeSeries = mergeSeries
+        self.xLabel = xLabel
+        self.yLabel = yLabel
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

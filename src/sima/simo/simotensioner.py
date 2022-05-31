@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simotensioner import SIMOTensionerBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class SIMOTensioner(NamedObject):
          Stiffness at specified pretension(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", pretension:float=0.0, maxRate:float=0.0, stiffness:float=0.0, strokeLength:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", pretension=0.0, maxRate=0.0, stiffness=0.0, strokeLength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__pretension = pretension
-        self.__maxRate = maxRate
-        self.__stiffness = stiffness
-        self.__strokeLength = strokeLength
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.pretension = pretension
+        self.maxRate = maxRate
+        self.stiffness = stiffness
+        self.strokeLength = strokeLength
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

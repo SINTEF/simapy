@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.gittaskfolder import GitTaskFolderBlueprint
+from typing import Dict
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.task import Task
 from sima.sima.taskfolder import TaskFolder
@@ -34,19 +35,19 @@ class GitTaskFolder(TaskFolder):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", visible:bool=True, remoteURI:str="", branch:str="", lastCommitMessage:str="", repositoryFolder:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", visible=True, remoteURI="", branch="", lastCommitMessage="", repositoryFolder="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__childFolders = list()
-        self.__childTasks = list()
-        self.__visible = visible
-        self.__remoteURI = remoteURI
-        self.__branch = branch
-        self.__lastCommitMessage = lastCommitMessage
-        self.__repositoryFolder = repositoryFolder
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.childFolders = list()
+        self.childTasks = list()
+        self.visible = visible
+        self.remoteURI = remoteURI
+        self.branch = branch
+        self.lastCommitMessage = lastCommitMessage
+        self.repositoryFolder = repositoryFolder
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

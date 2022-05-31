@@ -15,6 +15,6 @@ class VariableInputSetBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("parameter","sima/sima/SingleParameter","",False))
-        self.attributes.append(Attribute("variations","string","",Dimension("size",""),default=""))
+        self.attributes.append(Attribute("variations","string","",Dimension("*"),default=""))

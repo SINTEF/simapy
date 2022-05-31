@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regularwaveitem import RegularWaveItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class RegularWaveItem(MOAO):
          Wave propagation direction(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", amplitude:float=0.0, period:float=0.0, phase:float=0.0, direction:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", amplitude=0.0, period=0.0, phase=0.0, direction=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__amplitude = amplitude
-        self.__period = period
-        self.__phase = phase
-        self.__direction = direction
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.amplitude = amplitude
+        self.period = period
+        self.phase = phase
+        self.direction = direction
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

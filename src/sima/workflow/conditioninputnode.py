@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.conditioninputnode import ConditionInputNodeBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.outputslot import OutputSlot
@@ -60,30 +61,30 @@ class ConditionInputNode(RunNode):
     fileInputSlot : InputSlot
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, analysis:str="", inputCondition:bool=False, setFolderName:bool=False, folderName:str="", addInputFiles:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, analysis="", inputCondition=False, setFolderName=False, folderName="", addInputFiles=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__variableInputSlots = list()
-        self.__modelReferenceInputSlot = None
-        self.__condition = None
-        self.__analysis = analysis
-        self.__outputSlot = OutputSlot()
-        self.__additionalFiles = list()
-        self.__modelOutput = list()
-        self.__modelInputSlots = list()
-        self.__inputCondition = inputCondition
-        self.__setFolderName = setFolderName
-        self.__folderName = folderName
-        self.__addInputFiles = addInputFiles
-        self.__fileInputSlot = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.variableInputSlots = list()
+        self.modelReferenceInputSlot = None
+        self.condition = None
+        self.analysis = analysis
+        self.outputSlot = None
+        self.additionalFiles = list()
+        self.modelOutput = list()
+        self.modelInputSlots = list()
+        self.inputCondition = inputCondition
+        self.setFolderName = setFolderName
+        self.folderName = folderName
+        self.addInputFiles = addInputFiles
+        self.fileInputSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

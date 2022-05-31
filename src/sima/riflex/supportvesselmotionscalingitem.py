@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.supportvesselmotionscalingitem import SupportVesselMotionScalingItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -38,19 +39,19 @@ class SupportVesselMotionScalingItem(MOAO):
          Scaling for global Z-rotation(default 1.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", scalx:float=1.0, scaly:float=1.0, scalz:float=1.0, scalxr:float=1.0, scalyr:float=1.0, scalzr:float=1.0, **kwargs):
+    def __init__(self , name="", description="", _id="", scalx=1.0, scaly=1.0, scalz=1.0, scalxr=1.0, scalyr=1.0, scalzr=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__supportVessel = None
-        self.__scalx = scalx
-        self.__scaly = scaly
-        self.__scalz = scalz
-        self.__scalxr = scalxr
-        self.__scalyr = scalyr
-        self.__scalzr = scalzr
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.supportVessel = None
+        self.scalx = scalx
+        self.scaly = scaly
+        self.scalz = scalz
+        self.scalxr = scalxr
+        self.scalyr = scalyr
+        self.scalzr = scalzr
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

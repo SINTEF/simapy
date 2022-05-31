@@ -15,7 +15,7 @@ class NonlinearBuoyancyCorrectionBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("fileName","string","Name of geometry file ('.gdf'-file)",default=""))
         self.attributes.append(BlueprintAttribute("location","sima/sima/Point3","",True))
         self.attributes.append(Attribute("minZ","number","Minimum vertical range value to be used given in '.gdf' file system",default=0.0))

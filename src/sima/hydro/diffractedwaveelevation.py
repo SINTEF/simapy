@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.diffractedwaveelevation import DiffractedWaveElevationBlueprint
+from numpy import ndarray,asarray
 from sima.hydro.directiondependentcomplexvalues import DirectionDependentComplexValues
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -20,20 +21,20 @@ class DiffractedWaveElevation(MOAO):
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    directions : Sequence[float]
-    frequencies : Sequence[float]
+    directions : ndarray
+    frequencies : ndarray
     elevation : DirectionDependentComplexValues
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__directions = list()
-        self.__frequencies = list()
-        self.__elevation = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.directions = ndarray(1)
+        self.frequencies = ndarray(1)
+        self.elevation = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -88,28 +89,24 @@ class DiffractedWaveElevation(MOAO):
         self.__scriptableValues = value
 
     @property
-    def directions(self) -> Sequence[float]:
+    def directions(self) -> ndarray:
         """"""
         return self.__directions
 
     @directions.setter
-    def directions(self, value: Sequence[float]):
+    def directions(self, value: ndarray):
         """Set directions"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__directions = value
+        self.__directions = asarray(value)
 
     @property
-    def frequencies(self) -> Sequence[float]:
+    def frequencies(self) -> ndarray:
         """"""
         return self.__frequencies
 
     @frequencies.setter
-    def frequencies(self, value: Sequence[float]):
+    def frequencies(self, value: ndarray):
         """Set frequencies"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__frequencies = value
+        self.__frequencies = asarray(value)
 
     @property
     def elevation(self) -> DirectionDependentComplexValues:

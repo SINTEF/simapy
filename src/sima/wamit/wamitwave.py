@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitwave import WamitWaveBlueprint
+from numpy import ndarray,asarray
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -19,20 +20,20 @@ class WamitWave(MOAO):
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    periods : Sequence[float]
+    periods : ndarray
          Wave periods
-    headings : Sequence[float]
+    headings : ndarray
          Wave headings
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__periods = list()
-        self.__headings = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.periods = ndarray(1)
+        self.headings = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -87,25 +88,21 @@ class WamitWave(MOAO):
         self.__scriptableValues = value
 
     @property
-    def periods(self) -> Sequence[float]:
+    def periods(self) -> ndarray:
         """Wave periods"""
         return self.__periods
 
     @periods.setter
-    def periods(self, value: Sequence[float]):
+    def periods(self, value: ndarray):
         """Set periods"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__periods = value
+        self.__periods = asarray(value)
 
     @property
-    def headings(self) -> Sequence[float]:
+    def headings(self) -> ndarray:
         """Wave headings"""
         return self.__headings
 
     @headings.setter
-    def headings(self, value: Sequence[float]):
+    def headings(self, value: ndarray):
         """Set headings"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__headings = value
+        self.__headings = asarray(value)

@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.workflowreportfragment import WorkflowReportFragmentBlueprint
+from typing import Dict
 from sima.report.reportfragment import ReportFragment
 from sima.report.reportitem import ReportItem
 from sima.sima.scriptablevalue import ScriptableValue
@@ -28,14 +29,14 @@ class WorkflowReportFragment(ReportFragment):
     items : List[ReportItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__fragment = None
-        self.__items = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.fragment = None
+        self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

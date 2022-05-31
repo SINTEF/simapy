@@ -15,7 +15,7 @@ class BodyEigenvalueItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("body","sima/simo/SIMOBody","Selected body to compute eigenvalues for",False))
         self.attributes.append(Attribute("surgeExcursion","number","Excursion in surge",default=1.0))
         self.attributes.append(Attribute("swayExcursion","number","Excursion in sway",default=1.0))

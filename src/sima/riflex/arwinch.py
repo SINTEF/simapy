@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.arwinch import ARWinchBlueprint
+from typing import Dict
 from sima.riflex.centerofwinch import CenterOfWinch
 from sima.riflex.end import End
 from sima.riflex.segmentreference import SegmentReference
@@ -62,29 +63,29 @@ class ARWinch(SegmentReference,NamedObject):
          Control parameter for adjusting the length of elements attached to winch(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, segmentEnd:End=End.ONE, relativeSegmentLength:float=0.0, x1:float=0.0, y1:float=0.0, z1:float=0.0, rotation:float=0.0, rotationDirection:float=0.0, maxVelocity:float=0.0, timeToMaxVelocity:float=0.0, lineRelease:bool=False, radius:float=0.0, winchCenter:CenterOfWinch=CenterOfWinch.NEGATIVE_Z_AXIS, lengthJustification:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, segmentEnd=End.ONE, relativeSegmentLength=0.0, x1=0.0, y1=0.0, z1=0.0, rotation=0.0, rotationDirection=0.0, maxVelocity=0.0, timeToMaxVelocity=0.0, lineRelease=False, radius=0.0, winchCenter=CenterOfWinch.NEGATIVE_Z_AXIS, lengthJustification=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__segmentEnd = segmentEnd
-        self.__relativeSegmentLength = relativeSegmentLength
-        self.__x1 = x1
-        self.__y1 = y1
-        self.__z1 = z1
-        self.__rotation = rotation
-        self.__rotationDirection = rotationDirection
-        self.__attachedBody = None
-        self.__maxVelocity = maxVelocity
-        self.__timeToMaxVelocity = timeToMaxVelocity
-        self.__lineRelease = lineRelease
-        self.__radius = radius
-        self.__winchCenter = winchCenter
-        self.__lengthJustification = lengthJustification
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.segmentEnd = segmentEnd
+        self.relativeSegmentLength = relativeSegmentLength
+        self.x1 = x1
+        self.y1 = y1
+        self.z1 = z1
+        self.rotation = rotation
+        self.rotationDirection = rotationDirection
+        self.attachedBody = None
+        self.maxVelocity = maxVelocity
+        self.timeToMaxVelocity = timeToMaxVelocity
+        self.lineRelease = lineRelease
+        self.radius = radius
+        self.winchCenter = winchCenter
+        self.lengthJustification = lengthJustification
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

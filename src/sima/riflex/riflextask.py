@@ -5,17 +5,18 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.riflextask import RIFLEXTaskBlueprint
+from typing import Dict
 from sima.condition.conditiontaskcondition import ConditionTaskCondition
 from sima.condition.initialcondition import InitialCondition
 from sima.condition.modelreferencevariable import ModelReferenceVariable
 from sima.condition.modelvariation import ModelVariation
+from sima.riflex.riflexmodel import RIFLEXModel
 from sima.sima.doublevariable import DoubleVariable
 from sima.sima.integervariable import IntegerVariable
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.simascript import SIMAScript
 from sima.sima.stringvariable import StringVariable
 from sima.simo.massunit import MassUnit
-from sima.riflex.riflexmodel import RIFLEXModel
 from sima.simo.simotask import SIMOTask
 
 class RIFLEXTask(SIMOTask):
@@ -64,33 +65,33 @@ class RIFLEXTask(SIMOTask):
          (default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", runNumber:int=0, simoMemory:int=128, removeIntermediateFiles:bool=True, exportMassUnit:MassUnit=MassUnit.MG, exportAsFMU:bool=False, riflexStamodMemory:int=512, numRiflexStamodArrays:int=20000, riflexDynmodMemory:int=512, vivanaWorkArraySize:int=9000000, maxRiflexArrays:int=2000, riflexOutmodMemory:int=32, skipRiflexDynmodTransformation:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, exportAsFMU=False, riflexStamodMemory=512, numRiflexStamodArrays=20000, riflexDynmodMemory=512, vivanaWorkArraySize=9000000, maxRiflexArrays=2000, riflexOutmodMemory=32, skipRiflexDynmodTransformation=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__doubleVariables = list()
-        self.__integerVariables = list()
-        self.__stringVariables = list()
-        self.__runNumber = runNumber
-        self.__scripts = list()
-        self.__variations = list()
-        self.__referenceVariables = list()
-        self.__initialCondition = InitialCondition()
-        self.__conditions = list()
-        self.__model = RIFLEXModel()
-        self.__simoMemory = simoMemory
-        self.__removeIntermediateFiles = removeIntermediateFiles
-        self.__exportMassUnit = exportMassUnit
-        self.__exportAsFMU = exportAsFMU
-        self.__riflexStamodMemory = riflexStamodMemory
-        self.__numRiflexStamodArrays = numRiflexStamodArrays
-        self.__riflexDynmodMemory = riflexDynmodMemory
-        self.__vivanaWorkArraySize = vivanaWorkArraySize
-        self.__maxRiflexArrays = maxRiflexArrays
-        self.__riflexOutmodMemory = riflexOutmodMemory
-        self.__skipRiflexDynmodTransformation = skipRiflexDynmodTransformation
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.doubleVariables = list()
+        self.integerVariables = list()
+        self.stringVariables = list()
+        self.runNumber = runNumber
+        self.scripts = list()
+        self.variations = list()
+        self.referenceVariables = list()
+        self.initialCondition = None
+        self.conditions = list()
+        self.model = None
+        self.simoMemory = simoMemory
+        self.removeIntermediateFiles = removeIntermediateFiles
+        self.exportMassUnit = exportMassUnit
+        self.exportAsFMU = exportAsFMU
+        self.riflexStamodMemory = riflexStamodMemory
+        self.numRiflexStamodArrays = numRiflexStamodArrays
+        self.riflexDynmodMemory = riflexDynmodMemory
+        self.vivanaWorkArraySize = vivanaWorkArraySize
+        self.maxRiflexArrays = maxRiflexArrays
+        self.riflexOutmodMemory = riflexOutmodMemory
+        self.skipRiflexDynmodTransformation = skipRiflexDynmodTransformation
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

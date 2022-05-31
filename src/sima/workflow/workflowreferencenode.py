@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.workflowreferencenode import WorkflowReferenceNodeBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.runnode import RunNode
 from sima.sima.scriptablevalue import ScriptableValue
@@ -50,25 +51,25 @@ class WorkflowReferenceNode(RunNode):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, inputWorkflow:bool=False, setFolderName:bool=False, folderName:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__variableInputSlots = list()
-        self.__modelReferenceInputSlot = None
-        self.__workflow = None
-        self.__workflowOutputSlots = list()
-        self.__workflowInputSlots = list()
-        self.__inputWorkflow = inputWorkflow
-        self.__setFolderName = setFolderName
-        self.__folderName = folderName
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.variableInputSlots = list()
+        self.modelReferenceInputSlot = None
+        self.workflow = None
+        self.workflowOutputSlots = list()
+        self.workflowInputSlots = list()
+        self.inputWorkflow = inputWorkflow
+        self.setFolderName = setFolderName
+        self.folderName = folderName
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

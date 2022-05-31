@@ -15,7 +15,7 @@ class OutputNodeValueAssertionBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(EnumAttribute("severity","sima/sima/Severity",""))
         self.attributes.append(Attribute("message","string","",default=""))
         self.attributes.append(BlueprintAttribute("outputNode","sima/post/OutputNode","",False))

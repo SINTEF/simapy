@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.retardationfunctioncalculationnode import RetardationFunctionCalculationNodeBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.outputslot import OutputSlot
@@ -47,26 +48,26 @@ class RetardationFunctionCalculationNode(RunNode):
          Factor used together with structural mass to cut a degree of freedom.  Small factor means larger chance of cutting(default 100000.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, timeStep:float=0.5, powerOfTwo:int=13, cutFactor:float=200.0, useStructuralMass:bool=True, massCutFactor:float=100000.0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, timeStep=0.5, powerOfTwo=13, cutFactor=200.0, useStructuralMass=True, massCutFactor=100000.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__radiationData = InputSlot()
-        self.__structuralMass = InputSlot()
-        self.__extraDamping = InputSlot()
-        self.__outputSlot = OutputSlot()
-        self.__timeStep = timeStep
-        self.__powerOfTwo = powerOfTwo
-        self.__cutFactor = cutFactor
-        self.__useStructuralMass = useStructuralMass
-        self.__massCutFactor = massCutFactor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.radiationData = None
+        self.structuralMass = None
+        self.extraDamping = None
+        self.outputSlot = None
+        self.timeStep = timeStep
+        self.powerOfTwo = powerOfTwo
+        self.cutFactor = cutFactor
+        self.useStructuralMass = useStructuralMass
+        self.massCutFactor = massCutFactor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

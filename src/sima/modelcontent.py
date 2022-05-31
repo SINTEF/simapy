@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.modelcontent import ModelContentBlueprint
+from typing import Dict
 from dmt.named_entity import NamedEntity
 from sima.header import Header
 
@@ -20,12 +21,12 @@ class ModelContent(Entity):
     contents : List[NamedEntity]
     """
 
-    def __init__(self , name:str="", description:str="", **kwargs):
+    def __init__(self , name="", description="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__header = None
-        self.__contents = list()
+        self.name = name
+        self.description = description
+        self.header = None
+        self.contents = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

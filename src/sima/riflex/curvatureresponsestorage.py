@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.curvatureresponsestorage import CurvatureResponseStorageBlueprint
+from typing import Dict
 from sima.riflex.elementreference import ElementReference
 from sima.riflex.fileformatcode import FileFormatCode
 from sima.sima.moao import MOAO
@@ -29,15 +30,15 @@ class CurvatureResponseStorage(MOAO):
          Specification of nodes for displacement storage
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", storageStep:int=1, format:FileFormatCode=FileFormatCode.BINARY_OUTPUT_ONLY, **kwargs):
+    def __init__(self , name="", description="", _id="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__storageStep = storageStep
-        self.__format = format
-        self.__elements = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.storageStep = storageStep
+        self.format = format
+        self.elements = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

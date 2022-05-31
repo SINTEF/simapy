@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fatigueanalysisitem import FatigueAnalysisItemBlueprint
+from typing import Dict
 from sima.riflex.elementreference import ElementReference
 from sima.riflex.end import End
 from sima.sima.scriptablevalue import ScriptableValue
@@ -50,24 +51,24 @@ class FatigueAnalysisItem(ElementReference):
          Optional section modulus(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, elementNumber:int=1, allElements:bool=False, allEnds:bool=False, elementEnd:End=End.ONE, stressConcentrationFactor:float=1.0, effectiveThickness:float=0.0, crossSectionalArea:float=0.0, sectionModulus:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, stressConcentrationFactor=1.0, effectiveThickness=0.0, crossSectionalArea=0.0, sectionModulus=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__elementNumber = elementNumber
-        self.__allElements = allElements
-        self.__allEnds = allEnds
-        self.__elementEnd = elementEnd
-        self.__stressConcentrationFactor = stressConcentrationFactor
-        self.__snCurve = None
-        self.__effectiveThickness = effectiveThickness
-        self.__crossSectionalArea = crossSectionalArea
-        self.__sectionModulus = sectionModulus
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.elementNumber = elementNumber
+        self.allElements = allElements
+        self.allEnds = allEnds
+        self.elementEnd = elementEnd
+        self.stressConcentrationFactor = stressConcentrationFactor
+        self.snCurve = None
+        self.effectiveThickness = effectiveThickness
+        self.crossSectionalArea = crossSectionalArea
+        self.sectionModulus = sectionModulus
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

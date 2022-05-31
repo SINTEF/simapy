@@ -5,14 +5,14 @@ from enum import auto
 
 class PlotSize(Enum):
     """"""
-    dynamic = auto()
-    fixed = auto()
-    fixed_aspect_ratio = auto()
+    DYNAMIC = auto()
+    FIXED = auto()
+    FIXED_ASPECT_RATIO = auto()
 
     def label(self):
-        if self == PlotSize.dynamic:
+        if self == PlotSize.DYNAMIC:
             return "Dynamic"
-        if self == PlotSize.fixed:
+        if self == PlotSize.FIXED:
             return "Fixed"
-        if self == PlotSize.fixed_aspect_ratio:
+        if self == PlotSize.FIXED_ASPECT_RATIO:
             return "Fixed Aspect Ratio"

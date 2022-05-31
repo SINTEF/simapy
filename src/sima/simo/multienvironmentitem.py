@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.multienvironmentitem import MultiEnvironmentItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -30,15 +31,15 @@ class MultiEnvironmentItem(MOAO):
          Duration of cosine fading from previous to new environment. It is recommended to use at least 10*peak period for the fade-in duration.(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", startingTime:float=0.0, rampDuration:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", startingTime=0.0, rampDuration=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__environment = None
-        self.__startingTime = startingTime
-        self.__rampDuration = rampDuration
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.environment = None
+        self.startingTime = startingTime
+        self.rampDuration = rampDuration
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

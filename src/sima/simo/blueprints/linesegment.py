@@ -15,7 +15,7 @@ class LineSegmentBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("length","number","Length of the segment",default=0.0))
         self.attributes.append(BlueprintAttribute("buoy","sima/simo/BuoyType","",False))
         self.attributes.append(EnumAttribute("segmentType","sima/simo/SegmentType","Segment type"))

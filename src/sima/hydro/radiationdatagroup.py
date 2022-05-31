@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.radiationdatagroup import RadiationDataGroupBlueprint
+from typing import Dict
 from sima.hydro.addedmassinfinitefrequency import AddedMassInfiniteFrequency
 from sima.hydro.addedmasszerofrequency import AddedMassZeroFrequency
 from sima.hydro.frequencydependentaddedmass import FrequencyDependentAddedMass
@@ -31,17 +32,17 @@ class RadiationDataGroup(MOAO):
     addedMassInfiniteFrequency : AddedMassInfiniteFrequency
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__frequencyDependentAddedMass = None
-        self.__frequencyDependentDamping = None
-        self.__retardationFunction = None
-        self.__addedMassZeroFrequency = None
-        self.__addedMassInfiniteFrequency = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.frequencyDependentAddedMass = None
+        self.frequencyDependentDamping = None
+        self.retardationFunction = None
+        self.addedMassZeroFrequency = None
+        self.addedMassInfiniteFrequency = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

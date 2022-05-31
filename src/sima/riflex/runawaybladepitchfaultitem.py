@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.runawaybladepitchfaultitem import RunawayBladePitchFaultItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -32,16 +33,16 @@ class RunawayBladePitchFaultItem(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", startTime:float=0.0, bladePitchRangeRate:float=0.0, finalPitch:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", startTime=0.0, bladePitchRangeRate=0.0, finalPitch=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__startTime = startTime
-        self.__line = None
-        self.__bladePitchRangeRate = bladePitchRangeRate
-        self.__finalPitch = finalPitch
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.startTime = startTime
+        self.line = None
+        self.bladePitchRangeRate = bladePitchRangeRate
+        self.finalPitch = finalPitch
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

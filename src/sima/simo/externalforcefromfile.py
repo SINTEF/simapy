@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalforcefromfile import ExternalForceFromFileBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -41,21 +42,21 @@ class ExternalForceFromFile(NamedObject):
          Moment about Z-axis(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", forceFile:str="", referenceFrame:ReferenceFrameType=ReferenceFrameType.LOCAL, fx:float=0.0, fy:float=0.0, fz:float=0.0, mx:float=0.0, my:float=0.0, mz:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", forceFile="", referenceFrame=ReferenceFrameType.LOCAL, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__forceFile = forceFile
-        self.__referenceFrame = referenceFrame
-        self.__attachmentPoint = Point3()
-        self.__fx = fx
-        self.__fy = fy
-        self.__fz = fz
-        self.__mx = mx
-        self.__my = my
-        self.__mz = mz
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.forceFile = forceFile
+        self.referenceFrame = referenceFrame
+        self.attachmentPoint = None
+        self.fx = fx
+        self.fy = fy
+        self.fz = fz
+        self.mx = mx
+        self.my = my
+        self.mz = mz
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

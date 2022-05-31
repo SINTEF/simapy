@@ -11,5 +11,5 @@ class ReportItemBlueprint(Blueprint):
 
     def __init__(self, name="ReportItem", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string",""))
-        self.attributes.append(Attribute("description","string",""))
+        self.attributes.append(Attribute("name","string","",default=""))
+        self.attributes.append(Attribute("description","string","",default=""))

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.appearance import AppearanceBlueprint
+from typing import Dict
 from sima.sima.geomrepresentationtype import GeomRepresentationType
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -39,21 +40,21 @@ class Appearance(MOAO):
          Symmetric properties of the geometry
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", graphicsfile:str="", geomRepresentationType:GeomRepresentationType=GeomRepresentationType.DEFAULT_BOX, radius:float=1.0, transparency:float=0.0, symmetry:Symmetry=Symmetry.NONE, **kwargs):
+    def __init__(self , name="", description="", _id="", graphicsfile="", geomRepresentationType=GeomRepresentationType.DEFAULT_BOX, radius=1.0, transparency=0.0, symmetry=Symmetry.NONE, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__graphicsfile = graphicsfile
-        self.__translation = Vector3()
-        self.__rotation = Vector3()
-        self.__scaling = Vector3(x=1.0,y=1.0,z=1.0)
-        self.__color = SIMAColor()
-        self.__geomRepresentationType = geomRepresentationType
-        self.__radius = radius
-        self.__transparency = transparency
-        self.__symmetry = symmetry
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.graphicsfile = graphicsfile
+        self.translation = None
+        self.rotation = None
+        self.scaling = None
+        self.color = None
+        self.geomRepresentationType = geomRepresentationType
+        self.radius = radius
+        self.transparency = transparency
+        self.symmetry = symmetry
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

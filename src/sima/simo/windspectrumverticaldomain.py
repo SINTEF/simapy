@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windspectrumverticaldomain import WindSpectrumVerticalDomainBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class WindSpectrumVerticalDomain(MOAO):
          Should computation of wind velocity outside specified limits be allowed?(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", specifyVerticalDomain:bool=False, numberOfLevels:int=0, zMinimum:float=0.0, zMaximum:float=0.0, allowOutsideDomain:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", specifyVerticalDomain=False, numberOfLevels=0, zMinimum=0.0, zMaximum=0.0, allowOutsideDomain=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__specifyVerticalDomain = specifyVerticalDomain
-        self.__numberOfLevels = numberOfLevels
-        self.__zMinimum = zMinimum
-        self.__zMaximum = zMaximum
-        self.__allowOutsideDomain = allowOutsideDomain
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.specifyVerticalDomain = specifyVerticalDomain
+        self.numberOfLevels = numberOfLevels
+        self.zMinimum = zMinimum
+        self.zMaximum = zMaximum
+        self.allowOutsideDomain = allowOutsideDomain
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

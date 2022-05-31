@@ -15,7 +15,7 @@ class SupportVesselMotionScalingItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("supportVessel","sima/riflex/SupportVessel","",False))
         self.attributes.append(Attribute("scalx","number","Scaling for global X-motion",default=1.0))
         self.attributes.append(Attribute("scaly","number","Scaling for global Y-motion",default=1.0))

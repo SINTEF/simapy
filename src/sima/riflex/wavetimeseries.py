@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wavetimeseries import WaveTimeSeriesBlueprint
+from typing import Dict
 from sima.riflex.fileformatascistar import FileFormatAsciStar
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -38,20 +39,20 @@ class WaveTimeSeries(MOAO):
          Global y-coordinate for position where time series is measured(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", fileName:str="", fileFormat:FileFormatAsciStar=FileFormatAsciStar.ASCII, timeColumnNum:int=1, waveColumnNum:int=2, starFileVersion:int=0, direction:float=0.0, xgWav:float=0.0, ygWav:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", fileName="", fileFormat=FileFormatAsciStar.ASCII, timeColumnNum=1, waveColumnNum=2, starFileVersion=0, direction=0.0, xgWav=0.0, ygWav=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__fileName = fileName
-        self.__fileFormat = fileFormat
-        self.__timeColumnNum = timeColumnNum
-        self.__waveColumnNum = waveColumnNum
-        self.__starFileVersion = starFileVersion
-        self.__direction = direction
-        self.__xgWav = xgWav
-        self.__ygWav = ygWav
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.fileName = fileName
+        self.fileFormat = fileFormat
+        self.timeColumnNum = timeColumnNum
+        self.waveColumnNum = waveColumnNum
+        self.starFileVersion = starFileVersion
+        self.direction = direction
+        self.xgWav = xgWav
+        self.ygWav = ygWav
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

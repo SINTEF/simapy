@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitbodyresult import WamitBodyResultBlueprint
+from typing import Dict
 from sima.hydro.externalstiffnessmatrix import ExternalStiffnessMatrix
 from sima.hydro.firstordermotiontransferfunction import FirstOrderMotionTransferFunction
 from sima.hydro.hydrostaticstiffnessdata import HydrostaticStiffnessData
@@ -64,36 +65,36 @@ class WamitBodyResult(MOAO):
     hydrostaticStiffness : HydrostaticStiffnessData
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", characteristicLength:float=0.0, x:float=0.0, y:float=0.0, z:float=0.0, rz:float=0.0, symmetryAboutX:bool=False, symmetryAboutY:bool=False, gravity:float=0.0, waterDensity:float=0.0, waterDepth:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", characteristicLength=0.0, x=0.0, y=0.0, z=0.0, rz=0.0, symmetryAboutX=False, symmetryAboutY=False, gravity=0.0, waterDensity=0.0, waterDepth=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__firstOrderMotionTransferFunction = None
-        self.__firstOrderWaveForceTransferFunctionDiffraction = None
-        self.__firstOrderWaveForceTransferFunctionHaskind = None
-        self.__characteristicLength = characteristicLength
-        self.__x = x
-        self.__y = y
-        self.__z = z
-        self.__rz = rz
-        self.__symmetryAboutX = symmetryAboutX
-        self.__symmetryAboutY = symmetryAboutY
-        self.__gravity = gravity
-        self.__waterDensity = waterDensity
-        self.__volumes = None
-        self.__centreOfGravity = None
-        self.__centreOfBuoyancy = None
-        self.__radiationData = None
-        self.__waveDriftForceMomentum = None
-        self.__waveDriftForceControlSurface = None
-        self.__waveDriftForcePressure = None
-        self.__waterDepth = waterDepth
-        self.__externalStiffness = None
-        self.__structuralMass = None
-        self.__linearDamping = None
-        self.__hydrostaticStiffness = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.firstOrderMotionTransferFunction = None
+        self.firstOrderWaveForceTransferFunctionDiffraction = None
+        self.firstOrderWaveForceTransferFunctionHaskind = None
+        self.characteristicLength = characteristicLength
+        self.x = x
+        self.y = y
+        self.z = z
+        self.rz = rz
+        self.symmetryAboutX = symmetryAboutX
+        self.symmetryAboutY = symmetryAboutY
+        self.gravity = gravity
+        self.waterDensity = waterDensity
+        self.volumes = None
+        self.centreOfGravity = None
+        self.centreOfBuoyancy = None
+        self.radiationData = None
+        self.waveDriftForceMomentum = None
+        self.waveDriftForceControlSurface = None
+        self.waveDriftForcePressure = None
+        self.waterDepth = waterDepth
+        self.externalStiffness = None
+        self.structuralMass = None
+        self.linearDamping = None
+        self.hydrostaticStiffness = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

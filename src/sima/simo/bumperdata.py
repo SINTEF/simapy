@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bumperdata import BumperDataBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -30,18 +31,18 @@ class BumperData(NamedObject):
     globalEnd2 : Point3
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", velocityLimit:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__velocityLimit = velocityLimit
-        self.__characteristic = ForceDampingCharacteristic()
-        self.__bodyEnd1 = Point3()
-        self.__bodyEnd2 = Point3()
-        self.__globalEnd1 = Point3()
-        self.__globalEnd2 = Point3()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.velocityLimit = velocityLimit
+        self.characteristic = None
+        self.bodyEnd1 = None
+        self.bodyEnd2 = None
+        self.globalEnd1 = None
+        self.globalEnd2 = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

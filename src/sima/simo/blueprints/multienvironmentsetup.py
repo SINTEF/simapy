@@ -15,7 +15,7 @@ class MultiEnvironmentSetupBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("windWaveLowerFrequency","number","Wind wave lower frequency limit",default=0.1))
         self.attributes.append(Attribute("windWaveUpperFrequency","number","Wind wave upper frequency limit",default=3.0))
         self.attributes.append(Attribute("swellWaveLowerFrequency","number","Swell wave lower frequency limit",default=0.05))

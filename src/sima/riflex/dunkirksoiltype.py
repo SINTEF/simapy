@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dunkirksoiltype import DunkirkSoilTypeBlueprint
+from typing import Dict
 from sima.riflex.dunkirksoilcoefficients import DunkirkSoilCoefficients
 from sima.riflex.soiltype import SoilType
 from sima.sima.scriptablevalue import ScriptableValue
@@ -36,21 +37,21 @@ class DunkirkSoilType(SoilType):
     baseMoment : DunkirkSoilCoefficients
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", requiredResolution:int=50, pvDamping:float=0.0, mtDamping:float=0.0, baseShearLoadDamping:float=0.0, baseMomentDamping:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", requiredResolution=50, pvDamping=0.0, mtDamping=0.0, baseShearLoadDamping=0.0, baseMomentDamping=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__requiredResolution = requiredResolution
-        self.__pvDamping = pvDamping
-        self.__mtDamping = mtDamping
-        self.__baseShearLoadDamping = baseShearLoadDamping
-        self.__baseMomentDamping = baseMomentDamping
-        self.__lateralDisplacementForce = DunkirkSoilCoefficients()
-        self.__inPlaneMomentRotation = DunkirkSoilCoefficients()
-        self.__baseShearLoad = DunkirkSoilCoefficients()
-        self.__baseMoment = DunkirkSoilCoefficients()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.requiredResolution = requiredResolution
+        self.pvDamping = pvDamping
+        self.mtDamping = mtDamping
+        self.baseShearLoadDamping = baseShearLoadDamping
+        self.baseMomentDamping = baseMomentDamping
+        self.lateralDisplacementForce = None
+        self.inPlaneMomentRotation = None
+        self.baseShearLoad = None
+        self.baseMoment = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

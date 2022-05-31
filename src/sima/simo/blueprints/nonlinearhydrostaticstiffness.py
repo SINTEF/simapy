@@ -15,7 +15,7 @@ class NonLinearHydrostaticStiffnessBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("geometryPosition","sima/sima/Position","",True))
         self.attributes.append(Attribute("geometryFile","string","Geometry definition file",default=""))
         self.attributes.append(Attribute("transparency","number","Geometry transparency, [0-1], where 1 is full transparency.",default=0.0))

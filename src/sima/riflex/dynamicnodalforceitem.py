@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicnodalforceitem import DynamicNodalForceItemBlueprint
+from typing import Dict
 from sima.riflex.coordinatesystem import CoordinateSystem
 from sima.riflex.forcecomponenttype import ForceComponentType
 from sima.riflex.segmentreference import SegmentReference
@@ -51,24 +52,24 @@ class DynamicNodalForceItem(SegmentReference):
          Force component parameter 3(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, node:int=0, dof:int=0, coordinateSystem:CoordinateSystem=CoordinateSystem.LOCAL, forceType:ForceComponentType=ForceComponentType.CONSTANT, timeOn:float=0.0, timeOff:float=0.0, p1:float=0.0, p2:float=0.0, p3:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, node=0, dof=0, coordinateSystem=CoordinateSystem.LOCAL, forceType=ForceComponentType.CONSTANT, timeOn=0.0, timeOff=0.0, p1=0.0, p2=0.0, p3=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__node = node
-        self.__dof = dof
-        self.__coordinateSystem = coordinateSystem
-        self.__forceType = forceType
-        self.__timeOn = timeOn
-        self.__timeOff = timeOff
-        self.__p1 = p1
-        self.__p2 = p2
-        self.__p3 = p3
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.node = node
+        self.dof = dof
+        self.coordinateSystem = coordinateSystem
+        self.forceType = forceType
+        self.timeOn = timeOn
+        self.timeOff = timeOff
+        self.p1 = p1
+        self.p2 = p2
+        self.p3 = p3
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

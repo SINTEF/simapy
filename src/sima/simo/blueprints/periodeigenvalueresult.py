@@ -15,7 +15,7 @@ class PeriodEigenvalueResultBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("period","number","Natural period",default=0.0))
         self.attributes.append(Attribute("surge","number","Value in surge ",default=0.0))
         self.attributes.append(Attribute("sway","number","Value in sway",default=0.0))

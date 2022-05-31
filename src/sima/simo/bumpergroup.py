@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bumpergroup import BumperGroupBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.bumperpart import BumperPart
@@ -32,17 +33,17 @@ class BumperGroup(NamedObject):
     body2Bumpers : List[BumperPart]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", velocityLimit:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__body1 = None
-        self.__body2 = None
-        self.__velocityLimit = velocityLimit
-        self.__body1Bumpers = list()
-        self.__body2Bumpers = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.body1 = None
+        self.body2 = None
+        self.velocityLimit = velocityLimit
+        self.body1Bumpers = list()
+        self.body2Bumpers = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

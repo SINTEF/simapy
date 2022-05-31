@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.iso_13628_7combinedloading import ISO_13628_7CombinedLoadingBlueprint
+from typing import Dict
 from sima.riflex.combinedloading import CombinedLoading
 from sima.riflex.combinedloadingproperties import CombinedLoadingProperties
 from sima.sima.scriptablevalue import ScriptableValue
@@ -44,23 +45,23 @@ class ISO_13628_7CombinedLoading(CombinedLoading):
          Design factor(default 0.8)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", refPointPressure:float=0.0, referencePoint:float=0.0, limitTimeInterval:bool=False, startTime:float=0.0, endTime:float=0.0, addIntermediateResults:bool=False, useDistributionFitting:bool=False, seastateReturnPeriod:float=3.0, percentile:float=0.57038, designFactor:float=0.8, **kwargs):
+    def __init__(self , name="", description="", _id="", refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, percentile=0.57038, designFactor=0.8, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__refPointPressure = refPointPressure
-        self.__referencePoint = referencePoint
-        self.__limitTimeInterval = limitTimeInterval
-        self.__startTime = startTime
-        self.__endTime = endTime
-        self.__addIntermediateResults = addIntermediateResults
-        self.__properties = list()
-        self.__useDistributionFitting = useDistributionFitting
-        self.__seastateReturnPeriod = seastateReturnPeriod
-        self.__percentile = percentile
-        self.__designFactor = designFactor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.refPointPressure = refPointPressure
+        self.referencePoint = referencePoint
+        self.limitTimeInterval = limitTimeInterval
+        self.startTime = startTime
+        self.endTime = endTime
+        self.addIntermediateResults = addIntermediateResults
+        self.properties = list()
+        self.useDistributionFitting = useDistributionFitting
+        self.seastateReturnPeriod = seastateReturnPeriod
+        self.percentile = percentile
+        self.designFactor = designFactor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

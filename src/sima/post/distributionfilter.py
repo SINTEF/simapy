@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.distributionfilter import DistributionFilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.distribution import Distribution
 from sima.post.inputslot import InputSlot
@@ -53,27 +54,27 @@ class DistributionFilter(OperationNode):
          Show output distribution in transformed axis(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, renameOutput:bool=True, distribution:Distribution=Distribution.RAYLEIGH, threshold:float=0.0, useReturnPeriod:bool=False, returnPeriod:float=3.0, probabilityLevel:float=0.5, extreme:PeakExtreme=PeakExtreme.MAX, transformAxis:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, renameOutput=True, distribution=Distribution.RAYLEIGH, threshold=0.0, useReturnPeriod=False, returnPeriod=3.0, probabilityLevel=0.5, extreme=PeakExtreme.MAX, transformAxis=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__renameOutput = renameOutput
-        self.__distribution = distribution
-        self.__threshold = threshold
-        self.__useReturnPeriod = useReturnPeriod
-        self.__returnPeriod = returnPeriod
-        self.__probabilityLevel = probabilityLevel
-        self.__extreme = extreme
-        self.__transformAxis = transformAxis
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.renameOutput = renameOutput
+        self.distribution = distribution
+        self.threshold = threshold
+        self.useReturnPeriod = useReturnPeriod
+        self.returnPeriod = returnPeriod
+        self.probabilityLevel = probabilityLevel
+        self.extreme = extreme
+        self.transformAxis = transformAxis
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

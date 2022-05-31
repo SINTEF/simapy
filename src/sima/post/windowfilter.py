@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windowfilter import WindowFilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -51,27 +52,27 @@ class WindowFilter(OperationNode):
          End index or last index if not set(default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, renameOutput:bool=True, useIndex:bool=True, start:float=0.0, end:float=0.0, setStartValue:bool=True, startValue:float=0.0, startIndex:int=0, endIndex:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, renameOutput=True, useIndex=True, start=0.0, end=0.0, setStartValue=True, startValue=0.0, startIndex=0, endIndex=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__renameOutput = renameOutput
-        self.__useIndex = useIndex
-        self.__start = start
-        self.__end = end
-        self.__setStartValue = setStartValue
-        self.__startValue = startValue
-        self.__startIndex = startIndex
-        self.__endIndex = endIndex
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.renameOutput = renameOutput
+        self.useIndex = useIndex
+        self.start = start
+        self.end = end
+        self.setStartValue = setStartValue
+        self.startValue = startValue
+        self.startIndex = startIndex
+        self.endIndex = endIndex
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

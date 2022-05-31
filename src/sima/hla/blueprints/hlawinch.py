@@ -15,7 +15,7 @@ class HLAWinchBlueprint(HLAObjectBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("initialLength","number","Initial wire length at drum",default=0.0))
         self.attributes.append(Attribute("maximumSpeed","number","Max. run velocity for winch",default=0.0))
         self.attributes.append(Attribute("acceleration","number","Max. run acceleration for winch",default=0.0))

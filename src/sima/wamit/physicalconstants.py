@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.physicalconstants import PhysicalConstantsBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class PhysicalConstants(MOAO):
          Acceleration of gravity - g(default 9.81)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", waterDensity:float=1025.0, accOfGravity:float=9.81, **kwargs):
+    def __init__(self , name="", description="", _id="", waterDensity=1025.0, accOfGravity=9.81, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__waterDensity = waterDensity
-        self.__accOfGravity = accOfGravity
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.waterDensity = waterDensity
+        self.accOfGravity = accOfGravity
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

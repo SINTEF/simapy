@@ -15,7 +15,7 @@ class HLAControlConfigurationBlueprint(HLAObjectBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("bodyName","string","HLA name of body",default=""))
         self.attributes.append(Attribute("vMaxRot","number","Maximum rotation speed",default=1.0))
         self.attributes.append(Attribute("vMaxX","number","Maximum speed in x",default=2.0))

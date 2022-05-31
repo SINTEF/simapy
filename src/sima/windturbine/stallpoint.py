@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.stallpoint import StallPointBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class StallPoint(MOAO):
          Angle of attack at full separation (negative) (Typical value: -20 deg)(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", angleZeroLift:float=0.0, maxLinearClSlopePos:float=0.0, maxLinearClSlopeNeg:float=0.0, angleFullSeparationPos:float=0.0, angleFullSeparationNeg:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", angleZeroLift=0.0, maxLinearClSlopePos=0.0, maxLinearClSlopeNeg=0.0, angleFullSeparationPos=0.0, angleFullSeparationNeg=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__angleZeroLift = angleZeroLift
-        self.__maxLinearClSlopePos = maxLinearClSlopePos
-        self.__maxLinearClSlopeNeg = maxLinearClSlopeNeg
-        self.__angleFullSeparationPos = angleFullSeparationPos
-        self.__angleFullSeparationNeg = angleFullSeparationNeg
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.angleZeroLift = angleZeroLift
+        self.maxLinearClSlopePos = maxLinearClSlopePos
+        self.maxLinearClSlopeNeg = maxLinearClSlopeNeg
+        self.angleFullSeparationPos = angleFullSeparationPos
+        self.angleFullSeparationNeg = angleFullSeparationNeg
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

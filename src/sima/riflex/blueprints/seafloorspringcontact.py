@@ -15,7 +15,7 @@ class SeafloorSpringContactBlueprint(SeafloorContactBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("axialStiffness","number","Horizontal stiffness parameter for seafloor in axial direction",default=0.0))
         self.attributes.append(Attribute("axialFriction","number","Horizontal friction parameter for seafloor in axial direction",default=0.0))
         self.attributes.append(Attribute("axialDamping","number","Axial seafloor damping ",default=0.0))

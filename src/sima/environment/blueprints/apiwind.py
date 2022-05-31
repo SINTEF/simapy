@@ -15,7 +15,7 @@ class APIWindBlueprint(WindBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("direction","number","Wind propagation direction",default=0.0))
         self.attributes.append(Attribute("frequencyParameter","number","Frequency parameter",default=0.025))
         self.attributes.append(Attribute("layerThickness","number","Surface Layer Thickness",default=20.0))

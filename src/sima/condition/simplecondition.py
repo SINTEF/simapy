@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simplecondition import SimpleConditionBlueprint
+from typing import Dict
 from sima.condition.conditiontaskcondition import ConditionTaskCondition
 from sima.sima.namedobject import NamedObject
 from sima.sima.resultcontainer import ResultContainer
@@ -38,18 +39,18 @@ class SimpleCondition(ConditionTaskCondition,NamedObject):
     variation : ModelVariation
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", changeNumber:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", changeNumber=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__changeNumber = changeNumber
-        self.__resultContainer = None
-        self.__selection = None
-        self.__variableItems = list()
-        self.__probabilityVariable = None
-        self.__variation = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.changeNumber = changeNumber
+        self.resultContainer = None
+        self.selection = None
+        self.variableItems = list()
+        self.probabilityVariable = None
+        self.variation = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

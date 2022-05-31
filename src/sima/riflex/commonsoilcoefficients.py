@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.commonsoilcoefficients import CommonSoilCoefficientsBlueprint
+from typing import Dict
 from sima.riflex.commonsoilcoefficientsitem import CommonSoilCoefficientsItem
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -26,16 +27,16 @@ class CommonSoilCoefficients(MOAO):
     yu : CommonSoilCoefficientsItem
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__xu = CommonSoilCoefficientsItem()
-        self.__k = CommonSoilCoefficientsItem()
-        self.__n = CommonSoilCoefficientsItem()
-        self.__yu = CommonSoilCoefficientsItem()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.xu = None
+        self.k = None
+        self.n = None
+        self.yu = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

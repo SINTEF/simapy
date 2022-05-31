@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.booleanvalue import BooleanValueBlueprint
+from numpy import ndarray,asarray
 from sima.post.generatorsignal import GeneratorSignal
 from sima.post.signalproperties import SignalProperties
 from sima.sima.scriptablevalue import ScriptableValue
@@ -26,20 +27,20 @@ class BooleanValue(GeneratorSignal,SingleParameter):
          (default False)
     value : bool
          (default False)
-    values : Sequence[bool]
+    values : ndarray
          Value of the String constant
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", array:bool=False, value:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", array=False, value=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__array = array
-        self.__value = value
-        self.__values = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.array = array
+        self.value = value
+        self.values = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -126,13 +127,11 @@ class BooleanValue(GeneratorSignal,SingleParameter):
         self.__value = bool(value)
 
     @property
-    def values(self) -> Sequence[bool]:
+    def values(self) -> ndarray:
         """Value of the String constant"""
         return self.__values
 
     @values.setter
-    def values(self, value: Sequence[bool]):
+    def values(self, value: ndarray):
         """Set values"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__values = value
+        self.__values = asarray(value)

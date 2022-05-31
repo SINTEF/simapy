@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.crsstiffnessdamping import CRSStiffnessDampingBlueprint
+from typing import Dict
 from sima.riflex.rayleighdamping import RayleighDamping
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -30,16 +31,16 @@ class CRSStiffnessDamping(MOAO):
          Stiffness proportional damping options
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", axialFactor:float=0.0, torsionalFactor:float=0.0, bendingFactor:float=0.0, option:RayleighDamping=RayleighDamping.TOTAL, **kwargs):
+    def __init__(self , name="", description="", _id="", axialFactor=0.0, torsionalFactor=0.0, bendingFactor=0.0, option=RayleighDamping.TOTAL, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__axialFactor = axialFactor
-        self.__torsionalFactor = torsionalFactor
-        self.__bendingFactor = bendingFactor
-        self.__option = option
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.axialFactor = axialFactor
+        self.torsionalFactor = torsionalFactor
+        self.bendingFactor = bendingFactor
+        self.option = option
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.torsionstiffnessitem import TorsionStiffnessItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class TorsionStiffnessItem(MOAO):
          Torsion angle/length(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", torsionMoment:float=0.0, torsionAngle:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", torsionMoment=0.0, torsionAngle=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__torsionMoment = torsionMoment
-        self.__torsionAngle = torsionAngle
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.torsionMoment = torsionMoment
+        self.torsionAngle = torsionAngle
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

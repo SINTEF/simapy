@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicwindchange import DynamicWindChangeBlueprint
+from typing import Dict
 from sima.riflex.iec2005windeventtype import IEC2005WindEventType
 from sima.riflex.iec2005windturbineclass import IEC2005WindTurbineClass
 from sima.riflex.winddirection import WindDirection
@@ -43,23 +44,23 @@ class DynamicWindChange(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", include:bool=False, eventType:IEC2005WindEventType=IEC2005WindEventType.ECD, eventStartTime:float=0.0, direction:WindDirection=WindDirection.POSITIVE, turbineClass:IEC2005WindTurbineClass=IEC2005WindTurbineClass.NONE, vref:float=0.0, iref:float=0.0, velocityChange:float=0.0, directionChange:float=0.0, durationOfEvent:float=0.0, gustMagnitude:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", include=False, eventType=IEC2005WindEventType.ECD, eventStartTime=0.0, direction=WindDirection.POSITIVE, turbineClass=IEC2005WindTurbineClass.NONE, vref=0.0, iref=0.0, velocityChange=0.0, directionChange=0.0, durationOfEvent=0.0, gustMagnitude=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__include = include
-        self.__eventType = eventType
-        self.__eventStartTime = eventStartTime
-        self.__direction = direction
-        self.__turbineClass = turbineClass
-        self.__vref = vref
-        self.__iref = iref
-        self.__velocityChange = velocityChange
-        self.__directionChange = directionChange
-        self.__durationOfEvent = durationOfEvent
-        self.__gustMagnitude = gustMagnitude
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.include = include
+        self.eventType = eventType
+        self.eventStartTime = eventStartTime
+        self.direction = direction
+        self.turbineClass = turbineClass
+        self.vref = vref
+        self.iref = iref
+        self.velocityChange = velocityChange
+        self.directionChange = directionChange
+        self.durationOfEvent = durationOfEvent
+        self.gustMagnitude = gustMagnitude
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

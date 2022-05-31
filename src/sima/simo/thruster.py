@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thruster import ThrusterBlueprint
+from typing import Dict
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.controlsequenceitem import ControlSequenceItem
@@ -91,46 +92,46 @@ class Thruster(IThruster):
     controlSequence : List[ControlSequenceItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", minForce:float=0.0, maxForce:float=0.0, _type:ThrusterType=ThrusterType.FIXED_CONVENTIONAL, diameter:float=1.0, forceDirection:float=0.0, force:float=0.0, minTimeChange:float=0.0, maxRevolvingSpeed:float=10.0, failureMode:ThrusterFailureMode=ThrusterFailureMode.NO_FAILURE, failureTime:float=0.0, maxRudderAngle:float=0.0, rudderCoefficient:float=0.0, relativeDeadBand:float=0.01, thrustReductionFactor:float=1.0, minDirectionChange:float=0.0, formulation:Formulation=Formulation.SIMO_41, ctForward:float=1.0, cqForward:float=1.0, ctReverse:float=1.0, cqReverse:float=1.0, pdRatio:float=1.0, tcThrust:float=0.0, tcAzimuth:float=0.0, coefficientModel:ThrustCoefficientModel=ThrustCoefficientModel.INTERNAL, thrustLoss:ThrustLoss=ThrustLoss.NONE, specifyControlSequence:bool=False, controlSequenceSignalType:ThrustSignalType=ThrustSignalType.FORCE, **kwargs):
+    def __init__(self , name="", description="", _id="", minForce=0.0, maxForce=0.0, _type=ThrusterType.FIXED_CONVENTIONAL, diameter=1.0, forceDirection=0.0, force=0.0, minTimeChange=0.0, maxRevolvingSpeed=10.0, failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, maxRudderAngle=0.0, rudderCoefficient=0.0, relativeDeadBand=0.01, thrustReductionFactor=1.0, minDirectionChange=0.0, formulation=Formulation.SIMO_41, ctForward=1.0, cqForward=1.0, ctReverse=1.0, cqReverse=1.0, pdRatio=1.0, tcThrust=0.0, tcAzimuth=0.0, coefficientModel=ThrustCoefficientModel.INTERNAL, thrustLoss=ThrustLoss.NONE, specifyControlSequence=False, controlSequenceSignalType=ThrustSignalType.FORCE, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__minForce = minForce
-        self.__maxForce = maxForce
-        self.___type = _type
-        self.__attachmentPoint = Point3()
-        self.__diameter = diameter
-        self.__forceDirection = forceDirection
-        self.__force = force
-        self.__minTimeChange = minTimeChange
-        self.__maxRevolvingSpeed = maxRevolvingSpeed
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__maxRudderAngle = maxRudderAngle
-        self.__rudderCoefficient = rudderCoefficient
-        self.__reductionItems = list()
-        self.__relativeDeadBand = relativeDeadBand
-        self.__thrustReductionFactor = thrustReductionFactor
-        self.__minDirectionChange = minDirectionChange
-        self.__forbiddenZoneItems = list()
-        self.__formulation = formulation
-        self.__ctForward = ctForward
-        self.__cqForward = cqForward
-        self.__ctReverse = ctReverse
-        self.__cqReverse = cqReverse
-        self.__pdRatio = pdRatio
-        self.__tcThrust = tcThrust
-        self.__tcAzimuth = tcAzimuth
-        self.__coefficientModel = coefficientModel
-        self.__forwardThrustTorqueCoefficients = list()
-        self.__reverseThrustTorqueCoefficients = list()
-        self.__thrustLoss = thrustLoss
-        self.__surfaceProximityReductionFactors = list()
-        self.__specifyControlSequence = specifyControlSequence
-        self.__controlSequenceSignalType = controlSequenceSignalType
-        self.__controlSequence = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.minForce = minForce
+        self.maxForce = maxForce
+        self._type = _type
+        self.attachmentPoint = None
+        self.diameter = diameter
+        self.forceDirection = forceDirection
+        self.force = force
+        self.minTimeChange = minTimeChange
+        self.maxRevolvingSpeed = maxRevolvingSpeed
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.maxRudderAngle = maxRudderAngle
+        self.rudderCoefficient = rudderCoefficient
+        self.reductionItems = list()
+        self.relativeDeadBand = relativeDeadBand
+        self.thrustReductionFactor = thrustReductionFactor
+        self.minDirectionChange = minDirectionChange
+        self.forbiddenZoneItems = list()
+        self.formulation = formulation
+        self.ctForward = ctForward
+        self.cqForward = cqForward
+        self.ctReverse = ctReverse
+        self.cqReverse = cqReverse
+        self.pdRatio = pdRatio
+        self.tcThrust = tcThrust
+        self.tcAzimuth = tcAzimuth
+        self.coefficientModel = coefficientModel
+        self.forwardThrustTorqueCoefficients = list()
+        self.reverseThrustTorqueCoefficients = list()
+        self.thrustLoss = thrustLoss
+        self.surfaceProximityReductionFactors = list()
+        self.specifyControlSequence = specifyControlSequence
+        self.controlSequenceSignalType = controlSequenceSignalType
+        self.controlSequence = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

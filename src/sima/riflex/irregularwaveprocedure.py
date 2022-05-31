@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.irregularwaveprocedure import IrregularWaveProcedureBlueprint
+from typing import Dict
 from sima.riflex.kinematicsinwavezone import KinematicsInWaveZone
 from sima.riflex.kinematicspositions import KinematicsPositions
 from sima.riflex.storagetype import StorageType
@@ -55,28 +56,28 @@ class IrregularWaveProcedure(MOAO):
     fileFormat : StorageType
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", kinematicsPosition:KinematicsPositions=KinematicsPositions.STATIC, kinematicsInWaveZone:KinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, defaultProcedureOn:bool=True, nodeStep:int=1, zLower:float=0.0, zUpper:float=0.0, applyDiffractedWaves:bool=False, waveKinematicsFile:bool=False, waveKinematicsFileName:str="", waveKinematicsMaxColumns:int=0, waveKinematicsTimeColumn:int=0, waveKinematicsStorage:bool=False, fileFormat:StorageType=StorageType.BINARY, **kwargs):
+    def __init__(self , name="", description="", _id="", kinematicsPosition=KinematicsPositions.STATIC, kinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, defaultProcedureOn=True, nodeStep=1, zLower=0.0, zUpper=0.0, applyDiffractedWaves=False, waveKinematicsFile=False, waveKinematicsFileName="", waveKinematicsMaxColumns=0, waveKinematicsTimeColumn=0, waveKinematicsStorage=False, fileFormat=StorageType.BINARY, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__kinematicsPosition = kinematicsPosition
-        self.__kinematicsInWaveZone = kinematicsInWaveZone
-        self.__defaultProcedureOn = defaultProcedureOn
-        self.__nodeStep = nodeStep
-        self.__zLower = zLower
-        self.__zUpper = zUpper
-        self.__applyDiffractedWaves = applyDiffractedWaves
-        self.__waveKinematicDiffPoints = list()
-        self.__waveKinematicNodePoints = list()
-        self.__waveKinematicsFile = waveKinematicsFile
-        self.__waveKinematicsFileName = waveKinematicsFileName
-        self.__waveKinematicsTimeSeriesReferences = list()
-        self.__waveKinematicsMaxColumns = waveKinematicsMaxColumns
-        self.__waveKinematicsTimeColumn = waveKinematicsTimeColumn
-        self.__waveKinematicsStorage = waveKinematicsStorage
-        self.__fileFormat = fileFormat
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.kinematicsPosition = kinematicsPosition
+        self.kinematicsInWaveZone = kinematicsInWaveZone
+        self.defaultProcedureOn = defaultProcedureOn
+        self.nodeStep = nodeStep
+        self.zLower = zLower
+        self.zUpper = zUpper
+        self.applyDiffractedWaves = applyDiffractedWaves
+        self.waveKinematicDiffPoints = list()
+        self.waveKinematicNodePoints = list()
+        self.waveKinematicsFile = waveKinematicsFile
+        self.waveKinematicsFileName = waveKinematicsFileName
+        self.waveKinematicsTimeSeriesReferences = list()
+        self.waveKinematicsMaxColumns = waveKinematicsMaxColumns
+        self.waveKinematicsTimeColumn = waveKinematicsTimeColumn
+        self.waveKinematicsStorage = waveKinematicsStorage
+        self.fileFormat = fileFormat
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

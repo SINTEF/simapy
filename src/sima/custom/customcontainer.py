@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customcontainer import CustomContainerBlueprint
+from typing import Dict
 from sima.custom.customcomponent import CustomComponent
 from sima.custom.customvisibilityparameter import CustomVisibilityParameter
 from sima.sima.scriptablevalue import ScriptableValue
@@ -26,15 +27,15 @@ class CustomContainer(CustomComponent):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", visibleWhenScript:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", visibleWhenScript="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__children = list()
-        self.__visibilityParameters = list()
-        self.__visibleWhenScript = visibleWhenScript
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.children = list()
+        self.visibilityParameters = list()
+        self.visibleWhenScript = visibleWhenScript
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

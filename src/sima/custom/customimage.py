@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customimage import CustomImageBlueprint
+from typing import Dict
 from sima.custom.customcomponent import CustomComponent
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class CustomImage(CustomComponent):
          (default 0.2)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", filename:str="", factor:float=0.2, **kwargs):
+    def __init__(self , name="", description="", _id="", filename="", factor=0.2, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__filename = filename
-        self.__factor = factor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.filename = filename
+        self.factor = factor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

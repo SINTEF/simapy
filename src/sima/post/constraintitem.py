@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.constraintitem import ConstraintItemBlueprint
+from typing import Dict
 from sima.post.constrainttype import ConstraintType
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -27,15 +28,15 @@ class ConstraintItem(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", path:str="", _type:ConstraintType=ConstraintType.LE, value:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", path="", _type=ConstraintType.LE, value=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__path = path
-        self.___type = _type
-        self.__value = value
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.path = path
+        self._type = _type
+        self.value = value
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

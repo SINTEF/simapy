@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pisasoillayer import PisaSoilLayerBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -42,21 +43,21 @@ class PisaSoilLayer(MOAO):
          Relative density used for scaling soil curve. Applies for Dunkirk sand only.(default 100.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", deltaZ:float=0.0, shearModulusTop:float=0.0, shearModulusBottom:float=0.0, effectiveWeightTop:float=0.0, effectiveWeightBottom:float=0.0, undrainedShearStrengthTop:float=0.0, undrainedShearStrengthBottom:float=0.0, relativeDensity:float=100.0, **kwargs):
+    def __init__(self , name="", description="", _id="", deltaZ=0.0, shearModulusTop=0.0, shearModulusBottom=0.0, effectiveWeightTop=0.0, effectiveWeightBottom=0.0, undrainedShearStrengthTop=0.0, undrainedShearStrengthBottom=0.0, relativeDensity=100.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__soilType = None
-        self.__deltaZ = deltaZ
-        self.__shearModulusTop = shearModulusTop
-        self.__shearModulusBottom = shearModulusBottom
-        self.__effectiveWeightTop = effectiveWeightTop
-        self.__effectiveWeightBottom = effectiveWeightBottom
-        self.__undrainedShearStrengthTop = undrainedShearStrengthTop
-        self.__undrainedShearStrengthBottom = undrainedShearStrengthBottom
-        self.__relativeDensity = relativeDensity
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.soilType = None
+        self.deltaZ = deltaZ
+        self.shearModulusTop = shearModulusTop
+        self.shearModulusBottom = shearModulusBottom
+        self.effectiveWeightTop = effectiveWeightTop
+        self.effectiveWeightBottom = effectiveWeightBottom
+        self.undrainedShearStrengthTop = undrainedShearStrengthTop
+        self.undrainedShearStrengthBottom = undrainedShearStrengthBottom
+        self.relativeDensity = relativeDensity
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

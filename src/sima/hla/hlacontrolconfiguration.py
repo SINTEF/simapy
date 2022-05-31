@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlacontrolconfiguration import HLAControlConfigurationBlueprint
+from typing import Dict
 from sima.hla.hlacontrolreference import HLAControlReference
 from sima.hla.hlaobject import HLAObject
 from sima.sima.scriptablevalue import ScriptableValue
@@ -42,22 +43,22 @@ class HLAControlConfiguration(HLAObject):
          Control reference
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", bodyName:str="", vMaxRot:float=1.0, vMaxX:float=2.0, vMaxY:float=1.0, aMaxRot:float=0.1, aMaxX:float=0.2, aMaxY:float=0.05, limRot:float=1.0, limXY:float=0.5, controlReference:HLAControlReference=HLAControlReference.POSITION, **kwargs):
+    def __init__(self , name="", description="", _id="", bodyName="", vMaxRot=1.0, vMaxX=2.0, vMaxY=1.0, aMaxRot=0.1, aMaxX=0.2, aMaxY=0.05, limRot=1.0, limXY=0.5, controlReference=HLAControlReference.POSITION, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__bodyName = bodyName
-        self.__vMaxRot = vMaxRot
-        self.__vMaxX = vMaxX
-        self.__vMaxY = vMaxY
-        self.__aMaxRot = aMaxRot
-        self.__aMaxX = aMaxX
-        self.__aMaxY = aMaxY
-        self.__limRot = limRot
-        self.__limXY = limXY
-        self.__controlReference = controlReference
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.bodyName = bodyName
+        self.vMaxRot = vMaxRot
+        self.vMaxX = vMaxX
+        self.vMaxY = vMaxY
+        self.aMaxRot = aMaxRot
+        self.aMaxX = aMaxX
+        self.aMaxY = aMaxY
+        self.limRot = limRot
+        self.limXY = limXY
+        self.controlReference = controlReference
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

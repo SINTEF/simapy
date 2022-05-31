@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simplifiedstressfatiguefilter import SimplifiedStressFatigueFilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.operationnode import OperationNode
@@ -51,27 +52,27 @@ class SimplifiedStressFatigueFilter(OperationNode):
          Slope parameter of the SN curve(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, numberOfPoints:int=8, radius:float=0.0, innerRadius:float=0.0, outerRadius:float=0.0, numberOfCycles:int=0, shape:float=0.0, intercept:float=0.0, slope:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, numberOfPoints=8, radius=0.0, innerRadius=0.0, outerRadius=0.0, numberOfCycles=0, shape=0.0, intercept=0.0, slope=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__numberOfPoints = numberOfPoints
-        self.__radius = radius
-        self.__innerRadius = innerRadius
-        self.__outerRadius = outerRadius
-        self.__numberOfCycles = numberOfCycles
-        self.__shape = shape
-        self.__intercept = intercept
-        self.__slope = slope
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.numberOfPoints = numberOfPoints
+        self.radius = radius
+        self.innerRadius = innerRadius
+        self.outerRadius = outerRadius
+        self.numberOfCycles = numberOfCycles
+        self.shape = shape
+        self.intercept = intercept
+        self.slope = slope
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

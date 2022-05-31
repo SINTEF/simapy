@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.controlsystem import ControlSystemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.allocationsystem import AllocationSystem
@@ -70,34 +71,34 @@ class ControlSystem(MOAO):
     guidanceSystem : GuidanceSystem
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", xRef:float=0.0, yRef:float=0.0, dirRef:float=0.0, circleXRef:float=0.0, circleYRef:float=0.0, circleRadius:float=0.0, xLocal:float=0.0, yLocal:float=0.0, controlReference:ControlReference=ControlReference.GLOBAL, xyRelative:bool=True, dirRelative:bool=True, referenceCutOff:float=0.0, intialXForce:float=0.0, intialYForce:float=0.0, intialMoment:float=0.0, windCutOff:float=0.0, windMeasurement:WindMeasurement=WindMeasurement.NO, **kwargs):
+    def __init__(self , name="", description="", _id="", xRef=0.0, yRef=0.0, dirRef=0.0, circleXRef=0.0, circleYRef=0.0, circleRadius=0.0, xLocal=0.0, yLocal=0.0, controlReference=ControlReference.GLOBAL, xyRelative=True, dirRelative=True, referenceCutOff=0.0, intialXForce=0.0, intialYForce=0.0, intialMoment=0.0, windCutOff=0.0, windMeasurement=WindMeasurement.NO, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__relativeBody = None
-        self.__xRef = xRef
-        self.__yRef = yRef
-        self.__dirRef = dirRef
-        self.__circleXRef = circleXRef
-        self.__circleYRef = circleYRef
-        self.__circleRadius = circleRadius
-        self.__xLocal = xLocal
-        self.__yLocal = yLocal
-        self.__controlReference = controlReference
-        self.__xyRelative = xyRelative
-        self.__dirRelative = dirRelative
-        self.__referenceCutOff = referenceCutOff
-        self.__controlConfigurations = list()
-        self.__estimator = None
-        self.__intialXForce = intialXForce
-        self.__intialYForce = intialYForce
-        self.__intialMoment = intialMoment
-        self.__windCutOff = windCutOff
-        self.__windMeasurement = windMeasurement
-        self.__allocationSystem = AllocationSystem()
-        self.__guidanceSystem = GuidanceSystem()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.relativeBody = None
+        self.xRef = xRef
+        self.yRef = yRef
+        self.dirRef = dirRef
+        self.circleXRef = circleXRef
+        self.circleYRef = circleYRef
+        self.circleRadius = circleRadius
+        self.xLocal = xLocal
+        self.yLocal = yLocal
+        self.controlReference = controlReference
+        self.xyRelative = xyRelative
+        self.dirRelative = dirRelative
+        self.referenceCutOff = referenceCutOff
+        self.controlConfigurations = list()
+        self.estimator = None
+        self.intialXForce = intialXForce
+        self.intialYForce = intialYForce
+        self.intialMoment = intialMoment
+        self.windCutOff = windCutOff
+        self.windMeasurement = windMeasurement
+        self.allocationSystem = None
+        self.guidanceSystem = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

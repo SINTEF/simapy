@@ -15,7 +15,7 @@ class GDFCylinderBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("dimensionalLength","number","Dimensional length",default=1.0))
         self.attributes.append(Attribute("centerX","number","Global x-coordinate",default=0.0))
         self.attributes.append(Attribute("centerY","number","Global y-coordinate",default=0.0))

@@ -15,7 +15,7 @@ class BendingStiffnessYZ_ItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("curvatureValue","number","Curvature value for which bending moment is specified",default=0.0))
         self.attributes.append(Attribute("bendingMomentY","number","Bending moment around y-axis corresponding to curvature values.",default=0.0))
         self.attributes.append(Attribute("bendingMomentZ","number","Bending moment around z-axis corresponding to curvature values.",default=0.0))

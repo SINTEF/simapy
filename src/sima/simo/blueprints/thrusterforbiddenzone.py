@@ -15,6 +15,6 @@ class ThrusterForbiddenZoneBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("zoneStart","number","Start of forbidden zone of thrust force",default=0.0))
         self.attributes.append(Attribute("zoneEnd","number","End of forbidden zone of thrust force",default=0.0))

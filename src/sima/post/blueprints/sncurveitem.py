@@ -15,6 +15,6 @@ class SNCurveItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("negativeInverseSlope","number","Negative inverse slope of S-N curve",default=0.0))
         self.attributes.append(Attribute("transitionPointLog","number","log10 of number of cycles at transition point between preceding curve segment and this curve segment",default=0.0))

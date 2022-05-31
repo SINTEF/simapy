@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.scatterdiagram import ScatterDiagramBlueprint
+from numpy import ndarray,asarray
 from sima.metocean.scatterdimension import ScatterDimension
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -22,21 +23,21 @@ class ScatterDiagram(MOAO):
     scriptableValues : List[ScriptableValue]
     hsUpperLimits : ScatterDimension
     tpUpperLimits : ScatterDimension
-    values : Sequence[float]
+    values : ndarray
     unit : str
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", unit:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", unit="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__hsUpperLimits = ScatterDimension()
-        self.__tpUpperLimits = ScatterDimension()
-        self.__values = list()
-        self.__unit = unit
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.hsUpperLimits = None
+        self.tpUpperLimits = None
+        self.values = ndarray(1)
+        self.unit = unit
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -111,16 +112,14 @@ class ScatterDiagram(MOAO):
         self.__tpUpperLimits = value
 
     @property
-    def values(self) -> Sequence[float]:
+    def values(self) -> ndarray:
         """"""
         return self.__values
 
     @values.setter
-    def values(self, value: Sequence[float]):
+    def values(self, value: ndarray):
         """Set values"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__values = value
+        self.__values = asarray(value)
 
     @property
     def unit(self) -> str:

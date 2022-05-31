@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windfromfile import WindFromFileBlueprint
+from typing import Dict
 from sima.environment.wind import Wind
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class WindFromFile(Wind):
          Name of external file with specified wind data(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, fileName:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, fileName="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__fileName = fileName
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.fileName = fileName
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.growthlevel import GrowthLevelBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -27,15 +28,15 @@ class GrowthLevel(MOAO):
          Growth density at this level(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", levelZCoordinate:float=0.0, thickness:float=0.0, density:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", levelZCoordinate=0.0, thickness=0.0, density=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__levelZCoordinate = levelZCoordinate
-        self.__thickness = thickness
-        self.__density = density
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.levelZCoordinate = levelZCoordinate
+        self.thickness = thickness
+        self.density = density
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

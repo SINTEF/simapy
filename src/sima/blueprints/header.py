@@ -13,4 +13,4 @@ class HeaderBlueprint(Blueprint):
         super().__init__(name,package_path,description)
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
-        self.attributes.append(BlueprintAttribute("packages","sima/PackageInfo","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("packages","sima/PackageInfo","",True,Dimension("*")))

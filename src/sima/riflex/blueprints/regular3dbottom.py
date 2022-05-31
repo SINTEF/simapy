@@ -15,7 +15,7 @@ class Regular3DBottomBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("fileName","string","File with seabed geometry data",default=""))
         self.attributes.append(Attribute("x","number","",default=0.0))
         self.attributes.append(Attribute("y","number","",default=0.0))

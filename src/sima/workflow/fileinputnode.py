@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fileinputnode import FileInputNodeBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.outputslot import OutputSlot
 from sima.post.runnode import RunNode
@@ -39,21 +40,21 @@ class FileInputNode(RunNode):
          split separate lines into array(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, filePath:str="", readRawText:bool=False, splitLines:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, filePath="", readRawText=False, splitLines=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filePath = filePath
-        self.__outputSlot = OutputSlot()
-        self.__readRawText = readRawText
-        self.__splitLines = splitLines
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filePath = filePath
+        self.outputSlot = None
+        self.readRawText = readRawText
+        self.splitLines = splitLines
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

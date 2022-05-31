@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.allocationsystem import AllocationSystemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.formulation import Formulation
@@ -40,21 +41,21 @@ class AllocationSystem(MOAO):
          Turn control system off(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", surgeAllocation:bool=True, swayAllocation:bool=True, yawAllocation:bool=True, manual:bool=False, allocationMethod:ThrusterAllocationMethod=ThrusterAllocationMethod.ORDINARY, formulation:Formulation=Formulation.SIMO_41, dpOff:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", surgeAllocation=True, swayAllocation=True, yawAllocation=True, manual=False, allocationMethod=ThrusterAllocationMethod.ORDINARY, formulation=Formulation.SIMO_41, dpOff=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__surgeAllocation = surgeAllocation
-        self.__swayAllocation = swayAllocation
-        self.__yawAllocation = yawAllocation
-        self.__thrusters = list()
-        self.__manual = manual
-        self.__allocationMethod = allocationMethod
-        self.__thrusterControls = list()
-        self.__formulation = formulation
-        self.__dpOff = dpOff
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.surgeAllocation = surgeAllocation
+        self.swayAllocation = swayAllocation
+        self.yawAllocation = yawAllocation
+        self.thrusters = list()
+        self.manual = manual
+        self.allocationMethod = allocationMethod
+        self.thrusterControls = list()
+        self.formulation = formulation
+        self.dpOff = dpOff
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

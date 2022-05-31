@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.lfmotiontimeseries import LFMotionTimeSeriesBlueprint
+from typing import Dict
 from sima.riflex.fileformatascistarnone import FileFormatAsciStarNone
 from sima.riflex.motiontimeseriestype import MotionTimeSeriesType
 from sima.riflex.rotationunit import RotationUnit
@@ -53,25 +54,25 @@ class LFMotionTimeSeries(MOAO):
          Startimes version number for global dynamic z-rotation(default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", timeSeriesFile:bool=False, fileName:str="", fileFormat:FileFormatAsciStarNone=FileFormatAsciStarNone.ASCII, motionTimeSeriesType:MotionTimeSeriesType=MotionTimeSeriesType.POSI, rotationUnit:RotationUnit=RotationUnit.DEGR, timeColumnNum:int=1, xMotionColumn:int=0, xMotionVersion:int=0, yMotionColumn:int=0, yMotionVersion:int=0, zRotationColumn:int=0, zRotationVersion:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", timeSeriesFile=False, fileName="", fileFormat=FileFormatAsciStarNone.ASCII, motionTimeSeriesType=MotionTimeSeriesType.POSI, rotationUnit=RotationUnit.DEGR, timeColumnNum=1, xMotionColumn=0, xMotionVersion=0, yMotionColumn=0, yMotionVersion=0, zRotationColumn=0, zRotationVersion=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__timeSeriesFile = timeSeriesFile
-        self.__supportVessel = None
-        self.__fileName = fileName
-        self.__fileFormat = fileFormat
-        self.__motionTimeSeriesType = motionTimeSeriesType
-        self.__rotationUnit = rotationUnit
-        self.__timeColumnNum = timeColumnNum
-        self.__xMotionColumn = xMotionColumn
-        self.__xMotionVersion = xMotionVersion
-        self.__yMotionColumn = yMotionColumn
-        self.__yMotionVersion = yMotionVersion
-        self.__zRotationColumn = zRotationColumn
-        self.__zRotationVersion = zRotationVersion
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.timeSeriesFile = timeSeriesFile
+        self.supportVessel = None
+        self.fileName = fileName
+        self.fileFormat = fileFormat
+        self.motionTimeSeriesType = motionTimeSeriesType
+        self.rotationUnit = rotationUnit
+        self.timeColumnNum = timeColumnNum
+        self.xMotionColumn = xMotionColumn
+        self.xMotionVersion = xMotionVersion
+        self.yMotionColumn = yMotionColumn
+        self.yMotionVersion = yMotionVersion
+        self.zRotationColumn = zRotationColumn
+        self.zRotationVersion = zRotationVersion
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

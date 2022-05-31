@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.internalfluidtype import InternalFluidTypeBlueprint
+from typing import Dict
 from sima.riflex.end import End
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
@@ -32,17 +33,17 @@ class InternalFluidType(NamedObject):
          Flow direction code.
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", density:float=0.0, volumeVelocity:float=0.0, inletPressure:float=0.0, pressureDrop:float=0.0, flowInlet:End=End.ONE, **kwargs):
+    def __init__(self , name="", description="", _id="", density=0.0, volumeVelocity=0.0, inletPressure=0.0, pressureDrop=0.0, flowInlet=End.ONE, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__density = density
-        self.__volumeVelocity = volumeVelocity
-        self.__inletPressure = inletPressure
-        self.__pressureDrop = pressureDrop
-        self.__flowInlet = flowInlet
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.density = density
+        self.volumeVelocity = volumeVelocity
+        self.inletPressure = inletPressure
+        self.pressureDrop = pressureDrop
+        self.flowInlet = flowInlet
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

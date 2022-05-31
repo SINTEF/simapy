@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicloads import DynamicLoadsBlueprint
+from typing import Dict
 from sima.riflex.dynamiccurrentvariation import DynamicCurrentVariation
 from sima.riflex.dynamicnodalforces import DynamicNodalForces
 from sima.riflex.rigidmoonpoolcolumn import RigidMoonpoolColumn
@@ -27,15 +28,15 @@ class DynamicLoads(MOAO):
     rigidMoonpoolColumns : RigidMoonpoolColumn
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dynamicNodalForces = DynamicNodalForces()
-        self.__dynamicCurrentVariation = DynamicCurrentVariation()
-        self.__rigidMoonpoolColumns = RigidMoonpoolColumn()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dynamicNodalForces = None
+        self.dynamicCurrentVariation = None
+        self.rigidMoonpoolColumns = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

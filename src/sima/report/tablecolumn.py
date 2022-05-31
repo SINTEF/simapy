@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.tablecolumn import TableColumnBlueprint
+from typing import Dict
 from sima.report.tablecell import TableCell
 from sima.report.tablecellstyle import TableCellStyle
 from sima.sima.moao import MOAO
@@ -27,15 +28,15 @@ class TableColumn(MOAO):
     cells : List[TableCell]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", header:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", header="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__header = header
-        self.__headerStyle = TableCellStyle()
-        self.__cells = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.header = header
+        self.headerStyle = None
+        self.cells = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.columnconfiguration import ColumnConfigurationBlueprint
+from typing import Dict
 from sima.post.pathspecification import PathSpecification
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class ColumnConfiguration(PathSpecification):
          Column font size. Will be used when renderin the table in a report,etc.(default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", path:str="", header:str="", label:str="", format:str='0.####E0', fontSize:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", path="", header="", label="", format='0.####E0', fontSize=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__path = path
-        self.__header = header
-        self.__label = label
-        self.__format = format
-        self.__fontSize = fontSize
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.path = path
+        self.header = header
+        self.label = label
+        self.format = format
+        self.fontSize = fontSize
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

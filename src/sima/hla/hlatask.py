@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlatask import HLATaskBlueprint
+from typing import Dict
 from sima.hla.controlpanel import ControlPanel
 from sima.hla.hladatatable import HLADataTable
 from sima.hla.hlafederate import HLAFederate
@@ -45,24 +46,24 @@ class HLATask(Task):
     controlPanels : List[ControlPanel]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", runNumber:int=0, accelerationFactor:float=1.0, restartAutomatically:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", runNumber=0, accelerationFactor=1.0, restartAutomatically=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__doubleVariables = list()
-        self.__integerVariables = list()
-        self.__stringVariables = list()
-        self.__runNumber = runNumber
-        self.__scripts = list()
-        self.__model = HLAModel()
-        self.__federates = list()
-        self.__accelerationFactor = accelerationFactor
-        self.__restartAutomatically = restartAutomatically
-        self.__dataTables = list()
-        self.__plots = list()
-        self.__controlPanels = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.doubleVariables = list()
+        self.integerVariables = list()
+        self.stringVariables = list()
+        self.runNumber = runNumber
+        self.scripts = list()
+        self.model = None
+        self.federates = list()
+        self.accelerationFactor = accelerationFactor
+        self.restartAutomatically = restartAutomatically
+        self.dataTables = list()
+        self.plots = list()
+        self.controlPanels = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

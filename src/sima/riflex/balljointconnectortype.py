@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.balljointconnectortype import BallJointConnectorTypeBlueprint
+from typing import Dict
 from sima.riflex.boundarycondition import BoundaryCondition
 from sima.riflex.nodalcomponenttype import NodalComponentType
 from sima.sima.scriptablevalue import ScriptableValue
@@ -47,24 +48,24 @@ class BallJointConnectorType(NodalComponentType):
          Rotation freedom code, z-axis.
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", mass:float=0.0, volume:float=0.0, referenceFrame:ReferenceFrameType=ReferenceFrameType.LOCAL, dragX:float=0.0, dragY:float=0.0, dragZ:float=0.0, addedMassX:float=0.0, addedMassY:float=0.0, addedMassZ:float=0.0, boundaryRotX:BoundaryCondition=BoundaryCondition.FREE, boundaryRotY:BoundaryCondition=BoundaryCondition.FREE, boundaryRotZ:BoundaryCondition=BoundaryCondition.FREE, **kwargs):
+    def __init__(self , name="", description="", _id="", mass=0.0, volume=0.0, referenceFrame=ReferenceFrameType.LOCAL, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, boundaryRotX=BoundaryCondition.FREE, boundaryRotY=BoundaryCondition.FREE, boundaryRotZ=BoundaryCondition.FREE, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__mass = mass
-        self.__volume = volume
-        self.__referenceFrame = referenceFrame
-        self.__dragX = dragX
-        self.__dragY = dragY
-        self.__dragZ = dragZ
-        self.__addedMassX = addedMassX
-        self.__addedMassY = addedMassY
-        self.__addedMassZ = addedMassZ
-        self.__boundaryRotX = boundaryRotX
-        self.__boundaryRotY = boundaryRotY
-        self.__boundaryRotZ = boundaryRotZ
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.mass = mass
+        self.volume = volume
+        self.referenceFrame = referenceFrame
+        self.dragX = dragX
+        self.dragY = dragY
+        self.dragZ = dragZ
+        self.addedMassX = addedMassX
+        self.addedMassY = addedMassY
+        self.addedMassZ = addedMassZ
+        self.boundaryRotX = boundaryRotX
+        self.boundaryRotY = boundaryRotY
+        self.boundaryRotZ = boundaryRotZ
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

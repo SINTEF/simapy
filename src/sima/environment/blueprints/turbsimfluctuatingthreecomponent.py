@@ -15,7 +15,7 @@ class TurbSimFluctuatingThreeComponentBlueprint(WindBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("direction","number","Wind propagation direction",default=0.0))
         self.attributes.append(Attribute("numSlices","integer","Buffer size: Number of cross-sectional planes (slices) in memory",default=800))
         self.attributes.append(Attribute("windFileName","string","Path and filename for the binary wind file",default=""))

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.multienvironmentsetup import MultiEnvironmentSetupBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class MultiEnvironmentSetup(MOAO):
          Swell wave upper frequency limit(default 2.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", windWaveLowerFrequency:float=0.1, windWaveUpperFrequency:float=3.0, swellWaveLowerFrequency:float=0.05, swellWaveUpperFrequency:float=2.0, **kwargs):
+    def __init__(self , name="", description="", _id="", windWaveLowerFrequency=0.1, windWaveUpperFrequency=3.0, swellWaveLowerFrequency=0.05, swellWaveUpperFrequency=2.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__windWaveLowerFrequency = windWaveLowerFrequency
-        self.__windWaveUpperFrequency = windWaveUpperFrequency
-        self.__swellWaveLowerFrequency = swellWaveLowerFrequency
-        self.__swellWaveUpperFrequency = swellWaveUpperFrequency
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.windWaveLowerFrequency = windWaveLowerFrequency
+        self.windWaveUpperFrequency = windWaveUpperFrequency
+        self.swellWaveLowerFrequency = swellWaveLowerFrequency
+        self.swellWaveUpperFrequency = swellWaveUpperFrequency
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

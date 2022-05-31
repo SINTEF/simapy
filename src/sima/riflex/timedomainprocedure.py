@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.timedomainprocedure import TimeDomainProcedureBlueprint
+from typing import Dict
 from sima.riflex.methodindicator import MethodIndicator
 from sima.riflex.nonlinearforcemodel import NonLinearForceModel
 from sima.riflex.nonlinearintegrationprocedure import NonLinearIntegrationProcedure
@@ -66,33 +67,33 @@ class TimeDomainProcedure(MOAO):
     nonLinearIntegrationProcedure : NonLinearIntegrationProcedure
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", method:MethodIndicator=MethodIndicator.NONLINEAR, procedure:ProcedureIndicator=ProcedureIndicator.NEWMARK, displacementStorage:bool=False, forceResultStorage:bool=False, sumForceResponseStorage:bool=False, curvatureResponseStorage:bool=False, envelopeCurveSpecification:bool=False, inverseBeta:float=4.0, gamma:float=0.5, theta:float=1.0, dampingOption:RayleighDamping=RayleighDamping.TOTAL, globalMassDampingFactor:float=0.0, globalStiffnessDampingFactor:float=0.0, localMassTensionDamping:float=0.0, localMassTorsionDamping:float=0.0, localMassBendingDamping:float=0.0, localStiffnessTensionDamping:float=0.0, localStiffnessTorsionDamping:float=0.0, localStiffnessBendingDamping:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", method=MethodIndicator.NONLINEAR, procedure=ProcedureIndicator.NEWMARK, displacementStorage=False, forceResultStorage=False, sumForceResponseStorage=False, curvatureResponseStorage=False, envelopeCurveSpecification=False, inverseBeta=4.0, gamma=0.5, theta=1.0, dampingOption=RayleighDamping.TOTAL, globalMassDampingFactor=0.0, globalStiffnessDampingFactor=0.0, localMassTensionDamping=0.0, localMassTorsionDamping=0.0, localMassBendingDamping=0.0, localStiffnessTensionDamping=0.0, localStiffnessTorsionDamping=0.0, localStiffnessBendingDamping=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__method = method
-        self.__procedure = procedure
-        self.__displacementStorage = displacementStorage
-        self.__forceResultStorage = forceResultStorage
-        self.__sumForceResponseStorage = sumForceResponseStorage
-        self.__curvatureResponseStorage = curvatureResponseStorage
-        self.__envelopeCurveSpecification = envelopeCurveSpecification
-        self.__inverseBeta = inverseBeta
-        self.__gamma = gamma
-        self.__theta = theta
-        self.__dampingOption = dampingOption
-        self.__globalMassDampingFactor = globalMassDampingFactor
-        self.__globalStiffnessDampingFactor = globalStiffnessDampingFactor
-        self.__localMassTensionDamping = localMassTensionDamping
-        self.__localMassTorsionDamping = localMassTorsionDamping
-        self.__localMassBendingDamping = localMassBendingDamping
-        self.__localStiffnessTensionDamping = localStiffnessTensionDamping
-        self.__localStiffnessTorsionDamping = localStiffnessTorsionDamping
-        self.__localStiffnessBendingDamping = localStiffnessBendingDamping
-        self.__nonLinearForceModel = NonLinearForceModel()
-        self.__nonLinearIntegrationProcedure = NonLinearIntegrationProcedure()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.method = method
+        self.procedure = procedure
+        self.displacementStorage = displacementStorage
+        self.forceResultStorage = forceResultStorage
+        self.sumForceResponseStorage = sumForceResponseStorage
+        self.curvatureResponseStorage = curvatureResponseStorage
+        self.envelopeCurveSpecification = envelopeCurveSpecification
+        self.inverseBeta = inverseBeta
+        self.gamma = gamma
+        self.theta = theta
+        self.dampingOption = dampingOption
+        self.globalMassDampingFactor = globalMassDampingFactor
+        self.globalStiffnessDampingFactor = globalStiffnessDampingFactor
+        self.localMassTensionDamping = localMassTensionDamping
+        self.localMassTorsionDamping = localMassTorsionDamping
+        self.localMassBendingDamping = localMassBendingDamping
+        self.localStiffnessTensionDamping = localStiffnessTensionDamping
+        self.localStiffnessTorsionDamping = localStiffnessTorsionDamping
+        self.localStiffnessBendingDamping = localStiffnessBendingDamping
+        self.nonLinearForceModel = None
+        self.nonLinearIntegrationProcedure = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

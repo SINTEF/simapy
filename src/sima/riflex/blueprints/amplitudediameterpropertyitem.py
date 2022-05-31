@@ -15,7 +15,7 @@ class AmplitudeDiameterPropertyItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("nonDimensionalFrequency","number","Non-dimensional frequency",default=0.0))
         self.attributes.append(Attribute("adRatioCl0","number","A/D ratio when CL = 0",default=0.0))
         self.attributes.append(Attribute("adRatioClMax","number","A/D ratio when CL = CLMax",default=0.0))

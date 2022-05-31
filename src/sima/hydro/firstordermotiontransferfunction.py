@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.firstordermotiontransferfunction import FirstOrderMotionTransferFunctionBlueprint
+from numpy import ndarray,asarray
 from sima.hydro.directiondependentcomplexvalues import DirectionDependentComplexValues
 from sima.hydro.directionsymmetry import DirectionSymmetry
 from sima.sima.moao import MOAO
@@ -21,8 +22,8 @@ class FirstOrderMotionTransferFunction(MOAO):
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    directions : Sequence[float]
-    frequencies : Sequence[float]
+    directions : ndarray
+    frequencies : ndarray
     symmetry : DirectionSymmetry
     hfReference : float
          Transfer function reference position(default 0.0)
@@ -34,22 +35,22 @@ class FirstOrderMotionTransferFunction(MOAO):
     yaw : DirectionDependentComplexValues
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", symmetry:DirectionSymmetry=DirectionSymmetry.NO_SYMMETRY, hfReference:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, hfReference=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__directions = list()
-        self.__frequencies = list()
-        self.__symmetry = symmetry
-        self.__hfReference = hfReference
-        self.__surge = None
-        self.__sway = None
-        self.__heave = None
-        self.__roll = None
-        self.__pitch = None
-        self.__yaw = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.directions = ndarray(1)
+        self.frequencies = ndarray(1)
+        self.symmetry = symmetry
+        self.hfReference = hfReference
+        self.surge = None
+        self.sway = None
+        self.heave = None
+        self.roll = None
+        self.pitch = None
+        self.yaw = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -104,28 +105,24 @@ class FirstOrderMotionTransferFunction(MOAO):
         self.__scriptableValues = value
 
     @property
-    def directions(self) -> Sequence[float]:
+    def directions(self) -> ndarray:
         """"""
         return self.__directions
 
     @directions.setter
-    def directions(self, value: Sequence[float]):
+    def directions(self, value: ndarray):
         """Set directions"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__directions = value
+        self.__directions = asarray(value)
 
     @property
-    def frequencies(self) -> Sequence[float]:
+    def frequencies(self) -> ndarray:
         """"""
         return self.__frequencies
 
     @frequencies.setter
-    def frequencies(self, value: Sequence[float]):
+    def frequencies(self, value: ndarray):
         """Set frequencies"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__frequencies = value
+        self.__frequencies = asarray(value)
 
     @property
     def symmetry(self) -> DirectionSymmetry:

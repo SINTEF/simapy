@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.advancedbumper import AdvancedBumperBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -36,20 +37,20 @@ class AdvancedBumper(NamedObject):
     body2End2 : Point3
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", velocityLimit:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__body1 = None
-        self.__body2 = None
-        self.__velocityLimit = velocityLimit
-        self.__characteristic = ForceDampingCharacteristic()
-        self.__body1End1 = Point3()
-        self.__body1End2 = Point3()
-        self.__body2End1 = Point3()
-        self.__body2End2 = Point3()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.body1 = None
+        self.body2 = None
+        self.velocityLimit = velocityLimit
+        self.characteristic = None
+        self.body1End1 = None
+        self.body1End2 = None
+        self.body2End1 = None
+        self.body2End2 = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

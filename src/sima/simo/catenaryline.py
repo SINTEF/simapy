@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.catenaryline import CatenaryLineBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.failuremode import FailureMode
@@ -50,24 +51,24 @@ class CatenaryLine(NamedObject):
          Breaking strength(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, xglobal:float=0.0, yglobal:float=0.0, xwinch:float=0.0, xhor:float=0.0, pretension:float=0.0, inputMethod:InputMethodType=InputMethodType.TENSION, failureMode:FailureMode=FailureMode.NONE, failureTime:float=0.0, breakingStrength:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, xglobal=0.0, yglobal=0.0, xwinch=0.0, xhor=0.0, pretension=0.0, inputMethod=InputMethodType.TENSION, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__attachmentPoint = None
-        self.__direction = direction
-        self.__xglobal = xglobal
-        self.__yglobal = yglobal
-        self.__xwinch = xwinch
-        self.__xhor = xhor
-        self.__pretension = pretension
-        self.__lineType = None
-        self.__inputMethod = inputMethod
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__breakingStrength = breakingStrength
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.attachmentPoint = None
+        self.direction = direction
+        self.xglobal = xglobal
+        self.yglobal = yglobal
+        self.xwinch = xwinch
+        self.xhor = xhor
+        self.pretension = pretension
+        self.lineType = None
+        self.inputMethod = inputMethod
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.breakingStrength = breakingStrength
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

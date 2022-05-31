@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bodyeigenvalueitem import BodyEigenvalueItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -39,19 +40,19 @@ class BodyEigenvalueItem(MOAO):
          Excursion in yaw(default 1.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", surgeExcursion:float=1.0, swayExcursion:float=1.0, heaveExcursion:float=1.0, rollExcursion:float=1.0, pitchExcursion:float=1.0, yawExcursion:float=1.0, **kwargs):
+    def __init__(self , name="", description="", _id="", surgeExcursion=1.0, swayExcursion=1.0, heaveExcursion=1.0, rollExcursion=1.0, pitchExcursion=1.0, yawExcursion=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__body = None
-        self.__surgeExcursion = surgeExcursion
-        self.__swayExcursion = swayExcursion
-        self.__heaveExcursion = heaveExcursion
-        self.__rollExcursion = rollExcursion
-        self.__pitchExcursion = pitchExcursion
-        self.__yawExcursion = yawExcursion
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.body = None
+        self.surgeExcursion = surgeExcursion
+        self.swayExcursion = swayExcursion
+        self.heaveExcursion = heaveExcursion
+        self.rollExcursion = rollExcursion
+        self.pitchExcursion = pitchExcursion
+        self.yawExcursion = yawExcursion
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

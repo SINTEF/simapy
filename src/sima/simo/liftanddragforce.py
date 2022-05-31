@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.liftanddragforce import LiftAndDragForceBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -51,27 +52,27 @@ class LiftAndDragForce(NamedObject):
          Symmetry about x-axis(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", maxAngle:float=0.0, maxAngleVelocity:float=0.0, lengthZ:float=0.0, lengthX:float=0.0, angle:float=0.0, currentFactor:float=0.0, vesselFactor:float=0.0, thrusterFactor:float=0.0, dragZ:float=0.0, interpolation:LiftAndDragInterpolation=LiftAndDragInterpolation.LINEAR, symmetric:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", maxAngle=0.0, maxAngleVelocity=0.0, lengthZ=0.0, lengthX=0.0, angle=0.0, currentFactor=0.0, vesselFactor=0.0, thrusterFactor=0.0, dragZ=0.0, interpolation=LiftAndDragInterpolation.LINEAR, symmetric=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__point = Point3()
-        self.__maxAngle = maxAngle
-        self.__maxAngleVelocity = maxAngleVelocity
-        self.__lengthZ = lengthZ
-        self.__lengthX = lengthX
-        self.__vectorZ = Vector3()
-        self.__vectorXZ = Vector3()
-        self.__angle = angle
-        self.__currentFactor = currentFactor
-        self.__vesselFactor = vesselFactor
-        self.__thrusterFactor = thrusterFactor
-        self.__dragZ = dragZ
-        self.__items = list()
-        self.__interpolation = interpolation
-        self.__symmetric = symmetric
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.point = None
+        self.maxAngle = maxAngle
+        self.maxAngleVelocity = maxAngleVelocity
+        self.lengthZ = lengthZ
+        self.lengthX = lengthX
+        self.vectorZ = None
+        self.vectorXZ = None
+        self.angle = angle
+        self.currentFactor = currentFactor
+        self.vesselFactor = vesselFactor
+        self.thrusterFactor = thrusterFactor
+        self.dragZ = dragZ
+        self.items = list()
+        self.interpolation = interpolation
+        self.symmetric = symmetric
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

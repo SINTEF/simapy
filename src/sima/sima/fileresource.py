@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fileresource import FileResourceBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.property import Property
 from sima.sima.scriptablevalue import ScriptableValue
@@ -27,15 +28,15 @@ class FileResource(MOAO):
          (default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", resource:str="", relative:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", resource="", relative=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__properties = list()
-        self.__resource = resource
-        self.__relative = relative
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.properties = list()
+        self.resource = resource
+        self.relative = relative
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

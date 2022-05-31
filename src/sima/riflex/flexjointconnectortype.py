@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.flexjointconnectortype import FlexJointConnectorTypeBlueprint
+from typing import Dict
 from sima.riflex.nodalcomponenttype import NodalComponentType
 from sima.riflex.rotationalstiffnessitem import RotationalStiffnessItem
 from sima.riflex.rotationalstiffnesstype import RotationalStiffnessType
@@ -80,42 +81,42 @@ class FlexJointConnectorType(NodalComponentType):
     stiffnessCharacteristicsRotZ : List[RotationalStiffnessItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", mass:float=0.0, volume:float=0.0, gyrationRadiusX:float=0.0, gyrationRadiusY:float=0.0, gyrationRadiusZ:float=0.0, dampingRotX:float=0.0, dampingRotY:float=0.0, dampingRotZ:float=0.0, dragX:float=0.0, dragY:float=0.0, dragZ:float=0.0, addedMassX:float=0.0, addedMassY:float=0.0, addedMassZ:float=0.0, addedMassRotX:float=0.0, addedMassRotY:float=0.0, addedMassRotZ:float=0.0, stiffnessTypeRotX:RotationalStiffnessType=RotationalStiffnessType.FIXED, stiffnessTypeRotY:RotationalStiffnessType=RotationalStiffnessType.FIXED, stiffnessTypeRotZ:RotationalStiffnessType=RotationalStiffnessType.FIXED, stiffnessDampingCoeffX:float=0.0, stiffnessDampingCoeffY:float=0.0, stiffnessDampingCoeffZ:float=0.0, linearStiffnessRotX:float=0.0, linearStiffnessRotY:float=0.0, linearStiffnessRotZ:float=0.0, yzStiffnessSymmetry:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", mass=0.0, volume=0.0, gyrationRadiusX=0.0, gyrationRadiusY=0.0, gyrationRadiusZ=0.0, dampingRotX=0.0, dampingRotY=0.0, dampingRotZ=0.0, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, addedMassRotX=0.0, addedMassRotY=0.0, addedMassRotZ=0.0, stiffnessTypeRotX=RotationalStiffnessType.FIXED, stiffnessTypeRotY=RotationalStiffnessType.FIXED, stiffnessTypeRotZ=RotationalStiffnessType.FIXED, stiffnessDampingCoeffX=0.0, stiffnessDampingCoeffY=0.0, stiffnessDampingCoeffZ=0.0, linearStiffnessRotX=0.0, linearStiffnessRotY=0.0, linearStiffnessRotZ=0.0, yzStiffnessSymmetry=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__mass = mass
-        self.__volume = volume
-        self.__gyrationRadiusX = gyrationRadiusX
-        self.__gyrationRadiusY = gyrationRadiusY
-        self.__gyrationRadiusZ = gyrationRadiusZ
-        self.__dampingRotX = dampingRotX
-        self.__dampingRotY = dampingRotY
-        self.__dampingRotZ = dampingRotZ
-        self.__dragX = dragX
-        self.__dragY = dragY
-        self.__dragZ = dragZ
-        self.__addedMassX = addedMassX
-        self.__addedMassY = addedMassY
-        self.__addedMassZ = addedMassZ
-        self.__addedMassRotX = addedMassRotX
-        self.__addedMassRotY = addedMassRotY
-        self.__addedMassRotZ = addedMassRotZ
-        self.__stiffnessTypeRotX = stiffnessTypeRotX
-        self.__stiffnessTypeRotY = stiffnessTypeRotY
-        self.__stiffnessTypeRotZ = stiffnessTypeRotZ
-        self.__stiffnessDampingCoeffX = stiffnessDampingCoeffX
-        self.__stiffnessDampingCoeffY = stiffnessDampingCoeffY
-        self.__stiffnessDampingCoeffZ = stiffnessDampingCoeffZ
-        self.__linearStiffnessRotX = linearStiffnessRotX
-        self.__linearStiffnessRotY = linearStiffnessRotY
-        self.__linearStiffnessRotZ = linearStiffnessRotZ
-        self.__yzStiffnessSymmetry = yzStiffnessSymmetry
-        self.__stiffnessCharacteristicsRotX = list()
-        self.__stiffnessCharacteristicsRotY = list()
-        self.__stiffnessCharacteristicsRotZ = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.mass = mass
+        self.volume = volume
+        self.gyrationRadiusX = gyrationRadiusX
+        self.gyrationRadiusY = gyrationRadiusY
+        self.gyrationRadiusZ = gyrationRadiusZ
+        self.dampingRotX = dampingRotX
+        self.dampingRotY = dampingRotY
+        self.dampingRotZ = dampingRotZ
+        self.dragX = dragX
+        self.dragY = dragY
+        self.dragZ = dragZ
+        self.addedMassX = addedMassX
+        self.addedMassY = addedMassY
+        self.addedMassZ = addedMassZ
+        self.addedMassRotX = addedMassRotX
+        self.addedMassRotY = addedMassRotY
+        self.addedMassRotZ = addedMassRotZ
+        self.stiffnessTypeRotX = stiffnessTypeRotX
+        self.stiffnessTypeRotY = stiffnessTypeRotY
+        self.stiffnessTypeRotZ = stiffnessTypeRotZ
+        self.stiffnessDampingCoeffX = stiffnessDampingCoeffX
+        self.stiffnessDampingCoeffY = stiffnessDampingCoeffY
+        self.stiffnessDampingCoeffZ = stiffnessDampingCoeffZ
+        self.linearStiffnessRotX = linearStiffnessRotX
+        self.linearStiffnessRotY = linearStiffnessRotY
+        self.linearStiffnessRotZ = linearStiffnessRotZ
+        self.yzStiffnessSymmetry = yzStiffnessSymmetry
+        self.stiffnessCharacteristicsRotX = list()
+        self.stiffnessCharacteristicsRotY = list()
+        self.stiffnessCharacteristicsRotZ = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.sncurveitem import SNCurveItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class SNCurveItem(MOAO):
          log10 of number of cycles at transition point between preceding curve segment and this curve segment(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", negativeInverseSlope:float=0.0, transitionPointLog:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", negativeInverseSlope=0.0, transitionPointLog=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__negativeInverseSlope = negativeInverseSlope
-        self.__transitionPointLog = transitionPointLog
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.negativeInverseSlope = negativeInverseSlope
+        self.transitionPointLog = transitionPointLog
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customeditor import CustomEditorBlueprint
+from typing import Dict
 from sima.custom.customcomponent import CustomComponent
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -29,16 +30,16 @@ class CustomEditor(MOAO):
          (default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", title:str="", editMode:bool=False, showDescription:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", title="", editMode=False, showDescription=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__children = list()
-        self.__title = title
-        self.__editMode = editMode
-        self.__showDescription = showDescription
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.children = list()
+        self.title = title
+        self.editMode = editMode
+        self.showDescription = showDescription
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regularvesselmotion import RegularVesselMotionBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -52,26 +53,26 @@ class RegularVesselMotion(MOAO):
          Phase angle, z-rotation(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", amplitudeX:float=0.0, amplitudeY:float=0.0, amplitudeZ:float=0.0, amplitudeXR:float=0.0, amplitudeYR:float=0.0, amplitudeZR:float=0.0, period:float=0.0, phaseX:float=0.0, phaseY:float=0.0, phaseZ:float=0.0, phaseXR:float=0.0, phaseYR:float=0.0, phaseZR:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", amplitudeX=0.0, amplitudeY=0.0, amplitudeZ=0.0, amplitudeXR=0.0, amplitudeYR=0.0, amplitudeZR=0.0, period=0.0, phaseX=0.0, phaseY=0.0, phaseZ=0.0, phaseXR=0.0, phaseYR=0.0, phaseZR=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__supportVessel = None
-        self.__amplitudeX = amplitudeX
-        self.__amplitudeY = amplitudeY
-        self.__amplitudeZ = amplitudeZ
-        self.__amplitudeXR = amplitudeXR
-        self.__amplitudeYR = amplitudeYR
-        self.__amplitudeZR = amplitudeZR
-        self.__period = period
-        self.__phaseX = phaseX
-        self.__phaseY = phaseY
-        self.__phaseZ = phaseZ
-        self.__phaseXR = phaseXR
-        self.__phaseYR = phaseYR
-        self.__phaseZR = phaseZR
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.supportVessel = None
+        self.amplitudeX = amplitudeX
+        self.amplitudeY = amplitudeY
+        self.amplitudeZ = amplitudeZ
+        self.amplitudeXR = amplitudeXR
+        self.amplitudeYR = amplitudeYR
+        self.amplitudeZR = amplitudeZR
+        self.period = period
+        self.phaseX = phaseX
+        self.phaseY = phaseY
+        self.phaseZ = phaseZ
+        self.phaseXR = phaseXR
+        self.phaseYR = phaseYR
+        self.phaseZR = phaseZR
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

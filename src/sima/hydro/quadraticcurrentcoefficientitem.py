@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.quadraticcurrentcoefficientitem import QuadraticCurrentCoefficientItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -35,19 +36,19 @@ class QuadraticCurrentCoefficientItem(MOAO):
          Quadratic current force coefficient for 6. degree of freedom(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, c21:float=0.0, c22:float=0.0, c23:float=0.0, c24:float=0.0, c25:float=0.0, c26:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, c21=0.0, c22=0.0, c23=0.0, c24=0.0, c25=0.0, c26=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__c21 = c21
-        self.__c22 = c22
-        self.__c23 = c23
-        self.__c24 = c24
-        self.__c25 = c25
-        self.__c26 = c26
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.c21 = c21
+        self.c22 = c22
+        self.c23 = c23
+        self.c24 = c24
+        self.c25 = c25
+        self.c26 = c26
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

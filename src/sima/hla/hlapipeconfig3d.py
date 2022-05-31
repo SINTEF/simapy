@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlapipeconfig3d import HLAPipeConfig3DBlueprint
+from typing import Dict
 from sima.hla.hlaobject import HLAObject
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -28,14 +29,14 @@ class HLAPipeConfig3D(HLAObject):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", fileName:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", fileName="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__color = None
-        self.__fileName = fileName
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.color = None
+        self.fileName = fileName
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

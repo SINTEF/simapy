@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.slotconnection import SlotConnectionBlueprint
+from typing import Dict
 from sima.graph.point import Point
 from sima.post.requirement import Requirement
 from sima.sima.moao import MOAO
@@ -36,18 +37,18 @@ class SlotConnection(MOAO):
     fromSlot : OutputSlot
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", useQuery:bool=False, query:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", useQuery=False, query="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__useQuery = useQuery
-        self.__query = query
-        self.__userRequirements = list()
-        self.__points = list()
-        self.__toSlot = None
-        self.__fromSlot = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.useQuery = useQuery
+        self.query = query
+        self.userRequirements = list()
+        self.points = list()
+        self.toSlot = None
+        self.fromSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

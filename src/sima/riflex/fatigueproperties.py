@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fatigueproperties import FatiguePropertiesBlueprint
+from typing import Dict
 from sima.riflex.crosssectionreference import CrossSectionReference
 from sima.riflex.fatiguecalculationoption import FatigueCalculationOption
 from sima.riflex.resultprintoption import ResultPrintOption
@@ -57,30 +58,30 @@ class FatigueProperties(MOAO):
          (default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", calculationOption:FatigueCalculationOption=FatigueCalculationOption.DEFAULT, numCrossSectionPoints:int=0, resultPrintOption:ResultPrintOption=ResultPrintOption.MOST_CRITICAL_POINT, timeSeriesPrintOption:TimeSeriesPrintOption=TimeSeriesPrintOption.NO_PRINT, timeSeriesLength:float=0.0, timeStep:float=0.0, seed:int=31415, axialFactor:float=1.0, myFactor:float=1.0, mzFactor:float=1.0, crossSectionArea:float=0.0, sectionModulus:float=0.0, wallThickness:float=0.0, includeAllSNCurves:bool=False, relativeDuration:float=0.0, scaledContributions:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", calculationOption=FatigueCalculationOption.DEFAULT, numCrossSectionPoints=0, resultPrintOption=ResultPrintOption.MOST_CRITICAL_POINT, timeSeriesPrintOption=TimeSeriesPrintOption.NO_PRINT, timeSeriesLength=0.0, timeStep=0.0, seed=31415, axialFactor=1.0, myFactor=1.0, mzFactor=1.0, crossSectionArea=0.0, sectionModulus=0.0, wallThickness=0.0, includeAllSNCurves=False, relativeDuration=0.0, scaledContributions=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__calculationOption = calculationOption
-        self.__numCrossSectionPoints = numCrossSectionPoints
-        self.__resultPrintOption = resultPrintOption
-        self.__timeSeriesPrintOption = timeSeriesPrintOption
-        self.__timeSeriesLength = timeSeriesLength
-        self.__timeStep = timeStep
-        self.__seed = seed
-        self.__axialFactor = axialFactor
-        self.__myFactor = myFactor
-        self.__mzFactor = mzFactor
-        self.__crossSectionArea = crossSectionArea
-        self.__sectionModulus = sectionModulus
-        self.__wallThickness = wallThickness
-        self.__snCurves = list()
-        self.__includeAllSNCurves = includeAllSNCurves
-        self.__crossSectionReferences = list()
-        self.__relativeDuration = relativeDuration
-        self.__scaledContributions = scaledContributions
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.calculationOption = calculationOption
+        self.numCrossSectionPoints = numCrossSectionPoints
+        self.resultPrintOption = resultPrintOption
+        self.timeSeriesPrintOption = timeSeriesPrintOption
+        self.timeSeriesLength = timeSeriesLength
+        self.timeStep = timeStep
+        self.seed = seed
+        self.axialFactor = axialFactor
+        self.myFactor = myFactor
+        self.mzFactor = mzFactor
+        self.crossSectionArea = crossSectionArea
+        self.sectionModulus = sectionModulus
+        self.wallThickness = wallThickness
+        self.snCurves = list()
+        self.includeAllSNCurves = includeAllSNCurves
+        self.crossSectionReferences = list()
+        self.relativeDuration = relativeDuration
+        self.scaledContributions = scaledContributions
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.significantwaveheightweibulldata import SignificantWaveHeightWeibullDataBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class SignificantWaveHeightWeibullData(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", duration:float=0.0, probability:float=0.0, shape:float=0.0, scale:float=0.0, location:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", duration=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__duration = duration
-        self.__probability = probability
-        self.__shape = shape
-        self.__scale = scale
-        self.__location = location
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.duration = duration
+        self.probability = probability
+        self.shape = shape
+        self.scale = scale
+        self.location = location
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

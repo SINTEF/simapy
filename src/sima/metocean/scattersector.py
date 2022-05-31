@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.scattersector import ScatterSectorBlueprint
+from numpy import ndarray,asarray
 from sima.metocean.scatterdimension import ScatterDimension
 from sima.metocean.scatterlevelcontainer import ScatterLevelContainer
 from sima.sima.moao import MOAO
@@ -25,23 +26,23 @@ class ScatterSector(MOAO):
     tpUpperLimits : ScatterDimension
     windScatter : ScatterLevelContainer
     currentScatter : ScatterLevelContainer
-    occurrences : Sequence[int]
+    occurrences : ndarray
     direction : float
          (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__hsUpperLimits = ScatterDimension()
-        self.__tpUpperLimits = ScatterDimension()
-        self.__windScatter = ScatterLevelContainer()
-        self.__currentScatter = ScatterLevelContainer()
-        self.__occurrences = list()
-        self.__direction = direction
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.hsUpperLimits = None
+        self.tpUpperLimits = None
+        self.windScatter = None
+        self.currentScatter = None
+        self.occurrences = ndarray(1)
+        self.direction = direction
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -136,16 +137,14 @@ class ScatterSector(MOAO):
         self.__currentScatter = value
 
     @property
-    def occurrences(self) -> Sequence[int]:
+    def occurrences(self) -> ndarray:
         """"""
         return self.__occurrences
 
     @occurrences.setter
-    def occurrences(self, value: Sequence[int]):
+    def occurrences(self, value: ndarray):
         """Set occurrences"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__occurrences = value
+        self.__occurrences = asarray(value)
 
     @property
     def direction(self) -> float:

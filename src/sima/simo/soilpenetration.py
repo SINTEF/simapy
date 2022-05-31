@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.soilpenetration import SoilPenetrationBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.hla import HLA
@@ -47,24 +48,24 @@ class SoilPenetration(MOAO):
          Flow coefficient in/out of closed compartment(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", frictionModel:SoilFriction=SoilFriction.OPEN_COMPARTMENT, zcont:float=0.0, penetrationDepth:float=0.0, barArea:float=0.0, sodens:float=0.0, cArea:float=0.0, seabedImport:HLA=HLA.NO_IMPORT, wstiff:float=0.0, tsuct:float=0.0, cflow:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", frictionModel=SoilFriction.OPEN_COMPARTMENT, zcont=0.0, penetrationDepth=0.0, barArea=0.0, sodens=0.0, cArea=0.0, seabedImport=HLA.NO_IMPORT, wstiff=0.0, tsuct=0.0, cflow=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__frictionModel = frictionModel
-        self.__zcont = zcont
-        self.__penetrationDepth = penetrationDepth
-        self.__barArea = barArea
-        self.__sodens = sodens
-        self.__cArea = cArea
-        self.__seabedImport = seabedImport
-        self.__frictionElements = list()
-        self.__capacityElements = list()
-        self.__wstiff = wstiff
-        self.__tsuct = tsuct
-        self.__cflow = cflow
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.frictionModel = frictionModel
+        self.zcont = zcont
+        self.penetrationDepth = penetrationDepth
+        self.barArea = barArea
+        self.sodens = sodens
+        self.cArea = cArea
+        self.seabedImport = seabedImport
+        self.frictionElements = list()
+        self.capacityElements = list()
+        self.wstiff = wstiff
+        self.tsuct = tsuct
+        self.cflow = cflow
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

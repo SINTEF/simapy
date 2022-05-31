@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.forceresponsestorage import ForceResponseStorageBlueprint
+from typing import Dict
 from sima.riflex.additionalfileformatcode import AdditionalFileFormatCode
 from sima.riflex.elementangle import ElementAngle
 from sima.riflex.elementreference import ElementReference
@@ -40,20 +41,20 @@ class ForceResponseStorage(MOAO):
          (default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", storageStep:int=1, format:FileFormatCode=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat:AdditionalFileFormatCode=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices:bool=False, storeBottomContactForces:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices=False, storeBottomContactForces=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__storageStep = storageStep
-        self.__format = format
-        self.__elements = list()
-        self.__matrixFormat = matrixFormat
-        self.__readTransformationMatrices = readTransformationMatrices
-        self.__relativeElementAngles = list()
-        self.__elementAngles = list()
-        self.__storeBottomContactForces = storeBottomContactForces
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.storageStep = storageStep
+        self.format = format
+        self.elements = list()
+        self.matrixFormat = matrixFormat
+        self.readTransformationMatrices = readTransformationMatrices
+        self.relativeElementAngles = list()
+        self.elementAngles = list()
+        self.storeBottomContactForces = storeBottomContactForces
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

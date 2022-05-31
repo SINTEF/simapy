@@ -15,7 +15,7 @@ class WindSpectrumVerticalDomainBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("specifyVerticalDomain","boolean","Should a vertical grid for interpolation of wind velocity be specified?",default=False))
         self.attributes.append(Attribute("numberOfLevels","integer","Number of vertical levels to pre-generate wind time series for",default=0))
         self.attributes.append(Attribute("zMinimum","number","Lower limit of vertical domain",default=0.0))

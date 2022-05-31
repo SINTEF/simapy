@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.nonlinearforcemodel import NonLinearForceModelBlueprint
+from typing import Dict
 from sima.riflex.dampingmatrixcalculationoption import DampingMatrixCalculationOption
 from sima.riflex.hydrodynamicforceindicator import HydrodynamicForceIndicator
 from sima.riflex.slugforcespecification import SlugForceSpecification
@@ -43,22 +44,22 @@ class NonLinearForceModel(MOAO):
     slugForceSpecification : SlugForceSpecification
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", internalSlugFlow:bool=False, hydrodynamicForce:HydrodynamicForceIndicator=HydrodynamicForceIndicator.NO_FORCE_ITERATION_VELOCITIES, maxHit:int=5, forceIterationConvergence:float=0.01, startUpDuration:float=10.0, ruptureRelease:bool=False, connectorNumber:int=0, timeStepNumForRelease:int=0, dampingMatrixCalculation:DampingMatrixCalculationOption=DampingMatrixCalculationOption.CONSTANT_PROPORTIONAL, **kwargs):
+    def __init__(self , name="", description="", _id="", internalSlugFlow=False, hydrodynamicForce=HydrodynamicForceIndicator.NO_FORCE_ITERATION_VELOCITIES, maxHit=5, forceIterationConvergence=0.01, startUpDuration=10.0, ruptureRelease=False, connectorNumber=0, timeStepNumForRelease=0, dampingMatrixCalculation=DampingMatrixCalculationOption.CONSTANT_PROPORTIONAL, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__internalSlugFlow = internalSlugFlow
-        self.__hydrodynamicForce = hydrodynamicForce
-        self.__maxHit = maxHit
-        self.__forceIterationConvergence = forceIterationConvergence
-        self.__startUpDuration = startUpDuration
-        self.__ruptureRelease = ruptureRelease
-        self.__connectorNumber = connectorNumber
-        self.__timeStepNumForRelease = timeStepNumForRelease
-        self.__dampingMatrixCalculation = dampingMatrixCalculation
-        self.__slugForceSpecification = SlugForceSpecification()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.internalSlugFlow = internalSlugFlow
+        self.hydrodynamicForce = hydrodynamicForce
+        self.maxHit = maxHit
+        self.forceIterationConvergence = forceIterationConvergence
+        self.startUpDuration = startUpDuration
+        self.ruptureRelease = ruptureRelease
+        self.connectorNumber = connectorNumber
+        self.timeStepNumForRelease = timeStepNumForRelease
+        self.dampingMatrixCalculation = dampingMatrixCalculation
+        self.slugForceSpecification = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

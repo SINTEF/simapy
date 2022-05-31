@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pointfield import PointFieldBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -41,22 +42,22 @@ class PointField(MOAO):
          (default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", xMin:float=0.0, xMax:float=0.0, yMin:float=0.0, yMax:float=0.0, zMin:float=0.0, zMax:float=0.0, xNumberOfPoints:int=0, yNumberOfPoints:int=0, zNumberOfPoints:int=0, visible:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", xMin=0.0, xMax=0.0, yMin=0.0, yMax=0.0, zMin=0.0, zMax=0.0, xNumberOfPoints=0, yNumberOfPoints=0, zNumberOfPoints=0, visible=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__xMin = xMin
-        self.__xMax = xMax
-        self.__yMin = yMin
-        self.__yMax = yMax
-        self.__zMin = zMin
-        self.__zMax = zMax
-        self.__xNumberOfPoints = xNumberOfPoints
-        self.__yNumberOfPoints = yNumberOfPoints
-        self.__zNumberOfPoints = zNumberOfPoints
-        self.__visible = visible
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.xMin = xMin
+        self.xMax = xMax
+        self.yMin = yMin
+        self.yMax = yMax
+        self.zMin = zMin
+        self.zMax = zMax
+        self.xNumberOfPoints = xNumberOfPoints
+        self.yNumberOfPoints = yNumberOfPoints
+        self.zNumberOfPoints = zNumberOfPoints
+        self.visible = visible
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

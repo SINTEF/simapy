@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.combinedloadingproperties import CombinedLoadingPropertiesBlueprint
+from typing import Dict
 from sima.riflex.elementreference import ElementReference
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -53,26 +54,26 @@ class CombinedLoadingProperties(ElementReference):
          Nominal wall thickness (t_nom) of pipe (uncorroded), as specified on the drawing/specification (default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, elementNumber:int=1, allElements:bool=False, youngsFactor:float=210000000000.0, poissonsRatio:float=0.3, yieldStrength:float=400000000.0, tensileStrength:float=700000000.0, ovality:float=0.005, internalCorrosion:float=0.001, externalCorrosion:float=0.002, nominalDiameter:float=0.0, nominalThickness:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, ovality=0.005, internalCorrosion=0.001, externalCorrosion=0.002, nominalDiameter=0.0, nominalThickness=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__elementNumber = elementNumber
-        self.__allElements = allElements
-        self.__youngsFactor = youngsFactor
-        self.__poissonsRatio = poissonsRatio
-        self.__yieldStrength = yieldStrength
-        self.__tensileStrength = tensileStrength
-        self.__ovality = ovality
-        self.__internalCorrosion = internalCorrosion
-        self.__externalCorrosion = externalCorrosion
-        self.__nominalDiameter = nominalDiameter
-        self.__nominalThickness = nominalThickness
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.elementNumber = elementNumber
+        self.allElements = allElements
+        self.youngsFactor = youngsFactor
+        self.poissonsRatio = poissonsRatio
+        self.yieldStrength = yieldStrength
+        self.tensileStrength = tensileStrength
+        self.ovality = ovality
+        self.internalCorrosion = internalCorrosion
+        self.externalCorrosion = externalCorrosion
+        self.nominalDiameter = nominalDiameter
+        self.nominalThickness = nominalThickness
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

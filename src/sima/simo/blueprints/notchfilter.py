@@ -15,6 +15,6 @@ class NotchFilterBlueprint(EstimatorBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("centerPeriod","number","Center period of wave filter",default=10.0))
         self.attributes.append(Attribute("strength","number","Strength of wave filter, between 0 and 1",default=1.0))

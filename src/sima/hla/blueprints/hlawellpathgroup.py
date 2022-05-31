@@ -15,5 +15,5 @@ class HLAWellPathGroupBlueprint(HLAObjectBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
-        self.attributes.append(BlueprintAttribute("HLAWellPaths","sima/hla/HLAWellPath","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(BlueprintAttribute("HLAWellPaths","sima/hla/HLAWellPath","",True,Dimension("*")))

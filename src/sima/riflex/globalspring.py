@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.globalspring import GlobalSpringBlueprint
+from typing import Dict
 from sima.riflex.globalspringstiffnessitem import GlobalSpringStiffnessItem
 from sima.riflex.nodereference import NodeReference
 from sima.riflex.springdof import SpringDOF
@@ -49,23 +50,23 @@ class GlobalSpring(NodeReference,NamedObject):
     stiffnessItems : List[GlobalSpringStiffnessItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", segment:int=1, allSegments:bool=False, nodeNumber:int=1, allNodes:bool=False, dof:SpringDOF=SpringDOF.GLOBAL_X_DIRECTION, constantStiffness:bool=False, stiffness:float=0.0, dampingCoefficient:float=0.0, stiffnessDampingFactor:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, dof=SpringDOF.GLOBAL_X_DIRECTION, constantStiffness=False, stiffness=0.0, dampingCoefficient=0.0, stiffnessDampingFactor=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__line = None
-        self.__segment = segment
-        self.__allSegments = allSegments
-        self.__nodeNumber = nodeNumber
-        self.__allNodes = allNodes
-        self.__dof = dof
-        self.__constantStiffness = constantStiffness
-        self.__stiffness = stiffness
-        self.__dampingCoefficient = dampingCoefficient
-        self.__stiffnessDampingFactor = stiffnessDampingFactor
-        self.__stiffnessItems = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.line = None
+        self.segment = segment
+        self.allSegments = allSegments
+        self.nodeNumber = nodeNumber
+        self.allNodes = allNodes
+        self.dof = dof
+        self.constantStiffness = constantStiffness
+        self.stiffness = stiffness
+        self.dampingCoefficient = dampingCoefficient
+        self.stiffnessDampingFactor = stiffnessDampingFactor
+        self.stiffnessItems = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

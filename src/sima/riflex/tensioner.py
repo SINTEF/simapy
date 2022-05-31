@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.tensioner import TensionerBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class Tensioner(NamedObject):
          Direction of the applied load referreing to local X-axis of the element going through the tensioner (+1 = The load will act in local X-axis. -1 = The load will act opposite local X-axis).(default 1.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", appliedLoad:float=0.0, maxLoad:float=0.0, minLoad:float=0.0, pipelineDisplacement:float=0.0, direction:float=1.0, **kwargs):
+    def __init__(self , name="", description="", _id="", appliedLoad=0.0, maxLoad=0.0, minLoad=0.0, pipelineDisplacement=0.0, direction=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__appliedLoad = appliedLoad
-        self.__maxLoad = maxLoad
-        self.__minLoad = minLoad
-        self.__pipelineDisplacement = pipelineDisplacement
-        self.__direction = direction
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.appliedLoad = appliedLoad
+        self.maxLoad = maxLoad
+        self.minLoad = minLoad
+        self.pipelineDisplacement = pipelineDisplacement
+        self.direction = direction
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

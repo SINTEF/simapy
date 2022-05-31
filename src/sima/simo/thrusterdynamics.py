@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thrusterdynamics import ThrusterDynamicsBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class ThrusterDynamics(MOAO):
          Time constant of azimuth change(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", minTimeChange:float=0.0, tcThrust:float=0.0, maxRevolvingSpeed:float=10.0, tcAzimuth:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", minTimeChange=0.0, tcThrust=0.0, maxRevolvingSpeed=10.0, tcAzimuth=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__minTimeChange = minTimeChange
-        self.__tcThrust = tcThrust
-        self.__maxRevolvingSpeed = maxRevolvingSpeed
-        self.__tcAzimuth = tcAzimuth
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.minTimeChange = minTimeChange
+        self.tcThrust = tcThrust
+        self.maxRevolvingSpeed = maxRevolvingSpeed
+        self.tcAzimuth = tcAzimuth
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

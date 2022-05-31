@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.multiplewirecouplingpart import MultipleWireCouplingPartBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.failuremode import FailureMode
@@ -41,20 +42,20 @@ class MultipleWireCouplingPart(NamedObject):
          Breaking strength(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", ea:float=0.0, length:float=0.0, damping:float=0.0, flexibility:float=0.0, failureMode:FailureMode=FailureMode.NONE, failureTime:float=0.0, breakingStrength:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", ea=0.0, length=0.0, damping=0.0, flexibility=0.0, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__endPoint = None
-        self.__ea = ea
-        self.__length = length
-        self.__damping = damping
-        self.__flexibility = flexibility
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__breakingStrength = breakingStrength
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.endPoint = None
+        self.ea = ea
+        self.length = length
+        self.damping = damping
+        self.flexibility = flexibility
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.breakingStrength = breakingStrength
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

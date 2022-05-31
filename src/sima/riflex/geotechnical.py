@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.geotechnical import GeoTechnicalBlueprint
+from typing import Dict
 from sima.riflex.geotechnicalpiletype import GeotechnicalPileType
 from sima.riflex.soilitem import SoilItem
 from sima.riflex.soilstiffnesstype import SoilStiffnessType
@@ -39,21 +40,21 @@ class GeoTechnical(NamedObject):
          Curve fitting factor(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", scourDepth:float=0.0, diameter:float=0.0, _type:SoilStiffnessType=SoilStiffnessType.STATIC, calculateDiameter:bool=True, calculateAxialPileResistance:bool=True, pileType:GeotechnicalPileType=GeotechnicalPileType.OPEN, zoneOfInfluence:float=0.0, curveFittingFactor:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", scourDepth=0.0, diameter=0.0, _type=SoilStiffnessType.STATIC, calculateDiameter=True, calculateAxialPileResistance=True, pileType=GeotechnicalPileType.OPEN, zoneOfInfluence=0.0, curveFittingFactor=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__soilItems = list()
-        self.__scourDepth = scourDepth
-        self.__diameter = diameter
-        self.___type = _type
-        self.__calculateDiameter = calculateDiameter
-        self.__calculateAxialPileResistance = calculateAxialPileResistance
-        self.__pileType = pileType
-        self.__zoneOfInfluence = zoneOfInfluence
-        self.__curveFittingFactor = curveFittingFactor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.soilItems = list()
+        self.scourDepth = scourDepth
+        self.diameter = diameter
+        self._type = _type
+        self.calculateDiameter = calculateDiameter
+        self.calculateAxialPileResistance = calculateAxialPileResistance
+        self.pileType = pileType
+        self.zoneOfInfluence = zoneOfInfluence
+        self.curveFittingFactor = curveFittingFactor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

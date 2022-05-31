@@ -15,7 +15,7 @@ class ThinWalledPipeBlueprint(CrossSectionBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("scfkSpecification","boolean","Scaling of Froude-Krylov term in Morison’s equation in normal direction",default=True))
         self.attributes.append(EnumAttribute("loadFormulation","sima/riflex/LoadFormulation",""))
         self.attributes.append(Attribute("hydrodynamicDiameter","number","Hydrodynamic diameter",default=0.0))

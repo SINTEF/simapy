@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.workflowcontainerpackage import WorkflowContainerPackageBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.workflow.workflow import Workflow
@@ -27,15 +28,15 @@ class WorkflowContainerPackage(MOAO):
          Make all workflows directly contained in this package visible outside of the task(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", visible:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", visible=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__packages = list()
-        self.__workflows = list()
-        self.__visible = visible
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.packages = list()
+        self.workflows = list()
+        self.visible = visible
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

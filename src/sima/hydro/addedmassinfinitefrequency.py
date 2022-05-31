@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.addedmassinfinitefrequency import AddedMassInfiniteFrequencyBlueprint
+from numpy import ndarray,asarray
 from sima.hydro.matrix6 import Matrix6
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -19,16 +20,16 @@ class AddedMassInfiniteFrequency(Matrix6):
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    values : Sequence[float]
+    values : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__values = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.values = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -83,13 +84,11 @@ class AddedMassInfiniteFrequency(Matrix6):
         self.__scriptableValues = value
 
     @property
-    def values(self) -> Sequence[float]:
+    def values(self) -> ndarray:
         """"""
         return self.__values
 
     @values.setter
-    def values(self, value: Sequence[float]):
+    def values(self, value: ndarray):
         """Set values"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__values = value
+        self.__values = asarray(value)

@@ -15,7 +15,7 @@ class EigenvalueAnalysisParametersBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("numberOfEigenvalues","integer","Number of eigenvalues to be calculated",default=10))
         self.attributes.append(Attribute("numberOfEigenvectors","integer","Number of eigenvectors to be calculated",default=10))
         self.attributes.append(Attribute("maxRelativeError","number","Maximum acceptable relative error in computed eigenvalues",default=0.0))

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dnv_os_f201filter import DNV_OS_F201FilterBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.inputslot import InputSlot
 from sima.post.limitstatecategory import LimitStateCategory
@@ -91,47 +92,47 @@ class DNV_OS_F201Filter(OperationNode):
          Acceleration of gravity(default 9.81)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, customSafetyClassResistanceFactor:float=0.0, useCustomSafetyClassResistanceFactor:bool=True, customLoadEffectFactorForEnvironmentalLoads:float=0.0, useCustomLoadEffectFactorForEnvironmentalLoads:bool=True, customLoadEffectFactorForFunctionalLoads:float=0.0, useCustomLoadEffectFactorForFunctionalLoads:bool=True, customLoadFactorForAccidentalLoads:float=0.0, useCustomLoadFactorForAccidentalLoads:bool=True, customMaterialResistanceFactor:float=0.0, useCustomMaterialResistanceFactor:bool=True, fabricationFactor:float=0.85, youngsFactor:float=210000000000.0, poissonsRatio:float=0.3, yieldStrength:float=400000000.0, tensileStrength:float=700000000.0, nomOD:float=0.2967, pipeThickness:float=0.05, ovality:float=0.005, extFluidDensity:float=1025.0, intFluidDensity:float=900.0, refPointPressure:float=500000.0, corrosionAllowance:float=0.001, safetyClass:SafetyClass=SafetyClass.LOW, limitStateCategory:LimitStateCategory=LimitStateCategory.SLS, useWeibullDistributionFitting:bool=False, lowerThresholdForTailFitting:float=0.87, seastateReturnPeriod:float=3.0, accelerationOfGravity:float=9.81, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, customSafetyClassResistanceFactor=0.0, useCustomSafetyClassResistanceFactor=True, customLoadEffectFactorForEnvironmentalLoads=0.0, useCustomLoadEffectFactorForEnvironmentalLoads=True, customLoadEffectFactorForFunctionalLoads=0.0, useCustomLoadEffectFactorForFunctionalLoads=True, customLoadFactorForAccidentalLoads=0.0, useCustomLoadFactorForAccidentalLoads=True, customMaterialResistanceFactor=0.0, useCustomMaterialResistanceFactor=True, fabricationFactor=0.85, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, nomOD=0.2967, pipeThickness=0.05, ovality=0.005, extFluidDensity=1025.0, intFluidDensity=900.0, refPointPressure=500000.0, corrosionAllowance=0.001, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, useWeibullDistributionFitting=False, lowerThresholdForTailFitting=0.87, seastateReturnPeriod=3.0, accelerationOfGravity=9.81, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__filterInputSlots = list()
-        self.__filterOutputSlots = list()
-        self.__customSafetyClassResistanceFactor = customSafetyClassResistanceFactor
-        self.__useCustomSafetyClassResistanceFactor = useCustomSafetyClassResistanceFactor
-        self.__customLoadEffectFactorForEnvironmentalLoads = customLoadEffectFactorForEnvironmentalLoads
-        self.__useCustomLoadEffectFactorForEnvironmentalLoads = useCustomLoadEffectFactorForEnvironmentalLoads
-        self.__customLoadEffectFactorForFunctionalLoads = customLoadEffectFactorForFunctionalLoads
-        self.__useCustomLoadEffectFactorForFunctionalLoads = useCustomLoadEffectFactorForFunctionalLoads
-        self.__customLoadFactorForAccidentalLoads = customLoadFactorForAccidentalLoads
-        self.__useCustomLoadFactorForAccidentalLoads = useCustomLoadFactorForAccidentalLoads
-        self.__customMaterialResistanceFactor = customMaterialResistanceFactor
-        self.__useCustomMaterialResistanceFactor = useCustomMaterialResistanceFactor
-        self.__fabricationFactor = fabricationFactor
-        self.__youngsFactor = youngsFactor
-        self.__poissonsRatio = poissonsRatio
-        self.__yieldStrength = yieldStrength
-        self.__tensileStrength = tensileStrength
-        self.__nomOD = nomOD
-        self.__pipeThickness = pipeThickness
-        self.__ovality = ovality
-        self.__extFluidDensity = extFluidDensity
-        self.__intFluidDensity = intFluidDensity
-        self.__refPointPressure = refPointPressure
-        self.__corrosionAllowance = corrosionAllowance
-        self.__safetyClass = safetyClass
-        self.__limitStateCategory = limitStateCategory
-        self.__useWeibullDistributionFitting = useWeibullDistributionFitting
-        self.__lowerThresholdForTailFitting = lowerThresholdForTailFitting
-        self.__seastateReturnPeriod = seastateReturnPeriod
-        self.__accelerationOfGravity = accelerationOfGravity
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.filterInputSlots = list()
+        self.filterOutputSlots = list()
+        self.customSafetyClassResistanceFactor = customSafetyClassResistanceFactor
+        self.useCustomSafetyClassResistanceFactor = useCustomSafetyClassResistanceFactor
+        self.customLoadEffectFactorForEnvironmentalLoads = customLoadEffectFactorForEnvironmentalLoads
+        self.useCustomLoadEffectFactorForEnvironmentalLoads = useCustomLoadEffectFactorForEnvironmentalLoads
+        self.customLoadEffectFactorForFunctionalLoads = customLoadEffectFactorForFunctionalLoads
+        self.useCustomLoadEffectFactorForFunctionalLoads = useCustomLoadEffectFactorForFunctionalLoads
+        self.customLoadFactorForAccidentalLoads = customLoadFactorForAccidentalLoads
+        self.useCustomLoadFactorForAccidentalLoads = useCustomLoadFactorForAccidentalLoads
+        self.customMaterialResistanceFactor = customMaterialResistanceFactor
+        self.useCustomMaterialResistanceFactor = useCustomMaterialResistanceFactor
+        self.fabricationFactor = fabricationFactor
+        self.youngsFactor = youngsFactor
+        self.poissonsRatio = poissonsRatio
+        self.yieldStrength = yieldStrength
+        self.tensileStrength = tensileStrength
+        self.nomOD = nomOD
+        self.pipeThickness = pipeThickness
+        self.ovality = ovality
+        self.extFluidDensity = extFluidDensity
+        self.intFluidDensity = intFluidDensity
+        self.refPointPressure = refPointPressure
+        self.corrosionAllowance = corrosionAllowance
+        self.safetyClass = safetyClass
+        self.limitStateCategory = limitStateCategory
+        self.useWeibullDistributionFitting = useWeibullDistributionFitting
+        self.lowerThresholdForTailFitting = lowerThresholdForTailFitting
+        self.seastateReturnPeriod = seastateReturnPeriod
+        self.accelerationOfGravity = accelerationOfGravity
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

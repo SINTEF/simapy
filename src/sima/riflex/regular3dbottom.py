@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regular3dbottom import Regular3DBottomBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class Regular3DBottom(MOAO):
          Angle between the X-axis of the seabed file reference system and the X-axis of the global reference system(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", fileName:str="", x:float=0.0, y:float=0.0, zos:float=0.0, angos:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", fileName="", x=0.0, y=0.0, zos=0.0, angos=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__fileName = fileName
-        self.__x = x
-        self.__y = y
-        self.__zos = zos
-        self.__angos = angos
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.fileName = fileName
+        self.x = x
+        self.y = y
+        self.zos = zos
+        self.angos = angos
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

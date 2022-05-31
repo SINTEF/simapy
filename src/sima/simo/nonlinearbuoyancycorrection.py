@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.nonlinearbuoyancycorrection import NonlinearBuoyancyCorrectionBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -31,17 +32,17 @@ class NonlinearBuoyancyCorrection(MOAO):
     correctionMethod : NonlinearBuoyancyCorrectionMethod
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", fileName:str="", minZ:float=0.0, maxZ:float=0.0, correctionMethod:NonlinearBuoyancyCorrectionMethod=NonlinearBuoyancyCorrectionMethod.MWL, **kwargs):
+    def __init__(self , name="", description="", _id="", fileName="", minZ=0.0, maxZ=0.0, correctionMethod=NonlinearBuoyancyCorrectionMethod.MWL, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__fileName = fileName
-        self.__location = Point3()
-        self.__minZ = minZ
-        self.__maxZ = maxZ
-        self.__correctionMethod = correctionMethod
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.fileName = fileName
+        self.location = None
+        self.minZ = minZ
+        self.maxZ = maxZ
+        self.correctionMethod = correctionMethod
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

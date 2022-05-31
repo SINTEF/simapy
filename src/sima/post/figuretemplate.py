@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.figuretemplate import FigureTemplateBlueprint
+from typing import Dict
 from sima.post.axisconfiguration import AxisConfiguration
 from sima.post.plotsize import PlotSize
 from sima.sima.fontdescription import FontDescription
@@ -37,21 +38,21 @@ class FigureTemplate(MOAO):
          (default 0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", showTitle:bool=True, showLegend:bool=True, size:PlotSize=PlotSize.DYNAMIC, width:int=0, height:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", showTitle=True, showLegend=True, size=PlotSize.DYNAMIC, width=0, height=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__titleFont = FontDescription()
-        self.__legendFont = FontDescription()
-        self.__xAxis = AxisConfiguration()
-        self.__yAxis = AxisConfiguration()
-        self.__showTitle = showTitle
-        self.__showLegend = showLegend
-        self.__size = size
-        self.__width = width
-        self.__height = height
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.titleFont = None
+        self.legendFont = None
+        self.xAxis = None
+        self.yAxis = None
+        self.showTitle = showTitle
+        self.showLegend = showLegend
+        self.size = size
+        self.width = width
+        self.height = height
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

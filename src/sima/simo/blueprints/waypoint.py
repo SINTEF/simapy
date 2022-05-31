@@ -15,7 +15,7 @@ class WaypointBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("x","number","X-coordinate of waypoint",default=0.0))
         self.attributes.append(Attribute("y","number","Y-coordinate of waypoint",default=0.0))
         self.attributes.append(Attribute("velocity","number","Velocity towards next waypoint",default=0.0))

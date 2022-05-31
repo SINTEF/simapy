@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynmodvisualisationresponses import DynmodVisualisationResponsesBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class DynmodVisualisationResponses(MOAO):
          Visualisation responses indicator(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", startTime:float=0.0, endTime:float=512.0, timeIncrement:float=0.5, storeVisualisationResponses:bool=False, storeVTF:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", startTime=0.0, endTime=512.0, timeIncrement=0.5, storeVisualisationResponses=False, storeVTF=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__startTime = startTime
-        self.__endTime = endTime
-        self.__timeIncrement = timeIncrement
-        self.__storeVisualisationResponses = storeVisualisationResponses
-        self.__storeVTF = storeVTF
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.startTime = startTime
+        self.endTime = endTime
+        self.timeIncrement = timeIncrement
+        self.storeVisualisationResponses = storeVisualisationResponses
+        self.storeVTF = storeVTF
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

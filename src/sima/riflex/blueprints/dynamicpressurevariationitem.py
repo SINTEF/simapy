@@ -15,7 +15,7 @@ class DynamicPressureVariationItemBlueprint(PressureVariationItemBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("mainRiserLine","sima/riflex/MainRiserLine","Main riser line",False))
         self.attributes.append(Attribute("inletPressure","number","Final pressure at inlet end",default=0.0))
         self.attributes.append(Attribute("pressureDrop","number","Final pressure drop",default=0.0))

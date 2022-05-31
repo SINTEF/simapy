@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.retardationfunction import RetardationFunctionBlueprint
+from typing import Dict
 from sima.hydro.lineardampingmatrix import LinearDampingMatrix
 from sima.hydro.retardationelementdata import RetardationElementData
 from sima.sima.moao import MOAO
@@ -27,15 +28,15 @@ class RetardationFunction(MOAO):
     additionalDamping : LinearDampingMatrix
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", timeDelay:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", timeDelay=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__retardationElements = list()
-        self.__timeDelay = timeDelay
-        self.__additionalDamping = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.retardationElements = list()
+        self.timeDelay = timeDelay
+        self.additionalDamping = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

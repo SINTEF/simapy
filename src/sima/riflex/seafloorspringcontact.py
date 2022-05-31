@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.seafloorspringcontact import SeafloorSpringContactBlueprint
+from typing import Dict
 from sima.riflex.seafloorcontact import SeafloorContact
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -39,21 +40,21 @@ class SeafloorSpringContact(SeafloorContact):
          Apply lateral contact forces at the external contact radius, giving a torsional moment(default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", axialStiffness:float=0.0, axialFriction:float=0.0, axialDamping:float=0.0, lateralStiffness:float=0.0, lateralFriction:float=0.0, lateralDamping:float=0.0, normalStiffness:float=0.0, normalDamping:float=0.0, applyLateralContactForces:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, normalStiffness=0.0, normalDamping=0.0, applyLateralContactForces=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__axialStiffness = axialStiffness
-        self.__axialFriction = axialFriction
-        self.__axialDamping = axialDamping
-        self.__lateralStiffness = lateralStiffness
-        self.__lateralFriction = lateralFriction
-        self.__lateralDamping = lateralDamping
-        self.__normalStiffness = normalStiffness
-        self.__normalDamping = normalDamping
-        self.__applyLateralContactForces = applyLateralContactForces
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.axialStiffness = axialStiffness
+        self.axialFriction = axialFriction
+        self.axialDamping = axialDamping
+        self.lateralStiffness = lateralStiffness
+        self.lateralFriction = lateralFriction
+        self.lateralDamping = lateralDamping
+        self.normalStiffness = normalStiffness
+        self.normalDamping = normalDamping
+        self.applyLateralContactForces = applyLateralContactForces
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

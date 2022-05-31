@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regularwaveanalaysis import RegularWaveAnalaysisBlueprint
+from typing import Dict
 from sima.riflex.platformmotion import PlatformMotion
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
@@ -30,16 +31,16 @@ class RegularWaveAnalaysis(MOAO):
          Platform motion options:
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", periods:int=1, timeSteps:int=80, waveActing:bool=True, platformMotion:PlatformMotion=PlatformMotion.GENERATED, **kwargs):
+    def __init__(self , name="", description="", _id="", periods=1, timeSteps=80, waveActing=True, platformMotion=PlatformMotion.GENERATED, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__periods = periods
-        self.__timeSteps = timeSteps
-        self.__waveActing = waveActing
-        self.__platformMotion = platformMotion
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.periods = periods
+        self.timeSteps = timeSteps
+        self.waveActing = waveActing
+        self.platformMotion = platformMotion
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

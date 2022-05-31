@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pointfender import PointFenderBlueprint
+from typing import Dict
 from sima.sima.namedobject import NamedObject
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
@@ -41,21 +42,21 @@ class PointFender(NamedObject):
     contactPoints : List[Point3]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", dynamicFriction:float=0.0, staticFriction:float=0.0, shearStiffnes:float=0.0, velocityLimit:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", dynamicFriction=0.0, staticFriction=0.0, shearStiffnes=0.0, velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__dynamicFriction = dynamicFriction
-        self.__staticFriction = staticFriction
-        self.__shearStiffnes = shearStiffnes
-        self.__velocityLimit = velocityLimit
-        self.__contactPlane = Plane()
-        self.__characteristic = ForceDampingCharacteristic()
-        self.__pointBody = None
-        self.__planeBody = None
-        self.__contactPoints = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.dynamicFriction = dynamicFriction
+        self.staticFriction = staticFriction
+        self.shearStiffnes = shearStiffnes
+        self.velocityLimit = velocityLimit
+        self.contactPlane = None
+        self.characteristic = None
+        self.pointBody = None
+        self.planeBody = None
+        self.contactPoints = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

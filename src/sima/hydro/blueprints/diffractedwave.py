@@ -15,7 +15,7 @@ class DiffractedWaveBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("referencePoint","sima/sima/Point3","",True))
         self.attributes.append(BlueprintAttribute("elevation","sima/hydro/DiffractedWaveElevation","",True))
         self.attributes.append(BlueprintAttribute("velocity","sima/hydro/DiffractedWaveVelocity","",True))

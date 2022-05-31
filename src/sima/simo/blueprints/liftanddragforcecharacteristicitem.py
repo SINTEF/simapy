@@ -15,7 +15,7 @@ class LiftAndDragForceCharacteristicItemBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("size","")))
+        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("velocityDirection","number","Velocity direction relative to rudder x-axis",default=0.0))
         self.attributes.append(Attribute("forceX","number","Quadratic force coefficient in rudder x-direction",default=0.0))
         self.attributes.append(Attribute("forceY","number","Quadratic force coefficient in rudder y-direction",default=0.0))

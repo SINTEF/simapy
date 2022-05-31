@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fixedelongationcoupling import FixedElongationCouplingBlueprint
+from typing import Dict
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.activationfailuremode import ActivationFailureMode
 from sima.simo.fixedelongationmethod import FixedElongationMethod
@@ -41,20 +42,20 @@ class FixedElongationCoupling(SimpleCoupling):
     characteristic : ForceDampingCharacteristic
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", failureMode:ActivationFailureMode=ActivationFailureMode.NONE, failureTime:float=0.0, breakingStrength:float=0.0, method:FixedElongationMethod=FixedElongationMethod.SPRING, velocityLimit:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, method=FixedElongationMethod.SPRING, velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__endPoint1 = None
-        self.__endPoint2 = None
-        self.__failureMode = failureMode
-        self.__failureTime = failureTime
-        self.__breakingStrength = breakingStrength
-        self.__method = method
-        self.__velocityLimit = velocityLimit
-        self.__characteristic = ForceDampingCharacteristic()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.endPoint1 = None
+        self.endPoint2 = None
+        self.failureMode = failureMode
+        self.failureTime = failureTime
+        self.breakingStrength = breakingStrength
+        self.method = method
+        self.velocityLimit = velocityLimit
+        self.characteristic = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

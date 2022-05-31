@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.taskfolder import TaskFolderBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.task import Task
@@ -27,15 +28,15 @@ class TaskFolder(MOAO):
          (default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", visible:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", visible=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__childFolders = list()
-        self.__childTasks = list()
-        self.__visible = visible
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.childFolders = list()
+        self.childTasks = list()
+        self.visible = visible
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.quadraticcurrentcoefficient import QuadraticCurrentCoefficientBlueprint
+from typing import Dict
 from sima.hydro.coefficienttype import CoefficientType
 from sima.hydro.directionsymmetry import DirectionSymmetry
 from sima.hydro.quadraticcurrentcoefficientitem import QuadraticCurrentCoefficientItem
@@ -30,16 +31,16 @@ class QuadraticCurrentCoefficient(MOAO):
          Text file containing the current coefficients. The force coefficents in the file must be specified in [kN/(m/s)] for translational degrees of freedom and [kN.s] for rotational degrees of freedom.(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", symmetry:DirectionSymmetry=DirectionSymmetry.NO_SYMMETRY, _type:CoefficientType=CoefficientType.CLASSIC, fileName:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, _type=CoefficientType.CLASSIC, fileName="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__symmetry = symmetry
-        self.__items = list()
-        self.___type = _type
-        self.__fileName = fileName
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.symmetry = symmetry
+        self.items = list()
+        self._type = _type
+        self.fileName = fileName
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

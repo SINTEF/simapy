@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.turbsimfluctuatingthreecomponent import TurbSimFluctuatingThreeComponentBlueprint
+from typing import Dict
 from sima.environment.wind import Wind
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -29,16 +30,16 @@ class TurbSimFluctuatingThreeComponent(Wind):
          Path and filename for the summary file from TurbSim(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", direction:float=0.0, numSlices:int=800, windFileName:str="", sumFileName:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", direction=0.0, numSlices=800, windFileName="", sumFileName="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__direction = direction
-        self.__numSlices = numSlices
-        self.__windFileName = windFileName
-        self.__sumFileName = sumFileName
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.direction = direction
+        self.numSlices = numSlices
+        self.windFileName = windFileName
+        self.sumFileName = sumFileName
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

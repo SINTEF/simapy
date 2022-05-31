@@ -12,9 +12,9 @@ class ImageBlueprint(ReportItemBlueprint):
 
     def __init__(self, name="Image", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string",""))
-        self.attributes.append(Attribute("description","string",""))
-        self.attributes.append(Attribute("path","string",""))
-        self.attributes.append(Attribute("caption","string",""))
-        self.attributes.append(Attribute("height","integer",""))
-        self.attributes.append(Attribute("width","integer",""))
+        self.attributes.append(Attribute("name","string","",default=""))
+        self.attributes.append(Attribute("description","string","",default=""))
+        self.attributes.append(Attribute("path","string","",default=""))
+        self.attributes.append(Attribute("caption","string","",default=""))
+        self.attributes.append(Attribute("height","integer","",default=0))
+        self.attributes.append(Attribute("width","integer","",default=0))

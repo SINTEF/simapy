@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.storagetask import StorageTaskBlueprint
+from typing import Dict
 from sima.sima.doublevariable import DoubleVariable
 from sima.sima.integervariable import IntegerVariable
 from sima.sima.scriptablevalue import ScriptableValue
@@ -37,20 +38,20 @@ class StorageTask(Task):
          If not set the file content withing this storage task will be ommitted when exporting.(default True)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", runNumber:int=0, _type:StorageTaskType=StorageTaskType.PRIVATE, root:str="", includeInExport:bool=True, **kwargs):
+    def __init__(self , name="", description="", _id="", runNumber=0, _type=StorageTaskType.PRIVATE, root="", includeInExport=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__doubleVariables = list()
-        self.__integerVariables = list()
-        self.__stringVariables = list()
-        self.__runNumber = runNumber
-        self.__scripts = list()
-        self.___type = _type
-        self.__root = root
-        self.__includeInExport = includeInExport
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.doubleVariables = list()
+        self.integerVariables = list()
+        self.stringVariables = list()
+        self.runNumber = runNumber
+        self.scripts = list()
+        self._type = _type
+        self.root = root
+        self.includeInExport = includeInExport
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

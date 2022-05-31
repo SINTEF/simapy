@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customtext import CustomTextBlueprint
+from numpy import ndarray,asarray
 from sima.custom.fieldtype import FieldType
 from sima.custom.filetype import FileType
 from sima.custom.parameterfield import ParameterField
@@ -30,7 +31,7 @@ class CustomText(ParameterField):
          (default False)
     fileExtensions : str
          Describes legal file extensions separated by semicolon, example:  *.txt;*.dat(default "")
-    options : Sequence[str]
+    options : ndarray
     _type : FieldType
     width : int
          (default 10)
@@ -40,22 +41,22 @@ class CustomText(ParameterField):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", label:str="", tooltip:str="", fileType:FileType=FileType.INPUT, directory:bool=False, fileExtensions:str="", _type:FieldType=FieldType.TEXT, width:int=10, expandHorizontally:bool=False, value:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", label="", tooltip="", fileType=FileType.INPUT, directory=False, fileExtensions="", _type=FieldType.TEXT, width=10, expandHorizontally=False, value="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__label = label
-        self.__tooltip = tooltip
-        self.__fileType = fileType
-        self.__directory = directory
-        self.__fileExtensions = fileExtensions
-        self.__options = list()
-        self.___type = _type
-        self.__width = width
-        self.__expandHorizontally = expandHorizontally
-        self.__value = value
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.label = label
+        self.tooltip = tooltip
+        self.fileType = fileType
+        self.directory = directory
+        self.fileExtensions = fileExtensions
+        self.options = ndarray(1)
+        self._type = _type
+        self.width = width
+        self.expandHorizontally = expandHorizontally
+        self.value = value
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -160,16 +161,14 @@ class CustomText(ParameterField):
         self.__fileExtensions = str(value)
 
     @property
-    def options(self) -> Sequence[str]:
+    def options(self) -> ndarray:
         """"""
         return self.__options
 
     @options.setter
-    def options(self, value: Sequence[str]):
+    def options(self, value: ndarray):
         """Set options"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__options = value
+        self.__options = asarray(value)
 
     @property
     def _type(self) -> FieldType:

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thrusterreduction import ThrusterReductionBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -25,14 +26,14 @@ class ThrusterReduction(MOAO):
          Thrust reduction factor(default 1.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", propellerDirection:float=0.0, reductionFactor:float=1.0, **kwargs):
+    def __init__(self , name="", description="", _id="", propellerDirection=0.0, reductionFactor=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__propellerDirection = propellerDirection
-        self.__reductionFactor = reductionFactor
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.propellerDirection = propellerDirection
+        self.reductionFactor = reductionFactor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

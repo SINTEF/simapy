@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficientBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -43,23 +44,23 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
          Relative quadratic drag in 3. degree of freedom(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", zd:float=1.0, rvol:float=1.0, ramx:float=1.0, ramy:float=1.0, ramz:float=1.0, rc11:float=0.0, rc12:float=0.0, rc13:float=0.0, rc21:float=0.0, rc22:float=0.0, rc23:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", zd=1.0, rvol=1.0, ramx=1.0, ramy=1.0, ramz=1.0, rc11=0.0, rc12=0.0, rc13=0.0, rc21=0.0, rc22=0.0, rc23=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__zd = zd
-        self.__rvol = rvol
-        self.__ramx = ramx
-        self.__ramy = ramy
-        self.__ramz = ramz
-        self.__rc11 = rc11
-        self.__rc12 = rc12
-        self.__rc13 = rc13
-        self.__rc21 = rc21
-        self.__rc22 = rc22
-        self.__rc23 = rc23
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.zd = zd
+        self.rvol = rvol
+        self.ramx = ramx
+        self.ramy = ramy
+        self.ramz = ramz
+        self.rc11 = rc11
+        self.rc12 = rc12
+        self.rc13 = rc13
+        self.rc21 = rc21
+        self.rc22 = rc22
+        self.rc23 = rc23
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

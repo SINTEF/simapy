@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.linearcurrentcoefficient import LinearCurrentCoefficientBlueprint
+from typing import Dict
 from sima.hydro.directionsymmetry import DirectionSymmetry
 from sima.hydro.linearcurrentcoefficientitem import LinearCurrentCoefficientItem
 from sima.sima.moao import MOAO
@@ -25,14 +26,14 @@ class LinearCurrentCoefficient(MOAO):
     items : List[LinearCurrentCoefficientItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", symmetry:DirectionSymmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
+    def __init__(self , name="", description="", _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__symmetry = symmetry
-        self.__items = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.symmetry = symmetry
+        self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

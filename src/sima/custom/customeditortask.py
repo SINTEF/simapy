@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customeditortask import CustomEditorTaskBlueprint
+from typing import Dict
 from sima.custom.customeditor import CustomEditor
 from sima.custom.customwizard import CustomWizard
 from sima.sima.doublevariable import DoubleVariable
@@ -35,19 +36,19 @@ class CustomEditorTask(Task):
     wizards : List[CustomWizard]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", runNumber:int=0, **kwargs):
+    def __init__(self , name="", description="", _id="", runNumber=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__doubleVariables = list()
-        self.__integerVariables = list()
-        self.__stringVariables = list()
-        self.__runNumber = runNumber
-        self.__scripts = list()
-        self.__editors = list()
-        self.__wizards = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.doubleVariables = list()
+        self.integerVariables = list()
+        self.stringVariables = list()
+        self.runNumber = runNumber
+        self.scripts = list()
+        self.editors = list()
+        self.wizards = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

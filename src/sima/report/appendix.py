@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.appendix import AppendixBlueprint
+from typing import Dict
 from sima.report.linkable import Linkable
 from sima.report.orientation import Orientation
 from sima.report.reportitem import ReportItem
@@ -31,17 +32,17 @@ class Appendix(ReportItem,Linkable):
     orientation : Orientation
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", identifier:str="", title:str="", pageBreakBefore:bool=False, orientation:Orientation=Orientation.PORTRAIT, **kwargs):
+    def __init__(self , name="", description="", _id="", identifier="", title="", pageBreakBefore=False, orientation=Orientation.PORTRAIT, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__identifier = identifier
-        self.__items = list()
-        self.__title = title
-        self.__pageBreakBefore = pageBreakBefore
-        self.__orientation = orientation
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.identifier = identifier
+        self.items = list()
+        self.title = title
+        self.pageBreakBefore = pageBreakBefore
+        self.orientation = orientation
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

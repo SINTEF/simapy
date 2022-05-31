@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.linesegment import LineSegmentBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.segmenttype import SegmentType
@@ -52,25 +53,25 @@ class LineSegment(MOAO):
          Non-linear Elongation characteristic
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", length:float=0.0, segmentType:SegmentType=SegmentType.CATENARY, numElements:int=0, bottomFriction:float=0.0, diameter:float=0.0, eMod:float=0.0, emFac:float=1.0, transverseDrag:float=0.0, longitudinalDrag:float=0.0, uwia:float=0.0, watfac:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", length=0.0, segmentType=SegmentType.CATENARY, numElements=0, bottomFriction=0.0, diameter=0.0, eMod=0.0, emFac=1.0, transverseDrag=0.0, longitudinalDrag=0.0, uwia=0.0, watfac=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__length = length
-        self.__buoy = None
-        self.__segmentType = segmentType
-        self.__numElements = numElements
-        self.__bottomFriction = bottomFriction
-        self.__diameter = diameter
-        self.__eMod = eMod
-        self.__emFac = emFac
-        self.__transverseDrag = transverseDrag
-        self.__longitudinalDrag = longitudinalDrag
-        self.__uwia = uwia
-        self.__watfac = watfac
-        self.__elongationCharacteristic = None
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.length = length
+        self.buoy = None
+        self.segmentType = segmentType
+        self.numElements = numElements
+        self.bottomFriction = bottomFriction
+        self.diameter = diameter
+        self.eMod = eMod
+        self.emFac = emFac
+        self.transverseDrag = transverseDrag
+        self.longitudinalDrag = longitudinalDrag
+        self.uwia = uwia
+        self.watfac = watfac
+        self.elongationCharacteristic = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

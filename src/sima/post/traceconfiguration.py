@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.traceconfiguration import TraceConfigurationBlueprint
+from typing import Dict
 from sima.post.linestyle import LineStyle
 from sima.post.pathspecification import PathSpecification
 from sima.post.pointstyle import PointStyle
@@ -39,21 +40,21 @@ class TraceConfiguration(PathSpecification):
          (default False)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", path:str="", label:str="", lineStyle:LineStyle=LineStyle.SOLID, lineWidth:int=1, pointStyle:PointStyle=PointStyle.NONE, showStatistics:bool=True, pointSize:int=1, specifyPath:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", path="", label="", lineStyle=LineStyle.SOLID, lineWidth=1, pointStyle=PointStyle.NONE, showStatistics=True, pointSize=1, specifyPath=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__path = path
-        self.__label = label
-        self.__color = SIMAColor()
-        self.__lineStyle = lineStyle
-        self.__lineWidth = lineWidth
-        self.__pointStyle = pointStyle
-        self.__showStatistics = showStatistics
-        self.__pointSize = pointSize
-        self.__specifyPath = specifyPath
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.path = path
+        self.label = label
+        self.color = None
+        self.lineStyle = lineStyle
+        self.lineWidth = lineWidth
+        self.pointStyle = pointStyle
+        self.showStatistics = showStatistics
+        self.pointSize = pointSize
+        self.specifyPath = specifyPath
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

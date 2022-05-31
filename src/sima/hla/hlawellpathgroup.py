@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlawellpathgroup import HLAWellPathGroupBlueprint
+from typing import Dict
 from sima.hla.hlaobject import HLAObject
 from sima.hla.hlawellpath import HLAWellPath
 from sima.sima.scriptablevalue import ScriptableValue
@@ -23,13 +24,13 @@ class HLAWellPathGroup(HLAObject):
     HLAWellPaths : List[HLAWellPath]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__HLAWellPaths = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.HLAWellPaths = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

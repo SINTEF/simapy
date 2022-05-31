@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simomodel import SIMOModelBlueprint
+from typing import Dict
 from sima.environment.environment import Environment
 from sima.environment.environmentscontainer import EnvironmentsContainer
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.advancedbumper import AdvancedBumper
 from sima.simo.bumpergroup import BumperGroup
-from sima.simo.simolocation import SIMOLocation
 from sima.simo.dockingcone import DockingCone
 from sima.simo.fibreropemodel import FibreRopeModel
 from sima.simo.fixedelongationcoupling import FixedElongationCoupling
@@ -24,6 +24,7 @@ from sima.simo.rollerfender import RollerFender
 from sima.simo.simobody import SIMOBody
 from sima.simo.simodynamiccalculationparameters import SIMODynamicCalculationParameters
 from sima.simo.simofrequencydomaincalculation import SIMOFrequencyDomainCalculation
+from sima.simo.simolocation import SIMOLocation
 from sima.simo.simostaticcalculationparameters import SIMOStaticCalculationParameters
 from sima.simo.simplewirecoupling import SimpleWireCoupling
 from sima.simo.stabilitycalculationparameters import StabilityCalculationParameters
@@ -63,33 +64,33 @@ class SIMOModel(EnvironmentsContainer):
     fibreRopeModels : List[FibreRopeModel]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__environments = list()
-        self.__airfoils = list()
-        self.__location = None
-        self.__bodies = list()
-        self.__hydrodynamicCouplings = list()
-        self.__simpleWireCouplings = list()
-        self.__fixedElongationCouplings = list()
-        self.__dockingCones = list()
-        self.__pointFenders = list()
-        self.__rollerFenders = list()
-        self.__ratchets = list()
-        self.__multipleWireCouplings = list()
-        self.__bumperGroups = list()
-        self.__advancedBumpers = list()
-        self.__liftLineCouplings = list()
-        self.__momentCouplings = list()
-        self.__sIMOStaticCalculationParameters = SIMOStaticCalculationParameters()
-        self.__sIMODynamicCalculationParameters = SIMODynamicCalculationParameters()
-        self.__stabilityCalculationParameters = None
-        self.__simoFrequencyDomainCalculation = None
-        self.__fibreRopeModels = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.environments = list()
+        self.airfoils = list()
+        self.location = None
+        self.bodies = list()
+        self.hydrodynamicCouplings = list()
+        self.simpleWireCouplings = list()
+        self.fixedElongationCouplings = list()
+        self.dockingCones = list()
+        self.pointFenders = list()
+        self.rollerFenders = list()
+        self.ratchets = list()
+        self.multipleWireCouplings = list()
+        self.bumperGroups = list()
+        self.advancedBumpers = list()
+        self.liftLineCouplings = list()
+        self.momentCouplings = list()
+        self.sIMOStaticCalculationParameters = None
+        self.sIMODynamicCalculationParameters = None
+        self.stabilityCalculationParameters = None
+        self.simoFrequencyDomainCalculation = None
+        self.fibreRopeModels = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

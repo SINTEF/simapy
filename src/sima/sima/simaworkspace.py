@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simaworkspace import SIMAWorkspaceBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.task import Task
@@ -29,16 +30,16 @@ class SIMAWorkspace(MOAO):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", productId:str="", dateAndTime:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", productId="", dateAndTime="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__childFolders = list()
-        self.__tasks = list()
-        self.__productId = productId
-        self.__dateAndTime = dateAndTime
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.childFolders = list()
+        self.tasks = list()
+        self.productId = productId
+        self.dateAndTime = dateAndTime
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.custommodelfield import CustomModelFieldBlueprint
+from typing import Dict
 from sima.custom.customcomponent import CustomComponent
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
@@ -38,19 +39,19 @@ class CustomModelField(CustomComponent):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", label:str="", tooltip:str="", customTooltip:bool=False, customLabel:bool=False, readOnly:bool=False, featureName:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", label="", tooltip="", customTooltip=False, customLabel=False, readOnly=False, featureName="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__label = label
-        self.__tooltip = tooltip
-        self.__model = None
-        self.__customTooltip = customTooltip
-        self.__customLabel = customLabel
-        self.__readOnly = readOnly
-        self.__featureName = featureName
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.label = label
+        self.tooltip = tooltip
+        self.model = None
+        self.customTooltip = customTooltip
+        self.customLabel = customLabel
+        self.readOnly = readOnly
+        self.featureName = featureName
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

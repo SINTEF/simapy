@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.verticalaxiswindturbinecontroller import VerticalAxisWindTurbineControllerBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.windturbine.gainschedulingitem import GainSchedulingItem
@@ -55,29 +56,29 @@ class VerticalAxisWindTurbineController(MOAO):
     gainSchedulingItems : List[GainSchedulingItem]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", sampleInterval:float=0.0, startupLength:float=0.0, filterPeriodRotorSpeed:float=0.0, filterPeriodWindSpeed:float=0.0, filterRadialFrequency:float=0.0, notchFilterWidth:float=0.0, gearBoxRatio:float=0.0, maxTorque:float=0.0, maxTorqueRate:float=0.0, proportionalGain:float=0.0, initialIntegratorGainRatio:float=0.0, finalIntegratorGainRatio:float=0.0, integratorRelaxationTime:float=0.0, windRotorSpeed:TableFormat=TableFormat.DEFAULT, gainScheduling:TableFormat=TableFormat.DEFAULT, **kwargs):
+    def __init__(self , name="", description="", _id="", sampleInterval=0.0, startupLength=0.0, filterPeriodRotorSpeed=0.0, filterPeriodWindSpeed=0.0, filterRadialFrequency=0.0, notchFilterWidth=0.0, gearBoxRatio=0.0, maxTorque=0.0, maxTorqueRate=0.0, proportionalGain=0.0, initialIntegratorGainRatio=0.0, finalIntegratorGainRatio=0.0, integratorRelaxationTime=0.0, windRotorSpeed=TableFormat.DEFAULT, gainScheduling=TableFormat.DEFAULT, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__sampleInterval = sampleInterval
-        self.__startupLength = startupLength
-        self.__filterPeriodRotorSpeed = filterPeriodRotorSpeed
-        self.__filterPeriodWindSpeed = filterPeriodWindSpeed
-        self.__filterRadialFrequency = filterRadialFrequency
-        self.__notchFilterWidth = notchFilterWidth
-        self.__gearBoxRatio = gearBoxRatio
-        self.__maxTorque = maxTorque
-        self.__maxTorqueRate = maxTorqueRate
-        self.__proportionalGain = proportionalGain
-        self.__initialIntegratorGainRatio = initialIntegratorGainRatio
-        self.__finalIntegratorGainRatio = finalIntegratorGainRatio
-        self.__integratorRelaxationTime = integratorRelaxationTime
-        self.__windRotorSpeed = windRotorSpeed
-        self.__gainScheduling = gainScheduling
-        self.__windRotorSpeedItems = list()
-        self.__gainSchedulingItems = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.sampleInterval = sampleInterval
+        self.startupLength = startupLength
+        self.filterPeriodRotorSpeed = filterPeriodRotorSpeed
+        self.filterPeriodWindSpeed = filterPeriodWindSpeed
+        self.filterRadialFrequency = filterRadialFrequency
+        self.notchFilterWidth = notchFilterWidth
+        self.gearBoxRatio = gearBoxRatio
+        self.maxTorque = maxTorque
+        self.maxTorqueRate = maxTorqueRate
+        self.proportionalGain = proportionalGain
+        self.initialIntegratorGainRatio = initialIntegratorGainRatio
+        self.finalIntegratorGainRatio = finalIntegratorGainRatio
+        self.integratorRelaxationTime = integratorRelaxationTime
+        self.windRotorSpeed = windRotorSpeed
+        self.gainScheduling = gainScheduling
+        self.windRotorSpeedItems = list()
+        self.gainSchedulingItems = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.currentitem import CurrentItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -27,15 +28,15 @@ class CurrentItem(MOAO):
          Current velocity(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", level:float=0.0, direction:float=0.0, velocity:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", level=0.0, direction=0.0, velocity=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__level = level
-        self.__direction = direction
-        self.__velocity = velocity
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.level = level
+        self.direction = direction
+        self.velocity = velocity
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

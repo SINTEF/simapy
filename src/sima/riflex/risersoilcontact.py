@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.risersoilcontact import RiserSoilContactBlueprint
+from typing import Dict
 from sima.riflex.seafloorcontact import SeafloorContact
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -53,28 +54,28 @@ class RiserSoilContact(SeafloorContact):
          Mobilization displacement for max soil suction as fraction of pipe soil contact width(default 0.08)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", axialStiffness:float=0.0, axialFriction:float=0.0, axialDamping:float=0.0, lateralStiffness:float=0.0, lateralFriction:float=0.0, lateralDamping:float=0.0, soilSubmergedWeight:float=0.0, soilShearStrength:float=0.0, soilShearStrengthGradient:float=0.0, soilPoissonRatio:float=0.0, soilGModulus:float=0.0, stiffnessModulusRelationship:float=0.88, alpha:float=1.0, beta:float=1.0, kbc:float=0.05, kt:float=0.08, **kwargs):
+    def __init__(self , name="", description="", _id="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, soilSubmergedWeight=0.0, soilShearStrength=0.0, soilShearStrengthGradient=0.0, soilPoissonRatio=0.0, soilGModulus=0.0, stiffnessModulusRelationship=0.88, alpha=1.0, beta=1.0, kbc=0.05, kt=0.08, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__axialStiffness = axialStiffness
-        self.__axialFriction = axialFriction
-        self.__axialDamping = axialDamping
-        self.__lateralStiffness = lateralStiffness
-        self.__lateralFriction = lateralFriction
-        self.__lateralDamping = lateralDamping
-        self.__soilSubmergedWeight = soilSubmergedWeight
-        self.__soilShearStrength = soilShearStrength
-        self.__soilShearStrengthGradient = soilShearStrengthGradient
-        self.__soilPoissonRatio = soilPoissonRatio
-        self.__soilGModulus = soilGModulus
-        self.__stiffnessModulusRelationship = stiffnessModulusRelationship
-        self.__alpha = alpha
-        self.__beta = beta
-        self.__kbc = kbc
-        self.__kt = kt
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.axialStiffness = axialStiffness
+        self.axialFriction = axialFriction
+        self.axialDamping = axialDamping
+        self.lateralStiffness = lateralStiffness
+        self.lateralFriction = lateralFriction
+        self.lateralDamping = lateralDamping
+        self.soilSubmergedWeight = soilSubmergedWeight
+        self.soilShearStrength = soilShearStrength
+        self.soilShearStrengthGradient = soilShearStrengthGradient
+        self.soilPoissonRatio = soilPoissonRatio
+        self.soilGModulus = soilGModulus
+        self.stiffnessModulusRelationship = stiffnessModulusRelationship
+        self.alpha = alpha
+        self.beta = beta
+        self.kbc = kbc
+        self.kt = kt
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

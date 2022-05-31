@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bendingstiffnessyz_item import BendingStiffnessYZ_ItemBlueprint
+from typing import Dict
 from sima.sima.moao import MOAO
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -27,15 +28,15 @@ class BendingStiffnessYZ_Item(MOAO):
          Bending moment around z-axis corresponding to curvature values.(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", curvatureValue:float=0.0, bendingMomentY:float=0.0, bendingMomentZ:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", curvatureValue=0.0, bendingMomentY=0.0, bendingMomentZ=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__curvatureValue = curvatureValue
-        self.__bendingMomentY = bendingMomentY
-        self.__bendingMomentZ = bendingMomentZ
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.curvatureValue = curvatureValue
+        self.bendingMomentY = bendingMomentY
+        self.bendingMomentZ = bendingMomentZ
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

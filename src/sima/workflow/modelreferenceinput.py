@@ -6,6 +6,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.modelreferenceinput import ModelReferenceInputBlueprint
+from typing import Dict
 from sima.post.controlsignalinputslot import ControlSignalInputSlot
 from sima.post.outputslot import OutputSlot
 from sima.post.signalproperties import SignalProperties
@@ -56,28 +57,28 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     modelReferences : List[ModelReference]
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", x:int=0, y:int=0, h:int=0, w:int=0, root:str="", resultId:str="", reference:str='workflow', specifyAdditionalProperties:bool=False, _type:str='workflow', useReference:bool=False, array:bool=False, **kwargs):
+    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, root="", resultId="", reference='workflow', specifyAdditionalProperties=False, _type='workflow', useReference=False, array=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__x = x
-        self.__y = y
-        self.__h = h
-        self.__w = w
-        self.__controlSignalInputSlots = list()
-        self.__root = root
-        self.__resultId = resultId
-        self.__outputSlot = OutputSlot()
-        self.__properties = list()
-        self.__model = None
-        self.__reference = reference
-        self.__specifyAdditionalProperties = specifyAdditionalProperties
-        self.___type = _type
-        self.__useReference = useReference
-        self.__array = array
-        self.__modelReferences = list()
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.x = x
+        self.y = y
+        self.h = h
+        self.w = w
+        self.controlSignalInputSlots = list()
+        self.root = root
+        self.resultId = resultId
+        self.outputSlot = None
+        self.properties = list()
+        self.model = None
+        self.reference = reference
+        self.specifyAdditionalProperties = specifyAdditionalProperties
+        self._type = _type
+        self.useReference = useReference
+        self.array = array
+        self.modelReferences = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

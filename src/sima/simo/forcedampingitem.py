@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.forcedampingitem import ForceDampingItemBlueprint
+from typing import Dict
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.forceitem import ForceItem
 
@@ -27,15 +28,15 @@ class ForceDampingItem(ForceItem):
          Damping coefficient(default 0.0)
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", distance:float=0.0, force:float=0.0, damping:float=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", distance=0.0, force=0.0, damping=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__distance = distance
-        self.__force = force
-        self.__damping = damping
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.distance = distance
+        self.force = force
+        self.damping = damping
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

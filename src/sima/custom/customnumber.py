@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customnumber import CustomNumberBlueprint
+from typing import Dict
 from sima.custom.parameterfield import ParameterField
 from sima.sima.scriptablevalue import ScriptableValue
 
@@ -31,17 +32,17 @@ class CustomNumber(ParameterField):
          Give a valid range for a number: Use <,> for excluding and [] for including.\nExampless: \n- [0,4] Number from and including 0 to and including 4\n- <0,4> From and to, excluding \n- <,0> All negative numbers excluding 0\n- [0,> All positive numbers, including 0\n(default "")
     """
 
-    def __init__(self , name:str="", description:str="", _id:str="", label:str="", tooltip:str="", value:float=0.0, unit:str="", constraints:str="", **kwargs):
+    def __init__(self , name="", description="", _id="", label="", tooltip="", value=0.0, unit="", constraints="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.___id = _id
-        self.__scriptableValues = list()
-        self.__label = label
-        self.__tooltip = tooltip
-        self.__value = value
-        self.__unit = unit
-        self.__constraints = constraints
+        self.name = name
+        self.description = description
+        self._id = _id
+        self.scriptableValues = list()
+        self.label = label
+        self.tooltip = tooltip
+        self.value = value
+        self.unit = unit
+        self.constraints = constraints
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
