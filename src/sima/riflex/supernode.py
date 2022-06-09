@@ -101,7 +101,7 @@ class SuperNode(NamedObject,SuperNodeReference):
          XY-plane reference vector z-component  in reference system(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", constraint: NodeConstraint =NodeConstraint.FIXED_PRESCRIBED, automaticInitialPosition=False, xConstraint=BoundaryCondition.FREE, yConstraint=BoundaryCondition.FREE, zConstraint=BoundaryCondition.FREE, rxConstraint=BoundaryCondition.FREE, ryConstraint=BoundaryCondition.FREE, rzConstraint=BoundaryCondition.FREE, xGInitial=0.0, yGInitial=0.0, zGInitial=0.0, xGStatic=0.0, yGStatic=0.0, zGStatic=0.0, rotation=0.0, direction=0.0, beta=0.0, radial=False, radialAngle=0.0, verticalOffset=0.0, radialDistance=0.0, boundaryConditionFrame=BoundaryConditionFrame.GLOBAL, xx=0.0, xy=0.0, xz=0.0, xp=0.0, yp=0.0, zp=0.0, **kwargs):
+    def __init__(self , name="", description="", _id="", constraint=NodeConstraint.FIXED_PRESCRIBED, automaticInitialPosition=False, xConstraint=BoundaryCondition.FREE, yConstraint=BoundaryCondition.FREE, zConstraint=BoundaryCondition.FREE, rxConstraint=BoundaryCondition.FREE, ryConstraint=BoundaryCondition.FREE, rzConstraint=BoundaryCondition.FREE, xGInitial=0.0, yGInitial=0.0, zGInitial=0.0, xGStatic=0.0, yGStatic=0.0, zGStatic=0.0, rotation=0.0, direction=0.0, beta=0.0, radial=False, radialAngle=0.0, verticalOffset=0.0, radialDistance=0.0, boundaryConditionFrame=BoundaryConditionFrame.GLOBAL, xx=0.0, xy=0.0, xz=0.0, xp=0.0, yp=0.0, zp=0.0, **kwargs):
         super().__init__(**kwargs)
         self.name = name
         self.description = description
