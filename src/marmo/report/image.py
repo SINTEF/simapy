@@ -26,14 +26,14 @@ class Image(ReportItem):
          (default 0)
     """
 
-    def __init__(self , name:str="", description:str="", path:str="", caption:str="", height:int=0, width:int=0, **kwargs):
+    def __init__(self , name="", description="", path="", caption="", height=0, width=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__path = path
-        self.__caption = caption
-        self.__height = height
-        self.__width = width
+        self.name = name
+        self.description = description
+        self.path = path
+        self.caption = caption
+        self.height = height
+        self.width = width
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

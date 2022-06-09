@@ -23,13 +23,13 @@ class Font(Entity):
     style : FontStyle
     """
 
-    def __init__(self , name:str="", description:str="", size:int=10, font:str="", style:FontStyle=FontStyle.NORMAL, **kwargs):
+    def __init__(self , name="", description="", size=10, font="", style=FontStyle.NORMAL, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__size = size
-        self.__font = font
-        self.__style = style
+        self.name = name
+        self.description = description
+        self.size = size
+        self.font = font
+        self.style = style
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

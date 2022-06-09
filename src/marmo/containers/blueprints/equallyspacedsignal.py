@@ -17,7 +17,7 @@ class EquallySpacedSignalBlueprint(SignalBlueprint):
         self.attributes.append(BlueprintAttribute("attributes","marmo/containers/Attribute","",True,Dimension("*")))
         self.attributes.append(Attribute("value","number","",Dimension("*"),default=0.0))
         self.attributes.append(Attribute("xstart","number","",default=0.0))
-        self.attributes.append(Attribute("xdelta","number","",default=0.0))
+        self.attributes.append(Attribute("xdelta","number","",default=1.0))
         self.attributes.append(Attribute("unit","string","",default=""))
         self.attributes.append(Attribute("xunit","string","",default=""))
         self.attributes.append(Attribute("xname","string","",default=""))

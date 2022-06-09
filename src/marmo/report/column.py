@@ -23,13 +23,13 @@ class Column(Entity):
     headerfont : Font
     """
 
-    def __init__(self , name:str="", description:str="", header:str="", label:str="", **kwargs):
+    def __init__(self , name="", description="", header="", label="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__header = header
-        self.__label = label
-        self.__headerfont = None
+        self.name = name
+        self.description = description
+        self.header = header
+        self.label = label
+        self.headerfont = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

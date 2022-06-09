@@ -31,17 +31,17 @@ class Axis(Entity):
          (default True)
     """
 
-    def __init__(self , name:str="", description:str="", log:bool=True, autoformat:bool=True, format:str="", autoscale:bool=True, showgrid:bool=True, dashgridline:bool=True, **kwargs):
+    def __init__(self , name="", description="", log=True, autoformat=True, format="", autoscale=True, showgrid=True, dashgridline=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__font = None
-        self.__log = log
-        self.__autoformat = autoformat
-        self.__format = format
-        self.__autoscale = autoscale
-        self.__showgrid = showgrid
-        self.__dashgridline = dashgridline
+        self.name = name
+        self.description = description
+        self.font = None
+        self.log = log
+        self.autoformat = autoformat
+        self.format = format
+        self.autoscale = autoscale
+        self.showgrid = showgrid
+        self.dashgridline = dashgridline
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

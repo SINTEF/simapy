@@ -43,24 +43,24 @@ class LinePlot(Entity):
     lines : List[PlotLine]
     """
 
-    def __init__(self , name:str="", description:str="", title:str="", xlabel:str="", ylabel:str="", showlegend:bool=True, showtitle:bool=True, caption:str="", width:int=0, height:int=0, size:PlotSize=PlotSize.DYNAMIC, **kwargs):
+    def __init__(self , name="", description="", title="", xlabel="", ylabel="", showlegend=True, showtitle=True, caption="", width=0, height=0, size=PlotSize.DYNAMIC, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__title = title
-        self.__xlabel = xlabel
-        self.__ylabel = ylabel
-        self.__showlegend = showlegend
-        self.__showtitle = showtitle
-        self.__caption = caption
-        self.__width = width
-        self.__height = height
-        self.__size = size
-        self.__titlefont = None
-        self.__legendfont = None
-        self.__xaxis = None
-        self.__yaxis = None
-        self.__lines = list()
+        self.name = name
+        self.description = description
+        self.title = title
+        self.xlabel = xlabel
+        self.ylabel = ylabel
+        self.showlegend = showlegend
+        self.showtitle = showtitle
+        self.caption = caption
+        self.width = width
+        self.height = height
+        self.size = size
+        self.titlefont = None
+        self.legendfont = None
+        self.xaxis = None
+        self.yaxis = None
+        self.lines = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

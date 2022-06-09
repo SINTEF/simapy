@@ -37,20 +37,20 @@ class NonEquallySpacedSignal(Signal):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", unit:str="", xunit:str="", xname:str="", xlabel:str="", xdescription:str="", label:str="", legend:str="", **kwargs):
+    def __init__(self , name="", description="", unit="", xunit="", xname="", xlabel="", xdescription="", label="", legend="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__attributes = list()
-        self.__xvalue = ndarray(1)
-        self.__value = ndarray(1)
-        self.__unit = unit
-        self.__xunit = xunit
-        self.__xname = xname
-        self.__xlabel = xlabel
-        self.__xdescription = xdescription
-        self.__label = label
-        self.__legend = legend
+        self.name = name
+        self.description = description
+        self.attributes = list()
+        self.xvalue = ndarray(1)
+        self.value = ndarray(1)
+        self.unit = unit
+        self.xunit = xunit
+        self.xname = xname
+        self.xlabel = xlabel
+        self.xdescription = xdescription
+        self.label = label
+        self.legend = legend
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

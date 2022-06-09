@@ -23,7 +23,7 @@ class EquallySpacedSignal(Signal):
     xstart : float
          (default 0.0)
     xdelta : float
-         (default 0.0)
+         (default 1.0)
     unit : str
          (default "")
     xunit : str
@@ -40,21 +40,21 @@ class EquallySpacedSignal(Signal):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", xstart:float=0.0, xdelta:float=0.0, unit:str="", xunit:str="", xname:str="", xlabel:str="", xdescription:str="", label:str="", legend:str="", **kwargs):
+    def __init__(self , name="", description="", xstart=0.0, xdelta=1.0, unit="", xunit="", xname="", xlabel="", xdescription="", label="", legend="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__attributes = list()
-        self.__value = ndarray(1)
-        self.__xstart = xstart
-        self.__xdelta = xdelta
-        self.__unit = unit
-        self.__xunit = xunit
-        self.__xname = xname
-        self.__xlabel = xlabel
-        self.__xdescription = xdescription
-        self.__label = label
-        self.__legend = legend
+        self.name = name
+        self.description = description
+        self.attributes = list()
+        self.value = ndarray(1)
+        self.xstart = xstart
+        self.xdelta = xdelta
+        self.unit = unit
+        self.xunit = xunit
+        self.xname = xname
+        self.xlabel = xlabel
+        self.xdescription = xdescription
+        self.label = label
+        self.legend = legend
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

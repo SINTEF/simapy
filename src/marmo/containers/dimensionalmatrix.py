@@ -25,14 +25,14 @@ class DimensionalMatrix(Signal):
     unit : ndarray
     """
 
-    def __init__(self , name:str="", description:str="", label:str="", **kwargs):
+    def __init__(self , name="", description="", label="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__attributes = list()
-        self.__value = ndarray(2)
-        self.__label = label
-        self.__unit = ndarray(2)
+        self.name = name
+        self.description = description
+        self.attributes = list()
+        self.value = ndarray(2)
+        self.label = label
+        self.unit = ndarray(2)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

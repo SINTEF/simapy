@@ -22,12 +22,12 @@ class IntegerScalar(Signal):
          (default 0)
     """
 
-    def __init__(self , name:str="", description:str="", value:int=0, **kwargs):
+    def __init__(self , name="", description="", value=0, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__attributes = list()
-        self.__value = value
+        self.name = name
+        self.description = description
+        self.attributes = list()
+        self.value = value
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
