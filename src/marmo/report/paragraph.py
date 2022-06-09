@@ -22,12 +22,12 @@ class Paragraph(ReportItem):
          (default False)
     """
 
-    def __init__(self , name:str="", description:str="", text:str="", markup:bool=False, **kwargs):
+    def __init__(self , name="", description="", text="", markup=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__text = text
-        self.__markup = markup
+        self.name = name
+        self.description = description
+        self.text = text
+        self.markup = markup
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

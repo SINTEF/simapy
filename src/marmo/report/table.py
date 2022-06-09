@@ -24,13 +24,13 @@ class Table(ReportItem):
     columns : List[Column]
     """
 
-    def __init__(self , name:str="", description:str="", caption:str="", transposed:bool=True, **kwargs):
+    def __init__(self , name="", description="", caption="", transposed=True, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__caption = caption
-        self.__transposed = transposed
-        self.__columns = list()
+        self.name = name
+        self.description = description
+        self.caption = caption
+        self.transposed = transposed
+        self.columns = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

@@ -35,20 +35,20 @@ class PlotLine(Entity):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", xlabel:str="", ylabel:str="", showlegend:bool=True, linewidth:int=1, pointsize:int=1, linestyle:LineStyle=LineStyle.SOLID, pointstyle:PointStyle=PointStyle.NONE, color:str="", **kwargs):
+    def __init__(self , name="", description="", xlabel="", ylabel="", showlegend=True, linewidth=1, pointsize=1, linestyle=LineStyle.SOLID, pointstyle=PointStyle.NONE, color="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__xlabel = xlabel
-        self.__ylabel = ylabel
-        self.__showlegend = showlegend
-        self.__x = ndarray(1)
-        self.__y = ndarray(1)
-        self.__linewidth = linewidth
-        self.__pointsize = pointsize
-        self.__linestyle = linestyle
-        self.__pointstyle = pointstyle
-        self.__color = color
+        self.name = name
+        self.description = description
+        self.xlabel = xlabel
+        self.ylabel = ylabel
+        self.showlegend = showlegend
+        self.x = ndarray(1)
+        self.y = ndarray(1)
+        self.linewidth = linewidth
+        self.pointsize = pointsize
+        self.linestyle = linestyle
+        self.pointstyle = pointstyle
+        self.color = color
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

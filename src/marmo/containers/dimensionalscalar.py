@@ -27,14 +27,14 @@ class DimensionalScalar(Signal):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", value:float=0.0, label:str="", unit:str="", **kwargs):
+    def __init__(self , name="", description="", value=0.0, label="", unit="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__attributes = list()
-        self.__value = value
-        self.__label = label
-        self.__unit = unit
+        self.name = name
+        self.description = description
+        self.attributes = list()
+        self.value = value
+        self.label = label
+        self.unit = unit
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

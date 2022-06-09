@@ -24,13 +24,13 @@ class Appendix(Section):
          (default False)
     """
 
-    def __init__(self , name:str="", description:str="", title:str="", landscape:bool=False, **kwargs):
+    def __init__(self , name="", description="", title="", landscape=False, **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__items = list()
-        self.__title = title
-        self.__landscape = landscape
+        self.name = name
+        self.description = description
+        self.items = list()
+        self.title = title
+        self.landscape = landscape
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

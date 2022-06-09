@@ -24,13 +24,13 @@ class Report(ReportItemContainer):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", title:str="", subtitle:str="", **kwargs):
+    def __init__(self , name="", description="", title="", subtitle="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__items = list()
-        self.__title = title
-        self.__subtitle = subtitle
+        self.name = name
+        self.description = description
+        self.items = list()
+        self.title = title
+        self.subtitle = subtitle
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

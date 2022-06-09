@@ -20,11 +20,11 @@ class Attribute(Entity):
          (default "")
     """
 
-    def __init__(self , name:str="", description:str="", value:str="", **kwargs):
+    def __init__(self , name="", description="", value="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__value = value
+        self.name = name
+        self.description = description
+        self.value = value
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)

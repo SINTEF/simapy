@@ -22,12 +22,12 @@ class ModelSignal(Signal):
     value : NamedEntity
     """
 
-    def __init__(self , name:str="", description:str="", **kwargs):
+    def __init__(self , name="", description="", **kwargs):
         super().__init__(**kwargs)
-        self.__name = name
-        self.__description = description
-        self.__attributes = list()
-        self.__value = None
+        self.name = name
+        self.description = description
+        self.attributes = list()
+        self.value = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
