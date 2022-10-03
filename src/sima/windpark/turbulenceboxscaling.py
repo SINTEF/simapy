@@ -2,7 +2,6 @@
 # 
 # Generated with TurbulenceBoxScaling
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.turbulenceboxscaling import TurbulenceBoxScalingBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class TurbulenceBoxScaling(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -30,10 +25,8 @@ class TurbulenceBoxScaling(MOAO):
          (default 0.5)
     """
 
-    def __init__(self , name="", description="", _id="", scalingOption=ScalingOption.NONE, windDirectionScalingFactor=1.0, transverseDirectionScalingFactor=0.8, verticalDirectionScalingFactor=0.5, **kwargs):
+    def __init__(self , _id="", scalingOption=ScalingOption.NONE, windDirectionScalingFactor=1.0, transverseDirectionScalingFactor=0.8, verticalDirectionScalingFactor=0.5, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.scalingOption = scalingOption
@@ -50,26 +43,6 @@ class TurbulenceBoxScaling(MOAO):
         """Return blueprint that this entity represents"""
         return TurbulenceBoxScalingBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

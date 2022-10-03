@@ -12,10 +12,9 @@ class PositioningElementBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="PositioningElement", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(BlueprintAttribute("localPoint","sima/sima/Point3","",True))
         self.attributes.append(BlueprintAttribute("globalPoint","sima/sima/Point3","",True))
         self.attributes.append(EnumAttribute("failureMode","sima/simo/ActivationFailureMode","Failure mode:\n - No failure\n - Failure by exceeding the breaking strength after specified time\n - Activation of element after specified time if absolute value of force is below breaking strength"))

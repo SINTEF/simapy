@@ -2,7 +2,6 @@
 # 
 # Generated with TableCell
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.tablecell import TableCellBlueprint
 from typing import Dict
@@ -16,10 +15,6 @@ class TableCell(TableCellStyle):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -30,10 +25,8 @@ class TableCell(TableCellStyle):
          (default "")
     """
 
-    def __init__(self , name="", description="", _id="", horizontalTextAlignment=HorizontalAlignment.LEFT, verticalTextAlignment=VerticalAlignment.TOP, value="", **kwargs):
+    def __init__(self , _id="", horizontalTextAlignment=HorizontalAlignment.LEFT, verticalTextAlignment=VerticalAlignment.TOP, value="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.font = None
@@ -50,26 +43,6 @@ class TableCell(TableCellStyle):
         """Return blueprint that this entity represents"""
         return TableCellBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

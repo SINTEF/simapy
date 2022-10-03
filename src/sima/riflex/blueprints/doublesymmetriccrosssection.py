@@ -13,10 +13,9 @@ class DoubleSymmetricCrossSectionBlueprint(CrossSectionBlueprint,CRSAxialFrictio
 
     def __init__(self, name="DoubleSymmetricCrossSection", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("staticFriction","number","Static friction force corresponding to elongation",default=0.0))
         self.attributes.append(Attribute("staticElongation","number","Relative elongation",default=0.0))
         self.attributes.append(Attribute("dynamicFriction","number","Dynamic friction force corresponding to elongation",default=0.0))
@@ -83,4 +82,4 @@ class DoubleSymmetricCrossSectionBlueprint(CrossSectionBlueprint,CRSAxialFrictio
         self.attributes.append(Attribute("bendingStiffnessZ","number","Bending stiffness around z-axis",default=0.0))
         self.attributes.append(Attribute("shearStiffnessZ","number","Shear stiffness in Z-direction",default=0.0))
         self.attributes.append(Attribute("shearStiffnessY","number","Shear stiffness in Y-direction",default=0.0))
-        self.attributes.append(EnumAttribute("hydrodynamicRadiationInputCode","sima/riflex/HydrodynamicRadiationInputCode","Code for input of simplified radiation force coefficients"))
+        self.attributes.append(EnumAttribute("hydrodynamicRadiationInputCode","sima/riflex/HydrodynamicInputCode","Code for input of simplified radiation force coefficients"))

@@ -2,7 +2,6 @@
 # 
 # Generated with NumberColumn
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.numbercolumn import NumberColumnBlueprint
 from numpy import ndarray,asarray
@@ -13,10 +12,6 @@ class NumberColumn(Column):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     header : str
          (default "")
     label : str
@@ -27,10 +22,8 @@ class NumberColumn(Column):
          (default "")
     """
 
-    def __init__(self , name="", description="", header="", label="", format="", **kwargs):
+    def __init__(self , header="", label="", format="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.header = header
         self.label = label
         self.headerfont = None
@@ -46,26 +39,6 @@ class NumberColumn(Column):
         """Return blueprint that this entity represents"""
         return NumberColumnBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def header(self) -> str:

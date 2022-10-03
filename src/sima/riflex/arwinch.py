@@ -3,7 +3,6 @@
 # Generated with ARWinch
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.arwinch import ARWinchBlueprint
 from typing import Dict
@@ -21,10 +20,6 @@ class ARWinch(SegmentReference,NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -34,6 +29,8 @@ class ARWinch(SegmentReference,NamedObject):
          Segment on given line(default 1)
     allSegments : bool
          All segments(default False)
+    name : str
+         (default "")
     segmentEnd : End
          End of segment (and line) attached to winch (1 or 2)
     relativeSegmentLength : float
@@ -63,15 +60,14 @@ class ARWinch(SegmentReference,NamedObject):
          Control parameter for adjusting the length of elements attached to winch(default False)
     """
 
-    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, segmentEnd=End.ONE, relativeSegmentLength=0.0, x1=0.0, y1=0.0, z1=0.0, rotation=0.0, rotationDirection=0.0, maxVelocity=0.0, timeToMaxVelocity=0.0, lineRelease=False, radius=0.0, winchCenter=CenterOfWinch.NEGATIVE_Z_AXIS, lengthJustification=False, **kwargs):
+    def __init__(self , _id="", segment=1, allSegments=False, name="", segmentEnd=End.ONE, relativeSegmentLength=0.0, x1=0.0, y1=0.0, z1=0.0, rotation=0.0, rotationDirection=0.0, maxVelocity=0.0, timeToMaxVelocity=0.0, lineRelease=False, radius=0.0, winchCenter=CenterOfWinch.NEGATIVE_Z_AXIS, lengthJustification=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
         self.allSegments = allSegments
+        self.name = name
         self.segmentEnd = segmentEnd
         self.relativeSegmentLength = relativeSegmentLength
         self.x1 = x1
@@ -96,26 +92,6 @@ class ARWinch(SegmentReference,NamedObject):
         """Return blueprint that this entity represents"""
         return ARWinchBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -168,6 +144,16 @@ class ARWinch(SegmentReference,NamedObject):
     def allSegments(self, value: bool):
         """Set allSegments"""
         self.__allSegments = bool(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def segmentEnd(self) -> End:

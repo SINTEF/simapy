@@ -23,6 +23,7 @@ from .hlapipeconfig3d import HLAPipeConfig3D # noqa
 from .hlapiperoute import HLAPipeRoute # noqa
 from .hlaplot import HLAPlot # noqa
 from .hlarov import HLAROV # noqa
+from .hlaseasurface import HLASeaSurface # noqa
 from .hlasignal import HLASignal # noqa
 from .hlasignalplot import HLASignalPlot # noqa
 from .hlasignalplotcomponent import HLASignalPlotComponent # noqa

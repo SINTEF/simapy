@@ -2,7 +2,6 @@
 # 
 # Generated with HorizontalAxisWindTurbineController
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.horizontalaxiswindturbinecontroller import HorizontalAxisWindTurbineControllerBlueprint
 from typing import Dict
@@ -18,10 +17,6 @@ class HorizontalAxisWindTurbineController(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -74,12 +69,12 @@ class HorizontalAxisWindTurbineController(MOAO):
     sampleInterval : float
          Controller sample interval(default 0.0)
     controllerType : ControllerType
+    logFile : bool
+         Log of signals to and from controller are written to a log file. The file <turbine name>.log is stored in the analysis folder. This option should be used for debugging purposes only. Avaliable for external controller only.(default False)
     """
 
-    def __init__(self , name="", description="", _id="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, controllerFile="", className="", configuration="", reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, **kwargs):
+    def __init__(self , _id="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, controllerFile="", className="", configuration="", reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.kp = kp
@@ -109,6 +104,7 @@ class HorizontalAxisWindTurbineController(MOAO):
         self.minPitch = minPitch
         self.sampleInterval = sampleInterval
         self.controllerType = controllerType
+        self.logFile = logFile
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -119,26 +115,6 @@ class HorizontalAxisWindTurbineController(MOAO):
         """Return blueprint that this entity represents"""
         return HorizontalAxisWindTurbineControllerBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -433,3 +409,13 @@ class HorizontalAxisWindTurbineController(MOAO):
     def controllerType(self, value: ControllerType):
         """Set controllerType"""
         self.__controllerType = value
+
+    @property
+    def logFile(self) -> bool:
+        """Log of signals to and from controller are written to a log file. The file <turbine name>.log is stored in the analysis folder. This option should be used for debugging purposes only. Avaliable for external controller only."""
+        return self.__logFile
+
+    @logFile.setter
+    def logFile(self, value: bool):
+        """Set logFile"""
+        self.__logFile = bool(value)

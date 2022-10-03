@@ -3,7 +3,6 @@
 # Generated with RegularVesselMotion
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regularvesselmotion import RegularVesselMotionBlueprint
 from typing import Dict
@@ -17,10 +16,6 @@ class RegularVesselMotion(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -53,10 +48,8 @@ class RegularVesselMotion(MOAO):
          Phase angle, z-rotation(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", amplitudeX=0.0, amplitudeY=0.0, amplitudeZ=0.0, amplitudeXR=0.0, amplitudeYR=0.0, amplitudeZR=0.0, period=0.0, phaseX=0.0, phaseY=0.0, phaseZ=0.0, phaseXR=0.0, phaseYR=0.0, phaseZR=0.0, **kwargs):
+    def __init__(self , _id="", amplitudeX=0.0, amplitudeY=0.0, amplitudeZ=0.0, amplitudeXR=0.0, amplitudeYR=0.0, amplitudeZR=0.0, period=0.0, phaseX=0.0, phaseY=0.0, phaseZ=0.0, phaseXR=0.0, phaseYR=0.0, phaseZR=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.supportVessel = None
@@ -83,26 +76,6 @@ class RegularVesselMotion(MOAO):
         """Return blueprint that this entity represents"""
         return RegularVesselMotionBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

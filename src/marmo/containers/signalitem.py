@@ -2,13 +2,13 @@
 # 
 # Generated with SignalItem
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.signalitem import SignalItemBlueprint
 from typing import Dict
+from dmt.namedentity import NamedEntity
 from marmo.containers.attribute import Attribute
 
-class SignalItem(Entity):
+class SignalItem(NamedEntity):
     """
     Keyword arguments
     -----------------

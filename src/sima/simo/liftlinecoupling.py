@@ -3,7 +3,6 @@
 # Generated with LiftLineCoupling
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.liftlinecoupling import LiftLineCouplingBlueprint
 from typing import Dict
@@ -18,13 +17,11 @@ class LiftLineCoupling(SimpleCoupling):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     endPoint1 : SIMOBodyPoint
     endPoint2 : SIMOBodyPoint
     failureMode : ActivationFailureMode
@@ -59,12 +56,11 @@ class LiftLineCoupling(SimpleCoupling):
          Longitudinal drag coefficient(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, numElements=0, accIncluded=True, diameter=0.0, eMod=0.0, emFac=1, length=0.0, flexibility=0.0, damping=0.0, uwia=0.0, watfac=0.0, transverseDrag=0.0, longitudinalDrag=0.0, **kwargs):
+    def __init__(self , _id="", name="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, numElements=0, accIncluded=True, diameter=0.0, eMod=0.0, emFac=1, length=0.0, flexibility=0.0, damping=0.0, uwia=0.0, watfac=0.0, transverseDrag=0.0, longitudinalDrag=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.endPoint1 = None
         self.endPoint2 = None
         self.failureMode = failureMode
@@ -94,26 +90,6 @@ class LiftLineCoupling(SimpleCoupling):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -134,6 +110,16 @@ class LiftLineCoupling(SimpleCoupling):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def endPoint1(self) -> SIMOBodyPoint:

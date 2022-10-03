@@ -2,7 +2,6 @@
 # 
 # Generated with GuidePoint
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.guidepoint import GuidePointBlueprint
 from typing import Dict
@@ -17,13 +16,11 @@ class GuidePoint(SIMOBodyPoint):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     winch : Winch
     tensioner : SIMOTensioner
     heaveCompensator : SIMOHeaveCompensator
@@ -39,12 +36,11 @@ class GuidePoint(SIMOBodyPoint):
          Vector normal to hole in body fixed coordinate system
     """
 
-    def __init__(self , name="", description="", _id="", x=0.0, y=0.0, z=0.0, diameter=0.0, **kwargs):
+    def __init__(self , _id="", name="", x=0.0, y=0.0, z=0.0, diameter=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.winch = None
         self.tensioner = None
         self.heaveCompensator = None
@@ -63,26 +59,6 @@ class GuidePoint(SIMOBodyPoint):
         """Return blueprint that this entity represents"""
         return GuidePointBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -105,6 +81,16 @@ class GuidePoint(SIMOBodyPoint):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def winch(self) -> Winch:

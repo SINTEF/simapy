@@ -2,7 +2,6 @@
 # 
 # Generated with GeoTechnical
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.geotechnical import GeoTechnicalBlueprint
 from typing import Dict
@@ -16,13 +15,11 @@ class GeoTechnical(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     soilItems : List[SoilItem]
     scourDepth : float
          Length from mudline to actual contact point between mud and coductor(default 0.0)
@@ -40,12 +37,11 @@ class GeoTechnical(NamedObject):
          Curve fitting factor(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", scourDepth=0.0, diameter=0.0, _type=SoilStiffnessType.STATIC, calculateDiameter=True, calculateAxialPileResistance=True, pileType=GeotechnicalPileType.OPEN, zoneOfInfluence=0.0, curveFittingFactor=0.0, **kwargs):
+    def __init__(self , _id="", name="", scourDepth=0.0, diameter=0.0, _type=SoilStiffnessType.STATIC, calculateDiameter=True, calculateAxialPileResistance=True, pileType=GeotechnicalPileType.OPEN, zoneOfInfluence=0.0, curveFittingFactor=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.soilItems = list()
         self.scourDepth = scourDepth
         self.diameter = diameter
@@ -65,26 +61,6 @@ class GeoTechnical(NamedObject):
         """Return blueprint that this entity represents"""
         return GeoTechnicalBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -107,6 +83,16 @@ class GeoTechnical(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def soilItems(self) -> List[SoilItem]:

@@ -5,8 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
+from dmt.blueprints.namedentity import NamedEntityBlueprint
 
-class MOAOFolderBlueprint(Blueprint):
+class MOAOFolderBlueprint(NamedEntityBlueprint):
     """"""
 
     def __init__(self, name="MOAOFolder", package_path="sima/sima", description=""):

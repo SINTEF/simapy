@@ -3,7 +3,6 @@
 # Generated with ScatterDataCalculation
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.scatterdatacalculation import ScatterDataCalculationBlueprint
 from typing import Dict
@@ -23,13 +22,11 @@ class ScatterDataCalculation(NamedObject,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     currentModel : CurrentModel
     kfactor : float
          (default 1.0)
@@ -51,12 +48,11 @@ class ScatterDataCalculation(NamedObject,ConditionSelectable):
     windLevels : List[CalculationLevel]
     """
 
-    def __init__(self , name="", description="", _id="", currentModel=CurrentModel.FROM_INPUT, kfactor=1.0, directionRelativeToWind=0.0, windReferenceLevel=0.0, baseCurrentSpeed=0.0, relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, **kwargs):
+    def __init__(self , _id="", name="", currentModel=CurrentModel.FROM_INPUT, kfactor=1.0, directionRelativeToWind=0.0, windReferenceLevel=0.0, baseCurrentSpeed=0.0, relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.currentModel = currentModel
         self.kfactor = kfactor
         self.directionRelativeToWind = directionRelativeToWind
@@ -82,26 +78,6 @@ class ScatterDataCalculation(NamedObject,ConditionSelectable):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -122,6 +98,16 @@ class ScatterDataCalculation(NamedObject,ConditionSelectable):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def currentModel(self) -> CurrentModel:

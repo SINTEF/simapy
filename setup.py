@@ -15,7 +15,7 @@ shutil.rmtree(Path("dist"), ignore_errors=True)
 
 setup(
     name="simapy",
-    version="4.2.0.beta10",
+    version="4.4.0.beta1",
     author="SINTEF Ocean",
     description="Python utilities for SIMA",
     url="https://github.com/SINTEF/simapy",
@@ -24,7 +24,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src", exclude=["tests"]),
     install_requires=[
-        "dmtpy==0.1.4",
+        "dmtpy==1.0.0",
         "numpy"
     ],
     classifiers=[

@@ -2,7 +2,6 @@
 # 
 # Generated with VariableModification
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.variablemodification import VariableModificationBlueprint
 from typing import Dict
@@ -14,22 +13,19 @@ class VariableModification(ModelVariationOperation):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     variableItems : List[VariableItem]
     """
 
-    def __init__(self , name="", description="", _id="", **kwargs):
+    def __init__(self , _id="", name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.variableItems = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -41,26 +37,6 @@ class VariableModification(ModelVariationOperation):
         """Return blueprint that this entity represents"""
         return VariableModificationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -83,6 +59,16 @@ class VariableModification(ModelVariationOperation):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def variableItems(self) -> List[VariableItem]:

@@ -2,7 +2,6 @@
 # 
 # Generated with NotchFilter
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.notchfilter import NotchFilterBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class NotchFilter(Estimator):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -26,10 +21,8 @@ class NotchFilter(Estimator):
          Strength of wave filter, between 0 and 1(default 1.0)
     """
 
-    def __init__(self , name="", description="", _id="", centerPeriod=10.0, strength=1.0, **kwargs):
+    def __init__(self , _id="", centerPeriod=10.0, strength=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.centerPeriod = centerPeriod
@@ -44,26 +37,6 @@ class NotchFilter(Estimator):
         """Return blueprint that this entity represents"""
         return NotchFilterBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

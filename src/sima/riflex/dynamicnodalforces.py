@@ -2,7 +2,6 @@
 # 
 # Generated with DynamicNodalForces
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicnodalforces import DynamicNodalForcesBlueprint
 from typing import Dict
@@ -15,10 +14,6 @@ class DynamicNodalForces(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -29,10 +24,8 @@ class DynamicNodalForces(MOAO):
     items : List[DynamicNodalForceItem]
     """
 
-    def __init__(self , name="", description="", _id="", _type=ForceSpecificationType.SIMPLE_EXPRESSION, fileName="", **kwargs):
+    def __init__(self , _id="", _type=ForceSpecificationType.SIMPLE_EXPRESSION, fileName="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self._type = _type
@@ -48,26 +41,6 @@ class DynamicNodalForces(MOAO):
         """Return blueprint that this entity represents"""
         return DynamicNodalForcesBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,8 +12,6 @@ class HorizontalAxisWindTurbineControllerBlueprint(MOAOBlueprint):
 
     def __init__(self, name="HorizontalAxisWindTurbineController", package_path="sima/windturbine", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("kp","number","Proportionnal gain K that will be used for zero blade pitch angle",default=0.0))
@@ -43,3 +41,4 @@ class HorizontalAxisWindTurbineControllerBlueprint(MOAOBlueprint):
         self.attributes.append(Attribute("minPitch","number","Minimum pitch setting in pitch controller",default=0.0))
         self.attributes.append(Attribute("sampleInterval","number","Controller sample interval",default=0.0))
         self.attributes.append(EnumAttribute("controllerType","sima/windturbine/ControllerType",""))
+        self.attributes.append(Attribute("logFile","boolean","Log of signals to and from controller are written to a log file. The file <turbine name>.log is stored in the analysis folder. This option should be used for debugging purposes only. Avaliable for external controller only.",default=False))

@@ -2,7 +2,6 @@
 # 
 # Generated with Image
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.image import ImageBlueprint
 from typing import Dict
@@ -12,10 +11,6 @@ class Image(ReportItem):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     path : str
          (default "")
     caption : str
@@ -26,10 +21,8 @@ class Image(ReportItem):
          (default 0)
     """
 
-    def __init__(self , name="", description="", path="", caption="", height=0, width=0, **kwargs):
+    def __init__(self , path="", caption="", height=0, width=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.path = path
         self.caption = caption
         self.height = height
@@ -44,26 +37,6 @@ class Image(ReportItem):
         """Return blueprint that this entity represents"""
         return ImageBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def path(self) -> str:

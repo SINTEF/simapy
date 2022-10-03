@@ -2,7 +2,6 @@
 # 
 # Generated with DOFControlConfiguration
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dofcontrolconfiguration import DOFControlConfigurationBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class DOFControlConfiguration(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -47,10 +42,8 @@ class DOFControlConfiguration(MOAO):
          Turn off proportional control and use damping only(default False)
     """
 
-    def __init__(self , name="", description="", _id="", dof=ControlDOF.NONE, mass=0.0, drag=0.0, stiffness=0.0, naturalPeriod=100.0, dampingFactor=0.7, integrationTime=0.0, cutOffPeriod=0.0, filterDampingFactor=0.0, integralLF=0.0, proportionalHF=0.1, dampingOnly=False, **kwargs):
+    def __init__(self , _id="", dof=ControlDOF.NONE, mass=0.0, drag=0.0, stiffness=0.0, naturalPeriod=100.0, dampingFactor=0.7, integrationTime=0.0, cutOffPeriod=0.0, filterDampingFactor=0.0, integralLF=0.0, proportionalHF=0.1, dampingOnly=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.dof = dof
@@ -75,26 +68,6 @@ class DOFControlConfiguration(MOAO):
         """Return blueprint that this entity represents"""
         return DOFControlConfigurationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

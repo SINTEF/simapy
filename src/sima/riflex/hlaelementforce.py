@@ -3,7 +3,6 @@
 # Generated with HLAElementForce
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlaelementforce import HLAElementForceBlueprint
 from typing import Dict
@@ -19,10 +18,6 @@ class HLAElementForce(ElementReference,NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -36,16 +31,16 @@ class HLAElementForce(ElementReference,NamedObject):
          Local element number on actual segment(default 1)
     allElements : bool
          All elements(default False)
+    name : str
+         (default "")
     allEnds : bool
          All ends(default False)
     elementEnd : End
          End number 1 or 2
     """
 
-    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, **kwargs):
+    def __init__(self , _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, name="", allEnds=False, elementEnd=End.ONE, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -53,6 +48,7 @@ class HLAElementForce(ElementReference,NamedObject):
         self.allSegments = allSegments
         self.elementNumber = elementNumber
         self.allElements = allElements
+        self.name = name
         self.allEnds = allEnds
         self.elementEnd = elementEnd
         for key, value in kwargs.items():
@@ -65,26 +61,6 @@ class HLAElementForce(ElementReference,NamedObject):
         """Return blueprint that this entity represents"""
         return HLAElementForceBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -157,6 +133,16 @@ class HLAElementForce(ElementReference,NamedObject):
     def allElements(self, value: bool):
         """Set allElements"""
         self.__allElements = bool(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def allEnds(self) -> bool:

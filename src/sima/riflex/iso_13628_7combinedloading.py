@@ -2,7 +2,6 @@
 # 
 # Generated with ISO_13628_7CombinedLoading
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.iso_13628_7combinedloading import ISO_13628_7CombinedLoadingBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class ISO_13628_7CombinedLoading(CombinedLoading):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     refPointPressure : float
          Internal design pressure at vertical reference position(default 0.0)
     referencePoint : float
@@ -45,12 +42,11 @@ class ISO_13628_7CombinedLoading(CombinedLoading):
          Design factor(default 0.8)
     """
 
-    def __init__(self , name="", description="", _id="", refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, percentile=0.57038, designFactor=0.8, **kwargs):
+    def __init__(self , _id="", name="", refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, percentile=0.57038, designFactor=0.8, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.refPointPressure = refPointPressure
         self.referencePoint = referencePoint
         self.limitTimeInterval = limitTimeInterval
@@ -74,26 +70,6 @@ class ISO_13628_7CombinedLoading(CombinedLoading):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -114,6 +90,16 @@ class ISO_13628_7CombinedLoading(CombinedLoading):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def refPointPressure(self) -> float:

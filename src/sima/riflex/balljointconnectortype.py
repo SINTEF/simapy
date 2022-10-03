@@ -2,7 +2,6 @@
 # 
 # Generated with BallJointConnectorType
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.balljointconnectortype import BallJointConnectorTypeBlueprint
 from typing import Dict
@@ -15,13 +14,11 @@ class BallJointConnectorType(NodalComponentType):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     mass : float
          Mass(default 0.0)
     volume : float
@@ -48,12 +45,11 @@ class BallJointConnectorType(NodalComponentType):
          Rotation freedom code, z-axis.
     """
 
-    def __init__(self , name="", description="", _id="", mass=0.0, volume=0.0, referenceFrame=ReferenceFrameType.LOCAL, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, boundaryRotX=BoundaryCondition.FREE, boundaryRotY=BoundaryCondition.FREE, boundaryRotZ=BoundaryCondition.FREE, **kwargs):
+    def __init__(self , _id="", name="", mass=0.0, volume=0.0, referenceFrame=ReferenceFrameType.LOCAL, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, boundaryRotX=BoundaryCondition.FREE, boundaryRotY=BoundaryCondition.FREE, boundaryRotZ=BoundaryCondition.FREE, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.mass = mass
         self.volume = volume
         self.referenceFrame = referenceFrame
@@ -78,26 +74,6 @@ class BallJointConnectorType(NodalComponentType):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -118,6 +94,16 @@ class BallJointConnectorType(NodalComponentType):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def mass(self) -> float:

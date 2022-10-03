@@ -3,7 +3,6 @@
 # Generated with SimpleCoupling
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simplecoupling import SimpleCouplingBlueprint
 from typing import Dict
@@ -18,13 +17,11 @@ class SimpleCoupling(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     endPoint1 : SIMOBodyPoint
     endPoint2 : SIMOBodyPoint
     failureMode : ActivationFailureMode
@@ -35,12 +32,11 @@ class SimpleCoupling(NamedObject):
          Breaking strength(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
+    def __init__(self , _id="", name="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.endPoint1 = None
         self.endPoint2 = None
         self.failureMode = failureMode
@@ -56,26 +52,6 @@ class SimpleCoupling(NamedObject):
         """Return blueprint that this entity represents"""
         return SimpleCouplingBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -98,6 +74,16 @@ class SimpleCoupling(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def endPoint1(self) -> SIMOBodyPoint:

@@ -2,7 +2,6 @@
 # 
 # Generated with ForceResponseStorage
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.forceresponsestorage import ForceResponseStorageBlueprint
 from typing import Dict
@@ -18,10 +17,6 @@ class ForceResponseStorage(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -38,13 +33,11 @@ class ForceResponseStorage(MOAO):
     relativeElementAngles : List[RelativeElementAngle]
     elementAngles : List[ElementAngle]
     storeBottomContactForces : bool
-         (default False)
+         Store results for seafloor contact elements and / or soil layer profile (SLP) contact elements(default False)
     """
 
-    def __init__(self , name="", description="", _id="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices=False, storeBottomContactForces=False, **kwargs):
+    def __init__(self , _id="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices=False, storeBottomContactForces=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.storageStep = storageStep
@@ -65,26 +58,6 @@ class ForceResponseStorage(MOAO):
         """Return blueprint that this entity represents"""
         return ForceResponseStorageBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -186,7 +159,7 @@ class ForceResponseStorage(MOAO):
 
     @property
     def storeBottomContactForces(self) -> bool:
-        """"""
+        """Store results for seafloor contact elements and / or soil layer profile (SLP) contact elements"""
         return self.__storeBottomContactForces
 
     @storeBottomContactForces.setter

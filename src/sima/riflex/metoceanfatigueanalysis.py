@@ -3,28 +3,26 @@
 # Generated with MetoceanFatigueAnalysis
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.metoceanfatigueanalysis import MetoceanFatigueAnalysisBlueprint
 from typing import Dict
 from sima.sima.condition import Condition
+from sima.sima.named import Named
 from sima.sima.resultcontainer import ResultContainer
 from sima.sima.scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from sima.sima.condition import Condition
 
-class MetoceanFatigueAnalysis(Condition):
+class MetoceanFatigueAnalysis(Condition,Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     changeNumber : int
          (default 0)
     resultContainer : ResultContainer
@@ -32,12 +30,11 @@ class MetoceanFatigueAnalysis(Condition):
     analysisCondition : Condition
     """
 
-    def __init__(self , name="", description="", _id="", changeNumber=0, **kwargs):
+    def __init__(self , _id="", name="", changeNumber=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.changeNumber = changeNumber
         self.resultContainer = None
         self.metoceanCondition = None
@@ -52,26 +49,6 @@ class MetoceanFatigueAnalysis(Condition):
         """Return blueprint that this entity represents"""
         return MetoceanFatigueAnalysisBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -94,6 +71,16 @@ class MetoceanFatigueAnalysis(Condition):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def changeNumber(self) -> int:

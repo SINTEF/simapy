@@ -2,7 +2,6 @@
 # 
 # Generated with BodyEigenvalueResult
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bodyeigenvalueresult import BodyEigenvalueResultBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class BodyEigenvalueResult(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -38,10 +33,8 @@ class BodyEigenvalueResult(MOAO):
     periodResults : List[PeriodEigenvalueResult]
     """
 
-    def __init__(self , name="", description="", _id="", body="", surgeExcursion=0.0, swayExcursion=0.0, heaveExcursion=0.0, rollExcursion=0.0, pitchExcursion=0.0, yawExcursion=0.0, **kwargs):
+    def __init__(self , _id="", body="", surgeExcursion=0.0, swayExcursion=0.0, heaveExcursion=0.0, rollExcursion=0.0, pitchExcursion=0.0, yawExcursion=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.body = body
@@ -62,26 +55,6 @@ class BodyEigenvalueResult(MOAO):
         """Return blueprint that this entity represents"""
         return BodyEigenvalueResultBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

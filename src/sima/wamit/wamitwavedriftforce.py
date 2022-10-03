@@ -2,23 +2,19 @@
 # 
 # Generated with WamitWaveDriftForce
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitwavedriftforce import WamitWaveDriftForceBlueprint
 from numpy import ndarray,asarray
 from sima.hydro.directiondependentvalues import DirectionDependentValues
 from sima.hydro.directionsymmetry import DirectionSymmetry
 from sima.hydro.wavedriftforce import WaveDriftForce
+from sima.sima.named import Named
 from sima.sima.scriptablevalue import ScriptableValue
 
-class WamitWaveDriftForce(WaveDriftForce):
+class WamitWaveDriftForce(WaveDriftForce,Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -31,12 +27,12 @@ class WamitWaveDriftForce(WaveDriftForce):
     mx : DirectionDependentValues
     my : DirectionDependentValues
     mz : DirectionDependentValues
+    name : str
+         (default "")
     """
 
-    def __init__(self , name="", description="", _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
+    def __init__(self , _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.directions = ndarray(1)
@@ -48,6 +44,7 @@ class WamitWaveDriftForce(WaveDriftForce):
         self.mx = None
         self.my = None
         self.mz = None
+        self.name = name
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -58,26 +55,6 @@ class WamitWaveDriftForce(WaveDriftForce):
         """Return blueprint that this entity represents"""
         return WamitWaveDriftForceBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -190,3 +167,13 @@ class WamitWaveDriftForce(WaveDriftForce):
     def mz(self, value: DirectionDependentValues):
         """Set mz"""
         self.__mz = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)

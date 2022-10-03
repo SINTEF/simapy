@@ -2,7 +2,6 @@
 # 
 # Generated with CustomWizard
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customwizard import CustomWizardBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class CustomWizard(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -36,10 +31,8 @@ class CustomWizard(MOAO):
          This script will be run when finishing the wizard. Use the variable selection to get hold of the object selected in the navigator(default "")
     """
 
-    def __init__(self , name="", description="", _id="", title="", selectionType="", menuLabel="", inline=True, path="", finishScript="", **kwargs):
+    def __init__(self , _id="", title="", selectionType="", menuLabel="", inline=True, path="", finishScript="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.title = title
@@ -59,26 +52,6 @@ class CustomWizard(MOAO):
         """Return blueprint that this entity represents"""
         return CustomWizardBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

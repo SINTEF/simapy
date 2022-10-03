@@ -2,7 +2,6 @@
 # 
 # Generated with BodyShapeData
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bodyshapedata import BodyShapeDataBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class BodyShapeData(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -40,10 +35,8 @@ class BodyShapeData(MOAO):
     waterlinePoints : List[Point2]
     """
 
-    def __init__(self , name="", description="", _id="", lengthBetweenPerpendiculars=0.0, maximumBeamAtWaterline=0.0, draftAtAftPerpendicular=0.0, draftAtForePerpendicular=0.0, blockCoefficient=0.0, distanceAftPerpendicular=0.0, distanceBaseline=0.0, specifyWaterline=True, **kwargs):
+    def __init__(self , _id="", lengthBetweenPerpendiculars=0.0, maximumBeamAtWaterline=0.0, draftAtAftPerpendicular=0.0, draftAtForePerpendicular=0.0, blockCoefficient=0.0, distanceAftPerpendicular=0.0, distanceBaseline=0.0, specifyWaterline=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.lengthBetweenPerpendiculars = lengthBetweenPerpendiculars
@@ -65,26 +58,6 @@ class BodyShapeData(MOAO):
         """Return blueprint that this entity represents"""
         return BodyShapeDataBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

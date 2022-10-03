@@ -2,7 +2,6 @@
 # 
 # Generated with RegularWaveLoading
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.regularwaveloading import RegularWaveLoadingBlueprint
 from typing import Dict
@@ -16,10 +15,6 @@ class RegularWaveLoading(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -31,10 +26,8 @@ class RegularWaveLoading(MOAO):
          Kinematics Position:\n - Wave induced velocities and accelerations calculated at static riser position, but the riser is kept fixed in static position for computation of surface penetrating element\n - Wave induced velocities and accelerations calculated at static riser position\n - Wave induced velocities and accelerations calculated at updated (dynamic) positions
     """
 
-    def __init__(self , name="", description="", _id="", waveTheory=WaveTheory.AIRY_LINEAR, seaSurfaceDefinition=KinematicsInWaveZone.MEAN_WATER_LEVEL, riserPosition=RiserPosition.DYNAMIC_POSITIONS, **kwargs):
+    def __init__(self , _id="", waveTheory=WaveTheory.AIRY_LINEAR, seaSurfaceDefinition=KinematicsInWaveZone.MEAN_WATER_LEVEL, riserPosition=RiserPosition.DYNAMIC_POSITIONS, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.waveTheory = waveTheory
@@ -50,26 +43,6 @@ class RegularWaveLoading(MOAO):
         """Return blueprint that this entity represents"""
         return RegularWaveLoadingBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

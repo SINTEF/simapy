@@ -2,7 +2,6 @@
 # 
 # Generated with TraceConfiguration
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.traceconfiguration import TraceConfigurationBlueprint
 from typing import Dict
@@ -16,14 +15,12 @@ class TraceConfiguration(PathSpecification):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     path : str
+         (default "")
+    name : str
          (default "")
     label : str
          (default "")
@@ -40,13 +37,12 @@ class TraceConfiguration(PathSpecification):
          (default False)
     """
 
-    def __init__(self , name="", description="", _id="", path="", label="", lineStyle=LineStyle.SOLID, lineWidth=1, pointStyle=PointStyle.NONE, showStatistics=True, pointSize=1, specifyPath=False, **kwargs):
+    def __init__(self , _id="", path="", name="", label="", lineStyle=LineStyle.SOLID, lineWidth=1, pointStyle=PointStyle.NONE, showStatistics=True, pointSize=1, specifyPath=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.path = path
+        self.name = name
         self.label = label
         self.color = None
         self.lineStyle = lineStyle
@@ -65,26 +61,6 @@ class TraceConfiguration(PathSpecification):
         """Return blueprint that this entity represents"""
         return TraceConfigurationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -117,6 +93,16 @@ class TraceConfiguration(PathSpecification):
     def path(self, value: str):
         """Set path"""
         self.__path = str(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def label(self) -> str:

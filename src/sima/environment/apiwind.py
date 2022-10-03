@@ -2,7 +2,6 @@
 # 
 # Generated with APIWind
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.apiwind import APIWindBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class APIWind(Wind):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -34,10 +29,8 @@ class APIWind(Wind):
          Surface drag coefficient.\nAlso used for transverse gust spectrum, if specified in DYNMOD.(default 0.002)
     """
 
-    def __init__(self , name="", description="", _id="", direction=0.0, frequencyParameter=0.025, layerThickness=20.0, profileExponent=0.125, averageVelocity=0.0, friction=0.002, **kwargs):
+    def __init__(self , _id="", direction=0.0, frequencyParameter=0.025, layerThickness=20.0, profileExponent=0.125, averageVelocity=0.0, friction=0.002, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.direction = direction
@@ -56,26 +49,6 @@ class APIWind(Wind):
         """Return blueprint that this entity represents"""
         return APIWindBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

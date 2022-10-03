@@ -2,26 +2,24 @@
 # 
 # Generated with CustomText
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customtext import CustomTextBlueprint
 from numpy import ndarray,asarray
 from sima.custom.fieldtype import FieldType
 from sima.custom.filetype import FileType
 from sima.custom.parameterfield import ParameterField
+from sima.sima.named import Named
 from sima.sima.scriptablevalue import ScriptableValue
 
-class CustomText(ParameterField):
+class CustomText(ParameterField,Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     label : str
          (default "")
     tooltip : str
@@ -41,12 +39,11 @@ class CustomText(ParameterField):
          (default "")
     """
 
-    def __init__(self , name="", description="", _id="", label="", tooltip="", fileType=FileType.INPUT, directory=False, fileExtensions="", _type=FieldType.TEXT, width=10, expandHorizontally=False, value="", **kwargs):
+    def __init__(self , _id="", name="", label="", tooltip="", fileType=FileType.INPUT, directory=False, fileExtensions="", _type=FieldType.TEXT, width=10, expandHorizontally=False, value="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.label = label
         self.tooltip = tooltip
         self.fileType = fileType
@@ -69,26 +66,6 @@ class CustomText(ParameterField):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -109,6 +86,16 @@ class CustomText(ParameterField):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def label(self) -> str:

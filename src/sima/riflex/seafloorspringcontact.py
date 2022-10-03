@@ -2,7 +2,6 @@
 # 
 # Generated with SeafloorSpringContact
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.seafloorspringcontact import SeafloorSpringContactBlueprint
 from typing import Dict
@@ -13,13 +12,11 @@ class SeafloorSpringContact(SeafloorContact):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     axialStiffness : float
          Horizontal stiffness parameter for seafloor in axial direction(default 0.0)
     axialFriction : float
@@ -40,12 +37,11 @@ class SeafloorSpringContact(SeafloorContact):
          Apply lateral contact forces at the external contact radius, giving a torsional moment(default False)
     """
 
-    def __init__(self , name="", description="", _id="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, normalStiffness=0.0, normalDamping=0.0, applyLateralContactForces=False, **kwargs):
+    def __init__(self , _id="", name="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, normalStiffness=0.0, normalDamping=0.0, applyLateralContactForces=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.axialStiffness = axialStiffness
         self.axialFriction = axialFriction
         self.axialDamping = axialDamping
@@ -65,26 +61,6 @@ class SeafloorSpringContact(SeafloorContact):
         """Return blueprint that this entity represents"""
         return SeafloorSpringContactBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -107,6 +83,16 @@ class SeafloorSpringContact(SeafloorContact):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def axialStiffness(self) -> float:

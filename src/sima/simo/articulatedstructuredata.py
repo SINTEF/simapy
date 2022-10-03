@@ -2,7 +2,6 @@
 # 
 # Generated with ArticulatedStructureData
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.articulatedstructuredata import ArticulatedStructureDataBlueprint
 from typing import Dict
@@ -18,10 +17,6 @@ class ArticulatedStructureData(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -49,10 +44,8 @@ class ArticulatedStructureData(MOAO):
          Slip (turn-back) angle(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", _type=ArticulatedStructureType.NRUN, motionMode=MotionMode.PHI, initialPosition=0.0, lowerPositionLimit=0.0, upperPositionLimit=0.0, maxSpeed=0.0, maxAcceleration=0.0, motionSequenceType=MotionSequenceType.TSTOP, maximumAngle=0.0, slipAngle=0.0, **kwargs):
+    def __init__(self , _id="", _type=ArticulatedStructureType.NRUN, motionMode=MotionMode.PHI, initialPosition=0.0, lowerPositionLimit=0.0, upperPositionLimit=0.0, maxSpeed=0.0, maxAcceleration=0.0, motionSequenceType=MotionSequenceType.TSTOP, maximumAngle=0.0, slipAngle=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self._type = _type
@@ -78,26 +71,6 @@ class ArticulatedStructureData(MOAO):
         """Return blueprint that this entity represents"""
         return ArticulatedStructureDataBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

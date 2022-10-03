@@ -12,10 +12,9 @@ class ElongationCharacteristicBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="ElongationCharacteristic", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(EnumAttribute("inputType","sima/simo/ElongationCharacteristicType","Elongation characteristic type. Stress-strain or tension-strain."))
         self.attributes.append(BlueprintAttribute("items","sima/simo/ElongationItem","",True,Dimension("*")))
         self.attributes.append(Attribute("tensionMax","number","Historical maximum tension",default=0.0))

@@ -3,7 +3,6 @@
 # Generated with VariableItemSet
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.variableitemset import VariableItemSetBlueprint
 from numpy import ndarray,asarray
@@ -17,10 +16,6 @@ class VariableItemSet(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -28,10 +23,8 @@ class VariableItemSet(MOAO):
     variations : ndarray
     """
 
-    def __init__(self , name="", description="", _id="", **kwargs):
+    def __init__(self , _id="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.variable = None
@@ -46,26 +39,6 @@ class VariableItemSet(MOAO):
         """Return blueprint that this entity represents"""
         return VariableItemSetBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

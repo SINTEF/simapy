@@ -2,37 +2,34 @@
 # 
 # Generated with SIMOQuadraticDampingMatrix
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simoquadraticdampingmatrix import SIMOQuadraticDampingMatrixBlueprint
 from numpy import ndarray,asarray
 from sima.hydro.quadraticdampingmatrix import QuadraticDampingMatrix
+from sima.sima.named import Named
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.simo.dampingmatrixmotionmode import DampingMatrixMotionMode
 
-class SIMOQuadraticDampingMatrix(QuadraticDampingMatrix):
+class SIMOQuadraticDampingMatrix(QuadraticDampingMatrix,Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     values : ndarray
+    name : str
+         (default "")
     mode : DampingMatrixMotionMode
          Select which motions the damping matrix force should be calculated from. When 'default' is selected, low frequency motion is used for bodies of type '6 DOF - separated analysis' and total motion otherwise.
     """
 
-    def __init__(self , name="", description="", _id="", mode=DampingMatrixMotionMode.DEFAULT, **kwargs):
+    def __init__(self , _id="", name="", mode=DampingMatrixMotionMode.DEFAULT, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.values = ndarray(1)
+        self.name = name
         self.mode = mode
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -44,26 +41,6 @@ class SIMOQuadraticDampingMatrix(QuadraticDampingMatrix):
         """Return blueprint that this entity represents"""
         return SIMOQuadraticDampingMatrixBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -96,6 +73,16 @@ class SIMOQuadraticDampingMatrix(QuadraticDampingMatrix):
     def values(self, value: ndarray):
         """Set values"""
         self.__values = asarray(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def mode(self) -> DampingMatrixMotionMode:

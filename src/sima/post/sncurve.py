@@ -2,7 +2,6 @@
 # 
 # Generated with SNCurve
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.sncurve import SNCurveBlueprint
 from typing import Dict
@@ -16,13 +15,11 @@ class SNCurve(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     usePredefinedCurve : bool
          Use predefined SN-curve from selected standard(default False)
     predefinedCurve : SNCurveType
@@ -42,12 +39,11 @@ class SNCurve(NamedObject):
          Logarithm of number of stress cycles for which the SN curve becomes horizontal.(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", usePredefinedCurve=False, predefinedCurve=SNCurveType.DNV_B1, negativeInverseSlope=0.0, interceptStress=0.0, thicknessExponent=1.0, referenceThicknessFactor=1.0, fatigueLimitIndicator=FatigueLimitIndicator.STRESS_RANGE, fatigueLimitStress=0.0, fatigueLimitCycles=0.0, **kwargs):
+    def __init__(self , _id="", name="", usePredefinedCurve=False, predefinedCurve=SNCurveType.DNV_B1, negativeInverseSlope=0.0, interceptStress=0.0, thicknessExponent=1.0, referenceThicknessFactor=1.0, fatigueLimitIndicator=FatigueLimitIndicator.STRESS_RANGE, fatigueLimitStress=0.0, fatigueLimitCycles=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.usePredefinedCurve = usePredefinedCurve
         self.predefinedCurve = predefinedCurve
         self.negativeInverseSlope = negativeInverseSlope
@@ -70,26 +66,6 @@ class SNCurve(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -110,6 +86,16 @@ class SNCurve(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def usePredefinedCurve(self) -> bool:

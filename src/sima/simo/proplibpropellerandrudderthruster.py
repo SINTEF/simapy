@@ -2,7 +2,6 @@
 # 
 # Generated with ProplibPropellerAndRudderThruster
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.proplibpropellerandrudderthruster import ProplibPropellerAndRudderThrusterBlueprint
 from typing import Dict
@@ -17,13 +16,11 @@ class ProplibPropellerAndRudderThruster(IThruster):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     minForce : float
          Minimum thruster force(default 0.0)
     maxForce : float
@@ -84,12 +81,11 @@ class ProplibPropellerAndRudderThruster(IThruster):
          Thrust deduction factor(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=True, includeThrusterHullInteraction=True, includeThrusterThrusterInteraction=True, maxRps=0.0, diameter=0.0, bladeAreaRatio=0.0, headboxHeight=0.0, headboxRootChord=0.0, headboxTipChord=0.0, headboxArea=0.0, rudderHeight=0.0, rudderRootChord=0.0, rudderTipChord=0.0, rudderHornArea=0.0, rudderTotalArea=0.0, rudderPropellerHorizontalDistance=0.0, rudderPropellerVerticalDistance=0.0, rudderHeadboxGap=0.0, wakeFraction=0.0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, thrustDeductionFactor=0.0, **kwargs):
+    def __init__(self , _id="", name="", minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=True, includeThrusterHullInteraction=True, includeThrusterThrusterInteraction=True, maxRps=0.0, diameter=0.0, bladeAreaRatio=0.0, headboxHeight=0.0, headboxRootChord=0.0, headboxTipChord=0.0, headboxArea=0.0, rudderHeight=0.0, rudderRootChord=0.0, rudderTipChord=0.0, rudderHornArea=0.0, rudderTotalArea=0.0, rudderPropellerHorizontalDistance=0.0, rudderPropellerVerticalDistance=0.0, rudderHeadboxGap=0.0, wakeFraction=0.0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, thrustDeductionFactor=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.minForce = minForce
         self.maxForce = maxForce
         self.position = None
@@ -133,26 +129,6 @@ class ProplibPropellerAndRudderThruster(IThruster):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -173,6 +149,16 @@ class ProplibPropellerAndRudderThruster(IThruster):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def minForce(self) -> float:

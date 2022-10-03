@@ -2,7 +2,6 @@
 # Signal base type
 # Generated with Signal
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.signal import SignalBlueprint
 from typing import Dict

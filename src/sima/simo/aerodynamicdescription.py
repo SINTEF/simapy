@@ -2,7 +2,6 @@
 # 
 # Generated with AerodynamicDescription
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.aerodynamicdescription import AerodynamicDescriptionBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class AerodynamicDescription(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -31,10 +26,8 @@ class AerodynamicDescription(MOAO):
          Type of aerodynamic forces
     """
 
-    def __init__(self , name="", description="", _id="", quadraticLongitudinalDrag=0.0, quadraticTransverseY=0.0, quadraticTransverseZ=0.0, aerodynamicType=AerodynamicDescriptionType.DRAG, **kwargs):
+    def __init__(self , _id="", quadraticLongitudinalDrag=0.0, quadraticTransverseY=0.0, quadraticTransverseZ=0.0, aerodynamicType=AerodynamicDescriptionType.DRAG, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.quadraticLongitudinalDrag = quadraticLongitudinalDrag
@@ -51,26 +44,6 @@ class AerodynamicDescription(MOAO):
         """Return blueprint that this entity represents"""
         return AerodynamicDescriptionBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

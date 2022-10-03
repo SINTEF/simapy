@@ -2,6 +2,7 @@
 from .bodyinputslot import BodyInputSlot # noqa
 from .conditioninputnode import ConditionInputNode # noqa
 from .conditionnoderesult import ConditionNodeResult # noqa
+from .dowhilenode import DoWhileNode # noqa
 from .externalprogramnode import ExternalProgramNode # noqa
 from .filecopynode import FileCopyNode # noqa
 from .fileinputnode import FileInputNode # noqa

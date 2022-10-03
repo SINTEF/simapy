@@ -2,7 +2,6 @@
 # 
 # Generated with MainRiserLine
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.mainriserline import MainRiserLineBlueprint
 from typing import Dict
@@ -15,13 +14,11 @@ class MainRiserLine(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     riserLines : List[ARLineItem]
     flowRho : float
          Density of contents(default 0.0)
@@ -33,12 +30,11 @@ class MainRiserLine(NamedObject):
          Pressure drop(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", flowRho=0.0, flowPressure=0.0, flowPressureEnd=End.ONE, flowPressureDrop=0.0, **kwargs):
+    def __init__(self , _id="", name="", flowRho=0.0, flowPressure=0.0, flowPressureEnd=End.ONE, flowPressureDrop=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.riserLines = list()
         self.flowRho = flowRho
         self.flowPressure = flowPressure
@@ -54,26 +50,6 @@ class MainRiserLine(NamedObject):
         """Return blueprint that this entity represents"""
         return MainRiserLineBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -96,6 +72,16 @@ class MainRiserLine(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def riserLines(self) -> List[ARLineItem]:

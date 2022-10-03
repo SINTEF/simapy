@@ -116,6 +116,7 @@ from .simoheavecompensator import SIMOHeaveCompensator # noqa
 from .simolineardampingmatrix import SIMOLinearDampingMatrix # noqa
 from .simolocation import SIMOLocation # noqa
 from .simomodel import SIMOModel # noqa
+from .simopreference import SIMOPreference # noqa
 from .simoquadraticdampingmatrix import SIMOQuadraticDampingMatrix # noqa
 from .simoresultcontainer import SIMOResultContainer # noqa
 from .simostaticcalculationparameters import SIMOStaticCalculationParameters # noqa

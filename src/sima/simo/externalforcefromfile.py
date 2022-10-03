@@ -2,7 +2,6 @@
 # 
 # Generated with ExternalForceFromFile
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalforcefromfile import ExternalForceFromFileBlueprint
 from typing import Dict
@@ -15,13 +14,11 @@ class ExternalForceFromFile(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     forceFile : str
          ' File heading,  arbitrary number of lines with \n' apostrophe in the first position of the input line\nNCOL: Number of columns (=6)\nNROW: Number of rows (i.e. no. of time incidents)\nSAMP: Sampling interval [T]\nForce components, NROW lines (one per time incident)\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\n(default "")
     referenceFrame : ReferenceFrameType
@@ -42,12 +39,11 @@ class ExternalForceFromFile(NamedObject):
          Moment about Z-axis(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", forceFile="", referenceFrame=ReferenceFrameType.LOCAL, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, **kwargs):
+    def __init__(self , _id="", name="", forceFile="", referenceFrame=ReferenceFrameType.LOCAL, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.forceFile = forceFile
         self.referenceFrame = referenceFrame
         self.attachmentPoint = None
@@ -67,26 +63,6 @@ class ExternalForceFromFile(NamedObject):
         """Return blueprint that this entity represents"""
         return ExternalForceFromFileBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -109,6 +85,16 @@ class ExternalForceFromFile(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def forceFile(self) -> str:

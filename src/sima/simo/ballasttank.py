@@ -2,7 +2,6 @@
 # 
 # Generated with BallastTank
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.ballasttank import BallastTankBlueprint
 from typing import Dict
@@ -16,13 +15,11 @@ class BallastTank(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     tag : str
          (default "")
     x : float
@@ -47,12 +44,11 @@ class BallastTank(NamedObject):
          State of ballast tank
     """
 
-    def __init__(self , name="", description="", _id="", tag="", x=0.0, y=0.0, z=0.0, volumeTolerance=0.001, permeabilityFactor=1.0, initialBallastQuantity=0.0, quantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity=1025.0, geometryFile="", state=BallastTankState.INTACT, **kwargs):
+    def __init__(self , _id="", name="", tag="", x=0.0, y=0.0, z=0.0, volumeTolerance=0.001, permeabilityFactor=1.0, initialBallastQuantity=0.0, quantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity=1025.0, geometryFile="", state=BallastTankState.INTACT, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.tag = tag
         self.x = x
         self.y = y
@@ -77,26 +73,6 @@ class BallastTank(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -117,6 +93,16 @@ class BallastTank(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def tag(self) -> str:

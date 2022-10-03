@@ -3,7 +3,6 @@
 # Generated with LineSegment
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.linesegment import LineSegmentBlueprint
 from typing import Dict
@@ -19,10 +18,6 @@ class LineSegment(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -53,10 +48,8 @@ class LineSegment(MOAO):
          Non-linear Elongation characteristic
     """
 
-    def __init__(self , name="", description="", _id="", length=0.0, segmentType=SegmentType.CATENARY, numElements=0, bottomFriction=0.0, diameter=0.0, eMod=0.0, emFac=1.0, transverseDrag=0.0, longitudinalDrag=0.0, uwia=0.0, watfac=0.0, **kwargs):
+    def __init__(self , _id="", length=0.0, segmentType=SegmentType.CATENARY, numElements=0, bottomFriction=0.0, diameter=0.0, eMod=0.0, emFac=1.0, transverseDrag=0.0, longitudinalDrag=0.0, uwia=0.0, watfac=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.length = length
@@ -82,26 +75,6 @@ class LineSegment(MOAO):
         """Return blueprint that this entity represents"""
         return LineSegmentBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

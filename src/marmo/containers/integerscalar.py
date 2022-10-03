@@ -2,7 +2,6 @@
 # 
 # Generated with IntegerScalar
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.integerscalar import IntegerScalarBlueprint
 from typing import Dict

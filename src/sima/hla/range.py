@@ -2,7 +2,6 @@
 # 
 # Generated with Range
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.range import RangeBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class Range(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -28,10 +23,8 @@ class Range(MOAO):
          (default True)
     """
 
-    def __init__(self , name="", description="", _id="", min=0.0, max=0.0, automatic=True, **kwargs):
+    def __init__(self , _id="", min=0.0, max=0.0, automatic=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.min = min
@@ -47,26 +40,6 @@ class Range(MOAO):
         """Return blueprint that this entity represents"""
         return RangeBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

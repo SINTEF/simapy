@@ -3,7 +3,6 @@
 # Generated with BodyResult
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bodyresult import BodyResultBlueprint
 from typing import Dict
@@ -20,10 +19,6 @@ class BodyResult(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -39,10 +34,8 @@ class BodyResult(MOAO):
     externalForces : List[ForceResult]
     """
 
-    def __init__(self , name="", description="", _id="", body="", **kwargs):
+    def __init__(self , _id="", body="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.body = body
@@ -64,26 +57,6 @@ class BodyResult(MOAO):
         """Return blueprint that this entity represents"""
         return BodyResultBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -3,7 +3,6 @@
 # Generated with VerticalBladeItem
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.verticalbladeitem import VerticalBladeItemBlueprint
 from typing import Dict
@@ -17,10 +16,6 @@ class VerticalBladeItem(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -37,10 +32,8 @@ class VerticalBladeItem(MOAO):
          Static twist angle(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", radius=0.0, elevation=0.0, offset=0.0, chordLength=0.0, twist=0.0, **kwargs):
+    def __init__(self , _id="", radius=0.0, elevation=0.0, offset=0.0, chordLength=0.0, twist=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.airfoil = None
@@ -59,26 +52,6 @@ class VerticalBladeItem(MOAO):
         """Return blueprint that this entity represents"""
         return VerticalBladeItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

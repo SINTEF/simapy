@@ -2,7 +2,6 @@
 # 
 # Generated with ColumnConfiguration
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.columnconfiguration import ColumnConfigurationBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class ColumnConfiguration(PathSpecification):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -32,10 +27,8 @@ class ColumnConfiguration(PathSpecification):
          Column font size. Will be used when renderin the table in a report,etc.(default 0)
     """
 
-    def __init__(self , name="", description="", _id="", path="", header="", label="", format='0.####E0', fontSize=0, **kwargs):
+    def __init__(self , _id="", path="", header="", label="", format='0.####E0', fontSize=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.path = path
@@ -53,26 +46,6 @@ class ColumnConfiguration(PathSpecification):
         """Return blueprint that this entity represents"""
         return ColumnConfigurationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

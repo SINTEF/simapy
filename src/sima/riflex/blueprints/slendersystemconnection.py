@@ -14,8 +14,6 @@ class SlenderSystemConnectionBlueprint(ElementReferenceBlueprint,NodeReferenceBl
 
     def __init__(self, name="SlenderSystemConnection", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("line","sima/riflex/ARLine","Line",False))
@@ -27,6 +25,7 @@ class SlenderSystemConnectionBlueprint(ElementReferenceBlueprint,NodeReferenceBl
         self.attributes.append(Attribute("allNodes","boolean","All nodes",default=False))
         self.attributes.append(Attribute("allEnds","boolean","All ends",default=False))
         self.attributes.append(EnumAttribute("elementEnd","sima/riflex/End","End number 1 or 2"))
+        self.attributes.append(Attribute("name","string","",default='connection'))
         self.attributes.append(EnumAttribute("location","sima/riflex/BodyLocation","If a supernode is used as location option and it is not part of a line, a dummy line will be created automatically."))
         self.attributes.append(BlueprintAttribute("superNode","sima/riflex/SuperNode","Line",False))
         self.attributes.append(Attribute("artificialStiffness","boolean","Artificial stiffness option",default=False))

@@ -3,7 +3,6 @@
 # Generated with ModelSignal
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.modelsignal import ModelSignalBlueprint
 from typing import Dict
@@ -18,24 +17,21 @@ class ModelSignal(GeneratorSignal):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
+    name : str
+         (default "")
     model : MOAO
     """
 
-    def __init__(self , name="", description="", _id="", **kwargs):
+    def __init__(self , _id="", name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.properties = list()
+        self.name = name
         self.model = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -47,26 +43,6 @@ class ModelSignal(GeneratorSignal):
         """Return blueprint that this entity represents"""
         return ModelSignalBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -101,6 +77,16 @@ class ModelSignal(GeneratorSignal):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__properties = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def model(self) -> MOAO:

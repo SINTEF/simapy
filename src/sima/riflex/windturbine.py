@@ -3,11 +3,11 @@
 # Generated with WindTurbine
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windturbine import WindTurbineBlueprint
 from typing import Dict
 from sima.riflex.bladeitem import BladeItem
+from sima.riflex.horizontalaxiscontroller import HorizontalAxisController
 from sima.riflex.horizontalaxisyawcontroller import HorizontalAxisYawController
 from sima.riflex.measurementelement import MeasurementElement
 from sima.riflex.measurementnode import MeasurementNode
@@ -15,7 +15,6 @@ from sima.riflex.turbineorientation import TurbineOrientation
 from sima.riflex.windturbineloadoption import WindTurbineLoadOption
 from sima.sima.namedobject import NamedObject
 from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.horizontalaxiswindturbinecontroller import HorizontalAxisWindTurbineController
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from sima.riflex.arline import ARLine
@@ -25,17 +24,15 @@ class WindTurbine(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     shaftLine : ARLine
          Reference to the line that is used for shaft modelling
     blades : List[BladeItem]
-    controller : HorizontalAxisWindTurbineController
+    controller : HorizontalAxisController
     body : Body
          Reference to SIMO body with wind
     towerLine : ARLine
@@ -63,12 +60,11 @@ class WindTurbine(NamedObject):
     yawController : HorizontalAxisYawController
     """
 
-    def __init__(self , name="", description="", _id="", windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=True, advancedOptions=True, inductionCalculation=True, prandtlTip=True, prandtlRoot=True, prandtlYaw=True, **kwargs):
+    def __init__(self , _id="", name="", windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=True, advancedOptions=True, inductionCalculation=True, prandtlTip=True, prandtlRoot=True, prandtlYaw=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.shaftLine = None
         self.blades = list()
         self.controller = None
@@ -98,26 +94,6 @@ class WindTurbine(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -138,6 +114,16 @@ class WindTurbine(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def shaftLine(self) -> ARLine:
@@ -162,12 +148,12 @@ class WindTurbine(NamedObject):
         self.__blades = value
 
     @property
-    def controller(self) -> HorizontalAxisWindTurbineController:
+    def controller(self) -> HorizontalAxisController:
         """"""
         return self.__controller
 
     @controller.setter
-    def controller(self, value: HorizontalAxisWindTurbineController):
+    def controller(self, value: HorizontalAxisController):
         """Set controller"""
         self.__controller = value
 

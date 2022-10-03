@@ -3,7 +3,6 @@
 # Generated with SIMAScriptContext
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simascriptcontext import SIMAScriptContextBlueprint
 from typing import Dict
@@ -17,24 +16,21 @@ class SIMAScriptContext(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     model : MOAO
          Model object to be directly available in script by given name
+    name : str
+         Variable name of object that will be available in the script when evaluating(default "")
     """
 
-    def __init__(self , name="", description="", _id="", **kwargs):
+    def __init__(self , _id="", name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.model = None
+        self.name = name
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -45,26 +41,6 @@ class SIMAScriptContext(MOAO):
         """Return blueprint that this entity represents"""
         return SIMAScriptContextBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -97,3 +73,13 @@ class SIMAScriptContext(MOAO):
     def model(self, value: MOAO):
         """Set model"""
         self.__model = value
+
+    @property
+    def name(self) -> str:
+        """Variable name of object that will be available in the script when evaluating"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)

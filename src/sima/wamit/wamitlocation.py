@@ -2,7 +2,6 @@
 # 
 # Generated with WamitLocation
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitlocation import WamitLocationBlueprint
 from typing import Dict
@@ -19,13 +18,11 @@ class WamitLocation(Location):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     initialViewpoint : InitialViewpoint
     initialRotationpoint : Point3
     viewpoints : List[NamedViewpoint]
@@ -44,12 +41,11 @@ class WamitLocation(Location):
     physicalConstants : PhysicalConstants
     """
 
-    def __init__(self , name="", description="", _id="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, gridZone="", waterDepth=1000.0, **kwargs):
+    def __init__(self , _id="", name="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, gridZone="", waterDepth=1000.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.initialViewpoint = None
         self.initialRotationpoint = None
         self.viewpoints = list()
@@ -73,26 +69,6 @@ class WamitLocation(Location):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -113,6 +89,16 @@ class WamitLocation(Location):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def initialViewpoint(self) -> InitialViewpoint:

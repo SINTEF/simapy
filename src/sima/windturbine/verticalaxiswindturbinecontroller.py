@@ -2,7 +2,6 @@
 # 
 # Generated with VerticalAxisWindTurbineController
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.verticalaxiswindturbinecontroller import VerticalAxisWindTurbineControllerBlueprint
 from typing import Dict
@@ -16,10 +15,6 @@ class VerticalAxisWindTurbineController(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -56,10 +51,8 @@ class VerticalAxisWindTurbineController(MOAO):
     gainSchedulingItems : List[GainSchedulingItem]
     """
 
-    def __init__(self , name="", description="", _id="", sampleInterval=0.0, startupLength=0.0, filterPeriodRotorSpeed=0.0, filterPeriodWindSpeed=0.0, filterRadialFrequency=0.0, notchFilterWidth=0.0, gearBoxRatio=0.0, maxTorque=0.0, maxTorqueRate=0.0, proportionalGain=0.0, initialIntegratorGainRatio=0.0, finalIntegratorGainRatio=0.0, integratorRelaxationTime=0.0, windRotorSpeed=TableFormat.DEFAULT, gainScheduling=TableFormat.DEFAULT, **kwargs):
+    def __init__(self , _id="", sampleInterval=0.0, startupLength=0.0, filterPeriodRotorSpeed=0.0, filterPeriodWindSpeed=0.0, filterRadialFrequency=0.0, notchFilterWidth=0.0, gearBoxRatio=0.0, maxTorque=0.0, maxTorqueRate=0.0, proportionalGain=0.0, initialIntegratorGainRatio=0.0, finalIntegratorGainRatio=0.0, integratorRelaxationTime=0.0, windRotorSpeed=TableFormat.DEFAULT, gainScheduling=TableFormat.DEFAULT, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.sampleInterval = sampleInterval
@@ -89,26 +82,6 @@ class VerticalAxisWindTurbineController(MOAO):
         """Return blueprint that this entity represents"""
         return VerticalAxisWindTurbineControllerBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -3,7 +3,6 @@
 # Generated with DockingCone
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dockingcone import DockingConeBlueprint
 from typing import Dict
@@ -22,13 +21,11 @@ class DockingCone(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     dampingExponent : float
          Exponent of velocity in damping term(default 1.0)
     dampingInterpolation : Interpolation
@@ -55,12 +52,11 @@ class DockingCone(NamedObject):
     crossSections : List[DockingConeCrossSection]
     """
 
-    def __init__(self , name="", description="", _id="", dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, velocityLimit=0.0, maxRadialDistance=0.0, friction=0.0, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
+    def __init__(self , _id="", name="", dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, velocityLimit=0.0, maxRadialDistance=0.0, friction=0.0, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.dampingExponent = dampingExponent
         self.dampingInterpolation = dampingInterpolation
         self.forceInterpolation = forceInterpolation
@@ -88,26 +84,6 @@ class DockingCone(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -128,6 +104,16 @@ class DockingCone(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def dampingExponent(self) -> float:

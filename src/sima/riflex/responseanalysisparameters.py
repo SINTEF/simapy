@@ -2,7 +2,6 @@
 # 
 # Generated with ResponseAnalysisParameters
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.responseanalysisparameters import ResponseAnalysisParametersBlueprint
 from typing import Dict
@@ -19,10 +18,6 @@ class ResponseAnalysisParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -59,10 +54,8 @@ class ResponseAnalysisParameters(MOAO):
     additionalStructuralDampingParameters : List[AdditionalStructuralDampingParameters]
     """
 
-    def __init__(self , name="", description="", _id="", iterationMethod=ResponseIterationMethod.NEWTON_RAPHSON, retry=False, maxNumberOfIterations=30, convergenceCriterion=ConvergenceCriterion.AMPNOR, convergenceLimit=0.0001, initialResponseEstimate=0.5, responseFrequencyOption=ResponseFrequencyOption.CONCURRENT, numberOfDominatingFrequencies=0, amplitudeLimit=0.01, lowerFrequencyCutoff=0.0, upperFrequencyCutoff=0.0, relativeStructuralDamping=0.0, forceSwitch=ForceSwitch.USE_CURVATURE, printSwitch=PrintSwitch.FINAL_RESULTS, additionalStructuralDampingSpecification=True, **kwargs):
+    def __init__(self , _id="", iterationMethod=ResponseIterationMethod.NEWTON_RAPHSON, retry=False, maxNumberOfIterations=30, convergenceCriterion=ConvergenceCriterion.AMPNOR, convergenceLimit=0.0001, initialResponseEstimate=0.5, responseFrequencyOption=ResponseFrequencyOption.CONCURRENT, numberOfDominatingFrequencies=0, amplitudeLimit=0.01, lowerFrequencyCutoff=0.0, upperFrequencyCutoff=0.0, relativeStructuralDamping=0.0, forceSwitch=ForceSwitch.USE_CURVATURE, printSwitch=PrintSwitch.FINAL_RESULTS, additionalStructuralDampingSpecification=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.iterationMethod = iterationMethod
@@ -91,26 +84,6 @@ class ResponseAnalysisParameters(MOAO):
         """Return blueprint that this entity represents"""
         return ResponseAnalysisParametersBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

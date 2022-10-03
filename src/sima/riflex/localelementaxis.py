@@ -3,7 +3,6 @@
 # Generated with LocalElementAxis
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.localelementaxis import LocalElementAxisBlueprint
 from typing import Dict
@@ -18,10 +17,6 @@ class LocalElementAxis(ElementReference):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -45,10 +40,8 @@ class LocalElementAxis(ElementReference):
          Reference vector z component(default 1.0)
     """
 
-    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, rnx=0.0, rny=0.0, rnz=1.0, **kwargs):
+    def __init__(self , _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, rnx=0.0, rny=0.0, rnz=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -70,26 +63,6 @@ class LocalElementAxis(ElementReference):
         """Return blueprint that this entity represents"""
         return LocalElementAxisBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

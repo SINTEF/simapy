@@ -12,10 +12,9 @@ class FlexJointConnectorTypeBlueprint(NodalComponentTypeBlueprint):
 
     def __init__(self, name="FlexJointConnectorType", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("mass","number","Mass",default=0.0))
         self.attributes.append(Attribute("volume","number","Displacement volume",default=0.0))
         self.attributes.append(Attribute("gyrationRadiusX","number","Radius of gyration around local x-axis",default=0.0))

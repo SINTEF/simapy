@@ -2,7 +2,6 @@
 # 
 # Generated with Kalman
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.kalman import KalmanBlueprint
 from typing import Dict
@@ -19,10 +18,6 @@ class Kalman(Estimator):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -40,10 +35,8 @@ class Kalman(Estimator):
     lines : List[LineMeasurementItem]
     """
 
-    def __init__(self , name="", description="", _id="", lineTension=KalmanLineTension.NONE, estimationMethod=KalmanEstimationMethod.FORCE, wfStartingPeriod=0.0, nominalVelocity=0.25, **kwargs):
+    def __init__(self , _id="", lineTension=KalmanLineTension.NONE, estimationMethod=KalmanEstimationMethod.FORCE, wfStartingPeriod=0.0, nominalVelocity=0.25, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.lineTension = lineTension
@@ -64,26 +57,6 @@ class Kalman(Estimator):
         """Return blueprint that this entity represents"""
         return KalmanBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

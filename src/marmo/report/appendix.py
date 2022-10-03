@@ -2,7 +2,6 @@
 # 
 # Generated with Appendix
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.appendix import AppendixBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class Appendix(Section):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     items : List[ReportItem]
     title : str
          (default "")
@@ -24,10 +19,8 @@ class Appendix(Section):
          (default False)
     """
 
-    def __init__(self , name="", description="", title="", landscape=False, **kwargs):
+    def __init__(self , title="", landscape=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.items = list()
         self.title = title
         self.landscape = landscape
@@ -41,26 +34,6 @@ class Appendix(Section):
         """Return blueprint that this entity represents"""
         return AppendixBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def items(self) -> List[ReportItem]:

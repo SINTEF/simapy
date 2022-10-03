@@ -2,7 +2,6 @@
 # 
 # Generated with NonEquidistantSignal
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.nonequidistantsignal import NonEquidistantSignalBlueprint
 from typing import Dict
@@ -15,14 +14,12 @@ class NonEquidistantSignal(GeneratorSignal):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
+    name : str
+         (default "")
     xunit : str
          Defines the unit of the x axis(default 's')
     yunit : str
@@ -34,13 +31,12 @@ class NonEquidistantSignal(GeneratorSignal):
          (default "")
     """
 
-    def __init__(self , name="", description="", _id="", xunit='s', yunit='-', ylabel="", xlabel="", **kwargs):
+    def __init__(self , _id="", name="", xunit='s', yunit='-', ylabel="", xlabel="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.properties = list()
+        self.name = name
         self.xunit = xunit
         self.yunit = yunit
         self.values = list()
@@ -56,26 +52,6 @@ class NonEquidistantSignal(GeneratorSignal):
         """Return blueprint that this entity represents"""
         return NonEquidistantSignalBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -110,6 +86,16 @@ class NonEquidistantSignal(GeneratorSignal):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__properties = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def xunit(self) -> str:

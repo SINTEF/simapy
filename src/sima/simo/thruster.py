@@ -2,7 +2,6 @@
 # 
 # Generated with Thruster
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thruster import ThrusterBlueprint
 from typing import Dict
@@ -25,13 +24,11 @@ class Thruster(IThruster):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     minForce : float
          Minimum thruster force(default 0.0)
     maxForce : float
@@ -92,12 +89,11 @@ class Thruster(IThruster):
     controlSequence : List[ControlSequenceItem]
     """
 
-    def __init__(self , name="", description="", _id="", minForce=0.0, maxForce=0.0, _type=ThrusterType.FIXED_CONVENTIONAL, diameter=1.0, forceDirection=0.0, force=0.0, minTimeChange=0.0, maxRevolvingSpeed=10.0, failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, maxRudderAngle=0.0, rudderCoefficient=0.0, relativeDeadBand=0.01, thrustReductionFactor=1.0, minDirectionChange=0.0, formulation=Formulation.SIMO_41, ctForward=1.0, cqForward=1.0, ctReverse=1.0, cqReverse=1.0, pdRatio=1.0, tcThrust=0.0, tcAzimuth=0.0, coefficientModel=ThrustCoefficientModel.INTERNAL, thrustLoss=ThrustLoss.NONE, specifyControlSequence=False, controlSequenceSignalType=ThrustSignalType.FORCE, **kwargs):
+    def __init__(self , _id="", name="", minForce=0.0, maxForce=0.0, _type=ThrusterType.FIXED_CONVENTIONAL, diameter=1.0, forceDirection=0.0, force=0.0, minTimeChange=0.0, maxRevolvingSpeed=10.0, failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, maxRudderAngle=0.0, rudderCoefficient=0.0, relativeDeadBand=0.01, thrustReductionFactor=1.0, minDirectionChange=0.0, formulation=Formulation.SIMO_41, ctForward=1.0, cqForward=1.0, ctReverse=1.0, cqReverse=1.0, pdRatio=1.0, tcThrust=0.0, tcAzimuth=0.0, coefficientModel=ThrustCoefficientModel.INTERNAL, thrustLoss=ThrustLoss.NONE, specifyControlSequence=False, controlSequenceSignalType=ThrustSignalType.FORCE, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.minForce = minForce
         self.maxForce = maxForce
         self._type = _type
@@ -144,26 +140,6 @@ class Thruster(IThruster):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -184,6 +160,16 @@ class Thruster(IThruster):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def minForce(self) -> float:

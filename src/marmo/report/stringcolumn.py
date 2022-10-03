@@ -2,7 +2,6 @@
 # 
 # Generated with StringColumn
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.stringcolumn import StringColumnBlueprint
 from numpy import ndarray,asarray
@@ -13,10 +12,6 @@ class StringColumn(Column):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     header : str
          (default "")
     label : str
@@ -25,10 +20,8 @@ class StringColumn(Column):
     cells : ndarray
     """
 
-    def __init__(self , name="", description="", header="", label="", **kwargs):
+    def __init__(self , header="", label="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.header = header
         self.label = label
         self.headerfont = None
@@ -43,26 +36,6 @@ class StringColumn(Column):
         """Return blueprint that this entity represents"""
         return StringColumnBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def header(self) -> str:

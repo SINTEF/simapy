@@ -2,7 +2,6 @@
 # 
 # Generated with SimpleString
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simplestring import SimpleStringBlueprint
 from typing import Dict

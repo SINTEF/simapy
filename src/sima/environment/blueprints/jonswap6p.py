@@ -12,8 +12,6 @@ class Jonswap6PBlueprint(WaveBlueprint):
 
     def __init__(self, name="Jonswap6P", package_path="sima/environment", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("direction","number","Average wave propagation direction",default=0.0))

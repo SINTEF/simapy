@@ -2,7 +2,6 @@
 # 
 # Generated with SimpleBoolean
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.simpleboolean import SimpleBooleanBlueprint
 from typing import Dict

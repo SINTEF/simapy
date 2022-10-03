@@ -3,7 +3,6 @@
 # Generated with GeotechnicalSpring
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.geotechnicalspring import GeotechnicalSpringBlueprint
 from typing import Dict
@@ -20,10 +19,6 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -37,6 +32,8 @@ class GeotechnicalSpring(NodeReference,NamedObject):
          Local node number on actual segment(default 1)
     allNodes : bool
          All nodes(default False)
+    name : str
+         (default "")
     stiffnessItems : List[GeotechnicalSpringStiffnessItem]
     dampingDisplacementItems : List[DampingDisplacementItem]
     strainVelocityExponent : float
@@ -45,10 +42,8 @@ class GeotechnicalSpring(NodeReference,NamedObject):
          Relative length for result scaling(default 1.0)
     """
 
-    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, strainVelocityExponent=1.0, relativeLength=1.0, **kwargs):
+    def __init__(self , _id="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, name="", strainVelocityExponent=1.0, relativeLength=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -56,6 +51,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
         self.allSegments = allSegments
         self.nodeNumber = nodeNumber
         self.allNodes = allNodes
+        self.name = name
         self.stiffnessItems = list()
         self.dampingDisplacementItems = list()
         self.strainVelocityExponent = strainVelocityExponent
@@ -70,26 +66,6 @@ class GeotechnicalSpring(NodeReference,NamedObject):
         """Return blueprint that this entity represents"""
         return GeotechnicalSpringBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -162,6 +138,16 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     def allNodes(self, value: bool):
         """Set allNodes"""
         self.__allNodes = bool(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def stiffnessItems(self) -> List[GeotechnicalSpringStiffnessItem]:

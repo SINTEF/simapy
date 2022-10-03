@@ -2,7 +2,6 @@
 # 
 # Generated with InitialCondition
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.initialcondition import InitialConditionBlueprint
 from typing import Dict
@@ -15,24 +14,21 @@ class InitialCondition(Condition,NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     changeNumber : int
          (default 0)
     resultContainer : ResultContainer
     """
 
-    def __init__(self , name="", description="", _id="", changeNumber=0, **kwargs):
+    def __init__(self , _id="", name="", changeNumber=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.changeNumber = changeNumber
         self.resultContainer = None
         for key, value in kwargs.items():
@@ -45,26 +41,6 @@ class InitialCondition(Condition,NamedObject):
         """Return blueprint that this entity represents"""
         return InitialConditionBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -87,6 +63,16 @@ class InitialCondition(Condition,NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def changeNumber(self) -> int:

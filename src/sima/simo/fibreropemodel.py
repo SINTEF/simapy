@@ -2,7 +2,6 @@
 # 
 # Generated with FibreRopeModel
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fibreropemodel import FibreRopeModelBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class FibreRopeModel(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     originalCurve : List[AxialStiffnessItem]
     originalWorkingCurve : List[AxialStiffnessItem]
     workingCurve : List[AxialStiffnessItem]
@@ -30,12 +27,11 @@ class FibreRopeModel(NamedObject):
          (default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", dynamicStiffnessCoefficientA=0.0, dynamicStiffnessCoefficientB=0.0, **kwargs):
+    def __init__(self , _id="", name="", dynamicStiffnessCoefficientA=0.0, dynamicStiffnessCoefficientB=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.originalCurve = list()
         self.originalWorkingCurve = list()
         self.workingCurve = list()
@@ -51,26 +47,6 @@ class FibreRopeModel(NamedObject):
         """Return blueprint that this entity represents"""
         return FibreRopeModelBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -93,6 +69,16 @@ class FibreRopeModel(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def originalCurve(self) -> List[AxialStiffnessItem]:

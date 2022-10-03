@@ -12,10 +12,9 @@ class StressJointLineTypeBlueprint(ARLineTypeBlueprint):
 
     def __init__(self, name="StressJointLineType", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(BlueprintAttribute("internalFluid","sima/riflex/InternalFluidType","Internal fluid component type.",False))
         self.attributes.append(Attribute("quadraticDrag","number","Quadratic drag coefficient in normal direction, non-dimensional.",default=0.0))
         self.attributes.append(Attribute("addedMass","number","Added mass pr. unit length coefficient in normal direction, non-dimensional.",default=0.0))

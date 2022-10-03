@@ -12,10 +12,9 @@ class FixedBodyElementBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="FixedBodyElement", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("volume","number","Volume of element",default=0.0))
         self.attributes.append(Attribute("mass","number","Mass of element",default=0.0))
         self.attributes.append(EnumAttribute("waveIntegrationMethod","sima/simo/WaveIntegrationMethod","Parameter defining wave force integration method"))

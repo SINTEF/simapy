@@ -2,7 +2,6 @@
 # 
 # Generated with ExternalProgramNode
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalprogramnode import ExternalProgramNodeBlueprint
 from typing import Dict
@@ -18,13 +17,11 @@ class ExternalProgramNode(RunNode):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     x : int
          (default 0)
     y : int
@@ -51,12 +48,11 @@ class ExternalProgramNode(RunNode):
          Environment variables to set when executing. Separate each variable with a semicolon and path segments with colon.(default "")
     """
 
-    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, executable="", arguments="", fileFormat=FileFormat.HDF5, failOnErrorCode=True, addInputFiles=False, environmentVariables="", **kwargs):
+    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, executable="", arguments="", fileFormat=FileFormat.HDF5, failOnErrorCode=True, addInputFiles=False, environmentVariables="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.x = x
         self.y = y
         self.h = h
@@ -83,26 +79,6 @@ class ExternalProgramNode(RunNode):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -123,6 +99,16 @@ class ExternalProgramNode(RunNode):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def x(self) -> int:

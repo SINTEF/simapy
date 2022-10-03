@@ -2,7 +2,6 @@
 # 
 # Generated with ThrusterDynamics
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thrusterdynamics import ThrusterDynamicsBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class ThrusterDynamics(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -30,10 +25,8 @@ class ThrusterDynamics(MOAO):
          Time constant of azimuth change(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", minTimeChange=0.0, tcThrust=0.0, maxRevolvingSpeed=10.0, tcAzimuth=0.0, **kwargs):
+    def __init__(self , _id="", minTimeChange=0.0, tcThrust=0.0, maxRevolvingSpeed=10.0, tcAzimuth=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.minTimeChange = minTimeChange
@@ -50,26 +43,6 @@ class ThrusterDynamics(MOAO):
         """Return blueprint that this entity represents"""
         return ThrusterDynamicsBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

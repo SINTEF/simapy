@@ -3,7 +3,6 @@
 # Generated with ReferenceFrame
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.referenceframe import ReferenceFrameBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class ReferenceFrame(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     parent : ReferenceFrame
     xGlobal : float
          Global coordinate X(default 0.0)
@@ -36,12 +33,11 @@ class ReferenceFrame(NamedObject):
          Global  Z-axis rotation(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", xGlobal=0.0, yGlobal=0.0, zGlobal=0.0, rxGlobal=0.0, ryGlobal=0.0, rzGlobal=0.0, **kwargs):
+    def __init__(self , _id="", name="", xGlobal=0.0, yGlobal=0.0, zGlobal=0.0, rxGlobal=0.0, ryGlobal=0.0, rzGlobal=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.parent = None
         self.xGlobal = xGlobal
         self.yGlobal = yGlobal
@@ -59,26 +55,6 @@ class ReferenceFrame(NamedObject):
         """Return blueprint that this entity represents"""
         return ReferenceFrameBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -101,6 +77,16 @@ class ReferenceFrame(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def parent(self) -> ReferenceFrame:

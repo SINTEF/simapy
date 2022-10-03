@@ -12,10 +12,9 @@ class ExternalHLAForceBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="ExternalHLAForce", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(BlueprintAttribute("attachmentPoint","sima/sima/Point3","Attack point of force.",True))
         self.attributes.append(EnumAttribute("referenceFrame","sima/simo/ReferenceFrameType","Which coordinate system is the force is given in?"))
         self.attributes.append(Attribute("nStorageParameters","integer","Number of parameters for intermediate storage",default=0))

@@ -2,7 +2,6 @@
 # 
 # Generated with FileSpecification
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.filespecification import FileSpecificationBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class FileSpecification(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -24,10 +19,8 @@ class FileSpecification(MOAO):
          Name of file to be included.(default "")
     """
 
-    def __init__(self , name="", description="", _id="", filename="", **kwargs):
+    def __init__(self , _id="", filename="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.filename = filename
@@ -41,26 +34,6 @@ class FileSpecification(MOAO):
         """Return blueprint that this entity represents"""
         return FileSpecificationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

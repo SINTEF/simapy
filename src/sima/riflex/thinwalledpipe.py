@@ -2,7 +2,6 @@
 # 
 # Generated with ThinWalledPipe
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thinwalledpipe import ThinWalledPipeBlueprint
 from typing import Dict
@@ -12,7 +11,6 @@ from sima.riflex.crsaxialdamping import CRSAxialDamping
 from sima.riflex.crsmassdamping import CRSMassDamping
 from sima.riflex.crsstiffnessdamping import CRSStiffnessDamping
 from sima.riflex.hydrodynamicinputcode import HydrodynamicInputCode
-from sima.riflex.hydrodynamicradiationinputcode import HydrodynamicRadiationInputCode
 from sima.riflex.innerouter import InnerOuter
 from sima.riflex.loadformulation import LoadFormulation
 from sima.riflex.tangentialfroudekrylovscaling import TangentialFroudeKrylovScaling
@@ -24,13 +22,11 @@ class ThinWalledPipe(CrossSection):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     scfkSpecification : bool
          Scaling of Froude-Krylov term in Morison’s equation in normal direction(default True)
     loadFormulation : LoadFormulation
@@ -124,17 +120,16 @@ class ThinWalledPipe(CrossSection):
          Inner or outer diameter
     coupledBendingTorsion : bool
          Geometric stiffness coupling between bending and torsion(default False)
-    hydrodynamicRadiationInputCode : HydrodynamicRadiationInputCode
+    hydrodynamicRadiationInputCode : HydrodynamicInputCode
          Code for input of simplified radiation force coefficients
     vivCoefficients : TimeDomainVIVLoadCoefficients
     """
 
-    def __init__(self , name="", description="", _id="", scfkSpecification=True, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, pipeDiameter=0.0, pipeThickness=0.0, materialDensity=0.0, extCoatingThickness=0.0, extCoatingDensity=0.0, extContactRadius=0.0, intContactRadius=0.0, tensionCapacity=0.0, maxCurvature=0.0, calculateBeta=False, diameterType=InnerOuter.OUTER, coupledBendingTorsion=False, hydrodynamicRadiationInputCode=HydrodynamicRadiationInputCode.DIMENSIONAL, **kwargs):
+    def __init__(self , _id="", name="", scfkSpecification=True, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, pipeDiameter=0.0, pipeThickness=0.0, materialDensity=0.0, extCoatingThickness=0.0, extCoatingDensity=0.0, extContactRadius=0.0, intContactRadius=0.0, tensionCapacity=0.0, maxCurvature=0.0, calculateBeta=False, diameterType=InnerOuter.OUTER, coupledBendingTorsion=False, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.scfkSpecification = scfkSpecification
         self.loadFormulation = loadFormulation
         self.hydrodynamicDiameter = hydrodynamicDiameter
@@ -198,26 +193,6 @@ class ThinWalledPipe(CrossSection):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -238,6 +213,16 @@ class ThinWalledPipe(CrossSection):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def scfkSpecification(self) -> bool:
@@ -730,12 +715,12 @@ class ThinWalledPipe(CrossSection):
         self.__coupledBendingTorsion = bool(value)
 
     @property
-    def hydrodynamicRadiationInputCode(self) -> HydrodynamicRadiationInputCode:
+    def hydrodynamicRadiationInputCode(self) -> HydrodynamicInputCode:
         """Code for input of simplified radiation force coefficients"""
         return self.__hydrodynamicRadiationInputCode
 
     @hydrodynamicRadiationInputCode.setter
-    def hydrodynamicRadiationInputCode(self, value: HydrodynamicRadiationInputCode):
+    def hydrodynamicRadiationInputCode(self, value: HydrodynamicInputCode):
         """Set hydrodynamicRadiationInputCode"""
         self.__hydrodynamicRadiationInputCode = value
 

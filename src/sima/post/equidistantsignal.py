@@ -2,7 +2,6 @@
 # 
 # Generated with EquidistantSignal
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.equidistantsignal import EquidistantSignalBlueprint
 from numpy import ndarray,asarray
@@ -14,14 +13,12 @@ class EquidistantSignal(GeneratorSignal):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
+    name : str
+         (default "")
     directInput : bool
          (default True)
     values : ndarray
@@ -39,13 +36,12 @@ class EquidistantSignal(GeneratorSignal):
          Apply the given function to each element of the input(default "")
     """
 
-    def __init__(self , name="", description="", _id="", directInput=True, xunit='s', yunit='-', offset=0.0, increment=1.0, size=0, function="", **kwargs):
+    def __init__(self , _id="", name="", directInput=True, xunit='s', yunit='-', offset=0.0, increment=1.0, size=0, function="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.properties = list()
+        self.name = name
         self.directInput = directInput
         self.values = ndarray(1)
         self.xunit = xunit
@@ -64,26 +60,6 @@ class EquidistantSignal(GeneratorSignal):
         """Return blueprint that this entity represents"""
         return EquidistantSignalBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -118,6 +94,16 @@ class EquidistantSignal(GeneratorSignal):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__properties = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def directInput(self) -> bool:

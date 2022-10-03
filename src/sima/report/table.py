@@ -3,7 +3,6 @@
 # Generated with Table
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.table import TableBlueprint
 from typing import Dict
@@ -18,10 +17,6 @@ class Table(ReportItem):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -35,10 +30,8 @@ class Table(ReportItem):
          (default False)
     """
 
-    def __init__(self , name="", description="", _id="", caption="", autoSplit=True, customisableTable=False, **kwargs):
+    def __init__(self , _id="", caption="", autoSplit=True, customisableTable=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.object = None
@@ -56,26 +49,6 @@ class Table(ReportItem):
         """Return blueprint that this entity represents"""
         return TableBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

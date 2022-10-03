@@ -12,10 +12,9 @@ class CatenaryLineBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="CatenaryLine", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(BlueprintAttribute("attachmentPoint","sima/simo/SIMOBodyPoint","",False))
         self.attributes.append(Attribute("direction","number","Direction of line in horizontal plane",default=0.0))
         self.attributes.append(Attribute("xglobal","number","X-coordinate of the anchor in global coordinate\nsystem",default=0.0))

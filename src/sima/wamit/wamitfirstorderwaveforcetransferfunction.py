@@ -2,23 +2,19 @@
 # 
 # Generated with WamitFirstOrderWaveForceTransferFunction
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitfirstorderwaveforcetransferfunction import WamitFirstOrderWaveForceTransferFunctionBlueprint
 from numpy import ndarray,asarray
 from sima.hydro.directiondependentcomplexvalues import DirectionDependentComplexValues
 from sima.hydro.directionsymmetry import DirectionSymmetry
 from sima.hydro.firstorderwaveforcetransferfunction import FirstOrderWaveForceTransferFunction
+from sima.sima.named import Named
 from sima.sima.scriptablevalue import ScriptableValue
 
-class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFunction):
+class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFunction,Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -31,12 +27,12 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
     mx : DirectionDependentComplexValues
     my : DirectionDependentComplexValues
     mz : DirectionDependentComplexValues
+    name : str
+         (default "")
     """
 
-    def __init__(self , name="", description="", _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
+    def __init__(self , _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.directions = ndarray(1)
@@ -48,6 +44,7 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
         self.mx = None
         self.my = None
         self.mz = None
+        self.name = name
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -58,26 +55,6 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
         """Return blueprint that this entity represents"""
         return WamitFirstOrderWaveForceTransferFunctionBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -190,3 +167,13 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
     def mz(self, value: DirectionDependentComplexValues):
         """Set mz"""
         self.__mz = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)

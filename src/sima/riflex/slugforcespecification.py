@@ -2,7 +2,6 @@
 # 
 # Generated with SlugForceSpecification
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.slugforcespecification import SlugForceSpecificationBlueprint
 from typing import Dict
@@ -16,10 +15,6 @@ class SlugForceSpecification(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -59,10 +54,8 @@ class SlugForceSpecification(MOAO):
          Specified flow is in addition to that given on main riser line (default is replacement)(default False)
     """
 
-    def __init__(self , name="", description="", _id="", enterTime=0.0, interruption=SlugForceInterruption.SLUG, length=0.0, mass=0.0, velocity=0.0, densityControl=SlugForceDensityControl.CONSTANT, velocityControl=SlugForceVelocityControl.CONSTANT, cycles=1, cycleTime=0.0, secondPosition=0.0, massAtSecondPosition=0.0, referenceDepth=0.0, velocitySpecification=0.0, velocityExponent=0.0, importFlow=False, flowFile="", addedFlow=False, **kwargs):
+    def __init__(self , _id="", enterTime=0.0, interruption=SlugForceInterruption.SLUG, length=0.0, mass=0.0, velocity=0.0, densityControl=SlugForceDensityControl.CONSTANT, velocityControl=SlugForceVelocityControl.CONSTANT, cycles=1, cycleTime=0.0, secondPosition=0.0, massAtSecondPosition=0.0, referenceDepth=0.0, velocitySpecification=0.0, velocityExponent=0.0, importFlow=False, flowFile="", addedFlow=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.enterTime = enterTime
@@ -92,26 +85,6 @@ class SlugForceSpecification(MOAO):
         """Return blueprint that this entity represents"""
         return SlugForceSpecificationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

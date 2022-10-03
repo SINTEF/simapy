@@ -2,7 +2,6 @@
 # 
 # Generated with ReportTableInputSlot
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.reporttableinputslot import ReportTableInputSlotBlueprint
 from typing import Dict
@@ -14,23 +13,20 @@ class ReportTableInputSlot(ReportFragmentItem,InputSlot):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     caption : str
          (default "")
     """
 
-    def __init__(self , name="", description="", _id="", caption="", **kwargs):
+    def __init__(self , _id="", name="", caption="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.caption = caption
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -42,26 +38,6 @@ class ReportTableInputSlot(ReportFragmentItem,InputSlot):
         """Return blueprint that this entity represents"""
         return ReportTableInputSlotBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -84,6 +60,16 @@ class ReportTableInputSlot(ReportFragmentItem,InputSlot):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def caption(self) -> str:

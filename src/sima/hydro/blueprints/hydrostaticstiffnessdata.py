@@ -12,8 +12,6 @@ class HydrostaticStiffnessDataBlueprint(MOAOBlueprint):
 
     def __init__(self, name="HydrostaticStiffnessData", package_path="sima/hydro", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("matrix","sima/hydro/HydrostaticStiffnessMatrix","",True))

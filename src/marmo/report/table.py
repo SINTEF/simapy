@@ -2,7 +2,6 @@
 # 
 # Generated with Table
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.table import TableBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class Table(ReportItem):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     caption : str
          (default "")
     transposed : bool
@@ -24,10 +19,8 @@ class Table(ReportItem):
     columns : List[Column]
     """
 
-    def __init__(self , name="", description="", caption="", transposed=True, **kwargs):
+    def __init__(self , caption="", transposed=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.caption = caption
         self.transposed = transposed
         self.columns = list()
@@ -41,26 +34,6 @@ class Table(ReportItem):
         """Return blueprint that this entity represents"""
         return TableBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def caption(self) -> str:

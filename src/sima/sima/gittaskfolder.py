@@ -2,7 +2,6 @@
 # 
 # Generated with GitTaskFolder
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.gittaskfolder import GitTaskFolderBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class GitTaskFolder(TaskFolder):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     childFolders : List[TaskFolder]
     childTasks : List[Task]
     visible : bool
@@ -35,12 +32,11 @@ class GitTaskFolder(TaskFolder):
          (default "")
     """
 
-    def __init__(self , name="", description="", _id="", visible=True, remoteURI="", branch="", lastCommitMessage="", repositoryFolder="", **kwargs):
+    def __init__(self , _id="", name="", visible=True, remoteURI="", branch="", lastCommitMessage="", repositoryFolder="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.childFolders = list()
         self.childTasks = list()
         self.visible = visible
@@ -58,26 +54,6 @@ class GitTaskFolder(TaskFolder):
         """Return blueprint that this entity represents"""
         return GitTaskFolderBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -100,6 +76,16 @@ class GitTaskFolder(TaskFolder):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def childFolders(self) -> List[TaskFolder]:

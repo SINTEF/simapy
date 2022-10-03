@@ -3,7 +3,6 @@
 # Generated with HydrodynamicalCoupling
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hydrodynamicalcoupling import HydrodynamicalCouplingBlueprint
 from typing import Dict
@@ -19,25 +18,22 @@ class HydrodynamicalCoupling(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     model : WamitModel
     body1 : WamitBodyResult
     body2 : WamitBodyResult
     radiationData : CoupledRadiationDataGroup
     """
 
-    def __init__(self , name="", description="", _id="", **kwargs):
+    def __init__(self , _id="", name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.model = None
         self.body1 = None
         self.body2 = None
@@ -52,26 +48,6 @@ class HydrodynamicalCoupling(NamedObject):
         """Return blueprint that this entity represents"""
         return HydrodynamicalCouplingBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -94,6 +70,16 @@ class HydrodynamicalCoupling(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def model(self) -> WamitModel:

@@ -2,7 +2,6 @@
 # 
 # Generated with PisaSoilLayerProfile
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pisasoillayerprofile import PisaSoilLayerProfileBlueprint
 from typing import Dict
@@ -16,13 +15,11 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     topLevelSoilPosition : TopLevelSoilPosition
     offsetSeafloorToTopSoil : float
          Offset between seafloor and top of upper soil layer(default 0.0)
@@ -30,12 +27,11 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     embeddedLines : List[PisaLineItem]
     """
 
-    def __init__(self , name="", description="", _id="", topLevelSoilPosition=TopLevelSoilPosition.RELATIVE_TO_SEAFLOOR, offsetSeafloorToTopSoil=0.0, **kwargs):
+    def __init__(self , _id="", name="", topLevelSoilPosition=TopLevelSoilPosition.RELATIVE_TO_SEAFLOOR, offsetSeafloorToTopSoil=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.topLevelSoilPosition = topLevelSoilPosition
         self.offsetSeafloorToTopSoil = offsetSeafloorToTopSoil
         self.soilLayers = list()
@@ -50,26 +46,6 @@ class PisaSoilLayerProfile(SoilLayerProfile):
         """Return blueprint that this entity represents"""
         return PisaSoilLayerProfileBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -92,6 +68,16 @@ class PisaSoilLayerProfile(SoilLayerProfile):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def topLevelSoilPosition(self) -> TopLevelSoilPosition:

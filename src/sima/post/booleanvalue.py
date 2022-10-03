@@ -2,7 +2,6 @@
 # 
 # Generated with BooleanValue
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.booleanvalue import BooleanValueBlueprint
 from numpy import ndarray,asarray
@@ -15,14 +14,12 @@ class BooleanValue(GeneratorSignal,SingleParameter):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
+    name : str
+         (default "")
     array : bool
          (default False)
     value : bool
@@ -31,13 +28,12 @@ class BooleanValue(GeneratorSignal,SingleParameter):
          Value of the String constant
     """
 
-    def __init__(self , name="", description="", _id="", array=False, value=False, **kwargs):
+    def __init__(self , _id="", name="", array=False, value=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.properties = list()
+        self.name = name
         self.array = array
         self.value = value
         self.values = ndarray(1)
@@ -51,26 +47,6 @@ class BooleanValue(GeneratorSignal,SingleParameter):
         """Return blueprint that this entity represents"""
         return BooleanValueBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -105,6 +81,16 @@ class BooleanValue(GeneratorSignal,SingleParameter):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__properties = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def array(self) -> bool:

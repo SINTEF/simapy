@@ -2,7 +2,6 @@
 # 
 # Generated with FirstOrderWaveForceTransferFunction
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.firstorderwaveforcetransferfunction import FirstOrderWaveForceTransferFunctionBlueprint
 from numpy import ndarray,asarray
@@ -15,10 +14,6 @@ class FirstOrderWaveForceTransferFunction(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -33,10 +28,8 @@ class FirstOrderWaveForceTransferFunction(MOAO):
     mz : DirectionDependentComplexValues
     """
 
-    def __init__(self , name="", description="", _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
+    def __init__(self , _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.directions = ndarray(1)
@@ -58,26 +51,6 @@ class FirstOrderWaveForceTransferFunction(MOAO):
         """Return blueprint that this entity represents"""
         return FirstOrderWaveForceTransferFunctionBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

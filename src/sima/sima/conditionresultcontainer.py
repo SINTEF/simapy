@@ -2,7 +2,6 @@
 # 
 # Generated with ConditionResultContainer
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.conditionresultcontainer import ConditionResultContainerBlueprint
 from typing import Dict
@@ -14,22 +13,19 @@ class ConditionResultContainer(ResultContainer):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     properties : List[Property]
     """
 
-    def __init__(self , name="", description="", _id="", **kwargs):
+    def __init__(self , _id="", name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.properties = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -41,26 +37,6 @@ class ConditionResultContainer(ResultContainer):
         """Return blueprint that this entity represents"""
         return ConditionResultContainerBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -83,6 +59,16 @@ class ConditionResultContainer(ResultContainer):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def properties(self) -> List[Property]:

@@ -2,7 +2,6 @@
 # 
 # Generated with HLASurface
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlasurface import HLASurfaceBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class HLASurface(HLAObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     _type : SurfaceType
     transparency : float
          (default 0.0)
@@ -30,12 +27,11 @@ class HLASurface(HLAObject):
          (default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", _type=SurfaceType.OCEAN_SURFACE, transparency=0.0, sizeX=0.0, sizeY=0.0, **kwargs):
+    def __init__(self , _id="", name="", _type=SurfaceType.OCEAN_SURFACE, transparency=0.0, sizeX=0.0, sizeY=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self._type = _type
         self.transparency = transparency
         self.sizeX = sizeX
@@ -50,26 +46,6 @@ class HLASurface(HLAObject):
         """Return blueprint that this entity represents"""
         return HLASurfaceBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -92,6 +68,16 @@ class HLASurface(HLAObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def _type(self) -> SurfaceType:

@@ -13,10 +13,9 @@ class SuperNodeBlueprint(NamedObjectBlueprint,SuperNodeReferenceBlueprint):
 
     def __init__(self, name="SuperNode", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(EnumAttribute("constraint","sima/riflex/NodeConstraint","Supernode type."))
         self.attributes.append(BlueprintAttribute("referenceFrame","sima/riflex/ReferenceFrame","Reference frame for local coordinates.",False))
         self.attributes.append(BlueprintAttribute("supportVessel","sima/riflex/SupportVessel","Support body reference.",False))

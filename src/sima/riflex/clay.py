@@ -2,7 +2,6 @@
 # 
 # Generated with Clay
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.clay import ClayBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class Clay(Soil):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     strainVelocityExponent : float
          Strain velocity exponent for damping model(default 1.0)
     calculateDamping : bool
@@ -50,12 +47,11 @@ class Clay(Soil):
          Strain at one-half the maximum stress in undrained compression(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperShearStrength=0.0, upperJConstant=0.0, upperStrain=0.0, lowerShearStrength=0.0, lowerJConstant=0.0, lowerStrain=0.0, **kwargs):
+    def __init__(self , _id="", name="", strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperShearStrength=0.0, upperJConstant=0.0, upperStrain=0.0, lowerShearStrength=0.0, lowerJConstant=0.0, lowerStrain=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.strainVelocityExponent = strainVelocityExponent
         self.calculateDamping = calculateDamping
         self.dampingItems = list()
@@ -82,26 +78,6 @@ class Clay(Soil):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -122,6 +98,16 @@ class Clay(Soil):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def strainVelocityExponent(self) -> float:

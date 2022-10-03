@@ -12,10 +12,9 @@ class ResampleFilterBlueprint(OperationNodeBlueprint):
 
     def __init__(self, name="ResampleFilter", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("x","integer","",default=0))
         self.attributes.append(Attribute("y","integer","",default=0))
         self.attributes.append(Attribute("h","integer","",default=0))
@@ -25,5 +24,5 @@ class ResampleFilterBlueprint(OperationNodeBlueprint):
         self.attributes.append(BlueprintAttribute("filterOutputSlots","sima/post/OutputSlot","",True,Dimension("*")))
         self.attributes.append(Attribute("renameOutput","boolean","",default=True))
         self.attributes.append(Attribute("newSamplingInterval","number","New sampling interval",default=0.0))
-        self.attributes.append(Attribute("offset","number","Starting position",default=0.0))
+        self.attributes.append(Attribute("offset","number","Offset x-axis with given value",default=0.0))
         self.attributes.append(Attribute("useMinimalDelta","boolean","Will pick the smallest delta and resample according to this.",default=False))

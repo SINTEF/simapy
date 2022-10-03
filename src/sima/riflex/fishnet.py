@@ -2,7 +2,6 @@
 # 
 # Generated with FishNet
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fishnet import FishNetBlueprint
 from typing import Dict
@@ -19,13 +18,11 @@ class FishNet(CrossSection,CRSAxialFrictionModel):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     staticFriction : float
          Static friction force corresponding to elongation(default 0.0)
     staticElongation : float
@@ -74,12 +71,11 @@ class FishNet(CrossSection,CRSAxialFrictionModel):
          Maximum curvature(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, mass=0.0, externalVolume=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, axialStiffness=0.0, solidityRatio=0.0, netWidthEnd1=0.0, netWidthEnd2=0.0, currentVelocityReduction=1.0, amx=0.0, amy=0.0, tensionCapacity=0.0, maxCurvature=0.0, **kwargs):
+    def __init__(self , _id="", name="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, mass=0.0, externalVolume=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, axialStiffness=0.0, solidityRatio=0.0, netWidthEnd1=0.0, netWidthEnd2=0.0, currentVelocityReduction=1.0, amx=0.0, amy=0.0, tensionCapacity=0.0, maxCurvature=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.staticFriction = staticFriction
         self.staticElongation = staticElongation
         self.dynamicFriction = dynamicFriction
@@ -117,26 +113,6 @@ class FishNet(CrossSection,CRSAxialFrictionModel):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -157,6 +133,16 @@ class FishNet(CrossSection,CRSAxialFrictionModel):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def staticFriction(self) -> float:

@@ -2,7 +2,6 @@
 # 
 # Generated with ControlSequenceItem
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.controlsequenceitem import ControlSequenceItemBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class ControlSequenceItem(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -30,10 +25,8 @@ class ControlSequenceItem(MOAO):
          Should signals from DP system be accepted?(default False)
     """
 
-    def __init__(self , name="", description="", _id="", time=0.0, thrust=0.0, direction=0.0, acceptDPSystemInput=False, **kwargs):
+    def __init__(self , _id="", time=0.0, thrust=0.0, direction=0.0, acceptDPSystemInput=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.time = time
@@ -50,26 +43,6 @@ class ControlSequenceItem(MOAO):
         """Return blueprint that this entity represents"""
         return ControlSequenceItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

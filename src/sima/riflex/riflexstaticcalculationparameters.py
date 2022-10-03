@@ -2,7 +2,6 @@
 # 
 # Generated with RIFLEXStaticCalculationParameters
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.riflexstaticcalculationparameters import RIFLEXStaticCalculationParametersBlueprint
 from typing import Dict
@@ -19,10 +18,6 @@ class RIFLEXStaticCalculationParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -45,10 +40,8 @@ class RIFLEXStaticCalculationParameters(MOAO):
          Start arc length at zero for each line(default True)
     """
 
-    def __init__(self , name="", description="", _id="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, stressfreeFile="", loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, **kwargs):
+    def __init__(self , _id="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, stressfreeFile="", loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.loadTypeItems = list()
@@ -72,26 +65,6 @@ class RIFLEXStaticCalculationParameters(MOAO):
         """Return blueprint that this entity represents"""
         return RIFLEXStaticCalculationParametersBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

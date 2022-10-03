@@ -2,10 +2,10 @@
 # 
 # Generated with LinePlot
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.lineplot import LinePlotBlueprint
 from typing import Dict
+from dmt.entity import Entity
 from marmo.report.axis import Axis
 from marmo.report.font import Font
 from marmo.report.plotline import PlotLine
@@ -15,10 +15,6 @@ class LinePlot(Entity):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     title : str
          (default "")
     xlabel : str
@@ -43,10 +39,8 @@ class LinePlot(Entity):
     lines : List[PlotLine]
     """
 
-    def __init__(self , name="", description="", title="", xlabel="", ylabel="", showlegend=True, showtitle=True, caption="", width=0, height=0, size=PlotSize.DYNAMIC, **kwargs):
+    def __init__(self , title="", xlabel="", ylabel="", showlegend=True, showtitle=True, caption="", width=0, height=0, size=PlotSize.DYNAMIC, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.title = title
         self.xlabel = xlabel
         self.ylabel = ylabel
@@ -71,26 +65,6 @@ class LinePlot(Entity):
         """Return blueprint that this entity represents"""
         return LinePlotBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def title(self) -> str:

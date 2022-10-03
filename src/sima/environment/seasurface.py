@@ -2,7 +2,6 @@
 # 
 # Generated with SeaSurface
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.seasurface import SeaSurfaceBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class SeaSurface(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -46,10 +41,8 @@ class SeaSurface(MOAO):
          Number of points in long-crested wave field(default 61)
     """
 
-    def __init__(self , name="", description="", _id="", centerX=0.0, centerY=0.0, sizeX=500.0, sizeY=500.0, transparency=0.0, meshGridSize=100.0, showMesh=True, z=-100.0, lcWaveLength=300.0, lcWaveWidth=100.0, lcWaveNumPoints=61, **kwargs):
+    def __init__(self , _id="", centerX=0.0, centerY=0.0, sizeX=500.0, sizeY=500.0, transparency=0.0, meshGridSize=100.0, showMesh=True, z=-100.0, lcWaveLength=300.0, lcWaveWidth=100.0, lcWaveNumPoints=61, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.centerX = centerX
@@ -74,26 +67,6 @@ class SeaSurface(MOAO):
         """Return blueprint that this entity represents"""
         return SeaSurfaceBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

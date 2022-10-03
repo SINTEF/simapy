@@ -3,7 +3,6 @@
 # Generated with ThrusterControl
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.thrustercontrol import ThrusterControlBlueprint
 from typing import Dict
@@ -18,10 +17,6 @@ class ThrusterControl(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -47,10 +42,8 @@ class ThrusterControl(MOAO):
          Z-coordinate of thruster in body system(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", thrusterControlType=DPThrusterType.FIXED, direction=0.0, minForce=0.0, maxForce=0.0, maxForceRate=0.0, maxAngleRate=0.0, x=0.0, y=0.0, z=0.0, **kwargs):
+    def __init__(self , _id="", thrusterControlType=DPThrusterType.FIXED, direction=0.0, minForce=0.0, maxForce=0.0, maxForceRate=0.0, maxAngleRate=0.0, x=0.0, y=0.0, z=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.thruster = None
@@ -73,26 +66,6 @@ class ThrusterControl(MOAO):
         """Return blueprint that this entity represents"""
         return ThrusterControlBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

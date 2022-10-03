@@ -2,7 +2,6 @@
 # 
 # Generated with InternalFluidType
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.internalfluidtype import InternalFluidTypeBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class InternalFluidType(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     density : float
          Density(default 0.0)
     volumeVelocity : float
@@ -33,12 +30,11 @@ class InternalFluidType(NamedObject):
          Flow direction code.
     """
 
-    def __init__(self , name="", description="", _id="", density=0.0, volumeVelocity=0.0, inletPressure=0.0, pressureDrop=0.0, flowInlet=End.ONE, **kwargs):
+    def __init__(self , _id="", name="", density=0.0, volumeVelocity=0.0, inletPressure=0.0, pressureDrop=0.0, flowInlet=End.ONE, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.density = density
         self.volumeVelocity = volumeVelocity
         self.inletPressure = inletPressure
@@ -54,26 +50,6 @@ class InternalFluidType(NamedObject):
         """Return blueprint that this entity represents"""
         return InternalFluidTypeBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -96,6 +72,16 @@ class InternalFluidType(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def density(self) -> float:

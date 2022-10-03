@@ -3,7 +3,6 @@
 # Generated with ConditionSpace
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.conditionspace import ConditionSpaceBlueprint
 from typing import Dict
@@ -21,13 +20,11 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     changeNumber : int
          (default 0)
     resultContainer : ResultContainer
@@ -40,12 +37,11 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
          Import variable values from file. Expected file format:\n' any comment specified with '\n'Hs    Tp     seed : values specified in rows ( Need to match the variables specified)  \n1.0      2.0    3\n4.0      5.0    4\n'any comment\n           (default "")
     """
 
-    def __init__(self , name="", description="", _id="", changeNumber=0, inputFromFile=False, path="", **kwargs):
+    def __init__(self , _id="", name="", changeNumber=0, inputFromFile=False, path="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.changeNumber = changeNumber
         self.resultContainer = None
         self.selection = None
@@ -63,26 +59,6 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
         """Return blueprint that this entity represents"""
         return ConditionSpaceBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -105,6 +81,16 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def changeNumber(self) -> int:

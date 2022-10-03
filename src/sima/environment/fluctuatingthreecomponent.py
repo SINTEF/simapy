@@ -2,7 +2,6 @@
 # 
 # Generated with FluctuatingThreeComponent
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fluctuatingthreecomponent import FluctuatingThreeComponentBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class FluctuatingThreeComponent(Wind):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -54,10 +49,8 @@ class FluctuatingThreeComponent(Wind):
          Buffer size: Number of wind crossectional planes (Slices) in memory(default 800)
     """
 
-    def __init__(self , name="", description="", _id="", direction=0.0, meanSpeed=0.0, longitudinalFileName="", lateralFileName="", verticalFileName="", lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, **kwargs):
+    def __init__(self , _id="", direction=0.0, meanSpeed=0.0, longitudinalFileName="", lateralFileName="", verticalFileName="", lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.direction = direction
@@ -86,26 +79,6 @@ class FluctuatingThreeComponent(Wind):
         """Return blueprint that this entity represents"""
         return FluctuatingThreeComponentBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

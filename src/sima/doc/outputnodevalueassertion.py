@@ -3,7 +3,6 @@
 # Generated with OutputNodeValueAssertion
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.outputnodevalueassertion import OutputNodeValueAssertionBlueprint
 from typing import Dict
@@ -18,10 +17,6 @@ class OutputNodeValueAssertion(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -32,13 +27,13 @@ class OutputNodeValueAssertion(MOAO):
     path : str
          (default "")
     expectedValue : str
-         (default "")
+         When expected value is a number, the number of significant digits will be used as a tolerance level(default "")
+    tolerance : float
+         When set, will be used instead of the implicit toleranse based on significant digits(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", severity=Severity.WARNING, message="", path="", expectedValue="", **kwargs):
+    def __init__(self , _id="", severity=Severity.WARNING, message="", path="", expectedValue="", tolerance=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.severity = severity
@@ -46,6 +41,7 @@ class OutputNodeValueAssertion(MOAO):
         self.outputNode = None
         self.path = path
         self.expectedValue = expectedValue
+        self.tolerance = tolerance
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -56,26 +52,6 @@ class OutputNodeValueAssertion(MOAO):
         """Return blueprint that this entity represents"""
         return OutputNodeValueAssertionBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -141,10 +117,20 @@ class OutputNodeValueAssertion(MOAO):
 
     @property
     def expectedValue(self) -> str:
-        """"""
+        """When expected value is a number, the number of significant digits will be used as a tolerance level"""
         return self.__expectedValue
 
     @expectedValue.setter
     def expectedValue(self, value: str):
         """Set expectedValue"""
         self.__expectedValue = str(value)
+
+    @property
+    def tolerance(self) -> float:
+        """When set, will be used instead of the implicit toleranse based on significant digits"""
+        return self.__tolerance
+
+    @tolerance.setter
+    def tolerance(self, value: float):
+        """Set tolerance"""
+        self.__tolerance = float(value)

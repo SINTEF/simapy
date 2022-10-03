@@ -2,27 +2,24 @@
 # 
 # Generated with HLASignalPlot
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlasignalplot import HLASignalPlotBlueprint
 from typing import Dict
 from sima.hla.hlasignal import HLASignal
 from sima.post.figuretemplate import FigureTemplate
 from sima.post.traceconfiguration import TraceConfiguration
-from sima.sima.moao import MOAO
+from sima.sima.named import Named
 from sima.sima.scriptablevalue import ScriptableValue
 
-class HLASignalPlot(MOAO):
+class HLASignalPlot(Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     figureTemplate : FigureTemplate
     traces : List[TraceConfiguration]
     fixed : bool
@@ -40,12 +37,11 @@ class HLASignalPlot(MOAO):
          Maximum size of time window when displaying plot.(default 60.0)
     """
 
-    def __init__(self , name="", description="", _id="", fixed=False, title="", xLabel="", yLabel="", selectAll=False, timeWindow=60.0, **kwargs):
+    def __init__(self , _id="", name="", fixed=False, title="", xLabel="", yLabel="", selectAll=False, timeWindow=60.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.figureTemplate = None
         self.traces = list()
         self.fixed = fixed
@@ -65,26 +61,6 @@ class HLASignalPlot(MOAO):
         """Return blueprint that this entity represents"""
         return HLASignalPlotBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -107,6 +83,16 @@ class HLASignalPlot(MOAO):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def figureTemplate(self) -> FigureTemplate:

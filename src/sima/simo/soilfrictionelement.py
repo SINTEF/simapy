@@ -2,7 +2,6 @@
 # 
 # Generated with SoilFrictionElement
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.soilfrictionelement import SoilFrictionElementBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class SoilFrictionElement(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -32,10 +27,8 @@ class SoilFrictionElement(MOAO):
          Depth dependent friction force in horizontal direction (>=0)(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", dfric=0.0, ftipdo=0.0, ftipup=0.0, fwall=0.0, frich=0.0, **kwargs):
+    def __init__(self , _id="", dfric=0.0, ftipdo=0.0, ftipup=0.0, fwall=0.0, frich=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.dfric = dfric
@@ -53,26 +46,6 @@ class SoilFrictionElement(MOAO):
         """Return blueprint that this entity represents"""
         return SoilFrictionElementBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

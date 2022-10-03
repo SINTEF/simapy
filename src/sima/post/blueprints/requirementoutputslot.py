@@ -12,10 +12,9 @@ class RequirementOutputSlotBlueprint(OutputSlotBlueprint):
 
     def __init__(self, name="RequirementOutputSlot", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("useQuery","boolean","Use boolean expressions using operators =, !=,&&,|| to create more advanced queries",default=False))
         self.attributes.append(Attribute("query","string","",default=""))
         self.attributes.append(BlueprintAttribute("userRequirements","sima/post/Requirement","",True,Dimension("*")))

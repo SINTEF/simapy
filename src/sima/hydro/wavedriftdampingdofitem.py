@@ -2,7 +2,6 @@
 # 
 # Generated with WaveDriftDampingDofItem
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wavedriftdampingdofitem import WaveDriftDampingDofItemBlueprint
 from typing import Dict
@@ -15,10 +14,6 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -27,10 +22,8 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     dof2 : DOF
     """
 
-    def __init__(self , name="", description="", _id="", dof1=DOF.X, dof2=DOF.X, **kwargs):
+    def __init__(self , _id="", dof1=DOF.X, dof2=DOF.X, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.directionalValues = list()
@@ -46,26 +39,6 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
         """Return blueprint that this entity represents"""
         return WaveDriftDampingDofItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

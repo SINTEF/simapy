@@ -3,7 +3,6 @@
 # Generated with SupportVesselMotionScalingItem
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.supportvesselmotionscalingitem import SupportVesselMotionScalingItemBlueprint
 from typing import Dict
@@ -17,10 +16,6 @@ class SupportVesselMotionScalingItem(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -39,10 +34,8 @@ class SupportVesselMotionScalingItem(MOAO):
          Scaling for global Z-rotation(default 1.0)
     """
 
-    def __init__(self , name="", description="", _id="", scalx=1.0, scaly=1.0, scalz=1.0, scalxr=1.0, scalyr=1.0, scalzr=1.0, **kwargs):
+    def __init__(self , _id="", scalx=1.0, scaly=1.0, scalz=1.0, scalxr=1.0, scalyr=1.0, scalzr=1.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.supportVessel = None
@@ -62,26 +55,6 @@ class SupportVesselMotionScalingItem(MOAO):
         """Return blueprint that this entity represents"""
         return SupportVesselMotionScalingItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

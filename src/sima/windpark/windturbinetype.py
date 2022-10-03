@@ -2,7 +2,6 @@
 # 
 # Generated with WindTurbineType
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windturbinetype import WindTurbineTypeBlueprint
 from typing import Dict
@@ -16,13 +15,11 @@ class WindTurbineType(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     airfoilDatabaseFilename : str
          (default "")
     direction : TurbineDirection
@@ -40,12 +37,11 @@ class WindTurbineType(NamedObject):
     performanceRelations : List[PerformanceRelation]
     """
 
-    def __init__(self , name="", description="", _id="", airfoilDatabaseFilename="", direction=TurbineDirection.UPWIND, outerRadius=0.0, numberOfBlades=0, turbineDirection=TurbineDirection.UPWIND, cutInWindSpeed=0.0, cutOutWindSpeed=0.0, **kwargs):
+    def __init__(self , _id="", name="", airfoilDatabaseFilename="", direction=TurbineDirection.UPWIND, outerRadius=0.0, numberOfBlades=0, turbineDirection=TurbineDirection.UPWIND, cutInWindSpeed=0.0, cutOutWindSpeed=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.airfoilDatabaseFilename = airfoilDatabaseFilename
         self.direction = direction
         self.outerRadius = outerRadius
@@ -65,26 +61,6 @@ class WindTurbineType(NamedObject):
         """Return blueprint that this entity represents"""
         return WindTurbineTypeBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -107,6 +83,16 @@ class WindTurbineType(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def airfoilDatabaseFilename(self) -> str:

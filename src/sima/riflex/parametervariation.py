@@ -2,7 +2,6 @@
 # 
 # Generated with ParameterVariation
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.parametervariation import ParameterVariationBlueprint
 from typing import Dict
@@ -17,10 +16,6 @@ class ParameterVariation(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -50,10 +45,8 @@ class ParameterVariation(MOAO):
          Activate material memory formulation (isotropic / kinematic hardening)(default False)
     """
 
-    def __init__(self , name="", description="", _id="", numVariations=0, maxIterations=1, convergenceNorm=ConvergenceNorm.DISP, accuracy=0.0001, energyAccuracy=0.0001, offset=False, current=False, specifiedForce=False, fricActivation=False, springActivation=False, memoActivation=False, **kwargs):
+    def __init__(self , _id="", numVariations=0, maxIterations=1, convergenceNorm=ConvergenceNorm.DISP, accuracy=0.0001, energyAccuracy=0.0001, offset=False, current=False, specifiedForce=False, fricActivation=False, springActivation=False, memoActivation=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.numVariations = numVariations
@@ -80,26 +73,6 @@ class ParameterVariation(MOAO):
         """Return blueprint that this entity represents"""
         return ParameterVariationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
