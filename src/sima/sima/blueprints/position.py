@@ -12,8 +12,6 @@ class PositionBlueprint(MOAOBlueprint):
 
     def __init__(self, name="Position", package_path="sima/sima", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("x","number","x position coordinate ",default=0.0))

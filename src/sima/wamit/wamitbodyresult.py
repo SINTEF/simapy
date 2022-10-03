@@ -2,7 +2,6 @@
 # 
 # Generated with WamitBodyResult
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitbodyresult import WamitBodyResultBlueprint
 from typing import Dict
@@ -12,23 +11,21 @@ from sima.hydro.hydrostaticstiffnessdata import HydrostaticStiffnessData
 from sima.hydro.lineardampingmatrix import LinearDampingMatrix
 from sima.hydro.radiationdatagroup import RadiationDataGroup
 from sima.hydro.structuralmass import StructuralMass
-from sima.sima.moao import MOAO
+from sima.sima.named import Named
 from sima.sima.point3 import Point3
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.wamit.wamitfirstorderwaveforcetransferfunction import WamitFirstOrderWaveForceTransferFunction
 from sima.wamit.wamitwavedriftforce import WamitWaveDriftForce
 
-class WamitBodyResult(MOAO):
+class WamitBodyResult(Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     firstOrderMotionTransferFunction : FirstOrderMotionTransferFunction
     firstOrderWaveForceTransferFunctionDiffraction : WamitFirstOrderWaveForceTransferFunction
     firstOrderWaveForceTransferFunctionHaskind : WamitFirstOrderWaveForceTransferFunction
@@ -65,12 +62,11 @@ class WamitBodyResult(MOAO):
     hydrostaticStiffness : HydrostaticStiffnessData
     """
 
-    def __init__(self , name="", description="", _id="", characteristicLength=0.0, x=0.0, y=0.0, z=0.0, rz=0.0, symmetryAboutX=False, symmetryAboutY=False, gravity=0.0, waterDensity=0.0, waterDepth=0.0, **kwargs):
+    def __init__(self , _id="", name="", characteristicLength=0.0, x=0.0, y=0.0, z=0.0, rz=0.0, symmetryAboutX=False, symmetryAboutY=False, gravity=0.0, waterDensity=0.0, waterDepth=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.firstOrderMotionTransferFunction = None
         self.firstOrderWaveForceTransferFunctionDiffraction = None
         self.firstOrderWaveForceTransferFunctionHaskind = None
@@ -107,26 +103,6 @@ class WamitBodyResult(MOAO):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -147,6 +123,16 @@ class WamitBodyResult(MOAO):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def firstOrderMotionTransferFunction(self) -> FirstOrderMotionTransferFunction:

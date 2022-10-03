@@ -2,7 +2,6 @@
 # 
 # Generated with Airfoil
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.airfoil import AirfoilBlueprint
 from typing import Dict
@@ -15,13 +14,11 @@ class Airfoil(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     deepstallRegime : bool
          Whether or not a deep stall regime is to be used(default False)
     inputStallPoints : bool
@@ -40,12 +37,11 @@ class Airfoil(NamedObject):
     points : List[FoilPoint]
     """
 
-    def __init__(self , name="", description="", _id="", deepstallRegime=False, inputStallPoints=False, upperTailAngle=0.0, lowerTailAngle=0.0, upperNoseAngle=0.0, lowerNoseAngle=0.0, noseRadiusRatio=0.0, **kwargs):
+    def __init__(self , _id="", name="", deepstallRegime=False, inputStallPoints=False, upperTailAngle=0.0, lowerTailAngle=0.0, upperNoseAngle=0.0, lowerNoseAngle=0.0, noseRadiusRatio=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.deepstallRegime = deepstallRegime
         self.inputStallPoints = inputStallPoints
         self.upperTailAngle = upperTailAngle
@@ -65,26 +61,6 @@ class Airfoil(NamedObject):
         """Return blueprint that this entity represents"""
         return AirfoilBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -107,6 +83,16 @@ class Airfoil(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def deepstallRegime(self) -> bool:

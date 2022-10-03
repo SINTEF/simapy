@@ -2,7 +2,6 @@
 # 
 # Generated with LiftAndDragForce
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.liftanddragforce import LiftAndDragForceBlueprint
 from typing import Dict
@@ -17,13 +16,11 @@ class LiftAndDragForce(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     point : Point3
     maxAngle : float
          Maximum rudder angle(default 0.0)
@@ -52,12 +49,11 @@ class LiftAndDragForce(NamedObject):
          Symmetry about x-axis(default False)
     """
 
-    def __init__(self , name="", description="", _id="", maxAngle=0.0, maxAngleVelocity=0.0, lengthZ=0.0, lengthX=0.0, angle=0.0, currentFactor=0.0, vesselFactor=0.0, thrusterFactor=0.0, dragZ=0.0, interpolation=LiftAndDragInterpolation.LINEAR, symmetric=False, **kwargs):
+    def __init__(self , _id="", name="", maxAngle=0.0, maxAngleVelocity=0.0, lengthZ=0.0, lengthX=0.0, angle=0.0, currentFactor=0.0, vesselFactor=0.0, thrusterFactor=0.0, dragZ=0.0, interpolation=LiftAndDragInterpolation.LINEAR, symmetric=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.point = None
         self.maxAngle = maxAngle
         self.maxAngleVelocity = maxAngleVelocity
@@ -85,26 +81,6 @@ class LiftAndDragForce(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -125,6 +101,16 @@ class LiftAndDragForce(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def point(self) -> Point3:

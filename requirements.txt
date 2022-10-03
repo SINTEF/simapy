@@ -1,2 +1,2 @@
-dmtpy==0.1.4
+dmtpy==0.2.0
 numpy

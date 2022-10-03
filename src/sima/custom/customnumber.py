@@ -2,24 +2,22 @@
 # 
 # Generated with CustomNumber
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.customnumber import CustomNumberBlueprint
 from typing import Dict
 from sima.custom.parameterfield import ParameterField
+from sima.sima.named import Named
 from sima.sima.scriptablevalue import ScriptableValue
 
-class CustomNumber(ParameterField):
+class CustomNumber(ParameterField,Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     label : str
          (default "")
     tooltip : str
@@ -32,12 +30,11 @@ class CustomNumber(ParameterField):
          Give a valid range for a number: Use <,> for excluding and [] for including.\nExampless: \n- [0,4] Number from and including 0 to and including 4\n- <0,4> From and to, excluding \n- <,0> All negative numbers excluding 0\n- [0,> All positive numbers, including 0\n(default "")
     """
 
-    def __init__(self , name="", description="", _id="", label="", tooltip="", value=0.0, unit="", constraints="", **kwargs):
+    def __init__(self , _id="", name="", label="", tooltip="", value=0.0, unit="", constraints="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.label = label
         self.tooltip = tooltip
         self.value = value
@@ -53,26 +50,6 @@ class CustomNumber(ParameterField):
         """Return blueprint that this entity represents"""
         return CustomNumberBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -95,6 +72,16 @@ class CustomNumber(ParameterField):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def label(self) -> str:

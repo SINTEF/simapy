@@ -2,7 +2,6 @@
 # 
 # Generated with RequirementOutputSlot
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.requirementoutputslot import RequirementOutputSlotBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class RequirementOutputSlot(OutputSlot):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     useQuery : bool
          Use boolean expressions using operators =, !=,&&,|| to create more advanced queries(default False)
     query : str
@@ -30,12 +27,11 @@ class RequirementOutputSlot(OutputSlot):
          (default False)
     """
 
-    def __init__(self , name="", description="", _id="", useQuery=False, query="", flatten=False, **kwargs):
+    def __init__(self , _id="", name="", useQuery=False, query="", flatten=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.useQuery = useQuery
         self.query = query
         self.userRequirements = list()
@@ -50,26 +46,6 @@ class RequirementOutputSlot(OutputSlot):
         """Return blueprint that this entity represents"""
         return RequirementOutputSlotBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -92,6 +68,16 @@ class RequirementOutputSlot(OutputSlot):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def useQuery(self) -> bool:

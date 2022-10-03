@@ -12,10 +12,9 @@ class HLAPlotBlueprint(HLAObjectBlueprint):
 
     def __init__(self, name="HLAPlot", package_path="sima/hla", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("curves","string","",Dimension("*"),default=""))
         self.attributes.append(Attribute("crossPlotXAxisValues","string","",default=""))
         self.attributes.append(BlueprintAttribute("minMaxX","sima/hla/Range","",True))

@@ -2,29 +2,22 @@
 # 
 # Generated with ModelContent
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.modelcontent import ModelContentBlueprint
 from typing import Dict
-from dmt.named_entity import NamedEntity
+from dmt.entity import Entity
 from sima.header import Header
 
 class ModelContent(Entity):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     header : Header
-    contents : List[NamedEntity]
+    contents : List[Entity]
     """
 
-    def __init__(self , name="", description="", **kwargs):
+    def __init__(self , **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.header = None
         self.contents = list()
         for key, value in kwargs.items():
@@ -39,26 +32,6 @@ class ModelContent(Entity):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def header(self) -> Header:
         """"""
         return self.__header
@@ -69,12 +42,12 @@ class ModelContent(Entity):
         self.__header = value
 
     @property
-    def contents(self) -> List[NamedEntity]:
+    def contents(self) -> List[Entity]:
         """"""
         return self.__contents
 
     @contents.setter
-    def contents(self, value: List[NamedEntity]):
+    def contents(self, value: List[Entity]):
         """Set contents"""
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))

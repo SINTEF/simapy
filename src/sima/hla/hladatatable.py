@@ -2,36 +2,32 @@
 # 
 # Generated with HLADataTable
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hladatatable import HLADataTableBlueprint
 from typing import Dict
 from sima.hla.hlasignal import HLASignal
-from sima.sima.moao import MOAO
+from sima.sima.named import Named
 from sima.sima.scriptablevalue import ScriptableValue
 
-class HLADataTable(MOAO):
+class HLADataTable(Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     signals : List[HLASignal]
     showHorisontalTable : bool
          (default False)
     """
 
-    def __init__(self , name="", description="", _id="", showHorisontalTable=False, **kwargs):
+    def __init__(self , _id="", name="", showHorisontalTable=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.signals = list()
         self.showHorisontalTable = showHorisontalTable
         for key, value in kwargs.items():
@@ -44,26 +40,6 @@ class HLADataTable(MOAO):
         """Return blueprint that this entity represents"""
         return HLADataTableBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -86,6 +62,16 @@ class HLADataTable(MOAO):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def signals(self) -> List[HLASignal]:

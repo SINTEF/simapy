@@ -2,7 +2,6 @@
 # 
 # Generated with QTFValue
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.qtfvalue import QTFValueBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class QTFValue(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -34,10 +29,8 @@ class QTFValue(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", dir1=0, dir2=0, freq1=0, freq2=0, re=0.0, im=0.0, **kwargs):
+    def __init__(self , _id="", dir1=0, dir2=0, freq1=0, freq2=0, re=0.0, im=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.dir1 = dir1
@@ -56,26 +49,6 @@ class QTFValue(MOAO):
         """Return blueprint that this entity represents"""
         return QTFValueBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -2,7 +2,6 @@
 # 
 # Generated with GenericExternalControlSystem
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.genericexternalcontrolsystem import GenericExternalControlSystemBlueprint
 from typing import Dict
@@ -18,13 +17,11 @@ class GenericExternalControlSystem(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     jarFile : str
          Path to jar file(default "")
     className : str
@@ -37,12 +34,11 @@ class GenericExternalControlSystem(NamedObject):
     libraryPaths : LibraryPaths
     """
 
-    def __init__(self , name="", description="", _id="", jarFile="", className="", **kwargs):
+    def __init__(self , _id="", name="", jarFile="", className="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.jarFile = jarFile
         self.className = className
         self.measurementEntities = list()
@@ -61,26 +57,6 @@ class GenericExternalControlSystem(NamedObject):
         """Return blueprint that this entity represents"""
         return GenericExternalControlSystemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -103,6 +79,16 @@ class GenericExternalControlSystem(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def jarFile(self) -> str:

@@ -2,7 +2,6 @@
 # 
 # Generated with HLAControlConfiguration
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlacontrolconfiguration import HLAControlConfigurationBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class HLAControlConfiguration(HLAObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     bodyName : str
          HLA name of body(default "")
     vMaxRot : float
@@ -43,12 +40,11 @@ class HLAControlConfiguration(HLAObject):
          Control reference
     """
 
-    def __init__(self , name="", description="", _id="", bodyName="", vMaxRot=1.0, vMaxX=2.0, vMaxY=1.0, aMaxRot=0.1, aMaxX=0.2, aMaxY=0.05, limRot=1.0, limXY=0.5, controlReference=HLAControlReference.POSITION, **kwargs):
+    def __init__(self , _id="", name="", bodyName="", vMaxRot=1.0, vMaxX=2.0, vMaxY=1.0, aMaxRot=0.1, aMaxX=0.2, aMaxY=0.05, limRot=1.0, limXY=0.5, controlReference=HLAControlReference.POSITION, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.bodyName = bodyName
         self.vMaxRot = vMaxRot
         self.vMaxX = vMaxX
@@ -71,26 +67,6 @@ class HLAControlConfiguration(HLAObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -111,6 +87,16 @@ class HLAControlConfiguration(HLAObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def bodyName(self) -> str:

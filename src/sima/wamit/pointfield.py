@@ -2,7 +2,6 @@
 # 
 # Generated with PointField
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pointfield import PointFieldBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class PointField(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -42,10 +37,8 @@ class PointField(MOAO):
          (default True)
     """
 
-    def __init__(self , name="", description="", _id="", xMin=0.0, xMax=0.0, yMin=0.0, yMax=0.0, zMin=0.0, zMax=0.0, xNumberOfPoints=0, yNumberOfPoints=0, zNumberOfPoints=0, visible=True, **kwargs):
+    def __init__(self , _id="", xMin=0.0, xMax=0.0, yMin=0.0, yMax=0.0, zMin=0.0, zMax=0.0, xNumberOfPoints=0, yNumberOfPoints=0, zNumberOfPoints=0, visible=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.xMin = xMin
@@ -68,26 +61,6 @@ class PointField(MOAO):
         """Return blueprint that this entity represents"""
         return PointFieldBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

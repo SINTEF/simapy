@@ -3,7 +3,6 @@
 # Generated with CrossSectionReference
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.crosssectionreference import CrossSectionReferenceBlueprint
 from typing import Dict
@@ -18,10 +17,6 @@ class CrossSectionReference(ElementReference):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -47,10 +42,8 @@ class CrossSectionReference(ElementReference):
          Value	Stress concentration factor for bending about z axis(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, scfa=0.0, scfy=0.0, scfz=0.0, **kwargs):
+    def __init__(self , _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, scfa=0.0, scfy=0.0, scfz=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -73,26 +66,6 @@ class CrossSectionReference(ElementReference):
         """Return blueprint that this entity represents"""
         return CrossSectionReferenceBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

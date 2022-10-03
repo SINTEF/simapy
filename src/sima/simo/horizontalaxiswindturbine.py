@@ -3,7 +3,6 @@
 # Generated with HorizontalAxisWindTurbine
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.horizontalaxiswindturbine import HorizontalAxisWindTurbineBlueprint
 from typing import Dict
@@ -19,13 +18,11 @@ class HorizontalAxisWindTurbine(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     controller : HorizontalAxisWindTurbineController
     momentCoupling : MomentCoupling
     referenceHeight : float
@@ -41,12 +38,11 @@ class HorizontalAxisWindTurbine(NamedObject):
          Number of blades(default 0)
     """
 
-    def __init__(self , name="", description="", _id="", referenceHeight=0.0, windArea=0.0, outerAirfoilRadius=0.0, coneAngle=0.0, numBlades=0, **kwargs):
+    def __init__(self , _id="", name="", referenceHeight=0.0, windArea=0.0, outerAirfoilRadius=0.0, coneAngle=0.0, numBlades=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.controller = None
         self.momentCoupling = None
         self.referenceHeight = referenceHeight
@@ -65,26 +61,6 @@ class HorizontalAxisWindTurbine(NamedObject):
         """Return blueprint that this entity represents"""
         return HorizontalAxisWindTurbineBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -107,6 +83,16 @@ class HorizontalAxisWindTurbine(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def controller(self) -> HorizontalAxisWindTurbineController:

@@ -2,7 +2,6 @@
 # 
 # Generated with DerbyshireScott
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.derbyshirescott import DerbyshireScottBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class DerbyshireScott(Wave):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -45,10 +40,8 @@ class DerbyshireScott(Wave):
          Upper truncation parameter(default 10.367)
     """
 
-    def __init__(self , name="", description="", _id="", direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, spectrumA=0.214, spectrumB=0.065, spectrumD=0.26, waveHeight=0.0, wavePeriod=0.0, lowerTrunc=0.0414, upperTrunc=10.367, **kwargs):
+    def __init__(self , _id="", direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, spectrumA=0.214, spectrumB=0.065, spectrumD=0.26, waveHeight=0.0, wavePeriod=0.0, lowerTrunc=0.0414, upperTrunc=10.367, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.direction = direction
@@ -72,26 +65,6 @@ class DerbyshireScott(Wave):
         """Return blueprint that this entity represents"""
         return DerbyshireScottBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

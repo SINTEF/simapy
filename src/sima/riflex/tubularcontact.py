@@ -2,7 +2,6 @@
 # 
 # Generated with TubularContact
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.tubularcontact import TubularContactBlueprint
 from typing import Dict
@@ -16,13 +15,11 @@ class TubularContact(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     radius : float
          Contact radius(default 0.0)
     direction : ContactDirection
@@ -50,12 +47,11 @@ class TubularContact(NamedObject):
     stiffnessItems : List[SpringStiffnessItem]
     """
 
-    def __init__(self , name="", description="", _id="", radius=0.0, direction=ContactDirection.INWARDS, constantStiffness=False, desiredDamping=0.0, dampingCoefficient=0.0, stiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, slidingFriction=ControlParameter.ON, rotationFriction=ControlParameter.ON, velocityLimit=0.0, compressionStiffness=0.0, **kwargs):
+    def __init__(self , _id="", name="", radius=0.0, direction=ContactDirection.INWARDS, constantStiffness=False, desiredDamping=0.0, dampingCoefficient=0.0, stiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, slidingFriction=ControlParameter.ON, rotationFriction=ControlParameter.ON, velocityLimit=0.0, compressionStiffness=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.radius = radius
         self.direction = direction
         self.constantStiffness = constantStiffness
@@ -81,26 +77,6 @@ class TubularContact(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -121,6 +97,16 @@ class TubularContact(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def radius(self) -> float:

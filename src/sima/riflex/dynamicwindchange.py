@@ -2,7 +2,6 @@
 # 
 # Generated with DynamicWindChange
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicwindchange import DynamicWindChangeBlueprint
 from typing import Dict
@@ -16,10 +15,6 @@ class DynamicWindChange(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -44,10 +39,8 @@ class DynamicWindChange(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", include=False, eventType=IEC2005WindEventType.ECD, eventStartTime=0.0, direction=WindDirection.POSITIVE, turbineClass=IEC2005WindTurbineClass.NONE, vref=0.0, iref=0.0, velocityChange=0.0, directionChange=0.0, durationOfEvent=0.0, gustMagnitude=0.0, **kwargs):
+    def __init__(self , _id="", include=False, eventType=IEC2005WindEventType.ECD, eventStartTime=0.0, direction=WindDirection.POSITIVE, turbineClass=IEC2005WindTurbineClass.NONE, vref=0.0, iref=0.0, velocityChange=0.0, directionChange=0.0, durationOfEvent=0.0, gustMagnitude=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.include = include
@@ -71,26 +64,6 @@ class DynamicWindChange(MOAO):
         """Return blueprint that this entity represents"""
         return DynamicWindChangeBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

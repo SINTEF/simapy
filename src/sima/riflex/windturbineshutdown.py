@@ -2,7 +2,6 @@
 # 
 # Generated with WindTurbineShutdown
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.windturbineshutdown import WindTurbineShutdownBlueprint
 from typing import Dict
@@ -16,10 +15,6 @@ class WindTurbineShutdown(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -36,10 +31,8 @@ class WindTurbineShutdown(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", startTime=0.0, faultOption=GeneratorTorqueFault.NONE, scalingFactor=0.0, brakeOption=MechanicalBrakeOption.NONE, linearTorqueDampingCoefficient=0.0, timeToFullBrakeTorque=0.0, **kwargs):
+    def __init__(self , _id="", startTime=0.0, faultOption=GeneratorTorqueFault.NONE, scalingFactor=0.0, brakeOption=MechanicalBrakeOption.NONE, linearTorqueDampingCoefficient=0.0, timeToFullBrakeTorque=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.startTime = startTime
@@ -59,26 +52,6 @@ class WindTurbineShutdown(MOAO):
         """Return blueprint that this entity represents"""
         return WindTurbineShutdownBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

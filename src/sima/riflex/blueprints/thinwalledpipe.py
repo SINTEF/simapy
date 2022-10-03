@@ -12,10 +12,9 @@ class ThinWalledPipeBlueprint(CrossSectionBlueprint):
 
     def __init__(self, name="ThinWalledPipe", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("scfkSpecification","boolean","Scaling of Froude-Krylov term in Morison’s equation in normal direction",default=True))
         self.attributes.append(EnumAttribute("loadFormulation","sima/riflex/LoadFormulation",""))
         self.attributes.append(Attribute("hydrodynamicDiameter","number","Hydrodynamic diameter",default=0.0))
@@ -65,5 +64,5 @@ class ThinWalledPipeBlueprint(CrossSectionBlueprint):
         self.attributes.append(Attribute("calculateBeta","boolean","Let RIFLEX calculate beta",default=False))
         self.attributes.append(EnumAttribute("diameterType","sima/riflex/InnerOuter","Inner or outer diameter"))
         self.attributes.append(Attribute("coupledBendingTorsion","boolean","Geometric stiffness coupling between bending and torsion",default=False))
-        self.attributes.append(EnumAttribute("hydrodynamicRadiationInputCode","sima/riflex/HydrodynamicRadiationInputCode","Code for input of simplified radiation force coefficients"))
+        self.attributes.append(EnumAttribute("hydrodynamicRadiationInputCode","sima/riflex/HydrodynamicInputCode","Code for input of simplified radiation force coefficients"))
         self.attributes.append(BlueprintAttribute("vivCoefficients","sima/riflex/TimeDomainVIVLoadCoefficients","",True))

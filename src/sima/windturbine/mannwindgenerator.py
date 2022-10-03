@@ -2,7 +2,6 @@
 # 
 # Generated with MannWindGenerator
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.mannwindgenerator import MannWindGeneratorBlueprint
 from typing import Dict
@@ -15,13 +14,11 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     baseFileName : str
          (default 'sima')
     alphaEpsilon : float
@@ -65,12 +62,11 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
          Longitudenal Turbulence Scale Parameter(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", baseFileName='sima', alphaEpsilon=0.0, lengthScale=0.0, gamma=3.9, seed=0, gridPointsX=0, gridPointsY=0, gridPointsZ=0, pointDistanceX=0.0, pointDistanceY=0.0, pointDistanceZ=0.0, hfCompensation=True, turbulenceIntensity=0.0, meanWindSpeed=0.0, transient=0.0, inputFormat=MannInputFormat.DIRECT, windSeriesDuration=0.0, gridWidth=0.0, gridHeight=0.0, lengthFactor=0.8, longTurbScaleParam=0.0, **kwargs):
+    def __init__(self , _id="", name="", baseFileName='sima', alphaEpsilon=0.0, lengthScale=0.0, gamma=3.9, seed=0, gridPointsX=0, gridPointsY=0, gridPointsZ=0, pointDistanceX=0.0, pointDistanceY=0.0, pointDistanceZ=0.0, hfCompensation=True, turbulenceIntensity=0.0, meanWindSpeed=0.0, transient=0.0, inputFormat=MannInputFormat.DIRECT, windSeriesDuration=0.0, gridWidth=0.0, gridHeight=0.0, lengthFactor=0.8, longTurbScaleParam=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.baseFileName = baseFileName
         self.alphaEpsilon = alphaEpsilon
         self.lengthScale = lengthScale
@@ -104,26 +100,6 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -144,6 +120,16 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def baseFileName(self) -> str:

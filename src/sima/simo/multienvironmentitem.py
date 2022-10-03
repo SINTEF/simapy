@@ -3,7 +3,6 @@
 # Generated with MultiEnvironmentItem
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.multienvironmentitem import MultiEnvironmentItemBlueprint
 from typing import Dict
@@ -17,10 +16,6 @@ class MultiEnvironmentItem(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -31,10 +26,8 @@ class MultiEnvironmentItem(MOAO):
          Duration of cosine fading from previous to new environment. It is recommended to use at least 10*peak period for the fade-in duration.(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", startingTime=0.0, rampDuration=0.0, **kwargs):
+    def __init__(self , _id="", startingTime=0.0, rampDuration=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.environment = None
@@ -50,26 +43,6 @@ class MultiEnvironmentItem(MOAO):
         """Return blueprint that this entity represents"""
         return MultiEnvironmentItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

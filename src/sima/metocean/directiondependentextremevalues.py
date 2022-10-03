@@ -2,7 +2,6 @@
 # 
 # Generated with DirectionDependentExtremeValues
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.directiondependentextremevalues import DirectionDependentExtremeValuesBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class DirectionDependentExtremeValues(LevelExtreme):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     level : float
          (default 0.0)
     duration : float
@@ -28,12 +25,11 @@ class DirectionDependentExtremeValues(LevelExtreme):
     sectors : List[SectorExtreme]
     """
 
-    def __init__(self , name="", description="", _id="", level=0.0, duration=0.0, **kwargs):
+    def __init__(self , _id="", name="", level=0.0, duration=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.level = level
         self.duration = duration
         self.sectors = list()
@@ -47,26 +43,6 @@ class DirectionDependentExtremeValues(LevelExtreme):
         """Return blueprint that this entity represents"""
         return DirectionDependentExtremeValuesBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -89,6 +65,16 @@ class DirectionDependentExtremeValues(LevelExtreme):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def level(self) -> float:

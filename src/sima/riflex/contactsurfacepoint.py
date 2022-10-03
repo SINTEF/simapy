@@ -3,7 +3,6 @@
 # Generated with ContactSurfacePoint
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.contactsurfacepoint import ContactSurfacePointBlueprint
 from typing import Dict
@@ -21,10 +20,6 @@ class ContactSurfacePoint(SegmentReference):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -44,10 +39,8 @@ class ContactSurfacePoint(SegmentReference):
          Reference to tubular contact type.
     """
 
-    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, segmentEnd=End.ONE, **kwargs):
+    def __init__(self , _id="", segment=1, allSegments=False, segmentEnd=End.ONE, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -67,26 +60,6 @@ class ContactSurfacePoint(SegmentReference):
         """Return blueprint that this entity represents"""
         return ContactSurfacePointBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

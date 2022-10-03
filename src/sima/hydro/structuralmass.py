@@ -2,7 +2,6 @@
 # 
 # Generated with StructuralMass
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.structuralmass import StructuralMassBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class StructuralMass(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -39,10 +34,8 @@ class StructuralMass(MOAO):
          Coordinates of centre of gravity, (L)
     """
 
-    def __init__(self , name="", description="", _id="", mass=0.0, ixx=0.0, iyx=0.0, iyy=0.0, izx=0.0, izy=0.0, izz=0.0, **kwargs):
+    def __init__(self , _id="", mass=0.0, ixx=0.0, iyx=0.0, iyy=0.0, izx=0.0, izy=0.0, izz=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.mass = mass
@@ -63,26 +56,6 @@ class StructuralMass(MOAO):
         """Return blueprint that this entity represents"""
         return StructuralMassBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

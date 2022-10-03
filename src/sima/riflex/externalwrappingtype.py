@@ -2,7 +2,6 @@
 # 
 # Generated with ExternalWrappingType
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.externalwrappingtype import ExternalWrappingTypeBlueprint
 from typing import Dict
@@ -13,13 +12,11 @@ class ExternalWrappingType(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     mass : float
          Mass per unit length(default 0.0)
     buoyancy : float
@@ -44,12 +41,11 @@ class ExternalWrappingType(NamedObject):
          Linear drag force coefficients in tangential direction(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", mass=0.0, buoyancy=0.0, gyrationRadius=0.0, coveredFraction=0.0, wrappingItemLength=1.0, tangentialDrag=0.0, normalDrag=0.0, tangentialAddedMass=0.0, normalAddedMass=0.0, tangentialLinearDrag=0.0, normalLinearDrag=0.0, **kwargs):
+    def __init__(self , _id="", name="", mass=0.0, buoyancy=0.0, gyrationRadius=0.0, coveredFraction=0.0, wrappingItemLength=1.0, tangentialDrag=0.0, normalDrag=0.0, tangentialAddedMass=0.0, normalAddedMass=0.0, tangentialLinearDrag=0.0, normalLinearDrag=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.mass = mass
         self.buoyancy = buoyancy
         self.gyrationRadius = gyrationRadius
@@ -73,26 +69,6 @@ class ExternalWrappingType(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -113,6 +89,16 @@ class ExternalWrappingType(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def mass(self) -> float:

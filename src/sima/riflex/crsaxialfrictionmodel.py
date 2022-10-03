@@ -2,7 +2,6 @@
 # 
 # Generated with CRSAxialFrictionModel
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.crsaxialfrictionmodel import CRSAxialFrictionModelBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class CRSAxialFrictionModel(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -32,10 +27,8 @@ class CRSAxialFrictionModel(MOAO):
          Local axial friction model(default False)
     """
 
-    def __init__(self , name="", description="", _id="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, **kwargs):
+    def __init__(self , _id="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.staticFriction = staticFriction
@@ -53,26 +46,6 @@ class CRSAxialFrictionModel(MOAO):
         """Return blueprint that this entity represents"""
         return CRSAxialFrictionModelBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

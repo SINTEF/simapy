@@ -2,7 +2,6 @@
 # Data model for an equally spaced signal.
 # Generated with EquallySpacedSignal
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.equallyspacedsignal import EquallySpacedSignalBlueprint
 from numpy import ndarray,asarray

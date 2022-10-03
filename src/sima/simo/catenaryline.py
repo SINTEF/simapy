@@ -3,7 +3,6 @@
 # Generated with CatenaryLine
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.catenaryline import CatenaryLineBlueprint
 from typing import Dict
@@ -20,13 +19,11 @@ class CatenaryLine(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     attachmentPoint : SIMOBodyPoint
     direction : float
          Direction of line in horizontal plane(default 0.0)
@@ -51,12 +48,11 @@ class CatenaryLine(NamedObject):
          Breaking strength(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", direction=0.0, xglobal=0.0, yglobal=0.0, xwinch=0.0, xhor=0.0, pretension=0.0, inputMethod=InputMethodType.TENSION, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
+    def __init__(self , _id="", name="", direction=0.0, xglobal=0.0, yglobal=0.0, xwinch=0.0, xhor=0.0, pretension=0.0, inputMethod=InputMethodType.TENSION, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.attachmentPoint = None
         self.direction = direction
         self.xglobal = xglobal
@@ -81,26 +77,6 @@ class CatenaryLine(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -121,6 +97,16 @@ class CatenaryLine(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def attachmentPoint(self) -> SIMOBodyPoint:

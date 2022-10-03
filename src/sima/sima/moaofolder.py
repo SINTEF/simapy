@@ -2,12 +2,12 @@
 # 
 # Generated with MOAOFolder
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.moaofolder import MOAOFolderBlueprint
 from typing import Dict
+from dmt.namedentity import NamedEntity
 
-class MOAOFolder(Entity):
+class MOAOFolder(NamedEntity):
     """
     Keyword arguments
     -----------------

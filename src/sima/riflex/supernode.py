@@ -3,7 +3,6 @@
 # Generated with SuperNode
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.supernode import SuperNodeBlueprint
 from typing import Dict
@@ -24,13 +23,11 @@ class SuperNode(NamedObject,SuperNodeReference):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     constraint : NodeConstraint
          Supernode type.
     referenceFrame : ReferenceFrame
@@ -101,12 +98,11 @@ class SuperNode(NamedObject,SuperNodeReference):
          XY-plane reference vector z-component  in reference system(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", constraint=NodeConstraint.FIXED_PRESCRIBED, automaticInitialPosition=False, xConstraint=BoundaryCondition.FREE, yConstraint=BoundaryCondition.FREE, zConstraint=BoundaryCondition.FREE, rxConstraint=BoundaryCondition.FREE, ryConstraint=BoundaryCondition.FREE, rzConstraint=BoundaryCondition.FREE, xGInitial=0.0, yGInitial=0.0, zGInitial=0.0, xGStatic=0.0, yGStatic=0.0, zGStatic=0.0, rotation=0.0, direction=0.0, beta=0.0, radial=False, radialAngle=0.0, verticalOffset=0.0, radialDistance=0.0, boundaryConditionFrame=BoundaryConditionFrame.GLOBAL, xx=0.0, xy=0.0, xz=0.0, xp=0.0, yp=0.0, zp=0.0, **kwargs):
+    def __init__(self , _id="", name="", constraint=NodeConstraint.FIXED_PRESCRIBED, automaticInitialPosition=False, xConstraint=BoundaryCondition.FREE, yConstraint=BoundaryCondition.FREE, zConstraint=BoundaryCondition.FREE, rxConstraint=BoundaryCondition.FREE, ryConstraint=BoundaryCondition.FREE, rzConstraint=BoundaryCondition.FREE, xGInitial=0.0, yGInitial=0.0, zGInitial=0.0, xGStatic=0.0, yGStatic=0.0, zGStatic=0.0, rotation=0.0, direction=0.0, beta=0.0, radial=False, radialAngle=0.0, verticalOffset=0.0, radialDistance=0.0, boundaryConditionFrame=BoundaryConditionFrame.GLOBAL, xx=0.0, xy=0.0, xz=0.0, xp=0.0, yp=0.0, zp=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.constraint = constraint
         self.referenceFrame = None
         self.supportVessel = None
@@ -153,26 +149,6 @@ class SuperNode(NamedObject,SuperNodeReference):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -193,6 +169,16 @@ class SuperNode(NamedObject,SuperNodeReference):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def constraint(self) -> NodeConstraint:

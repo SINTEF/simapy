@@ -5,17 +5,17 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
+from sima.sima.blueprints.named import NamedBlueprint
 from sima.sima.blueprints.conditionselectable import ConditionSelectableBlueprint
 
-class GeneratorBlueprint(ConditionSelectableBlueprint):
+class GeneratorBlueprint(NamedBlueprint,ConditionSelectableBlueprint):
     """"""
 
     def __init__(self, name="Generator", package_path="sima/windpark", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("airDensity","number","",default=1.3))
         self.attributes.append(Attribute("kinematicViscosity","number","",default=1.824e-05))
         self.attributes.append(EnumAttribute("meanderingOption","sima/windpark/MeanderingAnalysisOption","Compute or skip computation of dynamic wake meandering"))

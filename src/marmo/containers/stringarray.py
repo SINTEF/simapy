@@ -2,7 +2,6 @@
 # 
 # Generated with StringArray
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.stringarray import StringArrayBlueprint
 from numpy import ndarray,asarray

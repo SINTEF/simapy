@@ -12,10 +12,9 @@ class SandBlueprint(SoilBlueprint):
 
     def __init__(self, name="Sand", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("strainVelocityExponent","number","Strain velocity exponent for damping model",default=1.0))
         self.attributes.append(Attribute("calculateDamping","boolean","Calculate damping coefficients",default=False))
         self.attributes.append(BlueprintAttribute("dampingItems","sima/riflex/SoilDampingItem","",True,Dimension("*")))

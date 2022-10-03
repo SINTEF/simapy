@@ -12,11 +12,10 @@ class EquidistantSignalBlueprint(GeneratorSignalBlueprint):
 
     def __init__(self, name="EquidistantSignal", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("properties","sima/post/SignalProperties","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("directInput","boolean","",default=True))
         self.attributes.append(Attribute("values","number","",Dimension("*"),default=0.0))
         self.attributes.append(Attribute("xunit","string","Defines the unit of the x axis",default='s'))

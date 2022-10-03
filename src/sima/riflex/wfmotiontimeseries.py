@@ -3,7 +3,6 @@
 # Generated with WFMotionTimeSeries
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wfmotiontimeseries import WFMotionTimeSeriesBlueprint
 from typing import Dict
@@ -20,10 +19,6 @@ class WFMotionTimeSeries(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -66,10 +61,8 @@ class WFMotionTimeSeries(MOAO):
          Startimes version number for global dynamic y-rotation(default 0)
     """
 
-    def __init__(self , name="", description="", _id="", timeSeriesFile=False, fileName="", fileFormat=FileFormatAsciStarNone.ASCII, motionTimeSeriesType=MotionTimeSeriesType.POSI, rotationUnit=RotationUnit.DEGR, timeColumnNum=1, xMotionColumn=0, xMotionVersion=0, yMotionColumn=0, yMotionVersion=0, zRotationColumn=0, zRotationVersion=0, zMotionColumn=0, zMotionVersion=0, xRotationColumn=0, xRotationVersion=0, yRotationColumn=0, yRotationVersion=0, **kwargs):
+    def __init__(self , _id="", timeSeriesFile=False, fileName="", fileFormat=FileFormatAsciStarNone.ASCII, motionTimeSeriesType=MotionTimeSeriesType.POSI, rotationUnit=RotationUnit.DEGR, timeColumnNum=1, xMotionColumn=0, xMotionVersion=0, yMotionColumn=0, yMotionVersion=0, zRotationColumn=0, zRotationVersion=0, zMotionColumn=0, zMotionVersion=0, xRotationColumn=0, xRotationVersion=0, yRotationColumn=0, yRotationVersion=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.timeSeriesFile = timeSeriesFile
@@ -101,26 +94,6 @@ class WFMotionTimeSeries(MOAO):
         """Return blueprint that this entity represents"""
         return WFMotionTimeSeriesBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -2,7 +2,6 @@
 # 
 # Generated with Paragraph
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.paragraph import ParagraphBlueprint
 from typing import Dict
@@ -12,20 +11,14 @@ class Paragraph(ReportItem):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     text : str
          (default "")
     markup : bool
          (default False)
     """
 
-    def __init__(self , name="", description="", text="", markup=False, **kwargs):
+    def __init__(self , text="", markup=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.text = text
         self.markup = markup
         for key, value in kwargs.items():
@@ -38,26 +31,6 @@ class Paragraph(ReportItem):
         """Return blueprint that this entity represents"""
         return ParagraphBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def text(self) -> str:

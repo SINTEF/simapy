@@ -2,7 +2,6 @@
 # 
 # Generated with Waypoint
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.waypoint import WaypointBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class Waypoint(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -36,10 +31,8 @@ class Waypoint(MOAO):
          Line of sight length (Determines the line from the vessel to the intersection of the line between the current waypoint and the next)(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", x=0.0, y=0.0, velocity=0.0, heading=0.0, turningRadius=0.0, radiusOfAcceptance=0.0, lineOfSight=0.0, **kwargs):
+    def __init__(self , _id="", x=0.0, y=0.0, velocity=0.0, heading=0.0, turningRadius=0.0, radiusOfAcceptance=0.0, lineOfSight=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.x = x
@@ -59,26 +52,6 @@ class Waypoint(MOAO):
         """Return blueprint that this entity represents"""
         return WaypointBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

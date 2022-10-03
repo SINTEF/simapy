@@ -12,10 +12,9 @@ class RollerBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="Roller", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("direction","number","Direction of roller axis (Clockwise around the local X-axis of the actual surface plane).",default=0.0))
         self.attributes.append(Attribute("y","number","Y-coordinate of roller origin",default=0.0))
         self.attributes.append(Attribute("z","number","Z-coordinate of roller origin",default=0.0))

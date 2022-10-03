@@ -2,7 +2,6 @@
 # 2D matrix of values with dimension
 # Generated with DimensionalMatrix
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dimensionalmatrix import DimensionalMatrixBlueprint
 from numpy import ndarray,asarray

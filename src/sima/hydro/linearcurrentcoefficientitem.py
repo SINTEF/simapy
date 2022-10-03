@@ -2,7 +2,6 @@
 # 
 # Generated with LinearCurrentCoefficientItem
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.linearcurrentcoefficientitem import LinearCurrentCoefficientItemBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class LinearCurrentCoefficientItem(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -36,10 +31,8 @@ class LinearCurrentCoefficientItem(MOAO):
          Linear current force coefficient for 6. degree of freedom(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", direction=0.0, c11=0.0, c12=0.0, c13=0.0, c14=0.0, c15=0.0, c16=0.0, **kwargs):
+    def __init__(self , _id="", direction=0.0, c11=0.0, c12=0.0, c13=0.0, c14=0.0, c15=0.0, c16=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.direction = direction
@@ -59,26 +52,6 @@ class LinearCurrentCoefficientItem(MOAO):
         """Return blueprint that this entity represents"""
         return LinearCurrentCoefficientItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

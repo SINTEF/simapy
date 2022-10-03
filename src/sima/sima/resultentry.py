@@ -3,26 +3,23 @@
 # Generated with ResultEntry
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.resultentry import ResultEntryBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
+from sima.sima.named import Named
 from sima.sima.property import Property
 from sima.sima.result import Result
 from sima.sima.scriptablevalue import ScriptableValue
 
-class ResultEntry(MOAO):
+class ResultEntry(Named):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     properties : List[Property]
     resource : str
          (default "")
@@ -34,12 +31,11 @@ class ResultEntry(MOAO):
     entries : List[ResultEntry]
     """
 
-    def __init__(self , name="", description="", _id="", resource="", relative=False, changeNumber=0, **kwargs):
+    def __init__(self , _id="", name="", resource="", relative=False, changeNumber=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.properties = list()
         self.resource = resource
         self.relative = relative
@@ -56,26 +52,6 @@ class ResultEntry(MOAO):
         """Return blueprint that this entity represents"""
         return ResultEntryBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -98,6 +74,16 @@ class ResultEntry(MOAO):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def properties(self) -> List[Property]:

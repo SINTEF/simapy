@@ -2,7 +2,6 @@
 # Data model for a non-equally spaced signal.
 # Generated with NonEquallySpacedSignal
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.nonequallyspacedsignal import NonEquallySpacedSignalBlueprint
 from numpy import ndarray,asarray

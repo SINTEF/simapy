@@ -2,7 +2,6 @@
 # 
 # Generated with DoubleVariable
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.doublevariable import DoubleVariableBlueprint
 from typing import Dict
@@ -13,25 +12,22 @@ class DoubleVariable(Variable):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     value : float
          The current value for the variable(default 0.0)
     unit : str
          unit of variable(default '-')
     """
 
-    def __init__(self , name="", description="", _id="", value=0.0, unit='-', **kwargs):
+    def __init__(self , _id="", name="", value=0.0, unit='-', **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.value = value
         self.unit = unit
         for key, value in kwargs.items():
@@ -44,26 +40,6 @@ class DoubleVariable(Variable):
         """Return blueprint that this entity represents"""
         return DoubleVariableBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -86,6 +62,16 @@ class DoubleVariable(Variable):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def value(self) -> float:

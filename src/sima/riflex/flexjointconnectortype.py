@@ -2,7 +2,6 @@
 # 
 # Generated with FlexJointConnectorType
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.flexjointconnectortype import FlexJointConnectorTypeBlueprint
 from typing import Dict
@@ -15,13 +14,11 @@ class FlexJointConnectorType(NodalComponentType):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     mass : float
          Mass(default 0.0)
     volume : float
@@ -81,12 +78,11 @@ class FlexJointConnectorType(NodalComponentType):
     stiffnessCharacteristicsRotZ : List[RotationalStiffnessItem]
     """
 
-    def __init__(self , name="", description="", _id="", mass=0.0, volume=0.0, gyrationRadiusX=0.0, gyrationRadiusY=0.0, gyrationRadiusZ=0.0, dampingRotX=0.0, dampingRotY=0.0, dampingRotZ=0.0, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, addedMassRotX=0.0, addedMassRotY=0.0, addedMassRotZ=0.0, stiffnessTypeRotX=RotationalStiffnessType.FIXED, stiffnessTypeRotY=RotationalStiffnessType.FIXED, stiffnessTypeRotZ=RotationalStiffnessType.FIXED, stiffnessDampingCoeffX=0.0, stiffnessDampingCoeffY=0.0, stiffnessDampingCoeffZ=0.0, linearStiffnessRotX=0.0, linearStiffnessRotY=0.0, linearStiffnessRotZ=0.0, yzStiffnessSymmetry=False, **kwargs):
+    def __init__(self , _id="", name="", mass=0.0, volume=0.0, gyrationRadiusX=0.0, gyrationRadiusY=0.0, gyrationRadiusZ=0.0, dampingRotX=0.0, dampingRotY=0.0, dampingRotZ=0.0, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, addedMassRotX=0.0, addedMassRotY=0.0, addedMassRotZ=0.0, stiffnessTypeRotX=RotationalStiffnessType.FIXED, stiffnessTypeRotY=RotationalStiffnessType.FIXED, stiffnessTypeRotZ=RotationalStiffnessType.FIXED, stiffnessDampingCoeffX=0.0, stiffnessDampingCoeffY=0.0, stiffnessDampingCoeffZ=0.0, linearStiffnessRotX=0.0, linearStiffnessRotY=0.0, linearStiffnessRotZ=0.0, yzStiffnessSymmetry=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.mass = mass
         self.volume = volume
         self.gyrationRadiusX = gyrationRadiusX
@@ -129,26 +125,6 @@ class FlexJointConnectorType(NodalComponentType):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -169,6 +145,16 @@ class FlexJointConnectorType(NodalComponentType):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def mass(self) -> float:

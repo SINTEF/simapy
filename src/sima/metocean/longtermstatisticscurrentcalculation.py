@@ -3,7 +3,6 @@
 # Generated with LongTermStatisticsCurrentCalculation
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.longtermstatisticscurrentcalculation import LongTermStatisticsCurrentCalculationBlueprint
 from typing import Dict
@@ -19,10 +18,6 @@ class LongTermStatisticsCurrentCalculation(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -37,10 +32,8 @@ class LongTermStatisticsCurrentCalculation(MOAO):
     omni : CurrentLongTermStatistics
     """
 
-    def __init__(self , name="", description="", _id="", returnPeriod=0.0, method=LevelStatisticsMethod.FROM_DISTRIBUTION, omniMethod=LevelStatisticsMethod.FROM_DISTRIBUTION, directionRelativeToWind=0.0, **kwargs):
+    def __init__(self , _id="", returnPeriod=0.0, method=LevelStatisticsMethod.FROM_DISTRIBUTION, omniMethod=LevelStatisticsMethod.FROM_DISTRIBUTION, directionRelativeToWind=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.returnPeriod = returnPeriod
@@ -60,26 +53,6 @@ class LongTermStatisticsCurrentCalculation(MOAO):
         """Return blueprint that this entity represents"""
         return LongTermStatisticsCurrentCalculationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

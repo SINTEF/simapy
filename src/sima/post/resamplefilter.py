@@ -2,7 +2,6 @@
 # 
 # Generated with ResampleFilter
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.resamplefilter import ResampleFilterBlueprint
 from typing import Dict
@@ -16,13 +15,11 @@ class ResampleFilter(OperationNode):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     x : int
          (default 0)
     y : int
@@ -39,17 +36,16 @@ class ResampleFilter(OperationNode):
     newSamplingInterval : float
          New sampling interval(default 0.0)
     offset : float
-         Starting position(default 0.0)
+         Offset x-axis with given value(default 0.0)
     useMinimalDelta : bool
          Will pick the smallest delta and resample according to this.(default False)
     """
 
-    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, renameOutput=True, newSamplingInterval=0.0, offset=0.0, useMinimalDelta=False, **kwargs):
+    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, renameOutput=True, newSamplingInterval=0.0, offset=0.0, useMinimalDelta=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.x = x
         self.y = y
         self.h = h
@@ -73,26 +69,6 @@ class ResampleFilter(OperationNode):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -113,6 +89,16 @@ class ResampleFilter(OperationNode):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def x(self) -> int:
@@ -212,7 +198,7 @@ class ResampleFilter(OperationNode):
 
     @property
     def offset(self) -> float:
-        """Starting position"""
+        """Offset x-axis with given value"""
         return self.__offset
 
     @offset.setter

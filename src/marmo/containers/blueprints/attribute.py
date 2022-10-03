@@ -5,8 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
+from dmt.blueprints.namedentity import NamedEntityBlueprint
 
-class AttributeBlueprint(Blueprint):
+class AttributeBlueprint(NamedEntityBlueprint):
     """Represents a key/value entry"""
 
     def __init__(self, name="Attribute", package_path="marmo/containers", description="Represents a key/value entry"):

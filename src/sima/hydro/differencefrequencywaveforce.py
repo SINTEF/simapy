@@ -2,7 +2,6 @@
 # 
 # Generated with DifferenceFrequencyWaveForce
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.differencefrequencywaveforce import DifferenceFrequencyWaveForceBlueprint
 from numpy import ndarray,asarray
@@ -14,10 +13,6 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -43,10 +38,8 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
     yaw : QTFDofItem
     """
 
-    def __init__(self , name="", description="", _id="", nFreq=0, nDir=0, bichromatic=False, bidirectional=False, onFile=False, file="", **kwargs):
+    def __init__(self , _id="", nFreq=0, nDir=0, bichromatic=False, bidirectional=False, onFile=False, file="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.nFreq = nFreq
@@ -73,26 +66,6 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
         """Return blueprint that this entity represents"""
         return DifferenceFrequencyWaveForceBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

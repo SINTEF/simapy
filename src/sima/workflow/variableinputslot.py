@@ -3,7 +3,6 @@
 # Generated with VariableInputSlot
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.variableinputslot import VariableInputSlotBlueprint
 from typing import Dict
@@ -17,22 +16,19 @@ class VariableInputSlot(InputSlot):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     variable : Variable
     """
 
-    def __init__(self , name="", description="", _id="", **kwargs):
+    def __init__(self , _id="", name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.variable = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -44,26 +40,6 @@ class VariableInputSlot(InputSlot):
         """Return blueprint that this entity represents"""
         return VariableInputSlotBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -86,6 +62,16 @@ class VariableInputSlot(InputSlot):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def variable(self) -> Variable:

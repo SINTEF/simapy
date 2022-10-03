@@ -3,7 +3,6 @@
 # Generated with CombinedLoadingProperties
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.combinedloadingproperties import CombinedLoadingPropertiesBlueprint
 from typing import Dict
@@ -17,10 +16,6 @@ class CombinedLoadingProperties(ElementReference):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -54,10 +49,8 @@ class CombinedLoadingProperties(ElementReference):
          Nominal wall thickness (t_nom) of pipe (uncorroded), as specified on the drawing/specification (default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, ovality=0.005, internalCorrosion=0.001, externalCorrosion=0.002, nominalDiameter=0.0, nominalThickness=0.0, **kwargs):
+    def __init__(self , _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, ovality=0.005, internalCorrosion=0.001, externalCorrosion=0.002, nominalDiameter=0.0, nominalThickness=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -84,26 +77,6 @@ class CombinedLoadingProperties(ElementReference):
         """Return blueprint that this entity represents"""
         return CombinedLoadingPropertiesBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

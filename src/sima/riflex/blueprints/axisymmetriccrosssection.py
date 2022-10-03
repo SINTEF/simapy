@@ -14,10 +14,9 @@ class AxisymmetricCrossSectionBlueprint(CrossSectionBlueprint,CRSAxialFrictionMo
 
     def __init__(self, name="AxisymmetricCrossSection", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("staticFriction","number","Static friction force corresponding to elongation",default=0.0))
         self.attributes.append(Attribute("staticElongation","number","Relative elongation",default=0.0))
         self.attributes.append(Attribute("dynamicFriction","number","Dynamic friction force corresponding to elongation",default=0.0))
@@ -93,7 +92,7 @@ class AxisymmetricCrossSectionBlueprint(CrossSectionBlueprint,CRSAxialFrictionMo
         self.attributes.append(Attribute("stiffnessFactor","number","Initial stiffness factor for internal friction moment",default=10.0))
         self.attributes.append(Attribute("submerged","boolean","Use formulation for partly submerged cross-section",default=False))
         self.attributes.append(Attribute("coupledBendingTorsion","boolean","Geometric stiffness coupling between bending and torsion",default=False))
-        self.attributes.append(EnumAttribute("hydrodynamicRadiationInputCode","sima/riflex/HydrodynamicRadiationInputCode","Code for input of simplified radiation force coefficients"))
+        self.attributes.append(EnumAttribute("hydrodynamicRadiationInputCode","sima/riflex/HydrodynamicInputCode","Code for input of simplified radiation force coefficients"))
         self.attributes.append(Attribute("solidityRatio","number","Solidity ratio.",default=0.0))
         self.attributes.append(Attribute("netWidthEnd1","number","Net width at segment end 1",default=0.0))
         self.attributes.append(Attribute("netWidthEnd2","number","Net width at segment end 2",default=0.0))

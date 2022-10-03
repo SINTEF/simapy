@@ -3,7 +3,6 @@
 # Generated with MultipleWireCouplingPart
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.multiplewirecouplingpart import MultipleWireCouplingPartBlueprint
 from typing import Dict
@@ -18,13 +17,11 @@ class MultipleWireCouplingPart(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     endPoint : SIMOBodyPoint
     ea : float
          Wire cross section stiffness(default 0.0)
@@ -42,12 +39,11 @@ class MultipleWireCouplingPart(NamedObject):
          Breaking strength(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", ea=0.0, length=0.0, damping=0.0, flexibility=0.0, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
+    def __init__(self , _id="", name="", ea=0.0, length=0.0, damping=0.0, flexibility=0.0, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.endPoint = None
         self.ea = ea
         self.length = length
@@ -66,26 +62,6 @@ class MultipleWireCouplingPart(NamedObject):
         """Return blueprint that this entity represents"""
         return MultipleWireCouplingPartBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -108,6 +84,16 @@ class MultipleWireCouplingPart(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def endPoint(self) -> SIMOBodyPoint:

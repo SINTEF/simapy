@@ -3,7 +3,6 @@
 # Generated with PointFender
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pointfender import PointFenderBlueprint
 from typing import Dict
@@ -20,13 +19,11 @@ class PointFender(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     dynamicFriction : float
          Dynamic friction coefficient, sliding(default 0.0)
     staticFriction : float
@@ -42,12 +39,11 @@ class PointFender(NamedObject):
     contactPoints : List[Point3]
     """
 
-    def __init__(self , name="", description="", _id="", dynamicFriction=0.0, staticFriction=0.0, shearStiffnes=0.0, velocityLimit=0.0, **kwargs):
+    def __init__(self , _id="", name="", dynamicFriction=0.0, staticFriction=0.0, shearStiffnes=0.0, velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.dynamicFriction = dynamicFriction
         self.staticFriction = staticFriction
         self.shearStiffnes = shearStiffnes
@@ -67,26 +63,6 @@ class PointFender(NamedObject):
         """Return blueprint that this entity represents"""
         return PointFenderBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -109,6 +85,16 @@ class PointFender(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def dynamicFriction(self) -> float:

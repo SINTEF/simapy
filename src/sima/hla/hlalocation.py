@@ -2,11 +2,10 @@
 # 
 # Generated with HLALocation
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlalocation import HLALocationBlueprint
 from typing import Dict
-from sima.environment.seasurface import SeaSurface
+from sima.hla.hlaseasurface import HLASeaSurface
 from sima.hla.sim3dbottom import SIM3DBottom
 from sima.sima.flatbottom import FlatBottom
 from sima.sima.infrastructurebody import InfrastructureBody
@@ -20,13 +19,11 @@ class HLALocation(Location):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     initialViewpoint : InitialViewpoint
     initialRotationpoint : Point3
     viewpoints : List[NamedViewpoint]
@@ -39,17 +36,16 @@ class HLALocation(Location):
     gridZone : str
          Zone consists of a number from [01-60] and a letter from [C-Z], or just one of [A,B,Y,Z] if on the antarctic or arctic pole.(default "")
     infrastructureBodies : List[InfrastructureBody]
-    seaSurface : SeaSurface
+    seaSurface : HLASeaSurface
     flatBottom : FlatBottom
     sim3DBottom : SIM3DBottom
     """
 
-    def __init__(self , name="", description="", _id="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, gridZone="", **kwargs):
+    def __init__(self , _id="", name="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, gridZone="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.initialViewpoint = None
         self.initialRotationpoint = None
         self.viewpoints = list()
@@ -73,26 +69,6 @@ class HLALocation(Location):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -113,6 +89,16 @@ class HLALocation(Location):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def initialViewpoint(self) -> InitialViewpoint:
@@ -199,12 +185,12 @@ class HLALocation(Location):
         self.__infrastructureBodies = value
 
     @property
-    def seaSurface(self) -> SeaSurface:
+    def seaSurface(self) -> HLASeaSurface:
         """"""
         return self.__seaSurface
 
     @seaSurface.setter
-    def seaSurface(self, value: SeaSurface):
+    def seaSurface(self, value: HLASeaSurface):
         """Set seaSurface"""
         self.__seaSurface = value
 

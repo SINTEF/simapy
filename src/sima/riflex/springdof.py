@@ -14,9 +14,6 @@ class SpringDOF(Enum):
     TRANSLATION_IN_GLOBAL_XY_PLANE = auto()
     TRANSLATION_IN_GLOBAL_XZ_PLANE = auto()
     TRANSLATION_IN_GLOBAL_YZ_PLANE = auto()
-    TRANSLATION_IN_GLOBAL_YX_PLANE = auto()
-    TRANSLATION_IN_GLOBAL_ZX_PLANE = auto()
-    TRANSLATION_IN_GLOBAL_ZY_PLANE = auto()
 
     def label(self):
         if self == SpringDOF.GLOBAL_X_DIRECTION:
@@ -37,9 +34,3 @@ class SpringDOF(Enum):
             return "Translation in global XZ-plane"
         if self == SpringDOF.TRANSLATION_IN_GLOBAL_YZ_PLANE:
             return "Translation in global YZ-plane"
-        if self == SpringDOF.TRANSLATION_IN_GLOBAL_YX_PLANE:
-            return "Translation in global YX-plane"
-        if self == SpringDOF.TRANSLATION_IN_GLOBAL_ZX_PLANE:
-            return "Translation in global ZX-plane"
-        if self == SpringDOF.TRANSLATION_IN_GLOBAL_ZY_PLANE:
-            return "Translation in global ZY-plane"

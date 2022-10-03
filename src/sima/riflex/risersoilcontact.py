@@ -2,7 +2,6 @@
 # 
 # Generated with RiserSoilContact
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.risersoilcontact import RiserSoilContactBlueprint
 from typing import Dict
@@ -13,13 +12,11 @@ class RiserSoilContact(SeafloorContact):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     axialStiffness : float
          Horizontal stiffness parameter for seafloor in axial direction(default 0.0)
     axialFriction : float
@@ -54,12 +51,11 @@ class RiserSoilContact(SeafloorContact):
          Mobilization displacement for max soil suction as fraction of pipe soil contact width(default 0.08)
     """
 
-    def __init__(self , name="", description="", _id="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, soilSubmergedWeight=0.0, soilShearStrength=0.0, soilShearStrengthGradient=0.0, soilPoissonRatio=0.0, soilGModulus=0.0, stiffnessModulusRelationship=0.88, alpha=1.0, beta=1.0, kbc=0.05, kt=0.08, **kwargs):
+    def __init__(self , _id="", name="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, soilSubmergedWeight=0.0, soilShearStrength=0.0, soilShearStrengthGradient=0.0, soilPoissonRatio=0.0, soilGModulus=0.0, stiffnessModulusRelationship=0.88, alpha=1.0, beta=1.0, kbc=0.05, kt=0.08, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.axialStiffness = axialStiffness
         self.axialFriction = axialFriction
         self.axialDamping = axialDamping
@@ -88,26 +84,6 @@ class RiserSoilContact(SeafloorContact):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -128,6 +104,16 @@ class RiserSoilContact(SeafloorContact):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def axialStiffness(self) -> float:

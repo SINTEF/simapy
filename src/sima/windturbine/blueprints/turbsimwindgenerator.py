@@ -13,10 +13,9 @@ class TurbSimWindGeneratorBlueprint(NamedObjectBlueprint,ConditionSelectableBlue
 
     def __init__(self, name="TurbSimWindGenerator", package_path="sima/windturbine", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("randSeed1","integer","First random seed (-2147483648 to 2147483647)",default=0))
         self.attributes.append(EnumAttribute("seedGeneration","sima/windturbine/RandomSeedGeneration",""))
         self.attributes.append(Attribute("randSeed2","integer","Second random seed (-2147483648 to 2147483647) for intrinsic pRNG, or an alternative pRNG: 'RanLux' or 'RNSNLW'",default=0))
@@ -24,7 +23,7 @@ class TurbSimWindGeneratorBlueprint(NamedObjectBlueprint,ConditionSelectableBlue
         self.attributes.append(Attribute("gridPointsY","integer"," Horizontal grid-point matrix dimension",default=0))
         self.attributes.append(Attribute("timeStep","number","",default=0.0))
         self.attributes.append(Attribute("analysisTime","number","Length of analysis time series (program will add time if necessary: AnalysisTime = MAX(AnalysisTime, UsableTime+GridWidth/MeanHHWS) )",default=0.0))
-        self.attributes.append(Attribute("usableTime","number","Usable length of output time series (program will add GridWidth/MeanHHWS seconds)",default=0.0))
+        self.attributes.append(Attribute("usableTime","number","Usable length of output time series (program will add GridWidth/MeanHHWS seconds). Default value is analysis time for Turbsim v1, otherwise ALL",default=0.0))
         self.attributes.append(Attribute("hubHeight","number","Hub height (should be > 0.5*GridHeight)",default=0.0))
         self.attributes.append(Attribute("gridHeight","number","",default=0.0))
         self.attributes.append(Attribute("gridWidth","number","Grid width (should be >= 2*(RotorRadius+ShaftLength))",default=0.0))

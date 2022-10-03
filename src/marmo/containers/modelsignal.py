@@ -2,11 +2,10 @@
 # 
 # Generated with ModelSignal
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.modelsignal import ModelSignalBlueprint
 from typing import Dict
-from dmt.named_entity import NamedEntity
+from dmt.entity import Entity
 from marmo.containers.attribute import Attribute
 from marmo.containers.signal import Signal
 
@@ -19,7 +18,7 @@ class ModelSignal(Signal):
     description : str
          (default "")
     attributes : List[Attribute]
-    value : NamedEntity
+    value : Entity
     """
 
     def __init__(self , name="", description="", **kwargs):
@@ -72,11 +71,11 @@ class ModelSignal(Signal):
         self.__attributes = value
 
     @property
-    def value(self) -> NamedEntity:
+    def value(self) -> Entity:
         """"""
         return self.__value
 
     @value.setter
-    def value(self, value: NamedEntity):
+    def value(self, value: Entity):
         """Set value"""
         self.__value = value

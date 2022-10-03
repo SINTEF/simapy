@@ -2,7 +2,6 @@
 # 
 # Generated with WamitCalculationParameters
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wamitcalculationparameters import WamitCalculationParametersBlueprint
 from typing import Dict
@@ -23,10 +22,6 @@ class WamitCalculationParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -116,10 +111,8 @@ class WamitCalculationParameters(MOAO):
          Ignore process exit code. Be careful to check the result when checked(default False)
     """
 
-    def __init__(self , name="", description="", _id="", solveRadiationProblem=YesNoOption.YES, solveDiffractionProblem=PotenProblemOption.YESFORALL, calculateAddedMassAndDampingCoefficients=YesNoOption.YES, calculateExcitingForcesFromHaskindRelations=CalculateExcitingForcesOption.NO, calculateExcitingForcesFromDiffractionPotential=CalculateExcitingForcesOption.YES, calculateResponseAmplitudeOperator=CalculateResponseAmplitudeOperatorOption.YESDIFFRACTION, useMomentumIntegration=CalculateMeanForceAndMomentIntegrationOption.YESUNIDIRECTIONAL, usePressureIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, useControlSurfaceIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, methodForSolvingLinearSystems=LinearSystemSolvingMethod.ITERATIVE, numberOfBlocksInBlockIterativeSolver=2, geometryMethod=GeometryOrderOption.LOW, integrateLogarithmicSingularitySeparately=YesNoOption.NO, panelSize=10.0, evaluateSourceStrength=YesNoOption.NO, calculationOfDiffractionPotential=DiffractionPotentailOption.DIFFRACTION, useInfiniteWaterDepth=True, maximumNumberOfIterations=35, maxNumOfIterationsAdaptiveIntegrationMomentum=8, generateReport=False, briefOverviewOfTheory=False, taskDescription=False, wavePeriodsAndHeadings=False, calculationParameters=False, hydrostaticResults=False, structuralMass=False, externalStiffnessMatrix=False, linearDampingMatrix=False, firstOrderMotionTransferFunction=False, firstOrderWaveForceTransferFunctionDiffraction=False, firstOrderWaveForceTransferFunctionHaskind=False, addedMassZeroFrequency=False, addedMassInfiniteFrequency=False, frequencyDependentAddedMass=False, frequencyDependentDamping=False, diffractedWaveField=False, waveDriftForcePressure=False, waveDriftForceMomentum=False, waveDriftForceControlSurfaceIntegration=False, runPotenOnceInConditionSetsAndSpaces=False, ignoreExitCode=False, **kwargs):
+    def __init__(self , _id="", solveRadiationProblem=YesNoOption.YES, solveDiffractionProblem=PotenProblemOption.YESFORALL, calculateAddedMassAndDampingCoefficients=YesNoOption.YES, calculateExcitingForcesFromHaskindRelations=CalculateExcitingForcesOption.NO, calculateExcitingForcesFromDiffractionPotential=CalculateExcitingForcesOption.YES, calculateResponseAmplitudeOperator=CalculateResponseAmplitudeOperatorOption.YESDIFFRACTION, useMomentumIntegration=CalculateMeanForceAndMomentIntegrationOption.YESUNIDIRECTIONAL, usePressureIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, useControlSurfaceIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, methodForSolvingLinearSystems=LinearSystemSolvingMethod.ITERATIVE, numberOfBlocksInBlockIterativeSolver=2, geometryMethod=GeometryOrderOption.LOW, integrateLogarithmicSingularitySeparately=YesNoOption.NO, panelSize=10.0, evaluateSourceStrength=YesNoOption.NO, calculationOfDiffractionPotential=DiffractionPotentailOption.DIFFRACTION, useInfiniteWaterDepth=True, maximumNumberOfIterations=35, maxNumOfIterationsAdaptiveIntegrationMomentum=8, generateReport=False, briefOverviewOfTheory=False, taskDescription=False, wavePeriodsAndHeadings=False, calculationParameters=False, hydrostaticResults=False, structuralMass=False, externalStiffnessMatrix=False, linearDampingMatrix=False, firstOrderMotionTransferFunction=False, firstOrderWaveForceTransferFunctionDiffraction=False, firstOrderWaveForceTransferFunctionHaskind=False, addedMassZeroFrequency=False, addedMassInfiniteFrequency=False, frequencyDependentAddedMass=False, frequencyDependentDamping=False, diffractedWaveField=False, waveDriftForcePressure=False, waveDriftForceMomentum=False, waveDriftForceControlSurfaceIntegration=False, runPotenOnceInConditionSetsAndSpaces=False, ignoreExitCode=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.solveRadiationProblem = solveRadiationProblem
@@ -175,26 +168,6 @@ class WamitCalculationParameters(MOAO):
         """Return blueprint that this entity represents"""
         return WamitCalculationParametersBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

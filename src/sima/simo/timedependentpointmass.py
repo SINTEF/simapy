@@ -2,7 +2,6 @@
 # 
 # Generated with TimeDependentPointMass
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.timedependentpointmass import TimeDependentPointMassBlueprint
 from typing import Dict
@@ -15,13 +14,11 @@ class TimeDependentPointMass(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     point : Point3
          Mass point (local coordinates).
     flowRates : List[FlowRateItem]
@@ -37,12 +34,11 @@ class TimeDependentPointMass(NamedObject):
          Minimum allowable mass rate, (may be negative) (HLA only).(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", mass0=0.0, massMax=0.0, massMin=0.0, massRateMax=0.0, massRateMin=0.0, **kwargs):
+    def __init__(self , _id="", name="", mass0=0.0, massMax=0.0, massMin=0.0, massRateMax=0.0, massRateMin=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.point = None
         self.flowRates = list()
         self.mass0 = mass0
@@ -60,26 +56,6 @@ class TimeDependentPointMass(NamedObject):
         """Return blueprint that this entity represents"""
         return TimeDependentPointMassBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -102,6 +78,16 @@ class TimeDependentPointMass(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def point(self) -> Point3:

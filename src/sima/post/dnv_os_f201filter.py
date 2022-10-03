@@ -2,7 +2,6 @@
 # 
 # Generated with DNV_OS_F201Filter
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dnv_os_f201filter import DNV_OS_F201FilterBlueprint
 from typing import Dict
@@ -18,13 +17,11 @@ class DNV_OS_F201Filter(OperationNode):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     x : int
          (default 0)
     y : int
@@ -92,12 +89,11 @@ class DNV_OS_F201Filter(OperationNode):
          Acceleration of gravity(default 9.81)
     """
 
-    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, customSafetyClassResistanceFactor=0.0, useCustomSafetyClassResistanceFactor=True, customLoadEffectFactorForEnvironmentalLoads=0.0, useCustomLoadEffectFactorForEnvironmentalLoads=True, customLoadEffectFactorForFunctionalLoads=0.0, useCustomLoadEffectFactorForFunctionalLoads=True, customLoadFactorForAccidentalLoads=0.0, useCustomLoadFactorForAccidentalLoads=True, customMaterialResistanceFactor=0.0, useCustomMaterialResistanceFactor=True, fabricationFactor=0.85, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, nomOD=0.2967, pipeThickness=0.05, ovality=0.005, extFluidDensity=1025.0, intFluidDensity=900.0, refPointPressure=500000.0, corrosionAllowance=0.001, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, useWeibullDistributionFitting=False, lowerThresholdForTailFitting=0.87, seastateReturnPeriod=3.0, accelerationOfGravity=9.81, **kwargs):
+    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, customSafetyClassResistanceFactor=0.0, useCustomSafetyClassResistanceFactor=True, customLoadEffectFactorForEnvironmentalLoads=0.0, useCustomLoadEffectFactorForEnvironmentalLoads=True, customLoadEffectFactorForFunctionalLoads=0.0, useCustomLoadEffectFactorForFunctionalLoads=True, customLoadFactorForAccidentalLoads=0.0, useCustomLoadFactorForAccidentalLoads=True, customMaterialResistanceFactor=0.0, useCustomMaterialResistanceFactor=True, fabricationFactor=0.85, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, nomOD=0.2967, pipeThickness=0.05, ovality=0.005, extFluidDensity=1025.0, intFluidDensity=900.0, refPointPressure=500000.0, corrosionAllowance=0.001, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, useWeibullDistributionFitting=False, lowerThresholdForTailFitting=0.87, seastateReturnPeriod=3.0, accelerationOfGravity=9.81, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.x = x
         self.y = y
         self.h = h
@@ -145,26 +141,6 @@ class DNV_OS_F201Filter(OperationNode):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -185,6 +161,16 @@ class DNV_OS_F201Filter(OperationNode):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def x(self) -> int:

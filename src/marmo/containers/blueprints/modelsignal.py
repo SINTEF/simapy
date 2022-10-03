@@ -15,4 +15,4 @@ class ModelSignalBlueprint(SignalBlueprint):
         self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(BlueprintAttribute("attributes","marmo/containers/Attribute","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("value","marmosystem/SIMOS/NamedEntity","",True))
+        self.attributes.append(BlueprintAttribute("value","system/SIMOS/Entity","",True))

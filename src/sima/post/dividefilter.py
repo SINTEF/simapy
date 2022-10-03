@@ -2,7 +2,6 @@
 # 
 # Generated with DivideFilter
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dividefilter import DivideFilterBlueprint
 from typing import Dict
@@ -16,13 +15,11 @@ class DivideFilter(OperationNode):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     x : int
          (default 0)
     y : int
@@ -38,12 +35,11 @@ class DivideFilter(OperationNode):
          (default True)
     """
 
-    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, renameOutput=True, **kwargs):
+    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, renameOutput=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.x = x
         self.y = y
         self.h = h
@@ -62,26 +58,6 @@ class DivideFilter(OperationNode):
         """Return blueprint that this entity represents"""
         return DivideFilterBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -104,6 +80,16 @@ class DivideFilter(OperationNode):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def x(self) -> int:

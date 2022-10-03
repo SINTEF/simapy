@@ -2,7 +2,6 @@
 # 
 # Generated with TimeDomainVIVLoadCoefficients
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.timedomainvivloadcoefficients import TimeDomainVIVLoadCoefficientsBlueprint
 from typing import Dict
@@ -14,10 +13,6 @@ class TimeDomainVIVLoadCoefficients(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -46,10 +41,8 @@ class TimeDomainVIVLoadCoefficients(MOAO):
          Maximum in-line vortex shedding frequency (nondimensional)(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, **kwargs):
+    def __init__(self , _id="", vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.vivLoadFormulation = vivLoadFormulation
@@ -74,26 +67,6 @@ class TimeDomainVIVLoadCoefficients(MOAO):
         """Return blueprint that this entity represents"""
         return TimeDomainVIVLoadCoefficientsBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

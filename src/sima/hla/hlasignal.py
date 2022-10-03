@@ -2,7 +2,6 @@
 # 
 # Generated with HLASignal
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlasignal import HLASignalBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class HLASignal(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -26,10 +21,8 @@ class HLASignal(MOAO):
          Explicitly sets the unit for the HLASignal(default "")
     """
 
-    def __init__(self , name="", description="", _id="", objectId="", unit="", **kwargs):
+    def __init__(self , _id="", objectId="", unit="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.objectId = objectId
@@ -44,26 +37,6 @@ class HLASignal(MOAO):
         """Return blueprint that this entity represents"""
         return HLASignalBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

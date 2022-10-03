@@ -2,7 +2,6 @@
 # 
 # Generated with ProplibAzimuthThruster
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.proplibazimuththruster import ProplibAzimuthThrusterBlueprint
 from typing import Dict
@@ -17,13 +16,11 @@ class ProplibAzimuthThruster(IThruster):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     minForce : float
          Minimum thruster force(default 0.0)
     maxForce : float
@@ -64,12 +61,11 @@ class ProplibAzimuthThruster(IThruster):
          Vertical distance from propeller center to hull(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=True, includeThrusterHullInteraction=True, includeThrusterThrusterInteraction=True, maxRps=0.0, diameter=0.0, bladeAreaRatio=0.0, wakeFraction=0.0, thrustDeductionFactor=0.0, sigma=0.0, podArea=0.0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, **kwargs):
+    def __init__(self , _id="", name="", minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=True, includeThrusterHullInteraction=True, includeThrusterThrusterInteraction=True, maxRps=0.0, diameter=0.0, bladeAreaRatio=0.0, wakeFraction=0.0, thrustDeductionFactor=0.0, sigma=0.0, podArea=0.0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.minForce = minForce
         self.maxForce = maxForce
         self.position = None
@@ -103,26 +99,6 @@ class ProplibAzimuthThruster(IThruster):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -143,6 +119,16 @@ class ProplibAzimuthThruster(IThruster):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def minForce(self) -> float:

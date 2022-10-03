@@ -3,7 +3,6 @@
 # Generated with MultiFeatureDependency
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.multifeaturedependency import MultiFeatureDependencyBlueprint
 from typing import Dict
@@ -16,10 +15,6 @@ class MultiFeatureDependency(Dependency):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     object : MOAO
@@ -28,10 +23,8 @@ class MultiFeatureDependency(Dependency):
     root : MOAO
     """
 
-    def __init__(self , name="", description="", _id="", feature="", **kwargs):
+    def __init__(self , _id="", feature="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.object = None
         self.feature = feature
@@ -46,26 +39,6 @@ class MultiFeatureDependency(Dependency):
         """Return blueprint that this entity represents"""
         return MultiFeatureDependencyBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

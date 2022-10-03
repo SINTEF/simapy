@@ -12,8 +12,6 @@ class OptimizationCalculationParametersBlueprint(MOAOBlueprint):
 
     def __init__(self, name="OptimizationCalculationParameters", package_path="sima/optimization", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(Attribute("desiredFinalAccuracy","number","Desired final accuracy. Should not be much smaller than the accuracy by which the gradients are computed.",default=0.01))

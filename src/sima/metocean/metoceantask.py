@@ -2,14 +2,12 @@
 # 
 # Generated with MetoceanTask
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.metoceantask import MetoceanTaskBlueprint
 from typing import Dict
 from sima.condition.conditiontask import ConditionTask
 from sima.condition.conditiontaskcondition import ConditionTaskCondition
 from sima.condition.initialcondition import InitialCondition
-from sima.condition.modelreferencevariable import ModelReferenceVariable
 from sima.condition.modelvariation import ModelVariation
 from sima.metocean.hindcastdata import HindcastData
 from sima.metocean.hindcastdatacalculation import HindcastDataCalculation
@@ -20,6 +18,7 @@ from sima.metocean.scatterdata import ScatterData
 from sima.metocean.scatterdatacalculation import ScatterDataCalculation
 from sima.sima.doublevariable import DoubleVariable
 from sima.sima.integervariable import IntegerVariable
+from sima.sima.modelreferencevariable import ModelReferenceVariable
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.sima.simascript import SIMAScript
 from sima.sima.stringvariable import StringVariable
@@ -28,13 +27,11 @@ class MetoceanTask(ConditionTask):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     doubleVariables : List[DoubleVariable]
     integerVariables : List[IntegerVariable]
     stringVariables : List[StringVariable]
@@ -54,12 +51,11 @@ class MetoceanTask(ConditionTask):
     profiles : List[Profile]
     """
 
-    def __init__(self , name="", description="", _id="", runNumber=0, **kwargs):
+    def __init__(self , _id="", name="", runNumber=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.doubleVariables = list()
         self.integerVariables = list()
         self.stringVariables = list()
@@ -88,26 +84,6 @@ class MetoceanTask(ConditionTask):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -128,6 +104,16 @@ class MetoceanTask(ConditionTask):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def doubleVariables(self) -> List[DoubleVariable]:

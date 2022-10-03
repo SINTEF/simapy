@@ -2,7 +2,6 @@
 # 
 # Generated with CouplingElementResult
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.couplingelementresult import CouplingElementResultBlueprint
 from typing import Dict
@@ -13,13 +12,11 @@ class CouplingElementResult(ForceResult):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         Force name(default "")
     fx : float
          Statically calculated force(default 0.0)
     fy : float
@@ -40,12 +37,11 @@ class CouplingElementResult(ForceResult):
          Connection(default "")
     """
 
-    def __init__(self , name="", description="", _id="", fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, mass=0.0, coupling="", branch="", **kwargs):
+    def __init__(self , _id="", name="", fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, mass=0.0, coupling="", branch="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.fx = fx
         self.fy = fy
         self.fz = fz
@@ -65,26 +61,6 @@ class CouplingElementResult(ForceResult):
         """Return blueprint that this entity represents"""
         return CouplingElementResultBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -107,6 +83,16 @@ class CouplingElementResult(ForceResult):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """Force name"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def fx(self) -> float:

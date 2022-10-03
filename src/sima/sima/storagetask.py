@@ -2,7 +2,6 @@
 # 
 # Generated with StorageTask
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.storagetask import StorageTaskBlueprint
 from typing import Dict
@@ -18,13 +17,11 @@ class StorageTask(Task):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     doubleVariables : List[DoubleVariable]
     integerVariables : List[IntegerVariable]
     stringVariables : List[StringVariable]
@@ -38,12 +35,11 @@ class StorageTask(Task):
          If not set the file content withing this storage task will be ommitted when exporting.(default True)
     """
 
-    def __init__(self , name="", description="", _id="", runNumber=0, _type=StorageTaskType.PRIVATE, root="", includeInExport=True, **kwargs):
+    def __init__(self , _id="", name="", runNumber=0, _type=StorageTaskType.PRIVATE, root="", includeInExport=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.doubleVariables = list()
         self.integerVariables = list()
         self.stringVariables = list()
@@ -62,26 +58,6 @@ class StorageTask(Task):
         """Return blueprint that this entity represents"""
         return StorageTaskBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -104,6 +80,16 @@ class StorageTask(Task):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def doubleVariables(self) -> List[DoubleVariable]:

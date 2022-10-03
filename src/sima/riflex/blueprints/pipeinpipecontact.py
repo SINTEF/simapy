@@ -12,10 +12,9 @@ class PipeInPipeContactBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="PipeInPipeContact", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(BlueprintAttribute("masterLine","sima/riflex/ARLine","Identification of master pipe.",False))
         self.attributes.append(BlueprintAttribute("slaveLine","sima/riflex/ARLine","Identification of slave pipe.",False))
         self.attributes.append(Attribute("firstMasterSegment","integer","First local segment in line for master pipe.",default=0))

@@ -2,7 +2,6 @@
 # 
 # Generated with TimeDependentVolumeMass
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.timedependentvolumemass import TimeDependentVolumeMassBlueprint
 from typing import Dict
@@ -17,13 +16,11 @@ class TimeDependentVolumeMass(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     point : Point3
          Mass point (local coordinates).
     flowRates : List[FlowRateItem]
@@ -46,12 +43,11 @@ class TimeDependentVolumeMass(NamedObject):
     portions : List[VolumeMassPortion]
     """
 
-    def __init__(self , name="", description="", _id="", vol0=0.0, volMax=0.0, volMin=0.0, volRateMax=0.0, volRateMin=0.0, density=0.0, **kwargs):
+    def __init__(self , _id="", name="", vol0=0.0, volMax=0.0, volMin=0.0, volRateMax=0.0, volRateMin=0.0, density=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.point = None
         self.flowRates = list()
         self.vol0 = vol0
@@ -75,26 +71,6 @@ class TimeDependentVolumeMass(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -115,6 +91,16 @@ class TimeDependentVolumeMass(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def point(self) -> Point3:

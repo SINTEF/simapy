@@ -2,7 +2,6 @@
 # 
 # Generated with ConstantValue
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.constantvalue import ConstantValueBlueprint
 from typing import Dict
@@ -15,27 +14,24 @@ class ConstantValue(GeneratorSignal,SingleParameter):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
+    name : str
+         (default "")
     value : float
          Value of the constant(default 0.0)
     unit : str
          Defines the unit of the constant(default '-')
     """
 
-    def __init__(self , name="", description="", _id="", value=0.0, unit='-', **kwargs):
+    def __init__(self , _id="", name="", value=0.0, unit='-', **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.properties = list()
+        self.name = name
         self.value = value
         self.unit = unit
         for key, value in kwargs.items():
@@ -48,26 +44,6 @@ class ConstantValue(GeneratorSignal,SingleParameter):
         """Return blueprint that this entity represents"""
         return ConstantValueBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -102,6 +78,16 @@ class ConstantValue(GeneratorSignal,SingleParameter):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__properties = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def value(self) -> float:

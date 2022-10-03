@@ -2,7 +2,6 @@
 # 
 # Generated with NameSpecification
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.namespecification import NameSpecificationBlueprint
 from typing import Dict
@@ -13,24 +12,21 @@ class NameSpecification(PathSpecification):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     path : str
          (default "")
+    name : str
+         (default "")
     """
 
-    def __init__(self , name="", description="", _id="", path="", **kwargs):
+    def __init__(self , _id="", path="", name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.path = path
+        self.name = name
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -41,26 +37,6 @@ class NameSpecification(PathSpecification):
         """Return blueprint that this entity represents"""
         return NameSpecificationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -93,3 +69,13 @@ class NameSpecification(PathSpecification):
     def path(self, value: str):
         """Set path"""
         self.__path = str(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)

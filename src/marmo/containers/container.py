@@ -3,7 +3,6 @@
 # Generated with Container
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.container import ContainerBlueprint
 from typing import Dict

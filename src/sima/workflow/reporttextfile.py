@@ -2,7 +2,6 @@
 # 
 # Generated with ReportTextFile
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.reporttextfile import ReportTextFileBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class ReportTextFile(ReportFragmentItem):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -26,10 +21,8 @@ class ReportTextFile(ReportFragmentItem):
          (default False)
     """
 
-    def __init__(self , name="", description="", _id="", path="", plainText=False, **kwargs):
+    def __init__(self , _id="", path="", plainText=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.path = path
@@ -44,26 +37,6 @@ class ReportTextFile(ReportFragmentItem):
         """Return blueprint that this entity represents"""
         return ReportTextFileBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

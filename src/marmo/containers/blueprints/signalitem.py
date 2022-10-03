@@ -5,8 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
+from dmt.blueprints.namedentity import NamedEntityBlueprint
 
-class SignalItemBlueprint(Blueprint):
+class SignalItemBlueprint(NamedEntityBlueprint):
     """"""
 
     def __init__(self, name="SignalItem", package_path="marmo/containers", description=""):

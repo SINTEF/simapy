@@ -2,20 +2,16 @@
 # 
 # Generated with Axis
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.axis import AxisBlueprint
 from typing import Dict
+from dmt.entity import Entity
 from marmo.report.font import Font
 
 class Axis(Entity):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     font : Font
     log : bool
          (default True)
@@ -31,10 +27,8 @@ class Axis(Entity):
          (default True)
     """
 
-    def __init__(self , name="", description="", log=True, autoformat=True, format="", autoscale=True, showgrid=True, dashgridline=True, **kwargs):
+    def __init__(self , log=True, autoformat=True, format="", autoscale=True, showgrid=True, dashgridline=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.font = None
         self.log = log
         self.autoformat = autoformat
@@ -52,26 +46,6 @@ class Axis(Entity):
         """Return blueprint that this entity represents"""
         return AxisBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def font(self) -> Font:

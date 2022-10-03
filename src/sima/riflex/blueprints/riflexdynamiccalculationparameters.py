@@ -12,8 +12,6 @@ class RIFLEXDynamicCalculationParametersBlueprint(MOAOBlueprint):
 
     def __init__(self, name="RIFLEXDynamicCalculationParameters", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("irregularTimeSeries","sima/riflex/IrregularTimeSeriesParameters","",True))
@@ -29,6 +27,7 @@ class RIFLEXDynamicCalculationParametersBlueprint(MOAOBlueprint):
         self.attributes.append(BlueprintAttribute("turbineBladeResponseStorage","sima/riflex/TurbineBladeResponseStorage","",True))
         self.attributes.append(BlueprintAttribute("supportVesselForceStorage","sima/riflex/SupportVesselForceStorage","",True))
         self.attributes.append(BlueprintAttribute("bodyForceStorage","sima/riflex/BodyForceStorage","",True))
+        self.attributes.append(BlueprintAttribute("hydrodynamicLoadStorage","sima/riflex/HydrodynamicLoadStorage","",True))
         self.attributes.append(BlueprintAttribute("hlaElementForces","sima/riflex/HLAElementForce","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("hlaImportedBodies","sima/riflex/ImportVesselItem","",True,Dimension("*")))
         self.attributes.append(BlueprintAttribute("segmentLengthVariations","sima/riflex/SegmentLengthVariationItem","",True,Dimension("*")))

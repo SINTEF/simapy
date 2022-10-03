@@ -3,7 +3,6 @@
 # Generated with LongTermStatisticsCalculation
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.longtermstatisticscalculation import LongTermStatisticsCalculationBlueprint
 from typing import Dict
@@ -23,13 +22,11 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     relativeCompassAngle : float
          Relative angle between analysis x-axis and north direction in anti-clockwise direction.\nShould match the angle given in the recieving SIMA task location.(default 0.0)
     inputReferenceSystem : InputReferenceSystem
@@ -43,12 +40,11 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
     currentCalculation : LongTermStatisticsCurrentCalculation
     """
 
-    def __init__(self , name="", description="", _id="", relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, applyNorsok=True, **kwargs):
+    def __init__(self , _id="", name="", relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, applyNorsok=True, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.relativeCompassAngle = relativeCompassAngle
         self.inputReferenceSystem = inputReferenceSystem
         self.applyNorsok = applyNorsok
@@ -67,26 +63,6 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
         """Return blueprint that this entity represents"""
         return LongTermStatisticsCalculationBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -109,6 +85,16 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def relativeCompassAngle(self) -> float:

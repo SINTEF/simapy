@@ -5,14 +5,13 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
+from dmt.blueprints.entity import EntityBlueprint
 
-class PlotLineBlueprint(Blueprint):
+class PlotLineBlueprint(EntityBlueprint):
     """"""
 
     def __init__(self, name="PlotLine", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("xlabel","string","",default=""))
         self.attributes.append(Attribute("ylabel","string","",default=""))
         self.attributes.append(Attribute("showlegend","boolean","",default=True))

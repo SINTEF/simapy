@@ -3,7 +3,6 @@
 # Generated with SlenderElement
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.slenderelement import SlenderElementBlueprint
 from typing import Dict
@@ -23,13 +22,11 @@ class SlenderElement(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     specificVolume : float
          Specific volume (cross-section area) of element(default 0.0)
     distributedMass : float
@@ -73,12 +70,11 @@ class SlenderElement(NamedObject):
     aerodynamicDescription : AerodynamicDescription
     """
 
-    def __init__(self , name="", description="", _id="", specificVolume=0.0, distributedMass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=WaveParticleMethod.VELOCITY_AND_ACCELERATION, numberOfStrips=10, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, windForces=False, **kwargs):
+    def __init__(self , _id="", name="", specificVolume=0.0, distributedMass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=WaveParticleMethod.VELOCITY_AND_ACCELERATION, numberOfStrips=10, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, windForces=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.specificVolume = specificVolume
         self.distributedMass = distributedMass
         self.waveIntegrationMethod = waveIntegrationMethod
@@ -115,26 +111,6 @@ class SlenderElement(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -155,6 +131,16 @@ class SlenderElement(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def specificVolume(self) -> float:

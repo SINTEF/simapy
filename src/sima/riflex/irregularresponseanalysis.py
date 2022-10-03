@@ -2,7 +2,6 @@
 # 
 # Generated with IrregularResponseAnalysis
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.irregularresponseanalysis import IrregularResponseAnalysisBlueprint
 from typing import Dict
@@ -21,10 +20,6 @@ class IrregularResponseAnalysis(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -51,10 +46,8 @@ class IrregularResponseAnalysis(MOAO):
     lfMotionTimeSeries : List[LFMotionTimeSeries]
     """
 
-    def __init__(self , name="", description="", _id="", waveTimeSeriesFile=False, simulationLength=11000.0, timeStep=0.1, irrWaveIndicator=IrregularWaveIndicator.NEW, irrMotionIndicator=IrregularMotionIndicator.STAT, lowFrequencyMotionIndicator=LowFrequencyMotionIndicator.NONE, simulationStartTime=0.0, motionScaling=False, **kwargs):
+    def __init__(self , _id="", waveTimeSeriesFile=False, simulationLength=11000.0, timeStep=0.1, irrWaveIndicator=IrregularWaveIndicator.NEW, irrMotionIndicator=IrregularMotionIndicator.STAT, lowFrequencyMotionIndicator=LowFrequencyMotionIndicator.NONE, simulationStartTime=0.0, motionScaling=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.waveTimeSeriesFile = waveTimeSeriesFile
@@ -80,26 +73,6 @@ class IrregularResponseAnalysis(MOAO):
         """Return blueprint that this entity represents"""
         return IrregularResponseAnalysisBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

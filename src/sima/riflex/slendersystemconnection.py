@@ -3,7 +3,6 @@
 # Generated with SlenderSystemConnection
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.slendersystemconnection import SlenderSystemConnectionBlueprint
 from typing import Dict
@@ -24,10 +23,6 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -49,6 +44,8 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
          All ends(default False)
     elementEnd : End
          End number 1 or 2
+    name : str
+         (default 'connection')
     location : BodyLocation
          If a supernode is used as location option and it is not part of a line, a dummy line will be created automatically.
     superNode : SuperNode
@@ -72,10 +69,8 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     finalPosition : Position
     """
 
-    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, nodeNumber=1, allNodes=False, allEnds=False, elementEnd=End.ONE, location=BodyLocation.ELEMENT, artificialStiffness=False, stx=0.0, sty=0.0, stz=0.0, srx=0.0, sry=0.0, srz=0.0, constraint=NodeConstraint.FREE, **kwargs):
+    def __init__(self , _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, nodeNumber=1, allNodes=False, allEnds=False, elementEnd=End.ONE, name='connection', location=BodyLocation.ELEMENT, artificialStiffness=False, stx=0.0, sty=0.0, stz=0.0, srx=0.0, sry=0.0, srz=0.0, constraint=NodeConstraint.FREE, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -87,6 +82,7 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
         self.allNodes = allNodes
         self.allEnds = allEnds
         self.elementEnd = elementEnd
+        self.name = name
         self.location = location
         self.superNode = None
         self.artificialStiffness = artificialStiffness
@@ -108,26 +104,6 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
         """Return blueprint that this entity represents"""
         return SlenderSystemConnectionBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -240,6 +216,16 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     def elementEnd(self, value: End):
         """Set elementEnd"""
         self.__elementEnd = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def location(self) -> BodyLocation:

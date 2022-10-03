@@ -2,10 +2,10 @@
 # 
 # Generated with PlotLine
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.plotline import PlotLineBlueprint
 from numpy import ndarray,asarray
+from dmt.entity import Entity
 from marmo.report.linestyle import LineStyle
 from marmo.report.pointstyle import PointStyle
 
@@ -13,10 +13,6 @@ class PlotLine(Entity):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     xlabel : str
          (default "")
     ylabel : str
@@ -35,10 +31,8 @@ class PlotLine(Entity):
          (default "")
     """
 
-    def __init__(self , name="", description="", xlabel="", ylabel="", showlegend=True, linewidth=1, pointsize=1, linestyle=LineStyle.SOLID, pointstyle=PointStyle.NONE, color="", **kwargs):
+    def __init__(self , xlabel="", ylabel="", showlegend=True, linewidth=1, pointsize=1, linestyle=LineStyle.SOLID, pointstyle=PointStyle.NONE, color="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self.xlabel = xlabel
         self.ylabel = ylabel
         self.showlegend = showlegend
@@ -59,26 +53,6 @@ class PlotLine(Entity):
         """Return blueprint that this entity represents"""
         return PlotLineBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def xlabel(self) -> str:

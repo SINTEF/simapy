@@ -2,11 +2,11 @@
 # 
 # Generated with Generator
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.generator import GeneratorBlueprint
 from typing import Dict
 from sima.sima.conditionselectable import ConditionSelectable
+from sima.sima.named import Named
 from sima.sima.scriptablevalue import ScriptableValue
 from sima.windpark.areaaveragingoption import AreaAveragingOption
 from sima.windpark.deficitanalysisoption import DeficitAnalysisOption
@@ -28,17 +28,15 @@ from sima.windpark.weightoption import WeightOption
 from sima.windpark.windparkturbine import WindParkTurbine
 from sima.windpark.windturbinetype import WindTurbineType
 
-class Generator(ConditionSelectable):
+class Generator(Named,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     airDensity : float
          (default 1.3)
     kinematicViscosity : float
@@ -123,12 +121,11 @@ class Generator(ConditionSelectable):
          Cutoff frequency(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, deficitFileName="", ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.CONSTANT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.STABLE_0, coarseMeshFilename="", fineMeshFilename="", ambientWindFieldFilename="", turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=True, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, **kwargs):
+    def __init__(self , _id="", name="", airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, deficitFileName="", ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.CONSTANT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, coarseMeshFilename="", fineMeshFilename="", ambientWindFieldFilename="", turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=True, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.airDensity = airDensity
         self.kinematicViscosity = kinematicViscosity
         self.meanderingOption = meanderingOption
@@ -188,26 +185,6 @@ class Generator(ConditionSelectable):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -228,6 +205,16 @@ class Generator(ConditionSelectable):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def airDensity(self) -> float:

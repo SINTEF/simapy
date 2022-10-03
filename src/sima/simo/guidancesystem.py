@@ -2,7 +2,6 @@
 # 
 # Generated with GuidanceSystem
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.guidancesystem import GuidanceSystemBlueprint
 from typing import Dict
@@ -17,10 +16,6 @@ class GuidanceSystem(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -36,10 +31,8 @@ class GuidanceSystem(MOAO):
     waypoints : List[Waypoint]
     """
 
-    def __init__(self , name="", description="", _id="", guidance=Guidance.STRAIGHT_LINES, waypointReference=WaypointReference.LOCAL, headingReference=HeadingReference.TANGENTIAL, startTime=200.0, maxAccelerationX=0.0, maxAccelerationY=0.0, **kwargs):
+    def __init__(self , _id="", guidance=Guidance.STRAIGHT_LINES, waypointReference=WaypointReference.LOCAL, headingReference=HeadingReference.TANGENTIAL, startTime=200.0, maxAccelerationX=0.0, maxAccelerationY=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.guidance = guidance
@@ -59,26 +52,6 @@ class GuidanceSystem(MOAO):
         """Return blueprint that this entity represents"""
         return GuidanceSystemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

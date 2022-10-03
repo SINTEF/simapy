@@ -2,7 +2,6 @@
 # 
 # Generated with NumberSignalInputSlot
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.numbersignalinputslot import NumberSignalInputSlotBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class NumberSignalInputSlot(ControlSignalInputSlot):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     properties : List[SignalProperties]
     specifyAdditionalProperties : bool
          Specify additional properties in the signal(default False)
@@ -30,12 +27,11 @@ class NumberSignalInputSlot(ControlSignalInputSlot):
          (default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", specifyAdditionalProperties=False, array=False, value=0.0, **kwargs):
+    def __init__(self , _id="", name="", specifyAdditionalProperties=False, array=False, value=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.properties = list()
         self.specifyAdditionalProperties = specifyAdditionalProperties
         self.array = array
@@ -50,26 +46,6 @@ class NumberSignalInputSlot(ControlSignalInputSlot):
         """Return blueprint that this entity represents"""
         return NumberSignalInputSlotBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -92,6 +68,16 @@ class NumberSignalInputSlot(ControlSignalInputSlot):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def properties(self) -> List[SignalProperties]:

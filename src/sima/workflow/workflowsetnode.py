@@ -3,7 +3,6 @@
 # Generated with WorkflowSetNode
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.workflowsetnode import WorkflowSetNodeBlueprint
 from typing import Dict
@@ -26,13 +25,11 @@ class WorkflowSetNode(WorkflowReferenceNode):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     x : int
          (default 0)
     y : int
@@ -54,6 +51,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     folderName : str
          (default "")
     variableInputSets : List[VariableInputSet]
+    variableInputSetSlots : List[VariableInputSetSlot]
     writeRunStatus : bool
          Write a text file with the run status after running all the cases(default False)
     runStatusFolder : str
@@ -62,7 +60,6 @@ class WorkflowSetNode(WorkflowReferenceNode):
          Specify variable values from file.
     filename : str
          Import variable values from file. Expected file format:\n' any comment specified with '\n'Hs    Tp     seed : values specified in rows ( Need to match the variables specified)  \n1.0      2.0    3\n4.0      5.0    4\n'any comment\n           (default "")
-    variableInputSetSlots : List[VariableInputSetSlot]
     iteration : Iteration
          Switch to change type of iteration
     distribute : bool
@@ -74,12 +71,11 @@ class WorkflowSetNode(WorkflowReferenceNode):
     workflowInputVariationSlots : List[WorkflowInputSlot]
     """
 
-    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName="", writeRunStatus=False, runStatusFolder="", input=WorkflowSetInput.MANUAL, filename="", iteration=Iteration.COLUMN, distribute=False, grouping=1, iterateOverInput=False, **kwargs):
+    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName="", writeRunStatus=False, runStatusFolder="", input=WorkflowSetInput.MANUAL, filename="", iteration=Iteration.COLUMN, distribute=False, grouping=1, iterateOverInput=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.x = x
         self.y = y
         self.h = h
@@ -94,11 +90,11 @@ class WorkflowSetNode(WorkflowReferenceNode):
         self.setFolderName = setFolderName
         self.folderName = folderName
         self.variableInputSets = list()
+        self.variableInputSetSlots = list()
         self.writeRunStatus = writeRunStatus
         self.runStatusFolder = runStatusFolder
         self.input = input
         self.filename = filename
-        self.variableInputSetSlots = list()
         self.iteration = iteration
         self.distribute = distribute
         self.grouping = grouping
@@ -114,26 +110,6 @@ class WorkflowSetNode(WorkflowReferenceNode):
         """Return blueprint that this entity represents"""
         return WorkflowSetNodeBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -156,6 +132,16 @@ class WorkflowSetNode(WorkflowReferenceNode):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def x(self) -> int:
@@ -308,6 +294,18 @@ class WorkflowSetNode(WorkflowReferenceNode):
         self.__variableInputSets = value
 
     @property
+    def variableInputSetSlots(self) -> List[VariableInputSetSlot]:
+        """"""
+        return self.__variableInputSetSlots
+
+    @variableInputSetSlots.setter
+    def variableInputSetSlots(self, value: List[VariableInputSetSlot]):
+        """Set variableInputSetSlots"""
+        if not isinstance(value, Sequence):
+            raise Exception("Expected sequense, but was " , type(value))
+        self.__variableInputSetSlots = value
+
+    @property
     def writeRunStatus(self) -> bool:
         """Write a text file with the run status after running all the cases"""
         return self.__writeRunStatus
@@ -352,18 +350,6 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def filename(self, value: str):
         """Set filename"""
         self.__filename = str(value)
-
-    @property
-    def variableInputSetSlots(self) -> List[VariableInputSetSlot]:
-        """"""
-        return self.__variableInputSetSlots
-
-    @variableInputSetSlots.setter
-    def variableInputSetSlots(self, value: List[VariableInputSetSlot]):
-        """Set variableInputSetSlots"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__variableInputSetSlots = value
 
     @property
     def iteration(self) -> Iteration:

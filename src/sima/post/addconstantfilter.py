@@ -2,7 +2,6 @@
 # 
 # Generated with AddConstantFilter
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.addconstantfilter import AddConstantFilterBlueprint
 from typing import Dict
@@ -17,13 +16,11 @@ class AddConstantFilter(OperationNode):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     x : int
          (default 0)
     y : int
@@ -45,12 +42,11 @@ class AddConstantFilter(OperationNode):
          Shift the x or y axis so that the first index is 0(default False)
     """
 
-    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, renameOutput=True, constant=0.0, axis=SignalAxis.Y, shiftAxis=False, **kwargs):
+    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, renameOutput=True, constant=0.0, axis=SignalAxis.Y, shiftAxis=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.x = x
         self.y = y
         self.h = h
@@ -74,26 +70,6 @@ class AddConstantFilter(OperationNode):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -114,6 +90,16 @@ class AddConstantFilter(OperationNode):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def x(self) -> int:

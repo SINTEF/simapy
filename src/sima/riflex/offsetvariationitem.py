@@ -3,7 +3,6 @@
 # Generated with OffsetVariationItem
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.offsetvariationitem import OffsetVariationItemBlueprint
 from typing import Dict
@@ -20,10 +19,6 @@ class OffsetVariationItem(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -43,10 +38,8 @@ class OffsetVariationItem(MOAO):
     supportVessel : SupportVessel
     """
 
-    def __init__(self , name="", description="", _id="", referenceType=ReferenceType.SUPER_NODE, dx=0.0, dy=0.0, dz=0.0, rotationCode=RotationCode.NONE, rotationIncrement=0.0, **kwargs):
+    def __init__(self , _id="", referenceType=ReferenceType.SUPER_NODE, dx=0.0, dy=0.0, dz=0.0, rotationCode=RotationCode.NONE, rotationIncrement=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.referenceType = referenceType
@@ -67,26 +60,6 @@ class OffsetVariationItem(MOAO):
         """Return blueprint that this entity represents"""
         return OffsetVariationItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

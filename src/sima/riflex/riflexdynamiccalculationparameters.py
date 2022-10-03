@@ -2,7 +2,6 @@
 # 
 # Generated with RIFLEXDynamicCalculationParameters
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.riflexdynamiccalculationparameters import RIFLEXDynamicCalculationParametersBlueprint
 from typing import Dict
@@ -20,6 +19,7 @@ from sima.riflex.dynmodvisualisationresponses import DynmodVisualisationResponse
 from sima.riflex.envelopecurvespecification import EnvelopeCurveSpecification
 from sima.riflex.forceresponsestorage import ForceResponseStorage
 from sima.riflex.hlaelementforce import HLAElementForce
+from sima.riflex.hydrodynamicloadstorage import HydrodynamicLoadStorage
 from sima.riflex.importvesselitem import ImportVesselItem
 from sima.riflex.irregularresponseanalysis import IrregularResponseAnalysis
 from sima.riflex.irregulartimeseriesparameters import IrregularTimeSeriesParameters
@@ -41,10 +41,6 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -61,6 +57,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     turbineBladeResponseStorage : TurbineBladeResponseStorage
     supportVesselForceStorage : SupportVesselForceStorage
     bodyForceStorage : BodyForceStorage
+    hydrodynamicLoadStorage : HydrodynamicLoadStorage
     hlaElementForces : List[HLAElementForce]
     hlaImportedBodies : List[ImportVesselItem]
     segmentLengthVariations : List[SegmentLengthVariationItem]
@@ -86,10 +83,8 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     dynamicLoads : DynamicLoads
     """
 
-    def __init__(self , name="", description="", _id="", volumeForcesScaling=1.0, specifiedForcesScaling=1.0, currentVelocitiesScaling=1.0, changeStaticLoads=False, **kwargs):
+    def __init__(self , _id="", volumeForcesScaling=1.0, specifiedForcesScaling=1.0, currentVelocitiesScaling=1.0, changeStaticLoads=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.irregularTimeSeries = None
@@ -105,6 +100,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
         self.turbineBladeResponseStorage = None
         self.supportVesselForceStorage = None
         self.bodyForceStorage = None
+        self.hydrodynamicLoadStorage = None
         self.hlaElementForces = list()
         self.hlaImportedBodies = list()
         self.segmentLengthVariations = list()
@@ -134,26 +130,6 @@ class RIFLEXDynamicCalculationParameters(MOAO):
         """Return blueprint that this entity represents"""
         return RIFLEXDynamicCalculationParametersBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -306,6 +282,16 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def bodyForceStorage(self, value: BodyForceStorage):
         """Set bodyForceStorage"""
         self.__bodyForceStorage = value
+
+    @property
+    def hydrodynamicLoadStorage(self) -> HydrodynamicLoadStorage:
+        """"""
+        return self.__hydrodynamicLoadStorage
+
+    @hydrodynamicLoadStorage.setter
+    def hydrodynamicLoadStorage(self, value: HydrodynamicLoadStorage):
+        """Set hydrodynamicLoadStorage"""
+        self.__hydrodynamicLoadStorage = value
 
     @property
     def hlaElementForces(self) -> List[HLAElementForce]:

@@ -12,13 +12,12 @@ class WindTurbineBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="WindTurbine", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(BlueprintAttribute("shaftLine","sima/riflex/ARLine","Reference to the line that is used for shaft modelling",False))
         self.attributes.append(BlueprintAttribute("blades","sima/riflex/BladeItem","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("controller","sima/windturbine/HorizontalAxisWindTurbineController","",True))
+        self.attributes.append(BlueprintAttribute("controller","sima/riflex/HorizontalAxisController","",True))
         self.attributes.append(BlueprintAttribute("body","sima/sima/Body","Reference to SIMO body with wind",False))
         self.attributes.append(BlueprintAttribute("towerLine","sima/riflex/ARLine","Reference to the line that is used for tower modelling.\nIf specified the incoming wind acting on the blades will be modified due to the presence of the tower.",False))
         self.attributes.append(EnumAttribute("windLoadOption","sima/riflex/WindTurbineLoadOption","If the aerodynamic moment is removed, Cm is treated as zero and the distance between aerodynamic and structural axes is ignored."))

@@ -64,6 +64,7 @@ from .dynmodvisualisationresponses import DynmodVisualisationResponses # noqa
 from .eigenvalueanalysisparameters import EigenvalueAnalysisParameters # noqa
 from .elasticcontactsurface import ElasticContactSurface # noqa
 from .elementangle import ElementAngle # noqa
+from .elementendspesification import ElementEndSpesification # noqa
 from .elementreference import ElementReference # noqa
 from .elementstressstorage import ElementStressStorage # noqa
 from .envelopecurvespecification import EnvelopeCurveSpecification # noqa
@@ -93,8 +94,11 @@ from .globalspring import GlobalSpring # noqa
 from .globalspringstiffnessitem import GlobalSpringStiffnessItem # noqa
 from .growthlevel import GrowthLevel # noqa
 from .hlaelementforce import HLAElementForce # noqa
+from .horizontalaxiscontroller import HorizontalAxisController # noqa
 from .horizontalaxisyawcontroller import HorizontalAxisYawController # noqa
 from .hydrodynamiccrosssectionproperties import HydrodynamicCrossSectionProperties # noqa
+from .hydrodynamicloadelementstorage import HydrodynamicLoadElementStorage # noqa
+from .hydrodynamicloadstorage import HydrodynamicLoadStorage # noqa
 from .importvesselitem import ImportVesselItem # noqa
 from .internalfluidtype import InternalFluidType # noqa
 from .irregularresponseanalysis import IrregularResponseAnalysis # noqa
@@ -237,6 +241,7 @@ from .convergencecriterion import ConvergenceCriterion # noqa
 from .convergencenorm import ConvergenceNorm # noqa
 from .coordinatesystem import CoordinateSystem # noqa
 from .dampingmatrixcalculationoption import DampingMatrixCalculationOption # noqa
+from .detaillevel import DetailLevel # noqa
 from .eigenvaluestartvector import EigenvalueStartVector # noqa
 from .end import End # noqa
 from .fatiguecalculationoption import FatigueCalculationOption # noqa
@@ -251,7 +256,6 @@ from .generatortorquefault import GeneratorTorqueFault # noqa
 from .geotechnicalpiletype import GeotechnicalPileType # noqa
 from .hydrodynamicforceindicator import HydrodynamicForceIndicator # noqa
 from .hydrodynamicinputcode import HydrodynamicInputCode # noqa
-from .hydrodynamicradiationinputcode import HydrodynamicRadiationInputCode # noqa
 from .hysteresis import Hysteresis # noqa
 from .iec2005windeventtype import IEC2005WindEventType # noqa
 from .iec2005windturbineclass import IEC2005WindTurbineClass # noqa

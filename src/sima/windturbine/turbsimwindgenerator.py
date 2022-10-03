@@ -2,7 +2,6 @@
 # 
 # Generated with TurbSimWindGenerator
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.turbsimwindgenerator import TurbSimWindGeneratorBlueprint
 from typing import Dict
@@ -20,13 +19,11 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     randSeed1 : int
          First random seed (-2147483648 to 2147483647)(default 0)
     seedGeneration : RandomSeedGeneration
@@ -41,7 +38,7 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
     analysisTime : float
          Length of analysis time series (program will add time if necessary: AnalysisTime = MAX(AnalysisTime, UsableTime+GridWidth/MeanHHWS) )(default 0.0)
     usableTime : float
-         Usable length of output time series (program will add GridWidth/MeanHHWS seconds)(default 0.0)
+         Usable length of output time series (program will add GridWidth/MeanHHWS seconds). Default value is analysis time for Turbsim v1, otherwise ALL(default 0.0)
     hubHeight : float
          Hub height (should be > 0.5*GridHeight)(default 0.0)
     gridHeight : float
@@ -67,12 +64,11 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
          Surface roughness length (or 'default')(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", randSeed1=0, seedGeneration=RandomSeedGeneration.INTRINSIC, randSeed2=0, gridPointsZ=0, gridPointsY=0, timeStep=0.0, analysisTime=0.0, usableTime=0.0, hubHeight=0.0, gridHeight=0.0, gridWidth=0.0, turbulenceModel=TurbulenceModel.IECKAI, iecStandard=IECStandard.IEC_61400_1, turbulenceCharacteristics=IECTurbulenceCharacteristics.A, turbulencePercentage=0.0, windType=IECWindType.NTM, etmC=0.0, windProfileType=IECWindProfileType.LOG, referenceHeight=0.0, meanWindSpeed=0.0, powerLawExponent=0.0, surfaceRoughnessLength=0.0, **kwargs):
+    def __init__(self , _id="", name="", randSeed1=0, seedGeneration=RandomSeedGeneration.INTRINSIC, randSeed2=0, gridPointsZ=0, gridPointsY=0, timeStep=0.0, analysisTime=0.0, usableTime=0.0, hubHeight=0.0, gridHeight=0.0, gridWidth=0.0, turbulenceModel=TurbulenceModel.IECKAI, iecStandard=IECStandard.IEC_61400_1, turbulenceCharacteristics=IECTurbulenceCharacteristics.A, turbulencePercentage=0.0, windType=IECWindType.NTM, etmC=0.0, windProfileType=IECWindProfileType.LOG, referenceHeight=0.0, meanWindSpeed=0.0, powerLawExponent=0.0, surfaceRoughnessLength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.randSeed1 = randSeed1
         self.seedGeneration = seedGeneration
         self.randSeed2 = randSeed2
@@ -107,26 +103,6 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -147,6 +123,16 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def randSeed1(self) -> int:
@@ -220,7 +206,7 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
 
     @property
     def usableTime(self) -> float:
-        """Usable length of output time series (program will add GridWidth/MeanHHWS seconds)"""
+        """Usable length of output time series (program will add GridWidth/MeanHHWS seconds). Default value is analysis time for Turbsim v1, otherwise ALL"""
         return self.__usableTime
 
     @usableTime.setter

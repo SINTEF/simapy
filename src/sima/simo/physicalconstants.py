@@ -2,7 +2,6 @@
 # 
 # Generated with PhysicalConstants
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.physicalconstants import PhysicalConstantsBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class PhysicalConstants(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -32,10 +27,8 @@ class PhysicalConstants(MOAO):
          Acceleration of gravity - g(default 9.81)
     """
 
-    def __init__(self , name="", description="", _id="", airDensity=1.25, waterDensity=1025.0, kinematicViscosityWater=1.188e-06, kinematicViscosityAir=1.516e-05, accOfGravity=9.81, **kwargs):
+    def __init__(self , _id="", airDensity=1.25, waterDensity=1025.0, kinematicViscosityWater=1.188e-06, kinematicViscosityAir=1.516e-05, accOfGravity=9.81, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.airDensity = airDensity
@@ -53,26 +46,6 @@ class PhysicalConstants(MOAO):
         """Return blueprint that this entity represents"""
         return PhysicalConstantsBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

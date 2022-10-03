@@ -2,7 +2,6 @@
 # Single scalar value with dimension
 # Generated with DimensionalScalar
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.dimensionalscalar import DimensionalScalarBlueprint
 from typing import Dict

@@ -3,7 +3,6 @@
 # Generated with SegmentLengthVariationItem
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.segmentlengthvariationitem import SegmentLengthVariationItemBlueprint
 from typing import Dict
@@ -17,10 +16,6 @@ class SegmentLengthVariationItem(SegmentReference):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -40,10 +35,8 @@ class SegmentLengthVariationItem(SegmentReference):
          Activate interactive (HLA) control of segment variation(default False)
     """
 
-    def __init__(self , name="", description="", _id="", segment=1, allSegments=False, startTime=0.0, endTime=0.0, segmentLengthRate=0.0, interactive=False, **kwargs):
+    def __init__(self , _id="", segment=1, allSegments=False, startTime=0.0, endTime=0.0, segmentLengthRate=0.0, interactive=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -63,26 +56,6 @@ class SegmentLengthVariationItem(SegmentReference):
         """Return blueprint that this entity represents"""
         return SegmentLengthVariationItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

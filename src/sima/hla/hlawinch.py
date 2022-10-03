@@ -2,7 +2,6 @@
 # 
 # Generated with HLAWinch
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.hlawinch import HLAWinchBlueprint
 from typing import Dict
@@ -13,13 +12,11 @@ class HLAWinch(HLAObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     initialLength : float
          Initial wire length at drum(default 0.0)
     maximumSpeed : float
@@ -30,12 +27,11 @@ class HLAWinch(HLAObject):
          Max. wire length that can be added to drum(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", initialLength=0.0, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, **kwargs):
+    def __init__(self , _id="", name="", initialLength=0.0, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.initialLength = initialLength
         self.maximumSpeed = maximumSpeed
         self.acceleration = acceleration
@@ -50,26 +46,6 @@ class HLAWinch(HLAObject):
         """Return blueprint that this entity represents"""
         return HLAWinchBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -92,6 +68,16 @@ class HLAWinch(HLAObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def initialLength(self) -> float:

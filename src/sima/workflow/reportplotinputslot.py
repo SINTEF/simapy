@@ -2,7 +2,6 @@
 # 
 # Generated with ReportPlotInputSlot
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.reportplotinputslot import ReportPlotInputSlotBlueprint
 from typing import Dict
@@ -14,13 +13,11 @@ class ReportPlotInputSlot(ReportFragmentItem,InputSlot):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     caption : str
          (default "")
     width : int
@@ -29,12 +26,11 @@ class ReportPlotInputSlot(ReportFragmentItem,InputSlot):
          (default 0)
     """
 
-    def __init__(self , name="", description="", _id="", caption="", width=0, height=0, **kwargs):
+    def __init__(self , _id="", name="", caption="", width=0, height=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.caption = caption
         self.width = width
         self.height = height
@@ -48,26 +44,6 @@ class ReportPlotInputSlot(ReportFragmentItem,InputSlot):
         """Return blueprint that this entity represents"""
         return ReportPlotInputSlotBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -90,6 +66,16 @@ class ReportPlotInputSlot(ReportFragmentItem,InputSlot):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def caption(self) -> str:

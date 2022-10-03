@@ -3,7 +3,6 @@
 # Generated with PipeInPipeContact
 from __future__ import annotations
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.pipeinpipecontact import PipeInPipeContactBlueprint
 from typing import Dict
@@ -22,13 +21,11 @@ class PipeInPipeContact(NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     masterLine : ARLine
          Identification of master pipe.
     slaveLine : ARLine
@@ -75,12 +72,11 @@ class PipeInPipeContact(NamedObject):
     innerPipeLoading : InnerPipeLoading
     """
 
-    def __init__(self , name="", description="", _id="", firstMasterSegment=0, lastMasterSegment=0, firstSlaveSegment=0, lastSlaveSegment=0, masterPipePosition=InnerOuter.INNER, stiffnessType=StiffnessType.LINEAR, relativeDamping=0.0, damping=0.0, frictionStiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, axialFrictionEnabled=False, rotationalFrictionEnabled=False, velocityLimitFriction=0.0, linearStiffness=0.0, masterAsMainRiser=False, slaveAsMainRiser=False, innerPipeLoading=InnerPipeLoading.EXPOSED, **kwargs):
+    def __init__(self , _id="", name="", firstMasterSegment=0, lastMasterSegment=0, firstSlaveSegment=0, lastSlaveSegment=0, masterPipePosition=InnerOuter.INNER, stiffnessType=StiffnessType.LINEAR, relativeDamping=0.0, damping=0.0, frictionStiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, axialFrictionEnabled=False, rotationalFrictionEnabled=False, velocityLimitFriction=0.0, linearStiffness=0.0, masterAsMainRiser=False, slaveAsMainRiser=False, innerPipeLoading=InnerPipeLoading.EXPOSED, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.masterLine = None
         self.slaveLine = None
         self.firstMasterSegment = firstMasterSegment
@@ -116,26 +112,6 @@ class PipeInPipeContact(NamedObject):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -156,6 +132,16 @@ class PipeInPipeContact(NamedObject):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def masterLine(self) -> ARLine:

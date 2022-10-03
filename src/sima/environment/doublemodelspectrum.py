@@ -2,7 +2,6 @@
 # 
 # Generated with DoubleModelSpectrum
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.doublemodelspectrum import DoubleModelSpectrumBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class DoubleModelSpectrum(Wave):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -42,10 +37,8 @@ class DoubleModelSpectrum(Wave):
          Slope of the lower frequency part of the swell part of wave spectrum(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", significantWaveHeight=0.0, windDrivenRatio=0.0, windPeakPeriod=0.0, swellPeakPeriod=0.0, gammaWind=3.3, gammaSwell=0.0, upperSlopeWind=0.0, lowerSlopeWind=0.0, upperSlopeSwell=0.0, lowerSlopeSwell=0.0, **kwargs):
+    def __init__(self , _id="", significantWaveHeight=0.0, windDrivenRatio=0.0, windPeakPeriod=0.0, swellPeakPeriod=0.0, gammaWind=3.3, gammaSwell=0.0, upperSlopeWind=0.0, lowerSlopeWind=0.0, upperSlopeSwell=0.0, lowerSlopeSwell=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.significantWaveHeight = significantWaveHeight
@@ -68,26 +61,6 @@ class DoubleModelSpectrum(Wave):
         """Return blueprint that this entity represents"""
         return DoubleModelSpectrumBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

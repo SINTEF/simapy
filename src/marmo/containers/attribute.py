@@ -2,12 +2,12 @@
 # Represents a key/value entry
 # Generated with Attribute
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.attribute import AttributeBlueprint
 from typing import Dict
+from dmt.namedentity import NamedEntity
 
-class Attribute(Entity):
+class Attribute(NamedEntity):
     """
     Represents a key/value entry
     Keyword arguments

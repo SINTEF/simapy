@@ -12,10 +12,9 @@ class WamitLocationBlueprint(LocationBlueprint):
 
     def __init__(self, name="WamitLocation", package_path="sima/wamit", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(BlueprintAttribute("initialViewpoint","sima/sima/InitialViewpoint","",True))
         self.attributes.append(BlueprintAttribute("initialRotationpoint","sima/sima/Point3","",True))
         self.attributes.append(BlueprintAttribute("viewpoints","sima/sima/NamedViewpoint","",True,Dimension("*")))

@@ -2,7 +2,6 @@
 # 
 # Generated with BodyViewpoint
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.bodyviewpoint import BodyViewpointBlueprint
 from typing import Dict
@@ -16,27 +15,24 @@ class BodyViewpoint(Viewpoint,NamedObject):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
     eye : Point3
     dir : Vector3
     up : Vector3
+    name : str
+         (default "")
     """
 
-    def __init__(self , name="", description="", _id="", **kwargs):
+    def __init__(self , _id="", name="", **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.eye = None
         self.dir = None
         self.up = None
+        self.name = name
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -47,26 +43,6 @@ class BodyViewpoint(Viewpoint,NamedObject):
         """Return blueprint that this entity represents"""
         return BodyViewpointBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
@@ -119,3 +95,13 @@ class BodyViewpoint(Viewpoint,NamedObject):
     def up(self, value: Vector3):
         """Set up"""
         self.__up = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)

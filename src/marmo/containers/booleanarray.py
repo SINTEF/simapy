@@ -2,7 +2,6 @@
 # 
 # Generated with BooleanArray
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.booleanarray import BooleanArrayBlueprint
 from numpy import ndarray,asarray

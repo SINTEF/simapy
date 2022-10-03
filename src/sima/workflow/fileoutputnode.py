@@ -2,7 +2,6 @@
 # 
 # Generated with FileOutputNode
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.fileoutputnode import FileOutputNodeBlueprint
 from typing import Dict
@@ -20,13 +19,11 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     properties : List[SignalProperties]
     x : int
          (default 0)
@@ -57,12 +54,11 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
     outputSlot : OutputSlot
     """
 
-    def __init__(self , name="", description="", _id="", x=0, y=0, h=0, w=0, filePath="", fileFormat=FileFormat.CSV, shellCommand="", addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, **kwargs):
+    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, filePath="", fileFormat=FileFormat.CSV, shellCommand="", addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.properties = list()
         self.x = x
         self.y = y
@@ -91,26 +87,6 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -131,6 +107,16 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def properties(self) -> List[SignalProperties]:

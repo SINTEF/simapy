@@ -12,10 +12,9 @@ class HLALocationBlueprint(LocationBlueprint):
 
     def __init__(self, name="HLALocation", package_path="sima/hla", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
         self.attributes.append(Attribute("_id","string","",default=""))
         self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.attributes.append(Attribute("name","string","",default=""))
         self.attributes.append(BlueprintAttribute("initialViewpoint","sima/sima/InitialViewpoint","",True))
         self.attributes.append(BlueprintAttribute("initialRotationpoint","sima/sima/Point3","",True))
         self.attributes.append(BlueprintAttribute("viewpoints","sima/sima/NamedViewpoint","",True,Dimension("*")))
@@ -24,6 +23,6 @@ class HLALocationBlueprint(LocationBlueprint):
         self.attributes.append(Attribute("utmY","number","Offset of local coordinate system origin (Y) relative to UTM (Northing).",default=0.0))
         self.attributes.append(Attribute("gridZone","string","Zone consists of a number from [01-60] and a letter from [C-Z], or just one of [A,B,Y,Z] if on the antarctic or arctic pole.",default=""))
         self.attributes.append(BlueprintAttribute("infrastructureBodies","sima/sima/InfrastructureBody","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("seaSurface","sima/environment/SeaSurface","",True))
+        self.attributes.append(BlueprintAttribute("seaSurface","sima/hla/HLASeaSurface","",True))
         self.attributes.append(BlueprintAttribute("flatBottom","sima/sima/FlatBottom","",True))
         self.attributes.append(BlueprintAttribute("sim3DBottom","sima/hla/SIM3DBottom","",True))

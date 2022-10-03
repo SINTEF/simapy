@@ -2,7 +2,6 @@
 # 
 # Generated with DepthDependenthydrodynamicCoefficient
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficientBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -44,10 +39,8 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
          Relative quadratic drag in 3. degree of freedom(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", zd=1.0, rvol=1.0, ramx=1.0, ramy=1.0, ramz=1.0, rc11=0.0, rc12=0.0, rc13=0.0, rc21=0.0, rc22=0.0, rc23=0.0, **kwargs):
+    def __init__(self , _id="", zd=1.0, rvol=1.0, ramx=1.0, ramy=1.0, ramz=1.0, rc11=0.0, rc12=0.0, rc13=0.0, rc21=0.0, rc22=0.0, rc23=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.zd = zd
@@ -71,26 +64,6 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
         """Return blueprint that this entity represents"""
         return DepthDependenthydrodynamicCoefficientBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -2,7 +2,6 @@
 # 
 # Generated with WaveTimeSeries
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.wavetimeseries import WaveTimeSeriesBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class WaveTimeSeries(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -40,10 +35,8 @@ class WaveTimeSeries(MOAO):
          Upper cut off period for filtering of wave signal(default 40.0)
     """
 
-    def __init__(self , name="", description="", _id="", scaleFactor=1.0, refPointX=0.0, refPointY=0.0, waterDepth=0.0, fileName="", filterInputTimeseries=True, specifyLowerPeriod=True, lowerCutOffPeriod=0.0, upperCutOffPeriod=40.0, **kwargs):
+    def __init__(self , _id="", scaleFactor=1.0, refPointX=0.0, refPointY=0.0, waterDepth=0.0, fileName="", filterInputTimeseries=True, specifyLowerPeriod=True, lowerCutOffPeriod=0.0, upperCutOffPeriod=40.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.scaleFactor = scaleFactor
@@ -65,26 +58,6 @@ class WaveTimeSeries(MOAO):
         """Return blueprint that this entity represents"""
         return WaveTimeSeriesBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

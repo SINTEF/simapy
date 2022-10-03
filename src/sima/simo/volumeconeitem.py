@@ -2,7 +2,6 @@
 # 
 # Generated with VolumeConeItem
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.volumeconeitem import VolumeConeItemBlueprint
 from typing import Dict
@@ -16,10 +15,6 @@ class VolumeConeItem(VolumeMassPortion):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -37,10 +32,8 @@ class VolumeConeItem(VolumeMassPortion):
          Cone axis direction:\nX: parallell to Tank x-axis\nY: parallell to Tank y-axis\nZ: parallell to Tank z-axis
     """
 
-    def __init__(self , name="", description="", _id="", volume=Volume.ADD, length=0.0, diameterBottomPlane=0.0, diameterTopPlane=0.0, axis=Axis.Z, **kwargs):
+    def __init__(self , _id="", volume=Volume.ADD, length=0.0, diameterBottomPlane=0.0, diameterTopPlane=0.0, axis=Axis.Z, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.volume = volume
@@ -59,26 +52,6 @@ class VolumeConeItem(VolumeMassPortion):
         """Return blueprint that this entity represents"""
         return VolumeConeItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:

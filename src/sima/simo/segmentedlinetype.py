@@ -2,7 +2,6 @@
 # 
 # Generated with SegmentedLineType
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.segmentedlinetype import SegmentedLineTypeBlueprint
 from typing import Dict
@@ -16,13 +15,11 @@ class SegmentedLineType(LineType):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    name : str
+         (default "")
     segments : List[LineSegment]
     vmin : float
          Min. relative z-pos. for which the line characteristics will be calculated.(default 0.0)
@@ -46,12 +43,11 @@ class SegmentedLineType(LineType):
          The angle of the seabed under the catenary line. Slope = 0 means a flat seabed. Positive slope means that the seabed is sloping downwards from the anchor towards the attachment point.(default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", vmin=0.0, vmax=0.0, bottomContactOption=BottomContactOption.LINE_END_ONLY, anchorZ=0.0, maxTension=0.0, minHTension=0.0, method=LineCharacteristicMethod.SHOOTING, npth=40, nptv=5, slope=0.0, **kwargs):
+    def __init__(self , _id="", name="", vmin=0.0, vmax=0.0, bottomContactOption=BottomContactOption.LINE_END_ONLY, anchorZ=0.0, maxTension=0.0, minHTension=0.0, method=LineCharacteristicMethod.SHOOTING, npth=40, nptv=5, slope=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
+        self.name = name
         self.segments = list()
         self.vmin = vmin
         self.vmax = vmax
@@ -75,26 +71,6 @@ class SegmentedLineType(LineType):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
-
-    @property
     def _id(self) -> str:
         """"""
         return self.___id
@@ -115,6 +91,16 @@ class SegmentedLineType(LineType):
         if not isinstance(value, Sequence):
             raise Exception("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def segments(self) -> List[LineSegment]:

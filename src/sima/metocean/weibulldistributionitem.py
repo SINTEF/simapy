@@ -2,7 +2,6 @@
 # 
 # Generated with WeibullDistributionItem
 from typing import Dict,Sequence,List
-from dmt.entity import Entity
 from dmt.blueprint import Blueprint
 from .blueprints.weibulldistributionitem import WeibullDistributionItemBlueprint
 from typing import Dict
@@ -13,10 +12,6 @@ class WeibullDistributionItem(MOAO):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
-    description : str
-         (default "")
     _id : str
          (default "")
     scriptableValues : List[ScriptableValue]
@@ -32,10 +27,8 @@ class WeibullDistributionItem(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , name="", description="", _id="", sector=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
+    def __init__(self , _id="", sector=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.sector = sector
@@ -53,26 +46,6 @@ class WeibullDistributionItem(MOAO):
         """Return blueprint that this entity represents"""
         return WeibullDistributionItemBlueprint()
 
-
-    @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
-    def description(self) -> str:
-        """"""
-        return self.__description
-
-    @description.setter
-    def description(self, value: str):
-        """Set description"""
-        self.__description = str(value)
 
     @property
     def _id(self) -> str:
