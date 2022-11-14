@@ -13,25 +13,28 @@ class CustomNumber(ParameterField,Named):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     label : str
-         (default "")
+         (default None)
     tooltip : str
-         (default "")
+         (default None)
     value : float
          (default 0.0)
     unit : str
-         (default "")
+         (default None)
     constraints : str
-         Give a valid range for a number: Use <,> for excluding and [] for including.\nExampless: \n- [0,4] Number from and including 0 to and including 4\n- <0,4> From and to, excluding \n- <,0> All negative numbers excluding 0\n- [0,> All positive numbers, including 0\n(default "")
+         Give a valid range for a number: Use <,> for excluding and [] for including.\nExampless: \n- [0,4] Number from and including 0 to and including 4\n- <0,4> From and to, excluding \n- <,0> All negative numbers excluding 0\n- [0,> All positive numbers, including 0\n(default None)
     """
 
-    def __init__(self , _id="", name="", label="", tooltip="", value=0.0, unit="", constraints="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, label=None, tooltip=None, value=0.0, unit=None, constraints=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -50,6 +53,16 @@ class CustomNumber(ParameterField,Named):
         """Return blueprint that this entity represents"""
         return CustomNumberBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

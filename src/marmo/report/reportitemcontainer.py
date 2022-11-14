@@ -12,11 +12,14 @@ class ReportItemContainer(Entity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     items : List[ReportItem]
     """
 
-    def __init__(self , **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -28,6 +31,16 @@ class ReportItemContainer(Entity):
         """Return blueprint that this entity represents"""
         return ReportItemContainerBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def items(self) -> List[ReportItem]:

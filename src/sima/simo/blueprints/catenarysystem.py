@@ -12,10 +12,11 @@ class CatenarySystemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="CatenarySystem", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("elongationCharacteristics","sima/simo/ElongationCharacteristic","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("lines","sima/simo/CatenaryLine","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("segmentedLineTypes","sima/simo/SegmentedLineType","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("buoys","sima/simo/BuoyType","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("directInputLineTypes","sima/simo/DirectInputLineType","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("elongationCharacteristics","sima/simo/ElongationCharacteristic","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("lines","sima/simo/CatenaryLine","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("segmentedLineTypes","sima/simo/SegmentedLineType","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("buoys","sima/simo/BuoyType","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("directInputLineTypes","sima/simo/DirectInputLineType","",True,Dimension("*")))

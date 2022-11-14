@@ -17,11 +17,13 @@ class PlotNode(OutputNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -37,11 +39,11 @@ class PlotNode(OutputNode):
     fixed : bool
          (default False)
     title : str
-         (default "")
+         (default None)
     xLabel : str
-         (default "")
+         (default None)
     yLabel : str
-         (default "")
+         (default None)
     selectAll : bool
          Will export all signals as plot(default False)
     outputSlot : OutputSlot
@@ -49,8 +51,9 @@ class PlotNode(OutputNode):
          Create images and store these to disk. The output will then be the paths to the images(default True)
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, fixed=False, title="", xLabel="", yLabel="", selectAll=False, createImages=True, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, fixed=False, title=None, xLabel=None, yLabel=None, selectAll=False, createImages=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -79,6 +82,16 @@ class PlotNode(OutputNode):
         """Return blueprint that this entity represents"""
         return PlotNodeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

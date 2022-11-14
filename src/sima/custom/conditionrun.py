@@ -16,24 +16,27 @@ class ConditionRun(CustomComponent):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     condition : Condition
     _type : str
-         (default "")
+         (default None)
     addAllConditionTypes : bool
          (default False)
     addCustomLabel : bool
          (default False)
     label : str
-         (default "")
+         (default None)
     addOpenView : bool
          (default False)
     """
 
-    def __init__(self , _id="", _type="", addAllConditionTypes=False, addCustomLabel=False, label="", addOpenView=False, **kwargs):
+    def __init__(self , description="", _id=None, _type=None, addAllConditionTypes=False, addCustomLabel=False, label=None, addOpenView=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.condition = None
@@ -52,6 +55,16 @@ class ConditionRun(CustomComponent):
         """Return blueprint that this entity represents"""
         return ConditionRunBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

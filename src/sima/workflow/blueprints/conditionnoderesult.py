@@ -12,7 +12,8 @@ class ConditionNodeResultBlueprint(SignalStorageBlueprint):
 
     def __init__(self, name="ConditionNodeResult", package_path="sima/workflow", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("resultContainer","sima/sima/ResultContainer","",True))
-        self.attributes.append(Attribute("filenames","string","",Dimension("*"),default=""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("resultContainer","sima/sima/ResultContainer","",True))
+        self.add_attribute(Attribute("filenames","string","",Dimension("*"),default=None))

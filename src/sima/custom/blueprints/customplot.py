@@ -12,8 +12,9 @@ class CustomPlotBlueprint(CustomComponentBlueprint):
 
     def __init__(self, name="CustomPlot", package_path="sima/custom", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("output","sima/post/OutputNode","",False))
-        self.attributes.append(Attribute("path","string","",default=""))
-        self.attributes.append(Attribute("showTree","boolean","",default=False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("output","sima/post/OutputNode","",False))
+        self.add_attribute(Attribute("path","string","",default=None))
+        self.add_attribute(Attribute("showTree","boolean","",default=False))

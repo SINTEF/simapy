@@ -14,13 +14,15 @@ class ExternalForceFromFile(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     forceFile : str
-         ' File heading,  arbitrary number of lines with \n' apostrophe in the first position of the input line\nNCOL: Number of columns (=6)\nNROW: Number of rows (i.e. no. of time incidents)\nSAMP: Sampling interval [T]\nForce components, NROW lines (one per time incident)\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\n(default "")
+         ' File heading,  arbitrary number of lines with \n' apostrophe in the first position of the input line\nNCOL: Number of columns (=6)\nNROW: Number of rows (i.e. no. of time incidents)\nSAMP: Sampling interval [T]\nForce components, NROW lines (one per time incident)\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\n(default None)
     referenceFrame : ReferenceFrameType
          Which coordinate system is the force is given in?
     attachmentPoint : Point3
@@ -39,8 +41,9 @@ class ExternalForceFromFile(NamedObject):
          Moment about Z-axis(default 0.0)
     """
 
-    def __init__(self , _id="", name="", forceFile="", referenceFrame=ReferenceFrameType.LOCAL, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, forceFile=None, referenceFrame=ReferenceFrameType.LOCAL, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -63,6 +66,16 @@ class ExternalForceFromFile(NamedObject):
         """Return blueprint that this entity represents"""
         return ExternalForceFromFileBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

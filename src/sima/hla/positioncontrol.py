@@ -13,16 +13,19 @@ class PositionControl(CustomComponent):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     hlaObjectId : str
-         (default "")
+         (default None)
     reference : Position
     """
 
-    def __init__(self , _id="", hlaObjectId="", **kwargs):
+    def __init__(self , description="", _id=None, hlaObjectId=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.hlaObjectId = hlaObjectId
@@ -37,6 +40,16 @@ class PositionControl(CustomComponent):
         """Return blueprint that this entity represents"""
         return PositionControlBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

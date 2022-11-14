@@ -17,8 +17,10 @@ class StaticLoadComponent(SegmentReference):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -38,8 +40,9 @@ class StaticLoadComponent(SegmentReference):
          Force increment on magnitude(default 0.0)
     """
 
-    def __init__(self , _id="", segment=1, allSegments=False, node=0, dof=0, magnitude=0.0, referenceFrame=ReferenceFrameType.LOCAL, specForceIncrement=0.0, **kwargs):
+    def __init__(self , description="", _id=None, segment=1, allSegments=False, node=0, dof=0, magnitude=0.0, referenceFrame=ReferenceFrameType.LOCAL, specForceIncrement=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -60,6 +63,16 @@ class StaticLoadComponent(SegmentReference):
         """Return blueprint that this entity represents"""
         return StaticLoadComponentBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

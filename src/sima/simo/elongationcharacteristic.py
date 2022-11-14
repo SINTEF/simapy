@@ -18,11 +18,13 @@ class ElongationCharacteristic(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     inputType : ElongationCharacteristicType
          Elongation characteristic type. Stress-strain or tension-strain.
     items : List[ElongationItem]
@@ -31,8 +33,9 @@ class ElongationCharacteristic(NamedObject):
     fibreRopeModel : FibreRopeModel
     """
 
-    def __init__(self , _id="", name="", inputType=ElongationCharacteristicType.STRESS_STRAIN, tensionMax=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, inputType=ElongationCharacteristicType.STRESS_STRAIN, tensionMax=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -50,6 +53,16 @@ class ElongationCharacteristic(NamedObject):
         """Return blueprint that this entity represents"""
         return ElongationCharacteristicBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

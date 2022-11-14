@@ -21,11 +21,13 @@ class PipeInPipeContact(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     masterLine : ARLine
          Identification of master pipe.
     slaveLine : ARLine
@@ -72,8 +74,9 @@ class PipeInPipeContact(NamedObject):
     innerPipeLoading : InnerPipeLoading
     """
 
-    def __init__(self , _id="", name="", firstMasterSegment=0, lastMasterSegment=0, firstSlaveSegment=0, lastSlaveSegment=0, masterPipePosition=InnerOuter.INNER, stiffnessType=StiffnessType.LINEAR, relativeDamping=0.0, damping=0.0, frictionStiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, axialFrictionEnabled=False, rotationalFrictionEnabled=False, velocityLimitFriction=0.0, linearStiffness=0.0, masterAsMainRiser=False, slaveAsMainRiser=False, innerPipeLoading=InnerPipeLoading.EXPOSED, **kwargs):
+    def __init__(self , description="", _id=None, name=None, firstMasterSegment=0, lastMasterSegment=0, firstSlaveSegment=0, lastSlaveSegment=0, masterPipePosition=InnerOuter.INNER, stiffnessType=StiffnessType.LINEAR, relativeDamping=0.0, damping=0.0, frictionStiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, axialFrictionEnabled=False, rotationalFrictionEnabled=False, velocityLimitFriction=0.0, linearStiffness=0.0, masterAsMainRiser=False, slaveAsMainRiser=False, innerPipeLoading=InnerPipeLoading.EXPOSED, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -110,6 +113,16 @@ class PipeInPipeContact(NamedObject):
         """Return blueprint that this entity represents"""
         return PipeInPipeContactBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

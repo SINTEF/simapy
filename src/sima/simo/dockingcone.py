@@ -21,11 +21,13 @@ class DockingCone(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     dampingExponent : float
          Exponent of velocity in damping term(default 1.0)
     dampingInterpolation : Interpolation
@@ -52,8 +54,9 @@ class DockingCone(NamedObject):
     crossSections : List[DockingConeCrossSection]
     """
 
-    def __init__(self , _id="", name="", dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, velocityLimit=0.0, maxRadialDistance=0.0, friction=0.0, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, velocityLimit=0.0, maxRadialDistance=0.0, friction=0.0, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -82,6 +85,16 @@ class DockingCone(NamedObject):
         """Return blueprint that this entity represents"""
         return DockingConeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

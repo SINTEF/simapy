@@ -12,9 +12,10 @@ class DynamicWinchVariationItemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="DynamicWinchVariationItem", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("winch","sima/riflex/ARWinch","",False))
-        self.attributes.append(Attribute("startTime","number","Start time for winching",default=0.0))
-        self.attributes.append(Attribute("endTime","number","End time for winching",default=0.0))
-        self.attributes.append(Attribute("velocity","number","Winch velocity",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("winch","sima/riflex/ARWinch","",False))
+        self.add_attribute(Attribute("startTime","number","Start time for winching",default=0.0))
+        self.add_attribute(Attribute("endTime","number","End time for winching",default=0.0))
+        self.add_attribute(Attribute("velocity","number","Winch velocity",default=0.0))

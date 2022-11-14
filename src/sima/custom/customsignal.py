@@ -18,18 +18,20 @@ class CustomSignal(CustomComponent):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
-         (default "")
+         (default None)
     tooltip : str
-         (default "")
+         (default None)
     fileType : FileType
     directory : bool
          (default False)
     fileExtensions : str
-         Describes legal file extensions separated by semicolon, example:  *.txt;*.dat(default "")
+         Describes legal file extensions separated by semicolon, example:  *.txt;*.dat(default None)
     options : ndarray
     _type : FieldType
     width : int
@@ -39,8 +41,9 @@ class CustomSignal(CustomComponent):
     signal : GeneratorSignal
     """
 
-    def __init__(self , _id="", label="", tooltip="", fileType=FileType.INPUT, directory=False, fileExtensions="", _type=FieldType.TEXT, width=10, expandHorizontally=False, **kwargs):
+    def __init__(self , description="", _id=None, label=None, tooltip=None, fileType=FileType.INPUT, directory=False, fileExtensions=None, _type=FieldType.TEXT, width=10, expandHorizontally=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.label = label
@@ -63,6 +66,16 @@ class CustomSignal(CustomComponent):
         """Return blueprint that this entity represents"""
         return CustomSignalBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

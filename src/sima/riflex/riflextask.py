@@ -22,11 +22,13 @@ class RIFLEXTask(SIMOTask):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     doubleVariables : List[DoubleVariable]
     integerVariables : List[IntegerVariable]
     stringVariables : List[StringVariable]
@@ -62,8 +64,9 @@ class RIFLEXTask(SIMOTask):
          (default True)
     """
 
-    def __init__(self , _id="", name="", runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, exportAsFMU=False, riflexStamodMemory=512, numRiflexStamodArrays=20000, riflexDynmodMemory=512, vivanaWorkArraySize=9000000, maxRiflexArrays=2000, riflexOutmodMemory=32, skipRiflexDynmodTransformation=True, **kwargs):
+    def __init__(self , description="", _id=None, name=None, runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, exportAsFMU=False, riflexStamodMemory=512, numRiflexStamodArrays=20000, riflexDynmodMemory=512, vivanaWorkArraySize=9000000, maxRiflexArrays=2000, riflexOutmodMemory=32, skipRiflexDynmodTransformation=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -98,6 +101,16 @@ class RIFLEXTask(SIMOTask):
         """Return blueprint that this entity represents"""
         return RIFLEXTaskBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

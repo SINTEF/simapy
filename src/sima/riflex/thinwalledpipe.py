@@ -22,13 +22,15 @@ class ThinWalledPipe(CrossSection):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     scfkSpecification : bool
-         Scaling of Froude-Krylov term in Morison’s equation in normal direction(default True)
+         Scaling of Froude-Krylov term in Morison’s equation in normal direction(default False)
     loadFormulation : LoadFormulation
     hydrodynamicDiameter : float
          Hydrodynamic diameter(default 0.0)
@@ -125,8 +127,9 @@ class ThinWalledPipe(CrossSection):
     vivCoefficients : TimeDomainVIVLoadCoefficients
     """
 
-    def __init__(self , _id="", name="", scfkSpecification=True, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, pipeDiameter=0.0, pipeThickness=0.0, materialDensity=0.0, extCoatingThickness=0.0, extCoatingDensity=0.0, extContactRadius=0.0, intContactRadius=0.0, tensionCapacity=0.0, maxCurvature=0.0, calculateBeta=False, diameterType=InnerOuter.OUTER, coupledBendingTorsion=False, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, **kwargs):
+    def __init__(self , description="", _id=None, name=None, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, pipeDiameter=0.0, pipeThickness=0.0, materialDensity=0.0, extCoatingThickness=0.0, extCoatingDensity=0.0, extContactRadius=0.0, intContactRadius=0.0, tensionCapacity=0.0, maxCurvature=0.0, calculateBeta=False, diameterType=InnerOuter.OUTER, coupledBendingTorsion=False, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -191,6 +194,16 @@ class ThinWalledPipe(CrossSection):
         """Return blueprint that this entity represents"""
         return ThinWalledPipeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

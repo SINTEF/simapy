@@ -17,11 +17,13 @@ class LiftLineCoupling(SimpleCoupling):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     endPoint1 : SIMOBodyPoint
     endPoint2 : SIMOBodyPoint
     failureMode : ActivationFailureMode
@@ -33,7 +35,7 @@ class LiftLineCoupling(SimpleCoupling):
     numElements : int
          Number of elements(default 0)
     accIncluded : bool
-         Flag for including acceleration of the line(default True)
+         Flag for including acceleration of the line(default False)
     diameter : float
          Segment diameter(default 0.0)
     eMod : float
@@ -56,8 +58,9 @@ class LiftLineCoupling(SimpleCoupling):
          Longitudinal drag coefficient(default 0.0)
     """
 
-    def __init__(self , _id="", name="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, numElements=0, accIncluded=True, diameter=0.0, eMod=0.0, emFac=1, length=0.0, flexibility=0.0, damping=0.0, uwia=0.0, watfac=0.0, transverseDrag=0.0, longitudinalDrag=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, numElements=0, accIncluded=False, diameter=0.0, eMod=0.0, emFac=1, length=0.0, flexibility=0.0, damping=0.0, uwia=0.0, watfac=0.0, transverseDrag=0.0, longitudinalDrag=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -88,6 +91,16 @@ class LiftLineCoupling(SimpleCoupling):
         """Return blueprint that this entity represents"""
         return LiftLineCouplingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

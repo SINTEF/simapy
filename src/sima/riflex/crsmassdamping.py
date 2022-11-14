@@ -12,8 +12,10 @@ class CRSMassDamping(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     axialFactor : float
          Factor for mass proportional damping in axial dof(default 0.0)
@@ -23,8 +25,9 @@ class CRSMassDamping(MOAO):
          Factor for mass proportional damping in bending dof(default 0.0)
     """
 
-    def __init__(self , _id="", axialFactor=0.0, torsionalFactor=0.0, bendingFactor=0.0, **kwargs):
+    def __init__(self , description="", _id=None, axialFactor=0.0, torsionalFactor=0.0, bendingFactor=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.axialFactor = axialFactor
@@ -40,6 +43,16 @@ class CRSMassDamping(MOAO):
         """Return blueprint that this entity represents"""
         return CRSMassDampingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

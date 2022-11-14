@@ -15,8 +15,10 @@ class VolumeConeItem(VolumeMassPortion):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     volume : Volume
          Add or subtract volume
@@ -32,8 +34,9 @@ class VolumeConeItem(VolumeMassPortion):
          Cone axis direction:\nX: parallell to Tank x-axis\nY: parallell to Tank y-axis\nZ: parallell to Tank z-axis
     """
 
-    def __init__(self , _id="", volume=Volume.ADD, length=0.0, diameterBottomPlane=0.0, diameterTopPlane=0.0, axis=Axis.Z, **kwargs):
+    def __init__(self , description="", _id=None, volume=Volume.ADD, length=0.0, diameterBottomPlane=0.0, diameterTopPlane=0.0, axis=Axis.Z, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.volume = volume
@@ -52,6 +55,16 @@ class VolumeConeItem(VolumeMassPortion):
         """Return blueprint that this entity represents"""
         return VolumeConeItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

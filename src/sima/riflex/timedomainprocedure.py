@@ -17,8 +17,10 @@ class TimeDomainProcedure(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     method : MethodIndicator
          Method indicator
@@ -62,8 +64,9 @@ class TimeDomainProcedure(MOAO):
     nonLinearIntegrationProcedure : NonLinearIntegrationProcedure
     """
 
-    def __init__(self , _id="", method=MethodIndicator.NONLINEAR, procedure=ProcedureIndicator.NEWMARK, displacementStorage=False, forceResultStorage=False, sumForceResponseStorage=False, curvatureResponseStorage=False, envelopeCurveSpecification=False, inverseBeta=4.0, gamma=0.5, theta=1.0, dampingOption=RayleighDamping.TOTAL, globalMassDampingFactor=0.0, globalStiffnessDampingFactor=0.0, localMassTensionDamping=0.0, localMassTorsionDamping=0.0, localMassBendingDamping=0.0, localStiffnessTensionDamping=0.0, localStiffnessTorsionDamping=0.0, localStiffnessBendingDamping=0.0, **kwargs):
+    def __init__(self , description="", _id=None, method=MethodIndicator.NONLINEAR, procedure=ProcedureIndicator.NEWMARK, displacementStorage=False, forceResultStorage=False, sumForceResponseStorage=False, curvatureResponseStorage=False, envelopeCurveSpecification=False, inverseBeta=4.0, gamma=0.5, theta=1.0, dampingOption=RayleighDamping.TOTAL, globalMassDampingFactor=0.0, globalStiffnessDampingFactor=0.0, localMassTensionDamping=0.0, localMassTorsionDamping=0.0, localMassBendingDamping=0.0, localStiffnessTensionDamping=0.0, localStiffnessTorsionDamping=0.0, localStiffnessBendingDamping=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.method = method
@@ -97,6 +100,16 @@ class TimeDomainProcedure(MOAO):
         """Return blueprint that this entity represents"""
         return TimeDomainProcedureBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

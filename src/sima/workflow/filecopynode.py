@@ -15,11 +15,13 @@ class FileCopyNode(RunNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -34,7 +36,7 @@ class FileCopyNode(RunNode):
     folder : bool
          If this is set, all files that er input to the operation will be copied to the destination, otherwise a single file is expected(default False)
     path : str
-         Path to the output file.(default "")
+         Path to the output file.(default None)
     retainStructure : bool
          Retain structure of input(default False)
     cleanUpFolder : bool
@@ -43,8 +45,9 @@ class FileCopyNode(RunNode):
     outputSlot : OutputSlot
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, ignoreEmptyInput=False, folder=False, path="", retainStructure=False, cleanUpFolder=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, ignoreEmptyInput=False, folder=False, path=None, retainStructure=False, cleanUpFolder=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -70,6 +73,16 @@ class FileCopyNode(RunNode):
         """Return blueprint that this entity represents"""
         return FileCopyNodeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

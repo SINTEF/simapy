@@ -17,11 +17,13 @@ class MomentCoupling(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     body1 : SIMOBody
     rotationVector : Vector3
     body2 : SIMOBody
@@ -39,8 +41,9 @@ class MomentCoupling(NamedObject):
          Exponent in damping for negative rotation(default 0.0)
     """
 
-    def __init__(self , _id="", name="", initialMoment=0.0, stiffness=0.0, positiveDamping=0.0, positiveExponent=0.0, negativeDamping=0.0, negativeExponent=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, initialMoment=0.0, stiffness=0.0, positiveDamping=0.0, positiveExponent=0.0, negativeDamping=0.0, negativeExponent=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -63,6 +66,16 @@ class MomentCoupling(NamedObject):
         """Return blueprint that this entity represents"""
         return MomentCouplingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

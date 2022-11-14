@@ -12,8 +12,10 @@ class GDFCylinder(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     dimensionalLength : float
          Dimensional length(default 1.0)
@@ -33,8 +35,9 @@ class GDFCylinder(MOAO):
          Exponent in depth distribution(default 2.0)
     """
 
-    def __init__(self , _id="", dimensionalLength=1.0, centerX=0.0, centerY=0.0, radius=40.0, numberOfRadialPanels=20, depth=20.0, numberOfVerticalPanels=10, exponent=2.0, **kwargs):
+    def __init__(self , description="", _id=None, dimensionalLength=1.0, centerX=0.0, centerY=0.0, radius=40.0, numberOfRadialPanels=20, depth=20.0, numberOfVerticalPanels=10, exponent=2.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.dimensionalLength = dimensionalLength
@@ -55,6 +58,16 @@ class GDFCylinder(MOAO):
         """Return blueprint that this entity represents"""
         return GDFCylinderBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

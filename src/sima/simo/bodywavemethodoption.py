@@ -17,8 +17,10 @@ class BodyWaveMethodOption(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     body : SIMOBody
     waveParticleMotions : KinematicMethod
@@ -39,8 +41,9 @@ class BodyWaveMethodOption(MOAO):
          Options for diffracted wave
     """
 
-    def __init__(self , _id="", waveParticleMotions=KinematicMethod.FFT, waveParticleMotionDistributed=KinematicMethod.FFT, firstOrderWaveForce=KinematicMethod.FFT, firstOrderMotion=KinematicMethod.FFT, waveDriftForce=KinematicMethod.FFT, waveDriftDamping=KinematicMethod.FFT, qtf=KinematicMethod.FFT, diffractedWave=KinematicMethod.FFT, **kwargs):
+    def __init__(self , description="", _id=None, waveParticleMotions=KinematicMethod.FFT, waveParticleMotionDistributed=KinematicMethod.FFT, firstOrderWaveForce=KinematicMethod.FFT, firstOrderMotion=KinematicMethod.FFT, waveDriftForce=KinematicMethod.FFT, waveDriftDamping=KinematicMethod.FFT, qtf=KinematicMethod.FFT, diffractedWave=KinematicMethod.FFT, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.body = None
@@ -62,6 +65,16 @@ class BodyWaveMethodOption(MOAO):
         """Return blueprint that this entity represents"""
         return BodyWaveMethodOptionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

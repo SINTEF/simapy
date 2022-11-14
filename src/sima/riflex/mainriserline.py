@@ -14,11 +14,13 @@ class MainRiserLine(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     riserLines : List[ARLineItem]
     flowRho : float
          Density of contents(default 0.0)
@@ -30,8 +32,9 @@ class MainRiserLine(NamedObject):
          Pressure drop(default 0.0)
     """
 
-    def __init__(self , _id="", name="", flowRho=0.0, flowPressure=0.0, flowPressureEnd=End.ONE, flowPressureDrop=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, flowRho=0.0, flowPressure=0.0, flowPressureEnd=End.ONE, flowPressureDrop=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -50,6 +53,16 @@ class MainRiserLine(NamedObject):
         """Return blueprint that this entity represents"""
         return MainRiserLineBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

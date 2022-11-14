@@ -14,8 +14,10 @@ class ForceDampingCharacteristic(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     dampingExponent : float
          Exponent of velocity in damping term(default 1.0)
@@ -26,8 +28,9 @@ class ForceDampingCharacteristic(MOAO):
     items : List[ForceDampingItem]
     """
 
-    def __init__(self , _id="", dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, **kwargs):
+    def __init__(self , description="", _id=None, dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.dampingExponent = dampingExponent
@@ -44,6 +47,16 @@ class ForceDampingCharacteristic(MOAO):
         """Return blueprint that this entity represents"""
         return ForceDampingCharacteristicBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

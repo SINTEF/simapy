@@ -12,10 +12,11 @@ class StaticConditionResultBlueprint(MOAOBlueprint):
 
     def __init__(self, name="StaticConditionResult", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("bodyResults","sima/simo/BodyResult","",True,Dimension("*")))
-        self.attributes.append(Attribute("header","string","",default=""))
-        self.attributes.append(Attribute("dateTag","string","",default=""))
-        self.attributes.append(Attribute("filepart","string","",default=""))
-        self.attributes.append(Attribute("globalForces","boolean","",default=True))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("bodyResults","sima/simo/BodyResult","",True,Dimension("*")))
+        self.add_attribute(Attribute("header","string","",default=None))
+        self.add_attribute(Attribute("dateTag","string","",default=None))
+        self.add_attribute(Attribute("filepart","string","",default=None))
+        self.add_attribute(Attribute("globalForces","boolean","",default=True))

@@ -12,10 +12,11 @@ class PlotBlueprint(ReportItemBlueprint):
 
     def __init__(self, name="Plot", package_path="sima/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("object","sima/sima/MOAO","",False))
-        self.attributes.append(Attribute("caption","string","Caption",default=""))
-        self.attributes.append(Attribute("mergeSeries","boolean","Merge all series in one plot",default=False))
-        self.attributes.append(Attribute("xLabel","string","",default=""))
-        self.attributes.append(Attribute("yLabel","string","",default=""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("object","sima/sima/MOAO","",False))
+        self.add_attribute(Attribute("caption","string","Caption",default=None))
+        self.add_attribute(Attribute("mergeSeries","boolean","Merge all series in one plot",default=False))
+        self.add_attribute(Attribute("xLabel","string","",default=None))
+        self.add_attribute(Attribute("yLabel","string","",default=None))

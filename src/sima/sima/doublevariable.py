@@ -12,19 +12,22 @@ class DoubleVariable(Variable):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     value : float
          The current value for the variable(default 0.0)
     unit : str
          unit of variable(default '-')
     """
 
-    def __init__(self , _id="", name="", value=0.0, unit='-', **kwargs):
+    def __init__(self , description="", _id=None, name=None, value=0.0, unit='-', **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -40,6 +43,16 @@ class DoubleVariable(Variable):
         """Return blueprint that this entity represents"""
         return DoubleVariableBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

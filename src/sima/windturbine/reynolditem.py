@@ -14,8 +14,10 @@ class ReynoldItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     reynoldsNumber : float
          Reynold number for given airfoil regime(default 0.0)
@@ -23,8 +25,9 @@ class ReynoldItem(MOAO):
     stallPoint : StallPoint
     """
 
-    def __init__(self , _id="", reynoldsNumber=0.0, **kwargs):
+    def __init__(self , description="", _id=None, reynoldsNumber=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.reynoldsNumber = reynoldsNumber
@@ -40,6 +43,16 @@ class ReynoldItem(MOAO):
         """Return blueprint that this entity represents"""
         return ReynoldItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

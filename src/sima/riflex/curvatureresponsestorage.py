@@ -14,8 +14,10 @@ class CurvatureResponseStorage(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     storageStep : int
          Code for storage of internal forces. Storage for every <storage step> given.(default 1)
@@ -25,8 +27,9 @@ class CurvatureResponseStorage(MOAO):
          Specification of nodes for displacement storage
     """
 
-    def __init__(self , _id="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, **kwargs):
+    def __init__(self , description="", _id=None, storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.storageStep = storageStep
@@ -42,6 +45,16 @@ class CurvatureResponseStorage(MOAO):
         """Return blueprint that this entity represents"""
         return CurvatureResponseStorageBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

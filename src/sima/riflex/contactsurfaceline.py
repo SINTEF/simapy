@@ -16,8 +16,10 @@ class ContactSurfaceLine(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Reference to line to be checked for contact with the contact surface.
@@ -31,8 +33,9 @@ class ContactSurfaceLine(MOAO):
          Last element within last contact segment to be checked for contact(default 0)
     """
 
-    def __init__(self , _id="", firstSegmentContact=1, firstElementContact=1, lastSegmentContact=0, lastElementContact=0, **kwargs):
+    def __init__(self , description="", _id=None, firstSegmentContact=1, firstElementContact=1, lastSegmentContact=0, lastElementContact=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -50,6 +53,16 @@ class ContactSurfaceLine(MOAO):
         """Return blueprint that this entity represents"""
         return ContactSurfaceLineBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

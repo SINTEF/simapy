@@ -13,11 +13,13 @@ class Sand(Soil):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     strainVelocityExponent : float
          Strain velocity exponent for damping model(default 1.0)
     calculateDamping : bool
@@ -47,8 +49,9 @@ class Sand(Soil):
          Limiting tip resistance(default 1900000.0)
     """
 
-    def __init__(self , _id="", name="", strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperFrictionAngle=0.0, lowerFrictionAngle=0.0, angleOfSoilFriction=15.0, limitingSkinFriction=48000.0, bearingFactor=8.0, limitingTipResistance=1900000.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperFrictionAngle=0.0, lowerFrictionAngle=0.0, angleOfSoilFriction=15.0, limitingSkinFriction=48000.0, bearingFactor=8.0, limitingTipResistance=1900000.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -76,6 +79,16 @@ class Sand(Soil):
         """Return blueprint that this entity represents"""
         return SandBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,10 +12,11 @@ class PhysicalConstantsBlueprint(MOAOBlueprint):
 
     def __init__(self, name="PhysicalConstants", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("airDensity","number","Air density - rho air",default=1.25))
-        self.attributes.append(Attribute("waterDensity","number","Water density - rho water",default=1025.0))
-        self.attributes.append(Attribute("kinematicViscosityWater","number","Kinematic viscosity of water",default=1.188e-06))
-        self.attributes.append(Attribute("kinematicViscosityAir","number","Kinematic viscosity of air",default=1.516e-05))
-        self.attributes.append(Attribute("accOfGravity","number","Acceleration of gravity - g",default=9.81))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("airDensity","number","Air density - rho air",default=1.25))
+        self.add_attribute(Attribute("waterDensity","number","Water density - rho water",default=1025.0))
+        self.add_attribute(Attribute("kinematicViscosityWater","number","Kinematic viscosity of water",default=1.188e-06))
+        self.add_attribute(Attribute("kinematicViscosityAir","number","Kinematic viscosity of air",default=1.516e-05))
+        self.add_attribute(Attribute("accOfGravity","number","Acceleration of gravity - g",default=9.81))

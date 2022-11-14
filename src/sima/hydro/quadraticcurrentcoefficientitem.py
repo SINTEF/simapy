@@ -12,8 +12,10 @@ class QuadraticCurrentCoefficientItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Direction(default 0.0)
@@ -31,8 +33,9 @@ class QuadraticCurrentCoefficientItem(MOAO):
          Quadratic current force coefficient for 6. degree of freedom(default 0.0)
     """
 
-    def __init__(self , _id="", direction=0.0, c21=0.0, c22=0.0, c23=0.0, c24=0.0, c25=0.0, c26=0.0, **kwargs):
+    def __init__(self , description="", _id=None, direction=0.0, c21=0.0, c22=0.0, c23=0.0, c24=0.0, c25=0.0, c26=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.direction = direction
@@ -52,6 +55,16 @@ class QuadraticCurrentCoefficientItem(MOAO):
         """Return blueprint that this entity represents"""
         return QuadraticCurrentCoefficientItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

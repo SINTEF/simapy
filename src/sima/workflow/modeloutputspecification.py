@@ -16,15 +16,18 @@ class ModelOutputSpecification(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     reference : ModelReferenceVariable
          Model object to be included.
     """
 
-    def __init__(self , _id="", **kwargs):
+    def __init__(self , description="", _id=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.reference = None
@@ -38,6 +41,16 @@ class ModelOutputSpecification(MOAO):
         """Return blueprint that this entity represents"""
         return ModelOutputSpecificationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

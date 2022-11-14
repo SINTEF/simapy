@@ -13,13 +13,15 @@ class HLAControlConfiguration(HLAObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     bodyName : str
-         HLA name of body(default "")
+         HLA name of body(default None)
     vMaxRot : float
          Maximum rotation speed(default 1.0)
     vMaxX : float
@@ -40,8 +42,9 @@ class HLAControlConfiguration(HLAObject):
          Control reference
     """
 
-    def __init__(self , _id="", name="", bodyName="", vMaxRot=1.0, vMaxX=2.0, vMaxY=1.0, aMaxRot=0.1, aMaxX=0.2, aMaxY=0.05, limRot=1.0, limXY=0.5, controlReference=HLAControlReference.POSITION, **kwargs):
+    def __init__(self , description="", _id=None, name=None, bodyName=None, vMaxRot=1.0, vMaxX=2.0, vMaxY=1.0, aMaxRot=0.1, aMaxX=0.2, aMaxY=0.05, limRot=1.0, limXY=0.5, controlReference=HLAControlReference.POSITION, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -65,6 +68,16 @@ class HLAControlConfiguration(HLAObject):
         """Return blueprint that this entity represents"""
         return HLAControlConfigurationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

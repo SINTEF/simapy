@@ -14,8 +14,10 @@ class IrregularTimeSeriesParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     randomSeedWaves : int
          Starting parameter of random number generator(default 1)
@@ -45,8 +47,9 @@ class IrregularTimeSeriesParameters(MOAO):
          Ratio between length of small patch and length of large patch.(default 0)
     """
 
-    def __init__(self , _id="", randomSeedWaves=1, useStochasticAmplitudes=False, waveLength=16384.0, timeIncrement=0.5, waveComputationMethod=WaveComputationMethod.FFT, waveAmplitudeComputation=WaveAmplitudeComputation.DETERMINISTIC, numWindWaveFreqComponents=0, numSwellFreqComponents=0, waveCutFactor=0.0, largePatchPoints=0, largePatchLength=0.0, smallPatchPoints=0, patchRatio=0, **kwargs):
+    def __init__(self , description="", _id=None, randomSeedWaves=1, useStochasticAmplitudes=False, waveLength=16384.0, timeIncrement=0.5, waveComputationMethod=WaveComputationMethod.FFT, waveAmplitudeComputation=WaveAmplitudeComputation.DETERMINISTIC, numWindWaveFreqComponents=0, numSwellFreqComponents=0, waveCutFactor=0.0, largePatchPoints=0, largePatchLength=0.0, smallPatchPoints=0, patchRatio=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.randomSeedWaves = randomSeedWaves
@@ -72,6 +75,16 @@ class IrregularTimeSeriesParameters(MOAO):
         """Return blueprint that this entity represents"""
         return IrregularTimeSeriesParametersBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

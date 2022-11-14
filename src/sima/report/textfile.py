@@ -12,17 +12,20 @@ class TextFile(ReportItem):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
-         Absolute path to the text file to be read in.(default "")
+         Absolute path to the text file to be read in.(default None)
     plainText : bool
          Whether or not the text file contains Wiki markup code to be parsed.(default False)
     """
 
-    def __init__(self , _id="", path="", plainText=False, **kwargs):
+    def __init__(self , description="", _id=None, path=None, plainText=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.path = path
@@ -37,6 +40,16 @@ class TextFile(ReportItem):
         """Return blueprint that this entity represents"""
         return TextFileBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

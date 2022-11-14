@@ -12,17 +12,20 @@ class Formula(ReportItem):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     latex : str
-         (default "")
+         (default None)
     caption : str
-         Caption(default "")
+         Caption(default None)
     """
 
-    def __init__(self , _id="", latex="", caption="", **kwargs):
+    def __init__(self , description="", _id=None, latex=None, caption=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.latex = latex
@@ -37,6 +40,16 @@ class Formula(ReportItem):
         """Return blueprint that this entity represents"""
         return FormulaBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

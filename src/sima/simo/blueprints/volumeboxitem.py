@@ -12,10 +12,11 @@ class VolumeBoxItemBlueprint(VolumeMassPortionBlueprint):
 
     def __init__(self, name="VolumeBoxItem", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(EnumAttribute("volume","sima/simo/Volume","Add or subtract volume"))
-        self.attributes.append(BlueprintAttribute("centerPoint","sima/sima/Point3","Location of center of bottom plane in local coordinates",True))
-        self.attributes.append(Attribute("lengthX","number","Length of box i x-direction",default=0.0))
-        self.attributes.append(Attribute("lengthY","number","Length of box i y-direction",default=0.0))
-        self.attributes.append(Attribute("lengthZ","number","Length of box i z-direction",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(EnumAttribute("volume","sima/simo/Volume","Add or subtract volume"))
+        self.add_attribute(BlueprintAttribute("centerPoint","sima/sima/Point3","Location of center of bottom plane in local coordinates",True))
+        self.add_attribute(Attribute("lengthX","number","Length of box i x-direction",default=0.0))
+        self.add_attribute(Attribute("lengthY","number","Length of box i y-direction",default=0.0))
+        self.add_attribute(Attribute("lengthZ","number","Length of box i z-direction",default=0.0))

@@ -14,11 +14,13 @@ class FileInputNode(RunNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -29,7 +31,7 @@ class FileInputNode(RunNode):
          (default 0)
     controlSignalInputSlots : List[ControlSignalInputSlot]
     filePath : str
-         Path to the input file.(default "")
+         Path to the input file.(default None)
     outputSlot : OutputSlot
     readRawText : bool
          read the file in as raw text data(default False)
@@ -37,8 +39,9 @@ class FileInputNode(RunNode):
          split separate lines into array(default False)
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, filePath="", readRawText=False, splitLines=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, filePath=None, readRawText=False, splitLines=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class FileInputNode(RunNode):
         """Return blueprint that this entity represents"""
         return FileInputNodeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -13,6 +13,7 @@ class SectionBlueprint(ReportItemContainerBlueprint,ReportItemBlueprint):
 
     def __init__(self, name="Section", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(BlueprintAttribute("items","marmo/report/ReportItem","",True,Dimension("*")))
-        self.attributes.append(Attribute("title","string","",default=""))
-        self.attributes.append(Attribute("landscape","boolean","",default=False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(BlueprintAttribute("items","marmo/report/ReportItem","",True,Dimension("*")))
+        self.add_attribute(Attribute("title","string","",default=None))
+        self.add_attribute(Attribute("landscape","boolean","",default=False))

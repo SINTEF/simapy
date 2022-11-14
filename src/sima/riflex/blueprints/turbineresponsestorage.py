@@ -12,8 +12,9 @@ class TurbineResponseStorageBlueprint(MOAOBlueprint):
 
     def __init__(self, name="TurbineResponseStorage", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("store","boolean","",default=False))
-        self.attributes.append(Attribute("timeInterval","number","Desired time interval for storage. A value of 0 gives storage at each time step.",default=0.0))
-        self.attributes.append(EnumAttribute("fileFormat","sima/riflex/StorageType",""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("store","boolean","",default=False))
+        self.add_attribute(Attribute("timeInterval","number","Desired time interval for storage. A value of 0 gives storage at each time step.",default=0.0))
+        self.add_attribute(EnumAttribute("fileFormat","sima/riflex/StorageType",""))

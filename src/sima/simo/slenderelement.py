@@ -22,11 +22,13 @@ class SlenderElement(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     specificVolume : float
          Specific volume (cross-section area) of element(default 0.0)
     distributedMass : float
@@ -70,8 +72,9 @@ class SlenderElement(NamedObject):
     aerodynamicDescription : AerodynamicDescription
     """
 
-    def __init__(self , _id="", name="", specificVolume=0.0, distributedMass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=WaveParticleMethod.VELOCITY_AND_ACCELERATION, numberOfStrips=10, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, windForces=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, specificVolume=0.0, distributedMass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=WaveParticleMethod.VELOCITY_AND_ACCELERATION, numberOfStrips=10, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, windForces=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -109,6 +112,16 @@ class SlenderElement(NamedObject):
         """Return blueprint that this entity represents"""
         return SlenderElementBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

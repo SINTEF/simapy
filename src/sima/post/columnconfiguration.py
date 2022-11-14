@@ -12,23 +12,26 @@ class ColumnConfiguration(PathSpecification):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
-         (default "")
+         (default None)
     header : str
-         Column header. The default value is the header,legend or name attribute of the signal(default "")
+         Column header. The default value is the header,legend or name attribute of the signal(default None)
     label : str
-         Column label. The default value is the unit of the y axis, or the label attribute, or ylabel + unit if specified(default "")
+         Column label. The default value is the unit of the y axis, or the label attribute, or ylabel + unit if specified(default None)
     format : str
          Column number format. Please refer to https://docs.oracle.com/javase/tutorial/i18n/format/decimalFormat.html for a description(default '0.####E0')
     fontSize : int
          Column font size. Will be used when renderin the table in a report,etc.(default 0)
     """
 
-    def __init__(self , _id="", path="", header="", label="", format='0.####E0', fontSize=0, **kwargs):
+    def __init__(self , description="", _id=None, path=None, header=None, label=None, format='0.####E0', fontSize=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.path = path
@@ -46,6 +49,16 @@ class ColumnConfiguration(PathSpecification):
         """Return blueprint that this entity represents"""
         return ColumnConfigurationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

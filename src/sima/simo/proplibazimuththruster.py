@@ -16,11 +16,13 @@ class ProplibAzimuthThruster(IThruster):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     minForce : float
          Minimum thruster force(default 0.0)
     maxForce : float
@@ -34,11 +36,11 @@ class ProplibAzimuthThruster(IThruster):
     controlSequence : ThrusterControlSequence
     failureSpecification : ThrusterFailureSpecification
     includeSurfaceProximityLoss : bool
-         Should surface proximity loss be included?(default True)
+         Should surface proximity loss be included?(default False)
     includeThrusterHullInteraction : bool
-         Should thruster-hull interaction be included?(default True)
+         Should thruster-hull interaction be included?(default False)
     includeThrusterThrusterInteraction : bool
-         Should thruster-thruster interaction be included?(default True)
+         Should thruster-thruster interaction be included?(default False)
     maxRps : float
          The RPS giving maximum force(default 0.0)
     diameter : float
@@ -61,8 +63,9 @@ class ProplibAzimuthThruster(IThruster):
          Vertical distance from propeller center to hull(default 0.0)
     """
 
-    def __init__(self , _id="", name="", minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=True, includeThrusterHullInteraction=True, includeThrusterThrusterInteraction=True, maxRps=0.0, diameter=0.0, bladeAreaRatio=0.0, wakeFraction=0.0, thrustDeductionFactor=0.0, sigma=0.0, podArea=0.0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=False, includeThrusterHullInteraction=False, includeThrusterThrusterInteraction=False, maxRps=0.0, diameter=0.0, bladeAreaRatio=0.0, wakeFraction=0.0, thrustDeductionFactor=0.0, sigma=0.0, podArea=0.0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -97,6 +100,16 @@ class ProplibAzimuthThruster(IThruster):
         """Return blueprint that this entity represents"""
         return ProplibAzimuthThrusterBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

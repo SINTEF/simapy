@@ -12,8 +12,9 @@ class BladePitchFaultBlueprint(MOAOBlueprint):
 
     def __init__(self, name="BladePitchFault", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("seizeFaults","sima/riflex/SeizeBladePitchFaultItem","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("runawayFaults","sima/riflex/RunawayBladePitchFaultItem","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("biasFaults","sima/riflex/BiasBladePitchFaultItem","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("seizeFaults","sima/riflex/SeizeBladePitchFaultItem","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("runawayFaults","sima/riflex/RunawayBladePitchFaultItem","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("biasFaults","sima/riflex/BiasBladePitchFaultItem","",True,Dimension("*")))

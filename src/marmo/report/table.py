@@ -12,15 +12,18 @@ class Table(ReportItem):
     """
     Keyword arguments
     -----------------
-    caption : str
+    description : str
          (default "")
+    caption : str
+         (default None)
     transposed : bool
-         (default True)
+         (default False)
     columns : List[Column]
     """
 
-    def __init__(self , caption="", transposed=True, **kwargs):
+    def __init__(self , description="", caption=None, transposed=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.caption = caption
         self.transposed = transposed
         self.columns = list()
@@ -34,6 +37,16 @@ class Table(ReportItem):
         """Return blueprint that this entity represents"""
         return TableBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def caption(self) -> str:

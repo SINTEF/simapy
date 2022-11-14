@@ -13,8 +13,10 @@ class FluctuatingThreeComponent(Wind):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
@@ -22,11 +24,11 @@ class FluctuatingThreeComponent(Wind):
          Mean wind speed (along wind propagation direction)(default 0.0)
     velocityProfiles : List[FluctuatingWindVelocityProfile]
     longitudinalFileName : str
-         Path and filename for the fluctuating longitudinal wind time series(default "")
+         Path and filename for the fluctuating longitudinal wind time series(default None)
     lateralFileName : str
-         Path and filename for the fluctuating lateral wind time series(default "")
+         Path and filename for the fluctuating lateral wind time series(default None)
     verticalFileName : str
-         Path and filename for the fluctuating vertical wind time series(default "")
+         Path and filename for the fluctuating vertical wind time series(default None)
     lowerLeftX : float
          X-coordinate of the lower left corner of the upstream border of the wind(default 0.0)
     lowerLeftY : float
@@ -49,8 +51,9 @@ class FluctuatingThreeComponent(Wind):
          Buffer size: Number of wind crossectional planes (Slices) in memory(default 800)
     """
 
-    def __init__(self , _id="", direction=0.0, meanSpeed=0.0, longitudinalFileName="", lateralFileName="", verticalFileName="", lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, **kwargs):
+    def __init__(self , description="", _id=None, direction=0.0, meanSpeed=0.0, longitudinalFileName=None, lateralFileName=None, verticalFileName=None, lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.direction = direction
@@ -79,6 +82,16 @@ class FluctuatingThreeComponent(Wind):
         """Return blueprint that this entity represents"""
         return FluctuatingThreeComponentBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

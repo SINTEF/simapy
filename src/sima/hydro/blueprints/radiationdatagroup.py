@@ -12,10 +12,11 @@ class RadiationDataGroupBlueprint(MOAOBlueprint):
 
     def __init__(self, name="RadiationDataGroup", package_path="sima/hydro", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("frequencyDependentAddedMass","sima/hydro/FrequencyDependentAddedMass","",True))
-        self.attributes.append(BlueprintAttribute("frequencyDependentDamping","sima/hydro/FrequencyDependentDamping","",True))
-        self.attributes.append(BlueprintAttribute("retardationFunction","sima/hydro/RetardationFunction","",True))
-        self.attributes.append(BlueprintAttribute("addedMassZeroFrequency","sima/hydro/AddedMassZeroFrequency","",True))
-        self.attributes.append(BlueprintAttribute("addedMassInfiniteFrequency","sima/hydro/AddedMassInfiniteFrequency","",True))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("frequencyDependentAddedMass","sima/hydro/FrequencyDependentAddedMass","",True))
+        self.add_attribute(BlueprintAttribute("frequencyDependentDamping","sima/hydro/FrequencyDependentDamping","",True))
+        self.add_attribute(BlueprintAttribute("retardationFunction","sima/hydro/RetardationFunction","",True))
+        self.add_attribute(BlueprintAttribute("addedMassZeroFrequency","sima/hydro/AddedMassZeroFrequency","",True))
+        self.add_attribute(BlueprintAttribute("addedMassInfiniteFrequency","sima/hydro/AddedMassInfiniteFrequency","",True))

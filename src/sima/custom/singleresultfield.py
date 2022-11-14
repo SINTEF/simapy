@@ -16,24 +16,27 @@ class SingleResultField(CustomComponent):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     output : OutputNode
     path : str
-         (default "")
+         (default None)
     label : str
-         (default "")
+         (default None)
     tooltip : str
-         (default "")
+         (default None)
     autoFormat : bool
          Format numbers automatically or choose appropriate format (default True)
     format : str
          Decimal numer format. Please refer to https://docs.oracle.com/javase/tutorial/i18n/format/decimalFormat.html for a description(default '0.000')
     """
 
-    def __init__(self , _id="", path="", label="", tooltip="", autoFormat=True, format='0.000', **kwargs):
+    def __init__(self , description="", _id=None, path=None, label=None, tooltip=None, autoFormat=True, format='0.000', **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.output = None
@@ -52,6 +55,16 @@ class SingleResultField(CustomComponent):
         """Return blueprint that this entity represents"""
         return SingleResultFieldBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

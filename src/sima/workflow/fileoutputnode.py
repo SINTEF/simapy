@@ -19,11 +19,13 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     properties : List[SignalProperties]
     x : int
          (default 0)
@@ -36,11 +38,11 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
     controlSignalInputSlots : List[ControlSignalInputSlot]
     inputSlot : InputSlot
     filePath : str
-         Path to the output file.(default "")
+         Path to the output file.(default None)
     fileFormat : FileFormat
          Format of the exported file.
     shellCommand : str
-         Shell command to execute after the export.(default "")
+         Shell command to execute after the export.(default None)
     addMetaTags : bool
          Include metadata tags in output(default False)
     decimalSeparator : DecimalSeparator
@@ -54,8 +56,9 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
     outputSlot : OutputSlot
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, filePath="", fileFormat=FileFormat.CSV, shellCommand="", addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, filePath=None, fileFormat=FileFormat.CSV, shellCommand=None, addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -85,6 +88,16 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
         """Return blueprint that this entity represents"""
         return FileOutputNodeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

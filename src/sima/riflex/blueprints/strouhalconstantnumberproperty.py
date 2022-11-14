@@ -12,7 +12,8 @@ class StrouhalConstantNumberPropertyBlueprint(StrouhalSpecificationPropertyBluep
 
     def __init__(self, name="StrouhalConstantNumberProperty", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("fixedStrouhalNumber","number","Fixed Strouhal number",default=0.19))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("fixedStrouhalNumber","number","Fixed Strouhal number",default=0.19))

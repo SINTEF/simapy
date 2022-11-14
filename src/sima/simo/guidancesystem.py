@@ -16,8 +16,10 @@ class GuidanceSystem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     guidance : Guidance
     waypointReference : WaypointReference
@@ -31,8 +33,9 @@ class GuidanceSystem(MOAO):
     waypoints : List[Waypoint]
     """
 
-    def __init__(self , _id="", guidance=Guidance.STRAIGHT_LINES, waypointReference=WaypointReference.LOCAL, headingReference=HeadingReference.TANGENTIAL, startTime=200.0, maxAccelerationX=0.0, maxAccelerationY=0.0, **kwargs):
+    def __init__(self , description="", _id=None, guidance=Guidance.STRAIGHT_LINES, waypointReference=WaypointReference.LOCAL, headingReference=HeadingReference.TANGENTIAL, startTime=200.0, maxAccelerationX=0.0, maxAccelerationY=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.guidance = guidance
@@ -52,6 +55,16 @@ class GuidanceSystem(MOAO):
         """Return blueprint that this entity represents"""
         return GuidanceSystemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

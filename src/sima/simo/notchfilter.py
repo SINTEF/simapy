@@ -12,8 +12,10 @@ class NotchFilter(Estimator):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     centerPeriod : float
          Center period of wave filter(default 10.0)
@@ -21,8 +23,9 @@ class NotchFilter(Estimator):
          Strength of wave filter, between 0 and 1(default 1.0)
     """
 
-    def __init__(self , _id="", centerPeriod=10.0, strength=1.0, **kwargs):
+    def __init__(self , description="", _id=None, centerPeriod=10.0, strength=1.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.centerPeriod = centerPeriod
@@ -37,6 +40,16 @@ class NotchFilter(Estimator):
         """Return blueprint that this entity represents"""
         return NotchFilterBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

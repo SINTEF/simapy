@@ -13,8 +13,10 @@ class ThrusterFailureSpecification(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     failureMode : ThrusterFailureMode
          Thruster failure mode
@@ -22,8 +24,9 @@ class ThrusterFailureSpecification(MOAO):
          Time for thruster failure(default 0.0)
     """
 
-    def __init__(self , _id="", failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, **kwargs):
+    def __init__(self , description="", _id=None, failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.failureMode = failureMode
@@ -38,6 +41,16 @@ class ThrusterFailureSpecification(MOAO):
         """Return blueprint that this entity represents"""
         return ThrusterFailureSpecificationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

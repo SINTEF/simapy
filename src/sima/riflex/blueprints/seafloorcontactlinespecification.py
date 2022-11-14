@@ -12,10 +12,11 @@ class SeafloorContactLineSpecificationBlueprint(SegmentReferenceBlueprint):
 
     def __init__(self, name="SeafloorContactLineSpecification", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("line","sima/riflex/ARLine","Line",False))
-        self.attributes.append(Attribute("segment","integer","Segment on given line",default=1))
-        self.attributes.append(Attribute("allSegments","boolean","All segments",default=False))
-        self.attributes.append(Attribute("allLines","boolean","Apply specified contact to all lines",default=False))
-        self.attributes.append(BlueprintAttribute("contact","sima/riflex/SeafloorContact","",False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("line","sima/riflex/ARLine","Line",False))
+        self.add_attribute(Attribute("segment","integer","Segment on given line",default=1))
+        self.add_attribute(Attribute("allSegments","boolean","All segments",default=False))
+        self.add_attribute(Attribute("allLines","boolean","Apply specified contact to all lines",default=False))
+        self.add_attribute(BlueprintAttribute("contact","sima/riflex/SeafloorContact","",False))

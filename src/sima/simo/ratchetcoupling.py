@@ -18,11 +18,13 @@ class RatchetCoupling(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     endPoint1 : SIMOBodyPoint
     endPoint2 : SIMOBodyPoint
     _type : RatchetType
@@ -47,8 +49,9 @@ class RatchetCoupling(NamedObject):
          Maximum force(default 0.0)
     """
 
-    def __init__(self , _id="", name="", _type=RatchetType.TENSION, staticForce=0.0, stiffness=0.0, startTime=0.0, dampingCoefficient=0.0, exponent=0.0, minVelocity=0.0, failureMode=FailureMode.NONE, failureTime=0.0, maximumForce=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, _type=RatchetType.TENSION, staticForce=0.0, stiffness=0.0, startTime=0.0, dampingCoefficient=0.0, exponent=0.0, minVelocity=0.0, failureMode=FailureMode.NONE, failureTime=0.0, maximumForce=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -74,6 +77,16 @@ class RatchetCoupling(NamedObject):
         """Return blueprint that this entity represents"""
         return RatchetCouplingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

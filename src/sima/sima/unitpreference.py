@@ -17,8 +17,10 @@ class UnitPreference(SIMAPreference):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     frequency : Frequency
     forceUnit : ForceUnit
@@ -27,8 +29,9 @@ class UnitPreference(SIMAPreference):
     powerUnit : PowerUnit
     """
 
-    def __init__(self , _id="", frequency=Frequency.PERIOD, forceUnit=ForceUnit.NEWTON, massUnit=MassUnit.KILOGRAM, lengthUnit=LengthUnit.METER, powerUnit=PowerUnit.WATT, **kwargs):
+    def __init__(self , description="", _id=None, frequency=Frequency.PERIOD, forceUnit=ForceUnit.NEWTON, massUnit=MassUnit.KILOGRAM, lengthUnit=LengthUnit.METER, powerUnit=PowerUnit.WATT, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.frequency = frequency
@@ -46,6 +49,16 @@ class UnitPreference(SIMAPreference):
         """Return blueprint that this entity represents"""
         return UnitPreferenceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,8 +12,10 @@ class FluctuatingWindVelocityProfile(WindVelocityProfile):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     verticalCoordinate : float
          Vertical coordinate of profile level(default 0.0)
@@ -27,8 +29,9 @@ class FluctuatingWindVelocityProfile(WindVelocityProfile):
          Wind speed scaling factor for the mean wind speed(default 0.0)
     """
 
-    def __init__(self , _id="", verticalCoordinate=0.0, longitudinalVelocityFactor=0.0, lateralVelocityFactor=0.0, verticalVelocityFactor=0.0, meanSpeedFactor=0.0, **kwargs):
+    def __init__(self , description="", _id=None, verticalCoordinate=0.0, longitudinalVelocityFactor=0.0, lateralVelocityFactor=0.0, verticalVelocityFactor=0.0, meanSpeedFactor=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.verticalCoordinate = verticalCoordinate
@@ -46,6 +49,16 @@ class FluctuatingWindVelocityProfile(WindVelocityProfile):
         """Return blueprint that this entity represents"""
         return FluctuatingWindVelocityProfileBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

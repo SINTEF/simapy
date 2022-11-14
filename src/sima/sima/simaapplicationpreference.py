@@ -12,8 +12,10 @@ class SIMAApplicationPreference(SIMAPreference):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     createTimestamp : bool
          (default True)
@@ -28,13 +30,14 @@ class SIMAApplicationPreference(SIMAPreference):
     autoSaveFrequency : int
          (default 5)
     backupFolder : str
-         (default "")
+         (default None)
     numberOfSignificantDigits : int
          Maximum number of significant digits used to display floating point numbers (editors must be reopened) (default 5)
     """
 
-    def __init__(self , _id="", createTimestamp=True, deleteAutomatically=True, interpolate=True, overrideTimeZone=True, minimumDiskSpace=1, autoSaveFrequency=5, backupFolder="", numberOfSignificantDigits=5, **kwargs):
+    def __init__(self , description="", _id=None, createTimestamp=True, deleteAutomatically=True, interpolate=True, overrideTimeZone=True, minimumDiskSpace=1, autoSaveFrequency=5, backupFolder=None, numberOfSignificantDigits=5, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.createTimestamp = createTimestamp
@@ -55,6 +58,16 @@ class SIMAApplicationPreference(SIMAPreference):
         """Return blueprint that this entity represents"""
         return SIMAApplicationPreferenceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

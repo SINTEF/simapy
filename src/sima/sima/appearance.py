@@ -16,11 +16,13 @@ class Appearance(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     graphicsfile : str
-         Graphics file(default "")
+         Graphics file(default None)
     translation : Vector3
     rotation : Vector3
     scaling : Vector3
@@ -35,8 +37,9 @@ class Appearance(MOAO):
          Symmetric properties of the geometry
     """
 
-    def __init__(self , _id="", graphicsfile="", geomRepresentationType=GeomRepresentationType.DEFAULT_BOX, radius=1.0, transparency=0.0, symmetry=Symmetry.NONE, **kwargs):
+    def __init__(self , description="", _id=None, graphicsfile=None, geomRepresentationType=GeomRepresentationType.DEFAULT_BOX, radius=1.0, transparency=0.0, symmetry=Symmetry.NONE, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.graphicsfile = graphicsfile
@@ -58,6 +61,16 @@ class Appearance(MOAO):
         """Return blueprint that this entity represents"""
         return AppearanceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

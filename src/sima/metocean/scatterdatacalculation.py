@@ -22,11 +22,13 @@ class ScatterDataCalculation(NamedObject,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     currentModel : CurrentModel
     kfactor : float
          (default 1.0)
@@ -48,8 +50,9 @@ class ScatterDataCalculation(NamedObject,ConditionSelectable):
     windLevels : List[CalculationLevel]
     """
 
-    def __init__(self , _id="", name="", currentModel=CurrentModel.FROM_INPUT, kfactor=1.0, directionRelativeToWind=0.0, windReferenceLevel=0.0, baseCurrentSpeed=0.0, relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, **kwargs):
+    def __init__(self , description="", _id=None, name=None, currentModel=CurrentModel.FROM_INPUT, kfactor=1.0, directionRelativeToWind=0.0, windReferenceLevel=0.0, baseCurrentSpeed=0.0, relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -76,6 +79,16 @@ class ScatterDataCalculation(NamedObject,ConditionSelectable):
         """Return blueprint that this entity represents"""
         return ScatterDataCalculationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

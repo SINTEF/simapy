@@ -12,8 +12,10 @@ class QuadraticWindCoefficientItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Direction(default 0.0)
@@ -31,8 +33,9 @@ class QuadraticWindCoefficientItem(MOAO):
          Wind force coefficient for 6. degree of freedom(default 0.0)
     """
 
-    def __init__(self , _id="", direction=0.0, c1=0.0, c2=0.0, c3=0.0, c4=0.0, c5=0.0, c6=0.0, **kwargs):
+    def __init__(self , description="", _id=None, direction=0.0, c1=0.0, c2=0.0, c3=0.0, c4=0.0, c5=0.0, c6=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.direction = direction
@@ -52,6 +55,16 @@ class QuadraticWindCoefficientItem(MOAO):
         """Return blueprint that this entity represents"""
         return QuadraticWindCoefficientItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

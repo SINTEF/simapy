@@ -12,12 +12,15 @@ class ModelContent(Entity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     header : Header
     contents : List[Entity]
     """
 
-    def __init__(self , **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.header = None
         self.contents = list()
         for key, value in kwargs.items():
@@ -30,6 +33,16 @@ class ModelContent(Entity):
         """Return blueprint that this entity represents"""
         return ModelContentBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def header(self) -> Header:

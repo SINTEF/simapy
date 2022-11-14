@@ -12,8 +12,9 @@ class TableColumnBlueprint(MOAOBlueprint):
 
     def __init__(self, name="TableColumn", package_path="sima/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("header","string","",default=""))
-        self.attributes.append(BlueprintAttribute("headerStyle","sima/report/TableCellStyle","",True))
-        self.attributes.append(BlueprintAttribute("cells","sima/report/TableCell","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("header","string","",default=None))
+        self.add_attribute(BlueprintAttribute("headerStyle","sima/report/TableCellStyle","",True))
+        self.add_attribute(BlueprintAttribute("cells","sima/report/TableCell","",True,Dimension("*")))

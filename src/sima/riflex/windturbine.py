@@ -24,11 +24,13 @@ class WindTurbine(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     shaftLine : ARLine
          Reference to the line that is used for shaft modelling
     blades : List[BladeItem]
@@ -44,15 +46,15 @@ class WindTurbine(NamedObject):
     bakFactor : float
          Bak correction in tower shadow(default 0.1)
     dragEffect : bool
-         Drag correction in tower shadow(default True)
+         Drag correction in tower shadow(default False)
     advancedOptions : bool
-         Use advanced aerodynamic options(default True)
+         Use advanced aerodynamic options(default False)
     inductionCalculation : bool
          It is recommended to turn off the induction calculation for a parked or idling wind turbine.(default True)
     prandtlTip : bool
          The correction for tip loss due to the finite number of blades may be applied or removed.(default True)
     prandtlRoot : bool
-         The correction for hub loss due to the finite number of blades may be applied or removed.(default True)
+         The correction for hub loss due to the finite number of blades may be applied or removed.(default False)
     prandtlYaw : bool
          If yaw correction is selected, the Prandtl factor is modified based on the angle between the incoming wind and the rotor plane.(default True)
     measurementNodes : List[MeasurementNode]
@@ -60,8 +62,9 @@ class WindTurbine(NamedObject):
     yawController : HorizontalAxisYawController
     """
 
-    def __init__(self , _id="", name="", windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=True, advancedOptions=True, inductionCalculation=True, prandtlTip=True, prandtlRoot=True, prandtlYaw=True, **kwargs):
+    def __init__(self , description="", _id=None, name=None, windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=False, advancedOptions=False, inductionCalculation=True, prandtlTip=True, prandtlRoot=False, prandtlYaw=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -92,6 +95,16 @@ class WindTurbine(NamedObject):
         """Return blueprint that this entity represents"""
         return WindTurbineBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

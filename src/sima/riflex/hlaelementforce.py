@@ -18,8 +18,10 @@ class HLAElementForce(ElementReference,NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -32,15 +34,16 @@ class HLAElementForce(ElementReference,NamedObject):
     allElements : bool
          All elements(default False)
     name : str
-         (default "")
+         (default None)
     allEnds : bool
          All ends(default False)
     elementEnd : End
          End number 1 or 2
     """
 
-    def __init__(self , _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, name="", allEnds=False, elementEnd=End.ONE, **kwargs):
+    def __init__(self , description="", _id=None, segment=1, allSegments=False, elementNumber=1, allElements=False, name=None, allEnds=False, elementEnd=End.ONE, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -61,6 +64,16 @@ class HLAElementForce(ElementReference,NamedObject):
         """Return blueprint that this entity represents"""
         return HLAElementForceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

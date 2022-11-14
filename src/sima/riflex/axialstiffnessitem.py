@@ -12,8 +12,10 @@ class AxialStiffnessItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     axialForce : float
          Axial force corresponding to relative elongation.(default 0.0)
@@ -21,8 +23,9 @@ class AxialStiffnessItem(MOAO):
          Relative elongation(default 0.0)
     """
 
-    def __init__(self , _id="", axialForce=0.0, relativeElongation=0.0, **kwargs):
+    def __init__(self , description="", _id=None, axialForce=0.0, relativeElongation=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.axialForce = axialForce
@@ -37,6 +40,16 @@ class AxialStiffnessItem(MOAO):
         """Return blueprint that this entity represents"""
         return AxialStiffnessItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,8 +12,10 @@ class WindSpectrumVerticalDomain(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     specifyVerticalDomain : bool
          Should a vertical grid for interpolation of wind velocity be specified?(default False)
@@ -27,8 +29,9 @@ class WindSpectrumVerticalDomain(MOAO):
          Should computation of wind velocity outside specified limits be allowed?(default False)
     """
 
-    def __init__(self , _id="", specifyVerticalDomain=False, numberOfLevels=0, zMinimum=0.0, zMaximum=0.0, allowOutsideDomain=False, **kwargs):
+    def __init__(self , description="", _id=None, specifyVerticalDomain=False, numberOfLevels=0, zMinimum=0.0, zMaximum=0.0, allowOutsideDomain=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.specifyVerticalDomain = specifyVerticalDomain
@@ -46,6 +49,16 @@ class WindSpectrumVerticalDomain(MOAO):
         """Return blueprint that this entity represents"""
         return WindSpectrumVerticalDomainBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

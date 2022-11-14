@@ -12,8 +12,10 @@ class AirFoilItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     angle : float
          current angle-of-attack(default 0.0)
@@ -25,8 +27,9 @@ class AirFoilItem(MOAO):
          Moment coefficient(default 0.0)
     """
 
-    def __init__(self , _id="", angle=0.0, cl=0.0, cd=0.0, cm=0.0, **kwargs):
+    def __init__(self , description="", _id=None, angle=0.0, cl=0.0, cd=0.0, cm=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.angle = angle
@@ -43,6 +46,16 @@ class AirFoilItem(MOAO):
         """Return blueprint that this entity represents"""
         return AirFoilItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

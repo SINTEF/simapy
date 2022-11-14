@@ -13,16 +13,19 @@ class ContourData(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     returnPeriod : float
          (default 0.0)
     contourDataPoints : List[ContourDataPoint]
     """
 
-    def __init__(self , _id="", returnPeriod=0.0, **kwargs):
+    def __init__(self , description="", _id=None, returnPeriod=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.returnPeriod = returnPeriod
@@ -37,6 +40,16 @@ class ContourData(MOAO):
         """Return blueprint that this entity represents"""
         return ContourDataBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

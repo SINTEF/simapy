@@ -19,11 +19,13 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     randSeed1 : int
          First random seed (-2147483648 to 2147483647)(default 0)
     seedGeneration : RandomSeedGeneration
@@ -64,8 +66,9 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
          Surface roughness length (or 'default')(default 0.0)
     """
 
-    def __init__(self , _id="", name="", randSeed1=0, seedGeneration=RandomSeedGeneration.INTRINSIC, randSeed2=0, gridPointsZ=0, gridPointsY=0, timeStep=0.0, analysisTime=0.0, usableTime=0.0, hubHeight=0.0, gridHeight=0.0, gridWidth=0.0, turbulenceModel=TurbulenceModel.IECKAI, iecStandard=IECStandard.IEC_61400_1, turbulenceCharacteristics=IECTurbulenceCharacteristics.A, turbulencePercentage=0.0, windType=IECWindType.NTM, etmC=0.0, windProfileType=IECWindProfileType.LOG, referenceHeight=0.0, meanWindSpeed=0.0, powerLawExponent=0.0, surfaceRoughnessLength=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, randSeed1=0, seedGeneration=RandomSeedGeneration.INTRINSIC, randSeed2=0, gridPointsZ=0, gridPointsY=0, timeStep=0.0, analysisTime=0.0, usableTime=0.0, hubHeight=0.0, gridHeight=0.0, gridWidth=0.0, turbulenceModel=TurbulenceModel.IECKAI, iecStandard=IECStandard.IEC_61400_1, turbulenceCharacteristics=IECTurbulenceCharacteristics.A, turbulencePercentage=0.0, windType=IECWindType.NTM, etmC=0.0, windProfileType=IECWindProfileType.LOG, referenceHeight=0.0, meanWindSpeed=0.0, powerLawExponent=0.0, surfaceRoughnessLength=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -101,6 +104,16 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
         """Return blueprint that this entity represents"""
         return TurbSimWindGeneratorBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

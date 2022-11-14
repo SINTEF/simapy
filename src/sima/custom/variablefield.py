@@ -18,18 +18,20 @@ class VariableField(ParameterField):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
-         (default "")
+         (default None)
     tooltip : str
-         (default "")
+         (default None)
     fileType : FileType
     directory : bool
          (default False)
     fileExtensions : str
-         Describes legal file extensions separated by semicolon, example:  *.txt;*.dat(default "")
+         Describes legal file extensions separated by semicolon, example:  *.txt;*.dat(default None)
     options : ndarray
     _type : FieldType
     width : int
@@ -38,13 +40,14 @@ class VariableField(ParameterField):
          If set the field will fill all available horzontal space(default False)
     variable : Variable
     unit : str
-         (default "")
+         (default None)
     constraints : str
-         Give a valid range for a number: Use <,> for excluding and [] for including.\nExampless: \n- [0,4] Number from and including 0 to and including 4\n- <0,4> From and to, excluding \n- <,0> All negative numbers excluding 0\n- [0,> All positive numbers, including 0\n(default "")
+         Give a valid range for a number: Use <,> for excluding and [] for including.\nExampless: \n- [0,4] Number from and including 0 to and including 4\n- <0,4> From and to, excluding \n- <,0> All negative numbers excluding 0\n- [0,> All positive numbers, including 0\n(default None)
     """
 
-    def __init__(self , _id="", label="", tooltip="", fileType=FileType.INPUT, directory=False, fileExtensions="", _type=FieldType.TEXT, width=10, expandHorizontally=False, unit="", constraints="", **kwargs):
+    def __init__(self , description="", _id=None, label=None, tooltip=None, fileType=FileType.INPUT, directory=False, fileExtensions=None, _type=FieldType.TEXT, width=10, expandHorizontally=False, unit=None, constraints=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.label = label
@@ -69,6 +72,16 @@ class VariableField(ParameterField):
         """Return blueprint that this entity represents"""
         return VariableFieldBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

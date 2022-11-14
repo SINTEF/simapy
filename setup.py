@@ -1,7 +1,7 @@
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages
 from pathlib import Path
 import shutil
+from setuptools import setup, find_packages
 
 here = Path(__file__).parent.resolve()
 
@@ -15,7 +15,7 @@ shutil.rmtree(Path("dist"), ignore_errors=True)
 
 setup(
     name="simapy",
-    version="4.4.0",
+    version="4.4.1.dev1",
     author="SINTEF Ocean",
     description="Python utilities for SIMA",
     url="https://github.com/SINTEF/simapy",
@@ -24,7 +24,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src", exclude=["tests"]),
     install_requires=[
-        "dmtpy==0.2.0",
+        "dmtpy==0.3.0",
         "numpy"
     ],
     classifiers=[

@@ -12,7 +12,8 @@ class DockingConeCrossSectionBlueprint(MOAOBlueprint):
 
     def __init__(self, name="DockingConeCrossSection", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("axialDistance","number","Axial point, axial distance from end",default=0.0))
-        self.attributes.append(BlueprintAttribute("items","sima/simo/ForceDampingItem","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("axialDistance","number","Axial point, axial distance from end",default=0.0))
+        self.add_attribute(BlueprintAttribute("items","sima/simo/ForceDampingItem","",True,Dimension("*")))

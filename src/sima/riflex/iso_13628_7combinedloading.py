@@ -13,11 +13,13 @@ class ISO_13628_7CombinedLoading(CombinedLoading):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     refPointPressure : float
          Internal design pressure at vertical reference position(default 0.0)
     referencePoint : float
@@ -42,8 +44,9 @@ class ISO_13628_7CombinedLoading(CombinedLoading):
          Design factor(default 0.8)
     """
 
-    def __init__(self , _id="", name="", refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, percentile=0.57038, designFactor=0.8, **kwargs):
+    def __init__(self , description="", _id=None, name=None, refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, percentile=0.57038, designFactor=0.8, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -68,6 +71,16 @@ class ISO_13628_7CombinedLoading(CombinedLoading):
         """Return blueprint that this entity represents"""
         return ISO_13628_7CombinedLoadingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

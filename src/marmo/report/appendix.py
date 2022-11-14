@@ -12,15 +12,18 @@ class Appendix(Section):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     items : List[ReportItem]
     title : str
-         (default "")
+         (default None)
     landscape : bool
          (default False)
     """
 
-    def __init__(self , title="", landscape=False, **kwargs):
+    def __init__(self , description="", title=None, landscape=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.items = list()
         self.title = title
         self.landscape = landscape
@@ -34,6 +37,16 @@ class Appendix(Section):
         """Return blueprint that this entity represents"""
         return AppendixBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def items(self) -> List[ReportItem]:

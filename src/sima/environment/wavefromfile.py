@@ -12,15 +12,18 @@ class WaveFromFile(Wave):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     fileName : str
-         Name of external file with specified wave data(default "")
+         Name of external file with specified wave data(default None)
     """
 
-    def __init__(self , _id="", fileName="", **kwargs):
+    def __init__(self , description="", _id=None, fileName=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.fileName = fileName
@@ -34,6 +37,16 @@ class WaveFromFile(Wave):
         """Return blueprint that this entity represents"""
         return WaveFromFileBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

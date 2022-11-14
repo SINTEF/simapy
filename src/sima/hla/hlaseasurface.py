@@ -13,8 +13,10 @@ class HLASeaSurface(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     centerX : float
          Center of surface in x(default 0.0)
@@ -30,7 +32,7 @@ class HLASeaSurface(MOAO):
     meshGridSize : float
          Size of grids in the mesh(default 100.0)
     showMesh : bool
-         Show mesh grid on surface(default True)
+         Show mesh grid on surface(default False)
     z : float
          Depth of surface(default -100.0)
     lcWaveLength : float
@@ -41,8 +43,9 @@ class HLASeaSurface(MOAO):
          Number of points in long-crested wave field(default 61)
     """
 
-    def __init__(self , _id="", centerX=0.0, centerY=0.0, sizeX=500.0, sizeY=500.0, transparency=0.0, meshGridSize=100.0, showMesh=True, z=-100.0, lcWaveLength=300.0, lcWaveWidth=100.0, lcWaveNumPoints=61, **kwargs):
+    def __init__(self , description="", _id=None, centerX=0.0, centerY=0.0, sizeX=500.0, sizeY=500.0, transparency=0.0, meshGridSize=100.0, showMesh=False, z=-100.0, lcWaveLength=300.0, lcWaveWidth=100.0, lcWaveNumPoints=61, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.centerX = centerX
@@ -67,6 +70,16 @@ class HLASeaSurface(MOAO):
         """Return blueprint that this entity represents"""
         return HLASeaSurfaceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

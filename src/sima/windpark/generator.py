@@ -32,11 +32,13 @@ class Generator(Named,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     airDensity : float
          (default 1.3)
     kinematicViscosity : float
@@ -55,7 +57,7 @@ class Generator(Named,ConditionSelectable):
          Maximum number of rotor laps for profile convergence(default 30)
     deficitFileContents : DeficitFileContents
     deficitFileName : str
-         (default "")
+         (default None)
     ambientMixingParameter : float
          Ambient mixing parameters(default 0.0)
     deficitParameter : float
@@ -83,11 +85,11 @@ class Generator(Named,ConditionSelectable):
          Turbulence intencity ambient wind (fine mesh)(default 0.0)
     stabilityClass : StabilityClass
     coarseMeshFilename : str
-         (default "")
+         (default None)
     fineMeshFilename : str
-         (default "")
+         (default None)
     ambientWindFieldFilename : str
-         (default "")
+         (default None)
     turbulenceBoxOption : TurbulenceBoxOption
          Option for choosing whether turbulence boxes are made using DTU Mann (IECWind format) or TurbSim (Turbsim Bladed style format)
     outputPrefix : str
@@ -114,15 +116,16 @@ class Generator(Named,ConditionSelectable):
     applyLowPassFilter : bool
          (default True)
     applyAreaAveraging : bool
-         (default True)
+         (default False)
     lowPassFrequencyOption : LowPassFrequencyOption
          Lowpass cutoff frequency option
     lowPassFrequency : float
          Cutoff frequency(default 0.0)
     """
 
-    def __init__(self , _id="", name="", airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, deficitFileName="", ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.CONSTANT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, coarseMeshFilename="", fineMeshFilename="", ambientWindFieldFilename="", turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=True, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, deficitFileName=None, ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.CONSTANT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, coarseMeshFilename=None, fineMeshFilename=None, ambientWindFieldFilename=None, turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=False, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -183,6 +186,16 @@ class Generator(Named,ConditionSelectable):
         """Return blueprint that this entity represents"""
         return GeneratorBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

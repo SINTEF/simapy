@@ -16,22 +16,25 @@ class Plot(ReportItem):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     object : MOAO
     caption : str
-         Caption(default "")
+         Caption(default None)
     mergeSeries : bool
          Merge all series in one plot(default False)
     xLabel : str
-         (default "")
+         (default None)
     yLabel : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , _id="", caption="", mergeSeries=False, xLabel="", yLabel="", **kwargs):
+    def __init__(self , description="", _id=None, caption=None, mergeSeries=False, xLabel=None, yLabel=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.object = None
@@ -49,6 +52,16 @@ class Plot(ReportItem):
         """Return blueprint that this entity represents"""
         return PlotBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

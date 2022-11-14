@@ -17,8 +17,10 @@ class SIMOStaticCalculationParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     runStaticAutomatically : bool
          Run Static calculation automatically each time the model changes(default False)
@@ -56,8 +58,9 @@ class SIMOStaticCalculationParameters(MOAO):
          When checked, static calculation will fail if no equilibrium position is found(default True)
     """
 
-    def __init__(self , _id="", runStaticAutomatically=False, calculateEquilibrium=True, maxPeriod=10.0, posTol=0.1, dirTol=0.1, timeStep=0.01, maxStep=10000, criticalDamping=True, writeVisFile=True, calculateEigenvalues=False, equilibriumCalculationMethod=EquilibriumCalculationOption.TRANSIENT, forceTolerance=100.0, momentTolerance=1000.0, multipleEquilibriumCalculations=False, requireSuccessfulCalculation=True, **kwargs):
+    def __init__(self , description="", _id=None, runStaticAutomatically=False, calculateEquilibrium=True, maxPeriod=10.0, posTol=0.1, dirTol=0.1, timeStep=0.01, maxStep=10000, criticalDamping=True, writeVisFile=True, calculateEigenvalues=False, equilibriumCalculationMethod=EquilibriumCalculationOption.TRANSIENT, forceTolerance=100.0, momentTolerance=1000.0, multipleEquilibriumCalculations=False, requireSuccessfulCalculation=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.runStaticAutomatically = runStaticAutomatically
@@ -90,6 +93,16 @@ class SIMOStaticCalculationParameters(MOAO):
         """Return blueprint that this entity represents"""
         return SIMOStaticCalculationParametersBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

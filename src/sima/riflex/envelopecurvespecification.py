@@ -13,8 +13,10 @@ class EnvelopeCurveSpecification(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     compDisplacement : bool
          Compute displacement envelopes?(default False)
@@ -35,8 +37,9 @@ class EnvelopeCurveSpecification(MOAO):
     plotOption : MatrixPlotFileOption
     """
 
-    def __init__(self , _id="", compDisplacement=False, compForce=False, compCurvature=False, startTime=0.0, endTime=10000000.0, printDisplacement=False, printForce=False, printCurvature=False, plotOption=MatrixPlotFileOption.MAX_AND_STANDARD_DEV, **kwargs):
+    def __init__(self , description="", _id=None, compDisplacement=False, compForce=False, compCurvature=False, startTime=0.0, endTime=10000000.0, printDisplacement=False, printForce=False, printCurvature=False, plotOption=MatrixPlotFileOption.MAX_AND_STANDARD_DEV, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.compDisplacement = compDisplacement
@@ -58,6 +61,16 @@ class EnvelopeCurveSpecification(MOAO):
         """Return blueprint that this entity represents"""
         return EnvelopeCurveSpecificationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

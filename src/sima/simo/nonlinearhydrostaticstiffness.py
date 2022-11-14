@@ -13,18 +13,21 @@ class NonLinearHydrostaticStiffness(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     geometryPosition : Position
     geometryFile : str
-         Geometry definition file(default "")
+         Geometry definition file(default None)
     transparency : float
          Geometry transparency, [0-1], where 1 is full transparency.(default 0.0)
     """
 
-    def __init__(self , _id="", geometryFile="", transparency=0.0, **kwargs):
+    def __init__(self , description="", _id=None, geometryFile=None, transparency=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.geometryPosition = None
@@ -40,6 +43,16 @@ class NonLinearHydrostaticStiffness(MOAO):
         """Return blueprint that this entity represents"""
         return NonLinearHydrostaticStiffnessBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

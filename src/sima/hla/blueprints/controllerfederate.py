@@ -12,9 +12,10 @@ class ControllerFederateBlueprint(HLAFederateBlueprint):
 
     def __init__(self, name="ControllerFederate", package_path="sima/hla", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("timeStep","number","",default=0.0))
-        self.attributes.append(BlueprintAttribute("allHLAControlConfigurations","sima/hla/HLAControlConfiguration","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("winchGroups","sima/hla/HLAWinchGroup","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("timeStep","number","",default=0.0))
+        self.add_attribute(BlueprintAttribute("allHLAControlConfigurations","sima/hla/HLAControlConfiguration","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("winchGroups","sima/hla/HLAWinchGroup","",True,Dimension("*")))

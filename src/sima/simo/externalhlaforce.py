@@ -17,11 +17,13 @@ class ExternalHLAForce(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     attachmentPoint : Point3
          Attack point of force.
     referenceFrame : ReferenceFrameType
@@ -47,8 +49,9 @@ class ExternalHLAForce(NamedObject):
          Moment about Z-axis(default 0.0)
     """
 
-    def __init__(self , _id="", name="", referenceFrame=ReferenceFrameType.LOCAL, nStorageParameters=0, importAttackPoint=False, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, referenceFrame=ReferenceFrameType.LOCAL, nStorageParameters=0, importAttackPoint=False, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -75,6 +78,16 @@ class ExternalHLAForce(NamedObject):
         """Return blueprint that this entity represents"""
         return ExternalHLAForceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

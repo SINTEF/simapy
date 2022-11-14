@@ -15,11 +15,13 @@ class SpecifiedMoment(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     referenceFrame : ReferenceFrameType
          Direction vector in local or global coordinate system
     directionVector : Vector3
@@ -38,8 +40,9 @@ class SpecifiedMoment(NamedObject):
          Moment component moment derivative parameter(default 0.0)
     """
 
-    def __init__(self , _id="", name="", referenceFrame=ReferenceFrameType.LOCAL, activationTime=0.0, deactivationTime=100000.0, loadType=SpecifiedLoadType.CONSTANT, period=0.0, phase=0.0, magnitude=0.0, momentDerivative=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, referenceFrame=ReferenceFrameType.LOCAL, activationTime=0.0, deactivationTime=100000.0, loadType=SpecifiedLoadType.CONSTANT, period=0.0, phase=0.0, magnitude=0.0, momentDerivative=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -62,6 +65,16 @@ class SpecifiedMoment(NamedObject):
         """Return blueprint that this entity represents"""
         return SpecifiedMomentBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

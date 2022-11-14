@@ -13,8 +13,10 @@ class BodyShapeData(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     lengthBetweenPerpendiculars : float
          Length between perpendiculars(default 0.0)
@@ -31,12 +33,13 @@ class BodyShapeData(MOAO):
     distanceBaseline : float
          Distance from baseline to the body fixed origin(default 0.0)
     specifyWaterline : bool
-         Should a waterline file be specified?(default True)
+         Should a waterline file be specified?(default False)
     waterlinePoints : List[Point2]
     """
 
-    def __init__(self , _id="", lengthBetweenPerpendiculars=0.0, maximumBeamAtWaterline=0.0, draftAtAftPerpendicular=0.0, draftAtForePerpendicular=0.0, blockCoefficient=0.0, distanceAftPerpendicular=0.0, distanceBaseline=0.0, specifyWaterline=True, **kwargs):
+    def __init__(self , description="", _id=None, lengthBetweenPerpendiculars=0.0, maximumBeamAtWaterline=0.0, draftAtAftPerpendicular=0.0, draftAtForePerpendicular=0.0, blockCoefficient=0.0, distanceAftPerpendicular=0.0, distanceBaseline=0.0, specifyWaterline=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.lengthBetweenPerpendiculars = lengthBetweenPerpendiculars
@@ -58,6 +61,16 @@ class BodyShapeData(MOAO):
         """Return blueprint that this entity represents"""
         return BodyShapeDataBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

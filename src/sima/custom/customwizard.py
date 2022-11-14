@@ -13,26 +13,29 @@ class CustomWizard(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     title : str
-         (default "")
+         (default None)
     selectionType : str
-         When an object of the given type is selected a popup menu will be enabled,(default "")
+         When an object of the given type is selected a popup menu will be enabled,(default None)
     menuLabel : str
-         Menu label shown in the popup(default "")
+         Menu label shown in the popup(default None)
     pages : List[CustomWizardPage]
     inline : bool
          Use inline script or external(default True)
     path : str
-         Path to the output file.(default "")
+         Path to the output file.(default None)
     finishScript : str
-         This script will be run when finishing the wizard. Use the variable selection to get hold of the object selected in the navigator(default "")
+         This script will be run when finishing the wizard. Use the variable selection to get hold of the object selected in the navigator(default None)
     """
 
-    def __init__(self , _id="", title="", selectionType="", menuLabel="", inline=True, path="", finishScript="", **kwargs):
+    def __init__(self , description="", _id=None, title=None, selectionType=None, menuLabel=None, inline=True, path=None, finishScript=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.title = title
@@ -52,6 +55,16 @@ class CustomWizard(MOAO):
         """Return blueprint that this entity represents"""
         return CustomWizardBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

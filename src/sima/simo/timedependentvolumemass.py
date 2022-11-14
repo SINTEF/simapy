@@ -16,11 +16,13 @@ class TimeDependentVolumeMass(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     point : Point3
          Mass point (local coordinates).
     flowRates : List[FlowRateItem]
@@ -43,8 +45,9 @@ class TimeDependentVolumeMass(NamedObject):
     portions : List[VolumeMassPortion]
     """
 
-    def __init__(self , _id="", name="", vol0=0.0, volMax=0.0, volMin=0.0, volRateMax=0.0, volRateMin=0.0, density=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, vol0=0.0, volMax=0.0, volMin=0.0, volRateMax=0.0, volRateMin=0.0, density=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -69,6 +72,16 @@ class TimeDependentVolumeMass(NamedObject):
         """Return blueprint that this entity represents"""
         return TimeDependentVolumeMassBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

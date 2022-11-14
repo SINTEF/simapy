@@ -17,15 +17,18 @@ class SupportVesselForceStorageItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     vessel : SupportVessel
     referenceSystem : BodyForceReferenceSystem
     """
 
-    def __init__(self , _id="", referenceSystem=BodyForceReferenceSystem.BODY_LOCAL, **kwargs):
+    def __init__(self , description="", _id=None, referenceSystem=BodyForceReferenceSystem.BODY_LOCAL, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.vessel = None
@@ -40,6 +43,16 @@ class SupportVesselForceStorageItem(MOAO):
         """Return blueprint that this entity represents"""
         return SupportVesselForceStorageItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

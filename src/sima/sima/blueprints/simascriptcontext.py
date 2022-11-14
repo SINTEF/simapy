@@ -12,7 +12,8 @@ class SIMAScriptContextBlueprint(MOAOBlueprint):
 
     def __init__(self, name="SIMAScriptContext", package_path="sima/sima", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("model","sima/sima/MOAO","Model object to be directly available in script by given name",False))
-        self.attributes.append(Attribute("name","string","Variable name of object that will be available in the script when evaluating",default=""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("model","sima/sima/MOAO","Model object to be directly available in script by given name",False))
+        self.add_attribute(Attribute("name","string","Variable name of object that will be available in the script when evaluating",default=None))

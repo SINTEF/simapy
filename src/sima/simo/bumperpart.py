@@ -13,8 +13,10 @@ class BumperPart(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     radius : float
          diameter of bumper element(default 0.0)
@@ -26,8 +28,9 @@ class BumperPart(MOAO):
     end2 : Point3
     """
 
-    def __init__(self , _id="", radius=0.0, stiffness=0.0, damping=0.0, **kwargs):
+    def __init__(self , description="", _id=None, radius=0.0, stiffness=0.0, damping=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.radius = radius
@@ -45,6 +48,16 @@ class BumperPart(MOAO):
         """Return blueprint that this entity represents"""
         return BumperPartBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

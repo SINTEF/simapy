@@ -14,19 +14,22 @@ class TaskFolder(Named):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     childFolders : List[TaskFolder]
     childTasks : List[Task]
     visible : bool
          (default True)
     """
 
-    def __init__(self , _id="", name="", visible=True, **kwargs):
+    def __init__(self , description="", _id=None, name=None, visible=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -43,6 +46,16 @@ class TaskFolder(Named):
         """Return blueprint that this entity represents"""
         return TaskFolderBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

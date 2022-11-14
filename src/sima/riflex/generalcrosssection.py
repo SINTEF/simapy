@@ -25,11 +25,13 @@ class GeneralCrossSection(CrossSection,CRSAxialFrictionModel):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     staticFriction : float
          Static friction force corresponding to elongation(default 0.0)
     staticElongation : float
@@ -41,7 +43,7 @@ class GeneralCrossSection(CrossSection,CRSAxialFrictionModel):
     axialFriction : bool
          Local axial friction model(default False)
     scfkSpecification : bool
-         Scaling of Froude-Krylov term in Morison’s equation in normal direction(default True)
+         Scaling of Froude-Krylov term in Morison’s equation in normal direction(default False)
     loadFormulation : LoadFormulation
     hydrodynamicDiameter : float
          Hydrodynamic diameter(default 0.0)
@@ -166,8 +168,9 @@ class GeneralCrossSection(CrossSection,CRSAxialFrictionModel):
          Shear stiffness in principal V-direction. Infinite shear stiffness if equal to zero(default 0.0)
     """
 
-    def __init__(self , _id="", name="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=True, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdx=0.0, cdy=0.0, cdz=0.0, amx=0.0, amy=0.0, amz=0.0, addedMass=0.0, cdlx=0.0, cdly=0.0, cdlz=0.0, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, cdt=0.0, cdn=0.0, cdnz=0.0, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, temperature=0.0, pressureDependency=0, axialStiffness=0.0, tensionCapacity=0.0, maxCurvatureY=0.0, maxCurvatureZ=0.0, chordLength=0.0, foilOriginY=0.0, foilOriginZ=0.0, foilInclination=0.0, aerodynamicForceType=AerodynamicForceType.NONE, coupledBendingTorsion=False, alpha=0.0, massCenterY=0.0, massCenterZ=0.0, buoyancyCenterY=0.0, buoyancyCenterZ=0.0, areaCenterY=0.0, areaCenterZ=0.0, principalAxesOrientation=0.0, shearCenterY=0.0, shearCenterZ=0.0, massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, torsionStiffness=0.0, bendingStiffnessV=0.0, bendingStiffnessW=0.0, shearStiffnessW=0.0, shearStiffnessV=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdx=0.0, cdy=0.0, cdz=0.0, amx=0.0, amy=0.0, amz=0.0, addedMass=0.0, cdlx=0.0, cdly=0.0, cdlz=0.0, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, cdt=0.0, cdn=0.0, cdnz=0.0, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, temperature=0.0, pressureDependency=0, axialStiffness=0.0, tensionCapacity=0.0, maxCurvatureY=0.0, maxCurvatureZ=0.0, chordLength=0.0, foilOriginY=0.0, foilOriginZ=0.0, foilInclination=0.0, aerodynamicForceType=AerodynamicForceType.NONE, coupledBendingTorsion=False, alpha=0.0, massCenterY=0.0, massCenterZ=0.0, buoyancyCenterY=0.0, buoyancyCenterZ=0.0, areaCenterY=0.0, areaCenterZ=0.0, principalAxesOrientation=0.0, shearCenterY=0.0, shearCenterZ=0.0, massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, torsionStiffness=0.0, bendingStiffnessV=0.0, bendingStiffnessW=0.0, shearStiffnessW=0.0, shearStiffnessV=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -251,6 +254,16 @@ class GeneralCrossSection(CrossSection,CRSAxialFrictionModel):
         """Return blueprint that this entity represents"""
         return GeneralCrossSectionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

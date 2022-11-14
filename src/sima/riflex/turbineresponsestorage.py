@@ -13,8 +13,10 @@ class TurbineResponseStorage(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     store : bool
          (default False)
@@ -23,8 +25,9 @@ class TurbineResponseStorage(MOAO):
     fileFormat : StorageType
     """
 
-    def __init__(self , _id="", store=False, timeInterval=0.0, fileFormat=StorageType.BINARY, **kwargs):
+    def __init__(self , description="", _id=None, store=False, timeInterval=0.0, fileFormat=StorageType.BINARY, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.store = store
@@ -40,6 +43,16 @@ class TurbineResponseStorage(MOAO):
         """Return blueprint that this entity represents"""
         return TurbineResponseStorageBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

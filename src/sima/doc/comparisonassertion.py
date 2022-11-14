@@ -17,23 +17,26 @@ class ComparisonAssertion(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     severity : Severity
     message : str
-         (default "")
+         (default None)
     outputNode : OutputNode
     path : str
-         (default "")
+         (default None)
     read : bool
          If the path points to a file, the file will be read(default False)
     expectedOutput : str
-         Expected output represented by the content of this file(default "")
+         Expected output represented by the content of this file(default None)
     """
 
-    def __init__(self , _id="", severity=Severity.WARNING, message="", path="", read=False, expectedOutput="", **kwargs):
+    def __init__(self , description="", _id=None, severity=Severity.WARNING, message=None, path=None, read=False, expectedOutput=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.severity = severity
@@ -52,6 +55,16 @@ class ComparisonAssertion(MOAO):
         """Return blueprint that this entity represents"""
         return ComparisonAssertionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

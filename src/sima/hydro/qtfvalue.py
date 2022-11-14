@@ -12,8 +12,10 @@ class QTFValue(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     dir1 : int
          (default 0)
@@ -29,8 +31,9 @@ class QTFValue(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , _id="", dir1=0, dir2=0, freq1=0, freq2=0, re=0.0, im=0.0, **kwargs):
+    def __init__(self , description="", _id=None, dir1=0, dir2=0, freq1=0, freq2=0, re=0.0, im=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.dir1 = dir1
@@ -49,6 +52,16 @@ class QTFValue(MOAO):
         """Return blueprint that this entity represents"""
         return QTFValueBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

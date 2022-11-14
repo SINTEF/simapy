@@ -12,11 +12,13 @@ class Tensioner(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     appliedLoad : float
          Applied load during static analysis(default 0.0)
     maxLoad : float
@@ -29,8 +31,9 @@ class Tensioner(NamedObject):
          Direction of the applied load referreing to local X-axis of the element going through the tensioner (+1 = The load will act in local X-axis. -1 = The load will act opposite local X-axis).(default 1.0)
     """
 
-    def __init__(self , _id="", name="", appliedLoad=0.0, maxLoad=0.0, minLoad=0.0, pipelineDisplacement=0.0, direction=1.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, appliedLoad=0.0, maxLoad=0.0, minLoad=0.0, pipelineDisplacement=0.0, direction=1.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -49,6 +52,16 @@ class Tensioner(NamedObject):
         """Return blueprint that this entity represents"""
         return TensionerBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

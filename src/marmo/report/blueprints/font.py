@@ -12,6 +12,7 @@ class FontBlueprint(EntityBlueprint):
 
     def __init__(self, name="Font", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("size","integer","",default=10))
-        self.attributes.append(Attribute("font","string","",default=""))
-        self.attributes.append(EnumAttribute("style","marmo/report/FontStyle",""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("size","integer","",default=10))
+        self.add_attribute(Attribute("font","string","",default=None))
+        self.add_attribute(EnumAttribute("style","marmo/report/FontStyle",""))

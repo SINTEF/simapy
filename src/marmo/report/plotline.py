@@ -13,10 +13,12 @@ class PlotLine(Entity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     xlabel : str
-         (default "")
+         (default None)
     ylabel : str
-         (default "")
+         (default None)
     showlegend : bool
          (default True)
     x : ndarray
@@ -28,11 +30,12 @@ class PlotLine(Entity):
     linestyle : LineStyle
     pointstyle : PointStyle
     color : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , xlabel="", ylabel="", showlegend=True, linewidth=1, pointsize=1, linestyle=LineStyle.SOLID, pointstyle=PointStyle.NONE, color="", **kwargs):
+    def __init__(self , description="", xlabel=None, ylabel=None, showlegend=True, linewidth=1, pointsize=1, linestyle=LineStyle.SOLID, pointstyle=PointStyle.NONE, color=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.xlabel = xlabel
         self.ylabel = ylabel
         self.showlegend = showlegend
@@ -53,6 +56,16 @@ class PlotLine(Entity):
         """Return blueprint that this entity represents"""
         return PlotLineBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def xlabel(self) -> str:

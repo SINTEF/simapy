@@ -13,8 +13,10 @@ class CRSAxialDamping(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     constantDamping : bool
          Damping coefficient code(default False)
@@ -25,8 +27,9 @@ class CRSAxialDamping(MOAO):
     dampingCoefficientCharacteristics : List[CRSAxialDampingItem]
     """
 
-    def __init__(self , _id="", constantDamping=False, strainVelocityExponent=1.0, dampingCoefficient=0.0, **kwargs):
+    def __init__(self , description="", _id=None, constantDamping=False, strainVelocityExponent=1.0, dampingCoefficient=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.constantDamping = constantDamping
@@ -43,6 +46,16 @@ class CRSAxialDamping(MOAO):
         """Return blueprint that this entity represents"""
         return CRSAxialDampingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -15,11 +15,13 @@ class SNCurve(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     usePredefinedCurve : bool
          Use predefined SN-curve from selected standard(default False)
     predefinedCurve : SNCurveType
@@ -39,8 +41,9 @@ class SNCurve(NamedObject):
          Logarithm of number of stress cycles for which the SN curve becomes horizontal.(default 0.0)
     """
 
-    def __init__(self , _id="", name="", usePredefinedCurve=False, predefinedCurve=SNCurveType.DNV_B1, negativeInverseSlope=0.0, interceptStress=0.0, thicknessExponent=1.0, referenceThicknessFactor=1.0, fatigueLimitIndicator=FatigueLimitIndicator.STRESS_RANGE, fatigueLimitStress=0.0, fatigueLimitCycles=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, usePredefinedCurve=False, predefinedCurve=SNCurveType.DNV_B1, negativeInverseSlope=0.0, interceptStress=0.0, thicknessExponent=1.0, referenceThicknessFactor=1.0, fatigueLimitIndicator=FatigueLimitIndicator.STRESS_RANGE, fatigueLimitStress=0.0, fatigueLimitCycles=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -64,6 +67,16 @@ class SNCurve(NamedObject):
         """Return blueprint that this entity represents"""
         return SNCurveBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -15,11 +15,13 @@ class GeoTechnical(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     soilItems : List[SoilItem]
     scourDepth : float
          Length from mudline to actual contact point between mud and coductor(default 0.0)
@@ -29,7 +31,7 @@ class GeoTechnical(NamedObject):
     calculateDiameter : bool
          Calculate diameter from cross-sections(default True)
     calculateAxialPileResistance : bool
-         Calculate axial pile resistance(default True)
+         Calculate axial pile resistance(default False)
     pileType : GeotechnicalPileType
     zoneOfInfluence : float
          Zone of influence(default 0.0)
@@ -37,8 +39,9 @@ class GeoTechnical(NamedObject):
          Curve fitting factor(default 0.0)
     """
 
-    def __init__(self , _id="", name="", scourDepth=0.0, diameter=0.0, _type=SoilStiffnessType.STATIC, calculateDiameter=True, calculateAxialPileResistance=True, pileType=GeotechnicalPileType.OPEN, zoneOfInfluence=0.0, curveFittingFactor=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, scourDepth=0.0, diameter=0.0, _type=SoilStiffnessType.STATIC, calculateDiameter=True, calculateAxialPileResistance=False, pileType=GeotechnicalPileType.OPEN, zoneOfInfluence=0.0, curveFittingFactor=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class GeoTechnical(NamedObject):
         """Return blueprint that this entity represents"""
         return GeoTechnicalBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

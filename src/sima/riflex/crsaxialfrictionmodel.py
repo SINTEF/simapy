@@ -12,8 +12,10 @@ class CRSAxialFrictionModel(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     staticFriction : float
          Static friction force corresponding to elongation(default 0.0)
@@ -27,8 +29,9 @@ class CRSAxialFrictionModel(MOAO):
          Local axial friction model(default False)
     """
 
-    def __init__(self , _id="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, **kwargs):
+    def __init__(self , description="", _id=None, staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.staticFriction = staticFriction
@@ -46,6 +49,16 @@ class CRSAxialFrictionModel(MOAO):
         """Return blueprint that this entity represents"""
         return CRSAxialFrictionModelBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,16 +12,19 @@ class WorkflowSetItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     parameterId : str
-         (default "")
+         (default None)
     values : ndarray
     """
 
-    def __init__(self , _id="", parameterId="", **kwargs):
+    def __init__(self , description="", _id=None, parameterId=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.parameterId = parameterId
@@ -36,6 +39,16 @@ class WorkflowSetItem(MOAO):
         """Return blueprint that this entity represents"""
         return WorkflowSetItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

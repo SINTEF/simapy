@@ -12,13 +12,15 @@ class StatisticsRow(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     unit : str
-         (default "")
+         (default None)
     name : str
-         (default "")
+         (default None)
     min : float
          (default 0.0)
     max : float
@@ -33,8 +35,9 @@ class StatisticsRow(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , _id="", unit="", name="", min=0.0, max=0.0, mean=0.0, standardDeviation=0.0, skewness=0.0, kurtosis=0.0, **kwargs):
+    def __init__(self , description="", _id=None, unit=None, name=None, min=0.0, max=0.0, mean=0.0, standardDeviation=0.0, skewness=0.0, kurtosis=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.unit = unit
@@ -55,6 +58,16 @@ class StatisticsRow(MOAO):
         """Return blueprint that this entity represents"""
         return StatisticsRowBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

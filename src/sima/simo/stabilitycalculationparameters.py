@@ -18,8 +18,10 @@ class StabilityCalculationParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     forceTolerance : float
          An equilibrium will be accepted if all the force components are lower than the force tolerance, and all the moment components are lower than the moment tolerance.(default 100.0)
@@ -43,8 +45,9 @@ class StabilityCalculationParameters(MOAO):
          (default 0)
     """
 
-    def __init__(self , _id="", forceTolerance=100.0, momentTolerance=1000.0, minAzimuthAngle=0.0, maxAzimuthAngle=0.0, numAzimuthValues=0, minRotationAngle=0.0, maxRotationAngle=0.0, numRotationvalues=0, **kwargs):
+    def __init__(self , description="", _id=None, forceTolerance=100.0, momentTolerance=1000.0, minAzimuthAngle=0.0, maxAzimuthAngle=0.0, numAzimuthValues=0, minRotationAngle=0.0, maxRotationAngle=0.0, numRotationvalues=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.forceTolerance = forceTolerance
@@ -68,6 +71,16 @@ class StabilityCalculationParameters(MOAO):
         """Return blueprint that this entity represents"""
         return StabilityCalculationParametersBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

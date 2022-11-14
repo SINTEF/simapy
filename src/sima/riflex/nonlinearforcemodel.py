@@ -15,8 +15,10 @@ class NonLinearForceModel(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     internalSlugFlow : bool
          Indicator for modelling forces from internal slug flow(default False)
@@ -39,8 +41,9 @@ class NonLinearForceModel(MOAO):
     slugForceSpecification : SlugForceSpecification
     """
 
-    def __init__(self , _id="", internalSlugFlow=False, hydrodynamicForce=HydrodynamicForceIndicator.NO_FORCE_ITERATION_VELOCITIES, maxHit=5, forceIterationConvergence=0.01, startUpDuration=10.0, ruptureRelease=False, connectorNumber=0, timeStepNumForRelease=0, dampingMatrixCalculation=DampingMatrixCalculationOption.CONSTANT_PROPORTIONAL, **kwargs):
+    def __init__(self , description="", _id=None, internalSlugFlow=False, hydrodynamicForce=HydrodynamicForceIndicator.NO_FORCE_ITERATION_VELOCITIES, maxHit=5, forceIterationConvergence=0.01, startUpDuration=10.0, ruptureRelease=False, connectorNumber=0, timeStepNumForRelease=0, dampingMatrixCalculation=DampingMatrixCalculationOption.CONSTANT_PROPORTIONAL, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.internalSlugFlow = internalSlugFlow
@@ -63,6 +66,16 @@ class NonLinearForceModel(MOAO):
         """Return blueprint that this entity represents"""
         return NonLinearForceModelBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

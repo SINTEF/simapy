@@ -16,11 +16,13 @@ class LiftAndDragForce(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     point : Point3
     maxAngle : float
          Maximum rudder angle(default 0.0)
@@ -49,8 +51,9 @@ class LiftAndDragForce(NamedObject):
          Symmetry about x-axis(default False)
     """
 
-    def __init__(self , _id="", name="", maxAngle=0.0, maxAngleVelocity=0.0, lengthZ=0.0, lengthX=0.0, angle=0.0, currentFactor=0.0, vesselFactor=0.0, thrusterFactor=0.0, dragZ=0.0, interpolation=LiftAndDragInterpolation.LINEAR, symmetric=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, maxAngle=0.0, maxAngleVelocity=0.0, lengthZ=0.0, lengthX=0.0, angle=0.0, currentFactor=0.0, vesselFactor=0.0, thrusterFactor=0.0, dragZ=0.0, interpolation=LiftAndDragInterpolation.LINEAR, symmetric=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -79,6 +82,16 @@ class LiftAndDragForce(NamedObject):
         """Return blueprint that this entity represents"""
         return LiftAndDragForceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

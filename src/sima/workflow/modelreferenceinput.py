@@ -20,11 +20,13 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -35,9 +37,9 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
          (default 0)
     controlSignalInputSlots : List[ControlSignalInputSlot]
     root : str
-         (default "")
+         (default None)
     resultId : str
-         (default "")
+         (default None)
     outputSlot : OutputSlot
     properties : List[SignalProperties]
     model : MOAO
@@ -54,8 +56,9 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     modelReferences : List[ModelReference]
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, root="", resultId="", reference='workflow', specifyAdditionalProperties=False, _type='workflow', useReference=False, array=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, root=None, resultId=None, reference='workflow', specifyAdditionalProperties=False, _type='workflow', useReference=False, array=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -85,6 +88,16 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
         """Return blueprint that this entity represents"""
         return ModelReferenceInputBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

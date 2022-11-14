@@ -12,11 +12,13 @@ class ExternalWrappingType(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     mass : float
          Mass per unit length(default 0.0)
     buoyancy : float
@@ -41,8 +43,9 @@ class ExternalWrappingType(NamedObject):
          Linear drag force coefficients in tangential direction(default 0.0)
     """
 
-    def __init__(self , _id="", name="", mass=0.0, buoyancy=0.0, gyrationRadius=0.0, coveredFraction=0.0, wrappingItemLength=1.0, tangentialDrag=0.0, normalDrag=0.0, tangentialAddedMass=0.0, normalAddedMass=0.0, tangentialLinearDrag=0.0, normalLinearDrag=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, mass=0.0, buoyancy=0.0, gyrationRadius=0.0, coveredFraction=0.0, wrappingItemLength=1.0, tangentialDrag=0.0, normalDrag=0.0, tangentialAddedMass=0.0, normalAddedMass=0.0, tangentialLinearDrag=0.0, normalLinearDrag=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -67,6 +70,16 @@ class ExternalWrappingType(NamedObject):
         """Return blueprint that this entity represents"""
         return ExternalWrappingTypeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

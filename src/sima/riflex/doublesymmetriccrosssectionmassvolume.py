@@ -12,8 +12,10 @@ class DoubleSymmetricCrossSectionMassVolume(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     massCoefficient : float
          Mass / unit length(default 0.0)
@@ -25,8 +27,9 @@ class DoubleSymmetricCrossSectionMassVolume(MOAO):
          Radius of gyration about local x-axis(default 0.0)
     """
 
-    def __init__(self , _id="", massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, **kwargs):
+    def __init__(self , description="", _id=None, massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.massCoefficient = massCoefficient
@@ -43,6 +46,16 @@ class DoubleSymmetricCrossSectionMassVolume(MOAO):
         """Return blueprint that this entity represents"""
         return DoubleSymmetricCrossSectionMassVolumeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

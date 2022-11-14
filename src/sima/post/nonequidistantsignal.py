@@ -14,25 +14,28 @@ class NonEquidistantSignal(GeneratorSignal):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
     name : str
-         (default "")
+         (default None)
     xunit : str
          Defines the unit of the x axis(default 's')
     yunit : str
          Defines the unit of the y axis(default '-')
     values : List[XYItem]
     ylabel : str
-         (default "")
+         (default None)
     xlabel : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , _id="", name="", xunit='s', yunit='-', ylabel="", xlabel="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, xunit='s', yunit='-', ylabel=None, xlabel=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.properties = list()
@@ -52,6 +55,16 @@ class NonEquidistantSignal(GeneratorSignal):
         """Return blueprint that this entity represents"""
         return NonEquidistantSignalBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,8 +12,10 @@ class SoilCapacityElement(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     dCap : float
          Penetration relative to ZCONT (positive upwards)(default 0.0)
@@ -25,8 +27,9 @@ class SoilCapacityElement(MOAO):
          Suction pressure(default 0.0)
     """
 
-    def __init__(self , _id="", dCap=0.0, soilFr=0.0, frcDep=0.0, pSuct=0.0, **kwargs):
+    def __init__(self , description="", _id=None, dCap=0.0, soilFr=0.0, frcDep=0.0, pSuct=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.dCap = dCap
@@ -43,6 +46,16 @@ class SoilCapacityElement(MOAO):
         """Return blueprint that this entity represents"""
         return SoilCapacityElementBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

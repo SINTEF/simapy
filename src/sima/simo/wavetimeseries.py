@@ -12,8 +12,10 @@ class WaveTimeSeries(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     scaleFactor : float
          Wave scale factor(default 1.0)
@@ -24,19 +26,20 @@ class WaveTimeSeries(MOAO):
     waterDepth : float
          Water depth in FULL scale(default 0.0)
     fileName : str
-         (default "")
+         (default None)
     filterInputTimeseries : bool
          Apply filtering to the wave signal(default True)
     specifyLowerPeriod : bool
-         Override default computation of lower cut off period(default True)
+         Override default computation of lower cut off period(default False)
     lowerCutOffPeriod : float
          Lower cut off period for filtering of wave signal(default 0.0)
     upperCutOffPeriod : float
          Upper cut off period for filtering of wave signal(default 40.0)
     """
 
-    def __init__(self , _id="", scaleFactor=1.0, refPointX=0.0, refPointY=0.0, waterDepth=0.0, fileName="", filterInputTimeseries=True, specifyLowerPeriod=True, lowerCutOffPeriod=0.0, upperCutOffPeriod=40.0, **kwargs):
+    def __init__(self , description="", _id=None, scaleFactor=1.0, refPointX=0.0, refPointY=0.0, waterDepth=0.0, fileName=None, filterInputTimeseries=True, specifyLowerPeriod=False, lowerCutOffPeriod=0.0, upperCutOffPeriod=40.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.scaleFactor = scaleFactor
@@ -58,6 +61,16 @@ class WaveTimeSeries(MOAO):
         """Return blueprint that this entity represents"""
         return WaveTimeSeriesBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

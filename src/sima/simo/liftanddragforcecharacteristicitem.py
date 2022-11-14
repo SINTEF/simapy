@@ -12,8 +12,10 @@ class LiftAndDragForceCharacteristicItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     velocityDirection : float
          Velocity direction relative to rudder x-axis(default 0.0)
@@ -25,8 +27,9 @@ class LiftAndDragForceCharacteristicItem(MOAO):
          Quadratic moment coefficient about rudder z-axis(default 0.0)
     """
 
-    def __init__(self , _id="", velocityDirection=0.0, forceX=0.0, forceY=0.0, momentZ=0.0, **kwargs):
+    def __init__(self , description="", _id=None, velocityDirection=0.0, forceX=0.0, forceY=0.0, momentZ=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.velocityDirection = velocityDirection
@@ -43,6 +46,16 @@ class LiftAndDragForceCharacteristicItem(MOAO):
         """Return blueprint that this entity represents"""
         return LiftAndDragForceCharacteristicItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

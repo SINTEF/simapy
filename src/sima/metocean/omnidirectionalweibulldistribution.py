@@ -12,11 +12,13 @@ class OmniDirectionalWeibullDistribution(WeibullDistribution):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     returnPeriod : float
          (default 0.0)
     level : float
@@ -33,8 +35,9 @@ class OmniDirectionalWeibullDistribution(WeibullDistribution):
          (default 0.0)
     """
 
-    def __init__(self , _id="", name="", returnPeriod=0.0, level=0.0, duration=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, returnPeriod=0.0, level=0.0, duration=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -55,6 +58,16 @@ class OmniDirectionalWeibullDistribution(WeibullDistribution):
         """Return blueprint that this entity represents"""
         return OmniDirectionalWeibullDistributionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

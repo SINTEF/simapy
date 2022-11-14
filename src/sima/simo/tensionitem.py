@@ -12,8 +12,10 @@ class TensionItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     tension : float
          (default 0.0)
@@ -21,8 +23,9 @@ class TensionItem(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , _id="", tension=0.0, angle=0.0, **kwargs):
+    def __init__(self , description="", _id=None, tension=0.0, angle=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.tension = tension
@@ -37,6 +40,16 @@ class TensionItem(MOAO):
         """Return blueprint that this entity represents"""
         return TensionItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

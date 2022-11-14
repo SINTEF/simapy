@@ -12,8 +12,10 @@ class MultiEnvironmentSetup(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     windWaveLowerFrequency : float
          Wind wave lower frequency limit(default 0.1)
@@ -25,8 +27,9 @@ class MultiEnvironmentSetup(MOAO):
          Swell wave upper frequency limit(default 2.0)
     """
 
-    def __init__(self , _id="", windWaveLowerFrequency=0.1, windWaveUpperFrequency=3.0, swellWaveLowerFrequency=0.05, swellWaveUpperFrequency=2.0, **kwargs):
+    def __init__(self , description="", _id=None, windWaveLowerFrequency=0.1, windWaveUpperFrequency=3.0, swellWaveLowerFrequency=0.05, swellWaveUpperFrequency=2.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.windWaveLowerFrequency = windWaveLowerFrequency
@@ -43,6 +46,16 @@ class MultiEnvironmentSetup(MOAO):
         """Return blueprint that this entity represents"""
         return MultiEnvironmentSetupBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

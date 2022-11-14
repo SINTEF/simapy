@@ -15,20 +15,22 @@ class CustomText(ParameterField,Named):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     label : str
-         (default "")
+         (default None)
     tooltip : str
-         (default "")
+         (default None)
     fileType : FileType
     directory : bool
          (default False)
     fileExtensions : str
-         Describes legal file extensions separated by semicolon, example:  *.txt;*.dat(default "")
+         Describes legal file extensions separated by semicolon, example:  *.txt;*.dat(default None)
     options : ndarray
     _type : FieldType
     width : int
@@ -36,11 +38,12 @@ class CustomText(ParameterField,Named):
     expandHorizontally : bool
          If set the field will fill all available horzontal space(default False)
     value : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , _id="", name="", label="", tooltip="", fileType=FileType.INPUT, directory=False, fileExtensions="", _type=FieldType.TEXT, width=10, expandHorizontally=False, value="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, label=None, tooltip=None, fileType=FileType.INPUT, directory=False, fileExtensions=None, _type=FieldType.TEXT, width=10, expandHorizontally=False, value=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -64,6 +67,16 @@ class CustomText(ParameterField,Named):
         """Return blueprint that this entity represents"""
         return CustomTextBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

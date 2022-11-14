@@ -12,19 +12,19 @@ class IntegerScalar(Signal):
     """
     Keyword arguments
     -----------------
-    name : str
-         (default "")
     description : str
          (default "")
+    name : str
+         (default None)
     attributes : List[Attribute]
     value : int
          (default 0)
     """
 
-    def __init__(self , name="", description="", value=0, **kwargs):
+    def __init__(self , description="", name=None, value=0, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
         self.description = description
+        self.name = name
         self.attributes = list()
         self.value = value
         for key, value in kwargs.items():
@@ -39,16 +39,6 @@ class IntegerScalar(Signal):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
     def description(self) -> str:
         """"""
         return self.__description
@@ -57,6 +47,16 @@ class IntegerScalar(Signal):
     def description(self, value: str):
         """Set description"""
         self.__description = str(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def attributes(self) -> List[Attribute]:

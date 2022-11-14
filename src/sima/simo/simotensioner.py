@@ -12,11 +12,13 @@ class SIMOTensioner(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     pretension : float
          Pretension in tensioner(default 0.0)
     maxRate : float
@@ -27,8 +29,9 @@ class SIMOTensioner(NamedObject):
          Stiffness at specified pretension(default 0.0)
     """
 
-    def __init__(self , _id="", name="", pretension=0.0, maxRate=0.0, stiffness=0.0, strokeLength=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, pretension=0.0, maxRate=0.0, stiffness=0.0, strokeLength=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -46,6 +49,16 @@ class SIMOTensioner(NamedObject):
         """Return blueprint that this entity represents"""
         return SIMOTensionerBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

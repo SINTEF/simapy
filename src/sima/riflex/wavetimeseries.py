@@ -13,11 +13,13 @@ class WaveTimeSeries(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     fileName : str
-         Wave time series file(default "")
+         Wave time series file(default None)
     fileFormat : FileFormatAsciStar
          Wave time series file format
     timeColumnNum : int
@@ -34,8 +36,9 @@ class WaveTimeSeries(MOAO):
          Global y-coordinate for position where time series is measured(default 0.0)
     """
 
-    def __init__(self , _id="", fileName="", fileFormat=FileFormatAsciStar.ASCII, timeColumnNum=1, waveColumnNum=2, starFileVersion=0, direction=0.0, xgWav=0.0, ygWav=0.0, **kwargs):
+    def __init__(self , description="", _id=None, fileName=None, fileFormat=FileFormatAsciStar.ASCII, timeColumnNum=1, waveColumnNum=2, starFileVersion=0, direction=0.0, xgWav=0.0, ygWav=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.fileName = fileName
@@ -56,6 +59,16 @@ class WaveTimeSeries(MOAO):
         """Return blueprint that this entity represents"""
         return WaveTimeSeriesBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

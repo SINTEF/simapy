@@ -21,11 +21,13 @@ class ConditionSet(ConditionTaskCondition,NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     changeNumber : int
          (default 0)
     resultContainer : ResultContainer
@@ -37,11 +39,12 @@ class ConditionSet(ConditionTaskCondition,NamedObject):
     inputFromFile : bool
          Specify variable values from file.(default False)
     path : str
-         Import variable values from file. Expected file format:\n' any comment specified with '\n'Hs    Tp     seed : values specified in rows ( Need to match the variables specified)  \n1.0      2.0    3\n4.0      5.0    4\n'any comment\n           (default "")
+         Import variable values from file. Expected file format:\n' any comment specified with '\n'Hs    Tp     seed : values specified in rows ( Need to match the variables specified)  \n1.0      2.0    3\n4.0      5.0    4\n'any comment\n           (default None)
     """
 
-    def __init__(self , _id="", name="", changeNumber=0, inputFromFile=False, path="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, changeNumber=0, inputFromFile=False, path=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -63,6 +66,16 @@ class ConditionSet(ConditionTaskCondition,NamedObject):
         """Return blueprint that this entity represents"""
         return ConditionSetBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -13,11 +13,13 @@ class BodyEigenvalueResult(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     body : str
-         Result body(default "")
+         Result body(default None)
     surgeExcursion : float
          Excursion in surge(default 0.0)
     swayExcursion : float
@@ -33,8 +35,9 @@ class BodyEigenvalueResult(MOAO):
     periodResults : List[PeriodEigenvalueResult]
     """
 
-    def __init__(self , _id="", body="", surgeExcursion=0.0, swayExcursion=0.0, heaveExcursion=0.0, rollExcursion=0.0, pitchExcursion=0.0, yawExcursion=0.0, **kwargs):
+    def __init__(self , description="", _id=None, body=None, surgeExcursion=0.0, swayExcursion=0.0, heaveExcursion=0.0, rollExcursion=0.0, pitchExcursion=0.0, yawExcursion=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.body = body
@@ -55,6 +58,16 @@ class BodyEigenvalueResult(MOAO):
         """Return blueprint that this entity represents"""
         return BodyEigenvalueResultBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,9 +12,10 @@ class DirectionDependentExtremeValuesBlueprint(LevelExtremeBlueprint):
 
     def __init__(self, name="DirectionDependentExtremeValues", package_path="sima/metocean", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("level","number","",default=0.0))
-        self.attributes.append(Attribute("duration","number","",default=0.0))
-        self.attributes.append(BlueprintAttribute("sectors","sima/metocean/SectorExtreme","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("level","number","",default=0.0))
+        self.add_attribute(Attribute("duration","number","",default=0.0))
+        self.add_attribute(BlueprintAttribute("sectors","sima/metocean/SectorExtreme","",True,Dimension("*")))

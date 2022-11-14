@@ -12,9 +12,10 @@ class DoubleSymmetricCrossSectionMassVolumeBlueprint(MOAOBlueprint):
 
     def __init__(self, name="DoubleSymmetricCrossSectionMassVolume", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("massCoefficient","number","Mass / unit length",default=0.0))
-        self.attributes.append(Attribute("extCrossSectionalArea","number","External cross-sectional area",default=0.0))
-        self.attributes.append(Attribute("intCrossSectionalArea","number","Internal cross-sectional area",default=0.0))
-        self.attributes.append(Attribute("gyrationRadius","number","Radius of gyration about local x-axis",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("massCoefficient","number","Mass / unit length",default=0.0))
+        self.add_attribute(Attribute("extCrossSectionalArea","number","External cross-sectional area",default=0.0))
+        self.add_attribute(Attribute("intCrossSectionalArea","number","Internal cross-sectional area",default=0.0))
+        self.add_attribute(Attribute("gyrationRadius","number","Radius of gyration about local x-axis",default=0.0))

@@ -13,22 +13,25 @@ class StaticConditionResult(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     bodyResults : List[BodyResult]
     header : str
-         (default "")
+         (default None)
     dateTag : str
-         (default "")
+         (default None)
     filepart : str
-         (default "")
+         (default None)
     globalForces : bool
          (default True)
     """
 
-    def __init__(self , _id="", header="", dateTag="", filepart="", globalForces=True, **kwargs):
+    def __init__(self , description="", _id=None, header=None, dateTag=None, filepart=None, globalForces=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.bodyResults = list()
@@ -46,6 +49,16 @@ class StaticConditionResult(MOAO):
         """Return blueprint that this entity represents"""
         return StaticConditionResultBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,19 +12,22 @@ class ParameterLines(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     entityName : str
-         (default "")
+         (default None)
     floatIndex : int
          (default 0)
     value : float
          (default 0.0)
     """
 
-    def __init__(self , _id="", entityName="", floatIndex=0, value=0.0, **kwargs):
+    def __init__(self , description="", _id=None, entityName=None, floatIndex=0, value=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.entityName = entityName
@@ -40,6 +43,16 @@ class ParameterLines(MOAO):
         """Return blueprint that this entity represents"""
         return ParameterLinesBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

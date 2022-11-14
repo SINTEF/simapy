@@ -14,18 +14,21 @@ class SIMOQuadraticDampingMatrix(QuadraticDampingMatrix,Named):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     values : ndarray
     name : str
-         (default "")
+         (default None)
     mode : DampingMatrixMotionMode
          Select which motions the damping matrix force should be calculated from. When 'default' is selected, low frequency motion is used for bodies of type '6 DOF - separated analysis' and total motion otherwise.
     """
 
-    def __init__(self , _id="", name="", mode=DampingMatrixMotionMode.DEFAULT, **kwargs):
+    def __init__(self , description="", _id=None, name=None, mode=DampingMatrixMotionMode.DEFAULT, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.values = ndarray(1)
@@ -41,6 +44,16 @@ class SIMOQuadraticDampingMatrix(QuadraticDampingMatrix,Named):
         """Return blueprint that this entity represents"""
         return SIMOQuadraticDampingMatrixBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

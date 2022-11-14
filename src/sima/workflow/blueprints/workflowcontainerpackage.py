@@ -12,9 +12,10 @@ class WorkflowContainerPackageBlueprint(NamedBlueprint):
 
     def __init__(self, name="WorkflowContainerPackage", package_path="sima/workflow", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(BlueprintAttribute("packages","sima/workflow/WorkflowContainerPackage","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("workflows","sima/workflow/Workflow","",True,Dimension("*")))
-        self.attributes.append(Attribute("visible","boolean","Make all workflows directly contained in this package visible outside of the task",default=False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(BlueprintAttribute("packages","sima/workflow/WorkflowContainerPackage","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("workflows","sima/workflow/Workflow","",True,Dimension("*")))
+        self.add_attribute(Attribute("visible","boolean","Make all workflows directly contained in this package visible outside of the task",default=False))

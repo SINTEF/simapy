@@ -16,18 +16,21 @@ class RIFLEXFederate(SIMOFederate):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     timeStep : float
          (default 0.0)
     task : ConditionTask
     """
 
-    def __init__(self , _id="", name="", timeStep=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, timeStep=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -43,6 +46,16 @@ class RIFLEXFederate(SIMOFederate):
         """Return blueprint that this entity represents"""
         return RIFLEXFederateBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

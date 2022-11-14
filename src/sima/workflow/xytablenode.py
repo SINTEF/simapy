@@ -14,11 +14,13 @@ class XYTableNode(OutputNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -30,15 +32,16 @@ class XYTableNode(OutputNode):
     controlSignalInputSlots : List[ControlSignalInputSlot]
     inputSlot : InputSlot
     columnVariable : str
-         the values of this variable will create the columns of the table(default "")
+         the values of this variable will create the columns of the table(default None)
     rowVariable : str
-         the values of this variable will create the rows of the table(default "")
+         the values of this variable will create the rows of the table(default None)
     dataSeries : str
-         the values of this signal will be shown in the field matching the related variable values(default "")
+         the values of this signal will be shown in the field matching the related variable values(default None)
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, columnVariable="", rowVariable="", dataSeries="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, columnVariable=None, rowVariable=None, dataSeries=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class XYTableNode(OutputNode):
         """Return blueprint that this entity represents"""
         return XYTableNodeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,6 +12,7 @@ class ReportBlueprint(ReportItemContainerBlueprint):
 
     def __init__(self, name="Report", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(BlueprintAttribute("items","marmo/report/ReportItem","",True,Dimension("*")))
-        self.attributes.append(Attribute("title","string","",default=""))
-        self.attributes.append(Attribute("subtitle","string","",default=""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(BlueprintAttribute("items","marmo/report/ReportItem","",True,Dimension("*")))
+        self.add_attribute(Attribute("title","string","",default=None))
+        self.add_attribute(Attribute("subtitle","string","",default=None))

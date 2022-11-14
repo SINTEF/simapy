@@ -12,17 +12,20 @@ class VersioningPreference(SIMAPreference):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     userHome : str
-         Override user home folder(default "")
+         Override user home folder(default None)
     sshFolder : str
-         Override ssh folder(default "")
+         Override ssh folder(default None)
     """
 
-    def __init__(self , _id="", userHome="", sshFolder="", **kwargs):
+    def __init__(self , description="", _id=None, userHome=None, sshFolder=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.userHome = userHome
@@ -37,6 +40,16 @@ class VersioningPreference(SIMAPreference):
         """Return blueprint that this entity represents"""
         return VersioningPreferenceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

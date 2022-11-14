@@ -12,19 +12,22 @@ class ScriptingPreference(SIMAPreference):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     showScripts : bool
          (default False)
     javaScriptLocations : ndarray
     pythonHome : str
-         Override python home folder(default "")
+         Override python home folder(default None)
     pythonPaths : ndarray
     """
 
-    def __init__(self , _id="", showScripts=False, pythonHome="", **kwargs):
+    def __init__(self , description="", _id=None, showScripts=False, pythonHome=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.showScripts = showScripts
@@ -41,6 +44,16 @@ class ScriptingPreference(SIMAPreference):
         """Return blueprint that this entity represents"""
         return ScriptingPreferenceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

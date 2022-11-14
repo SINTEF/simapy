@@ -12,7 +12,8 @@ class ScatterLevelBlueprint(MOAOBlueprint):
 
     def __init__(self, name="ScatterLevel", package_path="sima/metocean", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("level","number","",default=0.0))
-        self.attributes.append(BlueprintAttribute("scatterDiagrams","sima/metocean/ScatterDiagram","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("level","number","",default=0.0))
+        self.add_attribute(BlueprintAttribute("scatterDiagrams","sima/metocean/ScatterDiagram","",True,Dimension("*")))

@@ -19,8 +19,10 @@ class ElementStressStorage(ElementReference):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -50,8 +52,9 @@ class ElementStressStorage(ElementReference):
     position : WallPoint
     """
 
-    def __init__(self , _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, _type=StressType.AXIAL_BENDING, outerDiameter=0.0, thickness=0.0, internalPressure=0.0, externalPressure=0.0, numberOfPoints=8, position=WallPoint.OUTER_WALL, **kwargs):
+    def __init__(self , description="", _id=None, segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, _type=StressType.AXIAL_BENDING, outerDiameter=0.0, thickness=0.0, internalPressure=0.0, externalPressure=0.0, numberOfPoints=8, position=WallPoint.OUTER_WALL, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -78,6 +81,16 @@ class ElementStressStorage(ElementReference):
         """Return blueprint that this entity represents"""
         return ElementStressStorageBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

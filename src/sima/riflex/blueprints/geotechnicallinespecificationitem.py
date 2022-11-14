@@ -12,8 +12,9 @@ class GeotechnicalLineSpecificationItemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="GeotechnicalLineSpecificationItem", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("geotechnical","sima/riflex/GeoTechnical","",False))
-        self.attributes.append(BlueprintAttribute("line","sima/riflex/ARLine","",False))
-        self.attributes.append(Attribute("seabedZCoordinate","number","Global Z coordinate of seafloor",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("geotechnical","sima/riflex/GeoTechnical","",False))
+        self.add_attribute(BlueprintAttribute("line","sima/riflex/ARLine","",False))
+        self.add_attribute(Attribute("seabedZCoordinate","number","Global Z coordinate of seafloor",default=0.0))

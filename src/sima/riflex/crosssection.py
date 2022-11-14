@@ -12,15 +12,18 @@ class CrossSection(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , _id="", name="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -34,6 +37,16 @@ class CrossSection(NamedObject):
         """Return blueprint that this entity represents"""
         return CrossSectionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

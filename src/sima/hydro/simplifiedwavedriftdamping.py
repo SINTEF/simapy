@@ -13,14 +13,17 @@ class SimplifiedWaveDriftDamping(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     items : List[WaveDriftDampingItem]
     """
 
-    def __init__(self , _id="", **kwargs):
+    def __init__(self , description="", _id=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.items = list()
@@ -34,6 +37,16 @@ class SimplifiedWaveDriftDamping(MOAO):
         """Return blueprint that this entity represents"""
         return SimplifiedWaveDriftDampingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

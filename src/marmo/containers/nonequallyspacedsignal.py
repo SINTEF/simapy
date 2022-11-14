@@ -13,33 +13,33 @@ class NonEquallySpacedSignal(Signal):
     Data model for a non-equally spaced signal.
     Keyword arguments
     -----------------
-    name : str
-         (default "")
     description : str
          (default "")
+    name : str
+         (default None)
     attributes : List[Attribute]
     xvalue : ndarray
     value : ndarray
     unit : str
-         (default "")
+         (default None)
     xunit : str
-         (default "")
+         (default None)
     xname : str
-         (default "")
+         (default None)
     xlabel : str
-         (default "")
+         (default None)
     xdescription : str
-         (default "")
+         (default None)
     label : str
-         (default "")
+         (default None)
     legend : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , name="", description="", unit="", xunit="", xname="", xlabel="", xdescription="", label="", legend="", **kwargs):
+    def __init__(self , description="", name=None, unit=None, xunit=None, xname=None, xlabel=None, xdescription=None, label=None, legend=None, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
         self.description = description
+        self.name = name
         self.attributes = list()
         self.xvalue = ndarray(1)
         self.value = ndarray(1)
@@ -62,16 +62,6 @@ class NonEquallySpacedSignal(Signal):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
     def description(self) -> str:
         """"""
         return self.__description
@@ -80,6 +70,16 @@ class NonEquallySpacedSignal(Signal):
     def description(self, value: str):
         """Set description"""
         self.__description = str(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def attributes(self) -> List[Attribute]:

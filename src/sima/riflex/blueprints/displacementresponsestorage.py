@@ -12,8 +12,9 @@ class DisplacementResponseStorageBlueprint(MOAOBlueprint):
 
     def __init__(self, name="DisplacementResponseStorage", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("storageStep","integer","Code for storage of nodal displacements. Storage for every <storage step> given.",default=1))
-        self.attributes.append(EnumAttribute("format","sima/riflex/FileFormatCode","Format code for additional output of nodal displacement time series"))
-        self.attributes.append(BlueprintAttribute("nodes","sima/riflex/NodeReference","Specification of nodes for displacement storage",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("storageStep","integer","Code for storage of nodal displacements. Storage for every <storage step> given.",default=1))
+        self.add_attribute(EnumAttribute("format","sima/riflex/FileFormatCode","Format code for additional output of nodal displacement time series"))
+        self.add_attribute(BlueprintAttribute("nodes","sima/riflex/NodeReference","Specification of nodes for displacement storage",True,Dimension("*")))

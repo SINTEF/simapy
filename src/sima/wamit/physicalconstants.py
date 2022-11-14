@@ -12,8 +12,10 @@ class PhysicalConstants(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     waterDensity : float
          Water density - rho water(default 1025.0)
@@ -21,8 +23,9 @@ class PhysicalConstants(MOAO):
          Acceleration of gravity - g(default 9.81)
     """
 
-    def __init__(self , _id="", waterDensity=1025.0, accOfGravity=9.81, **kwargs):
+    def __init__(self , description="", _id=None, waterDensity=1025.0, accOfGravity=9.81, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.waterDensity = waterDensity
@@ -37,6 +40,16 @@ class PhysicalConstants(MOAO):
         """Return blueprint that this entity represents"""
         return PhysicalConstantsBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

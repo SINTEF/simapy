@@ -16,11 +16,13 @@ class PositioningElementResult(ForceResult):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         Force name(default "")
+         Force name(default None)
     fx : float
          Statically calculated force(default 0.0)
     fy : float
@@ -38,8 +40,9 @@ class PositioningElementResult(ForceResult):
     bodyResult : BodyResult
     """
 
-    def __init__(self , _id="", name="", fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, mass=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, mass=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class PositioningElementResult(ForceResult):
         """Return blueprint that this entity represents"""
         return PositioningElementResultBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

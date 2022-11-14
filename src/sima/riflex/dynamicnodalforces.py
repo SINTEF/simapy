@@ -14,18 +14,21 @@ class DynamicNodalForces(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     _type : ForceSpecificationType
          Type of force specification
     fileName : str
-         File name for time series of force components\n\nNTDFO: : Number of time instants (given once) \nMDCOMP TIMDFO: Number of load components and \ntime instant for the given loads\nRLMAG:  Magnitude of load component (MDCOMP lines)\n\nThe block {MDCOMP TIMDFO RLMAG} must be given for \neach time instant. \n(default "")
+         File name for time series of force components\n\nNTDFO: : Number of time instants (given once) \nMDCOMP TIMDFO: Number of load components and \ntime instant for the given loads\nRLMAG:  Magnitude of load component (MDCOMP lines)\n\nThe block {MDCOMP TIMDFO RLMAG} must be given for \neach time instant. \n(default None)
     items : List[DynamicNodalForceItem]
     """
 
-    def __init__(self , _id="", _type=ForceSpecificationType.SIMPLE_EXPRESSION, fileName="", **kwargs):
+    def __init__(self , description="", _id=None, _type=ForceSpecificationType.SIMPLE_EXPRESSION, fileName=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self._type = _type
@@ -41,6 +44,16 @@ class DynamicNodalForces(MOAO):
         """Return blueprint that this entity represents"""
         return DynamicNodalForcesBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

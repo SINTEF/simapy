@@ -12,9 +12,9 @@ class DimensionalMatrixBlueprint(SignalBlueprint):
 
     def __init__(self, name="DimensionalMatrix", package_path="marmo/containers", description="2D matrix of values with dimension"):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
-        self.attributes.append(BlueprintAttribute("attributes","marmo/containers/Attribute","",True,Dimension("*")))
-        self.attributes.append(Attribute("value","number","",Dimension("*"),Dimension("*"),default=0.0))
-        self.attributes.append(Attribute("label","string","",default=""))
-        self.attributes.append(Attribute("unit","string","",Dimension("*"),Dimension("*"),default=""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(BlueprintAttribute("attributes","marmo/containers/Attribute","",True,Dimension("*")))
+        self.add_attribute(Attribute("value","number","",Dimension("*"),Dimension("*"),default=0.0))
+        self.add_attribute(Attribute("label","string","",default=None))
+        self.add_attribute(Attribute("unit","string","",Dimension("*"),Dimension("*"),default=None))

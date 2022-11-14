@@ -17,8 +17,10 @@ class ArticulatedStructureData(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     _type : ArticulatedStructureType
          Type of articulated structure coupling control
@@ -44,8 +46,9 @@ class ArticulatedStructureData(MOAO):
          Slip (turn-back) angle(default 0.0)
     """
 
-    def __init__(self , _id="", _type=ArticulatedStructureType.NRUN, motionMode=MotionMode.PHI, initialPosition=0.0, lowerPositionLimit=0.0, upperPositionLimit=0.0, maxSpeed=0.0, maxAcceleration=0.0, motionSequenceType=MotionSequenceType.TSTOP, maximumAngle=0.0, slipAngle=0.0, **kwargs):
+    def __init__(self , description="", _id=None, _type=ArticulatedStructureType.NRUN, motionMode=MotionMode.PHI, initialPosition=0.0, lowerPositionLimit=0.0, upperPositionLimit=0.0, maxSpeed=0.0, maxAcceleration=0.0, motionSequenceType=MotionSequenceType.TSTOP, maximumAngle=0.0, slipAngle=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self._type = _type
@@ -71,6 +74,16 @@ class ArticulatedStructureData(MOAO):
         """Return blueprint that this entity represents"""
         return ArticulatedStructureDataBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

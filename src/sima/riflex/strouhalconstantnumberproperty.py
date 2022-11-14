@@ -12,17 +12,20 @@ class StrouhalConstantNumberProperty(StrouhalSpecificationProperty):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     fixedStrouhalNumber : float
          Fixed Strouhal number(default 0.19)
     """
 
-    def __init__(self , _id="", name="", fixedStrouhalNumber=0.19, **kwargs):
+    def __init__(self , description="", _id=None, name=None, fixedStrouhalNumber=0.19, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -37,6 +40,16 @@ class StrouhalConstantNumberProperty(StrouhalSpecificationProperty):
         """Return blueprint that this entity represents"""
         return StrouhalConstantNumberPropertyBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

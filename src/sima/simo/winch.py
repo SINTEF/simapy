@@ -14,11 +14,13 @@ class Winch(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     controlType : WinchControl
          Type of coupling winch control
     maximumSpeed : float
@@ -32,8 +34,9 @@ class Winch(NamedObject):
     intervals : List[WinchRunInterval]
     """
 
-    def __init__(self , _id="", name="", controlType=WinchControl.PREDEFINED, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, drumLength=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, controlType=WinchControl.PREDEFINED, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, drumLength=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -53,6 +56,16 @@ class Winch(NamedObject):
         """Return blueprint that this entity represents"""
         return WinchBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

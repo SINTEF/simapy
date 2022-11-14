@@ -17,11 +17,13 @@ class PeaksFilter(OperationNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -47,8 +49,9 @@ class PeaksFilter(OperationNode):
          Number of partitions when finding block maxima/minima(default 10)
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, renameOutput=True, extreme=PeakExtreme.MAX, _type=PeakType.LOCAL, crossingLevel=0.0, useMean=False, partitions=10, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, renameOutput=True, extreme=PeakExtreme.MAX, _type=PeakType.LOCAL, crossingLevel=0.0, useMean=False, partitions=10, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -75,6 +78,16 @@ class PeaksFilter(OperationNode):
         """Return blueprint that this entity represents"""
         return PeaksFilterBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

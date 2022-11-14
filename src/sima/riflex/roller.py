@@ -13,11 +13,13 @@ class Roller(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     direction : float
          Direction of roller axis (Clockwise around the local X-axis of the actual surface plane).(default 0.0)
     y : float
@@ -37,8 +39,9 @@ class Roller(NamedObject):
     stiffnessItems : List[SpringStiffnessItem]
     """
 
-    def __init__(self , _id="", name="", direction=0.0, y=0.0, z=0.0, length=0.0, constantStiffness=False, damping=0.0, stiffness=0.0, radius=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, direction=0.0, y=0.0, z=0.0, length=0.0, constantStiffness=False, damping=0.0, stiffness=0.0, radius=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class Roller(NamedObject):
         """Return blueprint that this entity represents"""
         return RollerBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

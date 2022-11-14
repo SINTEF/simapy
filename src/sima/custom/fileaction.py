@@ -12,19 +12,22 @@ class FileAction(CustomComponent):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
-         (default "")
+         (default None)
     tooltip : str
-         (default "")
+         (default None)
     path : str
-         Path to the input file.(default "")
+         Path to the input file.(default None)
     """
 
-    def __init__(self , _id="", label="", tooltip="", path="", **kwargs):
+    def __init__(self , description="", _id=None, label=None, tooltip=None, path=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.label = label
@@ -40,6 +43,16 @@ class FileAction(CustomComponent):
         """Return blueprint that this entity represents"""
         return FileActionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

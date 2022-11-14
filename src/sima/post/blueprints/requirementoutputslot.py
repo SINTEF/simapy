@@ -12,10 +12,11 @@ class RequirementOutputSlotBlueprint(OutputSlotBlueprint):
 
     def __init__(self, name="RequirementOutputSlot", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("useQuery","boolean","Use boolean expressions using operators =, !=,&&,|| to create more advanced queries",default=False))
-        self.attributes.append(Attribute("query","string","",default=""))
-        self.attributes.append(BlueprintAttribute("userRequirements","sima/post/Requirement","",True,Dimension("*")))
-        self.attributes.append(Attribute("flatten","boolean","",default=False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("useQuery","boolean","Use boolean expressions using operators =, !=,&&,|| to create more advanced queries",default=False))
+        self.add_attribute(Attribute("query","string","",default=None))
+        self.add_attribute(BlueprintAttribute("userRequirements","sima/post/Requirement","",True,Dimension("*")))
+        self.add_attribute(Attribute("flatten","boolean","",default=False))

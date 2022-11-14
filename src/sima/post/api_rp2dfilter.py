@@ -19,11 +19,13 @@ class API_RP2DFilter(OperationNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -68,8 +70,9 @@ class API_RP2DFilter(OperationNode):
          Internal pressure design factor
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, nomOD=0.0, pipeThickness=0.0, yieldStrength=500000000.0, youngsFactor=210000000000.0, poissonsRatio=0.3, fabricationFactor=FabricationFactor.SEAMLESSPIPE, ultimateStrength=700000000.0, ovality=0.0025, pipeVariability=0.45, minInternalPressure=0.0, maxInternalPressure=5000000.0, pipeType=PipeType.COLD_EXPANDED, extFluidDensity=1024.0, accelerationOfGravity=9.81, limitStateCategory=LimitStateCategory.SLS, internalPressureDesignFactor=InternalPressureDesignFactor.DESIGN_PRESSURE, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, nomOD=0.0, pipeThickness=0.0, yieldStrength=500000000.0, youngsFactor=210000000000.0, poissonsRatio=0.3, fabricationFactor=FabricationFactor.SEAMLESSPIPE, ultimateStrength=700000000.0, ovality=0.0025, pipeVariability=0.45, minInternalPressure=0.0, maxInternalPressure=5000000.0, pipeType=PipeType.COLD_EXPANDED, extFluidDensity=1024.0, accelerationOfGravity=9.81, limitStateCategory=LimitStateCategory.SLS, internalPressureDesignFactor=InternalPressureDesignFactor.DESIGN_PRESSURE, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -106,6 +109,16 @@ class API_RP2DFilter(OperationNode):
         """Return blueprint that this entity represents"""
         return API_RP2DFilterBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

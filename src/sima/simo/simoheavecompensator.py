@@ -14,11 +14,13 @@ class SIMOHeaveCompensator(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     _type : CompensatorType
     limitationMode : CompensatorLimitation
          Limitation handling mode for the compensator
@@ -50,8 +52,9 @@ class SIMOHeaveCompensator(NamedObject):
          Number of wire parts from crane top to hook(default 1)
     """
 
-    def __init__(self , _id="", name="", _type=CompensatorType.GENERIC, limitationMode=CompensatorLimitation.FACTOR, factor=0.0, clippingLevel=0.0, numWiresCylinder=2, strokeLength=0.0, cylinderArea=0.0, feedbackGainFactor=0.0, feedbackTimeDerivative=0.0, feedforwardGainFactor=0.0, feedforwardTimeDerivative=0.0, valveCharacteristics=0.0, valveTimeConstant=0.0, lowPassTimeConstant=0.0, numWiresTopHook=1, **kwargs):
+    def __init__(self , description="", _id=None, name=None, _type=CompensatorType.GENERIC, limitationMode=CompensatorLimitation.FACTOR, factor=0.0, clippingLevel=0.0, numWiresCylinder=2, strokeLength=0.0, cylinderArea=0.0, feedbackGainFactor=0.0, feedbackTimeDerivative=0.0, feedforwardGainFactor=0.0, feedforwardTimeDerivative=0.0, valveCharacteristics=0.0, valveTimeConstant=0.0, lowPassTimeConstant=0.0, numWiresTopHook=1, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -80,6 +83,16 @@ class SIMOHeaveCompensator(NamedObject):
         """Return blueprint that this entity represents"""
         return SIMOHeaveCompensatorBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -15,11 +15,13 @@ class SegmentedLineType(LineType):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     segments : List[LineSegment]
     vmin : float
          Min. relative z-pos. for which the line characteristics will be calculated.(default 0.0)
@@ -43,8 +45,9 @@ class SegmentedLineType(LineType):
          The angle of the seabed under the catenary line. Slope = 0 means a flat seabed. Positive slope means that the seabed is sloping downwards from the anchor towards the attachment point.(default 0.0)
     """
 
-    def __init__(self , _id="", name="", vmin=0.0, vmax=0.0, bottomContactOption=BottomContactOption.LINE_END_ONLY, anchorZ=0.0, maxTension=0.0, minHTension=0.0, method=LineCharacteristicMethod.SHOOTING, npth=40, nptv=5, slope=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, vmin=0.0, vmax=0.0, bottomContactOption=BottomContactOption.LINE_END_ONLY, anchorZ=0.0, maxTension=0.0, minHTension=0.0, method=LineCharacteristicMethod.SHOOTING, npth=40, nptv=5, slope=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -69,6 +72,16 @@ class SegmentedLineType(LineType):
         """Return blueprint that this entity represents"""
         return SegmentedLineTypeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

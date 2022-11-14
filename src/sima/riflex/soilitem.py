@@ -16,8 +16,10 @@ class SoilItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     soilMaterial : Soil
          Soil material reference to valid material of type clay or sand
@@ -25,8 +27,9 @@ class SoilItem(MOAO):
          The distance from mudline to lower end of soil layer(default 0.0)
     """
 
-    def __init__(self , _id="", lowerZ=0.0, **kwargs):
+    def __init__(self , description="", _id=None, lowerZ=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.soilMaterial = None
@@ -41,6 +44,16 @@ class SoilItem(MOAO):
         """Return blueprint that this entity represents"""
         return SoilItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

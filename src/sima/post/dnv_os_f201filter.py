@@ -17,11 +17,13 @@ class DNV_OS_F201Filter(OperationNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -36,23 +38,23 @@ class DNV_OS_F201Filter(OperationNode):
     customSafetyClassResistanceFactor : float
          Safety class resistance factor (ɣ SC)(default 0.0)
     useCustomSafetyClassResistanceFactor : bool
-         (default True)
+         (default False)
     customLoadEffectFactorForEnvironmentalLoads : float
          Load effect factor for environmental loads (ɣ E)(default 0.0)
     useCustomLoadEffectFactorForEnvironmentalLoads : bool
-         (default True)
+         (default False)
     customLoadEffectFactorForFunctionalLoads : float
          Load effect factor for functional loads (ɣ F)(default 0.0)
     useCustomLoadEffectFactorForFunctionalLoads : bool
-         (default True)
+         (default False)
     customLoadFactorForAccidentalLoads : float
          Load factor for accidental loads (ɣ A)(default 0.0)
     useCustomLoadFactorForAccidentalLoads : bool
-         (default True)
+         (default False)
     customMaterialResistanceFactor : float
          Material resistance factor (ɣ m)(default 0.0)
     useCustomMaterialResistanceFactor : bool
-         (default True)
+         (default False)
     fabricationFactor : float
          Fabrication factor (α fab)(default 0.85)
     youngsFactor : float
@@ -89,8 +91,9 @@ class DNV_OS_F201Filter(OperationNode):
          Acceleration of gravity(default 9.81)
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, customSafetyClassResistanceFactor=0.0, useCustomSafetyClassResistanceFactor=True, customLoadEffectFactorForEnvironmentalLoads=0.0, useCustomLoadEffectFactorForEnvironmentalLoads=True, customLoadEffectFactorForFunctionalLoads=0.0, useCustomLoadEffectFactorForFunctionalLoads=True, customLoadFactorForAccidentalLoads=0.0, useCustomLoadFactorForAccidentalLoads=True, customMaterialResistanceFactor=0.0, useCustomMaterialResistanceFactor=True, fabricationFactor=0.85, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, nomOD=0.2967, pipeThickness=0.05, ovality=0.005, extFluidDensity=1025.0, intFluidDensity=900.0, refPointPressure=500000.0, corrosionAllowance=0.001, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, useWeibullDistributionFitting=False, lowerThresholdForTailFitting=0.87, seastateReturnPeriod=3.0, accelerationOfGravity=9.81, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, customSafetyClassResistanceFactor=0.0, useCustomSafetyClassResistanceFactor=False, customLoadEffectFactorForEnvironmentalLoads=0.0, useCustomLoadEffectFactorForEnvironmentalLoads=False, customLoadEffectFactorForFunctionalLoads=0.0, useCustomLoadEffectFactorForFunctionalLoads=False, customLoadFactorForAccidentalLoads=0.0, useCustomLoadFactorForAccidentalLoads=False, customMaterialResistanceFactor=0.0, useCustomMaterialResistanceFactor=False, fabricationFactor=0.85, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, nomOD=0.2967, pipeThickness=0.05, ovality=0.005, extFluidDensity=1025.0, intFluidDensity=900.0, refPointPressure=500000.0, corrosionAllowance=0.001, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, useWeibullDistributionFitting=False, lowerThresholdForTailFitting=0.87, seastateReturnPeriod=3.0, accelerationOfGravity=9.81, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -139,6 +142,16 @@ class DNV_OS_F201Filter(OperationNode):
         """Return blueprint that this entity represents"""
         return DNV_OS_F201FilterBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

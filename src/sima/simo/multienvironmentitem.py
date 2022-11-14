@@ -16,8 +16,10 @@ class MultiEnvironmentItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     environment : SingleEnvironment
     startingTime : float
@@ -26,8 +28,9 @@ class MultiEnvironmentItem(MOAO):
          Duration of cosine fading from previous to new environment. It is recommended to use at least 10*peak period for the fade-in duration.(default 0.0)
     """
 
-    def __init__(self , _id="", startingTime=0.0, rampDuration=0.0, **kwargs):
+    def __init__(self , description="", _id=None, startingTime=0.0, rampDuration=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.environment = None
@@ -43,6 +46,16 @@ class MultiEnvironmentItem(MOAO):
         """Return blueprint that this entity represents"""
         return MultiEnvironmentItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

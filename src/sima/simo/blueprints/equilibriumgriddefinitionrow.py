@@ -12,8 +12,9 @@ class EquilibriumGridDefinitionRowBlueprint(MOAOBlueprint):
 
     def __init__(self, name="EquilibriumGridDefinitionRow", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("minimumValue","number","",default=-10.0))
-        self.attributes.append(Attribute("maximumValue","number","",default=10.0))
-        self.attributes.append(Attribute("numberOfValues","integer","",default=11))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("minimumValue","number","",default=-10.0))
+        self.add_attribute(Attribute("maximumValue","number","",default=10.0))
+        self.add_attribute(Attribute("numberOfValues","integer","",default=11))
