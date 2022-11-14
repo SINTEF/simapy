@@ -19,11 +19,13 @@ class ConditionTest(Test):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     disabled : bool
          If disabled, the test will not be run in a continuous integration environment(default False)
     duration : Duration
@@ -31,11 +33,12 @@ class ConditionTest(Test):
     comparisons : List[ComparisonAssertion]
     condition : Condition
     analysis : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , _id="", name="", disabled=False, duration=Duration.MEDIUM, analysis="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, disabled=False, duration=Duration.MEDIUM, analysis=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -55,6 +58,16 @@ class ConditionTest(Test):
         """Return blueprint that this entity represents"""
         return ConditionTestBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

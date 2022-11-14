@@ -15,14 +15,16 @@ class ResultEntry(Named):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     properties : List[Property]
     resource : str
-         (default "")
+         (default None)
     relative : bool
          (default False)
     changeNumber : int
@@ -31,8 +33,9 @@ class ResultEntry(Named):
     entries : List[ResultEntry]
     """
 
-    def __init__(self , _id="", name="", resource="", relative=False, changeNumber=0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, resource=None, relative=False, changeNumber=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -52,6 +55,16 @@ class ResultEntry(Named):
         """Return blueprint that this entity represents"""
         return ResultEntryBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

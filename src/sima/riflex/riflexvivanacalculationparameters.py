@@ -24,8 +24,10 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     eigenvalueAnalysisParameters : EigenvalueAnalysisParameters
     responseAnalysisParameters : ResponseAnalysisParameters
@@ -48,8 +50,9 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     addedMassFrequencyDependence : AddedMassFrequencyDependency
     """
 
-    def __init__(self , _id="", vivLoadType=VIVLoadType.CROSS_FLOW, waterTemperature=4.0, randomGenerator=RandomGenerator.LEGACY, addedMassFirstModeNumber=1000000, addedMassLastModeNumber=1000000, addedMassFrequencyDependence=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
+    def __init__(self , description="", _id=None, vivLoadType=VIVLoadType.CROSS_FLOW, waterTemperature=4.0, randomGenerator=RandomGenerator.LEGACY, addedMassFirstModeNumber=1000000, addedMassLastModeNumber=1000000, addedMassFrequencyDependence=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.eigenvalueAnalysisParameters = None
@@ -77,6 +80,16 @@ class RIFLEXVivanaCalculationParameters(MOAO):
         """Return blueprint that this entity represents"""
         return RIFLEXVivanaCalculationParametersBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

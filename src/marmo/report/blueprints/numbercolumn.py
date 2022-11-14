@@ -12,8 +12,9 @@ class NumberColumnBlueprint(ColumnBlueprint):
 
     def __init__(self, name="NumberColumn", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("header","string","",default=""))
-        self.attributes.append(Attribute("label","string","",default=""))
-        self.attributes.append(BlueprintAttribute("headerfont","marmo/report/Font","",True))
-        self.attributes.append(Attribute("cells","number","",Dimension("*"),default=0.0))
-        self.attributes.append(Attribute("format","string","",default=""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("header","string","",default=None))
+        self.add_attribute(Attribute("label","string","",default=None))
+        self.add_attribute(BlueprintAttribute("headerfont","marmo/report/Font","",True))
+        self.add_attribute(Attribute("cells","number","",Dimension("*"),default=0.0))
+        self.add_attribute(Attribute("format","string","",default=None))

@@ -12,8 +12,10 @@ class RegularWaveItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     amplitude : float
          Wave amplitude(default 0.0)
@@ -25,8 +27,9 @@ class RegularWaveItem(MOAO):
          Wave propagation direction(default 0.0)
     """
 
-    def __init__(self , _id="", amplitude=0.0, period=0.0, phase=0.0, direction=0.0, **kwargs):
+    def __init__(self , description="", _id=None, amplitude=0.0, period=0.0, phase=0.0, direction=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.amplitude = amplitude
@@ -43,6 +46,16 @@ class RegularWaveItem(MOAO):
         """Return blueprint that this entity represents"""
         return RegularWaveItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,8 +12,10 @@ class SNCurveItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     slope : float
          Slope of curve segment(default 0.0)
@@ -21,8 +23,9 @@ class SNCurveItem(MOAO):
          Transition point between curve segment (i-1) and i - logN(default 0.0)
     """
 
-    def __init__(self , _id="", slope=0.0, transitionPoint=0.0, **kwargs):
+    def __init__(self , description="", _id=None, slope=0.0, transitionPoint=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.slope = slope
@@ -37,6 +40,16 @@ class SNCurveItem(MOAO):
         """Return blueprint that this entity represents"""
         return SNCurveItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

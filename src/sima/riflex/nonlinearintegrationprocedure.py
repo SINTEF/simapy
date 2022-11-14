@@ -15,8 +15,10 @@ class NonLinearIntegrationProcedure(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     equilibriumIterationFrequency : int
          Frequency of equilibrium iteration(default 1)
@@ -37,8 +39,9 @@ class NonLinearIntegrationProcedure(MOAO):
          Code for time integration information(default 1)
     """
 
-    def __init__(self , _id="", equilibriumIterationFrequency=1, iterationType=IterationType.TRUE_NEWTON_RAPHSON, maxIterations=10, convergenceNorm=ConvergenceNorm.DISP, equilibriumIterationAccuracy=1e-05, energyAccuracy=1e-05, iterationContinuation=IterationContinuationCode.CONTINUED, autoTimeStepSubdivision=0, timeIntegrationInfo=1, **kwargs):
+    def __init__(self , description="", _id=None, equilibriumIterationFrequency=1, iterationType=IterationType.TRUE_NEWTON_RAPHSON, maxIterations=10, convergenceNorm=ConvergenceNorm.DISP, equilibriumIterationAccuracy=1e-05, energyAccuracy=1e-05, iterationContinuation=IterationContinuationCode.CONTINUED, autoTimeStepSubdivision=0, timeIntegrationInfo=1, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.equilibriumIterationFrequency = equilibriumIterationFrequency
@@ -60,6 +63,16 @@ class NonLinearIntegrationProcedure(MOAO):
         """Return blueprint that this entity represents"""
         return NonLinearIntegrationProcedureBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

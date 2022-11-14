@@ -12,10 +12,11 @@ class WeibullDistributionItemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="WeibullDistributionItem", package_path="sima/metocean", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("sector","number","",default=0.0))
-        self.attributes.append(Attribute("probability","number","",default=0.0))
-        self.attributes.append(Attribute("shape","number","",default=0.0))
-        self.attributes.append(Attribute("scale","number","",default=0.0))
-        self.attributes.append(Attribute("location","number","",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("sector","number","",default=0.0))
+        self.add_attribute(Attribute("probability","number","",default=0.0))
+        self.add_attribute(Attribute("shape","number","",default=0.0))
+        self.add_attribute(Attribute("scale","number","",default=0.0))
+        self.add_attribute(Attribute("location","number","",default=0.0))

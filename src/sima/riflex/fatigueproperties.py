@@ -17,8 +17,10 @@ class FatigueProperties(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     calculationOption : FatigueCalculationOption
     numCrossSectionPoints : int
@@ -53,8 +55,9 @@ class FatigueProperties(MOAO):
          (default False)
     """
 
-    def __init__(self , _id="", calculationOption=FatigueCalculationOption.DEFAULT, numCrossSectionPoints=0, resultPrintOption=ResultPrintOption.MOST_CRITICAL_POINT, timeSeriesPrintOption=TimeSeriesPrintOption.NO_PRINT, timeSeriesLength=0.0, timeStep=0.0, seed=31415, axialFactor=1.0, myFactor=1.0, mzFactor=1.0, crossSectionArea=0.0, sectionModulus=0.0, wallThickness=0.0, includeAllSNCurves=False, relativeDuration=0.0, scaledContributions=False, **kwargs):
+    def __init__(self , description="", _id=None, calculationOption=FatigueCalculationOption.DEFAULT, numCrossSectionPoints=0, resultPrintOption=ResultPrintOption.MOST_CRITICAL_POINT, timeSeriesPrintOption=TimeSeriesPrintOption.NO_PRINT, timeSeriesLength=0.0, timeStep=0.0, seed=31415, axialFactor=1.0, myFactor=1.0, mzFactor=1.0, crossSectionArea=0.0, sectionModulus=0.0, wallThickness=0.0, includeAllSNCurves=False, relativeDuration=0.0, scaledContributions=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.calculationOption = calculationOption
@@ -85,6 +88,16 @@ class FatigueProperties(MOAO):
         """Return blueprint that this entity represents"""
         return FatiguePropertiesBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

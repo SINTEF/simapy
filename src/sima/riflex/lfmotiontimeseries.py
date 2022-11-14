@@ -19,14 +19,16 @@ class LFMotionTimeSeries(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     timeSeriesFile : bool
          (default False)
     supportVessel : SupportVessel
     fileName : str
-         Motion time series file(default "")
+         Motion time series file(default None)
     fileFormat : FileFormatAsciStarNone
          Motion time series file format
     motionTimeSeriesType : MotionTimeSeriesType
@@ -49,8 +51,9 @@ class LFMotionTimeSeries(MOAO):
          Startimes version number for global dynamic z-rotation(default 0)
     """
 
-    def __init__(self , _id="", timeSeriesFile=False, fileName="", fileFormat=FileFormatAsciStarNone.ASCII, motionTimeSeriesType=MotionTimeSeriesType.POSI, rotationUnit=RotationUnit.DEGR, timeColumnNum=1, xMotionColumn=0, xMotionVersion=0, yMotionColumn=0, yMotionVersion=0, zRotationColumn=0, zRotationVersion=0, **kwargs):
+    def __init__(self , description="", _id=None, timeSeriesFile=False, fileName=None, fileFormat=FileFormatAsciStarNone.ASCII, motionTimeSeriesType=MotionTimeSeriesType.POSI, rotationUnit=RotationUnit.DEGR, timeColumnNum=1, xMotionColumn=0, xMotionVersion=0, yMotionColumn=0, yMotionVersion=0, zRotationColumn=0, zRotationVersion=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.timeSeriesFile = timeSeriesFile
@@ -76,6 +79,16 @@ class LFMotionTimeSeries(MOAO):
         """Return blueprint that this entity represents"""
         return LFMotionTimeSeriesBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

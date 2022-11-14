@@ -24,11 +24,13 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -48,7 +50,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     setFolderName : bool
          Override the default folder name created. This folder will be relative to the running workflow. If left empty it will create the results directly in the workflow folder.(default False)
     folderName : str
-         (default "")
+         (default None)
     optimizationCalculationParameters : OptimizationCalculationParameters
     costFunction : WorkflowOutput
     constraints : WorkflowOutput
@@ -56,8 +58,9 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     result : WorkflowOutputSlot
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -89,6 +92,16 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
         """Return blueprint that this entity represents"""
         return OptimizationWorkflowNodeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

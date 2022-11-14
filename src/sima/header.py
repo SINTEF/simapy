@@ -12,11 +12,14 @@ class Header(Entity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     packages : List[PackageInfo]
     """
 
-    def __init__(self , **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.packages = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -28,6 +31,16 @@ class Header(Entity):
         """Return blueprint that this entity represents"""
         return HeaderBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def packages(self) -> List[PackageInfo]:

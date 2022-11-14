@@ -12,8 +12,9 @@ class ReynoldItemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="ReynoldItem", package_path="sima/windturbine", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("reynoldsNumber","number","Reynold number for given airfoil regime",default=0.0))
-        self.attributes.append(BlueprintAttribute("items","sima/windturbine/AirFoilItem","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("stallPoint","sima/windturbine/StallPoint","",True))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("reynoldsNumber","number","Reynold number for given airfoil regime",default=0.0))
+        self.add_attribute(BlueprintAttribute("items","sima/windturbine/AirFoilItem","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("stallPoint","sima/windturbine/StallPoint","",True))

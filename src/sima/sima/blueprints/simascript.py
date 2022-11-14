@@ -12,9 +12,10 @@ class SIMAScriptBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="SIMAScript", package_path="sima/sima", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("script","string","",default=""))
-        self.attributes.append(BlueprintAttribute("contextItems","sima/sima/SIMAScriptContext","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("triggers","sima/sima/SIMAScriptTrigger","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("script","string","",default=None))
+        self.add_attribute(BlueprintAttribute("contextItems","sima/sima/SIMAScriptContext","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("triggers","sima/sima/SIMAScriptTrigger","",True,Dimension("*")))

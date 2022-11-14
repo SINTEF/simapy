@@ -17,8 +17,10 @@ class HorizontalAxisYawController(YawController):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     yawControllerType : YawControllerType
     timeStep : float
@@ -39,8 +41,9 @@ class HorizontalAxisYawController(YawController):
          Line where yaw angle is applied in end 1
     """
 
-    def __init__(self , _id="", yawControllerType=YawControllerType.NONE, timeStep=0.0, setPoint=0.0, yawRate=0.0, errorThreshold=0.0, fastLowPassFilterPeriod=0.0, slowLowPassFilterPeriod=0.0, **kwargs):
+    def __init__(self , description="", _id=None, yawControllerType=YawControllerType.NONE, timeStep=0.0, setPoint=0.0, yawRate=0.0, errorThreshold=0.0, fastLowPassFilterPeriod=0.0, slowLowPassFilterPeriod=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.yawControllerType = yawControllerType
@@ -62,6 +65,16 @@ class HorizontalAxisYawController(YawController):
         """Return blueprint that this entity represents"""
         return HorizontalAxisYawControllerBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

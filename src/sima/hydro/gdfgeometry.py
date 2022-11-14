@@ -12,8 +12,10 @@ class GDFGeometry(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     xSymmetry : int
          (default 0)
@@ -28,8 +30,9 @@ class GDFGeometry(MOAO):
          (default 9.81)
     """
 
-    def __init__(self , _id="", xSymmetry=0, ySymmetry=0, nValues=0, dimensionalLength=1.0, gravitationalAcceleration=9.81, **kwargs):
+    def __init__(self , description="", _id=None, xSymmetry=0, ySymmetry=0, nValues=0, dimensionalLength=1.0, gravitationalAcceleration=9.81, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.xSymmetry = xSymmetry
@@ -48,6 +51,16 @@ class GDFGeometry(MOAO):
         """Return blueprint that this entity represents"""
         return GDFGeometryBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

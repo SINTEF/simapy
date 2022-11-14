@@ -12,8 +12,10 @@ class EquilibriumGridDefinitionRow(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     minimumValue : float
          (default -10.0)
@@ -23,8 +25,9 @@ class EquilibriumGridDefinitionRow(MOAO):
          (default 11)
     """
 
-    def __init__(self , _id="", minimumValue=-10.0, maximumValue=10.0, numberOfValues=11, **kwargs):
+    def __init__(self , description="", _id=None, minimumValue=-10.0, maximumValue=10.0, numberOfValues=11, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.minimumValue = minimumValue
@@ -40,6 +43,16 @@ class EquilibriumGridDefinitionRow(MOAO):
         """Return blueprint that this entity represents"""
         return EquilibriumGridDefinitionRowBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

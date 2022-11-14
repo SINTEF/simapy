@@ -12,11 +12,13 @@ class BladeElement(Named):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     elementLength : float
          Blade element length(default 0.0)
     chordLength : float
@@ -25,8 +27,9 @@ class BladeElement(Named):
          Twist angle(default 0.0)
     """
 
-    def __init__(self , _id="", name="", elementLength=0.0, chordLength=0.0, twist=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, elementLength=0.0, chordLength=0.0, twist=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -43,6 +46,16 @@ class BladeElement(Named):
         """Return blueprint that this entity represents"""
         return BladeElementBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

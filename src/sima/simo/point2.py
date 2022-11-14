@@ -12,8 +12,10 @@ class Point2(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     x : float
          X position(default 0.0)
@@ -21,8 +23,9 @@ class Point2(MOAO):
          Y position(default 0.0)
     """
 
-    def __init__(self , _id="", x=0.0, y=0.0, **kwargs):
+    def __init__(self , description="", _id=None, x=0.0, y=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.x = x
@@ -37,6 +40,16 @@ class Point2(MOAO):
         """Return blueprint that this entity represents"""
         return Point2Blueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

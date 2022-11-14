@@ -13,22 +13,25 @@ class RequirementOutputSlot(OutputSlot):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     useQuery : bool
          Use boolean expressions using operators =, !=,&&,|| to create more advanced queries(default False)
     query : str
-         (default "")
+         (default None)
     userRequirements : List[Requirement]
     flatten : bool
          (default False)
     """
 
-    def __init__(self , _id="", name="", useQuery=False, query="", flatten=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, useQuery=False, query=None, flatten=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -46,6 +49,16 @@ class RequirementOutputSlot(OutputSlot):
         """Return blueprint that this entity represents"""
         return RequirementOutputSlotBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

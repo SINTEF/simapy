@@ -12,8 +12,10 @@ class SignificantWaveHeightWeibullData(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     duration : float
          (default 0.0)
@@ -27,8 +29,9 @@ class SignificantWaveHeightWeibullData(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , _id="", duration=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
+    def __init__(self , description="", _id=None, duration=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.duration = duration
@@ -46,6 +49,16 @@ class SignificantWaveHeightWeibullData(MOAO):
         """Return blueprint that this entity represents"""
         return SignificantWaveHeightWeibullDataBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

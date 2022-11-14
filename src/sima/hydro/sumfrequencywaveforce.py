@@ -13,8 +13,10 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     nFreq : int
          (default 0)
@@ -29,7 +31,7 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
     onFile : bool
          (default False)
     file : str
-         (default "")
+         (default None)
     surge : QTFDofItem
     sway : QTFDofItem
     heave : QTFDofItem
@@ -38,8 +40,9 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
     yaw : QTFDofItem
     """
 
-    def __init__(self , _id="", nFreq=0, nDir=0, bichromatic=False, bidirectional=False, onFile=False, file="", **kwargs):
+    def __init__(self , description="", _id=None, nFreq=0, nDir=0, bichromatic=False, bidirectional=False, onFile=False, file=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.nFreq = nFreq
@@ -66,6 +69,16 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
         """Return blueprint that this entity represents"""
         return SumFrequencyWaveForceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,10 +12,11 @@ class NumberSignalInputSlotBlueprint(ControlSignalInputSlotBlueprint):
 
     def __init__(self, name="NumberSignalInputSlot", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(BlueprintAttribute("properties","sima/post/SignalProperties","",True,Dimension("*")))
-        self.attributes.append(Attribute("specifyAdditionalProperties","boolean","Specify additional properties in the signal",default=False))
-        self.attributes.append(Attribute("array","boolean","",default=False))
-        self.attributes.append(Attribute("value","number","",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(BlueprintAttribute("properties","sima/post/SignalProperties","",True,Dimension("*")))
+        self.add_attribute(Attribute("specifyAdditionalProperties","boolean","Specify additional properties in the signal",default=False))
+        self.add_attribute(Attribute("array","boolean","",default=False))
+        self.add_attribute(Attribute("value","number","",default=0.0))

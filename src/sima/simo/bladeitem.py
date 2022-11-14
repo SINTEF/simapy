@@ -16,8 +16,10 @@ class BladeItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     airfoil : Airfoil
     elementLength : float
@@ -28,8 +30,9 @@ class BladeItem(MOAO):
          Airfoil twist(default 0.0)
     """
 
-    def __init__(self , _id="", elementLength=0.0, chordLength=0.0, twist=0.0, **kwargs):
+    def __init__(self , description="", _id=None, elementLength=0.0, chordLength=0.0, twist=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.airfoil = None
@@ -46,6 +49,16 @@ class BladeItem(MOAO):
         """Return blueprint that this entity represents"""
         return BladeItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

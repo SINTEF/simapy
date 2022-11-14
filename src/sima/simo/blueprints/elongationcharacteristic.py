@@ -12,10 +12,11 @@ class ElongationCharacteristicBlueprint(NamedObjectBlueprint):
 
     def __init__(self, name="ElongationCharacteristic", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(EnumAttribute("inputType","sima/simo/ElongationCharacteristicType","Elongation characteristic type. Stress-strain or tension-strain."))
-        self.attributes.append(BlueprintAttribute("items","sima/simo/ElongationItem","",True,Dimension("*")))
-        self.attributes.append(Attribute("tensionMax","number","Historical maximum tension",default=0.0))
-        self.attributes.append(BlueprintAttribute("fibreRopeModel","sima/simo/FibreRopeModel","",False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(EnumAttribute("inputType","sima/simo/ElongationCharacteristicType","Elongation characteristic type. Stress-strain or tension-strain."))
+        self.add_attribute(BlueprintAttribute("items","sima/simo/ElongationItem","",True,Dimension("*")))
+        self.add_attribute(Attribute("tensionMax","number","Historical maximum tension",default=0.0))
+        self.add_attribute(BlueprintAttribute("fibreRopeModel","sima/simo/FibreRopeModel","",False))

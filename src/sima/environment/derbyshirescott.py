@@ -13,8 +13,10 @@ class DerbyshireScott(Wave):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Average wave propagation direction(default 0.0)
@@ -40,8 +42,9 @@ class DerbyshireScott(Wave):
          Upper truncation parameter(default 10.367)
     """
 
-    def __init__(self , _id="", direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, spectrumA=0.214, spectrumB=0.065, spectrumD=0.26, waveHeight=0.0, wavePeriod=0.0, lowerTrunc=0.0414, upperTrunc=10.367, **kwargs):
+    def __init__(self , description="", _id=None, direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, spectrumA=0.214, spectrumB=0.065, spectrumD=0.26, waveHeight=0.0, wavePeriod=0.0, lowerTrunc=0.0414, upperTrunc=10.367, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.direction = direction
@@ -65,6 +68,16 @@ class DerbyshireScott(Wave):
         """Return blueprint that this entity represents"""
         return DerbyshireScottBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

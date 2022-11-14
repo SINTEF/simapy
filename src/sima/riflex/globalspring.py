@@ -19,8 +19,10 @@ class GlobalSpring(NodeReference,NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -33,7 +35,7 @@ class GlobalSpring(NodeReference,NamedObject):
     allNodes : bool
          All nodes(default False)
     name : str
-         (default "")
+         (default None)
     dof : SpringDOF
          Local degree of freedom.
     constantStiffness : bool
@@ -47,8 +49,9 @@ class GlobalSpring(NodeReference,NamedObject):
     stiffnessItems : List[GlobalSpringStiffnessItem]
     """
 
-    def __init__(self , _id="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, name="", dof=SpringDOF.GLOBAL_X_DIRECTION, constantStiffness=False, stiffness=0.0, dampingCoefficient=0.0, stiffnessDampingFactor=0.0, **kwargs):
+    def __init__(self , description="", _id=None, segment=1, allSegments=False, nodeNumber=1, allNodes=False, name=None, dof=SpringDOF.GLOBAL_X_DIRECTION, constantStiffness=False, stiffness=0.0, dampingCoefficient=0.0, stiffnessDampingFactor=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -73,6 +76,16 @@ class GlobalSpring(NodeReference,NamedObject):
         """Return blueprint that this entity represents"""
         return GlobalSpringBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

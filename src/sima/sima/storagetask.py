@@ -17,11 +17,13 @@ class StorageTask(Task):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     doubleVariables : List[DoubleVariable]
     integerVariables : List[IntegerVariable]
     stringVariables : List[StringVariable]
@@ -30,13 +32,14 @@ class StorageTask(Task):
     scripts : List[SIMAScript]
     _type : StorageTaskType
     root : str
-         Defines the root of the storage task. If not set, the root will be the normal workspace task location(default "")
+         Defines the root of the storage task. If not set, the root will be the normal workspace task location(default None)
     includeInExport : bool
          If not set the file content withing this storage task will be ommitted when exporting.(default True)
     """
 
-    def __init__(self , _id="", name="", runNumber=0, _type=StorageTaskType.PRIVATE, root="", includeInExport=True, **kwargs):
+    def __init__(self , description="", _id=None, name=None, runNumber=0, _type=StorageTaskType.PRIVATE, root=None, includeInExport=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -58,6 +61,16 @@ class StorageTask(Task):
         """Return blueprint that this entity represents"""
         return StorageTaskBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

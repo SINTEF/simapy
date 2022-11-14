@@ -12,8 +12,10 @@ class PointField(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     xMin : float
          x start coordinate (default 0.0)
@@ -37,8 +39,9 @@ class PointField(MOAO):
          (default True)
     """
 
-    def __init__(self , _id="", xMin=0.0, xMax=0.0, yMin=0.0, yMax=0.0, zMin=0.0, zMax=0.0, xNumberOfPoints=0, yNumberOfPoints=0, zNumberOfPoints=0, visible=True, **kwargs):
+    def __init__(self , description="", _id=None, xMin=0.0, xMax=0.0, yMin=0.0, yMax=0.0, zMin=0.0, zMax=0.0, xNumberOfPoints=0, yNumberOfPoints=0, zNumberOfPoints=0, visible=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.xMin = xMin
@@ -61,6 +64,16 @@ class PointField(MOAO):
         """Return blueprint that this entity represents"""
         return PointFieldBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

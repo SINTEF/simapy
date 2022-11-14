@@ -12,9 +12,10 @@ class MultiEnvironmentSetupBlueprint(MOAOBlueprint):
 
     def __init__(self, name="MultiEnvironmentSetup", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("windWaveLowerFrequency","number","Wind wave lower frequency limit",default=0.1))
-        self.attributes.append(Attribute("windWaveUpperFrequency","number","Wind wave upper frequency limit",default=3.0))
-        self.attributes.append(Attribute("swellWaveLowerFrequency","number","Swell wave lower frequency limit",default=0.05))
-        self.attributes.append(Attribute("swellWaveUpperFrequency","number","Swell wave upper frequency limit",default=2.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("windWaveLowerFrequency","number","Wind wave lower frequency limit",default=0.1))
+        self.add_attribute(Attribute("windWaveUpperFrequency","number","Wind wave upper frequency limit",default=3.0))
+        self.add_attribute(Attribute("swellWaveLowerFrequency","number","Swell wave lower frequency limit",default=0.05))
+        self.add_attribute(Attribute("swellWaveUpperFrequency","number","Swell wave upper frequency limit",default=2.0))

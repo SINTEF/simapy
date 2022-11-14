@@ -13,8 +13,9 @@ class SIMOQuadraticDampingMatrixBlueprint(QuadraticDampingMatrixBlueprint,NamedB
 
     def __init__(self, name="SIMOQuadraticDampingMatrix", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("values","number","",Dimension("*"),default=0.0))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(EnumAttribute("mode","sima/simo/DampingMatrixMotionMode","Select which motions the damping matrix force should be calculated from. When 'default' is selected, low frequency motion is used for bodies of type '6 DOF - separated analysis' and total motion otherwise."))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("values","number","",Dimension("*"),default=0.0))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(EnumAttribute("mode","sima/simo/DampingMatrixMotionMode","Select which motions the damping matrix force should be calculated from. When 'default' is selected, low frequency motion is used for bodies of type '6 DOF - separated analysis' and total motion otherwise."))

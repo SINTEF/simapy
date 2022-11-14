@@ -16,13 +16,15 @@ class CustomModelField(CustomComponent):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
-         (default "")
+         (default None)
     tooltip : str
-         (default "")
+         (default None)
     model : MOAO
     customTooltip : bool
          (default False)
@@ -31,11 +33,12 @@ class CustomModelField(CustomComponent):
     readOnly : bool
          (default False)
     featureName : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , _id="", label="", tooltip="", customTooltip=False, customLabel=False, readOnly=False, featureName="", **kwargs):
+    def __init__(self , description="", _id=None, label=None, tooltip=None, customTooltip=False, customLabel=False, readOnly=False, featureName=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.label = label
@@ -55,6 +58,16 @@ class CustomModelField(CustomComponent):
         """Return blueprint that this entity represents"""
         return CustomModelFieldBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

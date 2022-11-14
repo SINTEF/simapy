@@ -15,13 +15,15 @@ class BallastTank(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     tag : str
-         (default "")
+         (default None)
     x : float
          x position in body local coordinate system(default 0.0)
     y : float
@@ -39,13 +41,14 @@ class BallastTank(NamedObject):
          Density of the fluid used as ballast(default 1025.0)
     geometryPosition : Position
     geometryFile : str
-         Geometry definition file ( STL or GDF)(default "")
+         Geometry definition file ( STL or GDF)(default None)
     state : BallastTankState
          State of ballast tank
     """
 
-    def __init__(self , _id="", name="", tag="", x=0.0, y=0.0, z=0.0, volumeTolerance=0.001, permeabilityFactor=1.0, initialBallastQuantity=0.0, quantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity=1025.0, geometryFile="", state=BallastTankState.INTACT, **kwargs):
+    def __init__(self , description="", _id=None, name=None, tag=None, x=0.0, y=0.0, z=0.0, volumeTolerance=0.001, permeabilityFactor=1.0, initialBallastQuantity=0.0, quantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity=1025.0, geometryFile=None, state=BallastTankState.INTACT, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -71,6 +74,16 @@ class BallastTank(NamedObject):
         """Return blueprint that this entity represents"""
         return BallastTankBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

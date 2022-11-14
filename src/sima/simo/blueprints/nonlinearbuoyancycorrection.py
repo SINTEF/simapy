@@ -12,10 +12,11 @@ class NonlinearBuoyancyCorrectionBlueprint(MOAOBlueprint):
 
     def __init__(self, name="NonlinearBuoyancyCorrection", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("fileName","string","Name of geometry file ('.gdf'-file)",default=""))
-        self.attributes.append(BlueprintAttribute("location","sima/sima/Point3","",True))
-        self.attributes.append(Attribute("minZ","number","Minimum vertical range value to be used given in '.gdf' file system",default=0.0))
-        self.attributes.append(Attribute("maxZ","number","Maximum vertical range value to be used given in '.gdf' file system",default=0.0))
-        self.attributes.append(EnumAttribute("correctionMethod","sima/simo/NonlinearBuoyancyCorrectionMethod",""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("fileName","string","Name of geometry file ('.gdf'-file)",default=None))
+        self.add_attribute(BlueprintAttribute("location","sima/sima/Point3","",True))
+        self.add_attribute(Attribute("minZ","number","Minimum vertical range value to be used given in '.gdf' file system",default=0.0))
+        self.add_attribute(Attribute("maxZ","number","Maximum vertical range value to be used given in '.gdf' file system",default=0.0))
+        self.add_attribute(EnumAttribute("correctionMethod","sima/simo/NonlinearBuoyancyCorrectionMethod",""))

@@ -13,11 +13,13 @@ class CommonSoilType(SoilType):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     requiredResolution : int
          Required resolution of soil reaction curves(default 50)
     pvDamping : float
@@ -34,8 +36,9 @@ class CommonSoilType(SoilType):
     baseMoment : CommonSoilCoefficients
     """
 
-    def __init__(self , _id="", name="", requiredResolution=50, pvDamping=0.0, mtDamping=0.0, baseShearLoadDamping=0.0, baseMomentDamping=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, requiredResolution=50, pvDamping=0.0, mtDamping=0.0, baseShearLoadDamping=0.0, baseMomentDamping=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -58,6 +61,16 @@ class CommonSoilType(SoilType):
         """Return blueprint that this entity represents"""
         return CommonSoilTypeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

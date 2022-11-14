@@ -16,8 +16,10 @@ class OptimizationVariableItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     start : float
          Starting value for the optimization variable(default 0.0)
@@ -31,8 +33,9 @@ class OptimizationVariableItem(MOAO):
          Optimization variable
     """
 
-    def __init__(self , _id="", start=0.0, min=0.0, max=0.0, delta=0.0, **kwargs):
+    def __init__(self , description="", _id=None, start=0.0, min=0.0, max=0.0, delta=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.start = start
@@ -50,6 +53,16 @@ class OptimizationVariableItem(MOAO):
         """Return blueprint that this entity represents"""
         return OptimizationVariableItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

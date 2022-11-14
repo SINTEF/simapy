@@ -12,9 +12,10 @@ class ForceDampingCharacteristicBlueprint(MOAOBlueprint):
 
     def __init__(self, name="ForceDampingCharacteristic", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("dampingExponent","number","Exponent of velocity in damping term",default=1.0))
-        self.attributes.append(EnumAttribute("dampingInterpolation","sima/simo/Interpolation","Interpolation method for damping"))
-        self.attributes.append(EnumAttribute("forceInterpolation","sima/simo/Interpolation","Interpolation method for force"))
-        self.attributes.append(BlueprintAttribute("items","sima/simo/ForceDampingItem","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("dampingExponent","number","Exponent of velocity in damping term",default=1.0))
+        self.add_attribute(EnumAttribute("dampingInterpolation","sima/simo/Interpolation","Interpolation method for damping"))
+        self.add_attribute(EnumAttribute("forceInterpolation","sima/simo/Interpolation","Interpolation method for force"))
+        self.add_attribute(BlueprintAttribute("items","sima/simo/ForceDampingItem","",True,Dimension("*")))

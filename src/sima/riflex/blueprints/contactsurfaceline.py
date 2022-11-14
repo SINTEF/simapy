@@ -12,10 +12,11 @@ class ContactSurfaceLineBlueprint(MOAOBlueprint):
 
     def __init__(self, name="ContactSurfaceLine", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("line","sima/riflex/ARLine","Reference to line to be checked for contact with the contact surface.",False))
-        self.attributes.append(Attribute("firstSegmentContact","integer","First segment to be checked for contact",default=1))
-        self.attributes.append(Attribute("firstElementContact","integer","First element within first contact segment to be chekced for contact",default=1))
-        self.attributes.append(Attribute("lastSegmentContact","integer","Last segment to be checked for contact",default=0))
-        self.attributes.append(Attribute("lastElementContact","integer","Last element within last contact segment to be checked for contact",default=0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("line","sima/riflex/ARLine","Reference to line to be checked for contact with the contact surface.",False))
+        self.add_attribute(Attribute("firstSegmentContact","integer","First segment to be checked for contact",default=1))
+        self.add_attribute(Attribute("firstElementContact","integer","First element within first contact segment to be chekced for contact",default=1))
+        self.add_attribute(Attribute("lastSegmentContact","integer","Last segment to be checked for contact",default=0))
+        self.add_attribute(Attribute("lastElementContact","integer","Last element within last contact segment to be checked for contact",default=0))

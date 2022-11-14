@@ -12,11 +12,13 @@ class Regular3DBottom(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     fileName : str
-         File with seabed geometry data(default "")
+         File with seabed geometry data(default None)
     x : float
          (default 0.0)
     y : float
@@ -27,8 +29,9 @@ class Regular3DBottom(MOAO):
          Angle between the X-axis of the seabed file reference system and the X-axis of the global reference system(default 0.0)
     """
 
-    def __init__(self , _id="", fileName="", x=0.0, y=0.0, zos=0.0, angos=0.0, **kwargs):
+    def __init__(self , description="", _id=None, fileName=None, x=0.0, y=0.0, zos=0.0, angos=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.fileName = fileName
@@ -46,6 +49,16 @@ class Regular3DBottom(MOAO):
         """Return blueprint that this entity represents"""
         return Regular3DBottomBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

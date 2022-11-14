@@ -14,11 +14,13 @@ class BallJointConnectorType(NodalComponentType):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     mass : float
          Mass(default 0.0)
     volume : float
@@ -45,8 +47,9 @@ class BallJointConnectorType(NodalComponentType):
          Rotation freedom code, z-axis.
     """
 
-    def __init__(self , _id="", name="", mass=0.0, volume=0.0, referenceFrame=ReferenceFrameType.LOCAL, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, boundaryRotX=BoundaryCondition.FREE, boundaryRotY=BoundaryCondition.FREE, boundaryRotZ=BoundaryCondition.FREE, **kwargs):
+    def __init__(self , description="", _id=None, name=None, mass=0.0, volume=0.0, referenceFrame=ReferenceFrameType.LOCAL, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, boundaryRotX=BoundaryCondition.FREE, boundaryRotY=BoundaryCondition.FREE, boundaryRotZ=BoundaryCondition.FREE, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -72,6 +75,16 @@ class BallJointConnectorType(NodalComponentType):
         """Return blueprint that this entity represents"""
         return BallJointConnectorTypeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

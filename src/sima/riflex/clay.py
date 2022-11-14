@@ -13,11 +13,13 @@ class Clay(Soil):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     strainVelocityExponent : float
          Strain velocity exponent for damping model(default 1.0)
     calculateDamping : bool
@@ -47,8 +49,9 @@ class Clay(Soil):
          Strain at one-half the maximum stress in undrained compression(default 0.0)
     """
 
-    def __init__(self , _id="", name="", strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperShearStrength=0.0, upperJConstant=0.0, upperStrain=0.0, lowerShearStrength=0.0, lowerJConstant=0.0, lowerStrain=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperShearStrength=0.0, upperJConstant=0.0, upperStrain=0.0, lowerShearStrength=0.0, lowerJConstant=0.0, lowerStrain=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -76,6 +79,16 @@ class Clay(Soil):
         """Return blueprint that this entity represents"""
         return ClayBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

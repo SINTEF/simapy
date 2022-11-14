@@ -21,11 +21,13 @@ class WamitBodyResult(Named):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     firstOrderMotionTransferFunction : FirstOrderMotionTransferFunction
     firstOrderWaveForceTransferFunctionDiffraction : WamitFirstOrderWaveForceTransferFunction
     firstOrderWaveForceTransferFunctionHaskind : WamitFirstOrderWaveForceTransferFunction
@@ -62,8 +64,9 @@ class WamitBodyResult(Named):
     hydrostaticStiffness : HydrostaticStiffnessData
     """
 
-    def __init__(self , _id="", name="", characteristicLength=0.0, x=0.0, y=0.0, z=0.0, rz=0.0, symmetryAboutX=False, symmetryAboutY=False, gravity=0.0, waterDensity=0.0, waterDepth=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, characteristicLength=0.0, x=0.0, y=0.0, z=0.0, rz=0.0, symmetryAboutX=False, symmetryAboutY=False, gravity=0.0, waterDensity=0.0, waterDepth=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -101,6 +104,16 @@ class WamitBodyResult(Named):
         """Return blueprint that this entity represents"""
         return WamitBodyResultBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

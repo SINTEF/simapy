@@ -17,8 +17,10 @@ class SIMOFrequencyDomainCalculation(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     analysisType : FrequencyAnalysisType
     linearization : Linearization
@@ -28,16 +30,17 @@ class SIMOFrequencyDomainCalculation(MOAO):
     frequencyRangeLF : FrequencyRangeDefinition
     frequencyRangeWF : FrequencyRangeDefinition
     calculateLineDynamics : bool
-         (default True)
+         (default False)
     estimationTime : float
          (default 10800.0)
     specifyLinesToSimulate : bool
-         (default True)
+         (default False)
     linesToSimulate : List[FrequnecyDomainLineItem]
     """
 
-    def __init__(self , _id="", analysisType=FrequencyAnalysisType.WAVE_FREQUENCY, linearization=Linearization.STOCHASTIC, maximumNumberOfIterations=10, calculateLineDynamics=True, estimationTime=10800.0, specifyLinesToSimulate=True, **kwargs):
+    def __init__(self , description="", _id=None, analysisType=FrequencyAnalysisType.WAVE_FREQUENCY, linearization=Linearization.STOCHASTIC, maximumNumberOfIterations=10, calculateLineDynamics=False, estimationTime=10800.0, specifyLinesToSimulate=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.analysisType = analysisType
@@ -60,6 +63,16 @@ class SIMOFrequencyDomainCalculation(MOAO):
         """Return blueprint that this entity represents"""
         return SIMOFrequencyDomainCalculationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -11,10 +11,13 @@ class ReportItem(Entity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     """
 
-    def __init__(self , **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -25,3 +28,13 @@ class ReportItem(Entity):
         """Return blueprint that this entity represents"""
         return ReportItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)

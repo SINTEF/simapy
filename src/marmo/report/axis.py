@@ -12,13 +12,15 @@ class Axis(Entity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     font : Font
     log : bool
-         (default True)
+         (default False)
     autoformat : bool
          (default True)
     format : str
-         (default "")
+         (default None)
     autoscale : bool
          (default True)
     showgrid : bool
@@ -27,8 +29,9 @@ class Axis(Entity):
          (default True)
     """
 
-    def __init__(self , log=True, autoformat=True, format="", autoscale=True, showgrid=True, dashgridline=True, **kwargs):
+    def __init__(self , description="", log=False, autoformat=True, format=None, autoscale=True, showgrid=True, dashgridline=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.font = None
         self.log = log
         self.autoformat = autoformat
@@ -46,6 +49,16 @@ class Axis(Entity):
         """Return blueprint that this entity represents"""
         return AxisBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def font(self) -> Font:

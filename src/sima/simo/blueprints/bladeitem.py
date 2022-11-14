@@ -12,9 +12,10 @@ class BladeItemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="BladeItem", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("airfoil","sima/windturbine/Airfoil","",False))
-        self.attributes.append(Attribute("elementLength","number","Element length",default=0.0))
-        self.attributes.append(Attribute("chordLength","number","Chord length",default=0.0))
-        self.attributes.append(Attribute("twist","number","Airfoil twist",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("airfoil","sima/windturbine/Airfoil","",False))
+        self.add_attribute(Attribute("elementLength","number","Element length",default=0.0))
+        self.add_attribute(Attribute("chordLength","number","Chord length",default=0.0))
+        self.add_attribute(Attribute("twist","number","Airfoil twist",default=0.0))

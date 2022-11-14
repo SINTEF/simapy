@@ -12,4 +12,5 @@ class HeaderBlueprint(EntityBlueprint):
 
     def __init__(self, name="Header", package_path="sima", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(BlueprintAttribute("packages","sima/PackageInfo","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(BlueprintAttribute("packages","sima/PackageInfo","",True,Dimension("*")))

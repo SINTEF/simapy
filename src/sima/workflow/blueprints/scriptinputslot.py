@@ -13,8 +13,9 @@ class ScriptInputSlotBlueprint(InputSlotBlueprint,SignalPropertiesContainerBluep
 
     def __init__(self, name="ScriptInputSlot", package_path="sima/workflow", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(BlueprintAttribute("properties","sima/post/SignalProperties","",True,Dimension("*")))
-        self.attributes.append(Attribute("inputSignals","boolean","If checked the input will be imported directly as signals in an array with name as specified.",default=False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(BlueprintAttribute("properties","sima/post/SignalProperties","",True,Dimension("*")))
+        self.add_attribute(Attribute("inputSignals","boolean","If checked the input will be imported directly as signals in an array with name as specified.",default=False))

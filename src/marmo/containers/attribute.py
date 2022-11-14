@@ -12,18 +12,18 @@ class Attribute(NamedEntity):
     Represents a key/value entry
     Keyword arguments
     -----------------
-    name : str
-         (default "")
     description : str
          (default "")
+    name : str
+         (default None)
     value : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , name="", description="", value="", **kwargs):
+    def __init__(self , description="", name=None, value=None, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
         self.description = description
+        self.name = name
         self.value = value
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -37,16 +37,6 @@ class Attribute(NamedEntity):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
     def description(self) -> str:
         """"""
         return self.__description
@@ -55,6 +45,16 @@ class Attribute(NamedEntity):
     def description(self, value: str):
         """Set description"""
         self.__description = str(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def value(self) -> str:

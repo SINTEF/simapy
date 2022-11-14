@@ -27,8 +27,10 @@ class SIMODynamicCalculationParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     externalControlSetup : ExternalControlSetup
     multiEnvironmentSetup : MultiEnvironmentSetup
@@ -58,10 +60,10 @@ class SIMODynamicCalculationParameters(MOAO):
     pointsSmallPatch : int
          Number of points in small wave patch(default 128)
     writeVisFile : bool
-         write visualization file?(default True)
+         write visualization file?(default False)
     waveTimeSeries : WaveTimeSeries
     waveTimeSeriesFile : bool
-         Wave time series from file(default True)
+         Wave time series from file(default False)
     bodyWaveMethodOptions : List[BodyWaveMethodOption]
     hydroSystemPeriod : float
          Hydrosystem filter period(default 0.0)
@@ -84,72 +86,72 @@ class SIMODynamicCalculationParameters(MOAO):
     linearCurrentForceMethod : CurrentForceMethod
          Linear Current Force Method
     exportResultsToWasim : bool
-         (default True)
+         (default False)
     wasimResultExport : WasimResultExport
     storeWindForces : bool
-         Store wind forces?(default True)
+         Store wind forces?(default False)
     storeSumGeneralLineForces : bool
-         Store sum general line forces?(default True)
+         Store sum general line forces?(default False)
     storeTotalForces : bool
-         Store total forces?(default True)
+         Store total forces?(default False)
     storeRetardationForces : bool
-         Store retardation forces?(default True)
+         Store retardation forces?(default False)
     storeHydrostaticStiffnessForces : bool
-         Store hydrostatic stiffness forces?(default True)
+         Store hydrostatic stiffness forces?(default False)
     storeLinearDamping : bool
-         Store linear damping?(default True)
+         Store linear damping?(default False)
     storeQuadraticDamping : bool
-         Store quadratic damping?(default True)
+         Store quadratic damping?(default False)
     storeDistributedHydrodynamicForces : bool
-         Store distributed hydrodynamic forces?(default True)
+         Store distributed hydrodynamic forces?(default False)
     storeFixedBodyAndSlenderElementStripResults : bool
-         Store results for slender element strips and fixed body elements?(default True)
+         Store results for slender element strips and fixed body elements?(default False)
     storeWaveDriftDamping : bool
-         Store wave-drift damping?(default True)
+         Store wave-drift damping?(default False)
     storeLinearCurrentDrag : bool
-         Store linear current drag?(default True)
+         Store linear current drag?(default False)
     storeQuadraticCurrentDrag : bool
-         Store quadratic current drag?(default True)
+         Store quadratic current drag?(default False)
     storeSmallBodyHydrodynamicForces : bool
-         Store small body hydrodynamic forces?(default True)
+         Store small body hydrodynamic forces?(default False)
     storeResultantPositioningElementForces : bool
-         Store resultant positioning element forces?(default True)
+         Store resultant positioning element forces?(default False)
     storePositioningElementForceComponents : bool
-         Store positioning element force components?(default True)
+         Store positioning element force components?(default False)
     storeTotalPositioningForces : bool
-         Store total positioning element forces?(default True)
+         Store total positioning element forces?(default False)
     storeThrusterForces : bool
-         Store thruster forces?(default True)
+         Store thruster forces?(default False)
     storeSumThrusterForces : bool
-         Store sum thruster forces?(default True)
+         Store sum thruster forces?(default False)
     storeDynamicPositioningEstimators : bool
-         Store dynamic positioning estimators?(default True)
+         Store dynamic positioning estimators?(default False)
     storeSumSpecifiedForces : bool
-         Store sum specified forces?(default True)
+         Store sum specified forces?(default False)
     storeSumExternalForces : bool
-         Store sum external forces?(default True)
+         Store sum external forces?(default False)
     storeSumCouplingForces : bool
-         Store sum coupling forces?(default True)
+         Store sum coupling forces?(default False)
     storeResultantCouplingElementForces : bool
-         Store resultant coupling element forces?(default True)
+         Store resultant coupling element forces?(default False)
     storeGlobalCouplingForceComponents : bool
-         Store global coupling force components?(default True)
+         Store global coupling force components?(default False)
     storeLocalCouplingForceComponents : bool
-         Store local coupling force components?(default True)
+         Store local coupling force components?(default False)
     storeGlobalLowFrequencyPosition : bool
-         Store global low-frequency position?(default True)
+         Store global low-frequency position?(default False)
     storeGlobalTotalPosition : bool
          Store global total position?(default True)
     storeGlobalAcceleration : bool
-         Store global acceleration?(default True)
+         Store global acceleration?(default False)
     storeLocalAccelerations : bool
-         Store local acceleration?(default True)
+         Store local acceleration?(default False)
     storeLocalVelocity : bool
-         Store local velocity(default True)
+         Store local velocity(default False)
     storeCatenarySystemForces : bool
-         Store catenery system forces. Requires visualization storage(default True)
+         Store catenery system forces. Requires visualization storage(default False)
     storeCatenarySystemNodes : bool
-         Store displacement of catenary system nodes. Requires visualization storage(default True)
+         Store displacement of catenary system nodes. Requires visualization storage(default False)
     timeStep : float
          Time integration step(default 0.5)
     simulationLength : float
@@ -162,8 +164,9 @@ class SIMODynamicCalculationParameters(MOAO):
          Length of generated time series(default 16384.0)
     """
 
-    def __init__(self , _id="", timeIncrement=0.5, waveMethod=WaveMethod.FFT_ONLY, integrationMethod=IntegrationMethod.RUNGE_KUTTA, randomSeedWaves=1, randomSeedWind=1, randomGenerator=RandomGenerator.LEGACY, headingCorrection=True, maxHeadingChange=45.0, largePatchLength=2048.0, smallPatchLength=256.0, cutFactorWaves=100, pointsLargePatch=256, pointsSmallPatch=128, writeVisFile=True, waveTimeSeriesFile=True, hydroSystemPeriod=0.0, hydroFilterMethod=HydroSystemFilterMethod.BLOCKED, nWindSeaComponents=2000, nSwellSeaComponents=400, windTimeSeriesMethod=WindTimeSeriesMethod.SAME, windVelocityDimension=WindVelocityDimension.TWO, windForceMethod=WindForceMethod.RELATIVE, windMethod=WindMethod.FFT, quadraticCurrentForceMethod=CurrentForceMethod.RELATIVE, linearCurrentForceMethod=CurrentForceMethod.RELATIVE, exportResultsToWasim=True, storeWindForces=True, storeSumGeneralLineForces=True, storeTotalForces=True, storeRetardationForces=True, storeHydrostaticStiffnessForces=True, storeLinearDamping=True, storeQuadraticDamping=True, storeDistributedHydrodynamicForces=True, storeFixedBodyAndSlenderElementStripResults=True, storeWaveDriftDamping=True, storeLinearCurrentDrag=True, storeQuadraticCurrentDrag=True, storeSmallBodyHydrodynamicForces=True, storeResultantPositioningElementForces=True, storePositioningElementForceComponents=True, storeTotalPositioningForces=True, storeThrusterForces=True, storeSumThrusterForces=True, storeDynamicPositioningEstimators=True, storeSumSpecifiedForces=True, storeSumExternalForces=True, storeSumCouplingForces=True, storeResultantCouplingElementForces=True, storeGlobalCouplingForceComponents=True, storeLocalCouplingForceComponents=True, storeGlobalLowFrequencyPosition=True, storeGlobalTotalPosition=True, storeGlobalAcceleration=True, storeLocalAccelerations=True, storeLocalVelocity=True, storeCatenarySystemForces=True, storeCatenarySystemNodes=True, timeStep=0.5, simulationLength=11000.0, simulationStartTime=0.0, rampDuration=2.5, requestedTimeSeriesLength=16384.0, **kwargs):
+    def __init__(self , description="", _id=None, timeIncrement=0.5, waveMethod=WaveMethod.FFT_ONLY, integrationMethod=IntegrationMethod.RUNGE_KUTTA, randomSeedWaves=1, randomSeedWind=1, randomGenerator=RandomGenerator.LEGACY, headingCorrection=True, maxHeadingChange=45.0, largePatchLength=2048.0, smallPatchLength=256.0, cutFactorWaves=100, pointsLargePatch=256, pointsSmallPatch=128, writeVisFile=False, waveTimeSeriesFile=False, hydroSystemPeriod=0.0, hydroFilterMethod=HydroSystemFilterMethod.BLOCKED, nWindSeaComponents=2000, nSwellSeaComponents=400, windTimeSeriesMethod=WindTimeSeriesMethod.SAME, windVelocityDimension=WindVelocityDimension.TWO, windForceMethod=WindForceMethod.RELATIVE, windMethod=WindMethod.FFT, quadraticCurrentForceMethod=CurrentForceMethod.RELATIVE, linearCurrentForceMethod=CurrentForceMethod.RELATIVE, exportResultsToWasim=False, storeWindForces=False, storeSumGeneralLineForces=False, storeTotalForces=False, storeRetardationForces=False, storeHydrostaticStiffnessForces=False, storeLinearDamping=False, storeQuadraticDamping=False, storeDistributedHydrodynamicForces=False, storeFixedBodyAndSlenderElementStripResults=False, storeWaveDriftDamping=False, storeLinearCurrentDrag=False, storeQuadraticCurrentDrag=False, storeSmallBodyHydrodynamicForces=False, storeResultantPositioningElementForces=False, storePositioningElementForceComponents=False, storeTotalPositioningForces=False, storeThrusterForces=False, storeSumThrusterForces=False, storeDynamicPositioningEstimators=False, storeSumSpecifiedForces=False, storeSumExternalForces=False, storeSumCouplingForces=False, storeResultantCouplingElementForces=False, storeGlobalCouplingForceComponents=False, storeLocalCouplingForceComponents=False, storeGlobalLowFrequencyPosition=False, storeGlobalTotalPosition=True, storeGlobalAcceleration=False, storeLocalAccelerations=False, storeLocalVelocity=False, storeCatenarySystemForces=False, storeCatenarySystemNodes=False, timeStep=0.5, simulationLength=11000.0, simulationStartTime=0.0, rampDuration=2.5, requestedTimeSeriesLength=16384.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.externalControlSetup = None
@@ -245,6 +248,16 @@ class SIMODynamicCalculationParameters(MOAO):
         """Return blueprint that this entity represents"""
         return SIMODynamicCalculationParametersBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

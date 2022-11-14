@@ -14,11 +14,13 @@ class NonlinearBuoyancyCorrection(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     fileName : str
-         Name of geometry file ('.gdf'-file)(default "")
+         Name of geometry file ('.gdf'-file)(default None)
     location : Point3
     minZ : float
          Minimum vertical range value to be used given in '.gdf' file system(default 0.0)
@@ -27,8 +29,9 @@ class NonlinearBuoyancyCorrection(MOAO):
     correctionMethod : NonlinearBuoyancyCorrectionMethod
     """
 
-    def __init__(self , _id="", fileName="", minZ=0.0, maxZ=0.0, correctionMethod=NonlinearBuoyancyCorrectionMethod.MWL, **kwargs):
+    def __init__(self , description="", _id=None, fileName=None, minZ=0.0, maxZ=0.0, correctionMethod=NonlinearBuoyancyCorrectionMethod.MWL, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.fileName = fileName
@@ -46,6 +49,16 @@ class NonlinearBuoyancyCorrection(MOAO):
         """Return blueprint that this entity represents"""
         return NonlinearBuoyancyCorrectionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

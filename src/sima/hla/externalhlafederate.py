@@ -13,32 +13,35 @@ class ExternalHLAFederate(HLAFederate):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     timeStep : float
          (default 0.0)
     launch : bool
          Launch federate from provided class(default True)
     jarFile : str
-         Path to jar file(default "")
+         Path to jar file(default None)
     className : str
-         Class name starting HLAFederate(default "")
+         Class name starting HLAFederate(default None)
     classPath : str
-         Additional classpath needed by the external jar(default "")
+         Additional classpath needed by the external jar(default None)
     arguments : str
-         Arguments passed to the class' main function(default "")
+         Arguments passed to the class' main function(default None)
     libraryPath : str
-         Sometimes needed when using native libraries. Corresponds to the -Djava.library.path argument(default "")
+         Sometimes needed when using native libraries. Corresponds to the -Djava.library.path argument(default None)
     showOutput : bool
          Show output from federate(default False)
     hlaObjects : List[HLAObject]
     """
 
-    def __init__(self , _id="", name="", timeStep=0.0, launch=True, jarFile="", className="", classPath="", arguments="", libraryPath="", showOutput=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, timeStep=0.0, launch=True, jarFile=None, className=None, classPath=None, arguments=None, libraryPath=None, showOutput=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class ExternalHLAFederate(HLAFederate):
         """Return blueprint that this entity represents"""
         return ExternalHLAFederateBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

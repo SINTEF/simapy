@@ -12,10 +12,11 @@ class UnitPreferenceBlueprint(SIMAPreferenceBlueprint):
 
     def __init__(self, name="UnitPreference", package_path="sima/sima", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(EnumAttribute("frequency","sima/sima/Frequency",""))
-        self.attributes.append(EnumAttribute("forceUnit","sima/sima/ForceUnit",""))
-        self.attributes.append(EnumAttribute("massUnit","sima/sima/MassUnit",""))
-        self.attributes.append(EnumAttribute("lengthUnit","sima/sima/LengthUnit",""))
-        self.attributes.append(EnumAttribute("powerUnit","sima/sima/PowerUnit",""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(EnumAttribute("frequency","sima/sima/Frequency",""))
+        self.add_attribute(EnumAttribute("forceUnit","sima/sima/ForceUnit",""))
+        self.add_attribute(EnumAttribute("massUnit","sima/sima/MassUnit",""))
+        self.add_attribute(EnumAttribute("lengthUnit","sima/sima/LengthUnit",""))
+        self.add_attribute(EnumAttribute("powerUnit","sima/sima/PowerUnit",""))

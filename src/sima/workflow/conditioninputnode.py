@@ -24,11 +24,13 @@ class ConditionInputNode(RunNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -42,7 +44,7 @@ class ConditionInputNode(RunNode):
     modelReferenceInputSlot : ModelReferenceInputSlot
     condition : Condition
     analysis : str
-         (default "")
+         (default None)
     outputSlot : OutputSlot
     additionalFiles : List[FileSpecification]
     modelOutput : List[ModelOutputSpecification]
@@ -52,14 +54,15 @@ class ConditionInputNode(RunNode):
     setFolderName : bool
          Override the default folder name created. This folder will be relative to the running workflow. If left empty it will create the results directly in the workflow folder.(default False)
     folderName : str
-         (default "")
+         (default None)
     addInputFiles : bool
          Add additional input files before running(default False)
     fileInputSlot : InputSlot
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, analysis="", inputCondition=False, setFolderName=False, folderName="", addInputFiles=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, analysis=None, inputCondition=False, setFolderName=False, folderName=None, addInputFiles=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -91,6 +94,16 @@ class ConditionInputNode(RunNode):
         """Return blueprint that this entity represents"""
         return ConditionInputNodeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

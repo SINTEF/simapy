@@ -22,11 +22,13 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     relativeCompassAngle : float
          Relative angle between analysis x-axis and north direction in anti-clockwise direction.\nShould match the angle given in the recieving SIMA task location.(default 0.0)
     inputReferenceSystem : InputReferenceSystem
@@ -40,8 +42,9 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
     currentCalculation : LongTermStatisticsCurrentCalculation
     """
 
-    def __init__(self , _id="", name="", relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, applyNorsok=True, **kwargs):
+    def __init__(self , description="", _id=None, name=None, relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, applyNorsok=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -63,6 +66,16 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
         """Return blueprint that this entity represents"""
         return LongTermStatisticsCalculationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

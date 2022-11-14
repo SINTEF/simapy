@@ -16,8 +16,10 @@ class SoilPenetration(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     frictionModel : SoilFriction
          Soil force control parameter
@@ -43,8 +45,9 @@ class SoilPenetration(MOAO):
          Flow coefficient in/out of closed compartment(default 0.0)
     """
 
-    def __init__(self , _id="", frictionModel=SoilFriction.OPEN_COMPARTMENT, zcont=0.0, penetrationDepth=0.0, barArea=0.0, sodens=0.0, cArea=0.0, seabedImport=HLA.NO_IMPORT, wstiff=0.0, tsuct=0.0, cflow=0.0, **kwargs):
+    def __init__(self , description="", _id=None, frictionModel=SoilFriction.OPEN_COMPARTMENT, zcont=0.0, penetrationDepth=0.0, barArea=0.0, sodens=0.0, cArea=0.0, seabedImport=HLA.NO_IMPORT, wstiff=0.0, tsuct=0.0, cflow=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.frictionModel = frictionModel
@@ -69,6 +72,16 @@ class SoilPenetration(MOAO):
         """Return blueprint that this entity represents"""
         return SoilPenetrationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

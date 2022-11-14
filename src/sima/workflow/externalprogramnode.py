@@ -17,11 +17,13 @@ class ExternalProgramNode(RunNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -32,9 +34,9 @@ class ExternalProgramNode(RunNode):
          (default 0)
     controlSignalInputSlots : List[ControlSignalInputSlot]
     executable : str
-         Executable to run(default "")
+         Executable to run(default None)
     arguments : str
-         Process arguments(default "")
+         Process arguments(default None)
     fileInputSlots : List[FileInputSlot]
     fileOutputSlots : List[FileOutputSlot]
     fileFormat : FileFormat
@@ -45,11 +47,12 @@ class ExternalProgramNode(RunNode):
          Add additional input files before running. These will be copied to working directory(default False)
     inputFileSlot : InputSlot
     environmentVariables : str
-         Environment variables to set when executing. Separate each variable with a semicolon and path segments with colon.(default "")
+         Environment variables to set when executing. Separate each variable with a semicolon and path segments with colon.(default None)
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, executable="", arguments="", fileFormat=FileFormat.HDF5, failOnErrorCode=True, addInputFiles=False, environmentVariables="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, executable=None, arguments=None, fileFormat=FileFormat.HDF5, failOnErrorCode=True, addInputFiles=False, environmentVariables=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -77,6 +80,16 @@ class ExternalProgramNode(RunNode):
         """Return blueprint that this entity represents"""
         return ExternalProgramNodeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

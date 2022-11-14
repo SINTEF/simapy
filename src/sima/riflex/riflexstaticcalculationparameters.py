@@ -18,8 +18,10 @@ class RIFLEXStaticCalculationParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     loadTypeItems : List[StaticLoadTypeItem]
     matrixStorage : MatrixStorage
@@ -29,7 +31,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
     stressFreeConfiguration : bool
          Whether a stress free configuration has been defined for the Slender system.(default False)
     stressfreeFile : str
-         (default "")
+         (default None)
     loadAndMassFormulation : LoadAndMassFormulation
     parameterVariation : ParameterVariation
     storeVisualisationResponses : bool
@@ -40,8 +42,9 @@ class RIFLEXStaticCalculationParameters(MOAO):
          Start arc length at zero for each line(default True)
     """
 
-    def __init__(self , _id="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, stressfreeFile="", loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, **kwargs):
+    def __init__(self , description="", _id=None, matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, stressfreeFile=None, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.loadTypeItems = list()
@@ -65,6 +68,16 @@ class RIFLEXStaticCalculationParameters(MOAO):
         """Return blueprint that this entity represents"""
         return RIFLEXStaticCalculationParametersBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

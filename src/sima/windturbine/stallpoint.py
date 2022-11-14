@@ -12,8 +12,10 @@ class StallPoint(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     angleZeroLift : float
          Angle of attack at zero lift (Typical value: -2 deg)(default 0.0)
@@ -27,8 +29,9 @@ class StallPoint(MOAO):
          Angle of attack at full separation (negative) (Typical value: -20 deg)(default 0.0)
     """
 
-    def __init__(self , _id="", angleZeroLift=0.0, maxLinearClSlopePos=0.0, maxLinearClSlopeNeg=0.0, angleFullSeparationPos=0.0, angleFullSeparationNeg=0.0, **kwargs):
+    def __init__(self , description="", _id=None, angleZeroLift=0.0, maxLinearClSlopePos=0.0, maxLinearClSlopeNeg=0.0, angleFullSeparationPos=0.0, angleFullSeparationNeg=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.angleZeroLift = angleZeroLift
@@ -46,6 +49,16 @@ class StallPoint(MOAO):
         """Return blueprint that this entity represents"""
         return StallPointBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

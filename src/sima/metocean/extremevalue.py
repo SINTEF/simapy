@@ -12,8 +12,10 @@ class ExtremeValue(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     extreme : float
          (default 0.0)
@@ -21,8 +23,9 @@ class ExtremeValue(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , _id="", extreme=0.0, returnPeriod=0.0, **kwargs):
+    def __init__(self , description="", _id=None, extreme=0.0, returnPeriod=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.extreme = extreme
@@ -37,6 +40,16 @@ class ExtremeValue(MOAO):
         """Return blueprint that this entity represents"""
         return ExtremeValueBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

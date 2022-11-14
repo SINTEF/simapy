@@ -17,15 +17,18 @@ class ARLineItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
     end : End
     """
 
-    def __init__(self , _id="", end=End.ONE, **kwargs):
+    def __init__(self , description="", _id=None, end=End.ONE, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -40,6 +43,16 @@ class ARLineItem(MOAO):
         """Return blueprint that this entity represents"""
         return ARLineItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

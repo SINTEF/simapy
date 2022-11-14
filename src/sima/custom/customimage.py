@@ -12,17 +12,20 @@ class CustomImage(CustomComponent):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     filename : str
-         (default "")
+         (default None)
     factor : float
          (default 0.2)
     """
 
-    def __init__(self , _id="", filename="", factor=0.2, **kwargs):
+    def __init__(self , description="", _id=None, filename=None, factor=0.2, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.filename = filename
@@ -37,6 +40,16 @@ class CustomImage(CustomComponent):
         """Return blueprint that this entity represents"""
         return CustomImageBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

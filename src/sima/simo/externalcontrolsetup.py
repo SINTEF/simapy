@@ -12,19 +12,22 @@ class ExternalControlSetup(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     executable : str
-         Executable to run(default "")
+         Executable to run(default None)
     arguments : str
-         Process arguments(default "")
+         Process arguments(default None)
     port : int
          Port number of the central unit for the external process(default 9876)
     """
 
-    def __init__(self , _id="", executable="", arguments="", port=9876, **kwargs):
+    def __init__(self , description="", _id=None, executable=None, arguments=None, port=9876, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.executable = executable
@@ -40,6 +43,16 @@ class ExternalControlSetup(MOAO):
         """Return blueprint that this entity represents"""
         return ExternalControlSetupBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

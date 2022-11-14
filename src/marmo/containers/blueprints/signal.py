@@ -12,6 +12,6 @@ class SignalBlueprint(SignalItemBlueprint):
 
     def __init__(self, name="Signal", package_path="marmo/containers", description="Signal base type"):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
-        self.attributes.append(BlueprintAttribute("attributes","marmo/containers/Attribute","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(BlueprintAttribute("attributes","marmo/containers/Attribute","",True,Dimension("*")))

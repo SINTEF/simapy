@@ -16,8 +16,10 @@ class StaticEquilibriumBody(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     body : SIMOBody
          Selected body to compute equilibrium for
@@ -35,8 +37,9 @@ class StaticEquilibriumBody(MOAO):
          Excursion of rotation about global Z axis(default 1.0)
     """
 
-    def __init__(self , _id="", x=1.0, y=1.0, z=1.0, rx=1.0, ry=1.0, rz=1.0, **kwargs):
+    def __init__(self , description="", _id=None, x=1.0, y=1.0, z=1.0, rx=1.0, ry=1.0, rz=1.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.body = None
@@ -56,6 +59,16 @@ class StaticEquilibriumBody(MOAO):
         """Return blueprint that this entity represents"""
         return StaticEquilibriumBodyBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

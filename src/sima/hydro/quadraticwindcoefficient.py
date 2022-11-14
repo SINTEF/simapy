@@ -15,8 +15,10 @@ class QuadraticWindCoefficient(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     symmetry : DirectionSymmetry
     windArea : float
@@ -27,11 +29,12 @@ class QuadraticWindCoefficient(MOAO):
     _type : CoefficientType
          Wind coefficient type
     fileName : str
-         Text file containing the wind coefficients. The force coefficents in the file must be specified in [kN/(m/s)] for translational degrees of freedom and [kN.s] for rotational degrees of freedom.(default "")
+         Text file containing the wind coefficients. The force coefficents in the file must be specified in [kN/(m/s)] for translational degrees of freedom and [kN.s] for rotational degrees of freedom.(default None)
     """
 
-    def __init__(self , _id="", symmetry=DirectionSymmetry.NO_SYMMETRY, windArea=2000.0, referenceHeight=10.0, _type=CoefficientType.CLASSIC, fileName="", **kwargs):
+    def __init__(self , description="", _id=None, symmetry=DirectionSymmetry.NO_SYMMETRY, windArea=2000.0, referenceHeight=10.0, _type=CoefficientType.CLASSIC, fileName=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.symmetry = symmetry
@@ -50,6 +53,16 @@ class QuadraticWindCoefficient(MOAO):
         """Return blueprint that this entity represents"""
         return QuadraticWindCoefficientBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

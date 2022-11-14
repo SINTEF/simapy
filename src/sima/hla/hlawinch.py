@@ -12,11 +12,13 @@ class HLAWinch(HLAObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     initialLength : float
          Initial wire length at drum(default 0.0)
     maximumSpeed : float
@@ -27,8 +29,9 @@ class HLAWinch(HLAObject):
          Max. wire length that can be added to drum(default 0.0)
     """
 
-    def __init__(self , _id="", name="", initialLength=0.0, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, initialLength=0.0, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -46,6 +49,16 @@ class HLAWinch(HLAObject):
         """Return blueprint that this entity represents"""
         return HLAWinchBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

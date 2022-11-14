@@ -15,8 +15,10 @@ class RegularWaveLoading(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     waveTheory : WaveTheory
          Wave theory:\n - Airy linear wave theory\n - Stoke 5th order wave theory
@@ -26,8 +28,9 @@ class RegularWaveLoading(MOAO):
          Kinematics Position:\n - Wave induced velocities and accelerations calculated at static riser position, but the riser is kept fixed in static position for computation of surface penetrating element\n - Wave induced velocities and accelerations calculated at static riser position\n - Wave induced velocities and accelerations calculated at updated (dynamic) positions
     """
 
-    def __init__(self , _id="", waveTheory=WaveTheory.AIRY_LINEAR, seaSurfaceDefinition=KinematicsInWaveZone.MEAN_WATER_LEVEL, riserPosition=RiserPosition.DYNAMIC_POSITIONS, **kwargs):
+    def __init__(self , description="", _id=None, waveTheory=WaveTheory.AIRY_LINEAR, seaSurfaceDefinition=KinematicsInWaveZone.MEAN_WATER_LEVEL, riserPosition=RiserPosition.DYNAMIC_POSITIONS, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.waveTheory = waveTheory
@@ -43,6 +46,16 @@ class RegularWaveLoading(MOAO):
         """Return blueprint that this entity represents"""
         return RegularWaveLoadingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

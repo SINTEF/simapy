@@ -22,11 +22,13 @@ class SIMOTask(ConditionTask):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     doubleVariables : List[DoubleVariable]
     integerVariables : List[IntegerVariable]
     stringVariables : List[StringVariable]
@@ -48,8 +50,9 @@ class SIMOTask(ConditionTask):
          Generate FMU (Functional Mockup Unit) from model(default False)
     """
 
-    def __init__(self , _id="", name="", runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, exportAsFMU=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, exportAsFMU=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -77,6 +80,16 @@ class SIMOTask(ConditionTask):
         """Return blueprint that this entity represents"""
         return SIMOTaskBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

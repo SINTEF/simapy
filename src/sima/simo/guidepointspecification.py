@@ -16,8 +16,10 @@ class GuidePointSpecification(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     guidePoint : GuidePoint
          Guide point
@@ -25,8 +27,9 @@ class GuidePointSpecification(MOAO):
          Guide point entered on line(default True)
     """
 
-    def __init__(self , _id="", enteredOnLine=True, **kwargs):
+    def __init__(self , description="", _id=None, enteredOnLine=True, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.guidePoint = None
@@ -41,6 +44,16 @@ class GuidePointSpecification(MOAO):
         """Return blueprint that this entity represents"""
         return GuidePointSpecificationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

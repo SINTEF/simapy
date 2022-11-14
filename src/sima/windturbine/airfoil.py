@@ -14,11 +14,13 @@ class Airfoil(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     deepstallRegime : bool
          Whether or not a deep stall regime is to be used(default False)
     inputStallPoints : bool
@@ -37,8 +39,9 @@ class Airfoil(NamedObject):
     points : List[FoilPoint]
     """
 
-    def __init__(self , _id="", name="", deepstallRegime=False, inputStallPoints=False, upperTailAngle=0.0, lowerTailAngle=0.0, upperNoseAngle=0.0, lowerNoseAngle=0.0, noseRadiusRatio=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, deepstallRegime=False, inputStallPoints=False, upperTailAngle=0.0, lowerTailAngle=0.0, upperNoseAngle=0.0, lowerNoseAngle=0.0, noseRadiusRatio=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class Airfoil(NamedObject):
         """Return blueprint that this entity represents"""
         return AirfoilBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

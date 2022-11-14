@@ -12,17 +12,20 @@ class AdditionalStructuralDampingParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     globalSegmentNumber : int
          Global segment number(default 0)
     structuralDampingFile : str
-         File with detailed structural damping specification, see VIVANA user manual(default "")
+         File with detailed structural damping specification, see VIVANA user manual(default None)
     """
 
-    def __init__(self , _id="", globalSegmentNumber=0, structuralDampingFile="", **kwargs):
+    def __init__(self , description="", _id=None, globalSegmentNumber=0, structuralDampingFile=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.globalSegmentNumber = globalSegmentNumber
@@ -37,6 +40,16 @@ class AdditionalStructuralDampingParameters(MOAO):
         """Return blueprint that this entity represents"""
         return AdditionalStructuralDampingParametersBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -19,11 +19,13 @@ class BodyResult(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     body : str
-         Result body(default "")
+         Result body(default None)
     initialPosition : Position
     staticPosition : Position
     bodyForces : List[ForceResult]
@@ -34,8 +36,9 @@ class BodyResult(MOAO):
     externalForces : List[ForceResult]
     """
 
-    def __init__(self , _id="", body="", **kwargs):
+    def __init__(self , description="", _id=None, body=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.body = body
@@ -57,6 +60,16 @@ class BodyResult(MOAO):
         """Return blueprint that this entity represents"""
         return BodyResultBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

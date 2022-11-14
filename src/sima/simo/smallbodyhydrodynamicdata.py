@@ -19,8 +19,10 @@ class SmallBodyHydrodynamicData(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     svol : float
          Fully submerged volume(default 0.0)
@@ -51,8 +53,9 @@ class SmallBodyHydrodynamicData(MOAO):
     diffractedWave : DiffractedWave
     """
 
-    def __init__(self , _id="", svol=0.0, am1=0.0, am2=0.0, am3=0.0, c11=0.0, c12=0.0, c13=0.0, c21=0.0, c22=0.0, c23=0.0, zcoef=0.0, depthDependency=DepthDependency.WAVE_ELEVATION, **kwargs):
+    def __init__(self , description="", _id=None, svol=0.0, am1=0.0, am2=0.0, am3=0.0, c11=0.0, c12=0.0, c13=0.0, c21=0.0, c22=0.0, c23=0.0, zcoef=0.0, depthDependency=DepthDependency.WAVE_ELEVATION, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.svol = svol
@@ -80,6 +83,16 @@ class SmallBodyHydrodynamicData(MOAO):
         """Return blueprint that this entity represents"""
         return SmallBodyHydrodynamicDataBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

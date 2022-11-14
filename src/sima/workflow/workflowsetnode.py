@@ -25,11 +25,13 @@ class WorkflowSetNode(WorkflowReferenceNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -49,17 +51,17 @@ class WorkflowSetNode(WorkflowReferenceNode):
     setFolderName : bool
          Override the default folder name created. This folder will be relative to the running workflow. If left empty it will create the results directly in the workflow folder.(default False)
     folderName : str
-         (default "")
+         (default None)
     variableInputSets : List[VariableInputSet]
     variableInputSetSlots : List[VariableInputSetSlot]
     writeRunStatus : bool
          Write a text file with the run status after running all the cases(default False)
     runStatusFolder : str
-         If provided the status file(s) will  to exported to this location(default "")
+         If provided the status file(s) will  to exported to this location(default None)
     input : WorkflowSetInput
          Specify variable values from file.
     filename : str
-         Import variable values from file. Expected file format:\n' any comment specified with '\n'Hs    Tp     seed : values specified in rows ( Need to match the variables specified)  \n1.0      2.0    3\n4.0      5.0    4\n'any comment\n           (default "")
+         Import variable values from file. Expected file format:\n' any comment specified with '\n'Hs    Tp     seed : values specified in rows ( Need to match the variables specified)  \n1.0      2.0    3\n4.0      5.0    4\n'any comment\n           (default None)
     iteration : Iteration
          Switch to change type of iteration
     distribute : bool
@@ -71,8 +73,9 @@ class WorkflowSetNode(WorkflowReferenceNode):
     workflowInputVariationSlots : List[WorkflowInputSlot]
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName="", writeRunStatus=False, runStatusFolder="", input=WorkflowSetInput.MANUAL, filename="", iteration=Iteration.COLUMN, distribute=False, grouping=1, iterateOverInput=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName=None, writeRunStatus=False, runStatusFolder=None, input=WorkflowSetInput.MANUAL, filename=None, iteration=Iteration.COLUMN, distribute=False, grouping=1, iterateOverInput=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -110,6 +113,16 @@ class WorkflowSetNode(WorkflowReferenceNode):
         """Return blueprint that this entity represents"""
         return WorkflowSetNodeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

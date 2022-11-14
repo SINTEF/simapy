@@ -15,11 +15,13 @@ class DistanceFixedLineToLineFilter(OperationNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -47,8 +49,9 @@ class DistanceFixedLineToLineFilter(OperationNode):
          Z value of end 2 of global fixed line(default 0.0)
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, renameOutput=True, xg1=0.0, yg1=0.0, zg1=0.0, xg2=0.0, yg2=0.0, zg2=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, renameOutput=True, xg1=0.0, yg1=0.0, zg1=0.0, xg2=0.0, yg2=0.0, zg2=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -76,6 +79,16 @@ class DistanceFixedLineToLineFilter(OperationNode):
         """Return blueprint that this entity represents"""
         return DistanceFixedLineToLineFilterBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

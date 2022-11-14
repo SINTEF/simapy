@@ -15,11 +15,13 @@ class HLAROV(HLABody):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     length : float
          Length(default 10.0)
     width : float
@@ -31,8 +33,9 @@ class HLAROV(HLABody):
     viewpoints : List[HLABodyViewpoint]
     """
 
-    def __init__(self , _id="", name="", length=10.0, width=5.0, height=5.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, length=10.0, width=5.0, height=5.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -52,6 +55,16 @@ class HLAROV(HLABody):
         """Return blueprint that this entity represents"""
         return HLAROVBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

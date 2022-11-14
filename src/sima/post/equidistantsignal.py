@@ -13,12 +13,14 @@ class EquidistantSignal(GeneratorSignal):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
     name : str
-         (default "")
+         (default None)
     directInput : bool
          (default True)
     values : ndarray
@@ -33,11 +35,12 @@ class EquidistantSignal(GeneratorSignal):
     size : int
          (default 0)
     function : str
-         Apply the given function to each element of the input(default "")
+         Apply the given function to each element of the input(default None)
     """
 
-    def __init__(self , _id="", name="", directInput=True, xunit='s', yunit='-', offset=0.0, increment=1.0, size=0, function="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, directInput=True, xunit='s', yunit='-', offset=0.0, increment=1.0, size=0, function=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.properties = list()
@@ -60,6 +63,16 @@ class EquidistantSignal(GeneratorSignal):
         """Return blueprint that this entity represents"""
         return EquidistantSignalBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

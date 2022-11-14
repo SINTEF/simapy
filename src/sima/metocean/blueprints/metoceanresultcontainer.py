@@ -12,10 +12,11 @@ class MetoceanResultContainerBlueprint(ConditionResultContainerBlueprint):
 
     def __init__(self, name="MetoceanResultContainer", package_path="sima/metocean", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(BlueprintAttribute("properties","sima/sima/Property","",True,Dimension("*")))
-        self.attributes.append(Attribute("modelOutputFile","string","",default=""))
-        self.attributes.append(Attribute("probability","number","",default=0.0))
-        self.attributes.append(BlueprintAttribute("entry","sima/sima/ResultEntry","",True))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(BlueprintAttribute("properties","sima/sima/Property","",True,Dimension("*")))
+        self.add_attribute(Attribute("modelOutputFile","string","",default=None))
+        self.add_attribute(Attribute("probability","number","",default=0.0))
+        self.add_attribute(BlueprintAttribute("entry","sima/sima/ResultEntry","",True))

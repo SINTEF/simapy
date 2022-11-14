@@ -12,9 +12,10 @@ class CustomEditorBlueprint(MOAOBlueprint):
 
     def __init__(self, name="CustomEditor", package_path="sima/custom", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("children","sima/custom/CustomComponent","",True,Dimension("*")))
-        self.attributes.append(Attribute("title","string","",default=""))
-        self.attributes.append(Attribute("editMode","boolean","When checked the custom editor will always be opened in edit mode and child elements will be added to the navigator ",default=False))
-        self.attributes.append(Attribute("showDescription","boolean","",default=False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("children","sima/custom/CustomComponent","",True,Dimension("*")))
+        self.add_attribute(Attribute("title","string","",default=None))
+        self.add_attribute(Attribute("editMode","boolean","When checked the custom editor will always be opened in edit mode and child elements will be added to the navigator ",default=False))
+        self.add_attribute(Attribute("showDescription","boolean","",default=False))

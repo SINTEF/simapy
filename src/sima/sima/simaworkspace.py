@@ -14,19 +14,22 @@ class SIMAWorkspace(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     childFolders : List[TaskFolder]
     tasks : List[Task]
     productId : str
-         (default "")
+         (default None)
     dateAndTime : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , _id="", productId="", dateAndTime="", **kwargs):
+    def __init__(self , description="", _id=None, productId=None, dateAndTime=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.childFolders = list()
@@ -43,6 +46,16 @@ class SIMAWorkspace(MOAO):
         """Return blueprint that this entity represents"""
         return SIMAWorkspaceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

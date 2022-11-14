@@ -12,10 +12,11 @@ class LongTermStatisticsWaveCalculationBlueprint(MOAOBlueprint):
 
     def __init__(self, name="LongTermStatisticsWaveCalculation", package_path="sima/metocean", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("returnPeriod","number","",default=0.0))
-        self.attributes.append(BlueprintAttribute("statistics","sima/metocean/WaveLongTermStatistics","",False))
-        self.attributes.append(BlueprintAttribute("omni","sima/metocean/OmniDirectionalWaveLongTermStatistics","",False))
-        self.attributes.append(EnumAttribute("method","sima/metocean/WaveStatisticsMethod",""))
-        self.attributes.append(BlueprintAttribute("directions","sima/metocean/CalculationDirection","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("returnPeriod","number","",default=0.0))
+        self.add_attribute(BlueprintAttribute("statistics","sima/metocean/WaveLongTermStatistics","",False))
+        self.add_attribute(BlueprintAttribute("omni","sima/metocean/OmniDirectionalWaveLongTermStatistics","",False))
+        self.add_attribute(EnumAttribute("method","sima/metocean/WaveStatisticsMethod",""))
+        self.add_attribute(BlueprintAttribute("directions","sima/metocean/CalculationDirection","",True,Dimension("*")))

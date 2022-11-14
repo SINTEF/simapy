@@ -21,11 +21,13 @@ class FixedBodyElement(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     volume : float
          Volume of element(default 0.0)
     mass : float
@@ -63,8 +65,9 @@ class FixedBodyElement(NamedObject):
          Added mass z(default 0.0)
     """
 
-    def __init__(self , _id="", name="", volume=0.0, mass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=FixedBodyWaveParticleMethod.VELOCITY_AND_ACCELERATION, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, volume=0.0, mass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=FixedBodyWaveParticleMethod.VELOCITY_AND_ACCELERATION, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -98,6 +101,16 @@ class FixedBodyElement(NamedObject):
         """Return blueprint that this entity represents"""
         return FixedBodyElementBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -15,11 +15,13 @@ class TextInput(ValueInputNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -30,22 +32,23 @@ class TextInput(ValueInputNode):
          (default 0)
     controlSignalInputSlots : List[ControlSignalInputSlot]
     root : str
-         (default "")
+         (default None)
     resultId : str
-         (default "")
+         (default None)
     outputSlot : OutputSlot
     properties : List[SignalProperties]
     specifyAdditionalProperties : bool
          Specify additional properties in the signal(default False)
     value : str
-         (default "")
+         (default None)
     array : bool
          Create a text array output(default False)
     values : ndarray
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, root="", resultId="", specifyAdditionalProperties=False, value="", array=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, root=None, resultId=None, specifyAdditionalProperties=False, value=None, array=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -72,6 +75,16 @@ class TextInput(ValueInputNode):
         """Return blueprint that this entity represents"""
         return TextInputBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

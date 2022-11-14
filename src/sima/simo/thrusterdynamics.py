@@ -12,8 +12,10 @@ class ThrusterDynamics(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     minTimeChange : float
          Minimum time to change from 10% to 90% of maximum thrust(default 0.0)
@@ -25,8 +27,9 @@ class ThrusterDynamics(MOAO):
          Time constant of azimuth change(default 0.0)
     """
 
-    def __init__(self , _id="", minTimeChange=0.0, tcThrust=0.0, maxRevolvingSpeed=10.0, tcAzimuth=0.0, **kwargs):
+    def __init__(self , description="", _id=None, minTimeChange=0.0, tcThrust=0.0, maxRevolvingSpeed=10.0, tcAzimuth=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.minTimeChange = minTimeChange
@@ -43,6 +46,16 @@ class ThrusterDynamics(MOAO):
         """Return blueprint that this entity represents"""
         return ThrusterDynamicsBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

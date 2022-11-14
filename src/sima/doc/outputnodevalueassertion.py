@@ -17,23 +17,26 @@ class OutputNodeValueAssertion(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     severity : Severity
     message : str
-         (default "")
+         (default None)
     outputNode : OutputNode
     path : str
-         (default "")
+         (default None)
     expectedValue : str
-         When expected value is a number, the number of significant digits will be used as a tolerance level(default "")
+         When expected value is a number, the number of significant digits will be used as a tolerance level(default None)
     tolerance : float
          When set, will be used instead of the implicit toleranse based on significant digits(default 0.0)
     """
 
-    def __init__(self , _id="", severity=Severity.WARNING, message="", path="", expectedValue="", tolerance=0.0, **kwargs):
+    def __init__(self , description="", _id=None, severity=Severity.WARNING, message=None, path=None, expectedValue=None, tolerance=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.severity = severity
@@ -52,6 +55,16 @@ class OutputNodeValueAssertion(MOAO):
         """Return blueprint that this entity represents"""
         return OutputNodeValueAssertionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

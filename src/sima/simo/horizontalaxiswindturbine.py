@@ -18,11 +18,13 @@ class HorizontalAxisWindTurbine(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     controller : HorizontalAxisWindTurbineController
     momentCoupling : MomentCoupling
     referenceHeight : float
@@ -38,8 +40,9 @@ class HorizontalAxisWindTurbine(NamedObject):
          Number of blades(default 0)
     """
 
-    def __init__(self , _id="", name="", referenceHeight=0.0, windArea=0.0, outerAirfoilRadius=0.0, coneAngle=0.0, numBlades=0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, referenceHeight=0.0, windArea=0.0, outerAirfoilRadius=0.0, coneAngle=0.0, numBlades=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class HorizontalAxisWindTurbine(NamedObject):
         """Return blueprint that this entity represents"""
         return HorizontalAxisWindTurbineBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

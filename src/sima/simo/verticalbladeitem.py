@@ -16,8 +16,10 @@ class VerticalBladeItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     airfoil : Airfoil
     radius : float
@@ -32,8 +34,9 @@ class VerticalBladeItem(MOAO):
          Static twist angle(default 0.0)
     """
 
-    def __init__(self , _id="", radius=0.0, elevation=0.0, offset=0.0, chordLength=0.0, twist=0.0, **kwargs):
+    def __init__(self , description="", _id=None, radius=0.0, elevation=0.0, offset=0.0, chordLength=0.0, twist=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.airfoil = None
@@ -52,6 +55,16 @@ class VerticalBladeItem(MOAO):
         """Return blueprint that this entity represents"""
         return VerticalBladeItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

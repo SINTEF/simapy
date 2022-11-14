@@ -12,21 +12,24 @@ class Image(ReportItem):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     caption : str
-         Caption(default "")
+         Caption(default None)
     filePath : str
-         Path to the image(default "")
+         Path to the image(default None)
     width : int
          The image witdth in twips (1/1440 inch). If only the width is specified the height will be automatically calculated.(default 0)
     height : int
          The image height in twips (1/1440 inch). If only the width is specified the height will be automatically calculated.(default 0)
     """
 
-    def __init__(self , _id="", caption="", filePath="", width=0, height=0, **kwargs):
+    def __init__(self , description="", _id=None, caption=None, filePath=None, width=0, height=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.caption = caption
@@ -43,6 +46,16 @@ class Image(ReportItem):
         """Return blueprint that this entity represents"""
         return ImageBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

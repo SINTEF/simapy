@@ -14,19 +14,22 @@ class FontDescription(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     font : str
-         (default "")
+         (default None)
     size : int
          (default 0)
     style : FontStyle
     color : SIMAColor
     """
 
-    def __init__(self , _id="", font="", size=0, style=FontStyle.NORMAL, **kwargs):
+    def __init__(self , description="", _id=None, font=None, size=0, style=FontStyle.NORMAL, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.font = font
@@ -43,6 +46,16 @@ class FontDescription(MOAO):
         """Return blueprint that this entity represents"""
         return FontDescriptionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

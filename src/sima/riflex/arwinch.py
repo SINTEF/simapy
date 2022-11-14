@@ -20,8 +20,10 @@ class ARWinch(SegmentReference,NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -30,7 +32,7 @@ class ARWinch(SegmentReference,NamedObject):
     allSegments : bool
          All segments(default False)
     name : str
-         (default "")
+         (default None)
     segmentEnd : End
          End of segment (and line) attached to winch (1 or 2)
     relativeSegmentLength : float
@@ -60,8 +62,9 @@ class ARWinch(SegmentReference,NamedObject):
          Control parameter for adjusting the length of elements attached to winch(default False)
     """
 
-    def __init__(self , _id="", segment=1, allSegments=False, name="", segmentEnd=End.ONE, relativeSegmentLength=0.0, x1=0.0, y1=0.0, z1=0.0, rotation=0.0, rotationDirection=0.0, maxVelocity=0.0, timeToMaxVelocity=0.0, lineRelease=False, radius=0.0, winchCenter=CenterOfWinch.NEGATIVE_Z_AXIS, lengthJustification=False, **kwargs):
+    def __init__(self , description="", _id=None, segment=1, allSegments=False, name=None, segmentEnd=End.ONE, relativeSegmentLength=0.0, x1=0.0, y1=0.0, z1=0.0, rotation=0.0, rotationDirection=0.0, maxVelocity=0.0, timeToMaxVelocity=0.0, lineRelease=False, radius=0.0, winchCenter=CenterOfWinch.NEGATIVE_Z_AXIS, lengthJustification=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -92,6 +95,16 @@ class ARWinch(SegmentReference,NamedObject):
         """Return blueprint that this entity represents"""
         return ARWinchBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

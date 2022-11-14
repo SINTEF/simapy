@@ -12,11 +12,13 @@ class SeafloorSpringContact(SeafloorContact):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     axialStiffness : float
          Horizontal stiffness parameter for seafloor in axial direction(default 0.0)
     axialFriction : float
@@ -37,8 +39,9 @@ class SeafloorSpringContact(SeafloorContact):
          Apply lateral contact forces at the external contact radius, giving a torsional moment(default False)
     """
 
-    def __init__(self , _id="", name="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, normalStiffness=0.0, normalDamping=0.0, applyLateralContactForces=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, normalStiffness=0.0, normalDamping=0.0, applyLateralContactForces=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class SeafloorSpringContact(SeafloorContact):
         """Return blueprint that this entity represents"""
         return SeafloorSpringContactBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

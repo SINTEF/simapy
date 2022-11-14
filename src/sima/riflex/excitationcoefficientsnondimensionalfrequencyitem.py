@@ -13,16 +13,19 @@ class ExcitationCoefficientsNonDimensionalFrequencyItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     nonDimensionalFrequency : float
          Non-dimensional frequency(default 0.0)
     amplitudeExcitationRatioProperties : List[AmplitudeDiameterExcitationCoefficientItem]
     """
 
-    def __init__(self , _id="", nonDimensionalFrequency=0.0, **kwargs):
+    def __init__(self , description="", _id=None, nonDimensionalFrequency=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.nonDimensionalFrequency = nonDimensionalFrequency
@@ -37,6 +40,16 @@ class ExcitationCoefficientsNonDimensionalFrequencyItem(MOAO):
         """Return blueprint that this entity represents"""
         return ExcitationCoefficientsNonDimensionalFrequencyItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -16,8 +16,10 @@ class DynamicPressureVariationItem(PressureVariationItem):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     mainRiserLine : MainRiserLine
          Main riser line
@@ -33,8 +35,9 @@ class DynamicPressureVariationItem(PressureVariationItem):
          End time for pressure variation(default 0.0)
     """
 
-    def __init__(self , _id="", inletPressure=0.0, pressureDrop=0.0, fluidVelocity=0.0, startTime=0.0, endTime=0.0, **kwargs):
+    def __init__(self , description="", _id=None, inletPressure=0.0, pressureDrop=0.0, fluidVelocity=0.0, startTime=0.0, endTime=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.mainRiserLine = None
@@ -53,6 +56,16 @@ class DynamicPressureVariationItem(PressureVariationItem):
         """Return blueprint that this entity represents"""
         return DynamicPressureVariationItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

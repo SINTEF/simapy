@@ -26,11 +26,13 @@ class WamitBody(Body):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     length : float
          Length(default 10.0)
     width : float
@@ -41,14 +43,14 @@ class WamitBody(Body):
     initialPosition : Position
     viewpoints : List[BodyViewpoint]
     geometryFilename : str
-         GDF Geometry(default "")
+         GDF Geometry(default None)
     surfacesToIncludeFromMs2File : SurfacesToIncludeFromMs2FileOption
     symmetryAboutX : bool
          (default False)
     symmetryAboutY : bool
          (default False)
     entitySelectionList : str
-         (default "")
+         (default None)
     evaluationMode : EvaluationModeOption
     divisionsMultiplier : int
          (default 0)
@@ -80,8 +82,9 @@ class WamitBody(Body):
          (default 0.0)
     """
 
-    def __init__(self , _id="", name="", length=10.0, width=5.0, height=5.0, geometryFilename="", surfacesToIncludeFromMs2File=SurfacesToIncludeFromMs2FileOption.ALLVISIBLESURFACES, symmetryAboutX=False, symmetryAboutY=False, entitySelectionList="", evaluationMode=EvaluationModeOption.FAST, divisionsMultiplier=0, directionOfNormals=DirectionsOfNormalsOption.OUTWARD, includeExternalDampingMatrix=False, includeExternalStiffnessMatrix=False, includeExternalMassMatrix=False, characteristicLength=1.0, removeIrregularFrequencies=RemoveIrregularFrequenciesOption.NO, trimWaterline=False, draftChange=0.0, heelChange=0.0, trimChange=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, length=10.0, width=5.0, height=5.0, geometryFilename=None, surfacesToIncludeFromMs2File=SurfacesToIncludeFromMs2FileOption.ALLVISIBLESURFACES, symmetryAboutX=False, symmetryAboutY=False, entitySelectionList=None, evaluationMode=EvaluationModeOption.FAST, divisionsMultiplier=0, directionOfNormals=DirectionsOfNormalsOption.OUTWARD, includeExternalDampingMatrix=False, includeExternalStiffnessMatrix=False, includeExternalMassMatrix=False, characteristicLength=1.0, removeIrregularFrequencies=RemoveIrregularFrequenciesOption.NO, trimWaterline=False, draftChange=0.0, heelChange=0.0, trimChange=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -125,6 +128,16 @@ class WamitBody(Body):
         """Return blueprint that this entity represents"""
         return WamitBodyBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

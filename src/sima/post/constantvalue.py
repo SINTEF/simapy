@@ -14,20 +14,23 @@ class ConstantValue(GeneratorSignal,SingleParameter):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
     name : str
-         (default "")
+         (default None)
     value : float
          Value of the constant(default 0.0)
     unit : str
          Defines the unit of the constant(default '-')
     """
 
-    def __init__(self , _id="", name="", value=0.0, unit='-', **kwargs):
+    def __init__(self , description="", _id=None, name=None, value=0.0, unit='-', **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.properties = list()
@@ -44,6 +47,16 @@ class ConstantValue(GeneratorSignal,SingleParameter):
         """Return blueprint that this entity represents"""
         return ConstantValueBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

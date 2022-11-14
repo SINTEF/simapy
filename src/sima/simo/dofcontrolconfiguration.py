@@ -13,8 +13,10 @@ class DOFControlConfiguration(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     dof : ControlDOF
          Degree Of Freedom
@@ -42,8 +44,9 @@ class DOFControlConfiguration(MOAO):
          Turn off proportional control and use damping only(default False)
     """
 
-    def __init__(self , _id="", dof=ControlDOF.NONE, mass=0.0, drag=0.0, stiffness=0.0, naturalPeriod=100.0, dampingFactor=0.7, integrationTime=0.0, cutOffPeriod=0.0, filterDampingFactor=0.0, integralLF=0.0, proportionalHF=0.1, dampingOnly=False, **kwargs):
+    def __init__(self , description="", _id=None, dof=ControlDOF.NONE, mass=0.0, drag=0.0, stiffness=0.0, naturalPeriod=100.0, dampingFactor=0.7, integrationTime=0.0, cutOffPeriod=0.0, filterDampingFactor=0.0, integralLF=0.0, proportionalHF=0.1, dampingOnly=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.dof = dof
@@ -68,6 +71,16 @@ class DOFControlConfiguration(MOAO):
         """Return blueprint that this entity represents"""
         return DOFControlConfigurationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

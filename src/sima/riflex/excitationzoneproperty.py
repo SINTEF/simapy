@@ -12,19 +12,22 @@ class ExcitationZoneProperty(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     min : float
          Minimum non dimensional frequency limit(default 0.125)
     max : float
          Minimum non dimensional frequency limit(default 0.2)
     """
 
-    def __init__(self , _id="", name="", min=0.125, max=0.2, **kwargs):
+    def __init__(self , description="", _id=None, name=None, min=0.125, max=0.2, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -40,6 +43,16 @@ class ExcitationZoneProperty(NamedObject):
         """Return blueprint that this entity represents"""
         return ExcitationZonePropertyBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

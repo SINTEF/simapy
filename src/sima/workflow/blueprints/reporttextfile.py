@@ -12,7 +12,8 @@ class ReportTextFileBlueprint(ReportFragmentItemBlueprint):
 
     def __init__(self, name="ReportTextFile", package_path="sima/workflow", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("path","string","",default=""))
-        self.attributes.append(Attribute("plainText","boolean","",default=False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("path","string","",default=None))
+        self.add_attribute(Attribute("plainText","boolean","",default=False))

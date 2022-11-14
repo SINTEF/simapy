@@ -12,4 +12,5 @@ class ReportItemContainerBlueprint(EntityBlueprint):
 
     def __init__(self, name="ReportItemContainer", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(BlueprintAttribute("items","marmo/report/ReportItem","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(BlueprintAttribute("items","marmo/report/ReportItem","",True,Dimension("*")))

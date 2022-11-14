@@ -17,8 +17,10 @@ class MoonpoolColumnItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     body : Body
     lowerZ : float
@@ -28,8 +30,9 @@ class MoonpoolColumnItem(MOAO):
     lineReferences : List[LineReference]
     """
 
-    def __init__(self , _id="", lowerZ=0.0, upperZ=0.0, **kwargs):
+    def __init__(self , description="", _id=None, lowerZ=0.0, upperZ=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.body = None
@@ -46,6 +49,16 @@ class MoonpoolColumnItem(MOAO):
         """Return blueprint that this entity represents"""
         return MoonpoolColumnItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

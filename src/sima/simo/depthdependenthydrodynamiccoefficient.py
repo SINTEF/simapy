@@ -12,8 +12,10 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     zd : float
          Vertical position(default 1.0)
@@ -39,8 +41,9 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
          Relative quadratic drag in 3. degree of freedom(default 0.0)
     """
 
-    def __init__(self , _id="", zd=1.0, rvol=1.0, ramx=1.0, ramy=1.0, ramz=1.0, rc11=0.0, rc12=0.0, rc13=0.0, rc21=0.0, rc22=0.0, rc23=0.0, **kwargs):
+    def __init__(self , description="", _id=None, zd=1.0, rvol=1.0, ramx=1.0, ramy=1.0, ramz=1.0, rc11=0.0, rc12=0.0, rc13=0.0, rc21=0.0, rc22=0.0, rc23=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.zd = zd
@@ -64,6 +67,16 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
         """Return blueprint that this entity represents"""
         return DepthDependenthydrodynamicCoefficientBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

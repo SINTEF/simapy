@@ -14,11 +14,13 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     baseFileName : str
          (default 'sima')
     alphaEpsilon : float
@@ -62,8 +64,9 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
          Longitudenal Turbulence Scale Parameter(default 0.0)
     """
 
-    def __init__(self , _id="", name="", baseFileName='sima', alphaEpsilon=0.0, lengthScale=0.0, gamma=3.9, seed=0, gridPointsX=0, gridPointsY=0, gridPointsZ=0, pointDistanceX=0.0, pointDistanceY=0.0, pointDistanceZ=0.0, hfCompensation=True, turbulenceIntensity=0.0, meanWindSpeed=0.0, transient=0.0, inputFormat=MannInputFormat.DIRECT, windSeriesDuration=0.0, gridWidth=0.0, gridHeight=0.0, lengthFactor=0.8, longTurbScaleParam=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, baseFileName='sima', alphaEpsilon=0.0, lengthScale=0.0, gamma=3.9, seed=0, gridPointsX=0, gridPointsY=0, gridPointsZ=0, pointDistanceX=0.0, pointDistanceY=0.0, pointDistanceZ=0.0, hfCompensation=True, turbulenceIntensity=0.0, meanWindSpeed=0.0, transient=0.0, inputFormat=MannInputFormat.DIRECT, windSeriesDuration=0.0, gridWidth=0.0, gridHeight=0.0, lengthFactor=0.8, longTurbScaleParam=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -98,6 +101,16 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
         """Return blueprint that this entity represents"""
         return MannWindGeneratorBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

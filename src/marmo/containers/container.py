@@ -15,19 +15,19 @@ class Container(SignalItem):
     Containers contain signals and other containers
     Keyword arguments
     -----------------
-    name : str
-         (default "")
     description : str
          (default "")
+    name : str
+         (default None)
     attributes : List[Attribute]
     signals : List[Signal]
     containers : List[Container]
     """
 
-    def __init__(self , name="", description="", **kwargs):
+    def __init__(self , description="", name=None, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
         self.description = description
+        self.name = name
         self.attributes = list()
         self.signals = list()
         self.containers = list()
@@ -43,16 +43,6 @@ class Container(SignalItem):
 
 
     @property
-    def name(self) -> str:
-        """"""
-        return self.__name
-
-    @name.setter
-    def name(self, value: str):
-        """Set name"""
-        self.__name = str(value)
-
-    @property
     def description(self) -> str:
         """"""
         return self.__description
@@ -61,6 +51,16 @@ class Container(SignalItem):
     def description(self, value: str):
         """Set description"""
         self.__description = str(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def attributes(self) -> List[Attribute]:

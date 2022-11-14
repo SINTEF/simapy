@@ -13,8 +13,10 @@ class TurbulenceBoxScaling(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     scalingOption : ScalingOption
     windDirectionScalingFactor : float
@@ -25,8 +27,9 @@ class TurbulenceBoxScaling(MOAO):
          (default 0.5)
     """
 
-    def __init__(self , _id="", scalingOption=ScalingOption.NONE, windDirectionScalingFactor=1.0, transverseDirectionScalingFactor=0.8, verticalDirectionScalingFactor=0.5, **kwargs):
+    def __init__(self , description="", _id=None, scalingOption=ScalingOption.NONE, windDirectionScalingFactor=1.0, transverseDirectionScalingFactor=0.8, verticalDirectionScalingFactor=0.5, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.scalingOption = scalingOption
@@ -43,6 +46,16 @@ class TurbulenceBoxScaling(MOAO):
         """Return blueprint that this entity represents"""
         return TurbulenceBoxScalingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

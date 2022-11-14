@@ -17,15 +17,17 @@ class GenericExternalControlSystem(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     jarFile : str
-         Path to jar file(default "")
+         Path to jar file(default None)
     className : str
-         Class name of controller(default "")
+         Class name of controller(default None)
     measurementEntities : List[SignalEntity]
     feedbackEntities : List[SignalEntity]
     intParameters : List[NamedIntParameter]
@@ -34,8 +36,9 @@ class GenericExternalControlSystem(NamedObject):
     libraryPaths : LibraryPaths
     """
 
-    def __init__(self , _id="", name="", jarFile="", className="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, jarFile=None, className=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -57,6 +60,16 @@ class GenericExternalControlSystem(NamedObject):
         """Return blueprint that this entity represents"""
         return GenericExternalControlSystemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

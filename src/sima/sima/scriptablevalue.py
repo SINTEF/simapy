@@ -12,21 +12,24 @@ class ScriptableValue(Entity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     _id : str
-         (default "")
+         (default None)
     script : str
-         (default "")
+         (default None)
     dependencies : List[Dependency]
     cyclic : bool
          (default False)
     feature : str
-         (default "")
+         (default None)
     index : int
          (default -1)
     """
 
-    def __init__(self , _id="", script="", cyclic=False, feature="", index=-1, **kwargs):
+    def __init__(self , description="", _id=None, script=None, cyclic=False, feature=None, index=-1, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.script = script
         self.dependencies = list()
@@ -43,6 +46,16 @@ class ScriptableValue(Entity):
         """Return blueprint that this entity represents"""
         return ScriptableValueBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

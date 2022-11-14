@@ -12,21 +12,24 @@ class TurbSimFluctuatingThreeComponent(Wind):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
     numSlices : int
          Buffer size: Number of cross-sectional planes (slices) in memory(default 800)
     windFileName : str
-         Path and filename for the binary wind file(default "")
+         Path and filename for the binary wind file(default None)
     sumFileName : str
-         Path and filename for the summary file from TurbSim(default "")
+         Path and filename for the summary file from TurbSim(default None)
     """
 
-    def __init__(self , _id="", direction=0.0, numSlices=800, windFileName="", sumFileName="", **kwargs):
+    def __init__(self , description="", _id=None, direction=0.0, numSlices=800, windFileName=None, sumFileName=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.direction = direction
@@ -43,6 +46,16 @@ class TurbSimFluctuatingThreeComponent(Wind):
         """Return blueprint that this entity represents"""
         return TurbSimFluctuatingThreeComponentBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

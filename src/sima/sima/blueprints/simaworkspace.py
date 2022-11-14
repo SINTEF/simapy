@@ -12,9 +12,10 @@ class SIMAWorkspaceBlueprint(MOAOBlueprint):
 
     def __init__(self, name="SIMAWorkspace", package_path="sima/sima", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("childFolders","sima/sima/TaskFolder","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("tasks","sima/sima/Task","",True,Dimension("*")))
-        self.attributes.append(Attribute("productId","string","",default=""))
-        self.attributes.append(Attribute("dateAndTime","string","",default=""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("childFolders","sima/sima/TaskFolder","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("tasks","sima/sima/Task","",True,Dimension("*")))
+        self.add_attribute(Attribute("productId","string","",default=None))
+        self.add_attribute(Attribute("dateAndTime","string","",default=None))

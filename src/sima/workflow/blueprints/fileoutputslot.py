@@ -12,8 +12,9 @@ class FileOutputSlotBlueprint(OutputSlotBlueprint):
 
     def __init__(self, name="FileOutputSlot", package_path="sima/workflow", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("filename","string","Name of file to be imported",default=""))
-        self.attributes.append(Attribute("pathOnly","boolean","Import the path to the specified file and not the content",default=False))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("filename","string","Name of file to be imported",default=None))
+        self.add_attribute(Attribute("pathOnly","boolean","Import the path to the specified file and not the content",default=False))

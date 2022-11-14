@@ -14,8 +14,10 @@ class ThrusterControlSequence(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     specifyControlSequence : bool
          Should a list of control signals be specified for thruster?(default False)
@@ -24,8 +26,9 @@ class ThrusterControlSequence(MOAO):
     items : List[ControlSequenceItem]
     """
 
-    def __init__(self , _id="", specifyControlSequence=False, signalType=ThrustSignalType.FORCE, **kwargs):
+    def __init__(self , description="", _id=None, specifyControlSequence=False, signalType=ThrustSignalType.FORCE, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.specifyControlSequence = specifyControlSequence
@@ -41,6 +44,16 @@ class ThrusterControlSequence(MOAO):
         """Return blueprint that this entity represents"""
         return ThrusterControlSequenceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -33,11 +33,13 @@ class DoubleSymmetricCrossSection(CrossSection,CRSAxialFrictionModel):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     staticFriction : float
          Static friction force corresponding to elongation(default 0.0)
     staticElongation : float
@@ -49,7 +51,7 @@ class DoubleSymmetricCrossSection(CrossSection,CRSAxialFrictionModel):
     axialFriction : bool
          Local axial friction model(default False)
     scfkSpecification : bool
-         Scaling of Froude-Krylov term in Morison’s equation in normal direction(default True)
+         Scaling of Froude-Krylov term in Morison’s equation in normal direction(default False)
     loadFormulation : LoadFormulation
     hydrodynamicDiameter : float
          Hydrodynamic diameter(default 0.0)
@@ -164,8 +166,9 @@ class DoubleSymmetricCrossSection(CrossSection,CRSAxialFrictionModel):
          Code for input of simplified radiation force coefficients
     """
 
-    def __init__(self , _id="", name="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=True, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdx=0.0, cdy=0.0, cdz=0.0, amx=0.0, amy=0.0, amz=0.0, addedMass=0.0, cdlx=0.0, cdly=0.0, cdlz=0.0, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, cdt=0.0, cdn=0.0, cdnz=0.0, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, temperature=0.0, pressureDependency=0, axialStiffness=0.0, tensionCapacity=0.0, maxCurvatureY=0.0, maxCurvatureZ=0.0, chordLength=0.0, foilOriginY=0.0, foilOriginZ=0.0, foilInclination=0.0, aerodynamicForceType=AerodynamicForceType.NONE, coupledBendingTorsion=False, barBeam=BarBeam.BAR, axialStiffnessInput=AxialStiffness.CONSTANT, bendingStiffnessInput=BendingStiffness.CONSTANT, torsionStiffnessInput=TorsionStiffness.CONSTANT, negativeTorsionStiffness=0.0, positiveTorsionStiffness=0.0, submerged=False, bendingStiffnessY=0.0, bendingStiffnessZ=0.0, shearStiffnessZ=0.0, shearStiffnessY=0.0, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, **kwargs):
+    def __init__(self , description="", _id=None, name=None, staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdx=0.0, cdy=0.0, cdz=0.0, amx=0.0, amy=0.0, amz=0.0, addedMass=0.0, cdlx=0.0, cdly=0.0, cdlz=0.0, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, cdt=0.0, cdn=0.0, cdnz=0.0, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, temperature=0.0, pressureDependency=0, axialStiffness=0.0, tensionCapacity=0.0, maxCurvatureY=0.0, maxCurvatureZ=0.0, chordLength=0.0, foilOriginY=0.0, foilOriginZ=0.0, foilInclination=0.0, aerodynamicForceType=AerodynamicForceType.NONE, coupledBendingTorsion=False, barBeam=BarBeam.BAR, axialStiffnessInput=AxialStiffness.CONSTANT, bendingStiffnessInput=BendingStiffness.CONSTANT, torsionStiffnessInput=TorsionStiffness.CONSTANT, negativeTorsionStiffness=0.0, positiveTorsionStiffness=0.0, submerged=False, bendingStiffnessY=0.0, bendingStiffnessZ=0.0, shearStiffnessZ=0.0, shearStiffnessY=0.0, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -246,6 +249,16 @@ class DoubleSymmetricCrossSection(CrossSection,CRSAxialFrictionModel):
         """Return blueprint that this entity represents"""
         return DoubleSymmetricCrossSectionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

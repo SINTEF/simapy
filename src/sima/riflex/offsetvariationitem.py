@@ -19,8 +19,10 @@ class OffsetVariationItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     referenceType : ReferenceType
          Reference to moving point
@@ -38,8 +40,9 @@ class OffsetVariationItem(MOAO):
     supportVessel : SupportVessel
     """
 
-    def __init__(self , _id="", referenceType=ReferenceType.SUPER_NODE, dx=0.0, dy=0.0, dz=0.0, rotationCode=RotationCode.NONE, rotationIncrement=0.0, **kwargs):
+    def __init__(self , description="", _id=None, referenceType=ReferenceType.SUPER_NODE, dx=0.0, dy=0.0, dz=0.0, rotationCode=RotationCode.NONE, rotationIncrement=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.referenceType = referenceType
@@ -60,6 +63,16 @@ class OffsetVariationItem(MOAO):
         """Return blueprint that this entity represents"""
         return OffsetVariationItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

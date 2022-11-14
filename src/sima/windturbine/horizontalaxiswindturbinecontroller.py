@@ -17,8 +17,10 @@ class HorizontalAxisWindTurbineController(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     kp : float
          Proportionnal gain K that will be used for zero blade pitch angle(default 0.0)
@@ -45,11 +47,11 @@ class HorizontalAxisWindTurbineController(MOAO):
     external : bool
          Use external controller(default False)
     controllerFile : str
-         Path to controller file(default "")
+         Path to controller file(default None)
     className : str
-         Class name of controller(default "")
+         Class name of controller(default None)
     configuration : str
-         Configuration filename(default "")
+         Configuration filename(default None)
     libraryPaths : LibraryPaths
     reg3MinPitch : float
          Minimum pitch angle for which electrical torque versus generator speed will stay in region 3(default 0.0)
@@ -73,8 +75,9 @@ class HorizontalAxisWindTurbineController(MOAO):
          Log of signals to and from controller are written to a log file. The file <turbine name>.log is stored in the analysis folder. This option should be used for debugging purposes only. Avaliable for external controller only.(default False)
     """
 
-    def __init__(self , _id="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, controllerFile="", className="", configuration="", reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, **kwargs):
+    def __init__(self , description="", _id=None, kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, controllerFile=None, className=None, configuration=None, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.kp = kp
@@ -115,6 +118,16 @@ class HorizontalAxisWindTurbineController(MOAO):
         """Return blueprint that this entity represents"""
         return HorizontalAxisWindTurbineControllerBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

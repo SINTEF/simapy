@@ -12,15 +12,18 @@ class Font(Entity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     size : int
          (default 10)
     font : str
-         (default "")
+         (default None)
     style : FontStyle
     """
 
-    def __init__(self , size=10, font="", style=FontStyle.NORMAL, **kwargs):
+    def __init__(self , description="", size=10, font=None, style=FontStyle.NORMAL, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.size = size
         self.font = font
         self.style = style
@@ -34,6 +37,16 @@ class Font(Entity):
         """Return blueprint that this entity represents"""
         return FontBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def size(self) -> int:

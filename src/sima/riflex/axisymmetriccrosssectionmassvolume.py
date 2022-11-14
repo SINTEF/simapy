@@ -12,8 +12,10 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     massCoefficient : float
          Mass / unit length(default 0.0)
@@ -39,8 +41,9 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
          Inner contact radius (default = 0.0)(default 0.0)
     """
 
-    def __init__(self , _id="", massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, crossSectionArea=0.0, crossSectionModulus=0.0, diameter=0.0, thickness=0.0, defaultStressCalculation=True, extContactRadius=0.0, innerContactRadius=0.0, **kwargs):
+    def __init__(self , description="", _id=None, massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, crossSectionArea=0.0, crossSectionModulus=0.0, diameter=0.0, thickness=0.0, defaultStressCalculation=True, extContactRadius=0.0, innerContactRadius=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.massCoefficient = massCoefficient
@@ -64,6 +67,16 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
         """Return blueprint that this entity represents"""
         return AxisymmetricCrossSectionMassVolumeBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

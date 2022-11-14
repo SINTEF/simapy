@@ -14,21 +14,24 @@ class Appendix(ReportItem,Linkable):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     identifier : str
-         (default "")
+         (default None)
     items : List[ReportItem]
     title : str
-         (default "")
+         (default None)
     pageBreakBefore : bool
          (default False)
     orientation : Orientation
     """
 
-    def __init__(self , _id="", identifier="", title="", pageBreakBefore=False, orientation=Orientation.PORTRAIT, **kwargs):
+    def __init__(self , description="", _id=None, identifier=None, title=None, pageBreakBefore=False, orientation=Orientation.PORTRAIT, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.identifier = identifier
@@ -46,6 +49,16 @@ class Appendix(ReportItem,Linkable):
         """Return blueprint that this entity represents"""
         return AppendixBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

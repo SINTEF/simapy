@@ -12,9 +12,10 @@ class LiftAndDragForceCharacteristicItemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="LiftAndDragForceCharacteristicItem", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("velocityDirection","number","Velocity direction relative to rudder x-axis",default=0.0))
-        self.attributes.append(Attribute("forceX","number","Quadratic force coefficient in rudder x-direction",default=0.0))
-        self.attributes.append(Attribute("forceY","number","Quadratic force coefficient in rudder y-direction",default=0.0))
-        self.attributes.append(Attribute("momentZ","number","Quadratic moment coefficient about rudder z-axis",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("velocityDirection","number","Velocity direction relative to rudder x-axis",default=0.0))
+        self.add_attribute(Attribute("forceX","number","Quadratic force coefficient in rudder x-direction",default=0.0))
+        self.add_attribute(Attribute("forceY","number","Quadratic force coefficient in rudder y-direction",default=0.0))
+        self.add_attribute(Attribute("momentZ","number","Quadratic moment coefficient about rudder z-axis",default=0.0))

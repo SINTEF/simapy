@@ -13,8 +13,10 @@ class AxisConfiguration(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     font : FontDescription
     log : bool
@@ -35,8 +37,9 @@ class AxisConfiguration(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , _id="", log=False, autoFormat=True, format='0.####E0', showGrid=True, dashGridLine=False, autoScale=True, minimum=0.0, maximum=0.0, **kwargs):
+    def __init__(self , description="", _id=None, log=False, autoFormat=True, format='0.####E0', showGrid=True, dashGridLine=False, autoScale=True, minimum=0.0, maximum=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.font = None
@@ -58,6 +61,16 @@ class AxisConfiguration(MOAO):
         """Return blueprint that this entity represents"""
         return AxisConfigurationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

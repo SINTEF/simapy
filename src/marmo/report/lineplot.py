@@ -15,18 +15,20 @@ class LinePlot(Entity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     title : str
-         (default "")
+         (default None)
     xlabel : str
-         (default "")
+         (default None)
     ylabel : str
-         (default "")
+         (default None)
     showlegend : bool
          (default True)
     showtitle : bool
          (default True)
     caption : str
-         (default "")
+         (default None)
     width : int
          (default 0)
     height : int
@@ -39,8 +41,9 @@ class LinePlot(Entity):
     lines : List[PlotLine]
     """
 
-    def __init__(self , title="", xlabel="", ylabel="", showlegend=True, showtitle=True, caption="", width=0, height=0, size=PlotSize.DYNAMIC, **kwargs):
+    def __init__(self , description="", title=None, xlabel=None, ylabel=None, showlegend=True, showtitle=True, caption=None, width=0, height=0, size=PlotSize.DYNAMIC, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.title = title
         self.xlabel = xlabel
         self.ylabel = ylabel
@@ -65,6 +68,16 @@ class LinePlot(Entity):
         """Return blueprint that this entity represents"""
         return LinePlotBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def title(self) -> str:

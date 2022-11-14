@@ -12,9 +12,10 @@ class AerodynamicDescriptionBlueprint(MOAOBlueprint):
 
     def __init__(self, name="AerodynamicDescription", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("quadraticLongitudinalDrag","number","Quadratic longitudinal drag coefficient",default=0.0))
-        self.attributes.append(Attribute("quadraticTransverseY","number","Quadratic transverse (Y) drag coefficient",default=0.0))
-        self.attributes.append(Attribute("quadraticTransverseZ","number","Quadratic transverse (Z) drag coefficient",default=0.0))
-        self.attributes.append(EnumAttribute("aerodynamicType","sima/simo/AerodynamicDescriptionType","Type of aerodynamic forces"))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("quadraticLongitudinalDrag","number","Quadratic longitudinal drag coefficient",default=0.0))
+        self.add_attribute(Attribute("quadraticTransverseY","number","Quadratic transverse (Y) drag coefficient",default=0.0))
+        self.add_attribute(Attribute("quadraticTransverseZ","number","Quadratic transverse (Z) drag coefficient",default=0.0))
+        self.add_attribute(EnumAttribute("aerodynamicType","sima/simo/AerodynamicDescriptionType","Type of aerodynamic forces"))

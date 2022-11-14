@@ -13,8 +13,10 @@ class RegularWaveAnalaysis(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     periods : int
          Number of periods for regular wave analysis, referring to wave or motion periods (of first vessel)(default 1)
@@ -26,8 +28,9 @@ class RegularWaveAnalaysis(MOAO):
          Platform motion options:
     """
 
-    def __init__(self , _id="", periods=1, timeSteps=80, waveActing=True, platformMotion=PlatformMotion.GENERATED, **kwargs):
+    def __init__(self , description="", _id=None, periods=1, timeSteps=80, waveActing=True, platformMotion=PlatformMotion.GENERATED, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.periods = periods
@@ -44,6 +47,16 @@ class RegularWaveAnalaysis(MOAO):
         """Return blueprint that this entity represents"""
         return RegularWaveAnalaysisBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

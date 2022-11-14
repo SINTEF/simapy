@@ -15,11 +15,13 @@ class TubularContact(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     radius : float
          Contact radius(default 0.0)
     direction : ContactDirection
@@ -47,8 +49,9 @@ class TubularContact(NamedObject):
     stiffnessItems : List[SpringStiffnessItem]
     """
 
-    def __init__(self , _id="", name="", radius=0.0, direction=ContactDirection.INWARDS, constantStiffness=False, desiredDamping=0.0, dampingCoefficient=0.0, stiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, slidingFriction=ControlParameter.ON, rotationFriction=ControlParameter.ON, velocityLimit=0.0, compressionStiffness=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, radius=0.0, direction=ContactDirection.INWARDS, constantStiffness=False, desiredDamping=0.0, dampingCoefficient=0.0, stiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, slidingFriction=ControlParameter.ON, rotationFriction=ControlParameter.ON, velocityLimit=0.0, compressionStiffness=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -75,6 +78,16 @@ class TubularContact(NamedObject):
         """Return blueprint that this entity represents"""
         return TubularContactBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

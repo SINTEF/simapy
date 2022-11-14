@@ -12,11 +12,13 @@ class RiserSoilContact(SeafloorContact):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     axialStiffness : float
          Horizontal stiffness parameter for seafloor in axial direction(default 0.0)
     axialFriction : float
@@ -51,8 +53,9 @@ class RiserSoilContact(SeafloorContact):
          Mobilization displacement for max soil suction as fraction of pipe soil contact width(default 0.08)
     """
 
-    def __init__(self , _id="", name="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, soilSubmergedWeight=0.0, soilShearStrength=0.0, soilShearStrengthGradient=0.0, soilPoissonRatio=0.0, soilGModulus=0.0, stiffnessModulusRelationship=0.88, alpha=1.0, beta=1.0, kbc=0.05, kt=0.08, **kwargs):
+    def __init__(self , description="", _id=None, name=None, axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, soilSubmergedWeight=0.0, soilShearStrength=0.0, soilShearStrengthGradient=0.0, soilPoissonRatio=0.0, soilGModulus=0.0, stiffnessModulusRelationship=0.88, alpha=1.0, beta=1.0, kbc=0.05, kt=0.08, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -82,6 +85,16 @@ class RiserSoilContact(SeafloorContact):
         """Return blueprint that this entity represents"""
         return RiserSoilContactBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

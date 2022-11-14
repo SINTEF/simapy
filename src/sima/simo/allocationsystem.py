@@ -16,8 +16,10 @@ class AllocationSystem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     surgeAllocation : bool
          Force allocation in surge(default True)
@@ -36,8 +38,9 @@ class AllocationSystem(MOAO):
          Turn control system off(default False)
     """
 
-    def __init__(self , _id="", surgeAllocation=True, swayAllocation=True, yawAllocation=True, manual=False, allocationMethod=ThrusterAllocationMethod.ORDINARY, formulation=Formulation.SIMO_41, dpOff=False, **kwargs):
+    def __init__(self , description="", _id=None, surgeAllocation=True, swayAllocation=True, yawAllocation=True, manual=False, allocationMethod=ThrusterAllocationMethod.ORDINARY, formulation=Formulation.SIMO_41, dpOff=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.surgeAllocation = surgeAllocation
@@ -59,6 +62,16 @@ class AllocationSystem(MOAO):
         """Return blueprint that this entity represents"""
         return AllocationSystemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

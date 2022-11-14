@@ -13,11 +13,13 @@ class OmniDirectionalExtremeValues(LevelExtreme):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     level : float
          (default 0.0)
     duration : float
@@ -27,8 +29,9 @@ class OmniDirectionalExtremeValues(LevelExtreme):
     extremeValues : List[ExtremeValue]
     """
 
-    def __init__(self , _id="", name="", level=0.0, duration=0.0, probability=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, level=0.0, duration=0.0, probability=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -46,6 +49,16 @@ class OmniDirectionalExtremeValues(LevelExtreme):
         """Return blueprint that this entity represents"""
         return OmniDirectionalExtremeValuesBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

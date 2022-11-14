@@ -12,8 +12,9 @@ class Custom3DViewBlueprint(CustomComponentBlueprint):
 
     def __init__(self, name="Custom3DView", package_path="sima/custom", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("model","sima/sima/MOAO","",False))
-        self.attributes.append(Attribute("result","string","",default=""))
-        self.attributes.append(Attribute("_type","string","",default=""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("model","sima/sima/MOAO","",False))
+        self.add_attribute(Attribute("result","string","",default=None))
+        self.add_attribute(Attribute("_type","string","",default=None))

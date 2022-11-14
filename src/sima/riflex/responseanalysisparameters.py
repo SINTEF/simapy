@@ -18,8 +18,10 @@ class ResponseAnalysisParameters(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     iterationMethod : ResponseIterationMethod
          Response iteration method
@@ -50,12 +52,13 @@ class ResponseAnalysisParameters(MOAO):
     printSwitch : PrintSwitch
          Print switch
     additionalStructuralDampingSpecification : bool
-         This data group allows additional material and slip damping to be specified for some or all segments in the system. \nThis structural damping is read from separate files and is applied in addition to the relative structural damping level RELDAM. \nThe structural damping is given as a function of the response curvature and is therefore updated during the response iterations.(default True)
+         This data group allows additional material and slip damping to be specified for some or all segments in the system. \nThis structural damping is read from separate files and is applied in addition to the relative structural damping level RELDAM. \nThe structural damping is given as a function of the response curvature and is therefore updated during the response iterations.(default False)
     additionalStructuralDampingParameters : List[AdditionalStructuralDampingParameters]
     """
 
-    def __init__(self , _id="", iterationMethod=ResponseIterationMethod.NEWTON_RAPHSON, retry=False, maxNumberOfIterations=30, convergenceCriterion=ConvergenceCriterion.AMPNOR, convergenceLimit=0.0001, initialResponseEstimate=0.5, responseFrequencyOption=ResponseFrequencyOption.CONCURRENT, numberOfDominatingFrequencies=0, amplitudeLimit=0.01, lowerFrequencyCutoff=0.0, upperFrequencyCutoff=0.0, relativeStructuralDamping=0.0, forceSwitch=ForceSwitch.USE_CURVATURE, printSwitch=PrintSwitch.FINAL_RESULTS, additionalStructuralDampingSpecification=True, **kwargs):
+    def __init__(self , description="", _id=None, iterationMethod=ResponseIterationMethod.NEWTON_RAPHSON, retry=False, maxNumberOfIterations=30, convergenceCriterion=ConvergenceCriterion.AMPNOR, convergenceLimit=0.0001, initialResponseEstimate=0.5, responseFrequencyOption=ResponseFrequencyOption.CONCURRENT, numberOfDominatingFrequencies=0, amplitudeLimit=0.01, lowerFrequencyCutoff=0.0, upperFrequencyCutoff=0.0, relativeStructuralDamping=0.0, forceSwitch=ForceSwitch.USE_CURVATURE, printSwitch=PrintSwitch.FINAL_RESULTS, additionalStructuralDampingSpecification=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.iterationMethod = iterationMethod
@@ -84,6 +87,16 @@ class ResponseAnalysisParameters(MOAO):
         """Return blueprint that this entity represents"""
         return ResponseAnalysisParametersBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

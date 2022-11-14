@@ -16,11 +16,13 @@ class DNV_OS_F201CombinedLoading(CombinedLoading):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     refPointPressure : float
          Internal design pressure at vertical reference position(default 0.0)
     referencePoint : float
@@ -60,8 +62,9 @@ class DNV_OS_F201CombinedLoading(CombinedLoading):
          Number of the last load group in static calculation parameter that is part of the functional load(default 0)
     """
 
-    def __init__(self , _id="", name="", refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, percentile=0.57038, approach=CombinedLoadingApproach.LRFD, customSafetyClassResistanceFactor=0.0, customLoadEffectFactorForEnvironmentalLoads=0.0, customLoadEffectFactorForFunctionalLoads=0.0, customLoadFactorForAccidentalLoads=0.0, customMaterialResistanceFactor=0.0, fabricationFactor=0.85, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, lastFunctionalLoadGroup=0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, percentile=0.57038, approach=CombinedLoadingApproach.LRFD, customSafetyClassResistanceFactor=0.0, customLoadEffectFactorForEnvironmentalLoads=0.0, customLoadEffectFactorForFunctionalLoads=0.0, customLoadFactorForAccidentalLoads=0.0, customMaterialResistanceFactor=0.0, fabricationFactor=0.85, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, lastFunctionalLoadGroup=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -95,6 +98,16 @@ class DNV_OS_F201CombinedLoading(CombinedLoading):
         """Return blueprint that this entity represents"""
         return DNV_OS_F201CombinedLoadingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

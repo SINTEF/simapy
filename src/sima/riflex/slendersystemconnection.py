@@ -23,8 +23,10 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -69,8 +71,9 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     finalPosition : Position
     """
 
-    def __init__(self , _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, nodeNumber=1, allNodes=False, allEnds=False, elementEnd=End.ONE, name='connection', location=BodyLocation.ELEMENT, artificialStiffness=False, stx=0.0, sty=0.0, stz=0.0, srx=0.0, sry=0.0, srz=0.0, constraint=NodeConstraint.FREE, **kwargs):
+    def __init__(self , description="", _id=None, segment=1, allSegments=False, elementNumber=1, allElements=False, nodeNumber=1, allNodes=False, allEnds=False, elementEnd=End.ONE, name='connection', location=BodyLocation.ELEMENT, artificialStiffness=False, stx=0.0, sty=0.0, stz=0.0, srx=0.0, sry=0.0, srz=0.0, constraint=NodeConstraint.FREE, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -104,6 +107,16 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
         """Return blueprint that this entity represents"""
         return SlenderSystemConnectionBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

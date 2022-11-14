@@ -12,20 +12,23 @@ class SIMOPreference(SIMAPreference):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     selectedVersion : str
          Selected SIMO/RIFLEX installation(default 'Default')
     locations : ndarray
     frevesLocation : str
-         Freves bin folder(default "")
+         Freves bin folder(default None)
     frelinLocation : str
-         Frelin bin folder(default "")
+         Frelin bin folder(default None)
     """
 
-    def __init__(self , _id="", selectedVersion='Default', frevesLocation="", frelinLocation="", **kwargs):
+    def __init__(self , description="", _id=None, selectedVersion='Default', frevesLocation=None, frelinLocation=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.selectedVersion = selectedVersion
@@ -42,6 +45,16 @@ class SIMOPreference(SIMAPreference):
         """Return blueprint that this entity represents"""
         return SIMOPreferenceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

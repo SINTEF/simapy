@@ -12,8 +12,10 @@ class TorsionStiffnessItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     torsionMoment : float
          Torsion moment(default 0.0)
@@ -21,8 +23,9 @@ class TorsionStiffnessItem(MOAO):
          Torsion angle/length(default 0.0)
     """
 
-    def __init__(self , _id="", torsionMoment=0.0, torsionAngle=0.0, **kwargs):
+    def __init__(self , description="", _id=None, torsionMoment=0.0, torsionAngle=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.torsionMoment = torsionMoment
@@ -37,6 +40,16 @@ class TorsionStiffnessItem(MOAO):
         """Return blueprint that this entity represents"""
         return TorsionStiffnessItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

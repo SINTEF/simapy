@@ -12,8 +12,9 @@ class CurrentItemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="CurrentItem", package_path="sima/environment", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("level","number","Global z-coordinate of current level",default=0.0))
-        self.attributes.append(Attribute("direction","number","Current propagation direction",default=0.0))
-        self.attributes.append(Attribute("velocity","number","Current velocity",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("level","number","Global z-coordinate of current level",default=0.0))
+        self.add_attribute(Attribute("direction","number","Current propagation direction",default=0.0))
+        self.add_attribute(Attribute("velocity","number","Current velocity",default=0.0))

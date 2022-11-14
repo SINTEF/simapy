@@ -12,9 +12,10 @@ class WorkflowRoutingBlueprint(MOAOBlueprint):
 
     def __init__(self, name="WorkflowRouting", package_path="sima/workflow", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("workflowSetInputs","sima/workflow/WorkflowSetItem","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("workflowInputVariations","sima/workflow/WorkflowInputVariationItem","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("inputs","sima/workflow/WorkflowLinkItem","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("outputs","sima/workflow/WorkflowLinkItem","",True,Dimension("*")))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("workflowSetInputs","sima/workflow/WorkflowSetItem","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("workflowInputVariations","sima/workflow/WorkflowInputVariationItem","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("inputs","sima/workflow/WorkflowLinkItem","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("outputs","sima/workflow/WorkflowLinkItem","",True,Dimension("*")))

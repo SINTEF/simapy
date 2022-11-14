@@ -12,16 +12,19 @@ class StringColumn(Column):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     header : str
-         (default "")
+         (default None)
     label : str
-         (default "")
+         (default None)
     headerfont : Font
     cells : ndarray
     """
 
-    def __init__(self , header="", label="", **kwargs):
+    def __init__(self , description="", header=None, label=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.header = header
         self.label = label
         self.headerfont = None
@@ -36,6 +39,16 @@ class StringColumn(Column):
         """Return blueprint that this entity represents"""
         return StringColumnBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def header(self) -> str:

@@ -15,21 +15,23 @@ class HLASignalPlot(Named):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     figureTemplate : FigureTemplate
     traces : List[TraceConfiguration]
     fixed : bool
          (default False)
     title : str
-         (default "")
+         (default None)
     xLabel : str
-         (default "")
+         (default None)
     yLabel : str
-         (default "")
+         (default None)
     selectAll : bool
          Will export all signals as plot(default False)
     signals : List[HLASignal]
@@ -37,8 +39,9 @@ class HLASignalPlot(Named):
          Maximum size of time window when displaying plot.(default 60.0)
     """
 
-    def __init__(self , _id="", name="", fixed=False, title="", xLabel="", yLabel="", selectAll=False, timeWindow=60.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, fixed=False, title=None, xLabel=None, yLabel=None, selectAll=False, timeWindow=60.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -61,6 +64,16 @@ class HLASignalPlot(Named):
         """Return blueprint that this entity represents"""
         return HLASignalPlotBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

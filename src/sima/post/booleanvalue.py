@@ -14,12 +14,14 @@ class BooleanValue(GeneratorSignal,SingleParameter):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
     name : str
-         (default "")
+         (default None)
     array : bool
          (default False)
     value : bool
@@ -28,8 +30,9 @@ class BooleanValue(GeneratorSignal,SingleParameter):
          Value of the String constant
     """
 
-    def __init__(self , _id="", name="", array=False, value=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, array=False, value=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.properties = list()
@@ -47,6 +50,16 @@ class BooleanValue(GeneratorSignal,SingleParameter):
         """Return blueprint that this entity represents"""
         return BooleanValueBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

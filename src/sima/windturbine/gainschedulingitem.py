@@ -12,8 +12,10 @@ class GainSchedulingItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     rotorSpeed : float
          Rotor speed(default 0.0)
@@ -21,8 +23,9 @@ class GainSchedulingItem(MOAO):
          Gain correction factor(default 0.0)
     """
 
-    def __init__(self , _id="", rotorSpeed=0.0, gainCorrectionFactor=0.0, **kwargs):
+    def __init__(self , description="", _id=None, rotorSpeed=0.0, gainCorrectionFactor=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.rotorSpeed = rotorSpeed
@@ -37,6 +40,16 @@ class GainSchedulingItem(MOAO):
         """Return blueprint that this entity represents"""
         return GainSchedulingItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

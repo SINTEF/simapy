@@ -18,8 +18,10 @@ class IrregularWaveProcedure(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     kinematicsPosition : KinematicsPositions
          Kinematic positions
@@ -40,7 +42,7 @@ class IrregularWaveProcedure(MOAO):
     waveKinematicsFile : bool
          Whether wave kinematics time series should be read from file or not(default False)
     waveKinematicsFileName : str
-         Reference to a wave kinematics file(default "")
+         Reference to a wave kinematics file(default None)
     waveKinematicsTimeSeriesReferences : List[WaveKinematicsTimeSeriesReference]
     waveKinematicsMaxColumns : int
          Maximum number of columns in the wave kinematics time series file(default 0)
@@ -51,8 +53,9 @@ class IrregularWaveProcedure(MOAO):
     fileFormat : StorageType
     """
 
-    def __init__(self , _id="", kinematicsPosition=KinematicsPositions.STATIC, kinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, defaultProcedureOn=True, nodeStep=1, zLower=0.0, zUpper=0.0, applyDiffractedWaves=False, waveKinematicsFile=False, waveKinematicsFileName="", waveKinematicsMaxColumns=0, waveKinematicsTimeColumn=0, waveKinematicsStorage=False, fileFormat=StorageType.BINARY, **kwargs):
+    def __init__(self , description="", _id=None, kinematicsPosition=KinematicsPositions.STATIC, kinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, defaultProcedureOn=True, nodeStep=1, zLower=0.0, zUpper=0.0, applyDiffractedWaves=False, waveKinematicsFile=False, waveKinematicsFileName=None, waveKinematicsMaxColumns=0, waveKinematicsTimeColumn=0, waveKinematicsStorage=False, fileFormat=StorageType.BINARY, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.kinematicsPosition = kinematicsPosition
@@ -81,6 +84,16 @@ class IrregularWaveProcedure(MOAO):
         """Return blueprint that this entity represents"""
         return IrregularWaveProcedureBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

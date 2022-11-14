@@ -18,11 +18,13 @@ class SimpleWireCoupling(SimpleCoupling):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     endPoint1 : SIMOBodyPoint
     endPoint2 : SIMOBodyPoint
     failureMode : ActivationFailureMode
@@ -41,7 +43,7 @@ class SimpleWireCoupling(SimpleCoupling):
          Connection flexibility(default 0.0)
     guidePointSpecifications : List[GuidePointSpecification]
     constantTensionControl : bool
-         Enable constant tension control for this wire(default True)
+         Enable constant tension control for this wire(default False)
     tensionLevel : float
          Desired tension level(default 0.0)
     tensionDeadband : float
@@ -54,8 +56,9 @@ class SimpleWireCoupling(SimpleCoupling):
          Deactivation time for constant tension control. If value is less then or equal to activation time, controller will remain active throughout simulation(default 0.0)
     """
 
-    def __init__(self , _id="", name="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, ea=0.0, length=0.0, damping=0.0, flexibility=0.0, constantTensionControl=True, tensionLevel=0.0, tensionDeadband=0.0, maxSpeed=0.0, activationTime=0.0, deactivationTime=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, ea=0.0, length=0.0, damping=0.0, flexibility=0.0, constantTensionControl=False, tensionLevel=0.0, tensionDeadband=0.0, maxSpeed=0.0, activationTime=0.0, deactivationTime=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -85,6 +88,16 @@ class SimpleWireCoupling(SimpleCoupling):
         """Return blueprint that this entity represents"""
         return SimpleWireCouplingBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

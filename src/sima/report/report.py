@@ -13,22 +13,25 @@ class Report(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     items : List[ReportItem]
     title : str
-         The title of the report.(default "")
+         The title of the report.(default None)
     subtitle : str
-         A sub title for the report.(default "")
+         A sub title for the report.(default None)
     filePath : str
-         Optional path to the generated report file(default "")
+         Optional path to the generated report file(default None)
     """
 
-    def __init__(self , _id="", name="", title="", subtitle="", filePath="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, title=None, subtitle=None, filePath=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -46,6 +49,16 @@ class Report(NamedObject):
         """Return blueprint that this entity represents"""
         return ReportBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

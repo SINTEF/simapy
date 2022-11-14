@@ -18,8 +18,10 @@ class ElementAngle(ElementReference):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -37,8 +39,9 @@ class ElementAngle(ElementReference):
          Projection in plane
     """
 
-    def __init__(self , _id="", segment=1, allSegments=False, elementNumber=1, allElements=False, plane=Plane.XY, axis=Axis.X, **kwargs):
+    def __init__(self , description="", _id=None, segment=1, allSegments=False, elementNumber=1, allElements=False, plane=Plane.XY, axis=Axis.X, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.line = None
@@ -58,6 +61,16 @@ class ElementAngle(ElementReference):
         """Return blueprint that this entity represents"""
         return ElementAngleBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

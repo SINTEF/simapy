@@ -70,11 +70,13 @@ class SIMOBody(Body):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     length : float
          Length(default 10.0)
     width : float
@@ -89,9 +91,9 @@ class SIMOBody(Body):
     positionsImportType : PositionsImportType
          Type of import for positions
     positionsFileName : str
-         File name for body positions(default "")
+         File name for body positions(default None)
     positionsHLAObjectName : str
-         HLA object name for body(default "")
+         HLA object name for body(default None)
     applyGravityForce : bool
          Should gravity force be included(default False)
     bodyPoints : List[SIMOBodyPoint]
@@ -149,8 +151,9 @@ class SIMOBody(Body):
     qtf : SparseQTF
     """
 
-    def __init__(self , _id="", name="", length=10.0, width=5.0, height=5.0, _type=BodyType.SIX_DOF_TIME_DOMAIN, positionsImportType=PositionsImportType.FIXED_POSITION, positionsFileName="", positionsHLAObjectName="", applyGravityForce=False, hydrodynamicSeparationMethod=HydrodynamicSeparationMethod.BW2_FILTERING, hydrodynamicFilterCutOffPeriod=0.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, length=10.0, width=5.0, height=5.0, _type=BodyType.SIX_DOF_TIME_DOMAIN, positionsImportType=PositionsImportType.FIXED_POSITION, positionsFileName=None, positionsHLAObjectName=None, applyGravityForce=False, hydrodynamicSeparationMethod=HydrodynamicSeparationMethod.BW2_FILTERING, hydrodynamicFilterCutOffPeriod=0.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -226,6 +229,16 @@ class SIMOBody(Body):
         """Return blueprint that this entity represents"""
         return SIMOBodyBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

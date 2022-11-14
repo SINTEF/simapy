@@ -12,7 +12,8 @@ class PropertyBlueprint(MOAOBlueprint):
 
     def __init__(self, name="Property", package_path="sima/sima", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("key","string","",default=""))
-        self.attributes.append(Attribute("value","string","",default=""))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("key","string","",default=None))
+        self.add_attribute(Attribute("value","string","",default=None))

@@ -20,11 +20,13 @@ class RIFLEXLocation(CommonLocation):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     initialViewpoint : InitialViewpoint
     initialRotationpoint : Point3
     viewpoints : List[NamedViewpoint]
@@ -35,7 +37,7 @@ class RIFLEXLocation(CommonLocation):
     utmY : float
          Offset of local coordinate system origin (Y) relative to UTM (Northing).(default 0.0)
     gridZone : str
-         Zone consists of a number from [01-60] and a letter from [C-Z], or just one of [A,B,Y,Z] if on the antarctic or arctic pole.(default "")
+         Zone consists of a number from [01-60] and a letter from [C-Z], or just one of [A,B,Y,Z] if on the antarctic or arctic pole.(default None)
     infrastructureBodies : List[InfrastructureBody]
     waterDepth : float
          Water depth for kinematics(default 1000.0)
@@ -45,8 +47,9 @@ class RIFLEXLocation(CommonLocation):
     regular3DBottom : Regular3DBottom
     """
 
-    def __init__(self , _id="", name="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, gridZone="", waterDepth=1000.0, **kwargs):
+    def __init__(self , description="", _id=None, name=None, relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, gridZone=None, waterDepth=1000.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -73,6 +76,16 @@ class RIFLEXLocation(CommonLocation):
         """Return blueprint that this entity represents"""
         return RIFLEXLocationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

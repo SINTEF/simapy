@@ -15,8 +15,10 @@ class SlugForceSpecification(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     enterTime : float
          Time when slug enters first end of main riser line(default 0.0)
@@ -49,13 +51,14 @@ class SlugForceSpecification(MOAO):
     importFlow : bool
          Import internal flow data from file(default False)
     flowFile : str
-         Internal flow data specification(default "")
+         Internal flow data specification(default None)
     addedFlow : bool
          Specified flow is in addition to that given on main riser line (default is replacement)(default False)
     """
 
-    def __init__(self , _id="", enterTime=0.0, interruption=SlugForceInterruption.SLUG, length=0.0, mass=0.0, velocity=0.0, densityControl=SlugForceDensityControl.CONSTANT, velocityControl=SlugForceVelocityControl.CONSTANT, cycles=1, cycleTime=0.0, secondPosition=0.0, massAtSecondPosition=0.0, referenceDepth=0.0, velocitySpecification=0.0, velocityExponent=0.0, importFlow=False, flowFile="", addedFlow=False, **kwargs):
+    def __init__(self , description="", _id=None, enterTime=0.0, interruption=SlugForceInterruption.SLUG, length=0.0, mass=0.0, velocity=0.0, densityControl=SlugForceDensityControl.CONSTANT, velocityControl=SlugForceVelocityControl.CONSTANT, cycles=1, cycleTime=0.0, secondPosition=0.0, massAtSecondPosition=0.0, referenceDepth=0.0, velocitySpecification=0.0, velocityExponent=0.0, importFlow=False, flowFile=None, addedFlow=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.enterTime = enterTime
@@ -85,6 +88,16 @@ class SlugForceSpecification(MOAO):
         """Return blueprint that this entity represents"""
         return SlugForceSpecificationBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

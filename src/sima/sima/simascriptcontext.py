@@ -16,17 +16,20 @@ class SIMAScriptContext(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     model : MOAO
          Model object to be directly available in script by given name
     name : str
-         Variable name of object that will be available in the script when evaluating(default "")
+         Variable name of object that will be available in the script when evaluating(default None)
     """
 
-    def __init__(self , _id="", name="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.model = None
@@ -41,6 +44,16 @@ class SIMAScriptContext(MOAO):
         """Return blueprint that this entity represents"""
         return SIMAScriptContextBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

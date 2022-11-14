@@ -12,7 +12,7 @@ class IntegerScalarBlueprint(SignalBlueprint):
 
     def __init__(self, name="IntegerScalar", package_path="marmo/containers", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("name","string","",default=""))
-        self.attributes.append(Attribute("description","string","",default=""))
-        self.attributes.append(BlueprintAttribute("attributes","marmo/containers/Attribute","",True,Dimension("*")))
-        self.attributes.append(Attribute("value","integer","",default=0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(BlueprintAttribute("attributes","marmo/containers/Attribute","",True,Dimension("*")))
+        self.add_attribute(Attribute("value","integer","",default=0))

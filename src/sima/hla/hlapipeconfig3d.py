@@ -16,18 +16,21 @@ class HLAPipeConfig3D(HLAObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     color : SIMAColor
     fileName : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , _id="", name="", fileName="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, fileName=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -43,6 +46,16 @@ class HLAPipeConfig3D(HLAObject):
         """Return blueprint that this entity represents"""
         return HLAPipeConfig3DBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

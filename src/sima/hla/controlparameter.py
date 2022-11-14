@@ -12,19 +12,22 @@ class ControlParameter(CustomComponent):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
-         (default "")
+         (default None)
     tooltip : str
-         (default "")
+         (default None)
     hlaObjectId : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , _id="", label="", tooltip="", hlaObjectId="", **kwargs):
+    def __init__(self , description="", _id=None, label=None, tooltip=None, hlaObjectId=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.label = label
@@ -40,6 +43,16 @@ class ControlParameter(CustomComponent):
         """Return blueprint that this entity represents"""
         return ControlParameterBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

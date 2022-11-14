@@ -16,8 +16,10 @@ class PisaSoilLayer(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     soilType : SoilType
     deltaZ : float
@@ -38,8 +40,9 @@ class PisaSoilLayer(MOAO):
          Relative density used for scaling soil curve. Applies for Dunkirk sand only.(default 100.0)
     """
 
-    def __init__(self , _id="", deltaZ=0.0, shearModulusTop=0.0, shearModulusBottom=0.0, effectiveWeightTop=0.0, effectiveWeightBottom=0.0, undrainedShearStrengthTop=0.0, undrainedShearStrengthBottom=0.0, relativeDensity=100.0, **kwargs):
+    def __init__(self , description="", _id=None, deltaZ=0.0, shearModulusTop=0.0, shearModulusBottom=0.0, effectiveWeightTop=0.0, effectiveWeightBottom=0.0, undrainedShearStrengthTop=0.0, undrainedShearStrengthBottom=0.0, relativeDensity=100.0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.soilType = None
@@ -61,6 +64,16 @@ class PisaSoilLayer(MOAO):
         """Return blueprint that this entity represents"""
         return PisaSoilLayerBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

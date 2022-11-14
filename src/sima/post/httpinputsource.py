@@ -14,11 +14,13 @@ class HttpInputSource(OperationNode):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     x : int
          (default 0)
     y : int
@@ -29,12 +31,13 @@ class HttpInputSource(OperationNode):
          (default 0)
     controlSignalInputSlots : List[ControlSignalInputSlot]
     url : str
-         (default "")
+         (default None)
     outputSlot : OutputSlot
     """
 
-    def __init__(self , _id="", name="", x=0, y=0, h=0, w=0, url="", **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, url=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -55,6 +58,16 @@ class HttpInputSource(OperationNode):
         """Return blueprint that this entity represents"""
         return HttpInputSourceBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

@@ -12,15 +12,18 @@ class Report(ReportItemContainer):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
     items : List[ReportItem]
     title : str
-         (default "")
+         (default None)
     subtitle : str
-         (default "")
+         (default None)
     """
 
-    def __init__(self , title="", subtitle="", **kwargs):
+    def __init__(self , description="", title=None, subtitle=None, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self.items = list()
         self.title = title
         self.subtitle = subtitle
@@ -34,6 +37,16 @@ class Report(ReportItemContainer):
         """Return blueprint that this entity represents"""
         return ReportBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def items(self) -> List[ReportItem]:

@@ -12,8 +12,9 @@ class MultiEnvironmentItemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="MultiEnvironmentItem", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(BlueprintAttribute("environment","sima/environment/SingleEnvironment","",False))
-        self.attributes.append(Attribute("startingTime","number","Time to begin fading to this environment. Note that the new environment is not fully in effect until startingTime + ramp duration",default=0.0))
-        self.attributes.append(Attribute("rampDuration","number","Duration of cosine fading from previous to new environment. It is recommended to use at least 10*peak period for the fade-in duration.",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("environment","sima/environment/SingleEnvironment","",False))
+        self.add_attribute(Attribute("startingTime","number","Time to begin fading to this environment. Note that the new environment is not fully in effect until startingTime + ramp duration",default=0.0))
+        self.add_attribute(Attribute("rampDuration","number","Duration of cosine fading from previous to new environment. It is recommended to use at least 10*peak period for the fade-in duration.",default=0.0))

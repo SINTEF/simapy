@@ -12,7 +12,8 @@ class ReynoldStrouhalNumberItemBlueprint(MOAOBlueprint):
 
     def __init__(self, name="ReynoldStrouhalNumberItem", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
-        self.attributes.append(Attribute("_id","string","",default=""))
-        self.attributes.append(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.attributes.append(Attribute("reynoldsNumber","number","Reynolds number",default=0.0))
-        self.attributes.append(Attribute("strouhalNumber","number","Strouhal number",default=0.0))
+        self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string","",default=None))
+        self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("reynoldsNumber","number","Reynolds number",default=0.0))
+        self.add_attribute(Attribute("strouhalNumber","number","Strouhal number",default=0.0))

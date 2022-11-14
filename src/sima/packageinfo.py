@@ -5,18 +5,24 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.packageinfo import PackageInfoBlueprint
 from typing import Dict
-from dmt.entity import Entity
+from dmt.namedentity import NamedEntity
 
-class PackageInfo(Entity):
+class PackageInfo(NamedEntity):
     """
     Keyword arguments
     -----------------
+    description : str
+         (default "")
+    name : str
+         (default None)
     version : int
          (default 0)
     """
 
-    def __init__(self , version=0, **kwargs):
+    def __init__(self , description="", name=None, version=0, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
+        self.name = name
         self.version = version
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -28,6 +34,26 @@ class PackageInfo(Entity):
         """Return blueprint that this entity represents"""
         return PackageInfoBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
+
+    @property
+    def name(self) -> str:
+        """"""
+        return self.__name
+
+    @name.setter
+    def name(self, value: str):
+        """Set name"""
+        self.__name = str(value)
 
     @property
     def version(self) -> int:

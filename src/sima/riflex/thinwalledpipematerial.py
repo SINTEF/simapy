@@ -14,8 +14,10 @@ class ThinWalledPipeMaterial(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     materialModel : MaterialModel
          Type of material model.
@@ -35,8 +37,9 @@ class ThinWalledPipeMaterial(MOAO):
          Strain-stress curve.
     """
 
-    def __init__(self , _id="", materialModel=MaterialModel.LINEAR_MATERIAL, elasticityModulus=0.0, shearModulus=0.0, yieldStress=0.0, strainStressCurveRise=0.0, materialHardening=1.0, numIntegrationPoints=16, **kwargs):
+    def __init__(self , description="", _id=None, materialModel=MaterialModel.LINEAR_MATERIAL, elasticityModulus=0.0, shearModulus=0.0, yieldStress=0.0, strainStressCurveRise=0.0, materialHardening=1.0, numIntegrationPoints=16, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.materialModel = materialModel
@@ -57,6 +60,16 @@ class ThinWalledPipeMaterial(MOAO):
         """Return blueprint that this entity represents"""
         return ThinWalledPipeMaterialBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

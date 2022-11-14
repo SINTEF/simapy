@@ -18,8 +18,10 @@ class StaticLoadTypeItem(MOAO):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     runWithPrevious : bool
          Run the load group together with the last(default False)
@@ -43,11 +45,12 @@ class StaticLoadTypeItem(MOAO):
     growthFactor : float
          Scaling factor for growth profile(default 1.0)
     windOnTurbineBlades : bool
-         Enables wind force on turbine blades(default True)
+         Enables wind force on turbine blades(default False)
     """
 
-    def __init__(self , _id="", runWithPrevious=False, loadType=StaticLoadType.VOLU, nStep=10, maxIterations=10, accuracy=1e-05, convergenceNorm=ConvergenceNorm.DISP, energyAccuracy=1e-05, entered=True, growthFactor=1.0, windOnTurbineBlades=True, **kwargs):
+    def __init__(self , description="", _id=None, runWithPrevious=False, loadType=StaticLoadType.VOLU, nStep=10, maxIterations=10, accuracy=1e-05, convergenceNorm=ConvergenceNorm.DISP, energyAccuracy=1e-05, entered=True, growthFactor=1.0, windOnTurbineBlades=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.runWithPrevious = runWithPrevious
@@ -74,6 +77,16 @@ class StaticLoadTypeItem(MOAO):
         """Return blueprint that this entity represents"""
         return StaticLoadTypeItemBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:

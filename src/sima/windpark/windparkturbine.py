@@ -16,11 +16,13 @@ class WindParkTurbine(NamedObject):
     """
     Keyword arguments
     -----------------
-    _id : str
+    description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
-         (default "")
+         (default None)
     _type : WindTurbineType
     x : float
          Global x-coordinate of the hub(default 0.0)
@@ -34,8 +36,9 @@ class WindParkTurbine(NamedObject):
          (default False)
     """
 
-    def __init__(self , _id="", name="", x=0.0, y=0.0, z=0.0, shaftAngle=0.0, target=False, **kwargs):
+    def __init__(self , description="", _id=None, name=None, x=0.0, y=0.0, z=0.0, shaftAngle=0.0, target=False, **kwargs):
         super().__init__(**kwargs)
+        self.description = description
         self._id = _id
         self.scriptableValues = list()
         self.name = name
@@ -55,6 +58,16 @@ class WindParkTurbine(NamedObject):
         """Return blueprint that this entity represents"""
         return WindParkTurbineBlueprint()
 
+
+    @property
+    def description(self) -> str:
+        """"""
+        return self.__description
+
+    @description.setter
+    def description(self, value: str):
+        """Set description"""
+        self.__description = str(value)
 
     @property
     def _id(self) -> str:
