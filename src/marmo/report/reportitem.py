@@ -37,4 +37,4 @@ class ReportItem(Entity):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value

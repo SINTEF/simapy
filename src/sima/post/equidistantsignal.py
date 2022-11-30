@@ -15,8 +15,6 @@ class EquidistantSignal(GeneratorSignal):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
     name : str
@@ -38,13 +36,12 @@ class EquidistantSignal(GeneratorSignal):
          Apply the given function to each element of the input(default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, directInput=True, xunit='s', yunit='-', offset=0.0, increment=1.0, size=0, function=None, **kwargs):
+    def __init__(self , description="", directInput=True, xunit='s', yunit='-', offset=0.0, increment=1.0, size=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.properties = list()
-        self.name = name
+        self.name = None
         self.directInput = directInput
         self.values = ndarray(1)
         self.xunit = xunit
@@ -52,7 +49,7 @@ class EquidistantSignal(GeneratorSignal):
         self.offset = offset
         self.increment = increment
         self.size = size
-        self.function = function
+        self.function = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -72,17 +69,7 @@ class EquidistantSignal(GeneratorSignal):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -116,7 +103,7 @@ class EquidistantSignal(GeneratorSignal):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def directInput(self) -> bool:
@@ -146,7 +133,7 @@ class EquidistantSignal(GeneratorSignal):
     @xunit.setter
     def xunit(self, value: str):
         """Set xunit"""
-        self.__xunit = str(value)
+        self.__xunit = value
 
     @property
     def yunit(self) -> str:
@@ -156,7 +143,7 @@ class EquidistantSignal(GeneratorSignal):
     @yunit.setter
     def yunit(self, value: str):
         """Set yunit"""
-        self.__yunit = str(value)
+        self.__yunit = value
 
     @property
     def offset(self) -> float:
@@ -196,4 +183,4 @@ class EquidistantSignal(GeneratorSignal):
     @function.setter
     def function(self, value: str):
         """Set function"""
-        self.__function = str(value)
+        self.__function = value

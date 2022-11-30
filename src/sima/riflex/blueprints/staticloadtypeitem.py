@@ -13,7 +13,6 @@ class StaticLoadTypeItemBlueprint(MOAOBlueprint):
     def __init__(self, name="StaticLoadTypeItem", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("runWithPrevious","boolean","Run the load group together with the last",default=False))
         self.add_attribute(BlueprintAttribute("boundaryChangeGroup","sima/riflex/BoundaryChangeGroup","",True))

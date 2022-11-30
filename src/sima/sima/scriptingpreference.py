@@ -14,8 +14,6 @@ class ScriptingPreference(SIMAPreference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     showScripts : bool
          (default False)
@@ -25,14 +23,13 @@ class ScriptingPreference(SIMAPreference):
     pythonPaths : ndarray
     """
 
-    def __init__(self , description="", _id=None, showScripts=False, pythonHome=None, **kwargs):
+    def __init__(self , description="", showScripts=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.showScripts = showScripts
         self.javaScriptLocations = ndarray(1)
-        self.pythonHome = pythonHome
+        self.pythonHome = None
         self.pythonPaths = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -53,17 +50,7 @@ class ScriptingPreference(SIMAPreference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -105,7 +92,7 @@ class ScriptingPreference(SIMAPreference):
     @pythonHome.setter
     def pythonHome(self, value: str):
         """Set pythonHome"""
-        self.__pythonHome = str(value)
+        self.__pythonHome = value
 
     @property
     def pythonPaths(self) -> ndarray:

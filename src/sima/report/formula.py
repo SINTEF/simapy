@@ -14,8 +14,6 @@ class Formula(ReportItem):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     latex : str
          (default None)
@@ -23,13 +21,12 @@ class Formula(ReportItem):
          Caption(default None)
     """
 
-    def __init__(self , description="", _id=None, latex=None, caption=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.latex = latex
-        self.caption = caption
+        self.latex = None
+        self.caption = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -49,17 +46,7 @@ class Formula(ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class Formula(ReportItem):
     @latex.setter
     def latex(self, value: str):
         """Set latex"""
-        self.__latex = str(value)
+        self.__latex = value
 
     @property
     def caption(self) -> str:
@@ -91,4 +78,4 @@ class Formula(ReportItem):
     @caption.setter
     def caption(self, value: str):
         """Set caption"""
-        self.__caption = str(value)
+        self.__caption = value

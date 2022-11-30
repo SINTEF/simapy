@@ -17,8 +17,6 @@ class SegmentedLineType(LineType):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -45,12 +43,11 @@ class SegmentedLineType(LineType):
          The angle of the seabed under the catenary line. Slope = 0 means a flat seabed. Positive slope means that the seabed is sloping downwards from the anchor towards the attachment point.(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, vmin=0.0, vmax=0.0, bottomContactOption=BottomContactOption.LINE_END_ONLY, anchorZ=0.0, maxTension=0.0, minHTension=0.0, method=LineCharacteristicMethod.SHOOTING, npth=40, nptv=5, slope=0.0, **kwargs):
+    def __init__(self , description="", vmin=0.0, vmax=0.0, bottomContactOption=BottomContactOption.LINE_END_ONLY, anchorZ=0.0, maxTension=0.0, minHTension=0.0, method=LineCharacteristicMethod.SHOOTING, npth=40, nptv=5, slope=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.segments = list()
         self.vmin = vmin
         self.vmax = vmax
@@ -81,17 +78,7 @@ class SegmentedLineType(LineType):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -113,7 +100,7 @@ class SegmentedLineType(LineType):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def segments(self) -> List[LineSegment]:

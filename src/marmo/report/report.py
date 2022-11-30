@@ -21,12 +21,12 @@ class Report(ReportItemContainer):
          (default None)
     """
 
-    def __init__(self , description="", title=None, subtitle=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.items = list()
-        self.title = title
-        self.subtitle = subtitle
+        self.title = None
+        self.subtitle = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -46,7 +46,7 @@ class Report(ReportItemContainer):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def items(self) -> List[ReportItem]:
@@ -68,7 +68,7 @@ class Report(ReportItemContainer):
     @title.setter
     def title(self, value: str):
         """Set title"""
-        self.__title = str(value)
+        self.__title = value
 
     @property
     def subtitle(self) -> str:
@@ -78,4 +78,4 @@ class Report(ReportItemContainer):
     @subtitle.setter
     def subtitle(self, value: str):
         """Set subtitle"""
-        self.__subtitle = str(value)
+        self.__subtitle = value

@@ -15,8 +15,6 @@ class CurrentProfile(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     globalXPosition : float
          Global X-coordinate for this current profile(default 0.0)
@@ -25,10 +23,9 @@ class CurrentProfile(MOAO):
     items : List[CurrentItem]
     """
 
-    def __init__(self , description="", _id=None, globalXPosition=0.0, globalYPosition=0.0, **kwargs):
+    def __init__(self , description="", globalXPosition=0.0, globalYPosition=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.globalXPosition = globalXPosition
         self.globalYPosition = globalYPosition
@@ -52,17 +49,7 @@ class CurrentProfile(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

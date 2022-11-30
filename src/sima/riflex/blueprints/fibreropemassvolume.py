@@ -13,7 +13,6 @@ class FibreRopeMassVolumeBlueprint(MOAOBlueprint):
     def __init__(self, name="FibreRopeMassVolume", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("massCoefficient","number","Mass / unit length",default=0.0))
         self.add_attribute(Attribute("extCrossSectionalArea","number","External cross-sectional area",default=0.0))

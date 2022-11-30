@@ -19,8 +19,6 @@ class CrossSectionReference(ElementReference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -44,10 +42,9 @@ class CrossSectionReference(ElementReference):
          Value	Stress concentration factor for bending about z axis(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, scfa=0.0, scfy=0.0, scfz=0.0, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, scfa=0.0, scfy=0.0, scfz=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -78,17 +75,7 @@ class CrossSectionReference(ElementReference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

@@ -15,8 +15,6 @@ class CRSAxialDamping(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     constantDamping : bool
          Damping coefficient code(default False)
@@ -27,10 +25,9 @@ class CRSAxialDamping(MOAO):
     dampingCoefficientCharacteristics : List[CRSAxialDampingItem]
     """
 
-    def __init__(self , description="", _id=None, constantDamping=False, strainVelocityExponent=1.0, dampingCoefficient=0.0, **kwargs):
+    def __init__(self , description="", constantDamping=False, strainVelocityExponent=1.0, dampingCoefficient=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.constantDamping = constantDamping
         self.strainVelocityExponent = strainVelocityExponent
@@ -55,17 +52,7 @@ class CRSAxialDamping(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

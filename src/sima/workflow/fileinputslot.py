@@ -16,8 +16,6 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -28,14 +26,13 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
          Specify additional properties in the file root(default False)
     """
 
-    def __init__(self , description="", _id=None, name=None, filename=None, specifyAdditionalProperties=False, **kwargs):
+    def __init__(self , description="", specifyAdditionalProperties=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.properties = list()
-        self.filename = filename
+        self.filename = None
         self.specifyAdditionalProperties = specifyAdditionalProperties
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -56,17 +53,7 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -88,7 +75,7 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def properties(self) -> List[SignalProperties]:
@@ -110,7 +97,7 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
     @filename.setter
     def filename(self, value: str):
         """Set filename"""
-        self.__filename = str(value)
+        self.__filename = value
 
     @property
     def specifyAdditionalProperties(self) -> bool:

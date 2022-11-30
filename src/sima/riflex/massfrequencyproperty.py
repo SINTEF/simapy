@@ -14,8 +14,6 @@ class MassFrequencyProperty(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     nonDimensionalFrequency : float
          Non-dimensional frequency(default 0.0)
@@ -23,10 +21,9 @@ class MassFrequencyProperty(MOAO):
          Added mass coefficient(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, nonDimensionalFrequency=0.0, addedMassCoefficient=0.0, **kwargs):
+    def __init__(self , description="", nonDimensionalFrequency=0.0, addedMassCoefficient=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.nonDimensionalFrequency = nonDimensionalFrequency
         self.addedMassCoefficient = addedMassCoefficient
@@ -49,17 +46,7 @@ class MassFrequencyProperty(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

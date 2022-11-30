@@ -28,8 +28,6 @@ class WamitBody(Body):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -82,23 +80,22 @@ class WamitBody(Body):
          (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, length=10.0, width=5.0, height=5.0, geometryFilename=None, surfacesToIncludeFromMs2File=SurfacesToIncludeFromMs2FileOption.ALLVISIBLESURFACES, symmetryAboutX=False, symmetryAboutY=False, entitySelectionList=None, evaluationMode=EvaluationModeOption.FAST, divisionsMultiplier=0, directionOfNormals=DirectionsOfNormalsOption.OUTWARD, includeExternalDampingMatrix=False, includeExternalStiffnessMatrix=False, includeExternalMassMatrix=False, characteristicLength=1.0, removeIrregularFrequencies=RemoveIrregularFrequenciesOption.NO, trimWaterline=False, draftChange=0.0, heelChange=0.0, trimChange=0.0, **kwargs):
+    def __init__(self , description="", length=10.0, width=5.0, height=5.0, surfacesToIncludeFromMs2File=SurfacesToIncludeFromMs2FileOption.ALLVISIBLESURFACES, symmetryAboutX=False, symmetryAboutY=False, evaluationMode=EvaluationModeOption.FAST, divisionsMultiplier=0, directionOfNormals=DirectionsOfNormalsOption.OUTWARD, includeExternalDampingMatrix=False, includeExternalStiffnessMatrix=False, includeExternalMassMatrix=False, characteristicLength=1.0, removeIrregularFrequencies=RemoveIrregularFrequenciesOption.NO, trimWaterline=False, draftChange=0.0, heelChange=0.0, trimChange=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.length = length
         self.width = width
         self.height = height
         self.appearance = None
         self.initialPosition = None
         self.viewpoints = list()
-        self.geometryFilename = geometryFilename
+        self.geometryFilename = None
         self.surfacesToIncludeFromMs2File = surfacesToIncludeFromMs2File
         self.symmetryAboutX = symmetryAboutX
         self.symmetryAboutY = symmetryAboutY
-        self.entitySelectionList = entitySelectionList
+        self.entitySelectionList = None
         self.evaluationMode = evaluationMode
         self.divisionsMultiplier = divisionsMultiplier
         self.directionOfNormals = directionOfNormals
@@ -137,17 +134,7 @@ class WamitBody(Body):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -169,7 +156,7 @@ class WamitBody(Body):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def length(self) -> float:
@@ -241,7 +228,7 @@ class WamitBody(Body):
     @geometryFilename.setter
     def geometryFilename(self, value: str):
         """Set geometryFilename"""
-        self.__geometryFilename = str(value)
+        self.__geometryFilename = value
 
     @property
     def surfacesToIncludeFromMs2File(self) -> SurfacesToIncludeFromMs2FileOption:
@@ -281,7 +268,7 @@ class WamitBody(Body):
     @entitySelectionList.setter
     def entitySelectionList(self, value: str):
         """Set entitySelectionList"""
-        self.__entitySelectionList = str(value)
+        self.__entitySelectionList = value
 
     @property
     def evaluationMode(self) -> EvaluationModeOption:

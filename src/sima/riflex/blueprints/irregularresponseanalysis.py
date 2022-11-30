@@ -13,7 +13,6 @@ class IrregularResponseAnalysisBlueprint(MOAOBlueprint):
     def __init__(self, name="IrregularResponseAnalysis", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("waveTimeSeriesFile","boolean","Wave time series read from file",default=False))
         self.add_attribute(Attribute("simulationLength","number","Length of simulation",default=11000.0))

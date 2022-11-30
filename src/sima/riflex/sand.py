@@ -15,8 +15,6 @@ class Sand(Soil):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -49,12 +47,11 @@ class Sand(Soil):
          Limiting tip resistance(default 1900000.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperFrictionAngle=0.0, lowerFrictionAngle=0.0, angleOfSoilFriction=15.0, limitingSkinFriction=48000.0, bearingFactor=8.0, limitingTipResistance=1900000.0, **kwargs):
+    def __init__(self , description="", strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperFrictionAngle=0.0, lowerFrictionAngle=0.0, angleOfSoilFriction=15.0, limitingSkinFriction=48000.0, bearingFactor=8.0, limitingTipResistance=1900000.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.strainVelocityExponent = strainVelocityExponent
         self.calculateDamping = calculateDamping
         self.dampingItems = list()
@@ -88,17 +85,7 @@ class Sand(Soil):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -120,7 +107,7 @@ class Sand(Soil):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def strainVelocityExponent(self) -> float:

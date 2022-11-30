@@ -13,9 +13,8 @@ class WindParkTurbineBlueprint(NamedObjectBlueprint):
     def __init__(self, name="WindParkTurbine", package_path="sima/windpark", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("_type","sima/windpark/WindTurbineType","",False))
         self.add_attribute(Attribute("x","number","Global x-coordinate of the hub",default=0.0))
         self.add_attribute(Attribute("y","number","Global y-coordinate of the hub",default=0.0))

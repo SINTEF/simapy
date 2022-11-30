@@ -14,5 +14,5 @@ class AppendixBlueprint(SectionBlueprint):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("items","marmo/report/ReportItem","",True,Dimension("*")))
-        self.add_attribute(Attribute("title","string","",default=None))
+        self.add_attribute(Attribute("title","string",""))
         self.add_attribute(Attribute("landscape","boolean","",default=False))

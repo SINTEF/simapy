@@ -14,8 +14,6 @@ class CustomLabel(CustomComponent):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
          (default None)
@@ -23,13 +21,12 @@ class CustomLabel(CustomComponent):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, label=None, tooltip=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.label = label
-        self.tooltip = tooltip
+        self.label = None
+        self.tooltip = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -49,17 +46,7 @@ class CustomLabel(CustomComponent):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class CustomLabel(CustomComponent):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def tooltip(self) -> str:
@@ -91,4 +78,4 @@ class CustomLabel(CustomComponent):
     @tooltip.setter
     def tooltip(self, value: str):
         """Set tooltip"""
-        self.__tooltip = str(value)
+        self.__tooltip = value

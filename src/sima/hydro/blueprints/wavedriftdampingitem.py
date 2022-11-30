@@ -13,7 +13,6 @@ class WaveDriftDampingItemBlueprint(MOAOBlueprint):
     def __init__(self, name="WaveDriftDampingItem", package_path="sima/hydro", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("period","number","Period",default=0.0))
         self.add_attribute(Attribute("wd1","number","Wave drift damping coefficient surge. Relative change in drift force for unit velocity.",default=0.0))

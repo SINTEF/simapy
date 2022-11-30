@@ -17,8 +17,6 @@ class SlugForceSpecification(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     enterTime : float
          Time when slug enters first end of main riser line(default 0.0)
@@ -56,10 +54,9 @@ class SlugForceSpecification(MOAO):
          Specified flow is in addition to that given on main riser line (default is replacement)(default False)
     """
 
-    def __init__(self , description="", _id=None, enterTime=0.0, interruption=SlugForceInterruption.SLUG, length=0.0, mass=0.0, velocity=0.0, densityControl=SlugForceDensityControl.CONSTANT, velocityControl=SlugForceVelocityControl.CONSTANT, cycles=1, cycleTime=0.0, secondPosition=0.0, massAtSecondPosition=0.0, referenceDepth=0.0, velocitySpecification=0.0, velocityExponent=0.0, importFlow=False, flowFile=None, addedFlow=False, **kwargs):
+    def __init__(self , description="", enterTime=0.0, interruption=SlugForceInterruption.SLUG, length=0.0, mass=0.0, velocity=0.0, densityControl=SlugForceDensityControl.CONSTANT, velocityControl=SlugForceVelocityControl.CONSTANT, cycles=1, cycleTime=0.0, secondPosition=0.0, massAtSecondPosition=0.0, referenceDepth=0.0, velocitySpecification=0.0, velocityExponent=0.0, importFlow=False, addedFlow=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.enterTime = enterTime
         self.interruption = interruption
@@ -76,7 +73,7 @@ class SlugForceSpecification(MOAO):
         self.velocitySpecification = velocitySpecification
         self.velocityExponent = velocityExponent
         self.importFlow = importFlow
-        self.flowFile = flowFile
+        self.flowFile = None
         self.addedFlow = addedFlow
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -97,17 +94,7 @@ class SlugForceSpecification(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -279,7 +266,7 @@ class SlugForceSpecification(MOAO):
     @flowFile.setter
     def flowFile(self, value: str):
         """Set flowFile"""
-        self.__flowFile = str(value)
+        self.__flowFile = value
 
     @property
     def addedFlow(self) -> bool:

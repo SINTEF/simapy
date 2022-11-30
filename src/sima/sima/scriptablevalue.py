@@ -14,8 +14,6 @@ class ScriptableValue(Entity):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     script : str
          (default None)
     dependencies : List[Dependency]
@@ -27,14 +25,13 @@ class ScriptableValue(Entity):
          (default -1)
     """
 
-    def __init__(self , description="", _id=None, script=None, cyclic=False, feature=None, index=-1, **kwargs):
+    def __init__(self , description="", cyclic=False, index=-1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
-        self.script = script
+        self.script = None
         self.dependencies = list()
         self.cyclic = cyclic
-        self.feature = feature
+        self.feature = None
         self.index = index
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -55,17 +52,7 @@ class ScriptableValue(Entity):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def script(self) -> str:
@@ -75,7 +62,7 @@ class ScriptableValue(Entity):
     @script.setter
     def script(self, value: str):
         """Set script"""
-        self.__script = str(value)
+        self.__script = value
 
     @property
     def dependencies(self) -> List[Dependency]:
@@ -107,7 +94,7 @@ class ScriptableValue(Entity):
     @feature.setter
     def feature(self, value: str):
         """Set feature"""
-        self.__feature = str(value)
+        self.__feature = value
 
     @property
     def index(self) -> int:

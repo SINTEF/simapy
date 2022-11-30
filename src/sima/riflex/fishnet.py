@@ -20,8 +20,6 @@ class FishNet(CrossSection,CRSAxialFrictionModel):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -73,12 +71,11 @@ class FishNet(CrossSection,CRSAxialFrictionModel):
          Maximum curvature(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, mass=0.0, externalVolume=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, axialStiffness=0.0, solidityRatio=0.0, netWidthEnd1=0.0, netWidthEnd2=0.0, currentVelocityReduction=1.0, amx=0.0, amy=0.0, tensionCapacity=0.0, maxCurvature=0.0, **kwargs):
+    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, mass=0.0, externalVolume=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, axialStiffness=0.0, solidityRatio=0.0, netWidthEnd1=0.0, netWidthEnd2=0.0, currentVelocityReduction=1.0, amx=0.0, amy=0.0, tensionCapacity=0.0, maxCurvature=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.staticFriction = staticFriction
         self.staticElongation = staticElongation
         self.dynamicFriction = dynamicFriction
@@ -123,17 +120,7 @@ class FishNet(CrossSection,CRSAxialFrictionModel):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -155,7 +142,7 @@ class FishNet(CrossSection,CRSAxialFrictionModel):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def staticFriction(self) -> float:

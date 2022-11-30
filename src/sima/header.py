@@ -40,7 +40,7 @@ class Header(Entity):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def packages(self) -> List[PackageInfo]:

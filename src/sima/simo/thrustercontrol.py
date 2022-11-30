@@ -19,8 +19,6 @@ class ThrusterControl(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     thruster : IThruster
          Thruster to be controlled
@@ -44,10 +42,9 @@ class ThrusterControl(MOAO):
          Z-coordinate of thruster in body system(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, thrusterControlType=DPThrusterType.FIXED, direction=0.0, minForce=0.0, maxForce=0.0, maxForceRate=0.0, maxAngleRate=0.0, x=0.0, y=0.0, z=0.0, **kwargs):
+    def __init__(self , description="", thrusterControlType=DPThrusterType.FIXED, direction=0.0, minForce=0.0, maxForce=0.0, maxForceRate=0.0, maxAngleRate=0.0, x=0.0, y=0.0, z=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.thruster = None
         self.thrusterControlType = thrusterControlType
@@ -78,17 +75,7 @@ class ThrusterControl(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

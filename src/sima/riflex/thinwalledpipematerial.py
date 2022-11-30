@@ -16,8 +16,6 @@ class ThinWalledPipeMaterial(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     materialModel : MaterialModel
          Type of material model.
@@ -37,10 +35,9 @@ class ThinWalledPipeMaterial(MOAO):
          Strain-stress curve.
     """
 
-    def __init__(self , description="", _id=None, materialModel=MaterialModel.LINEAR_MATERIAL, elasticityModulus=0.0, shearModulus=0.0, yieldStress=0.0, strainStressCurveRise=0.0, materialHardening=1.0, numIntegrationPoints=16, **kwargs):
+    def __init__(self , description="", materialModel=MaterialModel.LINEAR_MATERIAL, elasticityModulus=0.0, shearModulus=0.0, yieldStress=0.0, strainStressCurveRise=0.0, materialHardening=1.0, numIntegrationPoints=16, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.materialModel = materialModel
         self.elasticityModulus = elasticityModulus
@@ -69,17 +66,7 @@ class ThinWalledPipeMaterial(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

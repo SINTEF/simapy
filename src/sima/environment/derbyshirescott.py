@@ -15,8 +15,6 @@ class DerbyshireScott(Wave):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Average wave propagation direction(default 0.0)
@@ -42,10 +40,9 @@ class DerbyshireScott(Wave):
          Upper truncation parameter(default 10.367)
     """
 
-    def __init__(self , description="", _id=None, direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, spectrumA=0.214, spectrumB=0.065, spectrumD=0.26, waveHeight=0.0, wavePeriod=0.0, lowerTrunc=0.0414, upperTrunc=10.367, **kwargs):
+    def __init__(self , description="", direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, spectrumA=0.214, spectrumB=0.065, spectrumD=0.26, waveHeight=0.0, wavePeriod=0.0, lowerTrunc=0.0414, upperTrunc=10.367, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.direction = direction
         self.spreadingExponent = spreadingExponent
@@ -77,17 +74,7 @@ class DerbyshireScott(Wave):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

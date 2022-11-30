@@ -14,9 +14,8 @@ class MannWindGeneratorBlueprint(NamedObjectBlueprint,ConditionSelectableBluepri
     def __init__(self, name="MannWindGenerator", package_path="sima/windturbine", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("baseFileName","string","",default='sima'))
         self.add_attribute(Attribute("alphaEpsilon","number","Spectrum scale parameter",default=0.0))
         self.add_attribute(Attribute("lengthScale","number","Length scale",default=0.0))

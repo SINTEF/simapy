@@ -13,6 +13,6 @@ class TableBlueprint(ReportItemBlueprint):
     def __init__(self, name="Table", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("caption","string","",default=None))
+        self.add_attribute(Attribute("caption","string",""))
         self.add_attribute(Attribute("transposed","boolean","",default=False))
         self.add_attribute(BlueprintAttribute("columns","marmo/report/Column","",True,Dimension("*")))

@@ -14,8 +14,6 @@ class ReportTextFile(ReportFragmentItem):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
          (default None)
@@ -23,12 +21,11 @@ class ReportTextFile(ReportFragmentItem):
          (default False)
     """
 
-    def __init__(self , description="", _id=None, path=None, plainText=False, **kwargs):
+    def __init__(self , description="", plainText=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.path = path
+        self.path = None
         self.plainText = plainText
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -49,17 +46,7 @@ class ReportTextFile(ReportFragmentItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class ReportTextFile(ReportFragmentItem):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def plainText(self) -> bool:

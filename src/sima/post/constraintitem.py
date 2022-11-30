@@ -15,8 +15,6 @@ class ConstraintItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
          (default None)
@@ -25,12 +23,11 @@ class ConstraintItem(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, path=None, _type=ConstraintType.LE, value=0.0, **kwargs):
+    def __init__(self , description="", _type=ConstraintType.LE, value=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.path = path
+        self.path = None
         self._type = _type
         self.value = value
         for key, value in kwargs.items():
@@ -52,17 +49,7 @@ class ConstraintItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -84,7 +71,7 @@ class ConstraintItem(MOAO):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def _type(self) -> ConstraintType:

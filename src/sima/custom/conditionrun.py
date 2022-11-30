@@ -18,8 +18,6 @@ class ConditionRun(CustomComponent):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     condition : Condition
     _type : str
@@ -34,16 +32,15 @@ class ConditionRun(CustomComponent):
          (default False)
     """
 
-    def __init__(self , description="", _id=None, _type=None, addAllConditionTypes=False, addCustomLabel=False, label=None, addOpenView=False, **kwargs):
+    def __init__(self , description="", addAllConditionTypes=False, addCustomLabel=False, addOpenView=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.condition = None
-        self._type = _type
+        self._type = None
         self.addAllConditionTypes = addAllConditionTypes
         self.addCustomLabel = addCustomLabel
-        self.label = label
+        self.label = None
         self.addOpenView = addOpenView
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -64,17 +61,7 @@ class ConditionRun(CustomComponent):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -106,7 +93,7 @@ class ConditionRun(CustomComponent):
     @_type.setter
     def _type(self, value: str):
         """Set _type"""
-        self.___type = str(value)
+        self.___type = value
 
     @property
     def addAllConditionTypes(self) -> bool:
@@ -136,7 +123,7 @@ class ConditionRun(CustomComponent):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def addOpenView(self) -> bool:

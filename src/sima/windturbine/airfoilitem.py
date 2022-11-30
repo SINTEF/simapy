@@ -14,8 +14,6 @@ class AirFoilItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     angle : float
          current angle-of-attack(default 0.0)
@@ -27,10 +25,9 @@ class AirFoilItem(MOAO):
          Moment coefficient(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, angle=0.0, cl=0.0, cd=0.0, cm=0.0, **kwargs):
+    def __init__(self , description="", angle=0.0, cl=0.0, cd=0.0, cm=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.angle = angle
         self.cl = cl
@@ -55,17 +52,7 @@ class AirFoilItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

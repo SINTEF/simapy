@@ -14,8 +14,6 @@ class Requirement(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     attribute : str
          (default None)
@@ -23,13 +21,12 @@ class Requirement(MOAO):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, attribute=None, value=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.attribute = attribute
-        self.value = value
+        self.attribute = None
+        self.value = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -49,17 +46,7 @@ class Requirement(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class Requirement(MOAO):
     @attribute.setter
     def attribute(self, value: str):
         """Set attribute"""
-        self.__attribute = str(value)
+        self.__attribute = value
 
     @property
     def value(self) -> str:
@@ -91,4 +78,4 @@ class Requirement(MOAO):
     @value.setter
     def value(self, value: str):
         """Set value"""
-        self.__value = str(value)
+        self.__value = value

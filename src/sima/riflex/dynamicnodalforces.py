@@ -16,8 +16,6 @@ class DynamicNodalForces(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     _type : ForceSpecificationType
          Type of force specification
@@ -26,13 +24,12 @@ class DynamicNodalForces(MOAO):
     items : List[DynamicNodalForceItem]
     """
 
-    def __init__(self , description="", _id=None, _type=ForceSpecificationType.SIMPLE_EXPRESSION, fileName=None, **kwargs):
+    def __init__(self , description="", _type=ForceSpecificationType.SIMPLE_EXPRESSION, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self._type = _type
-        self.fileName = fileName
+        self.fileName = None
         self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -53,17 +50,7 @@ class DynamicNodalForces(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -104,7 +91,7 @@ each time instant.
     @fileName.setter
     def fileName(self, value: str):
         """Set fileName"""
-        self.__fileName = str(value)
+        self.__fileName = value
 
     @property
     def items(self) -> List[DynamicNodalForceItem]:

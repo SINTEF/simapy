@@ -26,8 +26,6 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     eigenvalueAnalysisParameters : EigenvalueAnalysisParameters
     responseAnalysisParameters : ResponseAnalysisParameters
@@ -50,10 +48,9 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     addedMassFrequencyDependence : AddedMassFrequencyDependency
     """
 
-    def __init__(self , description="", _id=None, vivLoadType=VIVLoadType.CROSS_FLOW, waterTemperature=4.0, randomGenerator=RandomGenerator.LEGACY, addedMassFirstModeNumber=1000000, addedMassLastModeNumber=1000000, addedMassFrequencyDependence=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
+    def __init__(self , description="", vivLoadType=VIVLoadType.CROSS_FLOW, waterTemperature=4.0, randomGenerator=RandomGenerator.LEGACY, addedMassFirstModeNumber=1000000, addedMassLastModeNumber=1000000, addedMassFrequencyDependence=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.eigenvalueAnalysisParameters = None
         self.responseAnalysisParameters = None
@@ -89,17 +86,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

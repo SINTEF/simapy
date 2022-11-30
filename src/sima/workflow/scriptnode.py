@@ -19,8 +19,6 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -44,12 +42,11 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     outputSlot : OutputSlot
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, inline=True, path=None, script=None, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, inline=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.properties = list()
         self.x = x
         self.y = y
@@ -57,8 +54,8 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
         self.w = w
         self.controlSignalInputSlots = list()
         self.inline = inline
-        self.path = path
-        self.script = script
+        self.path = None
+        self.script = None
         self.variableInputSlots = list()
         self.outputSlot = None
         for key, value in kwargs.items():
@@ -80,17 +77,7 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -112,7 +99,7 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def properties(self) -> List[SignalProperties]:
@@ -196,7 +183,7 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def script(self) -> str:
@@ -206,7 +193,7 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     @script.setter
     def script(self, value: str):
         """Set script"""
-        self.__script = str(value)
+        self.__script = value
 
     @property
     def variableInputSlots(self) -> List[ScriptInputSlot]:

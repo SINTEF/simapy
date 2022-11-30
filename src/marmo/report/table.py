@@ -21,10 +21,10 @@ class Table(ReportItem):
     columns : List[Column]
     """
 
-    def __init__(self , description="", caption=None, transposed=False, **kwargs):
+    def __init__(self , description="", transposed=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.caption = caption
+        self.caption = None
         self.transposed = transposed
         self.columns = list()
         for key, value in kwargs.items():
@@ -46,7 +46,7 @@ class Table(ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def caption(self) -> str:
@@ -56,7 +56,7 @@ class Table(ReportItem):
     @caption.setter
     def caption(self, value: str):
         """Set caption"""
-        self.__caption = str(value)
+        self.__caption = value
 
     @property
     def transposed(self) -> bool:

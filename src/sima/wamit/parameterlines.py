@@ -14,8 +14,6 @@ class ParameterLines(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     entityName : str
          (default None)
@@ -25,12 +23,11 @@ class ParameterLines(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, entityName=None, floatIndex=0, value=0.0, **kwargs):
+    def __init__(self , description="", floatIndex=0, value=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.entityName = entityName
+        self.entityName = None
         self.floatIndex = floatIndex
         self.value = value
         for key, value in kwargs.items():
@@ -52,17 +49,7 @@ class ParameterLines(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -84,7 +71,7 @@ class ParameterLines(MOAO):
     @entityName.setter
     def entityName(self, value: str):
         """Set entityName"""
-        self.__entityName = str(value)
+        self.__entityName = value
 
     @property
     def floatIndex(self) -> int:

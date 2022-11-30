@@ -16,8 +16,6 @@ class OutputLink(RunNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -37,19 +35,18 @@ class OutputLink(RunNode):
     inputSlot : InputSlot
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, linkId=None, root=None, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
         self.w = w
         self.controlSignalInputSlots = list()
-        self.linkId = linkId
-        self.root = root
+        self.linkId = None
+        self.root = None
         self.inputSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -70,17 +67,7 @@ class OutputLink(RunNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -102,7 +89,7 @@ class OutputLink(RunNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -164,7 +151,7 @@ class OutputLink(RunNode):
     @linkId.setter
     def linkId(self, value: str):
         """Set linkId"""
-        self.__linkId = str(value)
+        self.__linkId = value
 
     @property
     def root(self) -> str:
@@ -174,7 +161,7 @@ class OutputLink(RunNode):
     @root.setter
     def root(self, value: str):
         """Set root"""
-        self.__root = str(value)
+        self.__root = value
 
     @property
     def inputSlot(self) -> InputSlot:

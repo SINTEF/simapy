@@ -16,8 +16,6 @@ class ScriptInputSlot(InputSlot,SignalPropertiesContainer):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -26,12 +24,11 @@ class ScriptInputSlot(InputSlot,SignalPropertiesContainer):
          If checked the input will be imported directly as signals in an array with name as specified.(default False)
     """
 
-    def __init__(self , description="", _id=None, name=None, inputSignals=False, **kwargs):
+    def __init__(self , description="", inputSignals=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.properties = list()
         self.inputSignals = inputSignals
         for key, value in kwargs.items():
@@ -53,17 +50,7 @@ class ScriptInputSlot(InputSlot,SignalPropertiesContainer):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -85,7 +72,7 @@ class ScriptInputSlot(InputSlot,SignalPropertiesContainer):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def properties(self) -> List[SignalProperties]:

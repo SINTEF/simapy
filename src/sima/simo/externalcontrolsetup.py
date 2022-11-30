@@ -14,8 +14,6 @@ class ExternalControlSetup(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     executable : str
          Executable to run(default None)
@@ -25,13 +23,12 @@ class ExternalControlSetup(MOAO):
          Port number of the central unit for the external process(default 9876)
     """
 
-    def __init__(self , description="", _id=None, executable=None, arguments=None, port=9876, **kwargs):
+    def __init__(self , description="", port=9876, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.executable = executable
-        self.arguments = arguments
+        self.executable = None
+        self.arguments = None
         self.port = port
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -52,17 +49,7 @@ class ExternalControlSetup(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -84,7 +71,7 @@ class ExternalControlSetup(MOAO):
     @executable.setter
     def executable(self, value: str):
         """Set executable"""
-        self.__executable = str(value)
+        self.__executable = value
 
     @property
     def arguments(self) -> str:
@@ -94,7 +81,7 @@ class ExternalControlSetup(MOAO):
     @arguments.setter
     def arguments(self, value: str):
         """Set arguments"""
-        self.__arguments = str(value)
+        self.__arguments = value
 
     @property
     def port(self) -> int:

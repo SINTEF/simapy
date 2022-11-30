@@ -18,8 +18,6 @@ class GuidanceSystem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     guidance : Guidance
     waypointReference : WaypointReference
@@ -33,10 +31,9 @@ class GuidanceSystem(MOAO):
     waypoints : List[Waypoint]
     """
 
-    def __init__(self , description="", _id=None, guidance=Guidance.STRAIGHT_LINES, waypointReference=WaypointReference.LOCAL, headingReference=HeadingReference.TANGENTIAL, startTime=200.0, maxAccelerationX=0.0, maxAccelerationY=0.0, **kwargs):
+    def __init__(self , description="", guidance=Guidance.STRAIGHT_LINES, waypointReference=WaypointReference.LOCAL, headingReference=HeadingReference.TANGENTIAL, startTime=200.0, maxAccelerationX=0.0, maxAccelerationY=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.guidance = guidance
         self.waypointReference = waypointReference
@@ -64,17 +61,7 @@ class GuidanceSystem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

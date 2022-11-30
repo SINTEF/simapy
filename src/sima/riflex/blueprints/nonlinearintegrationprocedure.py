@@ -13,7 +13,6 @@ class NonLinearIntegrationProcedureBlueprint(MOAOBlueprint):
     def __init__(self, name="NonLinearIntegrationProcedure", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("equilibriumIterationFrequency","integer","Frequency of equilibrium iteration",default=1))
         self.add_attribute(EnumAttribute("iterationType","sima/riflex/IterationType","Type of iteration if iteration is to be performed"))

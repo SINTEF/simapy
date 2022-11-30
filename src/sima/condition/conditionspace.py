@@ -22,8 +22,6 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,19 +37,18 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
          Import variable values from file. Expected file format:\n' any comment specified with '\n'Hs    Tp     seed : values specified in rows ( Need to match the variables specified)  \n1.0      2.0    3\n4.0      5.0    4\n'any comment\n           (default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, changeNumber=0, inputFromFile=False, path=None, **kwargs):
+    def __init__(self , description="", changeNumber=0, inputFromFile=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.changeNumber = changeNumber
         self.resultContainer = None
         self.selection = None
         self.variableItems = list()
         self.variableItemSets = list()
         self.inputFromFile = inputFromFile
-        self.path = path
+        self.path = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -71,17 +68,7 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -103,7 +90,7 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def changeNumber(self) -> int:
@@ -183,4 +170,4 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value

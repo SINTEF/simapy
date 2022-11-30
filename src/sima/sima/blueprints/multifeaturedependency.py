@@ -13,7 +13,6 @@ class MultiFeatureDependencyBlueprint(DependencyBlueprint):
     def __init__(self, name="MultiFeatureDependency", package_path="sima/sima", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("object","sima/sima/MOAO","",False))
-        self.add_attribute(Attribute("feature","string","",default=None))
+        self.add_attribute(Attribute("feature","string",""))
         self.add_attribute(BlueprintAttribute("root","sima/sima/MOAO","",False))

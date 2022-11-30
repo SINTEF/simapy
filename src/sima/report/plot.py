@@ -18,8 +18,6 @@ class Plot(ReportItem):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     object : MOAO
     caption : str
@@ -32,16 +30,15 @@ class Plot(ReportItem):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, caption=None, mergeSeries=False, xLabel=None, yLabel=None, **kwargs):
+    def __init__(self , description="", mergeSeries=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.object = None
-        self.caption = caption
+        self.caption = None
         self.mergeSeries = mergeSeries
-        self.xLabel = xLabel
-        self.yLabel = yLabel
+        self.xLabel = None
+        self.yLabel = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -61,17 +58,7 @@ class Plot(ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -103,7 +90,7 @@ class Plot(ReportItem):
     @caption.setter
     def caption(self, value: str):
         """Set caption"""
-        self.__caption = str(value)
+        self.__caption = value
 
     @property
     def mergeSeries(self) -> bool:
@@ -123,7 +110,7 @@ class Plot(ReportItem):
     @xLabel.setter
     def xLabel(self, value: str):
         """Set xLabel"""
-        self.__xLabel = str(value)
+        self.__xLabel = value
 
     @property
     def yLabel(self) -> str:
@@ -133,4 +120,4 @@ class Plot(ReportItem):
     @yLabel.setter
     def yLabel(self, value: str):
         """Set yLabel"""
-        self.__yLabel = str(value)
+        self.__yLabel = value

@@ -23,8 +23,6 @@ class PipeInPipeContact(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -74,12 +72,11 @@ class PipeInPipeContact(NamedObject):
     innerPipeLoading : InnerPipeLoading
     """
 
-    def __init__(self , description="", _id=None, name=None, firstMasterSegment=0, lastMasterSegment=0, firstSlaveSegment=0, lastSlaveSegment=0, masterPipePosition=InnerOuter.INNER, stiffnessType=StiffnessType.LINEAR, relativeDamping=0.0, damping=0.0, frictionStiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, axialFrictionEnabled=False, rotationalFrictionEnabled=False, velocityLimitFriction=0.0, linearStiffness=0.0, masterAsMainRiser=False, slaveAsMainRiser=False, innerPipeLoading=InnerPipeLoading.EXPOSED, **kwargs):
+    def __init__(self , description="", firstMasterSegment=0, lastMasterSegment=0, firstSlaveSegment=0, lastSlaveSegment=0, masterPipePosition=InnerOuter.INNER, stiffnessType=StiffnessType.LINEAR, relativeDamping=0.0, damping=0.0, frictionStiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, axialFrictionEnabled=False, rotationalFrictionEnabled=False, velocityLimitFriction=0.0, linearStiffness=0.0, masterAsMainRiser=False, slaveAsMainRiser=False, innerPipeLoading=InnerPipeLoading.EXPOSED, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.masterLine = None
         self.slaveLine = None
         self.firstMasterSegment = firstMasterSegment
@@ -122,17 +119,7 @@ class PipeInPipeContact(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -154,7 +141,7 @@ class PipeInPipeContact(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def masterLine(self) -> ARLine:

@@ -15,8 +15,6 @@ class HLAPlot(HLAObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,19 +37,18 @@ class HLAPlot(HLAObject):
          (default 5)
     """
 
-    def __init__(self , description="", _id=None, name=None, crossPlotXAxisValues=None, axisTitleX=None, axisTitleY=None, valueTypeX=None, showTimeMarker=False, fadePrecedingCurves=False, fadePrecedingCurvesCount=5, **kwargs):
+    def __init__(self , description="", showTimeMarker=False, fadePrecedingCurves=False, fadePrecedingCurvesCount=5, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.curves = ndarray(1)
-        self.crossPlotXAxisValues = crossPlotXAxisValues
+        self.crossPlotXAxisValues = None
         self.minMaxX = None
         self.minMaxY = None
-        self.axisTitleX = axisTitleX
-        self.axisTitleY = axisTitleY
-        self.valueTypeX = valueTypeX
+        self.axisTitleX = None
+        self.axisTitleY = None
+        self.valueTypeX = None
         self.showTimeMarker = showTimeMarker
         self.fadePrecedingCurves = fadePrecedingCurves
         self.fadePrecedingCurvesCount = fadePrecedingCurvesCount
@@ -74,17 +71,7 @@ class HLAPlot(HLAObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -106,7 +93,7 @@ class HLAPlot(HLAObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def curves(self) -> ndarray:
@@ -126,7 +113,7 @@ class HLAPlot(HLAObject):
     @crossPlotXAxisValues.setter
     def crossPlotXAxisValues(self, value: str):
         """Set crossPlotXAxisValues"""
-        self.__crossPlotXAxisValues = str(value)
+        self.__crossPlotXAxisValues = value
 
     @property
     def minMaxX(self) -> Range:
@@ -156,7 +143,7 @@ class HLAPlot(HLAObject):
     @axisTitleX.setter
     def axisTitleX(self, value: str):
         """Set axisTitleX"""
-        self.__axisTitleX = str(value)
+        self.__axisTitleX = value
 
     @property
     def axisTitleY(self) -> str:
@@ -166,7 +153,7 @@ class HLAPlot(HLAObject):
     @axisTitleY.setter
     def axisTitleY(self, value: str):
         """Set axisTitleY"""
-        self.__axisTitleY = str(value)
+        self.__axisTitleY = value
 
     @property
     def valueTypeX(self) -> str:
@@ -176,7 +163,7 @@ class HLAPlot(HLAObject):
     @valueTypeX.setter
     def valueTypeX(self, value: str):
         """Set valueTypeX"""
-        self.__valueTypeX = str(value)
+        self.__valueTypeX = value
 
     @property
     def showTimeMarker(self) -> bool:

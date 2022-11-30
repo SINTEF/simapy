@@ -17,8 +17,6 @@ class FileCopyNode(RunNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -45,12 +43,11 @@ class FileCopyNode(RunNode):
     outputSlot : OutputSlot
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, ignoreEmptyInput=False, folder=False, path=None, retainStructure=False, cleanUpFolder=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, ignoreEmptyInput=False, folder=False, retainStructure=False, cleanUpFolder=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
@@ -58,7 +55,7 @@ class FileCopyNode(RunNode):
         self.controlSignalInputSlots = list()
         self.ignoreEmptyInput = ignoreEmptyInput
         self.folder = folder
-        self.path = path
+        self.path = None
         self.retainStructure = retainStructure
         self.cleanUpFolder = cleanUpFolder
         self.inputSlot = None
@@ -82,17 +79,7 @@ class FileCopyNode(RunNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -114,7 +101,7 @@ class FileCopyNode(RunNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -196,7 +183,7 @@ class FileCopyNode(RunNode):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def retainStructure(self) -> bool:

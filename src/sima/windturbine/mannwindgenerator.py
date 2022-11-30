@@ -16,8 +16,6 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -64,12 +62,11 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
          Longitudenal Turbulence Scale Parameter(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, baseFileName='sima', alphaEpsilon=0.0, lengthScale=0.0, gamma=3.9, seed=0, gridPointsX=0, gridPointsY=0, gridPointsZ=0, pointDistanceX=0.0, pointDistanceY=0.0, pointDistanceZ=0.0, hfCompensation=True, turbulenceIntensity=0.0, meanWindSpeed=0.0, transient=0.0, inputFormat=MannInputFormat.DIRECT, windSeriesDuration=0.0, gridWidth=0.0, gridHeight=0.0, lengthFactor=0.8, longTurbScaleParam=0.0, **kwargs):
+    def __init__(self , description="", baseFileName='sima', alphaEpsilon=0.0, lengthScale=0.0, gamma=3.9, seed=0, gridPointsX=0, gridPointsY=0, gridPointsZ=0, pointDistanceX=0.0, pointDistanceY=0.0, pointDistanceZ=0.0, hfCompensation=True, turbulenceIntensity=0.0, meanWindSpeed=0.0, transient=0.0, inputFormat=MannInputFormat.DIRECT, windSeriesDuration=0.0, gridWidth=0.0, gridHeight=0.0, lengthFactor=0.8, longTurbScaleParam=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.baseFileName = baseFileName
         self.alphaEpsilon = alphaEpsilon
         self.lengthScale = lengthScale
@@ -110,17 +107,7 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -142,7 +129,7 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def baseFileName(self) -> str:
@@ -152,7 +139,7 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
     @baseFileName.setter
     def baseFileName(self, value: str):
         """Set baseFileName"""
-        self.__baseFileName = str(value)
+        self.__baseFileName = value
 
     @property
     def alphaEpsilon(self) -> float:

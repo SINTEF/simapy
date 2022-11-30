@@ -14,8 +14,6 @@ class HLATerrain(HLAObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -23,13 +21,12 @@ class HLATerrain(HLAObject):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, terrainFile=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.terrainFile = terrainFile
+        self.name = None
+        self.terrainFile = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -49,17 +46,7 @@ class HLATerrain(HLAObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class HLATerrain(HLAObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def terrainFile(self) -> str:
@@ -91,4 +78,4 @@ class HLATerrain(HLAObject):
     @terrainFile.setter
     def terrainFile(self, value: str):
         """Set terrainFile"""
-        self.__terrainFile = str(value)
+        self.__terrainFile = value

@@ -16,7 +16,7 @@ class AxisBlueprint(EntityBlueprint):
         self.add_attribute(BlueprintAttribute("font","marmo/report/Font","",True))
         self.add_attribute(Attribute("log","boolean","",default=False))
         self.add_attribute(Attribute("autoformat","boolean","",default=True))
-        self.add_attribute(Attribute("format","string","",default=None))
+        self.add_attribute(Attribute("format","string",""))
         self.add_attribute(Attribute("autoscale","boolean","",default=True))
         self.add_attribute(Attribute("showgrid","boolean","",default=True))
         self.add_attribute(Attribute("dashgridline","boolean","",default=True))

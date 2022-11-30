@@ -13,7 +13,6 @@ class NodeBoundaryChangeItemBlueprint(MOAOBlueprint):
     def __init__(self, name="NodeBoundaryChangeItem", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("boundaryChangeOption","sima/riflex/BoundaryChangeOption","Boundary change option"))
         self.add_attribute(EnumAttribute("surgeConstraint","sima/riflex/BoundaryCondition","Boundary condition for translation in X-direction."))

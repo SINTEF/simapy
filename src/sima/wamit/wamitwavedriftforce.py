@@ -17,8 +17,6 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     directions : ndarray
     frequencies : ndarray
@@ -33,10 +31,9 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, symmetry=DirectionSymmetry.NO_SYMMETRY, name=None, **kwargs):
+    def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.directions = ndarray(1)
         self.frequencies = ndarray(1)
@@ -47,7 +44,7 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
         self.mx = None
         self.my = None
         self.mz = None
-        self.name = name
+        self.name = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -67,17 +64,7 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -189,4 +176,4 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value

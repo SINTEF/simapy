@@ -19,8 +19,6 @@ class PeaksFilter(OperationNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -49,12 +47,11 @@ class PeaksFilter(OperationNode):
          Number of partitions when finding block maxima/minima(default 10)
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, renameOutput=True, extreme=PeakExtreme.MAX, _type=PeakType.LOCAL, crossingLevel=0.0, useMean=False, partitions=10, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, renameOutput=True, extreme=PeakExtreme.MAX, _type=PeakType.LOCAL, crossingLevel=0.0, useMean=False, partitions=10, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
@@ -87,17 +84,7 @@ class PeaksFilter(OperationNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -119,7 +106,7 @@ class PeaksFilter(OperationNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:

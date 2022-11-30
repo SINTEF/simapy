@@ -14,8 +14,6 @@ class PhysicalConstants(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     airDensity : float
          Air density - rho air(default 1.25)
@@ -29,10 +27,9 @@ class PhysicalConstants(MOAO):
          Acceleration of gravity - g(default 9.81)
     """
 
-    def __init__(self , description="", _id=None, airDensity=1.25, waterDensity=1025.0, kinematicViscosityWater=1.188e-06, kinematicViscosityAir=1.516e-05, accOfGravity=9.81, **kwargs):
+    def __init__(self , description="", airDensity=1.25, waterDensity=1025.0, kinematicViscosityWater=1.188e-06, kinematicViscosityAir=1.516e-05, accOfGravity=9.81, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.airDensity = airDensity
         self.waterDensity = waterDensity
@@ -58,17 +55,7 @@ class PhysicalConstants(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

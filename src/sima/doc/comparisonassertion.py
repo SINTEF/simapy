@@ -19,8 +19,6 @@ class ComparisonAssertion(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     severity : Severity
     message : str
@@ -34,17 +32,16 @@ class ComparisonAssertion(MOAO):
          Expected output represented by the content of this file(default None)
     """
 
-    def __init__(self , description="", _id=None, severity=Severity.WARNING, message=None, path=None, read=False, expectedOutput=None, **kwargs):
+    def __init__(self , description="", severity=Severity.WARNING, read=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.severity = severity
-        self.message = message
+        self.message = None
         self.outputNode = None
-        self.path = path
+        self.path = None
         self.read = read
-        self.expectedOutput = expectedOutput
+        self.expectedOutput = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -64,17 +61,7 @@ class ComparisonAssertion(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -106,7 +93,7 @@ class ComparisonAssertion(MOAO):
     @message.setter
     def message(self, value: str):
         """Set message"""
-        self.__message = str(value)
+        self.__message = value
 
     @property
     def outputNode(self) -> OutputNode:
@@ -126,7 +113,7 @@ class ComparisonAssertion(MOAO):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def read(self) -> bool:
@@ -146,4 +133,4 @@ class ComparisonAssertion(MOAO):
     @expectedOutput.setter
     def expectedOutput(self, value: str):
         """Set expectedOutput"""
-        self.__expectedOutput = str(value)
+        self.__expectedOutput = value

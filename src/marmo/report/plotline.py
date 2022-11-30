@@ -33,11 +33,11 @@ class PlotLine(Entity):
          (default None)
     """
 
-    def __init__(self , description="", xlabel=None, ylabel=None, showlegend=True, linewidth=1, pointsize=1, linestyle=LineStyle.SOLID, pointstyle=PointStyle.NONE, color=None, **kwargs):
+    def __init__(self , description="", showlegend=True, linewidth=1, pointsize=1, linestyle=LineStyle.SOLID, pointstyle=PointStyle.NONE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.xlabel = xlabel
-        self.ylabel = ylabel
+        self.xlabel = None
+        self.ylabel = None
         self.showlegend = showlegend
         self.x = ndarray(1)
         self.y = ndarray(1)
@@ -45,7 +45,7 @@ class PlotLine(Entity):
         self.pointsize = pointsize
         self.linestyle = linestyle
         self.pointstyle = pointstyle
-        self.color = color
+        self.color = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -65,7 +65,7 @@ class PlotLine(Entity):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def xlabel(self) -> str:
@@ -75,7 +75,7 @@ class PlotLine(Entity):
     @xlabel.setter
     def xlabel(self, value: str):
         """Set xlabel"""
-        self.__xlabel = str(value)
+        self.__xlabel = value
 
     @property
     def ylabel(self) -> str:
@@ -85,7 +85,7 @@ class PlotLine(Entity):
     @ylabel.setter
     def ylabel(self, value: str):
         """Set ylabel"""
-        self.__ylabel = str(value)
+        self.__ylabel = value
 
     @property
     def showlegend(self) -> bool:
@@ -165,4 +165,4 @@ class PlotLine(Entity):
     @color.setter
     def color(self, value: str):
         """Set color"""
-        self.__color = str(value)
+        self.__color = value

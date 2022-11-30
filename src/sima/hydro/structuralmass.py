@@ -15,8 +15,6 @@ class StructuralMass(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     mass : float
          Mass(default 0.0)
@@ -36,10 +34,9 @@ class StructuralMass(MOAO):
          Coordinates of centre of gravity, (L)
     """
 
-    def __init__(self , description="", _id=None, mass=0.0, ixx=0.0, iyx=0.0, iyy=0.0, izx=0.0, izy=0.0, izz=0.0, **kwargs):
+    def __init__(self , description="", mass=0.0, ixx=0.0, iyx=0.0, iyy=0.0, izx=0.0, izy=0.0, izz=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.mass = mass
         self.ixx = ixx
@@ -68,17 +65,7 @@ class StructuralMass(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

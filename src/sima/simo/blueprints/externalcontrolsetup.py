@@ -13,8 +13,7 @@ class ExternalControlSetupBlueprint(MOAOBlueprint):
     def __init__(self, name="ExternalControlSetup", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("executable","string","Executable to run",default=None))
-        self.add_attribute(Attribute("arguments","string","Process arguments",default=None))
+        self.add_attribute(Attribute("executable","string","Executable to run"))
+        self.add_attribute(Attribute("arguments","string","Process arguments"))
         self.add_attribute(Attribute("port","integer","Port number of the central unit for the external process",default=9876))

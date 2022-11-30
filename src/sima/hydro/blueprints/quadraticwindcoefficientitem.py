@@ -13,7 +13,6 @@ class QuadraticWindCoefficientItemBlueprint(MOAOBlueprint):
     def __init__(self, name="QuadraticWindCoefficientItem", package_path="sima/hydro", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("direction","number","Direction",default=0.0))
         self.add_attribute(Attribute("c1","number","Wind force coefficient for 1. degree of freedom",default=0.0))

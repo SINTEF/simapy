@@ -13,7 +13,6 @@ class OptimizationVariableItemBlueprint(MOAOBlueprint):
     def __init__(self, name="OptimizationVariableItem", package_path="sima/optimization", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("start","number","Starting value for the optimization variable",default=0.0))
         self.add_attribute(Attribute("min","number","Lower bound for the optimization variable",default=0.0))

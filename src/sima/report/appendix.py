@@ -16,8 +16,6 @@ class Appendix(ReportItem,Linkable):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     identifier : str
          (default None)
@@ -29,14 +27,13 @@ class Appendix(ReportItem,Linkable):
     orientation : Orientation
     """
 
-    def __init__(self , description="", _id=None, identifier=None, title=None, pageBreakBefore=False, orientation=Orientation.PORTRAIT, **kwargs):
+    def __init__(self , description="", pageBreakBefore=False, orientation=Orientation.PORTRAIT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.identifier = identifier
+        self.identifier = None
         self.items = list()
-        self.title = title
+        self.title = None
         self.pageBreakBefore = pageBreakBefore
         self.orientation = orientation
         for key, value in kwargs.items():
@@ -58,17 +55,7 @@ class Appendix(ReportItem,Linkable):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -90,7 +77,7 @@ class Appendix(ReportItem,Linkable):
     @identifier.setter
     def identifier(self, value: str):
         """Set identifier"""
-        self.__identifier = str(value)
+        self.__identifier = value
 
     @property
     def items(self) -> List[ReportItem]:
@@ -112,7 +99,7 @@ class Appendix(ReportItem,Linkable):
     @title.setter
     def title(self, value: str):
         """Set title"""
-        self.__title = str(value)
+        self.__title = value
 
     @property
     def pageBreakBefore(self) -> bool:

@@ -21,8 +21,6 @@ class SlotConnection(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     useQuery : bool
          Use boolean expressions using operators =, !=,&&,|| to create more advanced queries(default False)
@@ -34,13 +32,12 @@ class SlotConnection(MOAO):
     fromSlot : OutputSlot
     """
 
-    def __init__(self , description="", _id=None, useQuery=False, query=None, **kwargs):
+    def __init__(self , description="", useQuery=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.useQuery = useQuery
-        self.query = query
+        self.query = None
         self.userRequirements = list()
         self.points = list()
         self.toSlot = None
@@ -64,17 +61,7 @@ class SlotConnection(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -106,7 +93,7 @@ class SlotConnection(MOAO):
     @query.setter
     def query(self, value: str):
         """Set query"""
-        self.__query = str(value)
+        self.__query = value
 
     @property
     def userRequirements(self) -> List[Requirement]:

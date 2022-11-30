@@ -18,8 +18,6 @@ class FileInputSource(OperationNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -43,12 +41,11 @@ class FileInputSource(OperationNode):
          Use the first signal as the x axis for all inputs(default False)
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, filePath=None, fileFromInput=False, format=FileInputFormat.AUTOMATIC, firstIsX=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFromInput=False, format=FileInputFormat.AUTOMATIC, firstIsX=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
@@ -56,7 +53,7 @@ class FileInputSource(OperationNode):
         self.controlSignalInputSlots = list()
         self.filterInputSlots = list()
         self.filterOutputSlots = list()
-        self.filePath = filePath
+        self.filePath = None
         self.fileFromInput = fileFromInput
         self.format = format
         self.firstIsX = firstIsX
@@ -79,17 +76,7 @@ class FileInputSource(OperationNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -111,7 +98,7 @@ class FileInputSource(OperationNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -197,7 +184,7 @@ class FileInputSource(OperationNode):
     @filePath.setter
     def filePath(self, value: str):
         """Set filePath"""
-        self.__filePath = str(value)
+        self.__filePath = value
 
     @property
     def fileFromInput(self) -> bool:

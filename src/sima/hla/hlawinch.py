@@ -14,8 +14,6 @@ class HLAWinch(HLAObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -29,12 +27,11 @@ class HLAWinch(HLAObject):
          Max. wire length that can be added to drum(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, initialLength=0.0, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, **kwargs):
+    def __init__(self , description="", initialLength=0.0, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.initialLength = initialLength
         self.maximumSpeed = maximumSpeed
         self.acceleration = acceleration
@@ -58,17 +55,7 @@ class HLAWinch(HLAObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -90,7 +77,7 @@ class HLAWinch(HLAObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def initialLength(self) -> float:

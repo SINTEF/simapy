@@ -15,8 +15,6 @@ class RegularWaveAnalaysis(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     periods : int
          Number of periods for regular wave analysis, referring to wave or motion periods (of first vessel)(default 1)
@@ -28,10 +26,9 @@ class RegularWaveAnalaysis(MOAO):
          Platform motion options:
     """
 
-    def __init__(self , description="", _id=None, periods=1, timeSteps=80, waveActing=True, platformMotion=PlatformMotion.GENERATED, **kwargs):
+    def __init__(self , description="", periods=1, timeSteps=80, waveActing=True, platformMotion=PlatformMotion.GENERATED, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.periods = periods
         self.timeSteps = timeSteps
@@ -56,17 +53,7 @@ class RegularWaveAnalaysis(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

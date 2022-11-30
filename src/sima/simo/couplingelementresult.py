@@ -14,8 +14,6 @@ class CouplingElementResult(ForceResult):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          Force name(default None)
@@ -39,12 +37,11 @@ class CouplingElementResult(ForceResult):
          Connection(default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, mass=0.0, coupling=None, branch=None, **kwargs):
+    def __init__(self , description="", fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, mass=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.fx = fx
         self.fy = fy
         self.fz = fz
@@ -52,8 +49,8 @@ class CouplingElementResult(ForceResult):
         self.my = my
         self.mz = mz
         self.mass = mass
-        self.coupling = coupling
-        self.branch = branch
+        self.coupling = None
+        self.branch = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -73,17 +70,7 @@ class CouplingElementResult(ForceResult):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -105,7 +92,7 @@ class CouplingElementResult(ForceResult):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def fx(self) -> float:
@@ -185,7 +172,7 @@ class CouplingElementResult(ForceResult):
     @coupling.setter
     def coupling(self, value: str):
         """Set coupling"""
-        self.__coupling = str(value)
+        self.__coupling = value
 
     @property
     def branch(self) -> str:
@@ -195,4 +182,4 @@ class CouplingElementResult(ForceResult):
     @branch.setter
     def branch(self, value: str):
         """Set branch"""
-        self.__branch = str(value)
+        self.__branch = value

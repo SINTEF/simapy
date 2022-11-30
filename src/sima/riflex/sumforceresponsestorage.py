@@ -16,8 +16,6 @@ class SumForceResponseStorage(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     storageStep : int
          Code for storage of the sum of forces. Storage for every <storage step> given.(default 1)
@@ -27,10 +25,9 @@ class SumForceResponseStorage(MOAO):
          Specification of nodes for displacement storage
     """
 
-    def __init__(self , description="", _id=None, storageStep=1, format=AdditionalFileFormatCode.BINARY_OUTPUT, **kwargs):
+    def __init__(self , description="", storageStep=1, format=AdditionalFileFormatCode.BINARY_OUTPUT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.storageStep = storageStep
         self.format = format
@@ -54,17 +51,7 @@ class SumForceResponseStorage(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

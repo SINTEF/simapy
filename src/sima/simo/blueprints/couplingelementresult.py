@@ -13,9 +13,8 @@ class CouplingElementResultBlueprint(ForceResultBlueprint):
     def __init__(self, name="CouplingElementResult", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","Force name",default=None))
+        self.add_attribute(Attribute("name","string","Force name"))
         self.add_attribute(Attribute("fx","number","Statically calculated force",default=0.0))
         self.add_attribute(Attribute("fy","number","Statically calculated force",default=0.0))
         self.add_attribute(Attribute("fz","number","Statically calculated force",default=0.0))
@@ -23,5 +22,5 @@ class CouplingElementResultBlueprint(ForceResultBlueprint):
         self.add_attribute(Attribute("my","number","Statically calculated moment",default=0.0))
         self.add_attribute(Attribute("mz","number","Statically calculated moment",default=0.0))
         self.add_attribute(Attribute("mass","number","Mass of object",default=0.0))
-        self.add_attribute(Attribute("coupling","string","Coupling",default=None))
-        self.add_attribute(Attribute("branch","string","Connection",default=None))
+        self.add_attribute(Attribute("coupling","string","Coupling"))
+        self.add_attribute(Attribute("branch","string","Connection"))

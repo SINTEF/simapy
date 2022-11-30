@@ -18,8 +18,6 @@ class HawserForceMeasurement(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     standardDeviation : float
          White noise standard deviation of the measurement system(default 0.0)
@@ -28,10 +26,9 @@ class HawserForceMeasurement(MOAO):
     coupling : SimpleCoupling
     """
 
-    def __init__(self , description="", _id=None, standardDeviation=0.0, seed=1, **kwargs):
+    def __init__(self , description="", standardDeviation=0.0, seed=1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.standardDeviation = standardDeviation
         self.seed = seed
@@ -55,17 +52,7 @@ class HawserForceMeasurement(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

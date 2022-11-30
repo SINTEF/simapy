@@ -14,8 +14,6 @@ class Waypoint(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     x : float
          X-coordinate of waypoint(default 0.0)
@@ -33,10 +31,9 @@ class Waypoint(MOAO):
          Line of sight length (Determines the line from the vessel to the intersection of the line between the current waypoint and the next)(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, x=0.0, y=0.0, velocity=0.0, heading=0.0, turningRadius=0.0, radiusOfAcceptance=0.0, lineOfSight=0.0, **kwargs):
+    def __init__(self , description="", x=0.0, y=0.0, velocity=0.0, heading=0.0, turningRadius=0.0, radiusOfAcceptance=0.0, lineOfSight=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.x = x
         self.y = y
@@ -64,17 +61,7 @@ class Waypoint(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

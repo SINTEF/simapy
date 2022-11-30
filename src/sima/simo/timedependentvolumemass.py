@@ -18,8 +18,6 @@ class TimeDependentVolumeMass(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -45,12 +43,11 @@ class TimeDependentVolumeMass(NamedObject):
     portions : List[VolumeMassPortion]
     """
 
-    def __init__(self , description="", _id=None, name=None, vol0=0.0, volMax=0.0, volMin=0.0, volRateMax=0.0, volRateMin=0.0, density=0.0, **kwargs):
+    def __init__(self , description="", vol0=0.0, volMax=0.0, volMin=0.0, volRateMax=0.0, volRateMin=0.0, density=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.point = None
         self.flowRates = list()
         self.vol0 = vol0
@@ -81,17 +78,7 @@ class TimeDependentVolumeMass(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -113,7 +100,7 @@ class TimeDependentVolumeMass(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def point(self) -> Point3:

@@ -17,8 +17,6 @@ class VerticalAxisWindTurbineController(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     sampleInterval : float
          Controller sample interval(default 0.0)
@@ -53,10 +51,9 @@ class VerticalAxisWindTurbineController(MOAO):
     gainSchedulingItems : List[GainSchedulingItem]
     """
 
-    def __init__(self , description="", _id=None, sampleInterval=0.0, startupLength=0.0, filterPeriodRotorSpeed=0.0, filterPeriodWindSpeed=0.0, filterRadialFrequency=0.0, notchFilterWidth=0.0, gearBoxRatio=0.0, maxTorque=0.0, maxTorqueRate=0.0, proportionalGain=0.0, initialIntegratorGainRatio=0.0, finalIntegratorGainRatio=0.0, integratorRelaxationTime=0.0, windRotorSpeed=TableFormat.DEFAULT, gainScheduling=TableFormat.DEFAULT, **kwargs):
+    def __init__(self , description="", sampleInterval=0.0, startupLength=0.0, filterPeriodRotorSpeed=0.0, filterPeriodWindSpeed=0.0, filterRadialFrequency=0.0, notchFilterWidth=0.0, gearBoxRatio=0.0, maxTorque=0.0, maxTorqueRate=0.0, proportionalGain=0.0, initialIntegratorGainRatio=0.0, finalIntegratorGainRatio=0.0, integratorRelaxationTime=0.0, windRotorSpeed=TableFormat.DEFAULT, gainScheduling=TableFormat.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.sampleInterval = sampleInterval
         self.startupLength = startupLength
@@ -94,17 +91,7 @@ class VerticalAxisWindTurbineController(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

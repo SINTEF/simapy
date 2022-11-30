@@ -22,8 +22,6 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -56,19 +54,18 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     modelReferences : List[ModelReference]
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, root=None, resultId=None, reference='workflow', specifyAdditionalProperties=False, _type='workflow', useReference=False, array=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, reference='workflow', specifyAdditionalProperties=False, _type='workflow', useReference=False, array=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
         self.w = w
         self.controlSignalInputSlots = list()
-        self.root = root
-        self.resultId = resultId
+        self.root = None
+        self.resultId = None
         self.outputSlot = None
         self.properties = list()
         self.model = None
@@ -97,17 +94,7 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -129,7 +116,7 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -191,7 +178,7 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     @root.setter
     def root(self, value: str):
         """Set root"""
-        self.__root = str(value)
+        self.__root = value
 
     @property
     def resultId(self) -> str:
@@ -201,7 +188,7 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     @resultId.setter
     def resultId(self, value: str):
         """Set resultId"""
-        self.__resultId = str(value)
+        self.__resultId = value
 
     @property
     def outputSlot(self) -> OutputSlot:
@@ -243,7 +230,7 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     @reference.setter
     def reference(self, value: str):
         """Set reference"""
-        self.__reference = str(value)
+        self.__reference = value
 
     @property
     def specifyAdditionalProperties(self) -> bool:
@@ -263,7 +250,7 @@ class ModelReferenceInput(ValueInputNode,ModelReference):
     @_type.setter
     def _type(self, value: str):
         """Set _type"""
-        self.___type = str(value)
+        self.___type = value
 
     @property
     def useReference(self) -> bool:

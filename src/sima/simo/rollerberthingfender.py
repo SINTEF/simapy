@@ -19,8 +19,6 @@ class RollerBerthingFender(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -40,12 +38,11 @@ class RollerBerthingFender(NamedObject):
     axisVector : Vector3
     """
 
-    def __init__(self , description="", _id=None, name=None, dynamicFriction=0.0, staticFriction=0.0, shearStiffnes=0.0, velocityLimit=0.0, attachment=FenderAttachment.GLOBAL_POINT, **kwargs):
+    def __init__(self , description="", dynamicFriction=0.0, staticFriction=0.0, shearStiffnes=0.0, velocityLimit=0.0, attachment=FenderAttachment.GLOBAL_POINT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.dynamicFriction = dynamicFriction
         self.staticFriction = staticFriction
         self.shearStiffnes = shearStiffnes
@@ -74,17 +71,7 @@ class RollerBerthingFender(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -106,7 +93,7 @@ class RollerBerthingFender(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def dynamicFriction(self) -> float:

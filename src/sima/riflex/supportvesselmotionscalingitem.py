@@ -18,8 +18,6 @@ class SupportVesselMotionScalingItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     supportVessel : SupportVessel
     scalx : float
@@ -36,10 +34,9 @@ class SupportVesselMotionScalingItem(MOAO):
          Scaling for global Z-rotation(default 1.0)
     """
 
-    def __init__(self , description="", _id=None, scalx=1.0, scaly=1.0, scalz=1.0, scalxr=1.0, scalyr=1.0, scalzr=1.0, **kwargs):
+    def __init__(self , description="", scalx=1.0, scaly=1.0, scalz=1.0, scalxr=1.0, scalyr=1.0, scalzr=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.supportVessel = None
         self.scalx = scalx
@@ -67,17 +64,7 @@ class SupportVesselMotionScalingItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

@@ -33,8 +33,6 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -191,12 +189,11 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
          Ratio between reduced current speed and ambient current speed due to upstream net shadowing effects(default 1.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, bendingStiffnessInput=BendingStiffness.CONSTANT, torsionStiffnessInput=TorsionStiffness.CONSTANT, pressureDependency=0, hysteresisOption=Hysteresis.NO_HYSTERESIS, hardeningParameter=0.0, axialStiffness=0.0, bendingStiffness=0.0, intFrictionMoment=0.0, shearStiffness=0.0, negativeTorsionStiffness=0.0, positiveTorsionStiffness=0.0, tensionCapacity=0.0, maxCurvature=0.0, barBeam=BarBeam.BAR, stiffnessFactor=10.0, submerged=False, coupledBendingTorsion=False, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, solidityRatio=0.0, netWidthEnd1=0.0, netWidthEnd2=0.0, currentVelocityScaling=1.0, **kwargs):
+    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, bendingStiffnessInput=BendingStiffness.CONSTANT, torsionStiffnessInput=TorsionStiffness.CONSTANT, pressureDependency=0, hysteresisOption=Hysteresis.NO_HYSTERESIS, hardeningParameter=0.0, axialStiffness=0.0, bendingStiffness=0.0, intFrictionMoment=0.0, shearStiffness=0.0, negativeTorsionStiffness=0.0, positiveTorsionStiffness=0.0, tensionCapacity=0.0, maxCurvature=0.0, barBeam=BarBeam.BAR, stiffnessFactor=10.0, submerged=False, coupledBendingTorsion=False, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, solidityRatio=0.0, netWidthEnd1=0.0, netWidthEnd2=0.0, currentVelocityScaling=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.staticFriction = staticFriction
         self.staticElongation = staticElongation
         self.dynamicFriction = dynamicFriction
@@ -296,17 +293,7 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -328,7 +315,7 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def staticFriction(self) -> float:

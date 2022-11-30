@@ -18,8 +18,6 @@ class SoilItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     soilMaterial : Soil
          Soil material reference to valid material of type clay or sand
@@ -27,10 +25,9 @@ class SoilItem(MOAO):
          The distance from mudline to lower end of soil layer(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, lowerZ=0.0, **kwargs):
+    def __init__(self , description="", lowerZ=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.soilMaterial = None
         self.lowerZ = lowerZ
@@ -53,17 +50,7 @@ class SoilItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

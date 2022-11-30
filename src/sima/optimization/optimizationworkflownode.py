@@ -26,8 +26,6 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -58,12 +56,11 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     result : WorkflowOutputSlot
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName=None, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
@@ -76,7 +73,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
         self.workflowInputSlots = list()
         self.inputWorkflow = inputWorkflow
         self.setFolderName = setFolderName
-        self.folderName = folderName
+        self.folderName = None
         self.optimizationCalculationParameters = None
         self.costFunction = None
         self.constraints = None
@@ -101,17 +98,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -133,7 +120,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -271,7 +258,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     @folderName.setter
     def folderName(self, value: str):
         """Set folderName"""
-        self.__folderName = str(value)
+        self.__folderName = value
 
     @property
     def optimizationCalculationParameters(self) -> OptimizationCalculationParameters:

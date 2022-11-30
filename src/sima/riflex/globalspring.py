@@ -21,8 +21,6 @@ class GlobalSpring(NodeReference,NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -49,17 +47,16 @@ class GlobalSpring(NodeReference,NamedObject):
     stiffnessItems : List[GlobalSpringStiffnessItem]
     """
 
-    def __init__(self , description="", _id=None, segment=1, allSegments=False, nodeNumber=1, allNodes=False, name=None, dof=SpringDOF.GLOBAL_X_DIRECTION, constantStiffness=False, stiffness=0.0, dampingCoefficient=0.0, stiffnessDampingFactor=0.0, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, dof=SpringDOF.GLOBAL_X_DIRECTION, constantStiffness=False, stiffness=0.0, dampingCoefficient=0.0, stiffnessDampingFactor=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
         self.allSegments = allSegments
         self.nodeNumber = nodeNumber
         self.allNodes = allNodes
-        self.name = name
+        self.name = None
         self.dof = dof
         self.constantStiffness = constantStiffness
         self.stiffness = stiffness
@@ -85,17 +82,7 @@ class GlobalSpring(NodeReference,NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -167,7 +154,7 @@ class GlobalSpring(NodeReference,NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def dof(self) -> SpringDOF:

@@ -14,12 +14,11 @@ class ARWinchBlueprint(SegmentReferenceBlueprint,NamedObjectBlueprint):
     def __init__(self, name="ARWinch", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("line","sima/riflex/ARLine","Line",False))
         self.add_attribute(Attribute("segment","integer","Segment on given line",default=1))
         self.add_attribute(Attribute("allSegments","boolean","All segments",default=False))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(EnumAttribute("segmentEnd","sima/riflex/End","End of segment (and line) attached to winch (1 or 2)"))
         self.add_attribute(Attribute("relativeSegmentLength","number","Relative segment length where segment is attached to winch point",default=0.0))
         self.add_attribute(Attribute("x1","number","X-coordinate for static equilibrium position",default=0.0))

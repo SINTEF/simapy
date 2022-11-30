@@ -16,8 +16,6 @@ class FontDescription(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     font : str
          (default None)
@@ -27,12 +25,11 @@ class FontDescription(MOAO):
     color : SIMAColor
     """
 
-    def __init__(self , description="", _id=None, font=None, size=0, style=FontStyle.NORMAL, **kwargs):
+    def __init__(self , description="", size=0, style=FontStyle.NORMAL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.font = font
+        self.font = None
         self.size = size
         self.style = style
         self.color = None
@@ -55,17 +52,7 @@ class FontDescription(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -87,7 +74,7 @@ class FontDescription(MOAO):
     @font.setter
     def font(self, value: str):
         """Set font"""
-        self.__font = str(value)
+        self.__font = value
 
     @property
     def size(self) -> int:

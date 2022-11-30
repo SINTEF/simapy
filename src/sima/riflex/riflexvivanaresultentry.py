@@ -17,8 +17,6 @@ class RIFLEXVivanaResultEntry(ResultEntry):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -35,14 +33,13 @@ class RIFLEXVivanaResultEntry(ResultEntry):
     resFile : ResFile
     """
 
-    def __init__(self , description="", _id=None, name=None, resource=None, relative=False, changeNumber=0, **kwargs):
+    def __init__(self , description="", relative=False, changeNumber=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.properties = list()
-        self.resource = resource
+        self.resource = None
         self.relative = relative
         self.changeNumber = changeNumber
         self.results = list()
@@ -68,17 +65,7 @@ class RIFLEXVivanaResultEntry(ResultEntry):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -100,7 +87,7 @@ class RIFLEXVivanaResultEntry(ResultEntry):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def properties(self) -> List[Property]:
@@ -122,7 +109,7 @@ class RIFLEXVivanaResultEntry(ResultEntry):
     @resource.setter
     def resource(self, value: str):
         """Set resource"""
-        self.__resource = str(value)
+        self.__resource = value
 
     @property
     def relative(self) -> bool:

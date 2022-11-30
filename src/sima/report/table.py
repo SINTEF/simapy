@@ -19,8 +19,6 @@ class Table(ReportItem):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     object : MOAO
     caption : str
@@ -32,13 +30,12 @@ class Table(ReportItem):
          (default False)
     """
 
-    def __init__(self , description="", _id=None, caption=None, autoSplit=True, customisableTable=False, **kwargs):
+    def __init__(self , description="", autoSplit=True, customisableTable=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.object = None
-        self.caption = caption
+        self.caption = None
         self.autoSplit = autoSplit
         self.columns = list()
         self.customisableTable = customisableTable
@@ -61,17 +58,7 @@ class Table(ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -103,7 +90,7 @@ class Table(ReportItem):
     @caption.setter
     def caption(self, value: str):
         """Set caption"""
-        self.__caption = str(value)
+        self.__caption = value
 
     @property
     def autoSplit(self) -> bool:

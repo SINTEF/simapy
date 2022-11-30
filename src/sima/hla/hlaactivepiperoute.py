@@ -18,8 +18,6 @@ class HLAActivePipeRoute(HLAObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -30,14 +28,13 @@ class HLAActivePipeRoute(HLAObject):
     color : SIMAColor
     """
 
-    def __init__(self , description="", _id=None, name=None, fileName=None, mapOnTerrain=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.fileName = fileName
-        self.mapOnTerrain = mapOnTerrain
+        self.name = None
+        self.fileName = None
+        self.mapOnTerrain = None
         self.color = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -58,17 +55,7 @@ class HLAActivePipeRoute(HLAObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -90,7 +77,7 @@ class HLAActivePipeRoute(HLAObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def fileName(self) -> str:
@@ -100,7 +87,7 @@ class HLAActivePipeRoute(HLAObject):
     @fileName.setter
     def fileName(self, value: str):
         """Set fileName"""
-        self.__fileName = str(value)
+        self.__fileName = value
 
     @property
     def mapOnTerrain(self) -> str:
@@ -110,7 +97,7 @@ class HLAActivePipeRoute(HLAObject):
     @mapOnTerrain.setter
     def mapOnTerrain(self, value: str):
         """Set mapOnTerrain"""
-        self.__mapOnTerrain = str(value)
+        self.__mapOnTerrain = value
 
     @property
     def color(self) -> SIMAColor:

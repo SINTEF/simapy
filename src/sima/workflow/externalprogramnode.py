@@ -19,8 +19,6 @@ class ExternalProgramNode(RunNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -50,26 +48,25 @@ class ExternalProgramNode(RunNode):
          Environment variables to set when executing. Separate each variable with a semicolon and path segments with colon.(default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, executable=None, arguments=None, fileFormat=FileFormat.HDF5, failOnErrorCode=True, addInputFiles=False, environmentVariables=None, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFormat=FileFormat.HDF5, failOnErrorCode=True, addInputFiles=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
         self.w = w
         self.controlSignalInputSlots = list()
-        self.executable = executable
-        self.arguments = arguments
+        self.executable = None
+        self.arguments = None
         self.fileInputSlots = list()
         self.fileOutputSlots = list()
         self.fileFormat = fileFormat
         self.failOnErrorCode = failOnErrorCode
         self.addInputFiles = addInputFiles
         self.inputFileSlot = None
-        self.environmentVariables = environmentVariables
+        self.environmentVariables = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -89,17 +86,7 @@ class ExternalProgramNode(RunNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -121,7 +108,7 @@ class ExternalProgramNode(RunNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -183,7 +170,7 @@ class ExternalProgramNode(RunNode):
     @executable.setter
     def executable(self, value: str):
         """Set executable"""
-        self.__executable = str(value)
+        self.__executable = value
 
     @property
     def arguments(self) -> str:
@@ -193,7 +180,7 @@ class ExternalProgramNode(RunNode):
     @arguments.setter
     def arguments(self, value: str):
         """Set arguments"""
-        self.__arguments = str(value)
+        self.__arguments = value
 
     @property
     def fileInputSlots(self) -> List[FileInputSlot]:
@@ -267,4 +254,4 @@ class ExternalProgramNode(RunNode):
     @environmentVariables.setter
     def environmentVariables(self, value: str):
         """Set environmentVariables"""
-        self.__environmentVariables = str(value)
+        self.__environmentVariables = value

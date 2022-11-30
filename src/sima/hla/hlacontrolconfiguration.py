@@ -15,8 +15,6 @@ class HLAControlConfiguration(HLAObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -42,13 +40,12 @@ class HLAControlConfiguration(HLAObject):
          Control reference
     """
 
-    def __init__(self , description="", _id=None, name=None, bodyName=None, vMaxRot=1.0, vMaxX=2.0, vMaxY=1.0, aMaxRot=0.1, aMaxX=0.2, aMaxY=0.05, limRot=1.0, limXY=0.5, controlReference=HLAControlReference.POSITION, **kwargs):
+    def __init__(self , description="", vMaxRot=1.0, vMaxX=2.0, vMaxY=1.0, aMaxRot=0.1, aMaxX=0.2, aMaxY=0.05, limRot=1.0, limXY=0.5, controlReference=HLAControlReference.POSITION, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.bodyName = bodyName
+        self.name = None
+        self.bodyName = None
         self.vMaxRot = vMaxRot
         self.vMaxX = vMaxX
         self.vMaxY = vMaxY
@@ -77,17 +74,7 @@ class HLAControlConfiguration(HLAObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -109,7 +96,7 @@ class HLAControlConfiguration(HLAObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def bodyName(self) -> str:
@@ -119,7 +106,7 @@ class HLAControlConfiguration(HLAObject):
     @bodyName.setter
     def bodyName(self, value: str):
         """Set bodyName"""
-        self.__bodyName = str(value)
+        self.__bodyName = value
 
     @property
     def vMaxRot(self) -> float:

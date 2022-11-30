@@ -22,8 +22,6 @@ class IrregularResponseAnalysis(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     waveTimeSeriesFile : bool
          Wave time series read from file(default False)
@@ -48,10 +46,9 @@ class IrregularResponseAnalysis(MOAO):
     lfMotionTimeSeries : List[LFMotionTimeSeries]
     """
 
-    def __init__(self , description="", _id=None, waveTimeSeriesFile=False, simulationLength=11000.0, timeStep=0.1, irrWaveIndicator=IrregularWaveIndicator.NEW, irrMotionIndicator=IrregularMotionIndicator.STAT, lowFrequencyMotionIndicator=LowFrequencyMotionIndicator.NONE, simulationStartTime=0.0, motionScaling=False, **kwargs):
+    def __init__(self , description="", waveTimeSeriesFile=False, simulationLength=11000.0, timeStep=0.1, irrWaveIndicator=IrregularWaveIndicator.NEW, irrMotionIndicator=IrregularMotionIndicator.STAT, lowFrequencyMotionIndicator=LowFrequencyMotionIndicator.NONE, simulationStartTime=0.0, motionScaling=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.waveTimeSeriesFile = waveTimeSeriesFile
         self.simulationLength = simulationLength
@@ -85,17 +82,7 @@ class IrregularResponseAnalysis(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

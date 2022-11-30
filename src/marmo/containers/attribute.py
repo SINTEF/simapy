@@ -20,11 +20,11 @@ class Attribute(NamedEntity):
          (default None)
     """
 
-    def __init__(self , description="", name=None, value=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.name = name
-        self.value = value
+        self.name = None
+        self.value = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -44,7 +44,7 @@ class Attribute(NamedEntity):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def name(self) -> str:
@@ -54,7 +54,7 @@ class Attribute(NamedEntity):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def value(self) -> str:
@@ -64,4 +64,4 @@ class Attribute(NamedEntity):
     @value.setter
     def value(self, value: str):
         """Set value"""
-        self.__value = str(value)
+        self.__value = value

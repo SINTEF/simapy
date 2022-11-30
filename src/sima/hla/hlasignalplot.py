@@ -17,8 +17,6 @@ class HLASignalPlot(Named):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,18 +37,17 @@ class HLASignalPlot(Named):
          Maximum size of time window when displaying plot.(default 60.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, fixed=False, title=None, xLabel=None, yLabel=None, selectAll=False, timeWindow=60.0, **kwargs):
+    def __init__(self , description="", fixed=False, selectAll=False, timeWindow=60.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.figureTemplate = None
         self.traces = list()
         self.fixed = fixed
-        self.title = title
-        self.xLabel = xLabel
-        self.yLabel = yLabel
+        self.title = None
+        self.xLabel = None
+        self.yLabel = None
         self.selectAll = selectAll
         self.signals = list()
         self.timeWindow = timeWindow
@@ -73,17 +70,7 @@ class HLASignalPlot(Named):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -105,7 +92,7 @@ class HLASignalPlot(Named):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def figureTemplate(self) -> FigureTemplate:
@@ -147,7 +134,7 @@ class HLASignalPlot(Named):
     @title.setter
     def title(self, value: str):
         """Set title"""
-        self.__title = str(value)
+        self.__title = value
 
     @property
     def xLabel(self) -> str:
@@ -157,7 +144,7 @@ class HLASignalPlot(Named):
     @xLabel.setter
     def xLabel(self, value: str):
         """Set xLabel"""
-        self.__xLabel = str(value)
+        self.__xLabel = value
 
     @property
     def yLabel(self) -> str:
@@ -167,7 +154,7 @@ class HLASignalPlot(Named):
     @yLabel.setter
     def yLabel(self, value: str):
         """Set yLabel"""
-        self.__yLabel = str(value)
+        self.__yLabel = value
 
     @property
     def selectAll(self) -> bool:

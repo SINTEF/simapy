@@ -14,8 +14,6 @@ class LiftAndDragForceCharacteristicItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     velocityDirection : float
          Velocity direction relative to rudder x-axis(default 0.0)
@@ -27,10 +25,9 @@ class LiftAndDragForceCharacteristicItem(MOAO):
          Quadratic moment coefficient about rudder z-axis(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, velocityDirection=0.0, forceX=0.0, forceY=0.0, momentZ=0.0, **kwargs):
+    def __init__(self , description="", velocityDirection=0.0, forceX=0.0, forceY=0.0, momentZ=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.velocityDirection = velocityDirection
         self.forceX = forceX
@@ -55,17 +52,7 @@ class LiftAndDragForceCharacteristicItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

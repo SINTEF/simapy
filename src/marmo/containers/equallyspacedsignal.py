@@ -39,21 +39,21 @@ class EquallySpacedSignal(Signal):
          (default None)
     """
 
-    def __init__(self , description="", name=None, xstart=0.0, xdelta=1.0, unit=None, xunit=None, xname=None, xlabel=None, xdescription=None, label=None, legend=None, **kwargs):
+    def __init__(self , description="", xstart=0.0, xdelta=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.name = name
+        self.name = None
         self.attributes = list()
         self.value = ndarray(1)
         self.xstart = xstart
         self.xdelta = xdelta
-        self.unit = unit
-        self.xunit = xunit
-        self.xname = xname
-        self.xlabel = xlabel
-        self.xdescription = xdescription
-        self.label = label
-        self.legend = legend
+        self.unit = None
+        self.xunit = None
+        self.xname = None
+        self.xlabel = None
+        self.xdescription = None
+        self.label = None
+        self.legend = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -73,7 +73,7 @@ class EquallySpacedSignal(Signal):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def name(self) -> str:
@@ -83,7 +83,7 @@ class EquallySpacedSignal(Signal):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def attributes(self) -> List[Attribute]:
@@ -135,7 +135,7 @@ class EquallySpacedSignal(Signal):
     @unit.setter
     def unit(self, value: str):
         """Set unit"""
-        self.__unit = str(value)
+        self.__unit = value
 
     @property
     def xunit(self) -> str:
@@ -145,7 +145,7 @@ class EquallySpacedSignal(Signal):
     @xunit.setter
     def xunit(self, value: str):
         """Set xunit"""
-        self.__xunit = str(value)
+        self.__xunit = value
 
     @property
     def xname(self) -> str:
@@ -155,7 +155,7 @@ class EquallySpacedSignal(Signal):
     @xname.setter
     def xname(self, value: str):
         """Set xname"""
-        self.__xname = str(value)
+        self.__xname = value
 
     @property
     def xlabel(self) -> str:
@@ -165,7 +165,7 @@ class EquallySpacedSignal(Signal):
     @xlabel.setter
     def xlabel(self, value: str):
         """Set xlabel"""
-        self.__xlabel = str(value)
+        self.__xlabel = value
 
     @property
     def xdescription(self) -> str:
@@ -175,7 +175,7 @@ class EquallySpacedSignal(Signal):
     @xdescription.setter
     def xdescription(self, value: str):
         """Set xdescription"""
-        self.__xdescription = str(value)
+        self.__xdescription = value
 
     @property
     def label(self) -> str:
@@ -185,7 +185,7 @@ class EquallySpacedSignal(Signal):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def legend(self) -> str:
@@ -195,4 +195,4 @@ class EquallySpacedSignal(Signal):
     @legend.setter
     def legend(self, value: str):
         """Set legend"""
-        self.__legend = str(value)
+        self.__legend = value

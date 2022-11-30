@@ -13,9 +13,8 @@ class SegmentedLineTypeBlueprint(LineTypeBlueprint):
     def __init__(self, name="SegmentedLineType", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("segments","sima/simo/LineSegment","",True,Dimension("*")))
         self.add_attribute(Attribute("vmin","number","Min. relative z-pos. for which the line characteristics will be calculated.",default=0.0))
         self.add_attribute(Attribute("vmax","number","Max. relative z-pos. for which the line characteristics will be calculated.",default=0.0))

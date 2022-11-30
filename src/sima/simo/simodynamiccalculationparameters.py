@@ -29,8 +29,6 @@ class SIMODynamicCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     externalControlSetup : ExternalControlSetup
     multiEnvironmentSetup : MultiEnvironmentSetup
@@ -164,10 +162,9 @@ class SIMODynamicCalculationParameters(MOAO):
          Length of generated time series(default 16384.0)
     """
 
-    def __init__(self , description="", _id=None, timeIncrement=0.5, waveMethod=WaveMethod.FFT_ONLY, integrationMethod=IntegrationMethod.RUNGE_KUTTA, randomSeedWaves=1, randomSeedWind=1, randomGenerator=RandomGenerator.LEGACY, headingCorrection=True, maxHeadingChange=45.0, largePatchLength=2048.0, smallPatchLength=256.0, cutFactorWaves=100, pointsLargePatch=256, pointsSmallPatch=128, writeVisFile=False, waveTimeSeriesFile=False, hydroSystemPeriod=0.0, hydroFilterMethod=HydroSystemFilterMethod.BLOCKED, nWindSeaComponents=2000, nSwellSeaComponents=400, windTimeSeriesMethod=WindTimeSeriesMethod.SAME, windVelocityDimension=WindVelocityDimension.TWO, windForceMethod=WindForceMethod.RELATIVE, windMethod=WindMethod.FFT, quadraticCurrentForceMethod=CurrentForceMethod.RELATIVE, linearCurrentForceMethod=CurrentForceMethod.RELATIVE, exportResultsToWasim=False, storeWindForces=False, storeSumGeneralLineForces=False, storeTotalForces=False, storeRetardationForces=False, storeHydrostaticStiffnessForces=False, storeLinearDamping=False, storeQuadraticDamping=False, storeDistributedHydrodynamicForces=False, storeFixedBodyAndSlenderElementStripResults=False, storeWaveDriftDamping=False, storeLinearCurrentDrag=False, storeQuadraticCurrentDrag=False, storeSmallBodyHydrodynamicForces=False, storeResultantPositioningElementForces=False, storePositioningElementForceComponents=False, storeTotalPositioningForces=False, storeThrusterForces=False, storeSumThrusterForces=False, storeDynamicPositioningEstimators=False, storeSumSpecifiedForces=False, storeSumExternalForces=False, storeSumCouplingForces=False, storeResultantCouplingElementForces=False, storeGlobalCouplingForceComponents=False, storeLocalCouplingForceComponents=False, storeGlobalLowFrequencyPosition=False, storeGlobalTotalPosition=True, storeGlobalAcceleration=False, storeLocalAccelerations=False, storeLocalVelocity=False, storeCatenarySystemForces=False, storeCatenarySystemNodes=False, timeStep=0.5, simulationLength=11000.0, simulationStartTime=0.0, rampDuration=2.5, requestedTimeSeriesLength=16384.0, **kwargs):
+    def __init__(self , description="", timeIncrement=0.5, waveMethod=WaveMethod.FFT_ONLY, integrationMethod=IntegrationMethod.RUNGE_KUTTA, randomSeedWaves=1, randomSeedWind=1, randomGenerator=RandomGenerator.LEGACY, headingCorrection=True, maxHeadingChange=45.0, largePatchLength=2048.0, smallPatchLength=256.0, cutFactorWaves=100, pointsLargePatch=256, pointsSmallPatch=128, writeVisFile=False, waveTimeSeriesFile=False, hydroSystemPeriod=0.0, hydroFilterMethod=HydroSystemFilterMethod.BLOCKED, nWindSeaComponents=2000, nSwellSeaComponents=400, windTimeSeriesMethod=WindTimeSeriesMethod.SAME, windVelocityDimension=WindVelocityDimension.TWO, windForceMethod=WindForceMethod.RELATIVE, windMethod=WindMethod.FFT, quadraticCurrentForceMethod=CurrentForceMethod.RELATIVE, linearCurrentForceMethod=CurrentForceMethod.RELATIVE, exportResultsToWasim=False, storeWindForces=False, storeSumGeneralLineForces=False, storeTotalForces=False, storeRetardationForces=False, storeHydrostaticStiffnessForces=False, storeLinearDamping=False, storeQuadraticDamping=False, storeDistributedHydrodynamicForces=False, storeFixedBodyAndSlenderElementStripResults=False, storeWaveDriftDamping=False, storeLinearCurrentDrag=False, storeQuadraticCurrentDrag=False, storeSmallBodyHydrodynamicForces=False, storeResultantPositioningElementForces=False, storePositioningElementForceComponents=False, storeTotalPositioningForces=False, storeThrusterForces=False, storeSumThrusterForces=False, storeDynamicPositioningEstimators=False, storeSumSpecifiedForces=False, storeSumExternalForces=False, storeSumCouplingForces=False, storeResultantCouplingElementForces=False, storeGlobalCouplingForceComponents=False, storeLocalCouplingForceComponents=False, storeGlobalLowFrequencyPosition=False, storeGlobalTotalPosition=True, storeGlobalAcceleration=False, storeLocalAccelerations=False, storeLocalVelocity=False, storeCatenarySystemForces=False, storeCatenarySystemNodes=False, timeStep=0.5, simulationLength=11000.0, simulationStartTime=0.0, rampDuration=2.5, requestedTimeSeriesLength=16384.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.externalControlSetup = None
         self.multiEnvironmentSetup = None
@@ -257,17 +254,7 @@ class SIMODynamicCalculationParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

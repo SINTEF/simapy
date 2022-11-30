@@ -14,7 +14,6 @@ class WamitWaveDriftForceBlueprint(WaveDriftForceBlueprint,NamedBlueprint):
     def __init__(self, name="WamitWaveDriftForce", package_path="sima/wamit", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("directions","number","",Dimension("*"),default=0.0))
         self.add_attribute(Attribute("frequencies","number","",Dimension("*"),default=0.0))
@@ -25,4 +24,4 @@ class WamitWaveDriftForceBlueprint(WaveDriftForceBlueprint,NamedBlueprint):
         self.add_attribute(BlueprintAttribute("mx","sima/hydro/DirectionDependentValues","",True))
         self.add_attribute(BlueprintAttribute("my","sima/hydro/DirectionDependentValues","",True))
         self.add_attribute(BlueprintAttribute("mz","sima/hydro/DirectionDependentValues","",True))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))

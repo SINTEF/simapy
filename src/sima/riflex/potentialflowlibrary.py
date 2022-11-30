@@ -15,20 +15,17 @@ class PotentialFlowLibrary(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     file : str
          Potential flow library file(default None)
     elements : List[ElementReference]
     """
 
-    def __init__(self , description="", _id=None, file=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.file = file
+        self.file = None
         self.elements = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -49,17 +46,7 @@ class PotentialFlowLibrary(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class PotentialFlowLibrary(MOAO):
     @file.setter
     def file(self, value: str):
         """Set file"""
-        self.__file = str(value)
+        self.__file = value
 
     @property
     def elements(self) -> List[ElementReference]:

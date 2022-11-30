@@ -20,8 +20,6 @@ class VariableField(ParameterField):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
          (default None)
@@ -45,23 +43,22 @@ class VariableField(ParameterField):
          Give a valid range for a number: Use <,> for excluding and [] for including.\nExampless: \n- [0,4] Number from and including 0 to and including 4\n- <0,4> From and to, excluding \n- <,0> All negative numbers excluding 0\n- [0,> All positive numbers, including 0\n(default None)
     """
 
-    def __init__(self , description="", _id=None, label=None, tooltip=None, fileType=FileType.INPUT, directory=False, fileExtensions=None, _type=FieldType.TEXT, width=10, expandHorizontally=False, unit=None, constraints=None, **kwargs):
+    def __init__(self , description="", fileType=FileType.INPUT, directory=False, _type=FieldType.TEXT, width=10, expandHorizontally=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.label = label
-        self.tooltip = tooltip
+        self.label = None
+        self.tooltip = None
         self.fileType = fileType
         self.directory = directory
-        self.fileExtensions = fileExtensions
+        self.fileExtensions = None
         self.options = ndarray(1)
         self._type = _type
         self.width = width
         self.expandHorizontally = expandHorizontally
         self.variable = None
-        self.unit = unit
-        self.constraints = constraints
+        self.unit = None
+        self.constraints = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -81,17 +78,7 @@ class VariableField(ParameterField):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -113,7 +100,7 @@ class VariableField(ParameterField):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def tooltip(self) -> str:
@@ -123,7 +110,7 @@ class VariableField(ParameterField):
     @tooltip.setter
     def tooltip(self, value: str):
         """Set tooltip"""
-        self.__tooltip = str(value)
+        self.__tooltip = value
 
     @property
     def fileType(self) -> FileType:
@@ -153,7 +140,7 @@ class VariableField(ParameterField):
     @fileExtensions.setter
     def fileExtensions(self, value: str):
         """Set fileExtensions"""
-        self.__fileExtensions = str(value)
+        self.__fileExtensions = value
 
     @property
     def options(self) -> ndarray:
@@ -213,7 +200,7 @@ class VariableField(ParameterField):
     @unit.setter
     def unit(self, value: str):
         """Set unit"""
-        self.__unit = str(value)
+        self.__unit = value
 
     @property
     def constraints(self) -> str:
@@ -229,4 +216,4 @@ Exampless:
     @constraints.setter
     def constraints(self, value: str):
         """Set constraints"""
-        self.__constraints = str(value)
+        self.__constraints = value

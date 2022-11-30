@@ -15,8 +15,6 @@ class DunkirkSoilType(SoilType):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -36,12 +34,11 @@ class DunkirkSoilType(SoilType):
     baseMoment : DunkirkSoilCoefficients
     """
 
-    def __init__(self , description="", _id=None, name=None, requiredResolution=50, pvDamping=0.0, mtDamping=0.0, baseShearLoadDamping=0.0, baseMomentDamping=0.0, **kwargs):
+    def __init__(self , description="", requiredResolution=50, pvDamping=0.0, mtDamping=0.0, baseShearLoadDamping=0.0, baseMomentDamping=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.requiredResolution = requiredResolution
         self.pvDamping = pvDamping
         self.mtDamping = mtDamping
@@ -70,17 +67,7 @@ class DunkirkSoilType(SoilType):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -102,7 +89,7 @@ class DunkirkSoilType(SoilType):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def requiredResolution(self) -> int:

@@ -19,10 +19,10 @@ class SignalItem(NamedEntity):
     attributes : List[Attribute]
     """
 
-    def __init__(self , description="", name=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.name = name
+        self.name = None
         self.attributes = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -43,7 +43,7 @@ class SignalItem(NamedEntity):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def name(self) -> str:
@@ -53,7 +53,7 @@ class SignalItem(NamedEntity):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def attributes(self) -> List[Attribute]:

@@ -19,18 +19,15 @@ class LineMeasurementItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : LineForceProvider
     lineEnd : LineEnd
          Line end to read measurements from
     """
 
-    def __init__(self , description="", _id=None, lineEnd=LineEnd.END1, **kwargs):
+    def __init__(self , description="", lineEnd=LineEnd.END1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.lineEnd = lineEnd
@@ -53,17 +50,7 @@ class LineMeasurementItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

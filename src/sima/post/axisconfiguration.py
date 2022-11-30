@@ -15,8 +15,6 @@ class AxisConfiguration(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     font : FontDescription
     log : bool
@@ -37,10 +35,9 @@ class AxisConfiguration(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, log=False, autoFormat=True, format='0.####E0', showGrid=True, dashGridLine=False, autoScale=True, minimum=0.0, maximum=0.0, **kwargs):
+    def __init__(self , description="", log=False, autoFormat=True, format='0.####E0', showGrid=True, dashGridLine=False, autoScale=True, minimum=0.0, maximum=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.font = None
         self.log = log
@@ -70,17 +67,7 @@ class AxisConfiguration(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -132,7 +119,7 @@ class AxisConfiguration(MOAO):
     @format.setter
     def format(self, value: str):
         """Set format"""
-        self.__format = str(value)
+        self.__format = value
 
     @property
     def showGrid(self) -> bool:

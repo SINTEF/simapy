@@ -27,8 +27,6 @@ class WorkflowSetNode(WorkflowReferenceNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -73,12 +71,11 @@ class WorkflowSetNode(WorkflowReferenceNode):
     workflowInputVariationSlots : List[WorkflowInputSlot]
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, folderName=None, writeRunStatus=False, runStatusFolder=None, input=WorkflowSetInput.MANUAL, filename=None, iteration=Iteration.COLUMN, distribute=False, grouping=1, iterateOverInput=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, writeRunStatus=False, input=WorkflowSetInput.MANUAL, iteration=Iteration.COLUMN, distribute=False, grouping=1, iterateOverInput=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
@@ -91,13 +88,13 @@ class WorkflowSetNode(WorkflowReferenceNode):
         self.workflowInputSlots = list()
         self.inputWorkflow = inputWorkflow
         self.setFolderName = setFolderName
-        self.folderName = folderName
+        self.folderName = None
         self.variableInputSets = list()
         self.variableInputSetSlots = list()
         self.writeRunStatus = writeRunStatus
-        self.runStatusFolder = runStatusFolder
+        self.runStatusFolder = None
         self.input = input
-        self.filename = filename
+        self.filename = None
         self.iteration = iteration
         self.distribute = distribute
         self.grouping = grouping
@@ -122,17 +119,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -154,7 +141,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -292,7 +279,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     @folderName.setter
     def folderName(self, value: str):
         """Set folderName"""
-        self.__folderName = str(value)
+        self.__folderName = value
 
     @property
     def variableInputSets(self) -> List[VariableInputSet]:
@@ -336,7 +323,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     @runStatusFolder.setter
     def runStatusFolder(self, value: str):
         """Set runStatusFolder"""
-        self.__runStatusFolder = str(value)
+        self.__runStatusFolder = value
 
     @property
     def input(self) -> WorkflowSetInput:
@@ -362,7 +349,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     @filename.setter
     def filename(self, value: str):
         """Set filename"""
-        self.__filename = str(value)
+        self.__filename = value
 
     @property
     def iteration(self) -> Iteration:

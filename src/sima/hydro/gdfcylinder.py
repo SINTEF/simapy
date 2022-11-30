@@ -14,8 +14,6 @@ class GDFCylinder(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     dimensionalLength : float
          Dimensional length(default 1.0)
@@ -35,10 +33,9 @@ class GDFCylinder(MOAO):
          Exponent in depth distribution(default 2.0)
     """
 
-    def __init__(self , description="", _id=None, dimensionalLength=1.0, centerX=0.0, centerY=0.0, radius=40.0, numberOfRadialPanels=20, depth=20.0, numberOfVerticalPanels=10, exponent=2.0, **kwargs):
+    def __init__(self , description="", dimensionalLength=1.0, centerX=0.0, centerY=0.0, radius=40.0, numberOfRadialPanels=20, depth=20.0, numberOfVerticalPanels=10, exponent=2.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.dimensionalLength = dimensionalLength
         self.centerX = centerX
@@ -67,17 +64,7 @@ class GDFCylinder(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

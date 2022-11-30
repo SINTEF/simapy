@@ -43,8 +43,6 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     irregularTimeSeries : IrregularTimeSeriesParameters
     irregularResponseAnalysis : IrregularResponseAnalysis
@@ -85,10 +83,9 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     dynamicLoads : DynamicLoads
     """
 
-    def __init__(self , description="", _id=None, volumeForcesScaling=1.0, specifiedForcesScaling=1.0, currentVelocitiesScaling=1.0, changeStaticLoads=False, **kwargs):
+    def __init__(self , description="", volumeForcesScaling=1.0, specifiedForcesScaling=1.0, currentVelocitiesScaling=1.0, changeStaticLoads=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.irregularTimeSeries = None
         self.irregularResponseAnalysis = None
@@ -142,17 +139,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

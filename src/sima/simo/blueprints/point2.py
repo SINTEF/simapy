@@ -13,7 +13,6 @@ class Point2Blueprint(MOAOBlueprint):
     def __init__(self, name="Point2", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("x","number","X position",default=0.0))
         self.add_attribute(Attribute("y","number","Y position",default=0.0))

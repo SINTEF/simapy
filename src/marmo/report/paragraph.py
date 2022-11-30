@@ -19,10 +19,10 @@ class Paragraph(ReportItem):
          (default False)
     """
 
-    def __init__(self , description="", text=None, markup=False, **kwargs):
+    def __init__(self , description="", markup=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.text = text
+        self.text = None
         self.markup = markup
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -43,7 +43,7 @@ class Paragraph(ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def text(self) -> str:
@@ -53,7 +53,7 @@ class Paragraph(ReportItem):
     @text.setter
     def text(self, value: str):
         """Set text"""
-        self.__text = str(value)
+        self.__text = value
 
     @property
     def markup(self) -> bool:

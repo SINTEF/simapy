@@ -15,8 +15,6 @@ class DOFControlConfiguration(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     dof : ControlDOF
          Degree Of Freedom
@@ -44,10 +42,9 @@ class DOFControlConfiguration(MOAO):
          Turn off proportional control and use damping only(default False)
     """
 
-    def __init__(self , description="", _id=None, dof=ControlDOF.NONE, mass=0.0, drag=0.0, stiffness=0.0, naturalPeriod=100.0, dampingFactor=0.7, integrationTime=0.0, cutOffPeriod=0.0, filterDampingFactor=0.0, integralLF=0.0, proportionalHF=0.1, dampingOnly=False, **kwargs):
+    def __init__(self , description="", dof=ControlDOF.NONE, mass=0.0, drag=0.0, stiffness=0.0, naturalPeriod=100.0, dampingFactor=0.7, integrationTime=0.0, cutOffPeriod=0.0, filterDampingFactor=0.0, integralLF=0.0, proportionalHF=0.1, dampingOnly=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.dof = dof
         self.mass = mass
@@ -80,17 +77,7 @@ class DOFControlConfiguration(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

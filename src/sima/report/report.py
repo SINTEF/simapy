@@ -15,8 +15,6 @@ class Report(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -29,16 +27,15 @@ class Report(NamedObject):
          Optional path to the generated report file(default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, title=None, subtitle=None, filePath=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.items = list()
-        self.title = title
-        self.subtitle = subtitle
-        self.filePath = filePath
+        self.title = None
+        self.subtitle = None
+        self.filePath = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -58,17 +55,7 @@ class Report(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -90,7 +77,7 @@ class Report(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def items(self) -> List[ReportItem]:
@@ -112,7 +99,7 @@ class Report(NamedObject):
     @title.setter
     def title(self, value: str):
         """Set title"""
-        self.__title = str(value)
+        self.__title = value
 
     @property
     def subtitle(self) -> str:
@@ -122,7 +109,7 @@ class Report(NamedObject):
     @subtitle.setter
     def subtitle(self, value: str):
         """Set subtitle"""
-        self.__subtitle = str(value)
+        self.__subtitle = value
 
     @property
     def filePath(self) -> str:
@@ -132,4 +119,4 @@ class Report(NamedObject):
     @filePath.setter
     def filePath(self, value: str):
         """Set filePath"""
-        self.__filePath = str(value)
+        self.__filePath = value

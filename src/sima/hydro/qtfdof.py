@@ -14,8 +14,6 @@ class QTFDof(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     nValues : int
          (default 0)
@@ -23,10 +21,9 @@ class QTFDof(MOAO):
     im : ndarray
     """
 
-    def __init__(self , description="", _id=None, nValues=0, **kwargs):
+    def __init__(self , description="", nValues=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.nValues = nValues
         self.re = ndarray(1)
@@ -50,17 +47,7 @@ class QTFDof(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

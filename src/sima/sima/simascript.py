@@ -16,8 +16,6 @@ class SIMAScript(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -27,13 +25,12 @@ class SIMAScript(NamedObject):
     triggers : List[SIMAScriptTrigger]
     """
 
-    def __init__(self , description="", _id=None, name=None, script=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.script = script
+        self.name = None
+        self.script = None
         self.contextItems = list()
         self.triggers = list()
         for key, value in kwargs.items():
@@ -55,17 +52,7 @@ class SIMAScript(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -87,7 +74,7 @@ class SIMAScript(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def script(self) -> str:
@@ -97,7 +84,7 @@ class SIMAScript(NamedObject):
     @script.setter
     def script(self, value: str):
         """Set script"""
-        self.__script = str(value)
+        self.__script = value
 
     @property
     def contextItems(self) -> List[SIMAScriptContext]:

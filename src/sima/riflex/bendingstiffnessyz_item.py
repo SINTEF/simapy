@@ -14,8 +14,6 @@ class BendingStiffnessYZ_Item(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     curvatureValue : float
          Curvature value for which bending moment is specified(default 0.0)
@@ -25,10 +23,9 @@ class BendingStiffnessYZ_Item(MOAO):
          Bending moment around z-axis corresponding to curvature values.(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, curvatureValue=0.0, bendingMomentY=0.0, bendingMomentZ=0.0, **kwargs):
+    def __init__(self , description="", curvatureValue=0.0, bendingMomentY=0.0, bendingMomentZ=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.curvatureValue = curvatureValue
         self.bendingMomentY = bendingMomentY
@@ -52,17 +49,7 @@ class BendingStiffnessYZ_Item(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

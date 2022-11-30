@@ -14,8 +14,6 @@ class FluctuatingWindVelocityProfile(WindVelocityProfile):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     verticalCoordinate : float
          Vertical coordinate of profile level(default 0.0)
@@ -29,10 +27,9 @@ class FluctuatingWindVelocityProfile(WindVelocityProfile):
          Wind speed scaling factor for the mean wind speed(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, verticalCoordinate=0.0, longitudinalVelocityFactor=0.0, lateralVelocityFactor=0.0, verticalVelocityFactor=0.0, meanSpeedFactor=0.0, **kwargs):
+    def __init__(self , description="", verticalCoordinate=0.0, longitudinalVelocityFactor=0.0, lateralVelocityFactor=0.0, verticalVelocityFactor=0.0, meanSpeedFactor=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.verticalCoordinate = verticalCoordinate
         self.longitudinalVelocityFactor = longitudinalVelocityFactor
@@ -58,17 +55,7 @@ class FluctuatingWindVelocityProfile(WindVelocityProfile):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

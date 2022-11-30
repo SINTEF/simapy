@@ -14,8 +14,6 @@ class VersioningPreference(SIMAPreference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     userHome : str
          Override user home folder(default None)
@@ -23,13 +21,12 @@ class VersioningPreference(SIMAPreference):
          Override ssh folder(default None)
     """
 
-    def __init__(self , description="", _id=None, userHome=None, sshFolder=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.userHome = userHome
-        self.sshFolder = sshFolder
+        self.userHome = None
+        self.sshFolder = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -49,17 +46,7 @@ class VersioningPreference(SIMAPreference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class VersioningPreference(SIMAPreference):
     @userHome.setter
     def userHome(self, value: str):
         """Set userHome"""
-        self.__userHome = str(value)
+        self.__userHome = value
 
     @property
     def sshFolder(self) -> str:
@@ -91,4 +78,4 @@ class VersioningPreference(SIMAPreference):
     @sshFolder.setter
     def sshFolder(self, value: str):
         """Set sshFolder"""
-        self.__sshFolder = str(value)
+        self.__sshFolder = value

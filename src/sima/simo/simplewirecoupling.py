@@ -20,8 +20,6 @@ class SimpleWireCoupling(SimpleCoupling):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -56,12 +54,11 @@ class SimpleWireCoupling(SimpleCoupling):
          Deactivation time for constant tension control. If value is less then or equal to activation time, controller will remain active throughout simulation(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, ea=0.0, length=0.0, damping=0.0, flexibility=0.0, constantTensionControl=False, tensionLevel=0.0, tensionDeadband=0.0, maxSpeed=0.0, activationTime=0.0, deactivationTime=0.0, **kwargs):
+    def __init__(self , description="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, ea=0.0, length=0.0, damping=0.0, flexibility=0.0, constantTensionControl=False, tensionLevel=0.0, tensionDeadband=0.0, maxSpeed=0.0, activationTime=0.0, deactivationTime=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.endPoint1 = None
         self.endPoint2 = None
         self.failureMode = failureMode
@@ -97,17 +94,7 @@ class SimpleWireCoupling(SimpleCoupling):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -129,7 +116,7 @@ class SimpleWireCoupling(SimpleCoupling):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def endPoint1(self) -> SIMOBodyPoint:

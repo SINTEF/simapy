@@ -20,8 +20,6 @@ class HydrodynamicalCoupling(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -31,12 +29,11 @@ class HydrodynamicalCoupling(NamedObject):
     radiationData : CoupledRadiationDataGroup
     """
 
-    def __init__(self , description="", _id=None, name=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.model = None
         self.body1 = None
         self.body2 = None
@@ -60,17 +57,7 @@ class HydrodynamicalCoupling(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -92,7 +79,7 @@ class HydrodynamicalCoupling(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def model(self) -> WamitModel:

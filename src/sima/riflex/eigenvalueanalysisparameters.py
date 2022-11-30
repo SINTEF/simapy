@@ -15,8 +15,6 @@ class EigenvalueAnalysisParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     numberOfEigenvalues : int
          Number of eigenvalues to be calculated(default 10)
@@ -46,10 +44,9 @@ class EigenvalueAnalysisParameters(MOAO):
          Scaling of eigenvectors in visual results(default 10.0)
     """
 
-    def __init__(self , description="", _id=None, numberOfEigenvalues=10, numberOfEigenvectors=10, maxRelativeError=0.0, limitValue=0.0, orthogonalityLimit=0.0, startVector=EigenvalueStartVector.PSEUDORANDOM_STARTVECTOR, maxNumberOfIterations=5, frequencyControlParameter=0, shiftValue=0.0, numberOfLanczoSteps=0, premultiplyStartVector=True, storeVisualisationResponses=True, visualisationScaling=10.0, **kwargs):
+    def __init__(self , description="", numberOfEigenvalues=10, numberOfEigenvectors=10, maxRelativeError=0.0, limitValue=0.0, orthogonalityLimit=0.0, startVector=EigenvalueStartVector.PSEUDORANDOM_STARTVECTOR, maxNumberOfIterations=5, frequencyControlParameter=0, shiftValue=0.0, numberOfLanczoSteps=0, premultiplyStartVector=True, storeVisualisationResponses=True, visualisationScaling=10.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.numberOfEigenvalues = numberOfEigenvalues
         self.numberOfEigenvectors = numberOfEigenvectors
@@ -83,17 +80,7 @@ class EigenvalueAnalysisParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

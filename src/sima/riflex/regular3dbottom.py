@@ -14,8 +14,6 @@ class Regular3DBottom(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     fileName : str
          File with seabed geometry data(default None)
@@ -29,12 +27,11 @@ class Regular3DBottom(MOAO):
          Angle between the X-axis of the seabed file reference system and the X-axis of the global reference system(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, fileName=None, x=0.0, y=0.0, zos=0.0, angos=0.0, **kwargs):
+    def __init__(self , description="", x=0.0, y=0.0, zos=0.0, angos=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.fileName = fileName
+        self.fileName = None
         self.x = x
         self.y = y
         self.zos = zos
@@ -58,17 +55,7 @@ class Regular3DBottom(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -90,7 +77,7 @@ class Regular3DBottom(MOAO):
     @fileName.setter
     def fileName(self, value: str):
         """Set fileName"""
-        self.__fileName = str(value)
+        self.__fileName = value
 
     @property
     def x(self) -> float:

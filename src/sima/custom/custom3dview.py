@@ -18,8 +18,6 @@ class Custom3DView(CustomComponent):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     model : MOAO
     result : str
@@ -28,14 +26,13 @@ class Custom3DView(CustomComponent):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, result=None, _type=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.model = None
-        self.result = result
-        self._type = _type
+        self.result = None
+        self._type = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -55,17 +52,7 @@ class Custom3DView(CustomComponent):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -97,7 +84,7 @@ class Custom3DView(CustomComponent):
     @result.setter
     def result(self, value: str):
         """Set result"""
-        self.__result = str(value)
+        self.__result = value
 
     @property
     def _type(self) -> str:
@@ -107,4 +94,4 @@ class Custom3DView(CustomComponent):
     @_type.setter
     def _type(self, value: str):
         """Set _type"""
-        self.___type = str(value)
+        self.___type = value

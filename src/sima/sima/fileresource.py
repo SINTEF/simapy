@@ -15,8 +15,6 @@ class FileResource(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[Property]
     resource : str
@@ -25,13 +23,12 @@ class FileResource(MOAO):
          (default False)
     """
 
-    def __init__(self , description="", _id=None, resource=None, relative=False, **kwargs):
+    def __init__(self , description="", relative=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.properties = list()
-        self.resource = resource
+        self.resource = None
         self.relative = relative
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -52,17 +49,7 @@ class FileResource(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -96,7 +83,7 @@ class FileResource(MOAO):
     @resource.setter
     def resource(self, value: str):
         """Set resource"""
-        self.__resource = str(value)
+        self.__resource = value
 
     @property
     def relative(self) -> bool:

@@ -16,8 +16,6 @@ class IrregularTimeSeriesParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     randomSeedWaves : int
          Starting parameter of random number generator(default 1)
@@ -47,10 +45,9 @@ class IrregularTimeSeriesParameters(MOAO):
          Ratio between length of small patch and length of large patch.(default 0)
     """
 
-    def __init__(self , description="", _id=None, randomSeedWaves=1, useStochasticAmplitudes=False, waveLength=16384.0, timeIncrement=0.5, waveComputationMethod=WaveComputationMethod.FFT, waveAmplitudeComputation=WaveAmplitudeComputation.DETERMINISTIC, numWindWaveFreqComponents=0, numSwellFreqComponents=0, waveCutFactor=0.0, largePatchPoints=0, largePatchLength=0.0, smallPatchPoints=0, patchRatio=0, **kwargs):
+    def __init__(self , description="", randomSeedWaves=1, useStochasticAmplitudes=False, waveLength=16384.0, timeIncrement=0.5, waveComputationMethod=WaveComputationMethod.FFT, waveAmplitudeComputation=WaveAmplitudeComputation.DETERMINISTIC, numWindWaveFreqComponents=0, numSwellFreqComponents=0, waveCutFactor=0.0, largePatchPoints=0, largePatchLength=0.0, smallPatchPoints=0, patchRatio=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.randomSeedWaves = randomSeedWaves
         self.useStochasticAmplitudes = useStochasticAmplitudes
@@ -84,17 +81,7 @@ class IrregularTimeSeriesParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

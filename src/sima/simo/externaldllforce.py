@@ -20,8 +20,6 @@ class ExternalDLLForce(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -41,12 +39,11 @@ class ExternalDLLForce(NamedObject):
     libraryPaths : LibraryPaths
     """
 
-    def __init__(self , description="", _id=None, name=None, referenceFrame=ReferenceFrameType.LOCAL, nStorageParameters=0, nCurrentPoints=1, dllFile=None, **kwargs):
+    def __init__(self , description="", referenceFrame=ReferenceFrameType.LOCAL, nStorageParameters=0, nCurrentPoints=1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.attachmentPoint = None
         self.referenceFrame = referenceFrame
         self.nStorageParameters = nStorageParameters
@@ -54,7 +51,7 @@ class ExternalDLLForce(NamedObject):
         self.doubleParameters = list()
         self.stringParameters = list()
         self.nCurrentPoints = nCurrentPoints
-        self.dllFile = dllFile
+        self.dllFile = None
         self.libraryPaths = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -75,17 +72,7 @@ class ExternalDLLForce(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -107,7 +94,7 @@ class ExternalDLLForce(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def attachmentPoint(self) -> Point3:
@@ -193,7 +180,7 @@ class ExternalDLLForce(NamedObject):
     @dllFile.setter
     def dllFile(self, value: str):
         """Set dllFile"""
-        self.__dllFile = str(value)
+        self.__dllFile = value
 
     @property
     def libraryPaths(self) -> LibraryPaths:

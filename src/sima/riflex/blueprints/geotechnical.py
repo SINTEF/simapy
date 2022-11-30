@@ -13,9 +13,8 @@ class GeoTechnicalBlueprint(NamedObjectBlueprint):
     def __init__(self, name="GeoTechnical", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("soilItems","sima/riflex/SoilItem","",True,Dimension("*")))
         self.add_attribute(Attribute("scourDepth","number","Length from mudline to actual contact point between mud and coductor",default=0.0))
         self.add_attribute(Attribute("diameter","number","Used for calculation of geotechnical spring properties",default=0.0))

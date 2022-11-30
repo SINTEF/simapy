@@ -13,7 +13,6 @@ class NonLinearForceModelBlueprint(MOAOBlueprint):
     def __init__(self, name="NonLinearForceModel", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("internalSlugFlow","boolean","Indicator for modelling forces from internal slug flow",default=False))
         self.add_attribute(EnumAttribute("hydrodynamicForce","sima/riflex/HydrodynamicForceIndicator","Indicator for hydrodynamic force model"))

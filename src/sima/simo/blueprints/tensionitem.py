@@ -13,7 +13,6 @@ class TensionItemBlueprint(MOAOBlueprint):
     def __init__(self, name="TensionItem", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("tension","number","",default=0.0))
         self.add_attribute(Attribute("angle","number","",default=0.0))

@@ -14,8 +14,6 @@ class Range(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     min : float
          (default 0.0)
@@ -25,10 +23,9 @@ class Range(MOAO):
          (default False)
     """
 
-    def __init__(self , description="", _id=None, min=0.0, max=0.0, automatic=False, **kwargs):
+    def __init__(self , description="", min=0.0, max=0.0, automatic=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.min = min
         self.max = max
@@ -52,17 +49,7 @@ class Range(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

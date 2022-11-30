@@ -18,8 +18,6 @@ class DOFElimination(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     body : SIMOBody
     x : bool
@@ -36,10 +34,9 @@ class DOFElimination(MOAO):
          Select to omit RZ degree of freedom(default False)
     """
 
-    def __init__(self , description="", _id=None, x=False, y=False, z=False, rx=False, ry=False, rz=False, **kwargs):
+    def __init__(self , description="", x=False, y=False, z=False, rx=False, ry=False, rz=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.body = None
         self.x = x
@@ -67,17 +64,7 @@ class DOFElimination(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

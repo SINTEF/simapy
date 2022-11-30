@@ -13,10 +13,9 @@ class WindTurbineTypeBlueprint(NamedObjectBlueprint):
     def __init__(self, name="WindTurbineType", package_path="sima/windpark", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
-        self.add_attribute(Attribute("airfoilDatabaseFilename","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
+        self.add_attribute(Attribute("airfoilDatabaseFilename","string",""))
         self.add_attribute(EnumAttribute("direction","sima/windpark/TurbineDirection","Option for choosing the best approach for handling multiple deficits"))
         self.add_attribute(Attribute("outerRadius","number","Outer airfoil radius",default=0.0))
         self.add_attribute(Attribute("numberOfBlades","integer","",default=0))

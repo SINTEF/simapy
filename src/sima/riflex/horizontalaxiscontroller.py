@@ -20,8 +20,6 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     kp : float
          Proportionnal gain K that will be used for zero blade pitch angle(default 0.0)
@@ -79,10 +77,9 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     towerTop : ElementEndSpesification
     """
 
-    def __init__(self , description="", _id=None, kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, controllerFile=None, className=None, configuration=None, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, specifyTowerTop=False, **kwargs):
+    def __init__(self , description="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, specifyTowerTop=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.kp = kp
         self.ki = ki
@@ -97,9 +94,9 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
         self.gainScheduling = gainScheduling
         self.gainItems = list()
         self.external = external
-        self.controllerFile = controllerFile
-        self.className = className
-        self.configuration = configuration
+        self.controllerFile = None
+        self.className = None
+        self.configuration = None
         self.libraryPaths = None
         self.reg3MinPitch = reg3MinPitch
         self.transitionalSpeed15 = transitionalSpeed15
@@ -133,17 +130,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -297,7 +284,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     @controllerFile.setter
     def controllerFile(self, value: str):
         """Set controllerFile"""
-        self.__controllerFile = str(value)
+        self.__controllerFile = value
 
     @property
     def className(self) -> str:
@@ -307,7 +294,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     @className.setter
     def className(self, value: str):
         """Set className"""
-        self.__className = str(value)
+        self.__className = value
 
     @property
     def configuration(self) -> str:
@@ -317,7 +304,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     @configuration.setter
     def configuration(self, value: str):
         """Set configuration"""
-        self.__configuration = str(value)
+        self.__configuration = value
 
     @property
     def libraryPaths(self) -> LibraryPaths:

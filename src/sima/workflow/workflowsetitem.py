@@ -14,20 +14,17 @@ class WorkflowSetItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     parameterId : str
          (default None)
     values : ndarray
     """
 
-    def __init__(self , description="", _id=None, parameterId=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.parameterId = parameterId
+        self.parameterId = None
         self.values = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -48,17 +45,7 @@ class WorkflowSetItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -80,7 +67,7 @@ class WorkflowSetItem(MOAO):
     @parameterId.setter
     def parameterId(self, value: str):
         """Set parameterId"""
-        self.__parameterId = str(value)
+        self.__parameterId = value
 
     @property
     def values(self) -> ndarray:

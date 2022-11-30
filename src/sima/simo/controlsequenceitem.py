@@ -14,8 +14,6 @@ class ControlSequenceItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     time : float
          Time when signal is activated(default 0.0)
@@ -27,10 +25,9 @@ class ControlSequenceItem(MOAO):
          Should signals from DP system be accepted?(default False)
     """
 
-    def __init__(self , description="", _id=None, time=0.0, thrust=0.0, direction=0.0, acceptDPSystemInput=False, **kwargs):
+    def __init__(self , description="", time=0.0, thrust=0.0, direction=0.0, acceptDPSystemInput=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.time = time
         self.thrust = thrust
@@ -55,17 +52,7 @@ class ControlSequenceItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

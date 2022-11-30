@@ -15,8 +15,6 @@ class ExternalHLAFederate(HLAFederate):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,19 +37,18 @@ class ExternalHLAFederate(HLAFederate):
     hlaObjects : List[HLAObject]
     """
 
-    def __init__(self , description="", _id=None, name=None, timeStep=0.0, launch=True, jarFile=None, className=None, classPath=None, arguments=None, libraryPath=None, showOutput=False, **kwargs):
+    def __init__(self , description="", timeStep=0.0, launch=True, showOutput=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.timeStep = timeStep
         self.launch = launch
-        self.jarFile = jarFile
-        self.className = className
-        self.classPath = classPath
-        self.arguments = arguments
-        self.libraryPath = libraryPath
+        self.jarFile = None
+        self.className = None
+        self.classPath = None
+        self.arguments = None
+        self.libraryPath = None
         self.showOutput = showOutput
         self.hlaObjects = list()
         for key, value in kwargs.items():
@@ -73,17 +70,7 @@ class ExternalHLAFederate(HLAFederate):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -105,7 +92,7 @@ class ExternalHLAFederate(HLAFederate):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def timeStep(self) -> float:
@@ -135,7 +122,7 @@ class ExternalHLAFederate(HLAFederate):
     @jarFile.setter
     def jarFile(self, value: str):
         """Set jarFile"""
-        self.__jarFile = str(value)
+        self.__jarFile = value
 
     @property
     def className(self) -> str:
@@ -145,7 +132,7 @@ class ExternalHLAFederate(HLAFederate):
     @className.setter
     def className(self, value: str):
         """Set className"""
-        self.__className = str(value)
+        self.__className = value
 
     @property
     def classPath(self) -> str:
@@ -155,7 +142,7 @@ class ExternalHLAFederate(HLAFederate):
     @classPath.setter
     def classPath(self, value: str):
         """Set classPath"""
-        self.__classPath = str(value)
+        self.__classPath = value
 
     @property
     def arguments(self) -> str:
@@ -165,7 +152,7 @@ class ExternalHLAFederate(HLAFederate):
     @arguments.setter
     def arguments(self, value: str):
         """Set arguments"""
-        self.__arguments = str(value)
+        self.__arguments = value
 
     @property
     def libraryPath(self) -> str:
@@ -175,7 +162,7 @@ class ExternalHLAFederate(HLAFederate):
     @libraryPath.setter
     def libraryPath(self, value: str):
         """Set libraryPath"""
-        self.__libraryPath = str(value)
+        self.__libraryPath = value
 
     @property
     def showOutput(self) -> bool:

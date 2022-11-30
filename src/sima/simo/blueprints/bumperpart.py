@@ -13,7 +13,6 @@ class BumperPartBlueprint(MOAOBlueprint):
     def __init__(self, name="BumperPart", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("radius","number","diameter of bumper element",default=0.0))
         self.add_attribute(Attribute("stiffness","number","Bumper force stiffness, normal to elements",default=0.0))

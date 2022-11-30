@@ -20,8 +20,6 @@ class DynamicNodalForceItem(SegmentReference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -49,10 +47,9 @@ class DynamicNodalForceItem(SegmentReference):
          Force component parameter 3(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, segment=1, allSegments=False, node=0, dof=0, coordinateSystem=CoordinateSystem.LOCAL, forceType=ForceComponentType.CONSTANT, timeOn=0.0, timeOff=0.0, p1=0.0, p2=0.0, p3=0.0, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, node=0, dof=0, coordinateSystem=CoordinateSystem.LOCAL, forceType=ForceComponentType.CONSTANT, timeOn=0.0, timeOff=0.0, p1=0.0, p2=0.0, p3=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -85,17 +82,7 @@ class DynamicNodalForceItem(SegmentReference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

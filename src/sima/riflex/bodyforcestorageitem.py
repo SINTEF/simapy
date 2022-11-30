@@ -19,17 +19,14 @@ class BodyForceStorageItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     body : SIMOBody
     referenceSystem : BodyForceReferenceSystem
     """
 
-    def __init__(self , description="", _id=None, referenceSystem=BodyForceReferenceSystem.BODY_LOCAL, **kwargs):
+    def __init__(self , description="", referenceSystem=BodyForceReferenceSystem.BODY_LOCAL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.body = None
         self.referenceSystem = referenceSystem
@@ -52,17 +49,7 @@ class BodyForceStorageItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

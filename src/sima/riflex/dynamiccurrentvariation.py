@@ -14,8 +14,6 @@ class DynamicCurrentVariation(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     active : bool
          (default False)
@@ -23,13 +21,12 @@ class DynamicCurrentVariation(MOAO):
          File name for dynamic current variation(default None)
     """
 
-    def __init__(self , description="", _id=None, active=False, fileName=None, **kwargs):
+    def __init__(self , description="", active=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.active = active
-        self.fileName = fileName
+        self.fileName = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -49,17 +46,7 @@ class DynamicCurrentVariation(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -91,4 +78,4 @@ class DynamicCurrentVariation(MOAO):
     @fileName.setter
     def fileName(self, value: str):
         """Set fileName"""
-        self.__fileName = str(value)
+        self.__fileName = value

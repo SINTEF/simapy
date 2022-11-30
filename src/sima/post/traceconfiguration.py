@@ -17,8 +17,6 @@ class TraceConfiguration(PathSpecification):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
          (default None)
@@ -39,14 +37,13 @@ class TraceConfiguration(PathSpecification):
          (default False)
     """
 
-    def __init__(self , description="", _id=None, path=None, name=None, label=None, lineStyle=LineStyle.SOLID, lineWidth=1, pointStyle=PointStyle.NONE, showStatistics=True, pointSize=1, specifyPath=False, **kwargs):
+    def __init__(self , description="", lineStyle=LineStyle.SOLID, lineWidth=1, pointStyle=PointStyle.NONE, showStatistics=True, pointSize=1, specifyPath=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.path = path
-        self.name = name
-        self.label = label
+        self.path = None
+        self.name = None
+        self.label = None
         self.color = None
         self.lineStyle = lineStyle
         self.lineWidth = lineWidth
@@ -73,17 +70,7 @@ class TraceConfiguration(PathSpecification):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -105,7 +92,7 @@ class TraceConfiguration(PathSpecification):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def name(self) -> str:
@@ -115,7 +102,7 @@ class TraceConfiguration(PathSpecification):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def label(self) -> str:
@@ -125,7 +112,7 @@ class TraceConfiguration(PathSpecification):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def color(self) -> SIMAColor:

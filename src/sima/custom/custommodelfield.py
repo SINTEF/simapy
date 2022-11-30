@@ -18,8 +18,6 @@ class CustomModelField(CustomComponent):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
          (default None)
@@ -36,18 +34,17 @@ class CustomModelField(CustomComponent):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, label=None, tooltip=None, customTooltip=False, customLabel=False, readOnly=False, featureName=None, **kwargs):
+    def __init__(self , description="", customTooltip=False, customLabel=False, readOnly=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.label = label
-        self.tooltip = tooltip
+        self.label = None
+        self.tooltip = None
         self.model = None
         self.customTooltip = customTooltip
         self.customLabel = customLabel
         self.readOnly = readOnly
-        self.featureName = featureName
+        self.featureName = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -67,17 +64,7 @@ class CustomModelField(CustomComponent):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -99,7 +86,7 @@ class CustomModelField(CustomComponent):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def tooltip(self) -> str:
@@ -109,7 +96,7 @@ class CustomModelField(CustomComponent):
     @tooltip.setter
     def tooltip(self, value: str):
         """Set tooltip"""
-        self.__tooltip = str(value)
+        self.__tooltip = value
 
     @property
     def model(self) -> MOAO:
@@ -159,4 +146,4 @@ class CustomModelField(CustomComponent):
     @featureName.setter
     def featureName(self, value: str):
         """Set featureName"""
-        self.__featureName = str(value)
+        self.__featureName = value

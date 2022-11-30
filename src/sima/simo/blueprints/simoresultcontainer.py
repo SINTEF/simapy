@@ -13,11 +13,10 @@ class SIMOResultContainerBlueprint(ConditionResultContainerBlueprint):
     def __init__(self, name="SIMOResultContainer", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("properties","sima/sima/Property","",True,Dimension("*")))
-        self.add_attribute(Attribute("modelOutputFile","string","",default=None))
+        self.add_attribute(Attribute("modelOutputFile","string",""))
         self.add_attribute(Attribute("probability","number","",default=0.0))
         self.add_attribute(BlueprintAttribute("static","sima/simo/SIMOStaticResultEntry","",True))
         self.add_attribute(BlueprintAttribute("dynamic","sima/simo/SIMODynamicResultEntry","",True))

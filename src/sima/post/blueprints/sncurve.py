@@ -13,9 +13,8 @@ class SNCurveBlueprint(NamedObjectBlueprint):
     def __init__(self, name="SNCurve", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("usePredefinedCurve","boolean","Use predefined SN-curve from selected standard",default=False))
         self.add_attribute(EnumAttribute("predefinedCurve","sima/post/SNCurveType",""))
         self.add_attribute(Attribute("negativeInverseSlope","number","Negative inverse slope of the segment (first segment if several segments are given, or total curve if no more are given)",default=0.0))

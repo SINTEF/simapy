@@ -15,20 +15,17 @@ class HLAWellPathGroup(HLAObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
     HLAWellPaths : List[HLAWellPath]
     """
 
-    def __init__(self , description="", _id=None, name=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.HLAWellPaths = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -49,17 +46,7 @@ class HLAWellPathGroup(HLAObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class HLAWellPathGroup(HLAObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def HLAWellPaths(self) -> List[HLAWellPath]:

@@ -14,8 +14,6 @@ class LinearCurrentCoefficientItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Direction(default 0.0)
@@ -33,10 +31,9 @@ class LinearCurrentCoefficientItem(MOAO):
          Linear current force coefficient for 6. degree of freedom(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, direction=0.0, c11=0.0, c12=0.0, c13=0.0, c14=0.0, c15=0.0, c16=0.0, **kwargs):
+    def __init__(self , description="", direction=0.0, c11=0.0, c12=0.0, c13=0.0, c14=0.0, c15=0.0, c16=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.direction = direction
         self.c11 = c11
@@ -64,17 +61,7 @@ class LinearCurrentCoefficientItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

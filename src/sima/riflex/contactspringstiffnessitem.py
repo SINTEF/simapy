@@ -14,8 +14,6 @@ class ContactSpringStiffnessItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     force : float
          Pressure force per unit length(default 0.0)
@@ -23,10 +21,9 @@ class ContactSpringStiffnessItem(MOAO):
          Spring compression(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, force=0.0, compression=0.0, **kwargs):
+    def __init__(self , description="", force=0.0, compression=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.force = force
         self.compression = compression
@@ -49,17 +46,7 @@ class ContactSpringStiffnessItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

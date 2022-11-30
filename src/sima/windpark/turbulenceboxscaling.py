@@ -15,8 +15,6 @@ class TurbulenceBoxScaling(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     scalingOption : ScalingOption
     windDirectionScalingFactor : float
@@ -27,10 +25,9 @@ class TurbulenceBoxScaling(MOAO):
          (default 0.5)
     """
 
-    def __init__(self , description="", _id=None, scalingOption=ScalingOption.NONE, windDirectionScalingFactor=1.0, transverseDirectionScalingFactor=0.8, verticalDirectionScalingFactor=0.5, **kwargs):
+    def __init__(self , description="", scalingOption=ScalingOption.NONE, windDirectionScalingFactor=1.0, transverseDirectionScalingFactor=0.8, verticalDirectionScalingFactor=0.5, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.scalingOption = scalingOption
         self.windDirectionScalingFactor = windDirectionScalingFactor
@@ -55,17 +52,7 @@ class TurbulenceBoxScaling(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

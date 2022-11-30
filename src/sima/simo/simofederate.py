@@ -18,8 +18,6 @@ class SIMOFederate(HLAFederate):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -28,12 +26,11 @@ class SIMOFederate(HLAFederate):
     task : ConditionTask
     """
 
-    def __init__(self , description="", _id=None, name=None, timeStep=0.0, **kwargs):
+    def __init__(self , description="", timeStep=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.timeStep = timeStep
         self.task = None
         for key, value in kwargs.items():
@@ -55,17 +52,7 @@ class SIMOFederate(HLAFederate):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -87,7 +74,7 @@ class SIMOFederate(HLAFederate):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def timeStep(self) -> float:

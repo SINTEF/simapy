@@ -14,8 +14,6 @@ class FluctuatingTwoComponent(Wind):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
@@ -23,13 +21,12 @@ class FluctuatingTwoComponent(Wind):
          Path and filename for import of wind velocity time series(default None)
     """
 
-    def __init__(self , description="", _id=None, direction=0.0, fileName=None, **kwargs):
+    def __init__(self , description="", direction=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.direction = direction
-        self.fileName = fileName
+        self.fileName = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -49,17 +46,7 @@ class FluctuatingTwoComponent(Wind):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -91,4 +78,4 @@ class FluctuatingTwoComponent(Wind):
     @fileName.setter
     def fileName(self, value: str):
         """Set fileName"""
-        self.__fileName = str(value)
+        self.__fileName = value

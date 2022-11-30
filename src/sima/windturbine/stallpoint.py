@@ -14,8 +14,6 @@ class StallPoint(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     angleZeroLift : float
          Angle of attack at zero lift (Typical value: -2 deg)(default 0.0)
@@ -29,10 +27,9 @@ class StallPoint(MOAO):
          Angle of attack at full separation (negative) (Typical value: -20 deg)(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, angleZeroLift=0.0, maxLinearClSlopePos=0.0, maxLinearClSlopeNeg=0.0, angleFullSeparationPos=0.0, angleFullSeparationNeg=0.0, **kwargs):
+    def __init__(self , description="", angleZeroLift=0.0, maxLinearClSlopePos=0.0, maxLinearClSlopeNeg=0.0, angleFullSeparationPos=0.0, angleFullSeparationNeg=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.angleZeroLift = angleZeroLift
         self.maxLinearClSlopePos = maxLinearClSlopePos
@@ -58,17 +55,7 @@ class StallPoint(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

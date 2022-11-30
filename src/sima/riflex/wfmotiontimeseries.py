@@ -21,8 +21,6 @@ class WFMotionTimeSeries(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     timeSeriesFile : bool
          (default False)
@@ -63,14 +61,13 @@ class WFMotionTimeSeries(MOAO):
          Startimes version number for global dynamic y-rotation(default 0)
     """
 
-    def __init__(self , description="", _id=None, timeSeriesFile=False, fileName=None, fileFormat=FileFormatAsciStarNone.ASCII, motionTimeSeriesType=MotionTimeSeriesType.POSI, rotationUnit=RotationUnit.DEGR, timeColumnNum=1, xMotionColumn=0, xMotionVersion=0, yMotionColumn=0, yMotionVersion=0, zRotationColumn=0, zRotationVersion=0, zMotionColumn=0, zMotionVersion=0, xRotationColumn=0, xRotationVersion=0, yRotationColumn=0, yRotationVersion=0, **kwargs):
+    def __init__(self , description="", timeSeriesFile=False, fileFormat=FileFormatAsciStarNone.ASCII, motionTimeSeriesType=MotionTimeSeriesType.POSI, rotationUnit=RotationUnit.DEGR, timeColumnNum=1, xMotionColumn=0, xMotionVersion=0, yMotionColumn=0, yMotionVersion=0, zRotationColumn=0, zRotationVersion=0, zMotionColumn=0, zMotionVersion=0, xRotationColumn=0, xRotationVersion=0, yRotationColumn=0, yRotationVersion=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.timeSeriesFile = timeSeriesFile
         self.supportVessel = None
-        self.fileName = fileName
+        self.fileName = None
         self.fileFormat = fileFormat
         self.motionTimeSeriesType = motionTimeSeriesType
         self.rotationUnit = rotationUnit
@@ -106,17 +103,7 @@ class WFMotionTimeSeries(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -158,7 +145,7 @@ class WFMotionTimeSeries(MOAO):
     @fileName.setter
     def fileName(self, value: str):
         """Set fileName"""
-        self.__fileName = str(value)
+        self.__fileName = value
 
     @property
     def fileFormat(self) -> FileFormatAsciStarNone:

@@ -13,7 +13,6 @@ class ControlSequenceItemBlueprint(MOAOBlueprint):
     def __init__(self, name="ControlSequenceItem", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("time","number","Time when signal is activated",default=0.0))
         self.add_attribute(Attribute("thrust","number","Thrust demand",default=0.0))

@@ -18,8 +18,6 @@ class SegmentReference(LineReference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -29,10 +27,9 @@ class SegmentReference(LineReference):
          All segments(default False)
     """
 
-    def __init__(self , description="", _id=None, segment=1, allSegments=False, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -56,17 +53,7 @@ class SegmentReference(LineReference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

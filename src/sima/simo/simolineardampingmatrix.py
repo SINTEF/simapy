@@ -16,8 +16,6 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     values : ndarray
     name : str
@@ -26,13 +24,12 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
          Select which motions the damping matrix force should be calculated from. When 'default' is selected, low frequency motion is used for bodies of type '6 DOF - separated analysis' and total motion otherwise.
     """
 
-    def __init__(self , description="", _id=None, name=None, mode=DampingMatrixMotionMode.DEFAULT, **kwargs):
+    def __init__(self , description="", mode=DampingMatrixMotionMode.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.values = ndarray(1)
-        self.name = name
+        self.name = None
         self.mode = mode
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -53,17 +50,7 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -95,7 +82,7 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def mode(self) -> DampingMatrixMotionMode:

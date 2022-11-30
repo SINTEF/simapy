@@ -14,8 +14,6 @@ class ColumnConfiguration(PathSpecification):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
          (default None)
@@ -29,14 +27,13 @@ class ColumnConfiguration(PathSpecification):
          Column font size. Will be used when renderin the table in a report,etc.(default 0)
     """
 
-    def __init__(self , description="", _id=None, path=None, header=None, label=None, format='0.####E0', fontSize=0, **kwargs):
+    def __init__(self , description="", format='0.####E0', fontSize=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.path = path
-        self.header = header
-        self.label = label
+        self.path = None
+        self.header = None
+        self.label = None
         self.format = format
         self.fontSize = fontSize
         for key, value in kwargs.items():
@@ -58,17 +55,7 @@ class ColumnConfiguration(PathSpecification):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -90,7 +77,7 @@ class ColumnConfiguration(PathSpecification):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def header(self) -> str:
@@ -100,7 +87,7 @@ class ColumnConfiguration(PathSpecification):
     @header.setter
     def header(self, value: str):
         """Set header"""
-        self.__header = str(value)
+        self.__header = value
 
     @property
     def label(self) -> str:
@@ -110,7 +97,7 @@ class ColumnConfiguration(PathSpecification):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def format(self) -> str:
@@ -120,7 +107,7 @@ class ColumnConfiguration(PathSpecification):
     @format.setter
     def format(self, value: str):
         """Set format"""
-        self.__format = str(value)
+        self.__format = value
 
     @property
     def fontSize(self) -> int:

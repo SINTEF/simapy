@@ -14,8 +14,6 @@ class ReynoldStrouhalNumberItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     reynoldsNumber : float
          Reynolds number(default 0.0)
@@ -23,10 +21,9 @@ class ReynoldStrouhalNumberItem(MOAO):
          Strouhal number(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, reynoldsNumber=0.0, strouhalNumber=0.0, **kwargs):
+    def __init__(self , description="", reynoldsNumber=0.0, strouhalNumber=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.reynoldsNumber = reynoldsNumber
         self.strouhalNumber = strouhalNumber
@@ -49,17 +46,7 @@ class ReynoldStrouhalNumberItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

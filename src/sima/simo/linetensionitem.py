@@ -14,8 +14,6 @@ class LineTensionItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     length : float
          Horizontal length of the nonlinear line(default 0.0)
@@ -23,10 +21,9 @@ class LineTensionItem(MOAO):
          Horizontal tension of the nonlinear line for the given length(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, length=0.0, tension=0.0, **kwargs):
+    def __init__(self , description="", length=0.0, tension=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.length = length
         self.tension = tension
@@ -49,17 +46,7 @@ class LineTensionItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

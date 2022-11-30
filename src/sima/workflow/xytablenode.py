@@ -16,8 +16,6 @@ class XYTableNode(OutputNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,21 +37,20 @@ class XYTableNode(OutputNode):
          the values of this signal will be shown in the field matching the related variable values(default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, columnVariable=None, rowVariable=None, dataSeries=None, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
         self.w = w
         self.controlSignalInputSlots = list()
         self.inputSlot = None
-        self.columnVariable = columnVariable
-        self.rowVariable = rowVariable
-        self.dataSeries = dataSeries
+        self.columnVariable = None
+        self.rowVariable = None
+        self.dataSeries = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -73,17 +70,7 @@ class XYTableNode(OutputNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -105,7 +92,7 @@ class XYTableNode(OutputNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -177,7 +164,7 @@ class XYTableNode(OutputNode):
     @columnVariable.setter
     def columnVariable(self, value: str):
         """Set columnVariable"""
-        self.__columnVariable = str(value)
+        self.__columnVariable = value
 
     @property
     def rowVariable(self) -> str:
@@ -187,7 +174,7 @@ class XYTableNode(OutputNode):
     @rowVariable.setter
     def rowVariable(self, value: str):
         """Set rowVariable"""
-        self.__rowVariable = str(value)
+        self.__rowVariable = value
 
     @property
     def dataSeries(self) -> str:
@@ -197,4 +184,4 @@ class XYTableNode(OutputNode):
     @dataSeries.setter
     def dataSeries(self, value: str):
         """Set dataSeries"""
-        self.__dataSeries = str(value)
+        self.__dataSeries = value

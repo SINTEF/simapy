@@ -14,8 +14,6 @@ class CustomImage(CustomComponent):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     filename : str
          (default None)
@@ -23,12 +21,11 @@ class CustomImage(CustomComponent):
          (default 0.2)
     """
 
-    def __init__(self , description="", _id=None, filename=None, factor=0.2, **kwargs):
+    def __init__(self , description="", factor=0.2, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.filename = filename
+        self.filename = None
         self.factor = factor
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -49,17 +46,7 @@ class CustomImage(CustomComponent):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class CustomImage(CustomComponent):
     @filename.setter
     def filename(self, value: str):
         """Set filename"""
-        self.__filename = str(value)
+        self.__filename = value
 
     @property
     def factor(self) -> float:

@@ -15,8 +15,6 @@ class BodyShapeData(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     lengthBetweenPerpendiculars : float
          Length between perpendiculars(default 0.0)
@@ -37,10 +35,9 @@ class BodyShapeData(MOAO):
     waterlinePoints : List[Point2]
     """
 
-    def __init__(self , description="", _id=None, lengthBetweenPerpendiculars=0.0, maximumBeamAtWaterline=0.0, draftAtAftPerpendicular=0.0, draftAtForePerpendicular=0.0, blockCoefficient=0.0, distanceAftPerpendicular=0.0, distanceBaseline=0.0, specifyWaterline=False, **kwargs):
+    def __init__(self , description="", lengthBetweenPerpendiculars=0.0, maximumBeamAtWaterline=0.0, draftAtAftPerpendicular=0.0, draftAtForePerpendicular=0.0, blockCoefficient=0.0, distanceAftPerpendicular=0.0, distanceBaseline=0.0, specifyWaterline=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.lengthBetweenPerpendiculars = lengthBetweenPerpendiculars
         self.maximumBeamAtWaterline = maximumBeamAtWaterline
@@ -70,17 +67,7 @@ class BodyShapeData(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
