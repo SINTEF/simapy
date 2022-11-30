@@ -15,7 +15,7 @@ shutil.rmtree(Path("dist"), ignore_errors=True)
 
 setup(
     name="simapy",
-    version="4.4.1",
+    version="4.4.2",
     author="SINTEF Ocean",
     description="Python utilities for SIMA",
     url="https://github.com/SINTEF/simapy",
