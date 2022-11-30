@@ -14,8 +14,6 @@ class GDFGeometry(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     xSymmetry : int
          (default 0)
@@ -30,10 +28,9 @@ class GDFGeometry(MOAO):
          (default 9.81)
     """
 
-    def __init__(self , description="", _id=None, xSymmetry=0, ySymmetry=0, nValues=0, dimensionalLength=1.0, gravitationalAcceleration=9.81, **kwargs):
+    def __init__(self , description="", xSymmetry=0, ySymmetry=0, nValues=0, dimensionalLength=1.0, gravitationalAcceleration=9.81, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.xSymmetry = xSymmetry
         self.ySymmetry = ySymmetry
@@ -60,17 +57,7 @@ class GDFGeometry(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

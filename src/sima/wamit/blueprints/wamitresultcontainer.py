@@ -13,11 +13,10 @@ class WamitResultContainerBlueprint(ConditionResultContainerBlueprint):
     def __init__(self, name="WamitResultContainer", package_path="sima/wamit", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("properties","sima/sima/Property","",True,Dimension("*")))
-        self.add_attribute(Attribute("modelOutputFile","string","",default=None))
+        self.add_attribute(Attribute("modelOutputFile","string",""))
         self.add_attribute(Attribute("probability","number","",default=0.0))
         self.add_attribute(BlueprintAttribute("calculationResults","sima/wamit/WamitResultEntry","",True))
         self.add_attribute(BlueprintAttribute("potenResult","sima/wamit/WamitResultEntry","",True))

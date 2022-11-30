@@ -19,8 +19,6 @@ class UnitPreference(SIMAPreference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     frequency : Frequency
     forceUnit : ForceUnit
@@ -29,10 +27,9 @@ class UnitPreference(SIMAPreference):
     powerUnit : PowerUnit
     """
 
-    def __init__(self , description="", _id=None, frequency=Frequency.PERIOD, forceUnit=ForceUnit.NEWTON, massUnit=MassUnit.KILOGRAM, lengthUnit=LengthUnit.METER, powerUnit=PowerUnit.WATT, **kwargs):
+    def __init__(self , description="", frequency=Frequency.PERIOD, forceUnit=ForceUnit.NEWTON, massUnit=MassUnit.KILOGRAM, lengthUnit=LengthUnit.METER, powerUnit=PowerUnit.WATT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.frequency = frequency
         self.forceUnit = forceUnit
@@ -58,17 +55,7 @@ class UnitPreference(SIMAPreference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

@@ -15,8 +15,6 @@ class BodyEigenvalueResult(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     body : str
          Result body(default None)
@@ -35,12 +33,11 @@ class BodyEigenvalueResult(MOAO):
     periodResults : List[PeriodEigenvalueResult]
     """
 
-    def __init__(self , description="", _id=None, body=None, surgeExcursion=0.0, swayExcursion=0.0, heaveExcursion=0.0, rollExcursion=0.0, pitchExcursion=0.0, yawExcursion=0.0, **kwargs):
+    def __init__(self , description="", surgeExcursion=0.0, swayExcursion=0.0, heaveExcursion=0.0, rollExcursion=0.0, pitchExcursion=0.0, yawExcursion=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.body = body
+        self.body = None
         self.surgeExcursion = surgeExcursion
         self.swayExcursion = swayExcursion
         self.heaveExcursion = heaveExcursion
@@ -67,17 +64,7 @@ class BodyEigenvalueResult(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -99,7 +86,7 @@ class BodyEigenvalueResult(MOAO):
     @body.setter
     def body(self, value: str):
         """Set body"""
-        self.__body = str(value)
+        self.__body = value
 
     @property
     def surgeExcursion(self) -> float:

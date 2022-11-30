@@ -13,11 +13,10 @@ class LFMotionTimeSeriesBlueprint(MOAOBlueprint):
     def __init__(self, name="LFMotionTimeSeries", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("timeSeriesFile","boolean","",default=False))
         self.add_attribute(BlueprintAttribute("supportVessel","sima/riflex/SupportVessel","",False))
-        self.add_attribute(Attribute("fileName","string","Motion time series file",default=None))
+        self.add_attribute(Attribute("fileName","string","Motion time series file"))
         self.add_attribute(EnumAttribute("fileFormat","sima/riflex/FileFormatAsciStarNone","Motion time series file format"))
         self.add_attribute(EnumAttribute("motionTimeSeriesType","sima/riflex/MotionTimeSeriesType","Kind of motion time series input"))
         self.add_attribute(EnumAttribute("rotationUnit","sima/riflex/RotationUnit","Rotation unit"))

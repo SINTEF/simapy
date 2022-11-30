@@ -14,8 +14,6 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     massCoefficient : float
          Mass / unit length(default 0.0)
@@ -41,10 +39,9 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
          Inner contact radius (default = 0.0)(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, crossSectionArea=0.0, crossSectionModulus=0.0, diameter=0.0, thickness=0.0, defaultStressCalculation=True, extContactRadius=0.0, innerContactRadius=0.0, **kwargs):
+    def __init__(self , description="", massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, crossSectionArea=0.0, crossSectionModulus=0.0, diameter=0.0, thickness=0.0, defaultStressCalculation=True, extContactRadius=0.0, innerContactRadius=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.massCoefficient = massCoefficient
         self.extCrossSectionalArea = extCrossSectionalArea
@@ -76,17 +73,7 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

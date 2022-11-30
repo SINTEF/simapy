@@ -16,18 +16,15 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     directionalValues : List[Values]
     dof1 : DOF
     dof2 : DOF
     """
 
-    def __init__(self , description="", _id=None, dof1=DOF.X, dof2=DOF.X, **kwargs):
+    def __init__(self , description="", dof1=DOF.X, dof2=DOF.X, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.directionalValues = list()
         self.dof1 = dof1
@@ -51,17 +48,7 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

@@ -14,8 +14,6 @@ class ContourDataPoint(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     peakPeriod : float
          (default 0.0)
@@ -23,10 +21,9 @@ class ContourDataPoint(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, peakPeriod=0.0, significantWaveHeight=0.0, **kwargs):
+    def __init__(self , description="", peakPeriod=0.0, significantWaveHeight=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.peakPeriod = peakPeriod
         self.significantWaveHeight = significantWaveHeight
@@ -49,17 +46,7 @@ class ContourDataPoint(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

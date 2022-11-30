@@ -14,8 +14,6 @@ class SIMOPreference(SIMAPreference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     selectedVersion : str
          Selected SIMO/RIFLEX installation(default 'Default')
@@ -26,15 +24,14 @@ class SIMOPreference(SIMAPreference):
          Frelin bin folder(default None)
     """
 
-    def __init__(self , description="", _id=None, selectedVersion='Default', frevesLocation=None, frelinLocation=None, **kwargs):
+    def __init__(self , description="", selectedVersion='Default', **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.selectedVersion = selectedVersion
         self.locations = ndarray(1)
-        self.frevesLocation = frevesLocation
-        self.frelinLocation = frelinLocation
+        self.frevesLocation = None
+        self.frelinLocation = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -54,17 +51,7 @@ class SIMOPreference(SIMAPreference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -86,7 +73,7 @@ class SIMOPreference(SIMAPreference):
     @selectedVersion.setter
     def selectedVersion(self, value: str):
         """Set selectedVersion"""
-        self.__selectedVersion = str(value)
+        self.__selectedVersion = value
 
     @property
     def locations(self) -> ndarray:
@@ -106,7 +93,7 @@ class SIMOPreference(SIMAPreference):
     @frevesLocation.setter
     def frevesLocation(self, value: str):
         """Set frevesLocation"""
-        self.__frevesLocation = str(value)
+        self.__frevesLocation = value
 
     @property
     def frelinLocation(self) -> str:
@@ -116,4 +103,4 @@ class SIMOPreference(SIMAPreference):
     @frelinLocation.setter
     def frelinLocation(self, value: str):
         """Set frelinLocation"""
-        self.__frelinLocation = str(value)
+        self.__frelinLocation = value

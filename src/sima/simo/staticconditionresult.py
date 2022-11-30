@@ -15,8 +15,6 @@ class StaticConditionResult(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     bodyResults : List[BodyResult]
     header : str
@@ -29,15 +27,14 @@ class StaticConditionResult(MOAO):
          (default True)
     """
 
-    def __init__(self , description="", _id=None, header=None, dateTag=None, filepart=None, globalForces=True, **kwargs):
+    def __init__(self , description="", globalForces=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.bodyResults = list()
-        self.header = header
-        self.dateTag = dateTag
-        self.filepart = filepart
+        self.header = None
+        self.dateTag = None
+        self.filepart = None
         self.globalForces = globalForces
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -58,17 +55,7 @@ class StaticConditionResult(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -102,7 +89,7 @@ class StaticConditionResult(MOAO):
     @header.setter
     def header(self, value: str):
         """Set header"""
-        self.__header = str(value)
+        self.__header = value
 
     @property
     def dateTag(self) -> str:
@@ -112,7 +99,7 @@ class StaticConditionResult(MOAO):
     @dateTag.setter
     def dateTag(self, value: str):
         """Set dateTag"""
-        self.__dateTag = str(value)
+        self.__dateTag = value
 
     @property
     def filepart(self) -> str:
@@ -122,7 +109,7 @@ class StaticConditionResult(MOAO):
     @filepart.setter
     def filepart(self, value: str):
         """Set filepart"""
-        self.__filepart = str(value)
+        self.__filepart = value
 
     @property
     def globalForces(self) -> bool:

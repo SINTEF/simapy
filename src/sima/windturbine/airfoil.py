@@ -16,8 +16,6 @@ class Airfoil(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,12 +37,11 @@ class Airfoil(NamedObject):
     points : List[FoilPoint]
     """
 
-    def __init__(self , description="", _id=None, name=None, deepstallRegime=False, inputStallPoints=False, upperTailAngle=0.0, lowerTailAngle=0.0, upperNoseAngle=0.0, lowerNoseAngle=0.0, noseRadiusRatio=0.0, **kwargs):
+    def __init__(self , description="", deepstallRegime=False, inputStallPoints=False, upperTailAngle=0.0, lowerTailAngle=0.0, upperNoseAngle=0.0, lowerNoseAngle=0.0, noseRadiusRatio=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.deepstallRegime = deepstallRegime
         self.inputStallPoints = inputStallPoints
         self.upperTailAngle = upperTailAngle
@@ -73,17 +70,7 @@ class Airfoil(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -105,7 +92,7 @@ class Airfoil(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def deepstallRegime(self) -> bool:

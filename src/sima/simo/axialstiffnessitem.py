@@ -14,8 +14,6 @@ class AxialStiffnessItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     strain : float
          Relative elongation of segment.(default 0.0)
@@ -23,10 +21,9 @@ class AxialStiffnessItem(MOAO):
          Tension in segment.(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, strain=0.0, tension=0.0, **kwargs):
+    def __init__(self , description="", strain=0.0, tension=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.strain = strain
         self.tension = tension
@@ -49,17 +46,7 @@ class AxialStiffnessItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

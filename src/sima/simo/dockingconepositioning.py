@@ -19,8 +19,6 @@ class DockingConePositioning(PositioningElement):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -50,12 +48,11 @@ class DockingConePositioning(PositioningElement):
          Friction coefficient(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, velocityLimit=0.0, numberOfPoints=0, maxRadialDistance=0.0, friction=0.0, **kwargs):
+    def __init__(self , description="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, velocityLimit=0.0, numberOfPoints=0, maxRadialDistance=0.0, friction=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.localPoint = None
         self.globalPoint = None
         self.failureMode = failureMode
@@ -89,17 +86,7 @@ class DockingConePositioning(PositioningElement):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -121,7 +108,7 @@ class DockingConePositioning(PositioningElement):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def localPoint(self) -> Point3:

@@ -13,9 +13,8 @@ class WorkflowReferenceNodeBlueprint(RunNodeBlueprint):
     def __init__(self, name="WorkflowReferenceNode", package_path="sima/workflow", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("x","integer","",default=0))
         self.add_attribute(Attribute("y","integer","",default=0))
         self.add_attribute(Attribute("h","integer","",default=0))
@@ -28,4 +27,4 @@ class WorkflowReferenceNodeBlueprint(RunNodeBlueprint):
         self.add_attribute(BlueprintAttribute("workflowInputSlots","sima/workflow/WorkflowInputSlot","",True,Dimension("*")))
         self.add_attribute(Attribute("inputWorkflow","boolean","Set the workflow input from the outside. Use a model reference as source.",default=False))
         self.add_attribute(Attribute("setFolderName","boolean","Override the default folder name created. This folder will be relative to the running workflow. If left empty it will create the results directly in the workflow folder.",default=False))
-        self.add_attribute(Attribute("folderName","string","",default=None))
+        self.add_attribute(Attribute("folderName","string",""))

@@ -16,8 +16,6 @@ class WaveDriftDamping(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     directions : ndarray
     frequencies : ndarray
@@ -25,10 +23,9 @@ class WaveDriftDamping(MOAO):
     items : List[WaveDriftDampingDofItem]
     """
 
-    def __init__(self , description="", _id=None, symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
+    def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.directions = ndarray(1)
         self.frequencies = ndarray(1)
@@ -53,17 +50,7 @@ class WaveDriftDamping(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

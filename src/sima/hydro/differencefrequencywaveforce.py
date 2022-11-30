@@ -15,8 +15,6 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     nFreq : int
          (default 0)
@@ -40,10 +38,9 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
     yaw : QTFDofItem
     """
 
-    def __init__(self , description="", _id=None, nFreq=0, nDir=0, bichromatic=False, bidirectional=False, onFile=False, file=None, **kwargs):
+    def __init__(self , description="", nFreq=0, nDir=0, bichromatic=False, bidirectional=False, onFile=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.nFreq = nFreq
         self.nDir = nDir
@@ -52,7 +49,7 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
         self.frequencies = ndarray(1)
         self.directions = ndarray(1)
         self.onFile = onFile
-        self.file = file
+        self.file = None
         self.surge = None
         self.sway = None
         self.heave = None
@@ -78,17 +75,7 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -180,7 +167,7 @@ class DifferenceFrequencyWaveForce(QuadraticTransferFunction):
     @file.setter
     def file(self, value: str):
         """Set file"""
-        self.__file = str(value)
+        self.__file = value
 
     @property
     def surge(self) -> QTFDofItem:

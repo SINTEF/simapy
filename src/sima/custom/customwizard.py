@@ -15,8 +15,6 @@ class CustomWizard(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     title : str
          (default None)
@@ -33,18 +31,17 @@ class CustomWizard(MOAO):
          This script will be run when finishing the wizard. Use the variable selection to get hold of the object selected in the navigator(default None)
     """
 
-    def __init__(self , description="", _id=None, title=None, selectionType=None, menuLabel=None, inline=True, path=None, finishScript=None, **kwargs):
+    def __init__(self , description="", inline=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.title = title
-        self.selectionType = selectionType
-        self.menuLabel = menuLabel
+        self.title = None
+        self.selectionType = None
+        self.menuLabel = None
         self.pages = list()
         self.inline = inline
-        self.path = path
-        self.finishScript = finishScript
+        self.path = None
+        self.finishScript = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -64,17 +61,7 @@ class CustomWizard(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -96,7 +83,7 @@ class CustomWizard(MOAO):
     @title.setter
     def title(self, value: str):
         """Set title"""
-        self.__title = str(value)
+        self.__title = value
 
     @property
     def selectionType(self) -> str:
@@ -106,7 +93,7 @@ class CustomWizard(MOAO):
     @selectionType.setter
     def selectionType(self, value: str):
         """Set selectionType"""
-        self.__selectionType = str(value)
+        self.__selectionType = value
 
     @property
     def menuLabel(self) -> str:
@@ -116,7 +103,7 @@ class CustomWizard(MOAO):
     @menuLabel.setter
     def menuLabel(self, value: str):
         """Set menuLabel"""
-        self.__menuLabel = str(value)
+        self.__menuLabel = value
 
     @property
     def pages(self) -> List[CustomWizardPage]:
@@ -148,7 +135,7 @@ class CustomWizard(MOAO):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def finishScript(self) -> str:
@@ -158,4 +145,4 @@ class CustomWizard(MOAO):
     @finishScript.setter
     def finishScript(self, value: str):
         """Set finishScript"""
-        self.__finishScript = str(value)
+        self.__finishScript = value

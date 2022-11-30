@@ -17,8 +17,6 @@ class BallastTank(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -46,13 +44,12 @@ class BallastTank(NamedObject):
          State of ballast tank
     """
 
-    def __init__(self , description="", _id=None, name=None, tag=None, x=0.0, y=0.0, z=0.0, volumeTolerance=0.001, permeabilityFactor=1.0, initialBallastQuantity=0.0, quantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity=1025.0, geometryFile=None, state=BallastTankState.INTACT, **kwargs):
+    def __init__(self , description="", x=0.0, y=0.0, z=0.0, volumeTolerance=0.001, permeabilityFactor=1.0, initialBallastQuantity=0.0, quantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity=1025.0, state=BallastTankState.INTACT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.tag = tag
+        self.name = None
+        self.tag = None
         self.x = x
         self.y = y
         self.z = z
@@ -62,7 +59,7 @@ class BallastTank(NamedObject):
         self.quantityType = quantityType
         self.ballastFluidDensity = ballastFluidDensity
         self.geometryPosition = None
-        self.geometryFile = geometryFile
+        self.geometryFile = None
         self.state = state
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -83,17 +80,7 @@ class BallastTank(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -115,7 +102,7 @@ class BallastTank(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def tag(self) -> str:
@@ -125,7 +112,7 @@ class BallastTank(NamedObject):
     @tag.setter
     def tag(self, value: str):
         """Set tag"""
-        self.__tag = str(value)
+        self.__tag = value
 
     @property
     def x(self) -> float:
@@ -225,7 +212,7 @@ class BallastTank(NamedObject):
     @geometryFile.setter
     def geometryFile(self, value: str):
         """Set geometryFile"""
-        self.__geometryFile = str(value)
+        self.__geometryFile = value
 
     @property
     def state(self) -> BallastTankState:

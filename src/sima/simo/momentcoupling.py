@@ -19,8 +19,6 @@ class MomentCoupling(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -41,12 +39,11 @@ class MomentCoupling(NamedObject):
          Exponent in damping for negative rotation(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, initialMoment=0.0, stiffness=0.0, positiveDamping=0.0, positiveExponent=0.0, negativeDamping=0.0, negativeExponent=0.0, **kwargs):
+    def __init__(self , description="", initialMoment=0.0, stiffness=0.0, positiveDamping=0.0, positiveExponent=0.0, negativeDamping=0.0, negativeExponent=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.body1 = None
         self.rotationVector = None
         self.body2 = None
@@ -75,17 +72,7 @@ class MomentCoupling(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -107,7 +94,7 @@ class MomentCoupling(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def body1(self) -> SIMOBody:

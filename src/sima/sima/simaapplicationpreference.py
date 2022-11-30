@@ -14,8 +14,6 @@ class SIMAApplicationPreference(SIMAPreference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     createTimestamp : bool
          (default True)
@@ -35,10 +33,9 @@ class SIMAApplicationPreference(SIMAPreference):
          Maximum number of significant digits used to display floating point numbers (editors must be reopened) (default 5)
     """
 
-    def __init__(self , description="", _id=None, createTimestamp=True, deleteAutomatically=True, interpolate=True, overrideTimeZone=True, minimumDiskSpace=1, autoSaveFrequency=5, backupFolder=None, numberOfSignificantDigits=5, **kwargs):
+    def __init__(self , description="", createTimestamp=True, deleteAutomatically=True, interpolate=True, overrideTimeZone=True, minimumDiskSpace=1, autoSaveFrequency=5, numberOfSignificantDigits=5, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.createTimestamp = createTimestamp
         self.deleteAutomatically = deleteAutomatically
@@ -46,7 +43,7 @@ class SIMAApplicationPreference(SIMAPreference):
         self.overrideTimeZone = overrideTimeZone
         self.minimumDiskSpace = minimumDiskSpace
         self.autoSaveFrequency = autoSaveFrequency
-        self.backupFolder = backupFolder
+        self.backupFolder = None
         self.numberOfSignificantDigits = numberOfSignificantDigits
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -67,17 +64,7 @@ class SIMAApplicationPreference(SIMAPreference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -159,7 +146,7 @@ class SIMAApplicationPreference(SIMAPreference):
     @backupFolder.setter
     def backupFolder(self, value: str):
         """Set backupFolder"""
-        self.__backupFolder = str(value)
+        self.__backupFolder = value
 
     @property
     def numberOfSignificantDigits(self) -> int:

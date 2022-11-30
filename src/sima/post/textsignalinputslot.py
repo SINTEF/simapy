@@ -15,8 +15,6 @@ class TextSignalInputSlot(ControlSignalInputSlot):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -29,16 +27,15 @@ class TextSignalInputSlot(ControlSignalInputSlot):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, specifyAdditionalProperties=False, array=False, value=None, **kwargs):
+    def __init__(self , description="", specifyAdditionalProperties=False, array=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.properties = list()
         self.specifyAdditionalProperties = specifyAdditionalProperties
         self.array = array
-        self.value = value
+        self.value = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -58,17 +55,7 @@ class TextSignalInputSlot(ControlSignalInputSlot):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -90,7 +77,7 @@ class TextSignalInputSlot(ControlSignalInputSlot):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def properties(self) -> List[SignalProperties]:
@@ -132,4 +119,4 @@ class TextSignalInputSlot(ControlSignalInputSlot):
     @value.setter
     def value(self, value: str):
         """Set value"""
-        self.__value = str(value)
+        self.__value = value

@@ -18,8 +18,6 @@ class AllocationSystem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     surgeAllocation : bool
          Force allocation in surge(default True)
@@ -38,10 +36,9 @@ class AllocationSystem(MOAO):
          Turn control system off(default False)
     """
 
-    def __init__(self , description="", _id=None, surgeAllocation=True, swayAllocation=True, yawAllocation=True, manual=False, allocationMethod=ThrusterAllocationMethod.ORDINARY, formulation=Formulation.SIMO_41, dpOff=False, **kwargs):
+    def __init__(self , description="", surgeAllocation=True, swayAllocation=True, yawAllocation=True, manual=False, allocationMethod=ThrusterAllocationMethod.ORDINARY, formulation=Formulation.SIMO_41, dpOff=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.surgeAllocation = surgeAllocation
         self.swayAllocation = swayAllocation
@@ -71,17 +68,7 @@ class AllocationSystem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

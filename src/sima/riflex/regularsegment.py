@@ -20,8 +20,6 @@ class RegularSegment(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     length : float
          Length of the segment.(default 0.0)
@@ -49,10 +47,9 @@ class RegularSegment(MOAO):
          Offset in line local Z-axis segment end 2(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, length=0.0, numElements=10, numSubElementsStatic=3, numSubElementsDynamic=5, stressfreeLength=0.0, twistEnd1=0.0, twistEnd2=0.0, offsetY=0.0, offsetZ=0.0, **kwargs):
+    def __init__(self , description="", length=0.0, numElements=10, numSubElementsStatic=3, numSubElementsDynamic=5, stressfreeLength=0.0, twistEnd1=0.0, twistEnd2=0.0, offsetY=0.0, offsetZ=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.length = length
         self.numElements = numElements
@@ -85,17 +82,7 @@ class RegularSegment(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

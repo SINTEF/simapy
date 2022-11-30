@@ -13,9 +13,8 @@ class AirfoilBlueprint(NamedObjectBlueprint):
     def __init__(self, name="Airfoil", package_path="sima/windturbine", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("deepstallRegime","boolean","Whether or not a deep stall regime is to be used",default=False))
         self.add_attribute(Attribute("inputStallPoints","boolean","",default=False))
         self.add_attribute(Attribute("upperTailAngle","number","Tail angle between a line perpendicular to the flow and the line from the tip of the wedge, low (negative) angles of attack",default=0.0))

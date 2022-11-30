@@ -20,8 +20,6 @@ class RIFLEXStaticCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     loadTypeItems : List[StaticLoadTypeItem]
     matrixStorage : MatrixStorage
@@ -42,17 +40,16 @@ class RIFLEXStaticCalculationParameters(MOAO):
          Start arc length at zero for each line(default True)
     """
 
-    def __init__(self , description="", _id=None, matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, stressfreeFile=None, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, **kwargs):
+    def __init__(self , description="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.loadTypeItems = list()
         self.matrixStorage = matrixStorage
         self.currentProfileScaling = currentProfileScaling
         self.staticLoadComponents = list()
         self.stressFreeConfiguration = stressFreeConfiguration
-        self.stressfreeFile = stressfreeFile
+        self.stressfreeFile = None
         self.loadAndMassFormulation = loadAndMassFormulation
         self.parameterVariation = None
         self.storeVisualisationResponses = storeVisualisationResponses
@@ -77,17 +74,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -163,7 +150,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
     @stressfreeFile.setter
     def stressfreeFile(self, value: str):
         """Set stressfreeFile"""
-        self.__stressfreeFile = str(value)
+        self.__stressfreeFile = value
 
     @property
     def loadAndMassFormulation(self) -> LoadAndMassFormulation:

@@ -21,8 +21,6 @@ class WorkflowTest(Test):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -34,12 +32,11 @@ class WorkflowTest(Test):
     workflow : Workflow
     """
 
-    def __init__(self , description="", _id=None, name=None, disabled=False, duration=Duration.MEDIUM, **kwargs):
+    def __init__(self , description="", disabled=False, duration=Duration.MEDIUM, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.disabled = disabled
         self.duration = duration
         self.assertions = list()
@@ -64,17 +61,7 @@ class WorkflowTest(Test):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -96,7 +83,7 @@ class WorkflowTest(Test):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def disabled(self) -> bool:

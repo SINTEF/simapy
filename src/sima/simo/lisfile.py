@@ -16,8 +16,6 @@ class LisFile(Result):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -41,22 +39,21 @@ class LisFile(Result):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, resource=None, relative=False, _type=None, time=-1, size=-1, runNumber=-1, runFailed=False, version=None, **kwargs):
+    def __init__(self , description="", relative=False, time=-1, size=-1, runNumber=-1, runFailed=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.properties = list()
-        self.resource = resource
+        self.resource = None
         self.relative = relative
-        self._type = _type
+        self._type = None
         self.time = time
         self.size = size
         self.runNumber = runNumber
         self.messages = list()
         self.runFailed = runFailed
-        self.version = version
+        self.version = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -76,17 +73,7 @@ class LisFile(Result):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -108,7 +95,7 @@ class LisFile(Result):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def properties(self) -> List[Property]:
@@ -130,7 +117,7 @@ class LisFile(Result):
     @resource.setter
     def resource(self, value: str):
         """Set resource"""
-        self.__resource = str(value)
+        self.__resource = value
 
     @property
     def relative(self) -> bool:
@@ -150,7 +137,7 @@ class LisFile(Result):
     @_type.setter
     def _type(self, value: str):
         """Set _type"""
-        self.___type = str(value)
+        self.___type = value
 
     @property
     def time(self) -> int:
@@ -212,4 +199,4 @@ class LisFile(Result):
     @version.setter
     def version(self, value: str):
         """Set version"""
-        self.__version = str(value)
+        self.__version = value

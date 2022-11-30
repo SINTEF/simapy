@@ -18,8 +18,6 @@ class DynamicPressureVariationItem(PressureVariationItem):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     mainRiserLine : MainRiserLine
          Main riser line
@@ -35,10 +33,9 @@ class DynamicPressureVariationItem(PressureVariationItem):
          End time for pressure variation(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, inletPressure=0.0, pressureDrop=0.0, fluidVelocity=0.0, startTime=0.0, endTime=0.0, **kwargs):
+    def __init__(self , description="", inletPressure=0.0, pressureDrop=0.0, fluidVelocity=0.0, startTime=0.0, endTime=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.mainRiserLine = None
         self.inletPressure = inletPressure
@@ -65,17 +62,7 @@ class DynamicPressureVariationItem(PressureVariationItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

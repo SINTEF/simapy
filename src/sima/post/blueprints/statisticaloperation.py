@@ -13,9 +13,8 @@ class StatisticalOperationBlueprint(OperationNodeBlueprint):
     def __init__(self, name="StatisticalOperation", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("x","integer","",default=0))
         self.add_attribute(Attribute("y","integer","",default=0))
         self.add_attribute(Attribute("h","integer","",default=0))
@@ -27,4 +26,4 @@ class StatisticalOperationBlueprint(OperationNodeBlueprint):
         self.add_attribute(BlueprintAttribute("inputSlot","sima/post/InputSlot","",True))
         self.add_attribute(BlueprintAttribute("outputSlot","sima/post/OutputSlot","",True))
         self.add_attribute(Attribute("outputIndex","boolean","Output the index of the event ( valid for maxima and minima)",default=False))
-        self.add_attribute(Attribute("combinedName","string","Name of output when using combined operation",default=None))
+        self.add_attribute(Attribute("combinedName","string","Name of output when using combined operation"))

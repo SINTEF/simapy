@@ -15,8 +15,6 @@ class GitTaskFolder(TaskFolder):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -34,19 +32,18 @@ class GitTaskFolder(TaskFolder):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, visible=True, remoteURI=None, branch=None, lastCommitMessage=None, repositoryFolder=None, **kwargs):
+    def __init__(self , description="", visible=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.childFolders = list()
         self.childTasks = list()
         self.visible = visible
-        self.remoteURI = remoteURI
-        self.branch = branch
-        self.lastCommitMessage = lastCommitMessage
-        self.repositoryFolder = repositoryFolder
+        self.remoteURI = None
+        self.branch = None
+        self.lastCommitMessage = None
+        self.repositoryFolder = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -66,17 +63,7 @@ class GitTaskFolder(TaskFolder):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -98,7 +85,7 @@ class GitTaskFolder(TaskFolder):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def childFolders(self) -> List[TaskFolder]:
@@ -142,7 +129,7 @@ class GitTaskFolder(TaskFolder):
     @remoteURI.setter
     def remoteURI(self, value: str):
         """Set remoteURI"""
-        self.__remoteURI = str(value)
+        self.__remoteURI = value
 
     @property
     def branch(self) -> str:
@@ -152,7 +139,7 @@ class GitTaskFolder(TaskFolder):
     @branch.setter
     def branch(self, value: str):
         """Set branch"""
-        self.__branch = str(value)
+        self.__branch = value
 
     @property
     def lastCommitMessage(self) -> str:
@@ -162,7 +149,7 @@ class GitTaskFolder(TaskFolder):
     @lastCommitMessage.setter
     def lastCommitMessage(self, value: str):
         """Set lastCommitMessage"""
-        self.__lastCommitMessage = str(value)
+        self.__lastCommitMessage = value
 
     @property
     def repositoryFolder(self) -> str:
@@ -172,4 +159,4 @@ class GitTaskFolder(TaskFolder):
     @repositoryFolder.setter
     def repositoryFolder(self, value: str):
         """Set repositoryFolder"""
-        self.__repositoryFolder = str(value)
+        self.__repositoryFolder = value

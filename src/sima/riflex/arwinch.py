@@ -22,8 +22,6 @@ class ARWinch(SegmentReference,NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -62,15 +60,14 @@ class ARWinch(SegmentReference,NamedObject):
          Control parameter for adjusting the length of elements attached to winch(default False)
     """
 
-    def __init__(self , description="", _id=None, segment=1, allSegments=False, name=None, segmentEnd=End.ONE, relativeSegmentLength=0.0, x1=0.0, y1=0.0, z1=0.0, rotation=0.0, rotationDirection=0.0, maxVelocity=0.0, timeToMaxVelocity=0.0, lineRelease=False, radius=0.0, winchCenter=CenterOfWinch.NEGATIVE_Z_AXIS, lengthJustification=False, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, segmentEnd=End.ONE, relativeSegmentLength=0.0, x1=0.0, y1=0.0, z1=0.0, rotation=0.0, rotationDirection=0.0, maxVelocity=0.0, timeToMaxVelocity=0.0, lineRelease=False, radius=0.0, winchCenter=CenterOfWinch.NEGATIVE_Z_AXIS, lengthJustification=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
         self.allSegments = allSegments
-        self.name = name
+        self.name = None
         self.segmentEnd = segmentEnd
         self.relativeSegmentLength = relativeSegmentLength
         self.x1 = x1
@@ -104,17 +101,7 @@ class ARWinch(SegmentReference,NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -166,7 +153,7 @@ class ARWinch(SegmentReference,NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def segmentEnd(self) -> End:

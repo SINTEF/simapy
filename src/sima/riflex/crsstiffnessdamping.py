@@ -15,8 +15,6 @@ class CRSStiffnessDamping(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     axialFactor : float
          Factor for stiffness proportional damping in axial dof(default 0.0)
@@ -28,10 +26,9 @@ class CRSStiffnessDamping(MOAO):
          Stiffness proportional damping options
     """
 
-    def __init__(self , description="", _id=None, axialFactor=0.0, torsionalFactor=0.0, bendingFactor=0.0, option=RayleighDamping.TOTAL, **kwargs):
+    def __init__(self , description="", axialFactor=0.0, torsionalFactor=0.0, bendingFactor=0.0, option=RayleighDamping.TOTAL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.axialFactor = axialFactor
         self.torsionalFactor = torsionalFactor
@@ -56,17 +53,7 @@ class CRSStiffnessDamping(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

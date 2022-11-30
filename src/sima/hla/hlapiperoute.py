@@ -18,8 +18,6 @@ class HLAPipeRoute(HLAObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -35,13 +33,12 @@ class HLAPipeRoute(HLAObject):
     routeWidthColor : SIMAColor
     """
 
-    def __init__(self , description="", _id=None, name=None, routeFile=None, coordsUTM='no', mapOnTerrain='auto', routeWidth=0.0, **kwargs):
+    def __init__(self , description="", coordsUTM='no', mapOnTerrain='auto', routeWidth=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.routeFile = routeFile
+        self.name = None
+        self.routeFile = None
         self.coordsUTM = coordsUTM
         self.mapOnTerrain = mapOnTerrain
         self.routeWidth = routeWidth
@@ -66,17 +63,7 @@ class HLAPipeRoute(HLAObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -98,7 +85,7 @@ class HLAPipeRoute(HLAObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def routeFile(self) -> str:
@@ -108,7 +95,7 @@ class HLAPipeRoute(HLAObject):
     @routeFile.setter
     def routeFile(self, value: str):
         """Set routeFile"""
-        self.__routeFile = str(value)
+        self.__routeFile = value
 
     @property
     def coordsUTM(self) -> str:
@@ -118,7 +105,7 @@ class HLAPipeRoute(HLAObject):
     @coordsUTM.setter
     def coordsUTM(self, value: str):
         """Set coordsUTM"""
-        self.__coordsUTM = str(value)
+        self.__coordsUTM = value
 
     @property
     def mapOnTerrain(self) -> str:
@@ -128,7 +115,7 @@ class HLAPipeRoute(HLAObject):
     @mapOnTerrain.setter
     def mapOnTerrain(self, value: str):
         """Set mapOnTerrain"""
-        self.__mapOnTerrain = str(value)
+        self.__mapOnTerrain = value
 
     @property
     def routeWidth(self) -> float:

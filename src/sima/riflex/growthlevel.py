@@ -14,8 +14,6 @@ class GrowthLevel(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     levelZCoordinate : float
          Z coordinate of level given in global coordinate system(default 0.0)
@@ -25,10 +23,9 @@ class GrowthLevel(MOAO):
          Growth density at this level(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, levelZCoordinate=0.0, thickness=0.0, density=0.0, **kwargs):
+    def __init__(self , description="", levelZCoordinate=0.0, thickness=0.0, density=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.levelZCoordinate = levelZCoordinate
         self.thickness = thickness
@@ -52,17 +49,7 @@ class GrowthLevel(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

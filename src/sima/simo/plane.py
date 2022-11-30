@@ -16,8 +16,6 @@ class Plane(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     unlimited : bool
          Whether the fender plane is limited to a restricted sector(default False)
@@ -30,10 +28,9 @@ class Plane(MOAO):
     parallelVector : Vector3
     """
 
-    def __init__(self , description="", _id=None, unlimited=False, width=0.0, length=0.0, **kwargs):
+    def __init__(self , description="", unlimited=False, width=0.0, length=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.unlimited = unlimited
         self.width = width
@@ -60,17 +57,7 @@ class Plane(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

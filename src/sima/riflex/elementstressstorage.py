@@ -21,8 +21,6 @@ class ElementStressStorage(ElementReference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -52,10 +50,9 @@ class ElementStressStorage(ElementReference):
     position : WallPoint
     """
 
-    def __init__(self , description="", _id=None, segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, _type=StressType.AXIAL_BENDING, outerDiameter=0.0, thickness=0.0, internalPressure=0.0, externalPressure=0.0, numberOfPoints=8, position=WallPoint.OUTER_WALL, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, _type=StressType.AXIAL_BENDING, outerDiameter=0.0, thickness=0.0, internalPressure=0.0, externalPressure=0.0, numberOfPoints=8, position=WallPoint.OUTER_WALL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -90,17 +87,7 @@ class ElementStressStorage(ElementReference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

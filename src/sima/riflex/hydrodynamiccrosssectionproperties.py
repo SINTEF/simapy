@@ -22,8 +22,6 @@ class HydrodynamicCrossSectionProperties(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     itemNumber : int
          Global segment number(default 0)
@@ -43,10 +41,9 @@ class HydrodynamicCrossSectionProperties(MOAO):
          Strouhal number
     """
 
-    def __init__(self , description="", _id=None, itemNumber=0, **kwargs):
+    def __init__(self , description="", itemNumber=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.itemNumber = itemNumber
         self.excitationZoneProperty = None
@@ -75,17 +72,7 @@ class HydrodynamicCrossSectionProperties(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

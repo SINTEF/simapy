@@ -13,7 +13,6 @@ class SoilPenetrationBlueprint(MOAOBlueprint):
     def __init__(self, name="SoilPenetration", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("frictionModel","sima/simo/SoilFriction","Soil force control parameter"))
         self.add_attribute(Attribute("zcont","number","Vertical coordinate of the lifted structure giving first\ncontact with the soil (landing)",default=0.0))

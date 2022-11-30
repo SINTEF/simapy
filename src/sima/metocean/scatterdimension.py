@@ -14,8 +14,6 @@ class ScatterDimension(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     nValues : int
          (default 0)
@@ -23,10 +21,9 @@ class ScatterDimension(MOAO):
          Scatter values
     """
 
-    def __init__(self , description="", _id=None, nValues=0, **kwargs):
+    def __init__(self , description="", nValues=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.nValues = nValues
         self.values = ndarray(1)
@@ -49,17 +46,7 @@ class ScatterDimension(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

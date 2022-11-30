@@ -18,8 +18,6 @@ class FixedForceElongation(PositioningElement):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -44,12 +42,11 @@ class FixedForceElongation(PositioningElement):
     characteristic : ForceDampingCharacteristic
     """
 
-    def __init__(self , description="", _id=None, name=None, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, method=FixedForceElongationMethod.PRETENSION_LOCAL, pretension=0.0, direction=0.0, angle=0.0, velocityLimit=0.0, **kwargs):
+    def __init__(self , description="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, method=FixedForceElongationMethod.PRETENSION_LOCAL, pretension=0.0, direction=0.0, angle=0.0, velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.localPoint = None
         self.globalPoint = None
         self.failureMode = failureMode
@@ -80,17 +77,7 @@ class FixedForceElongation(PositioningElement):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -112,7 +99,7 @@ class FixedForceElongation(PositioningElement):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def localPoint(self) -> Point3:

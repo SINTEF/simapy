@@ -15,8 +15,6 @@ class FluctuatingThreeComponent(Wind):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
@@ -51,17 +49,16 @@ class FluctuatingThreeComponent(Wind):
          Buffer size: Number of wind crossectional planes (Slices) in memory(default 800)
     """
 
-    def __init__(self , description="", _id=None, direction=0.0, meanSpeed=0.0, longitudinalFileName=None, lateralFileName=None, verticalFileName=None, lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, **kwargs):
+    def __init__(self , description="", direction=0.0, meanSpeed=0.0, lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.direction = direction
         self.meanSpeed = meanSpeed
         self.velocityProfiles = list()
-        self.longitudinalFileName = longitudinalFileName
-        self.lateralFileName = lateralFileName
-        self.verticalFileName = verticalFileName
+        self.longitudinalFileName = None
+        self.lateralFileName = None
+        self.verticalFileName = None
         self.lowerLeftX = lowerLeftX
         self.lowerLeftY = lowerLeftY
         self.lowerLeftZ = lowerLeftZ
@@ -91,17 +88,7 @@ class FluctuatingThreeComponent(Wind):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -155,7 +142,7 @@ class FluctuatingThreeComponent(Wind):
     @longitudinalFileName.setter
     def longitudinalFileName(self, value: str):
         """Set longitudinalFileName"""
-        self.__longitudinalFileName = str(value)
+        self.__longitudinalFileName = value
 
     @property
     def lateralFileName(self) -> str:
@@ -165,7 +152,7 @@ class FluctuatingThreeComponent(Wind):
     @lateralFileName.setter
     def lateralFileName(self, value: str):
         """Set lateralFileName"""
-        self.__lateralFileName = str(value)
+        self.__lateralFileName = value
 
     @property
     def verticalFileName(self) -> str:
@@ -175,7 +162,7 @@ class FluctuatingThreeComponent(Wind):
     @verticalFileName.setter
     def verticalFileName(self, value: str):
         """Set verticalFileName"""
-        self.__verticalFileName = str(value)
+        self.__verticalFileName = value
 
     @property
     def lowerLeftX(self) -> float:

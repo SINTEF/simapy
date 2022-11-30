@@ -26,8 +26,6 @@ class Thruster(IThruster):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -91,12 +89,11 @@ class Thruster(IThruster):
     controlSequence : List[ControlSequenceItem]
     """
 
-    def __init__(self , description="", _id=None, name=None, minForce=0.0, maxForce=0.0, _type=ThrusterType.FIXED_CONVENTIONAL, diameter=1.0, forceDirection=0.0, force=0.0, minTimeChange=0.0, maxRevolvingSpeed=10.0, failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, maxRudderAngle=0.0, rudderCoefficient=0.0, relativeDeadBand=0.01, thrustReductionFactor=1.0, minDirectionChange=0.0, formulation=Formulation.SIMO_41, ctForward=1.0, cqForward=1.0, ctReverse=1.0, cqReverse=1.0, pdRatio=1.0, tcThrust=0.0, tcAzimuth=0.0, coefficientModel=ThrustCoefficientModel.INTERNAL, thrustLoss=ThrustLoss.NONE, specifyControlSequence=False, controlSequenceSignalType=ThrustSignalType.FORCE, **kwargs):
+    def __init__(self , description="", minForce=0.0, maxForce=0.0, _type=ThrusterType.FIXED_CONVENTIONAL, diameter=1.0, forceDirection=0.0, force=0.0, minTimeChange=0.0, maxRevolvingSpeed=10.0, failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, maxRudderAngle=0.0, rudderCoefficient=0.0, relativeDeadBand=0.01, thrustReductionFactor=1.0, minDirectionChange=0.0, formulation=Formulation.SIMO_41, ctForward=1.0, cqForward=1.0, ctReverse=1.0, cqReverse=1.0, pdRatio=1.0, tcThrust=0.0, tcAzimuth=0.0, coefficientModel=ThrustCoefficientModel.INTERNAL, thrustLoss=ThrustLoss.NONE, specifyControlSequence=False, controlSequenceSignalType=ThrustSignalType.FORCE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.minForce = minForce
         self.maxForce = maxForce
         self._type = _type
@@ -150,17 +147,7 @@ class Thruster(IThruster):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -182,7 +169,7 @@ class Thruster(IThruster):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def minForce(self) -> float:

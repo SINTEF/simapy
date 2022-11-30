@@ -23,8 +23,6 @@ class FixedBodyElement(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -65,12 +63,11 @@ class FixedBodyElement(NamedObject):
          Added mass z(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, volume=0.0, mass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=FixedBodyWaveParticleMethod.VELOCITY_AND_ACCELERATION, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, **kwargs):
+    def __init__(self , description="", volume=0.0, mass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=FixedBodyWaveParticleMethod.VELOCITY_AND_ACCELERATION, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.volume = volume
         self.mass = mass
         self.waveIntegrationMethod = waveIntegrationMethod
@@ -110,17 +107,7 @@ class FixedBodyElement(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -142,7 +129,7 @@ class FixedBodyElement(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def volume(self) -> float:

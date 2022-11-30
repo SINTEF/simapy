@@ -19,8 +19,6 @@ class ArticulatedStructureData(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     _type : ArticulatedStructureType
          Type of articulated structure coupling control
@@ -46,10 +44,9 @@ class ArticulatedStructureData(MOAO):
          Slip (turn-back) angle(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, _type=ArticulatedStructureType.NRUN, motionMode=MotionMode.PHI, initialPosition=0.0, lowerPositionLimit=0.0, upperPositionLimit=0.0, maxSpeed=0.0, maxAcceleration=0.0, motionSequenceType=MotionSequenceType.TSTOP, maximumAngle=0.0, slipAngle=0.0, **kwargs):
+    def __init__(self , description="", _type=ArticulatedStructureType.NRUN, motionMode=MotionMode.PHI, initialPosition=0.0, lowerPositionLimit=0.0, upperPositionLimit=0.0, maxSpeed=0.0, maxAcceleration=0.0, motionSequenceType=MotionSequenceType.TSTOP, maximumAngle=0.0, slipAngle=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self._type = _type
         self.masterPoint = None
@@ -83,17 +80,7 @@ class ArticulatedStructureData(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

@@ -18,8 +18,6 @@ class SegmentLengthVariationItem(SegmentReference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -37,10 +35,9 @@ class SegmentLengthVariationItem(SegmentReference):
          Activate interactive (HLA) control of segment variation(default False)
     """
 
-    def __init__(self , description="", _id=None, segment=1, allSegments=False, startTime=0.0, endTime=0.0, segmentLengthRate=0.0, interactive=False, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, startTime=0.0, endTime=0.0, segmentLengthRate=0.0, interactive=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -68,17 +65,7 @@ class SegmentLengthVariationItem(SegmentReference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

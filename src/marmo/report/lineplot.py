@@ -41,15 +41,15 @@ class LinePlot(Entity):
     lines : List[PlotLine]
     """
 
-    def __init__(self , description="", title=None, xlabel=None, ylabel=None, showlegend=True, showtitle=True, caption=None, width=0, height=0, size=PlotSize.DYNAMIC, **kwargs):
+    def __init__(self , description="", showlegend=True, showtitle=True, width=0, height=0, size=PlotSize.DYNAMIC, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.title = title
-        self.xlabel = xlabel
-        self.ylabel = ylabel
+        self.title = None
+        self.xlabel = None
+        self.ylabel = None
         self.showlegend = showlegend
         self.showtitle = showtitle
-        self.caption = caption
+        self.caption = None
         self.width = width
         self.height = height
         self.size = size
@@ -77,7 +77,7 @@ class LinePlot(Entity):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def title(self) -> str:
@@ -87,7 +87,7 @@ class LinePlot(Entity):
     @title.setter
     def title(self, value: str):
         """Set title"""
-        self.__title = str(value)
+        self.__title = value
 
     @property
     def xlabel(self) -> str:
@@ -97,7 +97,7 @@ class LinePlot(Entity):
     @xlabel.setter
     def xlabel(self, value: str):
         """Set xlabel"""
-        self.__xlabel = str(value)
+        self.__xlabel = value
 
     @property
     def ylabel(self) -> str:
@@ -107,7 +107,7 @@ class LinePlot(Entity):
     @ylabel.setter
     def ylabel(self, value: str):
         """Set ylabel"""
-        self.__ylabel = str(value)
+        self.__ylabel = value
 
     @property
     def showlegend(self) -> bool:
@@ -137,7 +137,7 @@ class LinePlot(Entity):
     @caption.setter
     def caption(self, value: str):
         """Set caption"""
-        self.__caption = str(value)
+        self.__caption = value
 
     @property
     def width(self) -> int:

@@ -15,8 +15,6 @@ class YawController(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     yawControllerType : YawControllerType
     timeStep : float
@@ -33,10 +31,9 @@ class YawController(MOAO):
          Filter period for yaw misalignment signal. Used to determine end time for yawing back to set point(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, yawControllerType=YawControllerType.NONE, timeStep=0.0, setPoint=0.0, yawRate=0.0, errorThreshold=0.0, fastLowPassFilterPeriod=0.0, slowLowPassFilterPeriod=0.0, **kwargs):
+    def __init__(self , description="", yawControllerType=YawControllerType.NONE, timeStep=0.0, setPoint=0.0, yawRate=0.0, errorThreshold=0.0, fastLowPassFilterPeriod=0.0, slowLowPassFilterPeriod=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.yawControllerType = yawControllerType
         self.timeStep = timeStep
@@ -64,17 +61,7 @@ class YawController(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

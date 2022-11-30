@@ -13,9 +13,8 @@ class PointBerthingFenderBlueprint(NamedObjectBlueprint):
     def __init__(self, name="PointBerthingFender", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("dynamicFriction","number","Dynamic friction coefficient, sliding",default=0.0))
         self.add_attribute(Attribute("staticFriction","number","Friction coefficient, when not sliding (stiction)",default=0.0))
         self.add_attribute(Attribute("shearStiffnes","number","Shear stiffness associated with friction",default=0.0))

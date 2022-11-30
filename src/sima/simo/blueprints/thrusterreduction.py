@@ -13,7 +13,6 @@ class ThrusterReductionBlueprint(MOAOBlueprint):
     def __init__(self, name="ThrusterReduction", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("propellerDirection","number","Direction of propeller axis in body coordinate system",default=0.0))
         self.add_attribute(Attribute("reductionFactor","number","Thrust reduction factor",default=1.0))

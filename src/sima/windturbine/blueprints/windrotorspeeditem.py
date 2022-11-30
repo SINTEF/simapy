@@ -13,7 +13,6 @@ class WindRotorSpeedItemBlueprint(MOAOBlueprint):
     def __init__(self, name="WindRotorSpeedItem", package_path="sima/windturbine", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("windSpeed","number","Wind speed at hub",default=0.0))
         self.add_attribute(Attribute("rotorSpeed","number","Rotor speed",default=0.0))

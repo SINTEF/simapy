@@ -16,8 +16,6 @@ class StringValue(GeneratorSignal,SingleParameter):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
     name : str
@@ -30,15 +28,14 @@ class StringValue(GeneratorSignal,SingleParameter):
          Value of the String constant
     """
 
-    def __init__(self , description="", _id=None, name=None, array=False, value=None, **kwargs):
+    def __init__(self , description="", array=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.properties = list()
-        self.name = name
+        self.name = None
         self.array = array
-        self.value = value
+        self.value = None
         self.values = ndarray(1)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -59,17 +56,7 @@ class StringValue(GeneratorSignal,SingleParameter):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -103,7 +90,7 @@ class StringValue(GeneratorSignal,SingleParameter):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def array(self) -> bool:
@@ -123,7 +110,7 @@ class StringValue(GeneratorSignal,SingleParameter):
     @value.setter
     def value(self, value: str):
         """Set value"""
-        self.__value = str(value)
+        self.__value = value
 
     @property
     def values(self) -> ndarray:

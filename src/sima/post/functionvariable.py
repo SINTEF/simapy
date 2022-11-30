@@ -14,8 +14,6 @@ class FunctionVariable(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -25,14 +23,13 @@ class FunctionVariable(MOAO):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, path=None, attribute=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.path = path
-        self.attribute = attribute
+        self.name = None
+        self.path = None
+        self.attribute = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -52,17 +49,7 @@ class FunctionVariable(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -84,7 +71,7 @@ class FunctionVariable(MOAO):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def path(self) -> str:
@@ -94,7 +81,7 @@ class FunctionVariable(MOAO):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def attribute(self) -> str:
@@ -104,4 +91,4 @@ class FunctionVariable(MOAO):
     @attribute.setter
     def attribute(self, value: str):
         """Set attribute"""
-        self.__attribute = str(value)
+        self.__attribute = value

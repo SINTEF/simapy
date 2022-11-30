@@ -23,8 +23,6 @@ class WamitBodyResult(Named):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -64,12 +62,11 @@ class WamitBodyResult(Named):
     hydrostaticStiffness : HydrostaticStiffnessData
     """
 
-    def __init__(self , description="", _id=None, name=None, characteristicLength=0.0, x=0.0, y=0.0, z=0.0, rz=0.0, symmetryAboutX=False, symmetryAboutY=False, gravity=0.0, waterDensity=0.0, waterDepth=0.0, **kwargs):
+    def __init__(self , description="", characteristicLength=0.0, x=0.0, y=0.0, z=0.0, rz=0.0, symmetryAboutX=False, symmetryAboutY=False, gravity=0.0, waterDensity=0.0, waterDepth=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.firstOrderMotionTransferFunction = None
         self.firstOrderWaveForceTransferFunctionDiffraction = None
         self.firstOrderWaveForceTransferFunctionHaskind = None
@@ -113,17 +110,7 @@ class WamitBodyResult(Named):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -145,7 +132,7 @@ class WamitBodyResult(Named):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def firstOrderMotionTransferFunction(self) -> FirstOrderMotionTransferFunction:

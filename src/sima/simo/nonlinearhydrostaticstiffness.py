@@ -15,8 +15,6 @@ class NonLinearHydrostaticStiffness(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     geometryPosition : Position
     geometryFile : str
@@ -25,13 +23,12 @@ class NonLinearHydrostaticStiffness(MOAO):
          Geometry transparency, [0-1], where 1 is full transparency.(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, geometryFile=None, transparency=0.0, **kwargs):
+    def __init__(self , description="", transparency=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.geometryPosition = None
-        self.geometryFile = geometryFile
+        self.geometryFile = None
         self.transparency = transparency
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -52,17 +49,7 @@ class NonLinearHydrostaticStiffness(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -94,7 +81,7 @@ class NonLinearHydrostaticStiffness(MOAO):
     @geometryFile.setter
     def geometryFile(self, value: str):
         """Set geometryFile"""
-        self.__geometryFile = str(value)
+        self.__geometryFile = value
 
     @property
     def transparency(self) -> float:

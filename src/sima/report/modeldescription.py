@@ -18,21 +18,18 @@ class ModelDescription(ReportItem):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     object : MOAO
     caption : str
          Caption(default None)
     """
 
-    def __init__(self , description="", _id=None, caption=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.object = None
-        self.caption = caption
+        self.caption = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -52,17 +49,7 @@ class ModelDescription(ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -94,4 +81,4 @@ class ModelDescription(ReportItem):
     @caption.setter
     def caption(self, value: str):
         """Set caption"""
-        self.__caption = str(value)
+        self.__caption = value

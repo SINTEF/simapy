@@ -18,8 +18,6 @@ class ProplibPropellerAndRudderThruster(IThruster):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -83,12 +81,11 @@ class ProplibPropellerAndRudderThruster(IThruster):
          Thrust deduction factor(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=False, includeThrusterHullInteraction=False, includeThrusterThrusterInteraction=False, maxRps=0.0, diameter=0.0, bladeAreaRatio=0.0, headboxHeight=0.0, headboxRootChord=0.0, headboxTipChord=0.0, headboxArea=0.0, rudderHeight=0.0, rudderRootChord=0.0, rudderTipChord=0.0, rudderHornArea=0.0, rudderTotalArea=0.0, rudderPropellerHorizontalDistance=0.0, rudderPropellerVerticalDistance=0.0, rudderHeadboxGap=0.0, wakeFraction=0.0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, thrustDeductionFactor=0.0, **kwargs):
+    def __init__(self , description="", minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=False, includeThrusterHullInteraction=False, includeThrusterThrusterInteraction=False, maxRps=0.0, diameter=0.0, bladeAreaRatio=0.0, headboxHeight=0.0, headboxRootChord=0.0, headboxTipChord=0.0, headboxArea=0.0, rudderHeight=0.0, rudderRootChord=0.0, rudderTipChord=0.0, rudderHornArea=0.0, rudderTotalArea=0.0, rudderPropellerHorizontalDistance=0.0, rudderPropellerVerticalDistance=0.0, rudderHeadboxGap=0.0, wakeFraction=0.0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, thrustDeductionFactor=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.minForce = minForce
         self.maxForce = maxForce
         self.position = None
@@ -139,17 +136,7 @@ class ProplibPropellerAndRudderThruster(IThruster):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -171,7 +158,7 @@ class ProplibPropellerAndRudderThruster(IThruster):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def minForce(self) -> float:

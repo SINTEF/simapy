@@ -13,7 +13,6 @@ class IrregularWaveProcedureBlueprint(MOAOBlueprint):
     def __init__(self, name="IrregularWaveProcedure", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("kinematicsPosition","sima/riflex/KinematicsPositions","Kinematic positions"))
         self.add_attribute(EnumAttribute("kinematicsInWaveZone","sima/riflex/KinematicsInWaveZone","Type of kinematics in wave zone"))
@@ -25,7 +24,7 @@ class IrregularWaveProcedureBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("waveKinematicDiffPoints","sima/riflex/WaveKinematicsDiffPoint","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("waveKinematicNodePoints","sima/riflex/WaveKinematicsNodePoint","",True,Dimension("*")))
         self.add_attribute(Attribute("waveKinematicsFile","boolean","Whether wave kinematics time series should be read from file or not",default=False))
-        self.add_attribute(Attribute("waveKinematicsFileName","string","Reference to a wave kinematics file",default=None))
+        self.add_attribute(Attribute("waveKinematicsFileName","string","Reference to a wave kinematics file"))
         self.add_attribute(BlueprintAttribute("waveKinematicsTimeSeriesReferences","sima/riflex/WaveKinematicsTimeSeriesReference","",True,Dimension("*")))
         self.add_attribute(Attribute("waveKinematicsMaxColumns","integer","Maximum number of columns in the wave kinematics time series file",default=0))
         self.add_attribute(Attribute("waveKinematicsTimeColumn","integer","Column number for time in the wave kinematics time series file",default=0))

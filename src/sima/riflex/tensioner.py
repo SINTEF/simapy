@@ -14,8 +14,6 @@ class Tensioner(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -31,12 +29,11 @@ class Tensioner(NamedObject):
          Direction of the applied load referreing to local X-axis of the element going through the tensioner (+1 = The load will act in local X-axis. -1 = The load will act opposite local X-axis).(default 1.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, appliedLoad=0.0, maxLoad=0.0, minLoad=0.0, pipelineDisplacement=0.0, direction=1.0, **kwargs):
+    def __init__(self , description="", appliedLoad=0.0, maxLoad=0.0, minLoad=0.0, pipelineDisplacement=0.0, direction=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.appliedLoad = appliedLoad
         self.maxLoad = maxLoad
         self.minLoad = minLoad
@@ -61,17 +58,7 @@ class Tensioner(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -93,7 +80,7 @@ class Tensioner(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def appliedLoad(self) -> float:

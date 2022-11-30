@@ -14,8 +14,6 @@ class SIMAColor(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     red : float
          (default 1.0)
@@ -25,10 +23,9 @@ class SIMAColor(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, red=1.0, green=0.0, blue=0.0, **kwargs):
+    def __init__(self , description="", red=1.0, green=0.0, blue=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.red = red
         self.green = green
@@ -52,17 +49,7 @@ class SIMAColor(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

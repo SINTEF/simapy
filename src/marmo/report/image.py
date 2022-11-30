@@ -23,11 +23,11 @@ class Image(ReportItem):
          (default 0)
     """
 
-    def __init__(self , description="", path=None, caption=None, height=0, width=0, **kwargs):
+    def __init__(self , description="", height=0, width=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.path = path
-        self.caption = caption
+        self.path = None
+        self.caption = None
         self.height = height
         self.width = width
         for key, value in kwargs.items():
@@ -49,7 +49,7 @@ class Image(ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def path(self) -> str:
@@ -59,7 +59,7 @@ class Image(ReportItem):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def caption(self) -> str:
@@ -69,7 +69,7 @@ class Image(ReportItem):
     @caption.setter
     def caption(self, value: str):
         """Set caption"""
-        self.__caption = str(value)
+        self.__caption = value
 
     @property
     def height(self) -> int:

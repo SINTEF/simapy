@@ -14,8 +14,6 @@ class SignificantWaveHeightWeibullData(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     duration : float
          (default 0.0)
@@ -29,10 +27,9 @@ class SignificantWaveHeightWeibullData(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, duration=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
+    def __init__(self , description="", duration=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.duration = duration
         self.probability = probability
@@ -58,17 +55,7 @@ class SignificantWaveHeightWeibullData(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

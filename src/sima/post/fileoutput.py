@@ -22,8 +22,6 @@ class FileOutput(OperationNode,OutputNode,SignalPropertiesContainer):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -57,12 +55,11 @@ class FileOutput(OperationNode,OutputNode,SignalPropertiesContainer):
          Writes a single input string into the given file(default False)
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, filePath=None, fileFormat=FileFormat.CSV, shellCommand=None, addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFormat=FileFormat.CSV, addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.properties = list()
         self.x = x
         self.y = y
@@ -71,9 +68,9 @@ class FileOutput(OperationNode,OutputNode,SignalPropertiesContainer):
         self.controlSignalInputSlots = list()
         self.filterInputSlots = list()
         self.filterOutputSlots = list()
-        self.filePath = filePath
+        self.filePath = None
         self.fileFormat = fileFormat
-        self.shellCommand = shellCommand
+        self.shellCommand = None
         self.addMetaTags = addMetaTags
         self.decimalSeparator = decimalSeparator
         self.skipHeader = skipHeader
@@ -98,17 +95,7 @@ class FileOutput(OperationNode,OutputNode,SignalPropertiesContainer):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -130,7 +117,7 @@ class FileOutput(OperationNode,OutputNode,SignalPropertiesContainer):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def properties(self) -> List[SignalProperties]:
@@ -228,7 +215,7 @@ class FileOutput(OperationNode,OutputNode,SignalPropertiesContainer):
     @filePath.setter
     def filePath(self, value: str):
         """Set filePath"""
-        self.__filePath = str(value)
+        self.__filePath = value
 
     @property
     def fileFormat(self) -> FileFormat:
@@ -248,7 +235,7 @@ class FileOutput(OperationNode,OutputNode,SignalPropertiesContainer):
     @shellCommand.setter
     def shellCommand(self, value: str):
         """Set shellCommand"""
-        self.__shellCommand = str(value)
+        self.__shellCommand = value
 
     @property
     def addMetaTags(self) -> bool:

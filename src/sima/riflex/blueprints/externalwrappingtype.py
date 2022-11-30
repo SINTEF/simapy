@@ -13,9 +13,8 @@ class ExternalWrappingTypeBlueprint(NamedObjectBlueprint):
     def __init__(self, name="ExternalWrappingType", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("mass","number","Mass per unit length",default=0.0))
         self.add_attribute(Attribute("buoyancy","number","Buoyancy volume/length",default=0.0))
         self.add_attribute(Attribute("gyrationRadius","number","Radius of gyration around x-axis",default=0.0))

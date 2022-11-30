@@ -14,8 +14,6 @@ class AdditionalStructuralDampingParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     globalSegmentNumber : int
          Global segment number(default 0)
@@ -23,13 +21,12 @@ class AdditionalStructuralDampingParameters(MOAO):
          File with detailed structural damping specification, see VIVANA user manual(default None)
     """
 
-    def __init__(self , description="", _id=None, globalSegmentNumber=0, structuralDampingFile=None, **kwargs):
+    def __init__(self , description="", globalSegmentNumber=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.globalSegmentNumber = globalSegmentNumber
-        self.structuralDampingFile = structuralDampingFile
+        self.structuralDampingFile = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -49,17 +46,7 @@ class AdditionalStructuralDampingParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -91,4 +78,4 @@ class AdditionalStructuralDampingParameters(MOAO):
     @structuralDampingFile.setter
     def structuralDampingFile(self, value: str):
         """Set structuralDampingFile"""
-        self.__structuralDampingFile = str(value)
+        self.__structuralDampingFile = value

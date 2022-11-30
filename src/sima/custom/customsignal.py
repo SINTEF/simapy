@@ -20,8 +20,6 @@ class CustomSignal(CustomComponent):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
          (default None)
@@ -41,16 +39,15 @@ class CustomSignal(CustomComponent):
     signal : GeneratorSignal
     """
 
-    def __init__(self , description="", _id=None, label=None, tooltip=None, fileType=FileType.INPUT, directory=False, fileExtensions=None, _type=FieldType.TEXT, width=10, expandHorizontally=False, **kwargs):
+    def __init__(self , description="", fileType=FileType.INPUT, directory=False, _type=FieldType.TEXT, width=10, expandHorizontally=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.label = label
-        self.tooltip = tooltip
+        self.label = None
+        self.tooltip = None
         self.fileType = fileType
         self.directory = directory
-        self.fileExtensions = fileExtensions
+        self.fileExtensions = None
         self.options = ndarray(1)
         self._type = _type
         self.width = width
@@ -75,17 +72,7 @@ class CustomSignal(CustomComponent):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -107,7 +94,7 @@ class CustomSignal(CustomComponent):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def tooltip(self) -> str:
@@ -117,7 +104,7 @@ class CustomSignal(CustomComponent):
     @tooltip.setter
     def tooltip(self, value: str):
         """Set tooltip"""
-        self.__tooltip = str(value)
+        self.__tooltip = value
 
     @property
     def fileType(self) -> FileType:
@@ -147,7 +134,7 @@ class CustomSignal(CustomComponent):
     @fileExtensions.setter
     def fileExtensions(self, value: str):
         """Set fileExtensions"""
-        self.__fileExtensions = str(value)
+        self.__fileExtensions = value
 
     @property
     def options(self) -> ndarray:

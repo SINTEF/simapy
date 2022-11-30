@@ -29,13 +29,13 @@ class Axis(Entity):
          (default True)
     """
 
-    def __init__(self , description="", log=False, autoformat=True, format=None, autoscale=True, showgrid=True, dashgridline=True, **kwargs):
+    def __init__(self , description="", log=False, autoformat=True, autoscale=True, showgrid=True, dashgridline=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.font = None
         self.log = log
         self.autoformat = autoformat
-        self.format = format
+        self.format = None
         self.autoscale = autoscale
         self.showgrid = showgrid
         self.dashgridline = dashgridline
@@ -58,7 +58,7 @@ class Axis(Entity):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def font(self) -> Font:
@@ -98,7 +98,7 @@ class Axis(Entity):
     @format.setter
     def format(self, value: str):
         """Set format"""
-        self.__format = str(value)
+        self.__format = value
 
     @property
     def autoscale(self) -> bool:

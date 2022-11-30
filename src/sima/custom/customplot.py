@@ -18,8 +18,6 @@ class CustomPlot(CustomComponent):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     output : OutputNode
     path : str
@@ -28,13 +26,12 @@ class CustomPlot(CustomComponent):
          (default False)
     """
 
-    def __init__(self , description="", _id=None, path=None, showTree=False, **kwargs):
+    def __init__(self , description="", showTree=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.output = None
-        self.path = path
+        self.path = None
         self.showTree = showTree
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -55,17 +52,7 @@ class CustomPlot(CustomComponent):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -97,7 +84,7 @@ class CustomPlot(CustomComponent):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def showTree(self) -> bool:

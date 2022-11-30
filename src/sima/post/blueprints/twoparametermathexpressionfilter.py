@@ -13,9 +13,8 @@ class TwoParameterMathExpressionFilterBlueprint(OperationNodeBlueprint):
     def __init__(self, name="TwoParameterMathExpressionFilter", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("x","integer","",default=0))
         self.add_attribute(Attribute("y","integer","",default=0))
         self.add_attribute(Attribute("h","integer","",default=0))
@@ -24,4 +23,4 @@ class TwoParameterMathExpressionFilterBlueprint(OperationNodeBlueprint):
         self.add_attribute(BlueprintAttribute("filterInputSlots","sima/post/InputSlot","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("filterOutputSlots","sima/post/OutputSlot","",True,Dimension("*")))
         self.add_attribute(Attribute("renameOutput","boolean","",default=True))
-        self.add_attribute(Attribute("function","string","Apply the given function to each element of the input",default=None))
+        self.add_attribute(Attribute("function","string","Apply the given function to each element of the input"))

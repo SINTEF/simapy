@@ -14,8 +14,6 @@ class RegularWaveItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     amplitude : float
          Wave amplitude(default 0.0)
@@ -27,10 +25,9 @@ class RegularWaveItem(MOAO):
          Wave propagation direction(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, amplitude=0.0, period=0.0, phase=0.0, direction=0.0, **kwargs):
+    def __init__(self , description="", amplitude=0.0, period=0.0, phase=0.0, direction=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.amplitude = amplitude
         self.period = period
@@ -55,17 +52,7 @@ class RegularWaveItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

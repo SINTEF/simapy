@@ -16,8 +16,6 @@ class ConstantValue(GeneratorSignal,SingleParameter):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
     name : str
@@ -28,13 +26,12 @@ class ConstantValue(GeneratorSignal,SingleParameter):
          Defines the unit of the constant(default '-')
     """
 
-    def __init__(self , description="", _id=None, name=None, value=0.0, unit='-', **kwargs):
+    def __init__(self , description="", value=0.0, unit='-', **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.properties = list()
-        self.name = name
+        self.name = None
         self.value = value
         self.unit = unit
         for key, value in kwargs.items():
@@ -56,17 +53,7 @@ class ConstantValue(GeneratorSignal,SingleParameter):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -100,7 +87,7 @@ class ConstantValue(GeneratorSignal,SingleParameter):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def value(self) -> float:
@@ -120,4 +107,4 @@ class ConstantValue(GeneratorSignal,SingleParameter):
     @unit.setter
     def unit(self, value: str):
         """Set unit"""
-        self.__unit = str(value)
+        self.__unit = value

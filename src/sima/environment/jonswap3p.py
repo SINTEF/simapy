@@ -15,8 +15,6 @@ class Jonswap3P(Jonswap):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Average wave propagation direction(default 0.0)
@@ -34,10 +32,9 @@ class Jonswap3P(Jonswap):
          Peakedness parameter, γ - calculated when not specified(default 3.3)
     """
 
-    def __init__(self , description="", _id=None, direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, significantWaveHeight=0.0, peakPeriod=0.0, gamma=3.3, **kwargs):
+    def __init__(self , description="", direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, significantWaveHeight=0.0, peakPeriod=0.0, gamma=3.3, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.direction = direction
         self.spreadingExponent = spreadingExponent
@@ -65,17 +62,7 @@ class Jonswap3P(Jonswap):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

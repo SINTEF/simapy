@@ -19,8 +19,6 @@ class StorageTask(Task):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -37,19 +35,18 @@ class StorageTask(Task):
          If not set the file content withing this storage task will be ommitted when exporting.(default True)
     """
 
-    def __init__(self , description="", _id=None, name=None, runNumber=0, _type=StorageTaskType.PRIVATE, root=None, includeInExport=True, **kwargs):
+    def __init__(self , description="", runNumber=0, _type=StorageTaskType.PRIVATE, includeInExport=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.doubleVariables = list()
         self.integerVariables = list()
         self.stringVariables = list()
         self.runNumber = runNumber
         self.scripts = list()
         self._type = _type
-        self.root = root
+        self.root = None
         self.includeInExport = includeInExport
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -70,17 +67,7 @@ class StorageTask(Task):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -102,7 +89,7 @@ class StorageTask(Task):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def doubleVariables(self) -> List[DoubleVariable]:
@@ -180,7 +167,7 @@ class StorageTask(Task):
     @root.setter
     def root(self, value: str):
         """Set root"""
-        self.__root = str(value)
+        self.__root = value
 
     @property
     def includeInExport(self) -> bool:

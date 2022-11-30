@@ -15,8 +15,6 @@ class Roller(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,12 +37,11 @@ class Roller(NamedObject):
     stiffnessItems : List[SpringStiffnessItem]
     """
 
-    def __init__(self , description="", _id=None, name=None, direction=0.0, y=0.0, z=0.0, length=0.0, constantStiffness=False, damping=0.0, stiffness=0.0, radius=0.0, **kwargs):
+    def __init__(self , description="", direction=0.0, y=0.0, z=0.0, length=0.0, constantStiffness=False, damping=0.0, stiffness=0.0, radius=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.direction = direction
         self.y = y
         self.z = z
@@ -73,17 +70,7 @@ class Roller(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -105,7 +92,7 @@ class Roller(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def direction(self) -> float:

@@ -16,8 +16,6 @@ class SimaMessage(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     title : str
          (default None)
@@ -25,12 +23,11 @@ class SimaMessage(MOAO):
     messages : List[SimaMessage]
     """
 
-    def __init__(self , description="", _id=None, title=None, severity=Severity.WARNING, **kwargs):
+    def __init__(self , description="", severity=Severity.WARNING, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.title = title
+        self.title = None
         self.severity = severity
         self.messages = list()
         for key, value in kwargs.items():
@@ -52,17 +49,7 @@ class SimaMessage(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -84,7 +71,7 @@ class SimaMessage(MOAO):
     @title.setter
     def title(self, value: str):
         """Set title"""
-        self.__title = str(value)
+        self.__title = value
 
     @property
     def severity(self) -> Severity:

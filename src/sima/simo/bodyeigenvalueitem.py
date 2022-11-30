@@ -18,8 +18,6 @@ class BodyEigenvalueItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     body : SIMOBody
          Selected body to compute eigenvalues for
@@ -37,10 +35,9 @@ class BodyEigenvalueItem(MOAO):
          Excursion in yaw(default 1.0)
     """
 
-    def __init__(self , description="", _id=None, surgeExcursion=1.0, swayExcursion=1.0, heaveExcursion=1.0, rollExcursion=1.0, pitchExcursion=1.0, yawExcursion=1.0, **kwargs):
+    def __init__(self , description="", surgeExcursion=1.0, swayExcursion=1.0, heaveExcursion=1.0, rollExcursion=1.0, pitchExcursion=1.0, yawExcursion=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.body = None
         self.surgeExcursion = surgeExcursion
@@ -68,17 +65,7 @@ class BodyEigenvalueItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

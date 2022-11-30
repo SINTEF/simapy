@@ -18,8 +18,6 @@ class Appearance(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     graphicsfile : str
          Graphics file(default None)
@@ -37,12 +35,11 @@ class Appearance(MOAO):
          Symmetric properties of the geometry
     """
 
-    def __init__(self , description="", _id=None, graphicsfile=None, geomRepresentationType=GeomRepresentationType.DEFAULT_BOX, radius=1.0, transparency=0.0, symmetry=Symmetry.NONE, **kwargs):
+    def __init__(self , description="", geomRepresentationType=GeomRepresentationType.DEFAULT_BOX, radius=1.0, transparency=0.0, symmetry=Symmetry.NONE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.graphicsfile = graphicsfile
+        self.graphicsfile = None
         self.translation = None
         self.rotation = None
         self.scaling = None
@@ -70,17 +67,7 @@ class Appearance(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -102,7 +89,7 @@ class Appearance(MOAO):
     @graphicsfile.setter
     def graphicsfile(self, value: str):
         """Set graphicsfile"""
-        self.__graphicsfile = str(value)
+        self.__graphicsfile = value
 
     @property
     def translation(self) -> Vector3:

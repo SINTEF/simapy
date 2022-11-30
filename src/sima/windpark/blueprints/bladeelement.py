@@ -13,9 +13,8 @@ class BladeElementBlueprint(NamedBlueprint):
     def __init__(self, name="BladeElement", package_path="sima/windpark", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("elementLength","number","Blade element length",default=0.0))
         self.add_attribute(Attribute("chordLength","number","Chord length of the foil profile",default=0.0))
         self.add_attribute(Attribute("twist","number","Twist angle",default=0.0))

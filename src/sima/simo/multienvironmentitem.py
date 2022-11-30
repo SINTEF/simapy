@@ -18,8 +18,6 @@ class MultiEnvironmentItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     environment : SingleEnvironment
     startingTime : float
@@ -28,10 +26,9 @@ class MultiEnvironmentItem(MOAO):
          Duration of cosine fading from previous to new environment. It is recommended to use at least 10*peak period for the fade-in duration.(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, startingTime=0.0, rampDuration=0.0, **kwargs):
+    def __init__(self , description="", startingTime=0.0, rampDuration=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.environment = None
         self.startingTime = startingTime
@@ -55,17 +52,7 @@ class MultiEnvironmentItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

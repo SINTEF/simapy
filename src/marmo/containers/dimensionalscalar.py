@@ -26,14 +26,14 @@ class DimensionalScalar(Signal):
          (default None)
     """
 
-    def __init__(self , description="", name=None, value=0.0, label=None, unit=None, **kwargs):
+    def __init__(self , description="", value=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.name = name
+        self.name = None
         self.attributes = list()
         self.value = value
-        self.label = label
-        self.unit = unit
+        self.label = None
+        self.unit = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -53,7 +53,7 @@ class DimensionalScalar(Signal):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def name(self) -> str:
@@ -63,7 +63,7 @@ class DimensionalScalar(Signal):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def attributes(self) -> List[Attribute]:
@@ -95,7 +95,7 @@ class DimensionalScalar(Signal):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def unit(self) -> str:
@@ -105,4 +105,4 @@ class DimensionalScalar(Signal):
     @unit.setter
     def unit(self, value: str):
         """Set unit"""
-        self.__unit = str(value)
+        self.__unit = value

@@ -18,8 +18,6 @@ class SingleResultField(CustomComponent):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     output : OutputNode
     path : str
@@ -34,15 +32,14 @@ class SingleResultField(CustomComponent):
          Decimal numer format. Please refer to https://docs.oracle.com/javase/tutorial/i18n/format/decimalFormat.html for a description(default '0.000')
     """
 
-    def __init__(self , description="", _id=None, path=None, label=None, tooltip=None, autoFormat=True, format='0.000', **kwargs):
+    def __init__(self , description="", autoFormat=True, format='0.000', **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.output = None
-        self.path = path
-        self.label = label
-        self.tooltip = tooltip
+        self.path = None
+        self.label = None
+        self.tooltip = None
         self.autoFormat = autoFormat
         self.format = format
         for key, value in kwargs.items():
@@ -64,17 +61,7 @@ class SingleResultField(CustomComponent):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -106,7 +93,7 @@ class SingleResultField(CustomComponent):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def label(self) -> str:
@@ -116,7 +103,7 @@ class SingleResultField(CustomComponent):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def tooltip(self) -> str:
@@ -126,7 +113,7 @@ class SingleResultField(CustomComponent):
     @tooltip.setter
     def tooltip(self, value: str):
         """Set tooltip"""
-        self.__tooltip = str(value)
+        self.__tooltip = value
 
     @property
     def autoFormat(self) -> bool:
@@ -146,4 +133,4 @@ class SingleResultField(CustomComponent):
     @format.setter
     def format(self, value: str):
         """Set format"""
-        self.__format = str(value)
+        self.__format = value

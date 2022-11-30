@@ -13,7 +13,6 @@ class PlaneBlueprint(MOAOBlueprint):
     def __init__(self, name="Plane", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("unlimited","boolean","Whether the fender plane is limited to a restricted sector",default=False))
         self.add_attribute(Attribute("width","number","Width of plane",default=0.0))

@@ -20,8 +20,6 @@ class EquilibriumGridDefinition(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     roll : EquilibriumGridDefinitionRow
     pitch : EquilibriumGridDefinitionRow
@@ -30,10 +28,9 @@ class EquilibriumGridDefinition(MOAO):
     typeOfGrid : EquilibriumGridType
     """
 
-    def __init__(self , description="", _id=None, typeOfGrid=EquilibriumGridType.ROLL_AND_PITCH_ANGLES, **kwargs):
+    def __init__(self , description="", typeOfGrid=EquilibriumGridType.ROLL_AND_PITCH_ANGLES, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.roll = None
         self.pitch = None
@@ -58,17 +55,7 @@ class EquilibriumGridDefinition(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

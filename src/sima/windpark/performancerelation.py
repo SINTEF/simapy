@@ -14,8 +14,6 @@ class PerformanceRelation(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     windSpeed : float
          (default 0.0)
@@ -29,10 +27,9 @@ class PerformanceRelation(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, windSpeed=0.0, rotorSpeed=0.0, bladePitch=0.0, power=0.0, thrust=0.0, **kwargs):
+    def __init__(self , description="", windSpeed=0.0, rotorSpeed=0.0, bladePitch=0.0, power=0.0, thrust=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.windSpeed = windSpeed
         self.rotorSpeed = rotorSpeed
@@ -58,17 +55,7 @@ class PerformanceRelation(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

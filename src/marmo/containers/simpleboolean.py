@@ -21,10 +21,10 @@ class SimpleBoolean(Signal):
          (default False)
     """
 
-    def __init__(self , description="", name=None, value=False, **kwargs):
+    def __init__(self , description="", value=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.name = name
+        self.name = None
         self.attributes = list()
         self.value = value
         for key, value in kwargs.items():
@@ -46,7 +46,7 @@ class SimpleBoolean(Signal):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def name(self) -> str:
@@ -56,7 +56,7 @@ class SimpleBoolean(Signal):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def attributes(self) -> List[Attribute]:

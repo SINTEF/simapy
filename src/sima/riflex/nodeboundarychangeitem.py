@@ -23,8 +23,6 @@ class NodeBoundaryChangeItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     boundaryChangeOption : BoundaryChangeOption
          Boundary change option
@@ -49,10 +47,9 @@ class NodeBoundaryChangeItem(MOAO):
     masterNodeReference : NodeReference
     """
 
-    def __init__(self , description="", _id=None, boundaryChangeOption=BoundaryChangeOption.FREE, surgeConstraint=BoundaryCondition.FIXED, swayConstraint=BoundaryCondition.FIXED, heaveConstraint=BoundaryCondition.FIXED, rollConstraint=BoundaryCondition.FIXED, pitchConstraint=BoundaryCondition.FIXED, yawConstraint=BoundaryCondition.FIXED, _type=BoundaryChangeReference.SUPERNODE, masterType=BoundaryChangeReference.SUPERNODE, **kwargs):
+    def __init__(self , description="", boundaryChangeOption=BoundaryChangeOption.FREE, surgeConstraint=BoundaryCondition.FIXED, swayConstraint=BoundaryCondition.FIXED, heaveConstraint=BoundaryCondition.FIXED, rollConstraint=BoundaryCondition.FIXED, pitchConstraint=BoundaryCondition.FIXED, yawConstraint=BoundaryCondition.FIXED, _type=BoundaryChangeReference.SUPERNODE, masterType=BoundaryChangeReference.SUPERNODE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.boundaryChangeOption = boundaryChangeOption
         self.surgeConstraint = surgeConstraint
@@ -87,17 +84,7 @@ class NodeBoundaryChangeItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

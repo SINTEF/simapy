@@ -13,9 +13,8 @@ class BodyResultBlueprint(MOAOBlueprint):
     def __init__(self, name="BodyResult", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("body","string","Result body",default=None))
+        self.add_attribute(Attribute("body","string","Result body"))
         self.add_attribute(BlueprintAttribute("initialPosition","sima/sima/Position","",True))
         self.add_attribute(BlueprintAttribute("staticPosition","sima/sima/Position","",True))
         self.add_attribute(BlueprintAttribute("bodyForces","sima/simo/ForceResult","",True,Dimension("*")))

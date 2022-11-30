@@ -15,8 +15,6 @@ class InternalFluidType(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -32,12 +30,11 @@ class InternalFluidType(NamedObject):
          Flow direction code.
     """
 
-    def __init__(self , description="", _id=None, name=None, density=0.0, volumeVelocity=0.0, inletPressure=0.0, pressureDrop=0.0, flowInlet=End.ONE, **kwargs):
+    def __init__(self , description="", density=0.0, volumeVelocity=0.0, inletPressure=0.0, pressureDrop=0.0, flowInlet=End.ONE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.density = density
         self.volumeVelocity = volumeVelocity
         self.inletPressure = inletPressure
@@ -62,17 +59,7 @@ class InternalFluidType(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -94,7 +81,7 @@ class InternalFluidType(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def density(self) -> float:

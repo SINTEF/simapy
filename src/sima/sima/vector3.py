@@ -14,8 +14,6 @@ class Vector3(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     x : float
          X component(default 0.0)
@@ -25,10 +23,9 @@ class Vector3(MOAO):
          Z component(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, x=0.0, y=0.0, z=0.0, **kwargs):
+    def __init__(self , description="", x=0.0, y=0.0, z=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.x = x
         self.y = y
@@ -52,17 +49,7 @@ class Vector3(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

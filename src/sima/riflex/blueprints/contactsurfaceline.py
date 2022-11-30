@@ -13,7 +13,6 @@ class ContactSurfaceLineBlueprint(MOAOBlueprint):
     def __init__(self, name="ContactSurfaceLine", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("line","sima/riflex/ARLine","Reference to line to be checked for contact with the contact surface.",False))
         self.add_attribute(Attribute("firstSegmentContact","integer","First segment to be checked for contact",default=1))

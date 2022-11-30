@@ -21,8 +21,6 @@ class SmallBodyHydrodynamicData(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     svol : float
          Fully submerged volume(default 0.0)
@@ -53,10 +51,9 @@ class SmallBodyHydrodynamicData(MOAO):
     diffractedWave : DiffractedWave
     """
 
-    def __init__(self , description="", _id=None, svol=0.0, am1=0.0, am2=0.0, am3=0.0, c11=0.0, c12=0.0, c13=0.0, c21=0.0, c22=0.0, c23=0.0, zcoef=0.0, depthDependency=DepthDependency.WAVE_ELEVATION, **kwargs):
+    def __init__(self , description="", svol=0.0, am1=0.0, am2=0.0, am3=0.0, c11=0.0, c12=0.0, c13=0.0, c21=0.0, c22=0.0, c23=0.0, zcoef=0.0, depthDependency=DepthDependency.WAVE_ELEVATION, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.svol = svol
         self.am1 = am1
@@ -92,17 +89,7 @@ class SmallBodyHydrodynamicData(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

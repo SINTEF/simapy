@@ -14,8 +14,6 @@ class HLASignal(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     objectId : str
          (default None)
@@ -23,13 +21,12 @@ class HLASignal(MOAO):
          Explicitly sets the unit for the HLASignal(default None)
     """
 
-    def __init__(self , description="", _id=None, objectId=None, unit=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.objectId = objectId
-        self.unit = unit
+        self.objectId = None
+        self.unit = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -49,17 +46,7 @@ class HLASignal(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class HLASignal(MOAO):
     @objectId.setter
     def objectId(self, value: str):
         """Set objectId"""
-        self.__objectId = str(value)
+        self.__objectId = value
 
     @property
     def unit(self) -> str:
@@ -91,4 +78,4 @@ class HLASignal(MOAO):
     @unit.setter
     def unit(self, value: str):
         """Set unit"""
-        self.__unit = str(value)
+        self.__unit = value

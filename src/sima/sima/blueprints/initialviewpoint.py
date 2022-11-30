@@ -13,7 +13,6 @@ class InitialViewpointBlueprint(ViewpointBlueprint):
     def __init__(self, name="InitialViewpoint", package_path="sima/sima", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("eye","sima/sima/Point3","",True))
         self.add_attribute(BlueprintAttribute("dir","sima/sima/Vector3","",True))

@@ -13,7 +13,6 @@ class ResponseAnalysisParametersBlueprint(MOAOBlueprint):
     def __init__(self, name="ResponseAnalysisParameters", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("iterationMethod","sima/riflex/ResponseIterationMethod","Response iteration method"))
         self.add_attribute(Attribute("retry","boolean","If the response iteration does not converge a second attempt will be made with the other response iteration method",default=False))

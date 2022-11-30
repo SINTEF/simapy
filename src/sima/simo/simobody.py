@@ -72,8 +72,6 @@ class SIMOBody(Body):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -151,12 +149,11 @@ class SIMOBody(Body):
     qtf : SparseQTF
     """
 
-    def __init__(self , description="", _id=None, name=None, length=10.0, width=5.0, height=5.0, _type=BodyType.SIX_DOF_TIME_DOMAIN, positionsImportType=PositionsImportType.FIXED_POSITION, positionsFileName=None, positionsHLAObjectName=None, applyGravityForce=False, hydrodynamicSeparationMethod=HydrodynamicSeparationMethod.BW2_FILTERING, hydrodynamicFilterCutOffPeriod=0.0, **kwargs):
+    def __init__(self , description="", length=10.0, width=5.0, height=5.0, _type=BodyType.SIX_DOF_TIME_DOMAIN, positionsImportType=PositionsImportType.FIXED_POSITION, applyGravityForce=False, hydrodynamicSeparationMethod=HydrodynamicSeparationMethod.BW2_FILTERING, hydrodynamicFilterCutOffPeriod=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.length = length
         self.width = width
         self.height = height
@@ -165,8 +162,8 @@ class SIMOBody(Body):
         self.viewpoints = list()
         self._type = _type
         self.positionsImportType = positionsImportType
-        self.positionsFileName = positionsFileName
-        self.positionsHLAObjectName = positionsHLAObjectName
+        self.positionsFileName = None
+        self.positionsHLAObjectName = None
         self.applyGravityForce = applyGravityForce
         self.bodyPoints = list()
         self.catenarySystem = None
@@ -238,17 +235,7 @@ class SIMOBody(Body):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -270,7 +257,7 @@ class SIMOBody(Body):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def length(self) -> float:
@@ -362,7 +349,7 @@ class SIMOBody(Body):
     @positionsFileName.setter
     def positionsFileName(self, value: str):
         """Set positionsFileName"""
-        self.__positionsFileName = str(value)
+        self.__positionsFileName = value
 
     @property
     def positionsHLAObjectName(self) -> str:
@@ -372,7 +359,7 @@ class SIMOBody(Body):
     @positionsHLAObjectName.setter
     def positionsHLAObjectName(self, value: str):
         """Set positionsHLAObjectName"""
-        self.__positionsHLAObjectName = str(value)
+        self.__positionsHLAObjectName = value
 
     @property
     def applyGravityForce(self) -> bool:

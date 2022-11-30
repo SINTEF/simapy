@@ -17,8 +17,6 @@ class SplitFilter(OperationNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -37,12 +35,11 @@ class SplitFilter(OperationNode):
          Add the path to the name of the signal tree B to remove from input A(default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, path=None, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
@@ -50,7 +47,7 @@ class SplitFilter(OperationNode):
         self.controlSignalInputSlots = list()
         self.filterInputSlots = list()
         self.filterOutputSlots = list()
-        self.path = path
+        self.path = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -70,17 +67,7 @@ class SplitFilter(OperationNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -102,7 +89,7 @@ class SplitFilter(OperationNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -188,4 +175,4 @@ class SplitFilter(OperationNode):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value

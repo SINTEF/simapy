@@ -14,8 +14,6 @@ class Sletringen(Wind):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
@@ -31,10 +29,9 @@ class Sletringen(Wind):
          Reference height for wind velocity(default 10.0)
     """
 
-    def __init__(self , description="", _id=None, direction=0.0, profileExponent=0.11, averageVelocity=0.0, friction=0.002, gamma=10.0, referenceHeight=10.0, **kwargs):
+    def __init__(self , description="", direction=0.0, profileExponent=0.11, averageVelocity=0.0, friction=0.002, gamma=10.0, referenceHeight=10.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.direction = direction
         self.profileExponent = profileExponent
@@ -61,17 +58,7 @@ class Sletringen(Wind):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

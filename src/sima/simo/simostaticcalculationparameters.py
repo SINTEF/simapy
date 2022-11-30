@@ -19,8 +19,6 @@ class SIMOStaticCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     runStaticAutomatically : bool
          Run Static calculation automatically each time the model changes(default False)
@@ -58,10 +56,9 @@ class SIMOStaticCalculationParameters(MOAO):
          When checked, static calculation will fail if no equilibrium position is found(default True)
     """
 
-    def __init__(self , description="", _id=None, runStaticAutomatically=False, calculateEquilibrium=True, maxPeriod=10.0, posTol=0.1, dirTol=0.1, timeStep=0.01, maxStep=10000, criticalDamping=True, writeVisFile=True, calculateEigenvalues=False, equilibriumCalculationMethod=EquilibriumCalculationOption.TRANSIENT, forceTolerance=100.0, momentTolerance=1000.0, multipleEquilibriumCalculations=False, requireSuccessfulCalculation=True, **kwargs):
+    def __init__(self , description="", runStaticAutomatically=False, calculateEquilibrium=True, maxPeriod=10.0, posTol=0.1, dirTol=0.1, timeStep=0.01, maxStep=10000, criticalDamping=True, writeVisFile=True, calculateEigenvalues=False, equilibriumCalculationMethod=EquilibriumCalculationOption.TRANSIENT, forceTolerance=100.0, momentTolerance=1000.0, multipleEquilibriumCalculations=False, requireSuccessfulCalculation=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.runStaticAutomatically = runStaticAutomatically
         self.calculateEquilibrium = calculateEquilibrium
@@ -102,17 +99,7 @@ class SIMOStaticCalculationParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

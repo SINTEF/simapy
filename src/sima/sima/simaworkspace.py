@@ -16,8 +16,6 @@ class SIMAWorkspace(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     childFolders : List[TaskFolder]
     tasks : List[Task]
@@ -27,15 +25,14 @@ class SIMAWorkspace(MOAO):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, productId=None, dateAndTime=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.childFolders = list()
         self.tasks = list()
-        self.productId = productId
-        self.dateAndTime = dateAndTime
+        self.productId = None
+        self.dateAndTime = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -55,17 +52,7 @@ class SIMAWorkspace(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -111,7 +98,7 @@ class SIMAWorkspace(MOAO):
     @productId.setter
     def productId(self, value: str):
         """Set productId"""
-        self.__productId = str(value)
+        self.__productId = value
 
     @property
     def dateAndTime(self) -> str:
@@ -121,4 +108,4 @@ class SIMAWorkspace(MOAO):
     @dateAndTime.setter
     def dateAndTime(self, value: str):
         """Set dateAndTime"""
-        self.__dateAndTime = str(value)
+        self.__dateAndTime = value

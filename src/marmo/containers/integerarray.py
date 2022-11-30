@@ -20,10 +20,10 @@ class IntegerArray(Signal):
     value : ndarray
     """
 
-    def __init__(self , description="", name=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.name = name
+        self.name = None
         self.attributes = list()
         self.value = ndarray(1)
         for key, value in kwargs.items():
@@ -45,7 +45,7 @@ class IntegerArray(Signal):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def name(self) -> str:
@@ -55,7 +55,7 @@ class IntegerArray(Signal):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def attributes(self) -> List[Attribute]:

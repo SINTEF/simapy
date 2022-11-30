@@ -13,7 +13,6 @@ class TimeDomainProcedureBlueprint(MOAOBlueprint):
     def __init__(self, name="TimeDomainProcedure", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("method","sima/riflex/MethodIndicator","Method indicator"))
         self.add_attribute(EnumAttribute("procedure","sima/riflex/ProcedureIndicator","Procedure indicator"))

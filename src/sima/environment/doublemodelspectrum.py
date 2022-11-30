@@ -14,8 +14,6 @@ class DoubleModelSpectrum(Wave):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     significantWaveHeight : float
          Significant wave height(default 0.0)
@@ -39,10 +37,9 @@ class DoubleModelSpectrum(Wave):
          Slope of the lower frequency part of the swell part of wave spectrum(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, significantWaveHeight=0.0, windDrivenRatio=0.0, windPeakPeriod=0.0, swellPeakPeriod=0.0, gammaWind=3.3, gammaSwell=0.0, upperSlopeWind=0.0, lowerSlopeWind=0.0, upperSlopeSwell=0.0, lowerSlopeSwell=0.0, **kwargs):
+    def __init__(self , description="", significantWaveHeight=0.0, windDrivenRatio=0.0, windPeakPeriod=0.0, swellPeakPeriod=0.0, gammaWind=3.3, gammaSwell=0.0, upperSlopeWind=0.0, lowerSlopeWind=0.0, upperSlopeSwell=0.0, lowerSlopeSwell=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.significantWaveHeight = significantWaveHeight
         self.windDrivenRatio = windDrivenRatio
@@ -73,17 +70,7 @@ class DoubleModelSpectrum(Wave):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

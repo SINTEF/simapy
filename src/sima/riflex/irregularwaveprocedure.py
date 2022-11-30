@@ -20,8 +20,6 @@ class IrregularWaveProcedure(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     kinematicsPosition : KinematicsPositions
          Kinematic positions
@@ -53,10 +51,9 @@ class IrregularWaveProcedure(MOAO):
     fileFormat : StorageType
     """
 
-    def __init__(self , description="", _id=None, kinematicsPosition=KinematicsPositions.STATIC, kinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, defaultProcedureOn=True, nodeStep=1, zLower=0.0, zUpper=0.0, applyDiffractedWaves=False, waveKinematicsFile=False, waveKinematicsFileName=None, waveKinematicsMaxColumns=0, waveKinematicsTimeColumn=0, waveKinematicsStorage=False, fileFormat=StorageType.BINARY, **kwargs):
+    def __init__(self , description="", kinematicsPosition=KinematicsPositions.STATIC, kinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, defaultProcedureOn=True, nodeStep=1, zLower=0.0, zUpper=0.0, applyDiffractedWaves=False, waveKinematicsFile=False, waveKinematicsMaxColumns=0, waveKinematicsTimeColumn=0, waveKinematicsStorage=False, fileFormat=StorageType.BINARY, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.kinematicsPosition = kinematicsPosition
         self.kinematicsInWaveZone = kinematicsInWaveZone
@@ -68,7 +65,7 @@ class IrregularWaveProcedure(MOAO):
         self.waveKinematicDiffPoints = list()
         self.waveKinematicNodePoints = list()
         self.waveKinematicsFile = waveKinematicsFile
-        self.waveKinematicsFileName = waveKinematicsFileName
+        self.waveKinematicsFileName = None
         self.waveKinematicsTimeSeriesReferences = list()
         self.waveKinematicsMaxColumns = waveKinematicsMaxColumns
         self.waveKinematicsTimeColumn = waveKinematicsTimeColumn
@@ -93,17 +90,7 @@ class IrregularWaveProcedure(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -230,7 +217,7 @@ and Z Upper"""
     @waveKinematicsFileName.setter
     def waveKinematicsFileName(self, value: str):
         """Set waveKinematicsFileName"""
-        self.__waveKinematicsFileName = str(value)
+        self.__waveKinematicsFileName = value
 
     @property
     def waveKinematicsTimeSeriesReferences(self) -> List[WaveKinematicsTimeSeriesReference]:

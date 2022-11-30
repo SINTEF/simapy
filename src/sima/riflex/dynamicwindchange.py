@@ -17,8 +17,6 @@ class DynamicWindChange(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     include : bool
          (default False)
@@ -41,10 +39,9 @@ class DynamicWindChange(MOAO):
          (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, include=False, eventType=IEC2005WindEventType.ECD, eventStartTime=0.0, direction=WindDirection.POSITIVE, turbineClass=IEC2005WindTurbineClass.NONE, vref=0.0, iref=0.0, velocityChange=0.0, directionChange=0.0, durationOfEvent=0.0, gustMagnitude=0.0, **kwargs):
+    def __init__(self , description="", include=False, eventType=IEC2005WindEventType.ECD, eventStartTime=0.0, direction=WindDirection.POSITIVE, turbineClass=IEC2005WindTurbineClass.NONE, vref=0.0, iref=0.0, velocityChange=0.0, directionChange=0.0, durationOfEvent=0.0, gustMagnitude=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.include = include
         self.eventType = eventType
@@ -76,17 +73,7 @@ class DynamicWindChange(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

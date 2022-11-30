@@ -13,9 +13,8 @@ class LongTermStatisticsPeriodBlueprint(NamedBlueprint):
     def __init__(self, name="LongTermStatisticsPeriod", package_path="sima/metocean", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("waveStatistics","sima/metocean/WaveLongTermStatistics","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("windStatistics","sima/metocean/WindLongTermStatistics","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("currentStatistics","sima/metocean/CurrentLongTermStatistics","",True,Dimension("*")))

@@ -20,8 +20,6 @@ class Kalman(Estimator):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     lineTension : KalmanLineTension
          Flag for measurement of line tensions to be included in the controller
@@ -37,10 +35,9 @@ class Kalman(Estimator):
     lines : List[LineMeasurementItem]
     """
 
-    def __init__(self , description="", _id=None, lineTension=KalmanLineTension.NONE, estimationMethod=KalmanEstimationMethod.FORCE, wfStartingPeriod=0.0, nominalVelocity=0.25, **kwargs):
+    def __init__(self , description="", lineTension=KalmanLineTension.NONE, estimationMethod=KalmanEstimationMethod.FORCE, wfStartingPeriod=0.0, nominalVelocity=0.25, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.lineTension = lineTension
         self.estimationMethod = estimationMethod
@@ -69,17 +66,7 @@ class Kalman(Estimator):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

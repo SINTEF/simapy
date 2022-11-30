@@ -13,9 +13,8 @@ class Regular3DBottomBlueprint(MOAOBlueprint):
     def __init__(self, name="Regular3DBottom", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("fileName","string","File with seabed geometry data",default=None))
+        self.add_attribute(Attribute("fileName","string","File with seabed geometry data"))
         self.add_attribute(Attribute("x","number","",default=0.0))
         self.add_attribute(Attribute("y","number","",default=0.0))
         self.add_attribute(Attribute("zos","number","Z-coordinate of the origin of the seabed file reference system, in the global reference system",default=0.0))

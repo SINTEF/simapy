@@ -14,8 +14,6 @@ class SpectralPeakPeriodRelation(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     hs : ndarray
     interval5 : ndarray
@@ -23,10 +21,9 @@ class SpectralPeakPeriodRelation(MOAO):
     interval95 : ndarray
     """
 
-    def __init__(self , description="", _id=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.hs = ndarray(1)
         self.interval5 = ndarray(1)
@@ -51,17 +48,7 @@ class SpectralPeakPeriodRelation(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

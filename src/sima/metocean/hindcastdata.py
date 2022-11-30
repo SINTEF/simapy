@@ -16,8 +16,6 @@ class HindcastData(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -34,16 +32,15 @@ class HindcastData(NamedObject):
     currentData : HindcastLevelContainer
     """
 
-    def __init__(self , description="", _id=None, name=None, dataFile=None, path=None, firstDate=None, lastDate=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.dataFile = dataFile
-        self.path = path
-        self.firstDate = firstDate
-        self.lastDate = lastDate
+        self.name = None
+        self.dataFile = None
+        self.path = None
+        self.firstDate = None
+        self.lastDate = None
         self.waveData = None
         self.windData = None
         self.currentData = None
@@ -66,17 +63,7 @@ class HindcastData(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -98,7 +85,7 @@ class HindcastData(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def dataFile(self) -> str:
@@ -108,7 +95,7 @@ class HindcastData(NamedObject):
     @dataFile.setter
     def dataFile(self, value: str):
         """Set dataFile"""
-        self.__dataFile = str(value)
+        self.__dataFile = value
 
     @property
     def path(self) -> str:
@@ -118,7 +105,7 @@ class HindcastData(NamedObject):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def firstDate(self) -> str:
@@ -128,7 +115,7 @@ class HindcastData(NamedObject):
     @firstDate.setter
     def firstDate(self, value: str):
         """Set firstDate"""
-        self.__firstDate = str(value)
+        self.__firstDate = value
 
     @property
     def lastDate(self) -> str:
@@ -138,7 +125,7 @@ class HindcastData(NamedObject):
     @lastDate.setter
     def lastDate(self, value: str):
         """Set lastDate"""
-        self.__lastDate = str(value)
+        self.__lastDate = value
 
     @property
     def waveData(self) -> HindcastWaveContainer:

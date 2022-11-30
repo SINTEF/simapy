@@ -13,5 +13,5 @@ class AttributeBlueprint(NamedEntityBlueprint):
     def __init__(self, name="Attribute", package_path="marmo/containers", description="Represents a key/value entry"):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("name","string","",default=None))
-        self.add_attribute(Attribute("value","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
+        self.add_attribute(Attribute("value","string",""))

@@ -22,8 +22,6 @@ class RIFLEXLocation(CommonLocation):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -47,19 +45,18 @@ class RIFLEXLocation(CommonLocation):
     regular3DBottom : Regular3DBottom
     """
 
-    def __init__(self , description="", _id=None, name=None, relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, gridZone=None, waterDepth=1000.0, **kwargs):
+    def __init__(self , description="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, waterDepth=1000.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.initialViewpoint = None
         self.initialRotationpoint = None
         self.viewpoints = list()
         self.relativeCompassAngle = relativeCompassAngle
         self.utmX = utmX
         self.utmY = utmY
-        self.gridZone = gridZone
+        self.gridZone = None
         self.infrastructureBodies = list()
         self.waterDepth = waterDepth
         self.seaSurface = None
@@ -85,17 +82,7 @@ class RIFLEXLocation(CommonLocation):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -117,7 +104,7 @@ class RIFLEXLocation(CommonLocation):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def initialViewpoint(self) -> InitialViewpoint:
@@ -189,7 +176,7 @@ class RIFLEXLocation(CommonLocation):
     @gridZone.setter
     def gridZone(self, value: str):
         """Set gridZone"""
-        self.__gridZone = str(value)
+        self.__gridZone = value
 
     @property
     def infrastructureBodies(self) -> List[InfrastructureBody]:

@@ -24,8 +24,6 @@ class RIFLEXTask(SIMOTask):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -64,12 +62,11 @@ class RIFLEXTask(SIMOTask):
          (default True)
     """
 
-    def __init__(self , description="", _id=None, name=None, runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, exportAsFMU=False, riflexStamodMemory=512, numRiflexStamodArrays=20000, riflexDynmodMemory=512, vivanaWorkArraySize=9000000, maxRiflexArrays=2000, riflexOutmodMemory=32, skipRiflexDynmodTransformation=True, **kwargs):
+    def __init__(self , description="", runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, exportAsFMU=False, riflexStamodMemory=512, numRiflexStamodArrays=20000, riflexDynmodMemory=512, vivanaWorkArraySize=9000000, maxRiflexArrays=2000, riflexOutmodMemory=32, skipRiflexDynmodTransformation=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.doubleVariables = list()
         self.integerVariables = list()
         self.stringVariables = list()
@@ -110,17 +107,7 @@ class RIFLEXTask(SIMOTask):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -142,7 +129,7 @@ class RIFLEXTask(SIMOTask):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def doubleVariables(self) -> List[DoubleVariable]:

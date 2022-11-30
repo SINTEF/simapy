@@ -21,8 +21,6 @@ class CatenaryLine(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -50,12 +48,11 @@ class CatenaryLine(NamedObject):
          Breaking strength(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, direction=0.0, xglobal=0.0, yglobal=0.0, xwinch=0.0, xhor=0.0, pretension=0.0, inputMethod=InputMethodType.TENSION, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
+    def __init__(self , description="", direction=0.0, xglobal=0.0, yglobal=0.0, xwinch=0.0, xhor=0.0, pretension=0.0, inputMethod=InputMethodType.TENSION, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.attachmentPoint = None
         self.direction = direction
         self.xglobal = xglobal
@@ -87,17 +84,7 @@ class CatenaryLine(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -119,7 +106,7 @@ class CatenaryLine(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def attachmentPoint(self) -> SIMOBodyPoint:

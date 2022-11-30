@@ -16,8 +16,6 @@ class MetoceanResultContainer(ConditionResultContainer):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -29,14 +27,13 @@ class MetoceanResultContainer(ConditionResultContainer):
     entry : ResultEntry
     """
 
-    def __init__(self , description="", _id=None, name=None, modelOutputFile=None, probability=0.0, **kwargs):
+    def __init__(self , description="", probability=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.properties = list()
-        self.modelOutputFile = modelOutputFile
+        self.modelOutputFile = None
         self.probability = probability
         self.entry = None
         for key, value in kwargs.items():
@@ -58,17 +55,7 @@ class MetoceanResultContainer(ConditionResultContainer):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -90,7 +77,7 @@ class MetoceanResultContainer(ConditionResultContainer):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def properties(self) -> List[Property]:
@@ -112,7 +99,7 @@ class MetoceanResultContainer(ConditionResultContainer):
     @modelOutputFile.setter
     def modelOutputFile(self, value: str):
         """Set modelOutputFile"""
-        self.__modelOutputFile = str(value)
+        self.__modelOutputFile = value
 
     @property
     def probability(self) -> float:

@@ -14,8 +14,6 @@ class JobPreference(SIMAPreference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     computeConditionsAutomatically : bool
          Compute concurrent condition runs automatically(default True)
@@ -27,10 +25,9 @@ class JobPreference(SIMAPreference):
          Maximum number of concurrent workflow runs(default 0)
     """
 
-    def __init__(self , description="", _id=None, computeConditionsAutomatically=True, maxConditionRuns=0, computeWorkflowsAutomatically=True, maxWorkflowRuns=0, **kwargs):
+    def __init__(self , description="", computeConditionsAutomatically=True, maxConditionRuns=0, computeWorkflowsAutomatically=True, maxWorkflowRuns=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.computeConditionsAutomatically = computeConditionsAutomatically
         self.maxConditionRuns = maxConditionRuns
@@ -55,17 +52,7 @@ class JobPreference(SIMAPreference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

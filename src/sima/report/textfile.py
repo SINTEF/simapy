@@ -14,8 +14,6 @@ class TextFile(ReportItem):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
          Absolute path to the text file to be read in.(default None)
@@ -23,12 +21,11 @@ class TextFile(ReportItem):
          Whether or not the text file contains Wiki markup code to be parsed.(default False)
     """
 
-    def __init__(self , description="", _id=None, path=None, plainText=False, **kwargs):
+    def __init__(self , description="", plainText=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.path = path
+        self.path = None
         self.plainText = plainText
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -49,17 +46,7 @@ class TextFile(ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -81,7 +68,7 @@ class TextFile(ReportItem):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def plainText(self) -> bool:

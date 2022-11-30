@@ -21,11 +21,11 @@ class Font(Entity):
     style : FontStyle
     """
 
-    def __init__(self , description="", size=10, font=None, style=FontStyle.NORMAL, **kwargs):
+    def __init__(self , description="", size=10, style=FontStyle.NORMAL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.size = size
-        self.font = font
+        self.font = None
         self.style = style
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -46,7 +46,7 @@ class Font(Entity):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def size(self) -> int:
@@ -66,7 +66,7 @@ class Font(Entity):
     @font.setter
     def font(self, value: str):
         """Set font"""
-        self.__font = str(value)
+        self.__font = value
 
     @property
     def style(self) -> FontStyle:

@@ -16,8 +16,6 @@ class FlexJointConnectorType(NodalComponentType):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -80,12 +78,11 @@ class FlexJointConnectorType(NodalComponentType):
     stiffnessCharacteristicsRotZ : List[RotationalStiffnessItem]
     """
 
-    def __init__(self , description="", _id=None, name=None, mass=0.0, volume=0.0, gyrationRadiusX=0.0, gyrationRadiusY=0.0, gyrationRadiusZ=0.0, dampingRotX=0.0, dampingRotY=0.0, dampingRotZ=0.0, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, addedMassRotX=0.0, addedMassRotY=0.0, addedMassRotZ=0.0, stiffnessTypeRotX=RotationalStiffnessType.FIXED, stiffnessTypeRotY=RotationalStiffnessType.FIXED, stiffnessTypeRotZ=RotationalStiffnessType.FIXED, stiffnessDampingCoeffX=0.0, stiffnessDampingCoeffY=0.0, stiffnessDampingCoeffZ=0.0, linearStiffnessRotX=0.0, linearStiffnessRotY=0.0, linearStiffnessRotZ=0.0, yzStiffnessSymmetry=False, **kwargs):
+    def __init__(self , description="", mass=0.0, volume=0.0, gyrationRadiusX=0.0, gyrationRadiusY=0.0, gyrationRadiusZ=0.0, dampingRotX=0.0, dampingRotY=0.0, dampingRotZ=0.0, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, addedMassRotX=0.0, addedMassRotY=0.0, addedMassRotZ=0.0, stiffnessTypeRotX=RotationalStiffnessType.FIXED, stiffnessTypeRotY=RotationalStiffnessType.FIXED, stiffnessTypeRotZ=RotationalStiffnessType.FIXED, stiffnessDampingCoeffX=0.0, stiffnessDampingCoeffY=0.0, stiffnessDampingCoeffZ=0.0, linearStiffnessRotX=0.0, linearStiffnessRotY=0.0, linearStiffnessRotZ=0.0, yzStiffnessSymmetry=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.mass = mass
         self.volume = volume
         self.gyrationRadiusX = gyrationRadiusX
@@ -135,17 +132,7 @@ class FlexJointConnectorType(NodalComponentType):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -167,7 +154,7 @@ class FlexJointConnectorType(NodalComponentType):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def mass(self) -> float:

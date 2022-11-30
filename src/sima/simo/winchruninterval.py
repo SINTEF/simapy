@@ -14,8 +14,6 @@ class WinchRunInterval(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     startTime : float
          Start time for running winch(default 0.0)
@@ -25,10 +23,9 @@ class WinchRunInterval(MOAO):
          Winch run velocity (positive when paying out)(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, startTime=0.0, stopTime=0.0, speed=0.0, **kwargs):
+    def __init__(self , description="", startTime=0.0, stopTime=0.0, speed=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.startTime = startTime
         self.stopTime = stopTime
@@ -52,17 +49,7 @@ class WinchRunInterval(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

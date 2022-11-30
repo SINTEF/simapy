@@ -21,11 +21,11 @@ class Section(ReportItemContainer,ReportItem):
          (default False)
     """
 
-    def __init__(self , description="", title=None, landscape=False, **kwargs):
+    def __init__(self , description="", landscape=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.items = list()
-        self.title = title
+        self.title = None
         self.landscape = landscape
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -46,7 +46,7 @@ class Section(ReportItemContainer,ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def items(self) -> List[ReportItem]:
@@ -68,7 +68,7 @@ class Section(ReportItemContainer,ReportItem):
     @title.setter
     def title(self, value: str):
         """Set title"""
-        self.__title = str(value)
+        self.__title = value
 
     @property
     def landscape(self) -> bool:

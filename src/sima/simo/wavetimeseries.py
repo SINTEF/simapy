@@ -14,8 +14,6 @@ class WaveTimeSeries(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     scaleFactor : float
          Wave scale factor(default 1.0)
@@ -37,16 +35,15 @@ class WaveTimeSeries(MOAO):
          Upper cut off period for filtering of wave signal(default 40.0)
     """
 
-    def __init__(self , description="", _id=None, scaleFactor=1.0, refPointX=0.0, refPointY=0.0, waterDepth=0.0, fileName=None, filterInputTimeseries=True, specifyLowerPeriod=False, lowerCutOffPeriod=0.0, upperCutOffPeriod=40.0, **kwargs):
+    def __init__(self , description="", scaleFactor=1.0, refPointX=0.0, refPointY=0.0, waterDepth=0.0, filterInputTimeseries=True, specifyLowerPeriod=False, lowerCutOffPeriod=0.0, upperCutOffPeriod=40.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.scaleFactor = scaleFactor
         self.refPointX = refPointX
         self.refPointY = refPointY
         self.waterDepth = waterDepth
-        self.fileName = fileName
+        self.fileName = None
         self.filterInputTimeseries = filterInputTimeseries
         self.specifyLowerPeriod = specifyLowerPeriod
         self.lowerCutOffPeriod = lowerCutOffPeriod
@@ -70,17 +67,7 @@ class WaveTimeSeries(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -142,7 +129,7 @@ class WaveTimeSeries(MOAO):
     @fileName.setter
     def fileName(self, value: str):
         """Set fileName"""
-        self.__fileName = str(value)
+        self.__fileName = value
 
     @property
     def filterInputTimeseries(self) -> bool:

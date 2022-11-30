@@ -17,8 +17,6 @@ class RealNumberInput(ValueInputNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -46,19 +44,18 @@ class RealNumberInput(ValueInputNode):
     values : ndarray
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, root=None, resultId=None, specifyAdditionalProperties=False, value=0.0, array=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, specifyAdditionalProperties=False, value=0.0, array=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
         self.w = w
         self.controlSignalInputSlots = list()
-        self.root = root
-        self.resultId = resultId
+        self.root = None
+        self.resultId = None
         self.outputSlot = None
         self.properties = list()
         self.specifyAdditionalProperties = specifyAdditionalProperties
@@ -84,17 +81,7 @@ class RealNumberInput(ValueInputNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -116,7 +103,7 @@ class RealNumberInput(ValueInputNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -178,7 +165,7 @@ class RealNumberInput(ValueInputNode):
     @root.setter
     def root(self, value: str):
         """Set root"""
-        self.__root = str(value)
+        self.__root = value
 
     @property
     def resultId(self) -> str:
@@ -188,7 +175,7 @@ class RealNumberInput(ValueInputNode):
     @resultId.setter
     def resultId(self, value: str):
         """Set resultId"""
-        self.__resultId = str(value)
+        self.__resultId = value
 
     @property
     def outputSlot(self) -> OutputSlot:

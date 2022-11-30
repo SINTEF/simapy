@@ -18,8 +18,6 @@ class CombinedLoadingProperties(ElementReference):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -51,10 +49,9 @@ class CombinedLoadingProperties(ElementReference):
          Nominal wall thickness (t_nom) of pipe (uncorroded), as specified on the drawing/specification (default 0.0)
     """
 
-    def __init__(self , description="", _id=None, segment=1, allSegments=False, elementNumber=1, allElements=False, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, ovality=0.005, internalCorrosion=0.001, externalCorrosion=0.002, nominalDiameter=0.0, nominalThickness=0.0, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, ovality=0.005, internalCorrosion=0.001, externalCorrosion=0.002, nominalDiameter=0.0, nominalThickness=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -89,17 +86,7 @@ class CombinedLoadingProperties(ElementReference):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

@@ -17,8 +17,6 @@ class QuadraticCurrentCoefficient(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     symmetry : DirectionSymmetry
     items : List[QuadraticCurrentCoefficientItem]
@@ -28,15 +26,14 @@ class QuadraticCurrentCoefficient(MOAO):
          Text file containing the current coefficients. The force coefficents in the file must be specified in [kN/(m/s)] for translational degrees of freedom and [kN.s] for rotational degrees of freedom.(default None)
     """
 
-    def __init__(self , description="", _id=None, symmetry=DirectionSymmetry.NO_SYMMETRY, _type=CoefficientType.CLASSIC, fileName=None, **kwargs):
+    def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, _type=CoefficientType.CLASSIC, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.symmetry = symmetry
         self.items = list()
         self._type = _type
-        self.fileName = fileName
+        self.fileName = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -56,17 +53,7 @@ class QuadraticCurrentCoefficient(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -120,4 +107,4 @@ class QuadraticCurrentCoefficient(MOAO):
     @fileName.setter
     def fileName(self, value: str):
         """Set fileName"""
-        self.__fileName = str(value)
+        self.__fileName = value

@@ -16,8 +16,6 @@ class NonlinearBuoyancyCorrection(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     fileName : str
          Name of geometry file ('.gdf'-file)(default None)
@@ -29,12 +27,11 @@ class NonlinearBuoyancyCorrection(MOAO):
     correctionMethod : NonlinearBuoyancyCorrectionMethod
     """
 
-    def __init__(self , description="", _id=None, fileName=None, minZ=0.0, maxZ=0.0, correctionMethod=NonlinearBuoyancyCorrectionMethod.MWL, **kwargs):
+    def __init__(self , description="", minZ=0.0, maxZ=0.0, correctionMethod=NonlinearBuoyancyCorrectionMethod.MWL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.fileName = fileName
+        self.fileName = None
         self.location = None
         self.minZ = minZ
         self.maxZ = maxZ
@@ -58,17 +55,7 @@ class NonlinearBuoyancyCorrection(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -90,7 +77,7 @@ class NonlinearBuoyancyCorrection(MOAO):
     @fileName.setter
     def fileName(self, value: str):
         """Set fileName"""
-        self.__fileName = str(value)
+        self.__fileName = value
 
     @property
     def location(self) -> Point3:

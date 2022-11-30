@@ -14,8 +14,6 @@ class ExternalWrappingType(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -43,12 +41,11 @@ class ExternalWrappingType(NamedObject):
          Linear drag force coefficients in tangential direction(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, mass=0.0, buoyancy=0.0, gyrationRadius=0.0, coveredFraction=0.0, wrappingItemLength=1.0, tangentialDrag=0.0, normalDrag=0.0, tangentialAddedMass=0.0, normalAddedMass=0.0, tangentialLinearDrag=0.0, normalLinearDrag=0.0, **kwargs):
+    def __init__(self , description="", mass=0.0, buoyancy=0.0, gyrationRadius=0.0, coveredFraction=0.0, wrappingItemLength=1.0, tangentialDrag=0.0, normalDrag=0.0, tangentialAddedMass=0.0, normalAddedMass=0.0, tangentialLinearDrag=0.0, normalLinearDrag=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.mass = mass
         self.buoyancy = buoyancy
         self.gyrationRadius = gyrationRadius
@@ -79,17 +76,7 @@ class ExternalWrappingType(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -111,7 +98,7 @@ class ExternalWrappingType(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def mass(self) -> float:

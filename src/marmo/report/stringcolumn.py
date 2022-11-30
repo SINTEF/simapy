@@ -22,11 +22,11 @@ class StringColumn(Column):
     cells : ndarray
     """
 
-    def __init__(self , description="", header=None, label=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.header = header
-        self.label = label
+        self.header = None
+        self.label = None
         self.headerfont = None
         self.cells = ndarray(1)
         for key, value in kwargs.items():
@@ -48,7 +48,7 @@ class StringColumn(Column):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def header(self) -> str:
@@ -58,7 +58,7 @@ class StringColumn(Column):
     @header.setter
     def header(self, value: str):
         """Set header"""
-        self.__header = str(value)
+        self.__header = value
 
     @property
     def label(self) -> str:
@@ -68,7 +68,7 @@ class StringColumn(Column):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def headerfont(self) -> Font:

@@ -13,9 +13,8 @@ class SpecifiedMomentBlueprint(NamedObjectBlueprint):
     def __init__(self, name="SpecifiedMoment", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(EnumAttribute("referenceFrame","sima/simo/ReferenceFrameType","Direction vector in local or global coordinate system"))
         self.add_attribute(BlueprintAttribute("directionVector","sima/sima/Vector3","",True))
         self.add_attribute(Attribute("activationTime","number","Time for switching component on",default=0.0))

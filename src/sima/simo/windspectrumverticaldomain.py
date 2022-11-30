@@ -14,8 +14,6 @@ class WindSpectrumVerticalDomain(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     specifyVerticalDomain : bool
          Should a vertical grid for interpolation of wind velocity be specified?(default False)
@@ -29,10 +27,9 @@ class WindSpectrumVerticalDomain(MOAO):
          Should computation of wind velocity outside specified limits be allowed?(default False)
     """
 
-    def __init__(self , description="", _id=None, specifyVerticalDomain=False, numberOfLevels=0, zMinimum=0.0, zMaximum=0.0, allowOutsideDomain=False, **kwargs):
+    def __init__(self , description="", specifyVerticalDomain=False, numberOfLevels=0, zMinimum=0.0, zMaximum=0.0, allowOutsideDomain=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.specifyVerticalDomain = specifyVerticalDomain
         self.numberOfLevels = numberOfLevels
@@ -58,17 +55,7 @@ class WindSpectrumVerticalDomain(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

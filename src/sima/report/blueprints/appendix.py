@@ -14,10 +14,9 @@ class AppendixBlueprint(ReportItemBlueprint,LinkableBlueprint):
     def __init__(self, name="Appendix", package_path="sima/report", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("identifier","string","",default=None))
+        self.add_attribute(Attribute("identifier","string",""))
         self.add_attribute(BlueprintAttribute("items","sima/report/ReportItem","",True,Dimension("*")))
-        self.add_attribute(Attribute("title","string","",default=None))
+        self.add_attribute(Attribute("title","string",""))
         self.add_attribute(Attribute("pageBreakBefore","boolean","",default=False))
         self.add_attribute(EnumAttribute("orientation","sima/report/Orientation",""))

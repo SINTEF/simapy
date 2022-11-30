@@ -16,8 +16,6 @@ class Winch(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -34,12 +32,11 @@ class Winch(NamedObject):
     intervals : List[WinchRunInterval]
     """
 
-    def __init__(self , description="", _id=None, name=None, controlType=WinchControl.PREDEFINED, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, drumLength=0.0, **kwargs):
+    def __init__(self , description="", controlType=WinchControl.PREDEFINED, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, drumLength=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.controlType = controlType
         self.maximumSpeed = maximumSpeed
         self.acceleration = acceleration
@@ -65,17 +62,7 @@ class Winch(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -97,7 +84,7 @@ class Winch(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def controlType(self) -> WinchControl:

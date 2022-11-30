@@ -13,7 +13,6 @@ class NumericalWaveBlueprint(WaveBlueprint):
     def __init__(self, name="NumericalWave", package_path="sima/environment", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("directions","number","Number of wave directions",Dimension("*"),default=0.0))
         self.add_attribute(Attribute("frequencies","number","Number of wave frequencies",Dimension("*"),default=0.0))

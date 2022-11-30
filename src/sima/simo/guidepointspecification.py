@@ -18,8 +18,6 @@ class GuidePointSpecification(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     guidePoint : GuidePoint
          Guide point
@@ -27,10 +25,9 @@ class GuidePointSpecification(MOAO):
          Guide point entered on line(default True)
     """
 
-    def __init__(self , description="", _id=None, enteredOnLine=True, **kwargs):
+    def __init__(self , description="", enteredOnLine=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.guidePoint = None
         self.enteredOnLine = enteredOnLine
@@ -53,17 +50,7 @@ class GuidePointSpecification(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

@@ -13,7 +13,6 @@ class VariableInputItemBlueprint(MOAOBlueprint):
     def __init__(self, name="VariableInputItem", package_path="sima/workflow", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("parameter","sima/sima/SingleParameter","",False))
-        self.add_attribute(Attribute("variation","string","",default=None))
+        self.add_attribute(Attribute("variation","string",""))

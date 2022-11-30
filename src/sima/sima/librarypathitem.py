@@ -14,19 +14,16 @@ class LibraryPathItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     location : str
          (default None)
     """
 
-    def __init__(self , description="", _id=None, location=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.location = location
+        self.location = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -46,17 +43,7 @@ class LibraryPathItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -78,4 +65,4 @@ class LibraryPathItem(MOAO):
     @location.setter
     def location(self, value: str):
         """Set location"""
-        self.__location = str(value)
+        self.__location = value

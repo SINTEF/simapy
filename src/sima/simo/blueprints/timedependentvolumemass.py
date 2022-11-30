@@ -13,9 +13,8 @@ class TimeDependentVolumeMassBlueprint(NamedObjectBlueprint):
     def __init__(self, name="TimeDependentVolumeMass", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("point","sima/sima/Point3","Mass point (local coordinates).",True))
         self.add_attribute(BlueprintAttribute("flowRates","sima/simo/FlowRateItem","",True,Dimension("*")))
         self.add_attribute(Attribute("vol0","number","Volume of liquid at t=0",default=0.0))

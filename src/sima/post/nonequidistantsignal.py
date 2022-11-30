@@ -16,8 +16,6 @@ class NonEquidistantSignal(GeneratorSignal):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
     name : str
@@ -33,18 +31,17 @@ class NonEquidistantSignal(GeneratorSignal):
          (default None)
     """
 
-    def __init__(self , description="", _id=None, name=None, xunit='s', yunit='-', ylabel=None, xlabel=None, **kwargs):
+    def __init__(self , description="", xunit='s', yunit='-', **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.properties = list()
-        self.name = name
+        self.name = None
         self.xunit = xunit
         self.yunit = yunit
         self.values = list()
-        self.ylabel = ylabel
-        self.xlabel = xlabel
+        self.ylabel = None
+        self.xlabel = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -64,17 +61,7 @@ class NonEquidistantSignal(GeneratorSignal):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -108,7 +95,7 @@ class NonEquidistantSignal(GeneratorSignal):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def xunit(self) -> str:
@@ -118,7 +105,7 @@ class NonEquidistantSignal(GeneratorSignal):
     @xunit.setter
     def xunit(self, value: str):
         """Set xunit"""
-        self.__xunit = str(value)
+        self.__xunit = value
 
     @property
     def yunit(self) -> str:
@@ -128,7 +115,7 @@ class NonEquidistantSignal(GeneratorSignal):
     @yunit.setter
     def yunit(self, value: str):
         """Set yunit"""
-        self.__yunit = str(value)
+        self.__yunit = value
 
     @property
     def values(self) -> List[XYItem]:
@@ -150,7 +137,7 @@ class NonEquidistantSignal(GeneratorSignal):
     @ylabel.setter
     def ylabel(self, value: str):
         """Set ylabel"""
-        self.__ylabel = str(value)
+        self.__ylabel = value
 
     @property
     def xlabel(self) -> str:
@@ -160,4 +147,4 @@ class NonEquidistantSignal(GeneratorSignal):
     @xlabel.setter
     def xlabel(self, value: str):
         """Set xlabel"""
-        self.__xlabel = str(value)
+        self.__xlabel = value

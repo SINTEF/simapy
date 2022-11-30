@@ -19,8 +19,6 @@ class GenericExternalControlSystem(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -36,14 +34,13 @@ class GenericExternalControlSystem(NamedObject):
     libraryPaths : LibraryPaths
     """
 
-    def __init__(self , description="", _id=None, name=None, jarFile=None, className=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.jarFile = jarFile
-        self.className = className
+        self.name = None
+        self.jarFile = None
+        self.className = None
         self.measurementEntities = list()
         self.feedbackEntities = list()
         self.intParameters = list()
@@ -69,17 +66,7 @@ class GenericExternalControlSystem(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -101,7 +88,7 @@ class GenericExternalControlSystem(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def jarFile(self) -> str:
@@ -111,7 +98,7 @@ class GenericExternalControlSystem(NamedObject):
     @jarFile.setter
     def jarFile(self, value: str):
         """Set jarFile"""
-        self.__jarFile = str(value)
+        self.__jarFile = value
 
     @property
     def className(self) -> str:
@@ -121,7 +108,7 @@ class GenericExternalControlSystem(NamedObject):
     @className.setter
     def className(self, value: str):
         """Set className"""
-        self.__className = str(value)
+        self.__className = value
 
     @property
     def measurementEntities(self) -> List[SignalEntity]:

@@ -21,8 +21,6 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -44,17 +42,16 @@ class GeotechnicalSpring(NodeReference,NamedObject):
          Relative length for result scaling(default 1.0)
     """
 
-    def __init__(self , description="", _id=None, segment=1, allSegments=False, nodeNumber=1, allNodes=False, name=None, strainVelocityExponent=1.0, relativeLength=1.0, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, strainVelocityExponent=1.0, relativeLength=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
         self.allSegments = allSegments
         self.nodeNumber = nodeNumber
         self.allNodes = allNodes
-        self.name = name
+        self.name = None
         self.stiffnessItems = list()
         self.dampingDisplacementItems = list()
         self.strainVelocityExponent = strainVelocityExponent
@@ -78,17 +75,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -160,7 +147,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def stiffnessItems(self) -> List[GeotechnicalSpringStiffnessItem]:

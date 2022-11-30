@@ -19,8 +19,6 @@ class OutputNodeValueAssertion(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     severity : Severity
     message : str
@@ -34,16 +32,15 @@ class OutputNodeValueAssertion(MOAO):
          When set, will be used instead of the implicit toleranse based on significant digits(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, severity=Severity.WARNING, message=None, path=None, expectedValue=None, tolerance=0.0, **kwargs):
+    def __init__(self , description="", severity=Severity.WARNING, tolerance=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.severity = severity
-        self.message = message
+        self.message = None
         self.outputNode = None
-        self.path = path
-        self.expectedValue = expectedValue
+        self.path = None
+        self.expectedValue = None
         self.tolerance = tolerance
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -64,17 +61,7 @@ class OutputNodeValueAssertion(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -106,7 +93,7 @@ class OutputNodeValueAssertion(MOAO):
     @message.setter
     def message(self, value: str):
         """Set message"""
-        self.__message = str(value)
+        self.__message = value
 
     @property
     def outputNode(self) -> OutputNode:
@@ -126,7 +113,7 @@ class OutputNodeValueAssertion(MOAO):
     @path.setter
     def path(self, value: str):
         """Set path"""
-        self.__path = str(value)
+        self.__path = value
 
     @property
     def expectedValue(self) -> str:
@@ -136,7 +123,7 @@ class OutputNodeValueAssertion(MOAO):
     @expectedValue.setter
     def expectedValue(self, value: str):
         """Set expectedValue"""
-        self.__expectedValue = str(value)
+        self.__expectedValue = value
 
     @property
     def tolerance(self) -> float:

@@ -14,8 +14,6 @@ class WaveDriftDampingItem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     period : float
          Period(default 0.0)
@@ -33,10 +31,9 @@ class WaveDriftDampingItem(MOAO):
          Wave drift damping coefficient yaw. Relative change in drift force for unit velocity.(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, period=0.0, wd1=0.0, wd2=0.0, wd3=0.0, wd4=0.0, wd5=0.0, wd6=0.0, **kwargs):
+    def __init__(self , description="", period=0.0, wd1=0.0, wd2=0.0, wd3=0.0, wd4=0.0, wd5=0.0, wd6=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.period = period
         self.wd1 = wd1
@@ -64,17 +61,7 @@ class WaveDriftDampingItem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

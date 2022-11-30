@@ -23,8 +23,6 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -52,12 +50,11 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
     windLevels : List[CalculationLevel]
     """
 
-    def __init__(self , description="", _id=None, name=None, currentModel=CurrentModel.FROM_INPUT, kfactor=1.0, directionRelativeToWind=0.0, windReferenceLevel=0.0, baseCurrentSpeed=0.0, relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, from_=None, to=None, **kwargs):
+    def __init__(self , description="", currentModel=CurrentModel.FROM_INPUT, kfactor=1.0, directionRelativeToWind=0.0, windReferenceLevel=0.0, baseCurrentSpeed=0.0, relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.currentModel = currentModel
         self.kfactor = kfactor
         self.directionRelativeToWind = directionRelativeToWind
@@ -69,8 +66,8 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
         self.relativeCompassAngle = relativeCompassAngle
         self.inputReferenceSystem = inputReferenceSystem
         self.hindcastData = None
-        self.from_ = from_
-        self.to = to
+        self.from_ = None
+        self.to = None
         self.windLevels = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -91,17 +88,7 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -123,7 +110,7 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def currentModel(self) -> CurrentModel:
@@ -247,7 +234,7 @@ If the data is defined in the Metocean system the corresponding SIMA coordinate 
     @from_.setter
     def from_(self, value: str):
         """Set from_"""
-        self.__from_ = str(value)
+        self.__from_ = value
 
     @property
     def to(self) -> str:
@@ -257,7 +244,7 @@ If the data is defined in the Metocean system the corresponding SIMA coordinate 
     @to.setter
     def to(self, value: str):
         """Set to"""
-        self.__to = str(value)
+        self.__to = value
 
     @property
     def windLevels(self) -> List[CalculationLevel]:

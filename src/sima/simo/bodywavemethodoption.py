@@ -19,8 +19,6 @@ class BodyWaveMethodOption(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     body : SIMOBody
     waveParticleMotions : KinematicMethod
@@ -41,10 +39,9 @@ class BodyWaveMethodOption(MOAO):
          Options for diffracted wave
     """
 
-    def __init__(self , description="", _id=None, waveParticleMotions=KinematicMethod.FFT, waveParticleMotionDistributed=KinematicMethod.FFT, firstOrderWaveForce=KinematicMethod.FFT, firstOrderMotion=KinematicMethod.FFT, waveDriftForce=KinematicMethod.FFT, waveDriftDamping=KinematicMethod.FFT, qtf=KinematicMethod.FFT, diffractedWave=KinematicMethod.FFT, **kwargs):
+    def __init__(self , description="", waveParticleMotions=KinematicMethod.FFT, waveParticleMotionDistributed=KinematicMethod.FFT, firstOrderWaveForce=KinematicMethod.FFT, firstOrderMotion=KinematicMethod.FFT, waveDriftForce=KinematicMethod.FFT, waveDriftDamping=KinematicMethod.FFT, qtf=KinematicMethod.FFT, diffractedWave=KinematicMethod.FFT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.body = None
         self.waveParticleMotions = waveParticleMotions
@@ -74,17 +71,7 @@ class BodyWaveMethodOption(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

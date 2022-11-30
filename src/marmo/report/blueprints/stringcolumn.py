@@ -13,7 +13,7 @@ class StringColumnBlueprint(ColumnBlueprint):
     def __init__(self, name="StringColumn", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("header","string","",default=None))
-        self.add_attribute(Attribute("label","string","",default=None))
+        self.add_attribute(Attribute("header","string",""))
+        self.add_attribute(Attribute("label","string",""))
         self.add_attribute(BlueprintAttribute("headerfont","marmo/report/Font","",True))
-        self.add_attribute(Attribute("cells","string","",Dimension("*"),default=None))
+        self.add_attribute(Attribute("cells","string","",Dimension("*")))

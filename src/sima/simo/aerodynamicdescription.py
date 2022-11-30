@@ -15,8 +15,6 @@ class AerodynamicDescription(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     quadraticLongitudinalDrag : float
          Quadratic longitudinal drag coefficient(default 0.0)
@@ -28,10 +26,9 @@ class AerodynamicDescription(MOAO):
          Type of aerodynamic forces
     """
 
-    def __init__(self , description="", _id=None, quadraticLongitudinalDrag=0.0, quadraticTransverseY=0.0, quadraticTransverseZ=0.0, aerodynamicType=AerodynamicDescriptionType.DRAG, **kwargs):
+    def __init__(self , description="", quadraticLongitudinalDrag=0.0, quadraticTransverseY=0.0, quadraticTransverseZ=0.0, aerodynamicType=AerodynamicDescriptionType.DRAG, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.quadraticLongitudinalDrag = quadraticLongitudinalDrag
         self.quadraticTransverseY = quadraticTransverseY
@@ -56,17 +53,7 @@ class AerodynamicDescription(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

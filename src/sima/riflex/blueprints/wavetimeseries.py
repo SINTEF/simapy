@@ -13,9 +13,8 @@ class WaveTimeSeriesBlueprint(MOAOBlueprint):
     def __init__(self, name="WaveTimeSeries", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("fileName","string","Wave time series file",default=None))
+        self.add_attribute(Attribute("fileName","string","Wave time series file"))
         self.add_attribute(EnumAttribute("fileFormat","sima/riflex/FileFormatAsciStar","Wave time series file format"))
         self.add_attribute(Attribute("timeColumnNum","integer","Column number for time",default=1))
         self.add_attribute(Attribute("waveColumnNum","integer","Column or time series number for wave elevation",default=2))

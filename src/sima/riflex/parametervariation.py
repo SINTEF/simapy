@@ -18,8 +18,6 @@ class ParameterVariation(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     numVariations : int
          Number of variations(default 0)
@@ -47,10 +45,9 @@ class ParameterVariation(MOAO):
          Activate material memory formulation (isotropic / kinematic hardening)(default False)
     """
 
-    def __init__(self , description="", _id=None, numVariations=0, maxIterations=1, convergenceNorm=ConvergenceNorm.DISP, accuracy=0.0001, energyAccuracy=0.0001, offset=False, current=False, specifiedForce=False, fricActivation=False, springActivation=False, memoActivation=False, **kwargs):
+    def __init__(self , description="", numVariations=0, maxIterations=1, convergenceNorm=ConvergenceNorm.DISP, accuracy=0.0001, energyAccuracy=0.0001, offset=False, current=False, specifiedForce=False, fricActivation=False, springActivation=False, memoActivation=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.numVariations = numVariations
         self.maxIterations = maxIterations
@@ -85,17 +82,7 @@ class ParameterVariation(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

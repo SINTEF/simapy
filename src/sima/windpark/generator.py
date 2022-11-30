@@ -34,8 +34,6 @@ class Generator(Named,ConditionSelectable):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -123,12 +121,11 @@ class Generator(Named,ConditionSelectable):
          Cutoff frequency(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, name=None, airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, deficitFileName=None, ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.CONSTANT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, coarseMeshFilename=None, fineMeshFilename=None, ambientWindFieldFilename=None, turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=False, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, **kwargs):
+    def __init__(self , description="", airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.CONSTANT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=False, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.airDensity = airDensity
         self.kinematicViscosity = kinematicViscosity
         self.meanderingOption = meanderingOption
@@ -138,7 +135,7 @@ class Generator(Named,ConditionSelectable):
         self.angleChange = angleChange
         self.maxLaps = maxLaps
         self.deficitFileContents = deficitFileContents
-        self.deficitFileName = deficitFileName
+        self.deficitFileName = None
         self.ambientMixingParameter = ambientMixingParameter
         self.deficitParameter = deficitParameter
         self.multipleDeficitMethod = multipleDeficitMethod
@@ -155,9 +152,9 @@ class Generator(Named,ConditionSelectable):
         self.windDirection = windDirection
         self.turbulenceIntencity = turbulenceIntencity
         self.stabilityClass = stabilityClass
-        self.coarseMeshFilename = coarseMeshFilename
-        self.fineMeshFilename = fineMeshFilename
-        self.ambientWindFieldFilename = ambientWindFieldFilename
+        self.coarseMeshFilename = None
+        self.fineMeshFilename = None
+        self.ambientWindFieldFilename = None
         self.turbulenceBoxOption = turbulenceBoxOption
         self.outputPrefix = outputPrefix
         self.includePowerResult = includePowerResult
@@ -195,17 +192,7 @@ class Generator(Named,ConditionSelectable):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -227,7 +214,7 @@ class Generator(Named,ConditionSelectable):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def airDensity(self) -> float:
@@ -327,7 +314,7 @@ class Generator(Named,ConditionSelectable):
     @deficitFileName.setter
     def deficitFileName(self, value: str):
         """Set deficitFileName"""
-        self.__deficitFileName = str(value)
+        self.__deficitFileName = value
 
     @property
     def ambientMixingParameter(self) -> float:
@@ -503,7 +490,7 @@ class Generator(Named,ConditionSelectable):
     @coarseMeshFilename.setter
     def coarseMeshFilename(self, value: str):
         """Set coarseMeshFilename"""
-        self.__coarseMeshFilename = str(value)
+        self.__coarseMeshFilename = value
 
     @property
     def fineMeshFilename(self) -> str:
@@ -513,7 +500,7 @@ class Generator(Named,ConditionSelectable):
     @fineMeshFilename.setter
     def fineMeshFilename(self, value: str):
         """Set fineMeshFilename"""
-        self.__fineMeshFilename = str(value)
+        self.__fineMeshFilename = value
 
     @property
     def ambientWindFieldFilename(self) -> str:
@@ -523,7 +510,7 @@ class Generator(Named,ConditionSelectable):
     @ambientWindFieldFilename.setter
     def ambientWindFieldFilename(self, value: str):
         """Set ambientWindFieldFilename"""
-        self.__ambientWindFieldFilename = str(value)
+        self.__ambientWindFieldFilename = value
 
     @property
     def turbulenceBoxOption(self) -> TurbulenceBoxOption:
@@ -543,7 +530,7 @@ class Generator(Named,ConditionSelectable):
     @outputPrefix.setter
     def outputPrefix(self, value: str):
         """Set outputPrefix"""
-        self.__outputPrefix = str(value)
+        self.__outputPrefix = value
 
     @property
     def includePowerResult(self) -> bool:

@@ -15,8 +15,6 @@ class TimeDomainVIVLoadCoefficients(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     vivLoadFormulation : VIVLoadFormulation
     cv : float
@@ -43,10 +41,9 @@ class TimeDomainVIVLoadCoefficients(MOAO):
          Maximum in-line vortex shedding frequency (nondimensional)(default 0.0)
     """
 
-    def __init__(self , description="", _id=None, vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, **kwargs):
+    def __init__(self , description="", vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.vivLoadFormulation = vivLoadFormulation
         self.cv = cv
@@ -79,17 +76,7 @@ class TimeDomainVIVLoadCoefficients(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

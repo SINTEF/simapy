@@ -14,8 +14,6 @@ class OptimizationCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     desiredFinalAccuracy : float
          Desired final accuracy. Should not be much smaller than the accuracy by which the gradients are computed.(default 0.01)
@@ -35,10 +33,9 @@ class OptimizationCalculationParameters(MOAO):
          Try another solution if the underlying calculation fails(default True)
     """
 
-    def __init__(self , description="", _id=None, desiredFinalAccuracy=0.01, tolerance=1e-12, minStepLength=1e-12, maxFunctionCalls=20, maxIterations=20, stackSize=10, automaticNormalization=True, handleFailure=True, **kwargs):
+    def __init__(self , description="", desiredFinalAccuracy=0.01, tolerance=1e-12, minStepLength=1e-12, maxFunctionCalls=20, maxIterations=20, stackSize=10, automaticNormalization=True, handleFailure=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.desiredFinalAccuracy = desiredFinalAccuracy
         self.tolerance = tolerance
@@ -67,17 +64,7 @@ class OptimizationCalculationParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

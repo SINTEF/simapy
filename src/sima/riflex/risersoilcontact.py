@@ -14,8 +14,6 @@ class RiserSoilContact(SeafloorContact):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -53,12 +51,11 @@ class RiserSoilContact(SeafloorContact):
          Mobilization displacement for max soil suction as fraction of pipe soil contact width(default 0.08)
     """
 
-    def __init__(self , description="", _id=None, name=None, axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, soilSubmergedWeight=0.0, soilShearStrength=0.0, soilShearStrengthGradient=0.0, soilPoissonRatio=0.0, soilGModulus=0.0, stiffnessModulusRelationship=0.88, alpha=1.0, beta=1.0, kbc=0.05, kt=0.08, **kwargs):
+    def __init__(self , description="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, soilSubmergedWeight=0.0, soilShearStrength=0.0, soilShearStrengthGradient=0.0, soilPoissonRatio=0.0, soilGModulus=0.0, stiffnessModulusRelationship=0.88, alpha=1.0, beta=1.0, kbc=0.05, kt=0.08, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.axialStiffness = axialStiffness
         self.axialFriction = axialFriction
         self.axialDamping = axialDamping
@@ -94,17 +91,7 @@ class RiserSoilContact(SeafloorContact):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -126,7 +113,7 @@ class RiserSoilContact(SeafloorContact):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def axialStiffness(self) -> float:

@@ -20,8 +20,6 @@ class Plot(OperationNode,OutputNode):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -50,12 +48,11 @@ class Plot(OperationNode,OutputNode):
          Will export all signals as plot(default False)
     """
 
-    def __init__(self , description="", _id=None, name=None, x=0, y=0, h=0, w=0, fixed=False, title=None, xLabel=None, yLabel=None, selectAll=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, fixed=False, selectAll=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
+        self.name = None
         self.x = x
         self.y = y
         self.h = h
@@ -66,9 +63,9 @@ class Plot(OperationNode,OutputNode):
         self.figureTemplate = None
         self.traces = list()
         self.fixed = fixed
-        self.title = title
-        self.xLabel = xLabel
-        self.yLabel = yLabel
+        self.title = None
+        self.xLabel = None
+        self.yLabel = None
         self.selectAll = selectAll
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -89,17 +86,7 @@ class Plot(OperationNode,OutputNode):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -121,7 +108,7 @@ class Plot(OperationNode,OutputNode):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def x(self) -> int:
@@ -239,7 +226,7 @@ class Plot(OperationNode,OutputNode):
     @title.setter
     def title(self, value: str):
         """Set title"""
-        self.__title = str(value)
+        self.__title = value
 
     @property
     def xLabel(self) -> str:
@@ -249,7 +236,7 @@ class Plot(OperationNode,OutputNode):
     @xLabel.setter
     def xLabel(self, value: str):
         """Set xLabel"""
-        self.__xLabel = str(value)
+        self.__xLabel = value
 
     @property
     def yLabel(self) -> str:
@@ -259,7 +246,7 @@ class Plot(OperationNode,OutputNode):
     @yLabel.setter
     def yLabel(self, value: str):
         """Set yLabel"""
-        self.__yLabel = str(value)
+        self.__yLabel = value
 
     @property
     def selectAll(self) -> bool:

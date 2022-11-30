@@ -14,8 +14,6 @@ class TurbSimFluctuatingThreeComponent(Wind):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
@@ -27,15 +25,14 @@ class TurbSimFluctuatingThreeComponent(Wind):
          Path and filename for the summary file from TurbSim(default None)
     """
 
-    def __init__(self , description="", _id=None, direction=0.0, numSlices=800, windFileName=None, sumFileName=None, **kwargs):
+    def __init__(self , description="", direction=0.0, numSlices=800, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.direction = direction
         self.numSlices = numSlices
-        self.windFileName = windFileName
-        self.sumFileName = sumFileName
+        self.windFileName = None
+        self.sumFileName = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -55,17 +52,7 @@ class TurbSimFluctuatingThreeComponent(Wind):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -107,7 +94,7 @@ class TurbSimFluctuatingThreeComponent(Wind):
     @windFileName.setter
     def windFileName(self, value: str):
         """Set windFileName"""
-        self.__windFileName = str(value)
+        self.__windFileName = value
 
     @property
     def sumFileName(self) -> str:
@@ -117,4 +104,4 @@ class TurbSimFluctuatingThreeComponent(Wind):
     @sumFileName.setter
     def sumFileName(self, value: str):
         """Set sumFileName"""
-        self.__sumFileName = str(value)
+        self.__sumFileName = value

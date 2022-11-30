@@ -14,8 +14,6 @@ class Image(ReportItem):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     caption : str
          Caption(default None)
@@ -27,13 +25,12 @@ class Image(ReportItem):
          The image height in twips (1/1440 inch). If only the width is specified the height will be automatically calculated.(default 0)
     """
 
-    def __init__(self , description="", _id=None, caption=None, filePath=None, width=0, height=0, **kwargs):
+    def __init__(self , description="", width=0, height=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.caption = caption
-        self.filePath = filePath
+        self.caption = None
+        self.filePath = None
         self.width = width
         self.height = height
         for key, value in kwargs.items():
@@ -55,17 +52,7 @@ class Image(ReportItem):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -87,7 +74,7 @@ class Image(ReportItem):
     @caption.setter
     def caption(self, value: str):
         """Set caption"""
-        self.__caption = str(value)
+        self.__caption = value
 
     @property
     def filePath(self) -> str:
@@ -97,7 +84,7 @@ class Image(ReportItem):
     @filePath.setter
     def filePath(self, value: str):
         """Set filePath"""
-        self.__filePath = str(value)
+        self.__filePath = value
 
     @property
     def width(self) -> int:

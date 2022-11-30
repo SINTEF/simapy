@@ -20,8 +20,6 @@ class StabilityCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     forceTolerance : float
          An equilibrium will be accepted if all the force components are lower than the force tolerance, and all the moment components are lower than the moment tolerance.(default 100.0)
@@ -45,10 +43,9 @@ class StabilityCalculationParameters(MOAO):
          (default 0)
     """
 
-    def __init__(self , description="", _id=None, forceTolerance=100.0, momentTolerance=1000.0, minAzimuthAngle=0.0, maxAzimuthAngle=0.0, numAzimuthValues=0, minRotationAngle=0.0, maxRotationAngle=0.0, numRotationvalues=0, **kwargs):
+    def __init__(self , description="", forceTolerance=100.0, momentTolerance=1000.0, minAzimuthAngle=0.0, maxAzimuthAngle=0.0, numAzimuthValues=0, minRotationAngle=0.0, maxRotationAngle=0.0, numRotationvalues=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.forceTolerance = forceTolerance
         self.momentTolerance = momentTolerance
@@ -80,17 +77,7 @@ class StabilityCalculationParameters(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

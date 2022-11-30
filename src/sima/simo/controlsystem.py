@@ -24,8 +24,6 @@ class ControlSystem(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     relativeBody : SIMOBody
     xRef : float
@@ -68,10 +66,9 @@ class ControlSystem(MOAO):
     guidanceSystem : GuidanceSystem
     """
 
-    def __init__(self , description="", _id=None, xRef=0.0, yRef=0.0, dirRef=0.0, circleXRef=0.0, circleYRef=0.0, circleRadius=0.0, xLocal=0.0, yLocal=0.0, controlReference=ControlReference.GLOBAL, xyRelative=True, dirRelative=True, referenceCutOff=0.0, intialXForce=0.0, intialYForce=0.0, intialMoment=0.0, windCutOff=0.0, windMeasurement=WindMeasurement.NO, **kwargs):
+    def __init__(self , description="", xRef=0.0, yRef=0.0, dirRef=0.0, circleXRef=0.0, circleYRef=0.0, circleRadius=0.0, xLocal=0.0, yLocal=0.0, controlReference=ControlReference.GLOBAL, xyRelative=True, dirRelative=True, referenceCutOff=0.0, intialXForce=0.0, intialYForce=0.0, intialMoment=0.0, windCutOff=0.0, windMeasurement=WindMeasurement.NO, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.relativeBody = None
         self.xRef = xRef
@@ -114,17 +111,7 @@ class ControlSystem(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

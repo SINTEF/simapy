@@ -24,13 +24,13 @@ class DimensionalMatrix(Signal):
     unit : ndarray
     """
 
-    def __init__(self , description="", name=None, label=None, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self.name = name
+        self.name = None
         self.attributes = list()
         self.value = ndarray(2)
-        self.label = label
+        self.label = None
         self.unit = ndarray(2)
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -51,7 +51,7 @@ class DimensionalMatrix(Signal):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
+        self.__description = value
 
     @property
     def name(self) -> str:
@@ -61,7 +61,7 @@ class DimensionalMatrix(Signal):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def attributes(self) -> List[Attribute]:
@@ -93,7 +93,7 @@ class DimensionalMatrix(Signal):
     @label.setter
     def label(self, value: str):
         """Set label"""
-        self.__label = str(value)
+        self.__label = value
 
     @property
     def unit(self) -> ndarray:

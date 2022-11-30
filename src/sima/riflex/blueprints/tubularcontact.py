@@ -13,9 +13,8 @@ class TubularContactBlueprint(NamedObjectBlueprint):
     def __init__(self, name="TubularContact", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("_id","string","",default=None))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("name","string","",default=None))
+        self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("radius","number","Contact radius",default=0.0))
         self.add_attribute(EnumAttribute("direction","sima/riflex/ContactDirection","Contact direction."))
         self.add_attribute(Attribute("constantStiffness","boolean","Stiffness code for contact force.",default=False))

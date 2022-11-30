@@ -15,18 +15,15 @@ class BoundaryChangeGroup(MOAO):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     timeChange : float
          Time for boundary change(default 0.0)
     nodeBoundaryChanges : List[NodeBoundaryChangeItem]
     """
 
-    def __init__(self , description="", _id=None, timeChange=0.0, **kwargs):
+    def __init__(self , description="", timeChange=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
         self.timeChange = timeChange
         self.nodeBoundaryChanges = list()
@@ -49,17 +46,7 @@ class BoundaryChangeGroup(MOAO):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:

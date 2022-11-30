@@ -17,8 +17,6 @@ class WindTurbineType(NamedObject):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,13 +37,12 @@ class WindTurbineType(NamedObject):
     performanceRelations : List[PerformanceRelation]
     """
 
-    def __init__(self , description="", _id=None, name=None, airfoilDatabaseFilename=None, direction=TurbineDirection.UPWIND, outerRadius=0.0, numberOfBlades=0, turbineDirection=TurbineDirection.UPWIND, cutInWindSpeed=0.0, cutOutWindSpeed=0.0, **kwargs):
+    def __init__(self , description="", direction=TurbineDirection.UPWIND, outerRadius=0.0, numberOfBlades=0, turbineDirection=TurbineDirection.UPWIND, cutInWindSpeed=0.0, cutOutWindSpeed=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.airfoilDatabaseFilename = airfoilDatabaseFilename
+        self.name = None
+        self.airfoilDatabaseFilename = None
         self.direction = direction
         self.outerRadius = outerRadius
         self.numberOfBlades = numberOfBlades
@@ -73,17 +70,7 @@ class WindTurbineType(NamedObject):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -105,7 +92,7 @@ class WindTurbineType(NamedObject):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def airfoilDatabaseFilename(self) -> str:
@@ -115,7 +102,7 @@ class WindTurbineType(NamedObject):
     @airfoilDatabaseFilename.setter
     def airfoilDatabaseFilename(self, value: str):
         """Set airfoilDatabaseFilename"""
-        self.__airfoilDatabaseFilename = str(value)
+        self.__airfoilDatabaseFilename = value
 
     @property
     def direction(self) -> TurbineDirection:

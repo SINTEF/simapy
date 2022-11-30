@@ -15,8 +15,6 @@ class ReportPlotInputSlot(ReportFragmentItem,InputSlot):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -28,13 +26,12 @@ class ReportPlotInputSlot(ReportFragmentItem,InputSlot):
          (default 0)
     """
 
-    def __init__(self , description="", _id=None, name=None, caption=None, width=0, height=0, **kwargs):
+    def __init__(self , description="", width=0, height=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = _id
         self.scriptableValues = list()
-        self.name = name
-        self.caption = caption
+        self.name = None
+        self.caption = None
         self.width = width
         self.height = height
         for key, value in kwargs.items():
@@ -56,17 +53,7 @@ class ReportPlotInputSlot(ReportFragmentItem,InputSlot):
     @description.setter
     def description(self, value: str):
         """Set description"""
-        self.__description = str(value)
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = str(value)
+        self.__description = value
 
     @property
     def scriptableValues(self) -> List[ScriptableValue]:
@@ -88,7 +75,7 @@ class ReportPlotInputSlot(ReportFragmentItem,InputSlot):
     @name.setter
     def name(self, value: str):
         """Set name"""
-        self.__name = str(value)
+        self.__name = value
 
     @property
     def caption(self) -> str:
@@ -98,7 +85,7 @@ class ReportPlotInputSlot(ReportFragmentItem,InputSlot):
     @caption.setter
     def caption(self, value: str):
         """Set caption"""
-        self.__caption = str(value)
+        self.__caption = value
 
     @property
     def width(self) -> int:
