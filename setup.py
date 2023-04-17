@@ -24,7 +24,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src", exclude=["tests"]),
     install_requires=[
-        "dmtpy==0.3.0",
+        "dmtpy==0.3.3",
         "numpy"
     ],
     classifiers=[
