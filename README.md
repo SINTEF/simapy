@@ -1,7 +1,7 @@
 SIMAPY - Python utilities for SIMA
 =================================================================
 
-This Python library can be used to interact with [SIMA](https://www.dnv.com/services/marine-operations-and-mooring-analysis-software-sima-2324)
+This Python library can be used to interact with [SIMA](https://sima.sintef.no)
 
 Parts of the library is generated from DMT models using a DMT Python code generator
 
