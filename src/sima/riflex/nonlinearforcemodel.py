@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.nonlinearforcemodel import NonLinearForceModelBlueprint
 from typing import Dict
-from sima.riflex.dampingmatrixcalculationoption import DampingMatrixCalculationOption
-from sima.riflex.hydrodynamicforceindicator import HydrodynamicForceIndicator
-from sima.riflex.slugforcespecification import SlugForceSpecification
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .dampingmatrixcalculationoption import DampingMatrixCalculationOption
+from .hydrodynamicforceindicator import HydrodynamicForceIndicator
+from .slugforcespecification import SlugForceSpecification
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class NonLinearForceModel(MOAO):
     """
@@ -17,6 +17,8 @@ class NonLinearForceModel(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     internalSlugFlow : bool
          Indicator for modelling forces from internal slug flow(default False)
@@ -42,6 +44,7 @@ class NonLinearForceModel(MOAO):
     def __init__(self , description="", internalSlugFlow=False, hydrodynamicForce=HydrodynamicForceIndicator.NO_FORCE_ITERATION_VELOCITIES, maxHit=5, forceIterationConvergence=0.01, startUpDuration=10.0, ruptureRelease=False, connectorNumber=0, timeStepNumForRelease=0, dampingMatrixCalculation=DampingMatrixCalculationOption.CONSTANT_PROPORTIONAL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.internalSlugFlow = internalSlugFlow
         self.hydrodynamicForce = hydrodynamicForce
@@ -75,6 +78,16 @@ class NonLinearForceModel(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -83,7 +96,7 @@ class NonLinearForceModel(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

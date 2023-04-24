@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.directinputlinetype import DirectInputLineTypeBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.distance import Distance
-from sima.simo.linetype import LineType
-from sima.simo.tensionmap import TensionMap
+from .distance import Distance
+from .linetype import LineType
+from .tensionmap import TensionMap
+from sima.sima import ScriptableValue
 
 class DirectInputLineType(LineType):
     """
@@ -16,6 +16,8 @@ class DirectInputLineType(LineType):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -27,6 +29,7 @@ class DirectInputLineType(LineType):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.horisontalDistances = list()
@@ -54,6 +57,16 @@ class DirectInputLineType(LineType):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -62,7 +75,7 @@ class DirectInputLineType(LineType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -84,7 +97,7 @@ class DirectInputLineType(LineType):
     def horisontalDistances(self, value: List[Distance]):
         """Set horisontalDistances"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__horisontalDistances = value
 
     @property
@@ -96,7 +109,7 @@ class DirectInputLineType(LineType):
     def verticalDistances(self, value: List[Distance]):
         """Set verticalDistances"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__verticalDistances = value
 
     @property
@@ -108,5 +121,5 @@ class DirectInputLineType(LineType):
     def items(self, value: List[TensionMap]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

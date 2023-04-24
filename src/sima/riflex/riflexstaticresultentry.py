@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexstaticresultentry import RIFLEXStaticResultEntryBlueprint
 from typing import Dict
-from sima.riflex.resfile import ResFile
-from sima.sima.property import Property
-from sima.sima.result import Result
-from sima.sima.resultentry import ResultEntry
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.lisfile import LisFile
-from sima.simo.simostaticresultentry import SIMOStaticResultEntry
-from sima.simo.staticresult import StaticResult
+from .resfile import ResFile
+from sima.sima import Property
+from sima.sima import Result
+from sima.sima import ResultEntry
+from sima.sima import ScriptableValue
+from sima.simo import LisFile
+from sima.simo import SIMOStaticResultEntry
+from sima.simo import StaticResult
 
 class RIFLEXStaticResultEntry(SIMOStaticResultEntry):
     """
@@ -20,6 +20,8 @@ class RIFLEXStaticResultEntry(SIMOStaticResultEntry):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -43,6 +45,7 @@ class RIFLEXStaticResultEntry(SIMOStaticResultEntry):
     def __init__(self , description="", relative=False, changeNumber=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.properties = list()
@@ -79,6 +82,16 @@ class RIFLEXStaticResultEntry(SIMOStaticResultEntry):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -87,7 +100,7 @@ class RIFLEXStaticResultEntry(SIMOStaticResultEntry):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -109,7 +122,7 @@ class RIFLEXStaticResultEntry(SIMOStaticResultEntry):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -151,7 +164,7 @@ class RIFLEXStaticResultEntry(SIMOStaticResultEntry):
     def results(self, value: List[Result]):
         """Set results"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__results = value
 
     @property
@@ -163,7 +176,7 @@ class RIFLEXStaticResultEntry(SIMOStaticResultEntry):
     def entries(self, value: List[ResultEntry]):
         """Set entries"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__entries = value
 
     @property

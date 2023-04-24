@@ -13,6 +13,7 @@ class SlotConnectionBlueprint(MOAOBlueprint):
     def __init__(self, name="SlotConnection", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("useQuery","boolean","Use boolean expressions using operators =, !=,&&,|| to create more advanced queries",default=False))
         self.add_attribute(Attribute("query","string",""))

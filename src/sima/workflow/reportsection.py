@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.reportsection import ReportSectionBlueprint
 from typing import Dict
-from sima.report.orientation import Orientation
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.reportfragmentitem import ReportFragmentItem
-from sima.workflow.reportfragmentitemcontainer import ReportFragmentItemContainer
+from .reportfragmentitem import ReportFragmentItem
+from .reportfragmentitemcontainer import ReportFragmentItemContainer
+from sima.report import Orientation
+from sima.sima import ScriptableValue
 
 class ReportSection(ReportFragmentItemContainer):
     """
@@ -16,6 +16,8 @@ class ReportSection(ReportFragmentItemContainer):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     reportFragmentItems : List[ReportFragmentItem]
     title : str
@@ -28,6 +30,7 @@ class ReportSection(ReportFragmentItemContainer):
     def __init__(self , description="", pageBreakBefore=False, orientation=Orientation.PORTRAIT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.reportFragmentItems = list()
         self.title = None
@@ -55,6 +58,16 @@ class ReportSection(ReportFragmentItemContainer):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class ReportSection(ReportFragmentItemContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -75,7 +88,7 @@ class ReportSection(ReportFragmentItemContainer):
     def reportFragmentItems(self, value: List[ReportFragmentItem]):
         """Set reportFragmentItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__reportFragmentItems = value
 
     @property

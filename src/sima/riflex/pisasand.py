@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.pisasand import PisaSandBlueprint
 from typing import Dict
-from sima.riflex.commonsoilcoefficients import CommonSoilCoefficients
-from sima.riflex.commonsoiltype import CommonSoilType
-from sima.sima.scriptablevalue import ScriptableValue
+from .commonsoilcoefficients import CommonSoilCoefficients
+from .commonsoiltype import CommonSoilType
+from sima.sima import ScriptableValue
 
 class PisaSand(CommonSoilType):
     """
@@ -15,6 +15,8 @@ class PisaSand(CommonSoilType):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -37,6 +39,7 @@ class PisaSand(CommonSoilType):
     def __init__(self , description="", requiredResolution=50, pvDamping=0.0, mtDamping=0.0, baseShearLoadDamping=0.0, baseMomentDamping=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.requiredResolution = requiredResolution
@@ -70,6 +73,16 @@ class PisaSand(CommonSoilType):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -78,7 +91,7 @@ class PisaSand(CommonSoilType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

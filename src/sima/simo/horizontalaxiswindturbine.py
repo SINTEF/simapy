@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.horizontalaxiswindturbine import HorizontalAxisWindTurbineBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bladeitem import BladeItem
-from sima.windturbine.horizontalaxiswindturbinecontroller import HorizontalAxisWindTurbineController
+from .bladeitem import BladeItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
+from sima.windturbine import HorizontalAxisWindTurbineController
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.momentcoupling import MomentCoupling
+    from .momentcoupling import MomentCoupling
 
 class HorizontalAxisWindTurbine(NamedObject):
     """
@@ -20,6 +20,8 @@ class HorizontalAxisWindTurbine(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -41,6 +43,7 @@ class HorizontalAxisWindTurbine(NamedObject):
     def __init__(self , description="", referenceHeight=0.0, windArea=0.0, outerAirfoilRadius=0.0, coneAngle=0.0, numBlades=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.controller = None
@@ -73,6 +76,16 @@ class HorizontalAxisWindTurbine(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class HorizontalAxisWindTurbine(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -163,7 +176,7 @@ class HorizontalAxisWindTurbine(NamedObject):
     def bladeItems(self, value: List[BladeItem]):
         """Set bladeItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bladeItems = value
 
     @property

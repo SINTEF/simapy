@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.axisymmetriccrosssectionmassvolume import AxisymmetricCrossSectionMassVolumeBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class AxisymmetricCrossSectionMassVolume(MOAO):
     """
@@ -14,6 +14,8 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     massCoefficient : float
          Mass / unit length(default 0.0)
@@ -42,6 +44,7 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
     def __init__(self , description="", massCoefficient=0.0, extCrossSectionalArea=0.0, intCrossSectionalArea=0.0, gyrationRadius=0.0, crossSectionArea=0.0, crossSectionModulus=0.0, diameter=0.0, thickness=0.0, defaultStressCalculation=True, extContactRadius=0.0, innerContactRadius=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.massCoefficient = massCoefficient
         self.extCrossSectionalArea = extCrossSectionalArea
@@ -76,6 +79,16 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -84,7 +97,7 @@ class AxisymmetricCrossSectionMassVolume(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

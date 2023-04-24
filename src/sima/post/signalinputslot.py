@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.signalinputslot import SignalInputSlotBlueprint
 from typing import Dict
-from sima.post.generatorsignal import GeneratorSignal
-from sima.post.inputslot import InputSlot
-from sima.post.signalgeneratorcontainer import SignalGeneratorContainer
-from sima.post.signalproperties import SignalProperties
-from sima.sima.scriptablevalue import ScriptableValue
+from .generatorsignal import GeneratorSignal
+from .inputslot import InputSlot
+from .signalgeneratorcontainer import SignalGeneratorContainer
+from .signalproperties import SignalProperties
+from sima.sima import ScriptableValue
 
 class SignalInputSlot(InputSlot,SignalGeneratorContainer):
     """
@@ -17,6 +17,8 @@ class SignalInputSlot(InputSlot,SignalGeneratorContainer):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -30,6 +32,7 @@ class SignalInputSlot(InputSlot,SignalGeneratorContainer):
     def __init__(self , description="", includeRootFolder=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.properties = list()
@@ -58,6 +61,16 @@ class SignalInputSlot(InputSlot,SignalGeneratorContainer):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class SignalInputSlot(InputSlot,SignalGeneratorContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -88,7 +101,7 @@ class SignalInputSlot(InputSlot,SignalGeneratorContainer):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -100,7 +113,7 @@ class SignalInputSlot(InputSlot,SignalGeneratorContainer):
     def signals(self, value: List[GeneratorSignal]):
         """Set signals"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__signals = value
 
     @property
@@ -112,7 +125,7 @@ class SignalInputSlot(InputSlot,SignalGeneratorContainer):
     def children(self, value: List[SignalGeneratorContainer]):
         """Set children"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__children = value
 
     @property

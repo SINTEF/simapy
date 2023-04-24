@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bodyeigenvalueresult import BodyEigenvalueResultBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.periodeigenvalueresult import PeriodEigenvalueResult
+from .periodeigenvalueresult import PeriodEigenvalueResult
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class BodyEigenvalueResult(MOAO):
     """
@@ -15,6 +15,8 @@ class BodyEigenvalueResult(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     body : str
          Result body(default None)
@@ -36,6 +38,7 @@ class BodyEigenvalueResult(MOAO):
     def __init__(self , description="", surgeExcursion=0.0, swayExcursion=0.0, heaveExcursion=0.0, rollExcursion=0.0, pitchExcursion=0.0, yawExcursion=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.body = None
         self.surgeExcursion = surgeExcursion
@@ -67,6 +70,16 @@ class BodyEigenvalueResult(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -75,7 +88,7 @@ class BodyEigenvalueResult(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -157,5 +170,5 @@ class BodyEigenvalueResult(MOAO):
     def periodResults(self, value: List[PeriodEigenvalueResult]):
         """Set periodResults"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__periodResults = value

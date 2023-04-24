@@ -13,6 +13,7 @@ class AirfoilBlueprint(NamedObjectBlueprint):
     def __init__(self, name="Airfoil", package_path="sima/windturbine", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("deepstallRegime","boolean","Whether or not a deep stall regime is to be used",default=False))

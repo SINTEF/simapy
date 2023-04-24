@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.ballasttank import BallastTankBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.ballastquantitytype import BallastQuantityType
-from sima.simo.ballasttankstate import BallastTankState
+from .ballastquantitytype import BallastQuantityType
+from .ballasttankstate import BallastTankState
+from sima.sima import NamedObject
+from sima.sima import Position
+from sima.sima import ScriptableValue
 
 class BallastTank(NamedObject):
     """
@@ -17,6 +17,8 @@ class BallastTank(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -47,6 +49,7 @@ class BallastTank(NamedObject):
     def __init__(self , description="", x=0.0, y=0.0, z=0.0, volumeTolerance=0.001, permeabilityFactor=1.0, initialBallastQuantity=0.0, quantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity=1025.0, state=BallastTankState.INTACT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.tag = None
@@ -83,6 +86,16 @@ class BallastTank(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -91,7 +104,7 @@ class BallastTank(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

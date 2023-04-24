@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.staticconditionresult import StaticConditionResultBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bodyresult import BodyResult
+from .bodyresult import BodyResult
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class StaticConditionResult(MOAO):
     """
@@ -15,6 +15,8 @@ class StaticConditionResult(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     bodyResults : List[BodyResult]
     header : str
@@ -30,6 +32,7 @@ class StaticConditionResult(MOAO):
     def __init__(self , description="", globalForces=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.bodyResults = list()
         self.header = None
@@ -58,6 +61,16 @@ class StaticConditionResult(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class StaticConditionResult(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -78,7 +91,7 @@ class StaticConditionResult(MOAO):
     def bodyResults(self, value: List[BodyResult]):
         """Set bodyResults"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bodyResults = value
 
     @property

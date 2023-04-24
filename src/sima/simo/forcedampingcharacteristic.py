@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.forcedampingcharacteristic import ForceDampingCharacteristicBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.forcedampingitem import ForceDampingItem
-from sima.simo.interpolation import Interpolation
+from .forcedampingitem import ForceDampingItem
+from .interpolation import Interpolation
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ForceDampingCharacteristic(MOAO):
     """
@@ -16,6 +16,8 @@ class ForceDampingCharacteristic(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     dampingExponent : float
          Exponent of velocity in damping term(default 1.0)
@@ -29,6 +31,7 @@ class ForceDampingCharacteristic(MOAO):
     def __init__(self , description="", dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.dampingExponent = dampingExponent
         self.dampingInterpolation = dampingInterpolation
@@ -56,6 +59,16 @@ class ForceDampingCharacteristic(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -64,7 +77,7 @@ class ForceDampingCharacteristic(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -106,5 +119,5 @@ class ForceDampingCharacteristic(MOAO):
     def items(self, value: List[ForceDampingItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

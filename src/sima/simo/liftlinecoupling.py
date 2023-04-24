@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.liftlinecoupling import LiftLineCouplingBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.activationfailuremode import ActivationFailureMode
-from sima.simo.simplecoupling import SimpleCoupling
+from .activationfailuremode import ActivationFailureMode
+from .simplecoupling import SimpleCoupling
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobodypoint import SIMOBodyPoint
+    from .simobodypoint import SIMOBodyPoint
 
 class LiftLineCoupling(SimpleCoupling):
     """
@@ -19,6 +19,8 @@ class LiftLineCoupling(SimpleCoupling):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -59,6 +61,7 @@ class LiftLineCoupling(SimpleCoupling):
     def __init__(self , description="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, numElements=0, accIncluded=False, diameter=0.0, eMod=0.0, emFac=1, length=0.0, flexibility=0.0, damping=0.0, uwia=0.0, watfac=0.0, transverseDrag=0.0, longitudinalDrag=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.endPoint1 = None
@@ -100,6 +103,16 @@ class LiftLineCoupling(SimpleCoupling):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -108,7 +121,7 @@ class LiftLineCoupling(SimpleCoupling):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

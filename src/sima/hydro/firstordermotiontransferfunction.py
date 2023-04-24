@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.firstordermotiontransferfunction import FirstOrderMotionTransferFunctionBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.directiondependentcomplexvalues import DirectionDependentComplexValues
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .directiondependentcomplexvalues import DirectionDependentComplexValues
+from .directionsymmetry import DirectionSymmetry
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class FirstOrderMotionTransferFunction(MOAO):
     """
@@ -16,6 +16,8 @@ class FirstOrderMotionTransferFunction(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     directions : ndarray
     frequencies : ndarray
@@ -33,6 +35,7 @@ class FirstOrderMotionTransferFunction(MOAO):
     def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, hfReference=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.directions = ndarray(1)
         self.frequencies = ndarray(1)
@@ -66,6 +69,16 @@ class FirstOrderMotionTransferFunction(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -74,7 +87,7 @@ class FirstOrderMotionTransferFunction(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

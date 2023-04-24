@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fluctuatingthreecomponent import FluctuatingThreeComponentBlueprint
 from typing import Dict
-from sima.environment.fluctuatingwindvelocityprofile import FluctuatingWindVelocityProfile
-from sima.environment.wind import Wind
-from sima.sima.scriptablevalue import ScriptableValue
+from .fluctuatingwindvelocityprofile import FluctuatingWindVelocityProfile
+from .wind import Wind
+from sima.sima import ScriptableValue
 
 class FluctuatingThreeComponent(Wind):
     """
@@ -15,6 +15,8 @@ class FluctuatingThreeComponent(Wind):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
@@ -52,6 +54,7 @@ class FluctuatingThreeComponent(Wind):
     def __init__(self , description="", direction=0.0, meanSpeed=0.0, lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.direction = direction
         self.meanSpeed = meanSpeed
@@ -91,6 +94,16 @@ class FluctuatingThreeComponent(Wind):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -99,7 +112,7 @@ class FluctuatingThreeComponent(Wind):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -131,7 +144,7 @@ class FluctuatingThreeComponent(Wind):
     def velocityProfiles(self, value: List[FluctuatingWindVelocityProfile]):
         """Set velocityProfiles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__velocityProfiles = value
 
     @property

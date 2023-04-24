@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.initialviewpoint import InitialViewpointBlueprint
 from typing import Dict
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.vector3 import Vector3
-from sima.sima.viewpoint import Viewpoint
+from .point3 import Point3
+from .scriptablevalue import ScriptableValue
+from .vector3 import Vector3
+from .viewpoint import Viewpoint
 
 class InitialViewpoint(Viewpoint):
     """
@@ -16,6 +16,8 @@ class InitialViewpoint(Viewpoint):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     eye : Point3
     dir : Vector3
@@ -25,6 +27,7 @@ class InitialViewpoint(Viewpoint):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.eye = None
         self.dir = None
@@ -51,6 +54,16 @@ class InitialViewpoint(Viewpoint):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -59,7 +72,7 @@ class InitialViewpoint(Viewpoint):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

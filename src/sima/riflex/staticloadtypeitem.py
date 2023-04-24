@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.staticloadtypeitem import StaticLoadTypeItemBlueprint
 from typing import Dict
-from sima.riflex.boundarychangegroup import BoundaryChangeGroup
-from sima.riflex.convergencenorm import ConvergenceNorm
-from sima.riflex.pressurevariationitem import PressureVariationItem
-from sima.riflex.staticloadtype import StaticLoadType
-from sima.riflex.temperaturevariationitem import TemperatureVariationItem
-from sima.riflex.winchvariationitem import WinchVariationItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .boundarychangegroup import BoundaryChangeGroup
+from .convergencenorm import ConvergenceNorm
+from .pressurevariationitem import PressureVariationItem
+from .staticloadtype import StaticLoadType
+from .temperaturevariationitem import TemperatureVariationItem
+from .winchvariationitem import WinchVariationItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class StaticLoadTypeItem(MOAO):
     """
@@ -20,6 +20,8 @@ class StaticLoadTypeItem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     runWithPrevious : bool
          Run the load group together with the last(default False)
@@ -49,6 +51,7 @@ class StaticLoadTypeItem(MOAO):
     def __init__(self , description="", runWithPrevious=False, loadType=StaticLoadType.VOLU, nStep=10, maxIterations=10, accuracy=1e-05, convergenceNorm=ConvergenceNorm.DISP, energyAccuracy=1e-05, entered=True, growthFactor=1.0, windOnTurbineBlades=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.runWithPrevious = runWithPrevious
         self.boundaryChangeGroup = None
@@ -86,6 +89,16 @@ class StaticLoadTypeItem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -94,7 +107,7 @@ class StaticLoadTypeItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -196,7 +209,7 @@ class StaticLoadTypeItem(MOAO):
     def temperatureVariations(self, value: List[TemperatureVariationItem]):
         """Set temperatureVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__temperatureVariations = value
 
     @property
@@ -208,7 +221,7 @@ class StaticLoadTypeItem(MOAO):
     def pressureVariations(self, value: List[PressureVariationItem]):
         """Set pressureVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pressureVariations = value
 
     @property
@@ -220,7 +233,7 @@ class StaticLoadTypeItem(MOAO):
     def winchVariations(self, value: List[WinchVariationItem]):
         """Set winchVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__winchVariations = value
 
     @property

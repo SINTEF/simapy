@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simostaticcalculationparameters import SIMOStaticCalculationParametersBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bodyeigenvalueitem import BodyEigenvalueItem
-from sima.simo.dofelimination import DOFElimination
-from sima.simo.equilibriumcalculationoption import EquilibriumCalculationOption
-from sima.simo.equilibriumgriddefinition import EquilibriumGridDefinition
-from sima.simo.staticequilibriumbody import StaticEquilibriumBody
+from .bodyeigenvalueitem import BodyEigenvalueItem
+from .dofelimination import DOFElimination
+from .equilibriumcalculationoption import EquilibriumCalculationOption
+from .equilibriumgriddefinition import EquilibriumGridDefinition
+from .staticequilibriumbody import StaticEquilibriumBody
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SIMOStaticCalculationParameters(MOAO):
     """
@@ -19,6 +19,8 @@ class SIMOStaticCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     runStaticAutomatically : bool
          Run Static calculation automatically each time the model changes(default False)
@@ -59,6 +61,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def __init__(self , description="", runStaticAutomatically=False, calculateEquilibrium=True, maxPeriod=10.0, posTol=0.1, dirTol=0.1, timeStep=0.01, maxStep=10000, criticalDamping=True, writeVisFile=True, calculateEigenvalues=False, equilibriumCalculationMethod=EquilibriumCalculationOption.TRANSIENT, forceTolerance=100.0, momentTolerance=1000.0, multipleEquilibriumCalculations=False, requireSuccessfulCalculation=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.runStaticAutomatically = runStaticAutomatically
         self.calculateEquilibrium = calculateEquilibrium
@@ -102,6 +105,16 @@ class SIMOStaticCalculationParameters(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -110,7 +123,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -222,7 +235,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def eliminations(self, value: List[DOFElimination]):
         """Set eliminations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__eliminations = value
 
     @property
@@ -234,7 +247,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def eigenvalueItems(self, value: List[BodyEigenvalueItem]):
         """Set eigenvalueItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__eigenvalueItems = value
 
     @property
@@ -276,7 +289,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def staticEquilibriumBody(self, value: List[StaticEquilibriumBody]):
         """Set staticEquilibriumBody"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__staticEquilibriumBody = value
 
     @property
@@ -288,7 +301,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def restrainFromGlobalDOFBodies(self, value: List[DOFElimination]):
         """Set restrainFromGlobalDOFBodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__restrainFromGlobalDOFBodies = value
 
     @property

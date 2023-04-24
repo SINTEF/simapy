@@ -13,6 +13,7 @@ class ExternalForceFromFileBlueprint(NamedObjectBlueprint):
     def __init__(self, name="ExternalForceFromFile", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("forceFile","string","' File heading,  arbitrary number of lines with \n' apostrophe in the first position of the input line\nNCOL: Number of columns (=6)\nNROW: Number of rows (i.e. no. of time incidents)\nSAMP: Sampling interval [T]\nForce components, NROW lines (one per time incident)\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\n"))

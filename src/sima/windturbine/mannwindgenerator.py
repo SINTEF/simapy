@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.mannwindgenerator import MannWindGeneratorBlueprint
 from typing import Dict
-from sima.sima.conditionselectable import ConditionSelectable
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.manninputformat import MannInputFormat
+from .manninputformat import MannInputFormat
+from sima.sima import ConditionSelectable
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class MannWindGenerator(NamedObject,ConditionSelectable):
     """
@@ -16,6 +16,8 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -65,6 +67,7 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
     def __init__(self , description="", baseFileName='sima', alphaEpsilon=0.0, lengthScale=0.0, gamma=3.9, seed=0, gridPointsX=0, gridPointsY=0, gridPointsZ=0, pointDistanceX=0.0, pointDistanceY=0.0, pointDistanceZ=0.0, hfCompensation=True, turbulenceIntensity=0.0, meanWindSpeed=0.0, transient=0.0, inputFormat=MannInputFormat.DIRECT, windSeriesDuration=0.0, gridWidth=0.0, gridHeight=0.0, lengthFactor=0.8, longTurbScaleParam=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.baseFileName = baseFileName
@@ -110,6 +113,16 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -118,7 +131,7 @@ class MannWindGenerator(NamedObject,ConditionSelectable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

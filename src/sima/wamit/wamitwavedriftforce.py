@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitwavedriftforce import WamitWaveDriftForceBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.directiondependentvalues import DirectionDependentValues
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.hydro.wavedriftforce import WaveDriftForce
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.hydro import DirectionDependentValues
+from sima.hydro import DirectionSymmetry
+from sima.hydro import WaveDriftForce
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class WamitWaveDriftForce(WaveDriftForce,Named):
     """
@@ -17,6 +17,8 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     directions : ndarray
     frequencies : ndarray
@@ -27,13 +29,16 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
     mx : DirectionDependentValues
     my : DirectionDependentValues
     mz : DirectionDependentValues
+    enableCurrentCorrection : bool
+         Enable wave-current interaction using extended Aranha formula(default False)
     name : str
          (default None)
     """
 
-    def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
+    def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, enableCurrentCorrection=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.directions = ndarray(1)
         self.frequencies = ndarray(1)
@@ -44,6 +49,7 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
         self.mx = None
         self.my = None
         self.mz = None
+        self.enableCurrentCorrection = enableCurrentCorrection
         self.name = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -67,6 +73,16 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -75,7 +91,7 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -167,6 +183,16 @@ class WamitWaveDriftForce(WaveDriftForce,Named):
     def mz(self, value: DirectionDependentValues):
         """Set mz"""
         self.__mz = value
+
+    @property
+    def enableCurrentCorrection(self) -> bool:
+        """Enable wave-current interaction using extended Aranha formula"""
+        return self.__enableCurrentCorrection
+
+    @enableCurrentCorrection.setter
+    def enableCurrentCorrection(self, value: bool):
+        """Set enableCurrentCorrection"""
+        self.__enableCurrentCorrection = bool(value)
 
     @property
     def name(self) -> str:

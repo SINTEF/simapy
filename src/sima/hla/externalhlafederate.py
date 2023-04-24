@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.externalhlafederate import ExternalHLAFederateBlueprint
 from typing import Dict
-from sima.hla.hlafederate import HLAFederate
-from sima.hla.hlaobject import HLAObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlafederate import HLAFederate
+from .hlaobject import HLAObject
+from sima.sima import ScriptableValue
 
 class ExternalHLAFederate(HLAFederate):
     """
@@ -15,6 +15,8 @@ class ExternalHLAFederate(HLAFederate):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -40,6 +42,7 @@ class ExternalHLAFederate(HLAFederate):
     def __init__(self , description="", timeStep=0.0, launch=True, showOutput=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.timeStep = timeStep
@@ -73,6 +76,16 @@ class ExternalHLAFederate(HLAFederate):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class ExternalHLAFederate(HLAFederate):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -183,5 +196,5 @@ class ExternalHLAFederate(HLAFederate):
     def hlaObjects(self, value: List[HLAObject]):
         """Set hlaObjects"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__hlaObjects = value

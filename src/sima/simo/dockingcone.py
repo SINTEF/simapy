@@ -6,16 +6,16 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dockingcone import DockingConeBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.vector3 import Vector3
-from sima.simo.activationfailuremode import ActivationFailureMode
-from sima.simo.dockingconecrosssection import DockingConeCrossSection
-from sima.simo.interpolation import Interpolation
+from .activationfailuremode import ActivationFailureMode
+from .dockingconecrosssection import DockingConeCrossSection
+from .interpolation import Interpolation
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
+from sima.sima import Vector3
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class DockingCone(NamedObject):
     """
@@ -23,6 +23,8 @@ class DockingCone(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -55,6 +57,7 @@ class DockingCone(NamedObject):
     def __init__(self , description="", dampingExponent=1.0, dampingInterpolation=Interpolation.LINEAR, forceInterpolation=Interpolation.LINEAR, velocityLimit=0.0, maxRadialDistance=0.0, friction=0.0, failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.dampingExponent = dampingExponent
@@ -94,6 +97,16 @@ class DockingCone(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -102,7 +115,7 @@ class DockingCone(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -264,5 +277,5 @@ class DockingCone(NamedObject):
     def crossSections(self, value: List[DockingConeCrossSection]):
         """Set crossSections"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__crossSections = value

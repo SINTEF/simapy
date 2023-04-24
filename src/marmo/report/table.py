@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.table import TableBlueprint
 from typing import Dict
-from marmo.report.column import Column
-from marmo.report.reportitem import ReportItem
+from .column import Column
+from .reportitem import ReportItem
 
 class Table(ReportItem):
     """
@@ -77,5 +77,5 @@ class Table(ReportItem):
     def columns(self, value: List[Column]):
         """Set columns"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__columns = value

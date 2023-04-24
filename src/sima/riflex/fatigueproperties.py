@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fatigueproperties import FatiguePropertiesBlueprint
 from typing import Dict
-from sima.riflex.crosssectionreference import CrossSectionReference
-from sima.riflex.fatiguecalculationoption import FatigueCalculationOption
-from sima.riflex.resultprintoption import ResultPrintOption
-from sima.riflex.sncurvereference import SNCurveReference
-from sima.riflex.timeseriesprintoption import TimeSeriesPrintOption
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .crosssectionreference import CrossSectionReference
+from .fatiguecalculationoption import FatigueCalculationOption
+from .resultprintoption import ResultPrintOption
+from .sncurvereference import SNCurveReference
+from .timeseriesprintoption import TimeSeriesPrintOption
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class FatigueProperties(MOAO):
     """
@@ -19,6 +19,8 @@ class FatigueProperties(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     calculationOption : FatigueCalculationOption
     numCrossSectionPoints : int
@@ -56,6 +58,7 @@ class FatigueProperties(MOAO):
     def __init__(self , description="", calculationOption=FatigueCalculationOption.DEFAULT, numCrossSectionPoints=0, resultPrintOption=ResultPrintOption.MOST_CRITICAL_POINT, timeSeriesPrintOption=TimeSeriesPrintOption.NO_PRINT, timeSeriesLength=0.0, timeStep=0.0, seed=31415, axialFactor=1.0, myFactor=1.0, mzFactor=1.0, crossSectionArea=0.0, sectionModulus=0.0, wallThickness=0.0, includeAllSNCurves=False, relativeDuration=0.0, scaledContributions=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.calculationOption = calculationOption
         self.numCrossSectionPoints = numCrossSectionPoints
@@ -97,6 +100,16 @@ class FatigueProperties(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -105,7 +118,7 @@ class FatigueProperties(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -247,7 +260,7 @@ class FatigueProperties(MOAO):
     def snCurves(self, value: List[SNCurveReference]):
         """Set snCurves"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__snCurves = value
 
     @property
@@ -269,7 +282,7 @@ class FatigueProperties(MOAO):
     def crossSectionReferences(self, value: List[CrossSectionReference]):
         """Set crossSectionReferences"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__crossSectionReferences = value
 
     @property

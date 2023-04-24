@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.omnidirectionalscatterdata import OmniDirectionalScatterDataBlueprint
 from numpy import ndarray,asarray
-from sima.metocean.scatterdata import ScatterData
-from sima.metocean.scatterdimension import ScatterDimension
-from sima.metocean.scatterlevelcontainer import ScatterLevelContainer
-from sima.sima.scriptablevalue import ScriptableValue
+from .scatterdata import ScatterData
+from .scatterdimension import ScatterDimension
+from .scatterlevelcontainer import ScatterLevelContainer
+from sima.sima import ScriptableValue
 
 class OmniDirectionalScatterData(ScatterData):
     """
@@ -16,6 +16,8 @@ class OmniDirectionalScatterData(ScatterData):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -29,6 +31,7 @@ class OmniDirectionalScatterData(ScatterData):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.hsUpperLimits = None
@@ -58,6 +61,16 @@ class OmniDirectionalScatterData(ScatterData):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class OmniDirectionalScatterData(ScatterData):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.plotline import PlotLineBlueprint
 from numpy import ndarray,asarray
+from .linestyle import LineStyle
+from .pointstyle import PointStyle
 from dmt.entity import Entity
-from marmo.report.linestyle import LineStyle
-from marmo.report.pointstyle import PointStyle
 
 class PlotLine(Entity):
     """

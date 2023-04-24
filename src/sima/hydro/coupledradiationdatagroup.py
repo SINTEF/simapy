@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.coupledradiationdatagroup import CoupledRadiationDataGroupBlueprint
 from typing import Dict
-from sima.hydro.coupledaddedmassinfinitefrequency import CoupledAddedMassInfiniteFrequency
-from sima.hydro.coupledaddedmasszerofrequency import CoupledAddedMassZeroFrequency
-from sima.hydro.coupledfrequencydependentaddedmass import CoupledFrequencyDependentAddedMass
-from sima.hydro.coupledfrequencydependentdamping import CoupledFrequencyDependentDamping
-from sima.hydro.coupledretardationfunction import CoupledRetardationFunction
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .coupledaddedmassinfinitefrequency import CoupledAddedMassInfiniteFrequency
+from .coupledaddedmasszerofrequency import CoupledAddedMassZeroFrequency
+from .coupledfrequencydependentaddedmass import CoupledFrequencyDependentAddedMass
+from .coupledfrequencydependentdamping import CoupledFrequencyDependentDamping
+from .coupledretardationfunction import CoupledRetardationFunction
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class CoupledRadiationDataGroup(MOAO):
     """
@@ -19,6 +19,8 @@ class CoupledRadiationDataGroup(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     frequencyDependentAddedMass : CoupledFrequencyDependentAddedMass
     frequencyDependentDamping : CoupledFrequencyDependentDamping
@@ -30,6 +32,7 @@ class CoupledRadiationDataGroup(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.frequencyDependentAddedMass = None
         self.frequencyDependentDamping = None
@@ -58,6 +61,16 @@ class CoupledRadiationDataGroup(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class CoupledRadiationDataGroup(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

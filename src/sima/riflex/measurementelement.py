@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.measurementelement import MeasurementElementBlueprint
 from typing import Dict
-from sima.riflex.elementreference import ElementReference
-from sima.sima.scriptablevalue import ScriptableValue
+from .elementreference import ElementReference
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class MeasurementElement(ElementReference):
     """
@@ -18,6 +18,8 @@ class MeasurementElement(ElementReference):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -34,6 +36,7 @@ class MeasurementElement(ElementReference):
     def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -62,6 +65,16 @@ class MeasurementElement(ElementReference):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -70,7 +83,7 @@ class MeasurementElement(ElementReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

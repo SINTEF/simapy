@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.elementstressstorage import ElementStressStorageBlueprint
 from typing import Dict
-from sima.riflex.elementreference import ElementReference
-from sima.riflex.end import End
-from sima.riflex.stresstype import StressType
-from sima.riflex.wallpoint import WallPoint
-from sima.sima.scriptablevalue import ScriptableValue
+from .elementreference import ElementReference
+from .end import End
+from .stresstype import StressType
+from .wallpoint import WallPoint
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class ElementStressStorage(ElementReference):
     """
@@ -21,6 +21,8 @@ class ElementStressStorage(ElementReference):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -53,6 +55,7 @@ class ElementStressStorage(ElementReference):
     def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, _type=StressType.AXIAL_BENDING, outerDiameter=0.0, thickness=0.0, internalPressure=0.0, externalPressure=0.0, numberOfPoints=8, position=WallPoint.OUTER_WALL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -90,6 +93,16 @@ class ElementStressStorage(ElementReference):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -98,7 +111,7 @@ class ElementStressStorage(ElementReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

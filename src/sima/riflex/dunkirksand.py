@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dunkirksand import DunkirkSandBlueprint
 from typing import Dict
-from sima.riflex.dunkirksoilcoefficients import DunkirkSoilCoefficients
-from sima.riflex.dunkirksoiltype import DunkirkSoilType
-from sima.sima.scriptablevalue import ScriptableValue
+from .dunkirksoilcoefficients import DunkirkSoilCoefficients
+from .dunkirksoiltype import DunkirkSoilType
+from sima.sima import ScriptableValue
 
 class DunkirkSand(DunkirkSoilType):
     """
@@ -15,6 +15,8 @@ class DunkirkSand(DunkirkSoilType):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -37,6 +39,7 @@ class DunkirkSand(DunkirkSoilType):
     def __init__(self , description="", requiredResolution=50, pvDamping=0.0, mtDamping=0.0, baseShearLoadDamping=0.0, baseMomentDamping=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.requiredResolution = requiredResolution
@@ -70,6 +73,16 @@ class DunkirkSand(DunkirkSoilType):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -78,7 +91,7 @@ class DunkirkSand(DunkirkSoilType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

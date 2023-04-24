@@ -13,6 +13,7 @@ class CustomWizardBlueprint(MOAOBlueprint):
     def __init__(self, name="CustomWizard", package_path="sima/custom", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("title","string",""))
         self.add_attribute(Attribute("selectionType","string","When an object of the given type is selected a popup menu will be enabled,"))

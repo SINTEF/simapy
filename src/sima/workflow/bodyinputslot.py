@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bodyinputslot import BodyInputSlotBlueprint
 from typing import Dict
-from sima.post.inputslot import InputSlot
-from sima.sima.appearance import Appearance
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import InputSlot
+from sima.sima import Appearance
+from sima.sima import ScriptableValue
 
 class BodyInputSlot(InputSlot):
     """
@@ -15,6 +15,8 @@ class BodyInputSlot(InputSlot):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -30,6 +32,7 @@ class BodyInputSlot(InputSlot):
     def __init__(self , description="", length=10.0, width=5.0, height=5.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.length = length
@@ -58,6 +61,16 @@ class BodyInputSlot(InputSlot):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class BodyInputSlot(InputSlot):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

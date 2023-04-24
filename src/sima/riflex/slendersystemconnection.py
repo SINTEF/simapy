@@ -6,18 +6,18 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.slendersystemconnection import SlenderSystemConnectionBlueprint
 from typing import Dict
-from sima.riflex.bodylocation import BodyLocation
-from sima.riflex.elementreference import ElementReference
-from sima.riflex.end import End
-from sima.riflex.nodeconstraint import NodeConstraint
-from sima.riflex.nodereference import NodeReference
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bodyslendersystemconnection import BodySlenderSystemConnection
+from .bodylocation import BodyLocation
+from .elementreference import ElementReference
+from .end import End
+from .nodeconstraint import NodeConstraint
+from .nodereference import NodeReference
+from sima.sima import Position
+from sima.sima import ScriptableValue
+from sima.simo import BodySlenderSystemConnection
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
-    from sima.riflex.supernode import SuperNode
+    from .arline import ARLine
+    from .supernode import SuperNode
 
 class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemConnection):
     """
@@ -25,6 +25,8 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -72,6 +74,7 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, nodeNumber=1, allNodes=False, allEnds=False, elementEnd=End.ONE, name='connection', location=BodyLocation.ELEMENT, artificialStiffness=False, stx=0.0, sty=0.0, stz=0.0, srx=0.0, sry=0.0, srz=0.0, constraint=NodeConstraint.FREE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -116,6 +119,16 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -124,7 +137,7 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

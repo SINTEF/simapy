@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlatablecomponent import HLATableComponentBlueprint
 from typing import Dict
-from sima.custom.customcomponent import CustomComponent
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.custom import CustomComponent
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.hla.hladatatable import HLADataTable
+    from .hladatatable import HLADataTable
 
 class HLATableComponent(CustomComponent):
     """
@@ -18,6 +18,8 @@ class HLATableComponent(CustomComponent):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     table : HLADataTable
     """
@@ -25,6 +27,7 @@ class HLATableComponent(CustomComponent):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.table = None
         for key, value in kwargs.items():
@@ -49,6 +52,16 @@ class HLATableComponent(CustomComponent):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class HLATableComponent(CustomComponent):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

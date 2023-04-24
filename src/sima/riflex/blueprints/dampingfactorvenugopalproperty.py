@@ -13,6 +13,7 @@ class DampingFactorVenugopalPropertyBlueprint(DampingFactorPropertyBlueprint):
     def __init__(self, name="DampingFactorVenugopalProperty", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("stillWaterDampingContribution","number","Factor Venugopal still water damping contribution",default=1.0))

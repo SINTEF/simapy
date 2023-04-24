@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.multiplewirecoupling import MultipleWireCouplingBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.multiplewirecouplingpart import MultipleWireCouplingPart
+from .multiplewirecouplingpart import MultipleWireCouplingPart
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class MultipleWireCoupling(NamedObject):
     """
@@ -15,6 +15,8 @@ class MultipleWireCoupling(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -24,6 +26,7 @@ class MultipleWireCoupling(NamedObject):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.parts = list()
@@ -49,6 +52,16 @@ class MultipleWireCoupling(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class MultipleWireCoupling(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +92,5 @@ class MultipleWireCoupling(NamedObject):
     def parts(self, value: List[MultipleWireCouplingPart]):
         """Set parts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__parts = value

@@ -6,15 +6,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hydrodynamiccrosssectionproperties import HydrodynamicCrossSectionPropertiesBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.excitationzoneproperty import ExcitationZoneProperty
-    from sima.riflex.addedmassproperty import AddedMassProperty
-    from sima.riflex.excitationcoefficientsproperty import ExcitationCoefficientsProperty
-    from sima.riflex.dampingfactorproperty import DampingFactorProperty
-    from sima.riflex.strouhalspecificationproperty import StrouhalSpecificationProperty
+    from .excitationzoneproperty import ExcitationZoneProperty
+    from .addedmassproperty import AddedMassProperty
+    from .excitationcoefficientsproperty import ExcitationCoefficientsProperty
+    from .dampingfactorproperty import DampingFactorProperty
+    from .strouhalspecificationproperty import StrouhalSpecificationProperty
 
 class HydrodynamicCrossSectionProperties(MOAO):
     """
@@ -22,6 +22,8 @@ class HydrodynamicCrossSectionProperties(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     itemNumber : int
          Global segment number(default 0)
@@ -44,6 +46,7 @@ class HydrodynamicCrossSectionProperties(MOAO):
     def __init__(self , description="", itemNumber=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.itemNumber = itemNumber
         self.excitationZoneProperty = None
@@ -75,6 +78,16 @@ class HydrodynamicCrossSectionProperties(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -83,7 +96,7 @@ class HydrodynamicCrossSectionProperties(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

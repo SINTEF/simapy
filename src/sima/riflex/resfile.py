@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.resfile import ResFileBlueprint
 from typing import Dict
-from sima.sima.property import Property
-from sima.sima.result import Result
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simamessage import SimaMessage
+from sima.sima import Property
+from sima.sima import Result
+from sima.sima import ScriptableValue
+from sima.sima import SimaMessage
 
 class ResFile(Result):
     """
@@ -16,6 +16,8 @@ class ResFile(Result):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -42,6 +44,7 @@ class ResFile(Result):
     def __init__(self , description="", relative=False, time=-1, size=-1, runNumber=-1, runFailed=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.properties = list()
@@ -76,6 +79,16 @@ class ResFile(Result):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -84,7 +97,7 @@ class ResFile(Result):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -106,7 +119,7 @@ class ResFile(Result):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -178,7 +191,7 @@ class ResFile(Result):
     def messages(self, value: List[SimaMessage]):
         """Set messages"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__messages = value
 
     @property

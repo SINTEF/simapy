@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlabody import HLABodyBlueprint
 from typing import Dict
-from sima.hla.hlabodyviewpoint import HLABodyViewpoint
-from sima.hla.hlaobject import HLAObject
-from sima.sima.appearance import Appearance
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlabodyviewpoint import HLABodyViewpoint
+from .hlaobject import HLAObject
+from sima.sima import Appearance
+from sima.sima import Position
+from sima.sima import ScriptableValue
 
 class HLABody(HLAObject):
     """
@@ -17,6 +17,8 @@ class HLABody(HLAObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -34,6 +36,7 @@ class HLABody(HLAObject):
     def __init__(self , description="", length=10.0, width=5.0, height=5.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.length = length
@@ -64,6 +67,16 @@ class HLABody(HLAObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -72,7 +85,7 @@ class HLABody(HLAObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -144,5 +157,5 @@ class HLABody(HLAObject):
     def viewpoints(self, value: List[HLABodyViewpoint]):
         """Set viewpoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__viewpoints = value

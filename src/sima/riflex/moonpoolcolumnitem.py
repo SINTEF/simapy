@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.moonpoolcolumnitem import MoonpoolColumnItemBlueprint
 from typing import Dict
-from sima.riflex.linereference import LineReference
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .linereference import LineReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.body import Body
+    from sima.sima import Body
 
 class MoonpoolColumnItem(MOAO):
     """
@@ -19,6 +19,8 @@ class MoonpoolColumnItem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     body : Body
     lowerZ : float
@@ -31,6 +33,7 @@ class MoonpoolColumnItem(MOAO):
     def __init__(self , description="", lowerZ=0.0, upperZ=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.body = None
         self.lowerZ = lowerZ
@@ -58,6 +61,16 @@ class MoonpoolColumnItem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class MoonpoolColumnItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -108,5 +121,5 @@ class MoonpoolColumnItem(MOAO):
     def lineReferences(self, value: List[LineReference]):
         """Set lineReferences"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lineReferences = value

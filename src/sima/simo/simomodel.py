@@ -5,29 +5,29 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simomodel import SIMOModelBlueprint
 from typing import Dict
-from sima.environment.environment import Environment
-from sima.environment.environmentscontainer import EnvironmentsContainer
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.advancedbumper import AdvancedBumper
-from sima.simo.bumpergroup import BumperGroup
-from sima.simo.dockingcone import DockingCone
-from sima.simo.fibreropemodel import FibreRopeModel
-from sima.simo.fixedelongationcoupling import FixedElongationCoupling
-from sima.simo.hydrodynamiccoupling import HydrodynamicCoupling
-from sima.simo.liftlinecoupling import LiftLineCoupling
-from sima.simo.momentcoupling import MomentCoupling
-from sima.simo.multiplewirecoupling import MultipleWireCoupling
-from sima.simo.pointfender import PointFender
-from sima.simo.ratchetcoupling import RatchetCoupling
-from sima.simo.rollerfender import RollerFender
-from sima.simo.simobody import SIMOBody
-from sima.simo.simodynamiccalculationparameters import SIMODynamicCalculationParameters
-from sima.simo.simofrequencydomaincalculation import SIMOFrequencyDomainCalculation
-from sima.simo.simolocation import SIMOLocation
-from sima.simo.simostaticcalculationparameters import SIMOStaticCalculationParameters
-from sima.simo.simplewirecoupling import SimpleWireCoupling
-from sima.simo.stabilitycalculationparameters import StabilityCalculationParameters
-from sima.windturbine.airfoil import Airfoil
+from .advancedbumper import AdvancedBumper
+from .bumpergroup import BumperGroup
+from .dockingcone import DockingCone
+from .fibreropemodel import FibreRopeModel
+from .fixedelongationcoupling import FixedElongationCoupling
+from .hydrodynamiccoupling import HydrodynamicCoupling
+from .liftlinecoupling import LiftLineCoupling
+from .momentcoupling import MomentCoupling
+from .multiplewirecoupling import MultipleWireCoupling
+from .pointfender import PointFender
+from .ratchetcoupling import RatchetCoupling
+from .rollerfender import RollerFender
+from .simobody import SIMOBody
+from .simodynamiccalculationparameters import SIMODynamicCalculationParameters
+from .simofrequencydomaincalculation import SIMOFrequencyDomainCalculation
+from .simolocation import SIMOLocation
+from .simostaticcalculationparameters import SIMOStaticCalculationParameters
+from .simplewirecoupling import SimpleWireCoupling
+from .stabilitycalculationparameters import StabilityCalculationParameters
+from sima.environment import Environment
+from sima.environment import EnvironmentsContainer
+from sima.sima import ScriptableValue
+from sima.windturbine import Airfoil
 
 class SIMOModel(EnvironmentsContainer):
     """
@@ -35,6 +35,8 @@ class SIMOModel(EnvironmentsContainer):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     environments : List[Environment]
     airfoils : List[Airfoil]
@@ -62,6 +64,7 @@ class SIMOModel(EnvironmentsContainer):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.environments = list()
         self.airfoils = list()
@@ -106,6 +109,16 @@ class SIMOModel(EnvironmentsContainer):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -114,7 +127,7 @@ class SIMOModel(EnvironmentsContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -126,7 +139,7 @@ class SIMOModel(EnvironmentsContainer):
     def environments(self, value: List[Environment]):
         """Set environments"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__environments = value
 
     @property
@@ -138,7 +151,7 @@ class SIMOModel(EnvironmentsContainer):
     def airfoils(self, value: List[Airfoil]):
         """Set airfoils"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__airfoils = value
 
     @property
@@ -160,7 +173,7 @@ class SIMOModel(EnvironmentsContainer):
     def bodies(self, value: List[SIMOBody]):
         """Set bodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bodies = value
 
     @property
@@ -172,7 +185,7 @@ class SIMOModel(EnvironmentsContainer):
     def hydrodynamicCouplings(self, value: List[HydrodynamicCoupling]):
         """Set hydrodynamicCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__hydrodynamicCouplings = value
 
     @property
@@ -184,7 +197,7 @@ class SIMOModel(EnvironmentsContainer):
     def simpleWireCouplings(self, value: List[SimpleWireCoupling]):
         """Set simpleWireCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__simpleWireCouplings = value
 
     @property
@@ -196,7 +209,7 @@ class SIMOModel(EnvironmentsContainer):
     def fixedElongationCouplings(self, value: List[FixedElongationCoupling]):
         """Set fixedElongationCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fixedElongationCouplings = value
 
     @property
@@ -208,7 +221,7 @@ class SIMOModel(EnvironmentsContainer):
     def dockingCones(self, value: List[DockingCone]):
         """Set dockingCones"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dockingCones = value
 
     @property
@@ -220,7 +233,7 @@ class SIMOModel(EnvironmentsContainer):
     def pointFenders(self, value: List[PointFender]):
         """Set pointFenders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pointFenders = value
 
     @property
@@ -232,7 +245,7 @@ class SIMOModel(EnvironmentsContainer):
     def rollerFenders(self, value: List[RollerFender]):
         """Set rollerFenders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__rollerFenders = value
 
     @property
@@ -244,7 +257,7 @@ class SIMOModel(EnvironmentsContainer):
     def ratchets(self, value: List[RatchetCoupling]):
         """Set ratchets"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__ratchets = value
 
     @property
@@ -256,7 +269,7 @@ class SIMOModel(EnvironmentsContainer):
     def multipleWireCouplings(self, value: List[MultipleWireCoupling]):
         """Set multipleWireCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__multipleWireCouplings = value
 
     @property
@@ -268,7 +281,7 @@ class SIMOModel(EnvironmentsContainer):
     def bumperGroups(self, value: List[BumperGroup]):
         """Set bumperGroups"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bumperGroups = value
 
     @property
@@ -280,7 +293,7 @@ class SIMOModel(EnvironmentsContainer):
     def advancedBumpers(self, value: List[AdvancedBumper]):
         """Set advancedBumpers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__advancedBumpers = value
 
     @property
@@ -292,7 +305,7 @@ class SIMOModel(EnvironmentsContainer):
     def liftLineCouplings(self, value: List[LiftLineCoupling]):
         """Set liftLineCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__liftLineCouplings = value
 
     @property
@@ -304,7 +317,7 @@ class SIMOModel(EnvironmentsContainer):
     def momentCouplings(self, value: List[MomentCoupling]):
         """Set momentCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__momentCouplings = value
 
     @property
@@ -356,5 +369,5 @@ class SIMOModel(EnvironmentsContainer):
     def fibreRopeModels(self, value: List[FibreRopeModel]):
         """Set fibreRopeModels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fibreRopeModels = value

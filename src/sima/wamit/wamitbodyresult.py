@@ -5,17 +5,17 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitbodyresult import WamitBodyResultBlueprint
 from typing import Dict
-from sima.hydro.externalstiffnessmatrix import ExternalStiffnessMatrix
-from sima.hydro.firstordermotiontransferfunction import FirstOrderMotionTransferFunction
-from sima.hydro.hydrostaticstiffnessdata import HydrostaticStiffnessData
-from sima.hydro.lineardampingmatrix import LinearDampingMatrix
-from sima.hydro.radiationdatagroup import RadiationDataGroup
-from sima.hydro.structuralmass import StructuralMass
-from sima.sima.named import Named
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.wamit.wamitfirstorderwaveforcetransferfunction import WamitFirstOrderWaveForceTransferFunction
-from sima.wamit.wamitwavedriftforce import WamitWaveDriftForce
+from .wamitfirstorderwaveforcetransferfunction import WamitFirstOrderWaveForceTransferFunction
+from .wamitwavedriftforce import WamitWaveDriftForce
+from sima.hydro import ExternalStiffnessMatrix
+from sima.hydro import FirstOrderMotionTransferFunction
+from sima.hydro import HydrostaticStiffnessData
+from sima.hydro import LinearDampingMatrix
+from sima.hydro import RadiationDataGroup
+from sima.hydro import StructuralMass
+from sima.sima import Named
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class WamitBodyResult(Named):
     """
@@ -23,6 +23,8 @@ class WamitBodyResult(Named):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -65,6 +67,7 @@ class WamitBodyResult(Named):
     def __init__(self , description="", characteristicLength=0.0, x=0.0, y=0.0, z=0.0, rz=0.0, symmetryAboutX=False, symmetryAboutY=False, gravity=0.0, waterDensity=0.0, waterDepth=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.firstOrderMotionTransferFunction = None
@@ -113,6 +116,16 @@ class WamitBodyResult(Named):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -121,7 +134,7 @@ class WamitBodyResult(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.amplitudediameterpropertyitem import AmplitudeDiameterPropertyItemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class AmplitudeDiameterPropertyItem(MOAO):
     """
@@ -14,6 +14,8 @@ class AmplitudeDiameterPropertyItem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     nonDimensionalFrequency : float
          Non-dimensional frequency(default 0.0)
@@ -30,6 +32,7 @@ class AmplitudeDiameterPropertyItem(MOAO):
     def __init__(self , description="", nonDimensionalFrequency=0.0, adRatioCl0=0.0, adRatioClMax=0.0, maxExcitationCoefficient=0.0, excitCoeffAd0=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.nonDimensionalFrequency = nonDimensionalFrequency
         self.adRatioCl0 = adRatioCl0
@@ -58,6 +61,16 @@ class AmplitudeDiameterPropertyItem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class AmplitudeDiameterPropertyItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

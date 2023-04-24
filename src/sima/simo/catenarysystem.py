@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.catenarysystem import CatenarySystemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.buoytype import BuoyType
-from sima.simo.catenaryline import CatenaryLine
-from sima.simo.directinputlinetype import DirectInputLineType
-from sima.simo.elongationcharacteristic import ElongationCharacteristic
-from sima.simo.segmentedlinetype import SegmentedLineType
+from .buoytype import BuoyType
+from .catenaryline import CatenaryLine
+from .directinputlinetype import DirectInputLineType
+from .elongationcharacteristic import ElongationCharacteristic
+from .segmentedlinetype import SegmentedLineType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class CatenarySystem(MOAO):
     """
@@ -19,6 +19,8 @@ class CatenarySystem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     elongationCharacteristics : List[ElongationCharacteristic]
     lines : List[CatenaryLine]
@@ -30,6 +32,7 @@ class CatenarySystem(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.elongationCharacteristics = list()
         self.lines = list()
@@ -58,6 +61,16 @@ class CatenarySystem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class CatenarySystem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -78,7 +91,7 @@ class CatenarySystem(MOAO):
     def elongationCharacteristics(self, value: List[ElongationCharacteristic]):
         """Set elongationCharacteristics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elongationCharacteristics = value
 
     @property
@@ -90,7 +103,7 @@ class CatenarySystem(MOAO):
     def lines(self, value: List[CatenaryLine]):
         """Set lines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lines = value
 
     @property
@@ -102,7 +115,7 @@ class CatenarySystem(MOAO):
     def segmentedLineTypes(self, value: List[SegmentedLineType]):
         """Set segmentedLineTypes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__segmentedLineTypes = value
 
     @property
@@ -114,7 +127,7 @@ class CatenarySystem(MOAO):
     def buoys(self, value: List[BuoyType]):
         """Set buoys"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__buoys = value
 
     @property
@@ -126,5 +139,5 @@ class CatenarySystem(MOAO):
     def directInputLineTypes(self, value: List[DirectInputLineType]):
         """Set directInputLineTypes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__directInputLineTypes = value

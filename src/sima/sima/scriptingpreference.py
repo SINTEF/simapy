@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.scriptingpreference import ScriptingPreferenceBlueprint
 from numpy import ndarray,asarray
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simapreference import SIMAPreference
+from .scriptablevalue import ScriptableValue
+from .simapreference import SIMAPreference
 
 class ScriptingPreference(SIMAPreference):
     """
@@ -14,6 +14,8 @@ class ScriptingPreference(SIMAPreference):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     showScripts : bool
          (default False)
@@ -26,6 +28,7 @@ class ScriptingPreference(SIMAPreference):
     def __init__(self , description="", showScripts=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.showScripts = showScripts
         self.javaScriptLocations = ndarray(1)
@@ -53,6 +56,16 @@ class ScriptingPreference(SIMAPreference):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -61,7 +74,7 @@ class ScriptingPreference(SIMAPreference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

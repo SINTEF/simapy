@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.column import ColumnBlueprint
 from typing import Dict
+from .font import Font
 from dmt.entity import Entity
-from marmo.report.font import Font
 
 class Column(Entity):
     """

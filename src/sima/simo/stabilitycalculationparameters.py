@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.stabilitycalculationparameters import StabilityCalculationParametersBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.dofelimination import DOFElimination
-from sima.simo.staticequilibriumbody import StaticEquilibriumBody
+from .dofelimination import DOFElimination
+from .staticequilibriumbody import StaticEquilibriumBody
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class StabilityCalculationParameters(MOAO):
     """
@@ -20,6 +20,8 @@ class StabilityCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     forceTolerance : float
          An equilibrium will be accepted if all the force components are lower than the force tolerance, and all the moment components are lower than the moment tolerance.(default 100.0)
@@ -46,6 +48,7 @@ class StabilityCalculationParameters(MOAO):
     def __init__(self , description="", forceTolerance=100.0, momentTolerance=1000.0, minAzimuthAngle=0.0, maxAzimuthAngle=0.0, numAzimuthValues=0, minRotationAngle=0.0, maxRotationAngle=0.0, numRotationvalues=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.forceTolerance = forceTolerance
         self.momentTolerance = momentTolerance
@@ -80,6 +83,16 @@ class StabilityCalculationParameters(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -88,7 +101,7 @@ class StabilityCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -120,7 +133,7 @@ class StabilityCalculationParameters(MOAO):
     def staticEquilibriumBodies(self, value: List[StaticEquilibriumBody]):
         """Set staticEquilibriumBodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__staticEquilibriumBodies = value
 
     @property
@@ -132,7 +145,7 @@ class StabilityCalculationParameters(MOAO):
     def restrainFromGlobalDOFBodies(self, value: List[DOFElimination]):
         """Set restrainFromGlobalDOFBodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__restrainFromGlobalDOFBodies = value
 
     @property

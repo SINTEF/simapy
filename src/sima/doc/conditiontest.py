@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.conditiontest import ConditionTestBlueprint
 from typing import Dict
-from sima.doc.comparisonassertion import ComparisonAssertion
-from sima.doc.duration import Duration
-from sima.doc.outputnodevalueassertion import OutputNodeValueAssertion
-from sima.doc.test import Test
-from sima.sima.scriptablevalue import ScriptableValue
+from .comparisonassertion import ComparisonAssertion
+from .duration import Duration
+from .outputnodevalueassertion import OutputNodeValueAssertion
+from .test import Test
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.condition import Condition
+    from sima.sima import Condition
 
 class ConditionTest(Test):
     """
@@ -21,6 +21,8 @@ class ConditionTest(Test):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -37,6 +39,7 @@ class ConditionTest(Test):
     def __init__(self , description="", disabled=False, duration=Duration.MEDIUM, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.disabled = disabled
@@ -67,6 +70,16 @@ class ConditionTest(Test):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -75,7 +88,7 @@ class ConditionTest(Test):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -117,7 +130,7 @@ class ConditionTest(Test):
     def assertions(self, value: List[OutputNodeValueAssertion]):
         """Set assertions"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__assertions = value
 
     @property
@@ -129,7 +142,7 @@ class ConditionTest(Test):
     def comparisons(self, value: List[ComparisonAssertion]):
         """Set comparisons"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__comparisons = value
 
     @property

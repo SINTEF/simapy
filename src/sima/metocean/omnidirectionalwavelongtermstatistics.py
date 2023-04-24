@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.omnidirectionalwavelongtermstatistics import OmniDirectionalWaveLongTermStatisticsBlueprint
 from typing import Dict
-from sima.metocean.contourdata import ContourData
-from sima.metocean.significantwaveheightweibulldata import SignificantWaveHeightWeibullData
-from sima.metocean.spectralpeakperiodrelation import SpectralPeakPeriodRelation
-from sima.metocean.wavelongtermstatistics import WaveLongTermStatistics
-from sima.sima.scriptablevalue import ScriptableValue
+from .contourdata import ContourData
+from .significantwaveheightweibulldata import SignificantWaveHeightWeibullData
+from .spectralpeakperiodrelation import SpectralPeakPeriodRelation
+from .wavelongtermstatistics import WaveLongTermStatistics
+from sima.sima import ScriptableValue
 
 class OmniDirectionalWaveLongTermStatistics(WaveLongTermStatistics):
     """
@@ -17,6 +17,8 @@ class OmniDirectionalWaveLongTermStatistics(WaveLongTermStatistics):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -28,6 +30,7 @@ class OmniDirectionalWaveLongTermStatistics(WaveLongTermStatistics):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.contours = list()
@@ -55,6 +58,16 @@ class OmniDirectionalWaveLongTermStatistics(WaveLongTermStatistics):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class OmniDirectionalWaveLongTermStatistics(WaveLongTermStatistics):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -85,7 +98,7 @@ class OmniDirectionalWaveLongTermStatistics(WaveLongTermStatistics):
     def contours(self, value: List[ContourData]):
         """Set contours"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__contours = value
 
     @property

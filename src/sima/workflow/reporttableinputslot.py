@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.reporttableinputslot import ReportTableInputSlotBlueprint
 from typing import Dict
-from sima.post.inputslot import InputSlot
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.reportfragmentitem import ReportFragmentItem
+from .reportfragmentitem import ReportFragmentItem
+from sima.post import InputSlot
+from sima.sima import ScriptableValue
 
 class ReportTableInputSlot(ReportFragmentItem,InputSlot):
     """
@@ -15,6 +15,8 @@ class ReportTableInputSlot(ReportFragmentItem,InputSlot):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -25,6 +27,7 @@ class ReportTableInputSlot(ReportFragmentItem,InputSlot):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.caption = None
@@ -50,6 +53,16 @@ class ReportTableInputSlot(ReportFragmentItem,InputSlot):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -58,7 +71,7 @@ class ReportTableInputSlot(ReportFragmentItem,InputSlot):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

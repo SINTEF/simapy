@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.thrustercontrolsequence import ThrusterControlSequenceBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.controlsequenceitem import ControlSequenceItem
-from sima.simo.thrustsignaltype import ThrustSignalType
+from .controlsequenceitem import ControlSequenceItem
+from .thrustsignaltype import ThrustSignalType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ThrusterControlSequence(MOAO):
     """
@@ -16,6 +16,8 @@ class ThrusterControlSequence(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     specifyControlSequence : bool
          Should a list of control signals be specified for thruster?(default False)
@@ -27,6 +29,7 @@ class ThrusterControlSequence(MOAO):
     def __init__(self , description="", specifyControlSequence=False, signalType=ThrustSignalType.FORCE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.specifyControlSequence = specifyControlSequence
         self.signalType = signalType
@@ -53,6 +56,16 @@ class ThrusterControlSequence(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -61,7 +74,7 @@ class ThrusterControlSequence(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -93,5 +106,5 @@ class ThrusterControlSequence(MOAO):
     def items(self, value: List[ControlSequenceItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

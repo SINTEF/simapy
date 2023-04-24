@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.sumfrequencyqtf import SumFrequencyQTFBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.qtfdof import QTFDof
-from sima.hydro.sparseqtf import SparseQTF
-from sima.sima.scriptablevalue import ScriptableValue
+from .qtfdof import QTFDof
+from .sparseqtf import SparseQTF
+from sima.sima import ScriptableValue
 
 class SumFrequencyQTF(SparseQTF):
     """
@@ -15,6 +15,8 @@ class SumFrequencyQTF(SparseQTF):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     nFreq : int
          (default 0)
@@ -43,6 +45,7 @@ class SumFrequencyQTF(SparseQTF):
     def __init__(self , description="", nFreq=0, nDir=0, nValues=0, bidirectional=False, bichromatic=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.nFreq = nFreq
         self.nDir = nDir
@@ -83,6 +86,16 @@ class SumFrequencyQTF(SparseQTF):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -91,7 +104,7 @@ class SumFrequencyQTF(SparseQTF):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

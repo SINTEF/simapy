@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.timedomainprocedure import TimeDomainProcedureBlueprint
 from typing import Dict
-from sima.riflex.methodindicator import MethodIndicator
-from sima.riflex.nonlinearforcemodel import NonLinearForceModel
-from sima.riflex.nonlinearintegrationprocedure import NonLinearIntegrationProcedure
-from sima.riflex.procedureindicator import ProcedureIndicator
-from sima.riflex.rayleighdamping import RayleighDamping
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .methodindicator import MethodIndicator
+from .nonlinearforcemodel import NonLinearForceModel
+from .nonlinearintegrationprocedure import NonLinearIntegrationProcedure
+from .procedureindicator import ProcedureIndicator
+from .rayleighdamping import RayleighDamping
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class TimeDomainProcedure(MOAO):
     """
@@ -19,6 +19,8 @@ class TimeDomainProcedure(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     method : MethodIndicator
          Method indicator
@@ -65,6 +67,7 @@ class TimeDomainProcedure(MOAO):
     def __init__(self , description="", method=MethodIndicator.NONLINEAR, procedure=ProcedureIndicator.NEWMARK, displacementStorage=False, forceResultStorage=False, sumForceResponseStorage=False, curvatureResponseStorage=False, envelopeCurveSpecification=False, inverseBeta=4.0, gamma=0.5, theta=1.0, dampingOption=RayleighDamping.TOTAL, globalMassDampingFactor=0.0, globalStiffnessDampingFactor=0.0, localMassTensionDamping=0.0, localMassTorsionDamping=0.0, localMassBendingDamping=0.0, localStiffnessTensionDamping=0.0, localStiffnessTorsionDamping=0.0, localStiffnessBendingDamping=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.method = method
         self.procedure = procedure
@@ -109,6 +112,16 @@ class TimeDomainProcedure(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -117,7 +130,7 @@ class TimeDomainProcedure(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

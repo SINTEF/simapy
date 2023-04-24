@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bladepitchfault import BladePitchFaultBlueprint
 from typing import Dict
-from sima.riflex.biasbladepitchfaultitem import BiasBladePitchFaultItem
-from sima.riflex.runawaybladepitchfaultitem import RunawayBladePitchFaultItem
-from sima.riflex.seizebladepitchfaultitem import SeizeBladePitchFaultItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .biasbladepitchfaultitem import BiasBladePitchFaultItem
+from .runawaybladepitchfaultitem import RunawayBladePitchFaultItem
+from .seizebladepitchfaultitem import SeizeBladePitchFaultItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class BladePitchFault(MOAO):
     """
@@ -17,6 +17,8 @@ class BladePitchFault(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     seizeFaults : List[SeizeBladePitchFaultItem]
     runawayFaults : List[RunawayBladePitchFaultItem]
@@ -26,6 +28,7 @@ class BladePitchFault(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.seizeFaults = list()
         self.runawayFaults = list()
@@ -52,6 +55,16 @@ class BladePitchFault(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -60,7 +73,7 @@ class BladePitchFault(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -72,7 +85,7 @@ class BladePitchFault(MOAO):
     def seizeFaults(self, value: List[SeizeBladePitchFaultItem]):
         """Set seizeFaults"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__seizeFaults = value
 
     @property
@@ -84,7 +97,7 @@ class BladePitchFault(MOAO):
     def runawayFaults(self, value: List[RunawayBladePitchFaultItem]):
         """Set runawayFaults"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__runawayFaults = value
 
     @property
@@ -96,5 +109,5 @@ class BladePitchFault(MOAO):
     def biasFaults(self, value: List[BiasBladePitchFaultItem]):
         """Set biasFaults"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__biasFaults = value

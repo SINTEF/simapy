@@ -9,6 +9,7 @@ from .derbyshirescott import DerbyshireScott # noqa
 from .doublemodelspectrum import DoubleModelSpectrum # noqa
 from .environment import Environment # noqa
 from .environmentscontainer import EnvironmentsContainer # noqa
+from .esduwind import ESDUWind # noqa
 from .fluctuatingthreecomponent import FluctuatingThreeComponent # noqa
 from .fluctuatingtwocomponent import FluctuatingTwoComponent # noqa
 from .fluctuatingwindvelocityprofile import FluctuatingWindVelocityProfile # noqa

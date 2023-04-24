@@ -6,7 +6,6 @@ from dmt.blueprint import Blueprint
 from .blueprints.scriptablevalue import ScriptableValueBlueprint
 from typing import Dict
 from dmt.entity import Entity
-from sima.sima.dependency import Dependency
 
 class ScriptableValue(Entity):
     """
@@ -14,9 +13,10 @@ class ScriptableValue(Entity):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     script : str
          (default None)
-    dependencies : List[Dependency]
     cyclic : bool
          (default False)
     feature : str
@@ -28,8 +28,8 @@ class ScriptableValue(Entity):
     def __init__(self , description="", cyclic=False, index=-1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.script = None
-        self.dependencies = list()
         self.cyclic = cyclic
         self.feature = None
         self.index = index
@@ -55,6 +55,16 @@ class ScriptableValue(Entity):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def script(self) -> str:
         """"""
         return self.__script
@@ -63,18 +73,6 @@ class ScriptableValue(Entity):
     def script(self, value: str):
         """Set script"""
         self.__script = value
-
-    @property
-    def dependencies(self) -> List[Dependency]:
-        """"""
-        return self.__dependencies
-
-    @dependencies.setter
-    def dependencies(self, value: List[Dependency]):
-        """Set dependencies"""
-        if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
-        self.__dependencies = value
 
     @property
     def cyclic(self) -> bool:

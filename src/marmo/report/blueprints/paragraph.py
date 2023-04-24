@@ -13,5 +13,5 @@ class ParagraphBlueprint(ReportItemBlueprint):
     def __init__(self, name="Paragraph", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("text","string",""))
+        self.add_attribute(Attribute("text","string","",optional=False))
         self.add_attribute(Attribute("markup","boolean","",default=False))

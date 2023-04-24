@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.result import ResultBlueprint
 from typing import Dict
-from sima.sima.named import Named
-from sima.sima.property import Property
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simamessage import SimaMessage
+from .named import Named
+from .property import Property
+from .scriptablevalue import ScriptableValue
+from .simamessage import SimaMessage
 
 class Result(Named):
     """
@@ -16,6 +16,8 @@ class Result(Named):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -38,6 +40,7 @@ class Result(Named):
     def __init__(self , description="", relative=False, time=-1, size=-1, runNumber=-1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.properties = list()
@@ -70,6 +73,16 @@ class Result(Named):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -78,7 +91,7 @@ class Result(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -100,7 +113,7 @@ class Result(Named):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -172,5 +185,5 @@ class Result(Named):
     def messages(self, value: List[SimaMessage]):
         """Set messages"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__messages = value

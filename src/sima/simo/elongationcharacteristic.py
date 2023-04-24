@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.elongationcharacteristic import ElongationCharacteristicBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.elongationcharacteristictype import ElongationCharacteristicType
-from sima.simo.elongationitem import ElongationItem
+from .elongationcharacteristictype import ElongationCharacteristicType
+from .elongationitem import ElongationItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.fibreropemodel import FibreRopeModel
+    from .fibreropemodel import FibreRopeModel
 
 class ElongationCharacteristic(NamedObject):
     """
@@ -20,6 +20,8 @@ class ElongationCharacteristic(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -34,6 +36,7 @@ class ElongationCharacteristic(NamedObject):
     def __init__(self , description="", inputType=ElongationCharacteristicType.STRESS_STRAIN, tensionMax=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.inputType = inputType
@@ -62,6 +65,16 @@ class ElongationCharacteristic(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -70,7 +83,7 @@ class ElongationCharacteristic(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -102,7 +115,7 @@ class ElongationCharacteristic(NamedObject):
     def items(self, value: List[ElongationItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

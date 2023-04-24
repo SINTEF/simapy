@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.flatbottom import FlatBottomBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simacolor import SIMAColor
+from .moao import MOAO
+from .scriptablevalue import ScriptableValue
+from .simacolor import SIMAColor
 
 class FlatBottom(MOAO):
     """
@@ -15,6 +15,8 @@ class FlatBottom(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     centerX : float
          Center of surface in x(default 0.0)
@@ -40,6 +42,7 @@ class FlatBottom(MOAO):
     def __init__(self , description="", centerX=0.0, centerY=0.0, sizeX=500.0, sizeY=500.0, transparency=0.0, meshGridSize=100.0, showMesh=False, z=-100.0, angle=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.centerX = centerX
         self.centerY = centerY
@@ -73,6 +76,16 @@ class FlatBottom(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class FlatBottom(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

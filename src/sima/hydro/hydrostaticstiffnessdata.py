@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hydrostaticstiffnessdata import HydrostaticStiffnessDataBlueprint
 from typing import Dict
-from sima.hydro.hydrostaticstiffnessmatrix import HydrostaticStiffnessMatrix
-from sima.sima.moao import MOAO
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
+from .hydrostaticstiffnessmatrix import HydrostaticStiffnessMatrix
+from sima.sima import MOAO
+from sima.sima import Position
+from sima.sima import ScriptableValue
 
 class HydrostaticStiffnessData(MOAO):
     """
@@ -16,6 +16,8 @@ class HydrostaticStiffnessData(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     matrix : HydrostaticStiffnessMatrix
     reference : Position
@@ -24,6 +26,7 @@ class HydrostaticStiffnessData(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.matrix = None
         self.reference = None
@@ -49,6 +52,16 @@ class HydrostaticStiffnessData(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class HydrostaticStiffnessData(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

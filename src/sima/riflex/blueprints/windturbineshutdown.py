@@ -13,6 +13,7 @@ class WindTurbineShutdownBlueprint(MOAOBlueprint):
     def __init__(self, name="WindTurbineShutdown", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("startTime","number","Start time for shutdown",default=0.0))
         self.add_attribute(BlueprintAttribute("bladePitchChangeItems","sima/riflex/BladePitchChangeItem","",True,Dimension("*")))

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.nodalbodytype import NodalBodyTypeBlueprint
 from typing import Dict
-from sima.riflex.nodalcomponenttype import NodalComponentType
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.referenceframetype import ReferenceFrameType
+from .nodalcomponenttype import NodalComponentType
+from sima.sima import ScriptableValue
+from sima.simo import ReferenceFrameType
 
 class NodalBodyType(NodalComponentType):
     """
@@ -15,6 +15,8 @@ class NodalBodyType(NodalComponentType):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -41,6 +43,7 @@ class NodalBodyType(NodalComponentType):
     def __init__(self , description="", mass=0.0, volume=0.0, referenceFrame=ReferenceFrameType.LOCAL, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.mass = mass
@@ -74,6 +77,16 @@ class NodalBodyType(NodalComponentType):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -82,7 +95,7 @@ class NodalBodyType(NodalComponentType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

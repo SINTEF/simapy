@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.irregularwaveprocedure import IrregularWaveProcedureBlueprint
 from typing import Dict
-from sima.riflex.kinematicsinwavezone import KinematicsInWaveZone
-from sima.riflex.kinematicspositions import KinematicsPositions
-from sima.riflex.storagetype import StorageType
-from sima.riflex.wavekinematicsdiffpoint import WaveKinematicsDiffPoint
-from sima.riflex.wavekinematicsnodepoint import WaveKinematicsNodePoint
-from sima.riflex.wavekinematicstimeseriesreference import WaveKinematicsTimeSeriesReference
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .kinematicsinwavezone import KinematicsInWaveZone
+from .kinematicspositions import KinematicsPositions
+from .storagetype import StorageType
+from .wavekinematicsdiffpoint import WaveKinematicsDiffPoint
+from .wavekinematicsnodepoint import WaveKinematicsNodePoint
+from .wavekinematicstimeseriesreference import WaveKinematicsTimeSeriesReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class IrregularWaveProcedure(MOAO):
     """
@@ -20,6 +20,8 @@ class IrregularWaveProcedure(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     kinematicsPosition : KinematicsPositions
          Kinematic positions
@@ -54,6 +56,7 @@ class IrregularWaveProcedure(MOAO):
     def __init__(self , description="", kinematicsPosition=KinematicsPositions.STATIC, kinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, defaultProcedureOn=True, nodeStep=1, zLower=0.0, zUpper=0.0, applyDiffractedWaves=False, waveKinematicsFile=False, waveKinematicsMaxColumns=0, waveKinematicsTimeColumn=0, waveKinematicsStorage=False, fileFormat=StorageType.BINARY, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.kinematicsPosition = kinematicsPosition
         self.kinematicsInWaveZone = kinematicsInWaveZone
@@ -93,6 +96,16 @@ class IrregularWaveProcedure(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -101,7 +114,7 @@ class IrregularWaveProcedure(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -184,7 +197,7 @@ and Z Upper"""
     def waveKinematicDiffPoints(self, value: List[WaveKinematicsDiffPoint]):
         """Set waveKinematicDiffPoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waveKinematicDiffPoints = value
 
     @property
@@ -196,7 +209,7 @@ and Z Upper"""
     def waveKinematicNodePoints(self, value: List[WaveKinematicsNodePoint]):
         """Set waveKinematicNodePoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waveKinematicNodePoints = value
 
     @property
@@ -228,7 +241,7 @@ and Z Upper"""
     def waveKinematicsTimeSeriesReferences(self, value: List[WaveKinematicsTimeSeriesReference]):
         """Set waveKinematicsTimeSeriesReferences"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waveKinematicsTimeSeriesReferences = value
 
     @property

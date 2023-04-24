@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.thrusterdynamics import ThrusterDynamicsBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ThrusterDynamics(MOAO):
     """
@@ -14,6 +14,8 @@ class ThrusterDynamics(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     minTimeChange : float
          Minimum time to change from 10% to 90% of maximum thrust(default 0.0)
@@ -28,6 +30,7 @@ class ThrusterDynamics(MOAO):
     def __init__(self , description="", minTimeChange=0.0, tcThrust=0.0, maxRevolvingSpeed=10.0, tcAzimuth=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.minTimeChange = minTimeChange
         self.tcThrust = tcThrust
@@ -55,6 +58,16 @@ class ThrusterDynamics(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class ThrusterDynamics(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.thinwalledpipematerial import ThinWalledPipeMaterialBlueprint
 from typing import Dict
-from sima.riflex.materialmodel import MaterialModel
-from sima.riflex.strainstressitem import StrainStressItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .materialmodel import MaterialModel
+from .strainstressitem import StrainStressItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ThinWalledPipeMaterial(MOAO):
     """
@@ -16,6 +16,8 @@ class ThinWalledPipeMaterial(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     materialModel : MaterialModel
          Type of material model.
@@ -38,6 +40,7 @@ class ThinWalledPipeMaterial(MOAO):
     def __init__(self , description="", materialModel=MaterialModel.LINEAR_MATERIAL, elasticityModulus=0.0, shearModulus=0.0, yieldStress=0.0, strainStressCurveRise=0.0, materialHardening=1.0, numIntegrationPoints=16, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.materialModel = materialModel
         self.elasticityModulus = elasticityModulus
@@ -69,6 +72,16 @@ class ThinWalledPipeMaterial(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -77,7 +90,7 @@ class ThinWalledPipeMaterial(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -159,5 +172,5 @@ class ThinWalledPipeMaterial(MOAO):
     def strainStressCharacteristics(self, value: List[StrainStressItem]):
         """Set strainStressCharacteristics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__strainStressCharacteristics = value

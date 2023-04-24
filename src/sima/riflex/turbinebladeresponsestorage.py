@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.turbinebladeresponsestorage import TurbineBladeResponseStorageBlueprint
 from typing import Dict
-from sima.riflex.elementreference import ElementReference
-from sima.riflex.responseamount import ResponseAmount
-from sima.riflex.storagetype import StorageType
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .elementreference import ElementReference
+from .responseamount import ResponseAmount
+from .storagetype import StorageType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class TurbineBladeResponseStorage(MOAO):
     """
@@ -17,6 +17,8 @@ class TurbineBladeResponseStorage(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     store : bool
          (default False)
@@ -31,6 +33,7 @@ class TurbineBladeResponseStorage(MOAO):
     def __init__(self , description="", store=False, responseAmount=ResponseAmount.MIN, timeInterval=0.0, fileFormat=StorageType.BINARY, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.store = store
         self.responseAmount = responseAmount
@@ -59,6 +62,16 @@ class TurbineBladeResponseStorage(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -67,7 +80,7 @@ class TurbineBladeResponseStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -119,5 +132,5 @@ class TurbineBladeResponseStorage(MOAO):
     def elements(self, value: List[ElementReference]):
         """Set elements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elements = value

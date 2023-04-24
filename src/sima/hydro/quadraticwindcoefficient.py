@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.quadraticwindcoefficient import QuadraticWindCoefficientBlueprint
 from typing import Dict
-from sima.hydro.coefficienttype import CoefficientType
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.hydro.quadraticwindcoefficientitem import QuadraticWindCoefficientItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .coefficienttype import CoefficientType
+from .directionsymmetry import DirectionSymmetry
+from .quadraticwindcoefficientitem import QuadraticWindCoefficientItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class QuadraticWindCoefficient(MOAO):
     """
@@ -17,6 +17,8 @@ class QuadraticWindCoefficient(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     symmetry : DirectionSymmetry
     windArea : float
@@ -33,6 +35,7 @@ class QuadraticWindCoefficient(MOAO):
     def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, windArea=2000.0, referenceHeight=10.0, _type=CoefficientType.CLASSIC, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.symmetry = symmetry
         self.windArea = windArea
@@ -62,6 +65,16 @@ class QuadraticWindCoefficient(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -70,7 +83,7 @@ class QuadraticWindCoefficient(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -112,7 +125,7 @@ class QuadraticWindCoefficient(MOAO):
     def items(self, value: List[QuadraticWindCoefficientItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

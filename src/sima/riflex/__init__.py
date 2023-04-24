@@ -29,6 +29,8 @@ from .commonsoiltype import CommonSoilType # noqa
 from .contactspringstiffnessitem import ContactSpringStiffnessItem # noqa
 from .contactsurfaceline import ContactSurfaceLine # noqa
 from .contactsurfacepoint import ContactSurfacePoint # noqa
+from .coupledaxialtorsionstrainitem import CoupledAxialTorsionStrainItem # noqa
+from .coupledaxialtorsionstrainmodel import CoupledAxialTorsionStrainModel # noqa
 from .crosssection import CrossSection # noqa
 from .crosssectionreference import CrossSectionReference # noqa
 from .crsaxialdamping import CRSAxialDamping # noqa
@@ -81,7 +83,6 @@ from .fatigueanalysistask import FatigueAnalysisTask # noqa
 from .fatigueproperties import FatigueProperties # noqa
 from .fibrerope import FibreRope # noqa
 from .fibreropemassvolume import FibreRopeMassVolume # noqa
-from .fishnet import FishNet # noqa
 from .flexjointconnectortype import FlexJointConnectorType # noqa
 from .forceresponsestorage import ForceResponseStorage # noqa
 from .generalcrosssection import GeneralCrossSection # noqa
@@ -209,6 +210,7 @@ from .torsionstiffnessitem import TorsionStiffnessItem # noqa
 from .tubularcontact import TubularContact # noqa
 from .turbinebladeresponsestorage import TurbineBladeResponseStorage # noqa
 from .turbineresponsestorage import TurbineResponseStorage # noqa
+from .userdefinedelement import UserdefinedElement # noqa
 from .vonmisescombinedloading import VonMisesCombinedLoading # noqa
 from .wavekinematicsdiffpoint import WaveKinematicsDiffPoint # noqa
 from .wavekinematicsnodepoint import WaveKinematicsNodePoint # noqa
@@ -242,7 +244,6 @@ from .convergencenorm import ConvergenceNorm # noqa
 from .coordinatesystem import CoordinateSystem # noqa
 from .dampingmatrixcalculationoption import DampingMatrixCalculationOption # noqa
 from .detaillevel import DetailLevel # noqa
-from .eigenvaluestartvector import EigenvalueStartVector # noqa
 from .end import End # noqa
 from .fatiguecalculationoption import FatigueCalculationOption # noqa
 from .fatiguelimitindicator import FatigueLimitIndicator # noqa

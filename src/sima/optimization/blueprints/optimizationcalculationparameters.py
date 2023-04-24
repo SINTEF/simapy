@@ -13,6 +13,7 @@ class OptimizationCalculationParametersBlueprint(MOAOBlueprint):
     def __init__(self, name="OptimizationCalculationParameters", package_path="sima/optimization", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("desiredFinalAccuracy","number","Desired final accuracy. Should not be much smaller than the accuracy by which the gradients are computed.",default=0.01))
         self.add_attribute(Attribute("tolerance","number","Tolerance needed for the QP solver to perform several tests, for example whether optimality conditions are satisfied or whether a  number is considered as zero or not.",default=1e-12))

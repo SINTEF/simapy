@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.storagetask import StorageTaskBlueprint
 from typing import Dict
-from sima.sima.doublevariable import DoubleVariable
-from sima.sima.integervariable import IntegerVariable
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simascript import SIMAScript
-from sima.sima.storagetasktype import StorageTaskType
-from sima.sima.stringvariable import StringVariable
-from sima.sima.task import Task
+from .doublevariable import DoubleVariable
+from .integervariable import IntegerVariable
+from .scriptablevalue import ScriptableValue
+from .simascript import SIMAScript
+from .storagetasktype import StorageTaskType
+from .stringvariable import StringVariable
+from .task import Task
 
 class StorageTask(Task):
     """
@@ -19,6 +19,8 @@ class StorageTask(Task):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -38,6 +40,7 @@ class StorageTask(Task):
     def __init__(self , description="", runNumber=0, _type=StorageTaskType.PRIVATE, includeInExport=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.doubleVariables = list()
@@ -70,6 +73,16 @@ class StorageTask(Task):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -78,7 +91,7 @@ class StorageTask(Task):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -100,7 +113,7 @@ class StorageTask(Task):
     def doubleVariables(self, value: List[DoubleVariable]):
         """Set doubleVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__doubleVariables = value
 
     @property
@@ -112,7 +125,7 @@ class StorageTask(Task):
     def integerVariables(self, value: List[IntegerVariable]):
         """Set integerVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__integerVariables = value
 
     @property
@@ -124,7 +137,7 @@ class StorageTask(Task):
     def stringVariables(self, value: List[StringVariable]):
         """Set stringVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stringVariables = value
 
     @property
@@ -146,7 +159,7 @@ class StorageTask(Task):
     def scripts(self, value: List[SIMAScript]):
         """Set scripts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scripts = value
 
     @property

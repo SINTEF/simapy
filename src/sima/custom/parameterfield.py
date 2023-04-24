@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.parameterfield import ParameterFieldBlueprint
 from typing import Dict
-from sima.custom.customcomponent import CustomComponent
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.singleparameter import SingleParameter
+from .customcomponent import CustomComponent
+from sima.sima import ScriptableValue
+from sima.sima import SingleParameter
 
 class ParameterField(CustomComponent,SingleParameter):
     """
@@ -15,12 +15,15 @@ class ParameterField(CustomComponent,SingleParameter):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     """
 
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -44,6 +47,16 @@ class ParameterField(CustomComponent,SingleParameter):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -52,5 +65,5 @@ class ParameterField(CustomComponent,SingleParameter):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value

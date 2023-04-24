@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.omnidirectionalextremevalues import OmniDirectionalExtremeValuesBlueprint
 from typing import Dict
-from sima.metocean.extremevalue import ExtremeValue
-from sima.metocean.levelextreme import LevelExtreme
-from sima.sima.scriptablevalue import ScriptableValue
+from .extremevalue import ExtremeValue
+from .levelextreme import LevelExtreme
+from sima.sima import ScriptableValue
 
 class OmniDirectionalExtremeValues(LevelExtreme):
     """
@@ -15,6 +15,8 @@ class OmniDirectionalExtremeValues(LevelExtreme):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -30,6 +32,7 @@ class OmniDirectionalExtremeValues(LevelExtreme):
     def __init__(self , description="", level=0.0, duration=0.0, probability=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.level = level
@@ -58,6 +61,16 @@ class OmniDirectionalExtremeValues(LevelExtreme):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class OmniDirectionalExtremeValues(LevelExtreme):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -118,5 +131,5 @@ class OmniDirectionalExtremeValues(LevelExtreme):
     def extremeValues(self, value: List[ExtremeValue]):
         """Set extremeValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__extremeValues = value

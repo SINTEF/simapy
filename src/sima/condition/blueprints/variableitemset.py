@@ -13,6 +13,7 @@ class VariableItemSetBlueprint(MOAOBlueprint):
     def __init__(self, name="VariableItemSet", package_path="sima/condition", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("variable","sima/sima/Variable","",False))
         self.add_attribute(Attribute("variations","string","",Dimension("*")))

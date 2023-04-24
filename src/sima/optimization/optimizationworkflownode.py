@@ -6,19 +6,19 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.optimizationworkflownode import OptimizationWorkflowNodeBlueprint
 from typing import Dict
-from sima.optimization.optimizationcalculationparameters import OptimizationCalculationParameters
-from sima.optimization.optimizationvariableitem import OptimizationVariableItem
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.modelreferenceinputslot import ModelReferenceInputSlot
-from sima.workflow.variableinputslot import VariableInputSlot
-from sima.workflow.workflowinputslot import WorkflowInputSlot
-from sima.workflow.workflowoutputslot import WorkflowOutputSlot
-from sima.workflow.workflowreferencenode import WorkflowReferenceNode
+from .optimizationcalculationparameters import OptimizationCalculationParameters
+from .optimizationvariableitem import OptimizationVariableItem
+from sima.post import ControlSignalInputSlot
+from sima.sima import ScriptableValue
+from sima.workflow import ModelReferenceInputSlot
+from sima.workflow import VariableInputSlot
+from sima.workflow import WorkflowInputSlot
+from sima.workflow import WorkflowOutputSlot
+from sima.workflow import WorkflowReferenceNode
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.workflow.workflow import Workflow
-    from sima.workflow.workflowoutput import WorkflowOutput
+    from sima.workflow import Workflow
+    from sima.workflow import WorkflowOutput
 
 class OptimizationWorkflowNode(WorkflowReferenceNode):
     """
@@ -26,6 +26,8 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -59,6 +61,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     def __init__(self , description="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.x = x
@@ -101,6 +104,16 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -109,7 +122,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -171,7 +184,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -183,7 +196,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     def variableInputSlots(self, value: List[VariableInputSlot]):
         """Set variableInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableInputSlots = value
 
     @property
@@ -215,7 +228,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     def workflowOutputSlots(self, value: List[WorkflowOutputSlot]):
         """Set workflowOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workflowOutputSlots = value
 
     @property
@@ -227,7 +240,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     def workflowInputSlots(self, value: List[WorkflowInputSlot]):
         """Set workflowInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workflowInputSlots = value
 
     @property
@@ -299,7 +312,7 @@ class OptimizationWorkflowNode(WorkflowReferenceNode):
     def variableItems(self, value: List[OptimizationVariableItem]):
         """Set variableItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableItems = value
 
     @property

@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicpressurevariationitem import DynamicPressureVariationItemBlueprint
 from typing import Dict
-from sima.riflex.pressurevariationitem import PressureVariationItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .pressurevariationitem import PressureVariationItem
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.mainriserline import MainRiserLine
+    from .mainriserline import MainRiserLine
 
 class DynamicPressureVariationItem(PressureVariationItem):
     """
@@ -18,6 +18,8 @@ class DynamicPressureVariationItem(PressureVariationItem):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     mainRiserLine : MainRiserLine
          Main riser line
@@ -36,6 +38,7 @@ class DynamicPressureVariationItem(PressureVariationItem):
     def __init__(self , description="", inletPressure=0.0, pressureDrop=0.0, fluidVelocity=0.0, startTime=0.0, endTime=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.mainRiserLine = None
         self.inletPressure = inletPressure
@@ -65,6 +68,16 @@ class DynamicPressureVariationItem(PressureVariationItem):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -73,7 +86,7 @@ class DynamicPressureVariationItem(PressureVariationItem):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

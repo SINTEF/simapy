@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.realnumberinput import RealNumberInputBlueprint
 from numpy import ndarray,asarray
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.signalproperties import SignalProperties
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.valueinputnode import ValueInputNode
+from .valueinputnode import ValueInputNode
+from sima.post import ControlSignalInputSlot
+from sima.post import OutputSlot
+from sima.post import SignalProperties
+from sima.sima import ScriptableValue
 
 class RealNumberInput(ValueInputNode):
     """
@@ -17,6 +17,8 @@ class RealNumberInput(ValueInputNode):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -42,11 +44,14 @@ class RealNumberInput(ValueInputNode):
     array : bool
          Create an array output(default False)
     values : ndarray
+    unit : str
+         (default '-')
     """
 
-    def __init__(self , description="", x=0, y=0, h=0, w=0, specifyAdditionalProperties=False, value=0.0, array=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, specifyAdditionalProperties=False, value=0.0, array=False, unit='-', **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.x = x
@@ -62,6 +67,7 @@ class RealNumberInput(ValueInputNode):
         self.value = value
         self.array = array
         self.values = ndarray(1)
+        self.unit = unit
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -84,6 +90,16 @@ class RealNumberInput(ValueInputNode):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -92,7 +108,7 @@ class RealNumberInput(ValueInputNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -154,7 +170,7 @@ class RealNumberInput(ValueInputNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -196,7 +212,7 @@ class RealNumberInput(ValueInputNode):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -238,3 +254,13 @@ class RealNumberInput(ValueInputNode):
     def values(self, value: ndarray):
         """Set values"""
         self.__values = asarray(value)
+
+    @property
+    def unit(self) -> str:
+        """"""
+        return self.__unit
+
+    @unit.setter
+    def unit(self, value: str):
+        """Set unit"""
+        self.__unit = value

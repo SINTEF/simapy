@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.currentprofile import CurrentProfileBlueprint
 from typing import Dict
-from sima.environment.currentitem import CurrentItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.environment import CurrentItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class CurrentProfile(MOAO):
     """
@@ -15,6 +15,8 @@ class CurrentProfile(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     globalXPosition : float
          Global X-coordinate for this current profile(default 0.0)
@@ -26,6 +28,7 @@ class CurrentProfile(MOAO):
     def __init__(self , description="", globalXPosition=0.0, globalYPosition=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.globalXPosition = globalXPosition
         self.globalYPosition = globalYPosition
@@ -52,6 +55,16 @@ class CurrentProfile(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -60,7 +73,7 @@ class CurrentProfile(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -92,5 +105,5 @@ class CurrentProfile(MOAO):
     def items(self, value: List[CurrentItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

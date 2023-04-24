@@ -13,6 +13,7 @@ class SurfaceProximityReductionFactorBlueprint(MOAOBlueprint):
     def __init__(self, name="SurfaceProximityReductionFactor", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("zd","number","Z/D value",default=0.0))
         self.add_attribute(Attribute("reductionFactor","number","Reduction factor",default=0.0))

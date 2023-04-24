@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.offsetvariationitem import OffsetVariationItemBlueprint
 from typing import Dict
-from sima.riflex.referencetype import ReferenceType
-from sima.riflex.rotationcode import RotationCode
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .referencetype import ReferenceType
+from .rotationcode import RotationCode
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.supernode import SuperNode
-    from sima.riflex.supportvessel import SupportVessel
+    from .supernode import SuperNode
+    from .supportvessel import SupportVessel
 
 class OffsetVariationItem(MOAO):
     """
@@ -21,6 +21,8 @@ class OffsetVariationItem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     referenceType : ReferenceType
          Reference to moving point
@@ -41,6 +43,7 @@ class OffsetVariationItem(MOAO):
     def __init__(self , description="", referenceType=ReferenceType.SUPER_NODE, dx=0.0, dy=0.0, dz=0.0, rotationCode=RotationCode.NONE, rotationIncrement=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.referenceType = referenceType
         self.dx = dx
@@ -72,6 +75,16 @@ class OffsetVariationItem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -80,7 +93,7 @@ class OffsetVariationItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

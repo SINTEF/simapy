@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.massmatrix import MassMatrixBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.matrix6 import Matrix6
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
+from .matrix6 import Matrix6
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class MassMatrix(Matrix6):
     """
@@ -15,6 +15,8 @@ class MassMatrix(Matrix6):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     values : ndarray
     cog : Point3
@@ -24,6 +26,7 @@ class MassMatrix(Matrix6):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.values = ndarray(1)
         self.cog = None
@@ -49,6 +52,16 @@ class MassMatrix(Matrix6):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class MassMatrix(Matrix6):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficientBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DepthDependenthydrodynamicCoefficient(MOAO):
     """
@@ -14,6 +14,8 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     zd : float
          Vertical position(default 1.0)
@@ -42,6 +44,7 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
     def __init__(self , description="", zd=1.0, rvol=1.0, ramx=1.0, ramy=1.0, ramz=1.0, rc11=0.0, rc12=0.0, rc13=0.0, rc21=0.0, rc22=0.0, rc23=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.zd = zd
         self.rvol = rvol
@@ -76,6 +79,16 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -84,7 +97,7 @@ class DepthDependenthydrodynamicCoefficient(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

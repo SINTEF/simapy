@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.nonlinearintegrationprocedure import NonLinearIntegrationProcedureBlueprint
 from typing import Dict
-from sima.riflex.convergencenorm import ConvergenceNorm
-from sima.riflex.iterationcontinuationcode import IterationContinuationCode
-from sima.riflex.iterationtype import IterationType
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .convergencenorm import ConvergenceNorm
+from .iterationcontinuationcode import IterationContinuationCode
+from .iterationtype import IterationType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class NonLinearIntegrationProcedure(MOAO):
     """
@@ -17,6 +17,8 @@ class NonLinearIntegrationProcedure(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     equilibriumIterationFrequency : int
          Frequency of equilibrium iteration(default 1)
@@ -40,6 +42,7 @@ class NonLinearIntegrationProcedure(MOAO):
     def __init__(self , description="", equilibriumIterationFrequency=1, iterationType=IterationType.TRUE_NEWTON_RAPHSON, maxIterations=10, convergenceNorm=ConvergenceNorm.DISP, equilibriumIterationAccuracy=1e-05, energyAccuracy=1e-05, iterationContinuation=IterationContinuationCode.CONTINUED, autoTimeStepSubdivision=0, timeIntegrationInfo=1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.equilibriumIterationFrequency = equilibriumIterationFrequency
         self.iterationType = iterationType
@@ -72,6 +75,16 @@ class NonLinearIntegrationProcedure(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -80,7 +93,7 @@ class NonLinearIntegrationProcedure(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

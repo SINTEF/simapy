@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.scriptnode import ScriptNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.runnode import RunNode
-from sima.post.signalproperties import SignalProperties
-from sima.post.signalpropertiescontainer import SignalPropertiesContainer
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.scriptinputslot import ScriptInputSlot
+from .scriptinputslot import ScriptInputSlot
+from sima.post import ControlSignalInputSlot
+from sima.post import OutputSlot
+from sima.post import RunNode
+from sima.post import SignalProperties
+from sima.post import SignalPropertiesContainer
+from sima.sima import ScriptableValue
 
 class ScriptNode(RunNode,SignalPropertiesContainer):
     """
@@ -19,6 +19,8 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -45,6 +47,7 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     def __init__(self , description="", x=0, y=0, h=0, w=0, inline=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.properties = list()
@@ -80,6 +83,16 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -88,7 +101,7 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -110,7 +123,7 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -162,7 +175,7 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -204,7 +217,7 @@ class ScriptNode(RunNode,SignalPropertiesContainer):
     def variableInputSlots(self, value: List[ScriptInputSlot]):
         """Set variableInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableInputSlots = value
 
     @property

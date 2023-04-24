@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.geotechnicalspring import GeotechnicalSpringBlueprint
 from typing import Dict
-from sima.riflex.dampingdisplacementitem import DampingDisplacementItem
-from sima.riflex.geotechnicalspringstiffnessitem import GeotechnicalSpringStiffnessItem
-from sima.riflex.nodereference import NodeReference
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .dampingdisplacementitem import DampingDisplacementItem
+from .geotechnicalspringstiffnessitem import GeotechnicalSpringStiffnessItem
+from .nodereference import NodeReference
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class GeotechnicalSpring(NodeReference,NamedObject):
     """
@@ -21,6 +21,8 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -45,6 +47,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     def __init__(self , description="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, strainVelocityExponent=1.0, relativeLength=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -78,6 +81,16 @@ class GeotechnicalSpring(NodeReference,NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -86,7 +99,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -158,7 +171,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     def stiffnessItems(self, value: List[GeotechnicalSpringStiffnessItem]):
         """Set stiffnessItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessItems = value
 
     @property
@@ -170,7 +183,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     def dampingDisplacementItems(self, value: List[DampingDisplacementItem]):
         """Set dampingDisplacementItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dampingDisplacementItems = value
 
     @property

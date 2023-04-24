@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.thrustercontrol import ThrusterControlBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.dpthrustertype import DPThrusterType
+from .dpthrustertype import DPThrusterType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.ithruster import IThruster
+    from .ithruster import IThruster
 
 class ThrusterControl(MOAO):
     """
@@ -19,6 +19,8 @@ class ThrusterControl(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     thruster : IThruster
          Thruster to be controlled
@@ -45,6 +47,7 @@ class ThrusterControl(MOAO):
     def __init__(self , description="", thrusterControlType=DPThrusterType.FIXED, direction=0.0, minForce=0.0, maxForce=0.0, maxForceRate=0.0, maxAngleRate=0.0, x=0.0, y=0.0, z=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.thruster = None
         self.thrusterControlType = thrusterControlType
@@ -78,6 +81,16 @@ class ThrusterControl(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -86,7 +99,7 @@ class ThrusterControl(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

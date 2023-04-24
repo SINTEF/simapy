@@ -5,18 +5,18 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitcalculationparameters import WamitCalculationParametersBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.wamit.calculateexcitingforcesoption import CalculateExcitingForcesOption
-from sima.wamit.calculatemeanforceandmomentintegrationoption import CalculateMeanForceAndMomentIntegrationOption
-from sima.wamit.calculateresponseamplitudeoperatoroption import CalculateResponseAmplitudeOperatorOption
-from sima.wamit.diffractionpotentailoption import DiffractionPotentailOption
-from sima.wamit.geometryorderoption import GeometryOrderOption
-from sima.wamit.linearsystemsolvingmethod import LinearSystemSolvingMethod
-from sima.wamit.pointfield import PointField
-from sima.wamit.potenproblemoption import PotenProblemOption
-from sima.wamit.yesnooption import YesNoOption
+from .calculateexcitingforcesoption import CalculateExcitingForcesOption
+from .calculatemeanforceandmomentintegrationoption import CalculateMeanForceAndMomentIntegrationOption
+from .calculateresponseamplitudeoperatoroption import CalculateResponseAmplitudeOperatorOption
+from .diffractionpotentailoption import DiffractionPotentailOption
+from .geometryorderoption import GeometryOrderOption
+from .linearsystemsolvingmethod import LinearSystemSolvingMethod
+from .pointfield import PointField
+from .potenproblemoption import PotenProblemOption
+from .yesnooption import YesNoOption
+from sima.sima import MOAO
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class WamitCalculationParameters(MOAO):
     """
@@ -24,6 +24,8 @@ class WamitCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     solveRadiationProblem : YesNoOption
          IRAD
@@ -114,6 +116,7 @@ class WamitCalculationParameters(MOAO):
     def __init__(self , description="", solveRadiationProblem=YesNoOption.YES, solveDiffractionProblem=PotenProblemOption.YESFORALL, calculateAddedMassAndDampingCoefficients=YesNoOption.YES, calculateExcitingForcesFromHaskindRelations=CalculateExcitingForcesOption.NO, calculateExcitingForcesFromDiffractionPotential=CalculateExcitingForcesOption.YES, calculateResponseAmplitudeOperator=CalculateResponseAmplitudeOperatorOption.YESDIFFRACTION, useMomentumIntegration=CalculateMeanForceAndMomentIntegrationOption.YESUNIDIRECTIONAL, usePressureIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, useControlSurfaceIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, methodForSolvingLinearSystems=LinearSystemSolvingMethod.ITERATIVE, numberOfBlocksInBlockIterativeSolver=2, geometryMethod=GeometryOrderOption.LOW, integrateLogarithmicSingularitySeparately=YesNoOption.NO, panelSize=10.0, evaluateSourceStrength=YesNoOption.NO, calculationOfDiffractionPotential=DiffractionPotentailOption.DIFFRACTION, useInfiniteWaterDepth=True, maximumNumberOfIterations=35, maxNumOfIterationsAdaptiveIntegrationMomentum=8, generateReport=False, briefOverviewOfTheory=False, taskDescription=False, wavePeriodsAndHeadings=False, calculationParameters=False, hydrostaticResults=False, structuralMass=False, externalStiffnessMatrix=False, linearDampingMatrix=False, firstOrderMotionTransferFunction=False, firstOrderWaveForceTransferFunctionDiffraction=False, firstOrderWaveForceTransferFunctionHaskind=False, addedMassZeroFrequency=False, addedMassInfiniteFrequency=False, frequencyDependentAddedMass=False, frequencyDependentDamping=False, diffractedWaveField=False, waveDriftForcePressure=False, waveDriftForceMomentum=False, waveDriftForceControlSurfaceIntegration=False, runPotenOnceInConditionSetsAndSpaces=False, ignoreExitCode=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.solveRadiationProblem = solveRadiationProblem
         self.solveDiffractionProblem = solveDiffractionProblem
@@ -180,6 +183,16 @@ class WamitCalculationParameters(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -188,7 +201,7 @@ class WamitCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -280,7 +293,7 @@ class WamitCalculationParameters(MOAO):
     def pointField(self, value: List[PointField]):
         """Set pointField"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pointField = value
 
     @property
@@ -372,7 +385,7 @@ class WamitCalculationParameters(MOAO):
     def fieldPoints(self, value: List[Point3]):
         """Set fieldPoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fieldPoints = value
 
     @property

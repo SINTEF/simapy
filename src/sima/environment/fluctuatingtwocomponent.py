@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fluctuatingtwocomponent import FluctuatingTwoComponentBlueprint
 from typing import Dict
-from sima.environment.wind import Wind
-from sima.sima.scriptablevalue import ScriptableValue
+from .wind import Wind
+from sima.sima import ScriptableValue
 
 class FluctuatingTwoComponent(Wind):
     """
@@ -14,6 +14,8 @@ class FluctuatingTwoComponent(Wind):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
@@ -24,6 +26,7 @@ class FluctuatingTwoComponent(Wind):
     def __init__(self , description="", direction=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.direction = direction
         self.fileName = None
@@ -49,6 +52,16 @@ class FluctuatingTwoComponent(Wind):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class FluctuatingTwoComponent(Wind):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

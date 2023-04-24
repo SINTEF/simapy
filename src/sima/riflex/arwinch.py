@@ -6,15 +6,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.arwinch import ARWinchBlueprint
 from typing import Dict
-from sima.riflex.centerofwinch import CenterOfWinch
-from sima.riflex.end import End
-from sima.riflex.segmentreference import SegmentReference
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .centerofwinch import CenterOfWinch
+from .end import End
+from .segmentreference import SegmentReference
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
-    from sima.sima.body import Body
+    from .arline import ARLine
+    from sima.sima import Body
 
 class ARWinch(SegmentReference,NamedObject):
     """
@@ -22,6 +22,8 @@ class ARWinch(SegmentReference,NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -63,6 +65,7 @@ class ARWinch(SegmentReference,NamedObject):
     def __init__(self , description="", segment=1, allSegments=False, segmentEnd=End.ONE, relativeSegmentLength=0.0, x1=0.0, y1=0.0, z1=0.0, rotation=0.0, rotationDirection=0.0, maxVelocity=0.0, timeToMaxVelocity=0.0, lineRelease=False, radius=0.0, winchCenter=CenterOfWinch.NEGATIVE_Z_AXIS, lengthJustification=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -104,6 +107,16 @@ class ARWinch(SegmentReference,NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -112,7 +125,7 @@ class ARWinch(SegmentReference,NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

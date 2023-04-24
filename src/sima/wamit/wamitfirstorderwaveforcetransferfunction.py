@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitfirstorderwaveforcetransferfunction import WamitFirstOrderWaveForceTransferFunctionBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.directiondependentcomplexvalues import DirectionDependentComplexValues
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.hydro.firstorderwaveforcetransferfunction import FirstOrderWaveForceTransferFunction
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.hydro import DirectionDependentComplexValues
+from sima.hydro import DirectionSymmetry
+from sima.hydro import FirstOrderWaveForceTransferFunction
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFunction,Named):
     """
@@ -17,6 +17,8 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     directions : ndarray
     frequencies : ndarray
@@ -34,6 +36,7 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
     def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.directions = ndarray(1)
         self.frequencies = ndarray(1)
@@ -67,6 +70,16 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -75,7 +88,7 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

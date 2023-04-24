@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.conditionresultentrycontainer import ConditionResultEntryContainerBlueprint
 from typing import Dict
-from sima.sima.conditionresultcontainer import ConditionResultContainer
-from sima.sima.property import Property
-from sima.sima.result import Result
-from sima.sima.resultentry import ResultEntry
-from sima.sima.resultentrycontainer import ResultEntryContainer
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import ConditionResultContainer
+from sima.sima import Property
+from sima.sima import Result
+from sima.sima import ResultEntry
+from sima.sima import ResultEntryContainer
+from sima.sima import ScriptableValue
 
 class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContainer):
     """
@@ -18,6 +18,8 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,6 +41,7 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     def __init__(self , description="", relative=False, changeNumber=0, probability=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.properties = list()
@@ -71,6 +74,16 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -79,7 +92,7 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -101,7 +114,7 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -143,7 +156,7 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     def results(self, value: List[Result]):
         """Set results"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__results = value
 
     @property
@@ -155,7 +168,7 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     def entries(self, value: List[ResultEntry]):
         """Set entries"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__entries = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bodyshapedata import BodyShapeDataBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.point2 import Point2
+from .point2 import Point2
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class BodyShapeData(MOAO):
     """
@@ -15,6 +15,8 @@ class BodyShapeData(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     lengthBetweenPerpendiculars : float
          Length between perpendiculars(default 0.0)
@@ -38,6 +40,7 @@ class BodyShapeData(MOAO):
     def __init__(self , description="", lengthBetweenPerpendiculars=0.0, maximumBeamAtWaterline=0.0, draftAtAftPerpendicular=0.0, draftAtForePerpendicular=0.0, blockCoefficient=0.0, distanceAftPerpendicular=0.0, distanceBaseline=0.0, specifyWaterline=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.lengthBetweenPerpendiculars = lengthBetweenPerpendiculars
         self.maximumBeamAtWaterline = maximumBeamAtWaterline
@@ -70,6 +73,16 @@ class BodyShapeData(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -78,7 +91,7 @@ class BodyShapeData(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -170,5 +183,5 @@ class BodyShapeData(MOAO):
     def waterlinePoints(self, value: List[Point2]):
         """Set waterlinePoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waterlinePoints = value

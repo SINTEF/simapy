@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fixedforceelongation import FixedForceElongationBlueprint
 from typing import Dict
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.activationfailuremode import ActivationFailureMode
-from sima.simo.fixedforceelongationmethod import FixedForceElongationMethod
-from sima.simo.forcedampingcharacteristic import ForceDampingCharacteristic
-from sima.simo.positioningelement import PositioningElement
+from .activationfailuremode import ActivationFailureMode
+from .fixedforceelongationmethod import FixedForceElongationMethod
+from .forcedampingcharacteristic import ForceDampingCharacteristic
+from .positioningelement import PositioningElement
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class FixedForceElongation(PositioningElement):
     """
@@ -18,6 +18,8 @@ class FixedForceElongation(PositioningElement):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -45,6 +47,7 @@ class FixedForceElongation(PositioningElement):
     def __init__(self , description="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, method=FixedForceElongationMethod.PRETENSION_LOCAL, pretension=0.0, direction=0.0, angle=0.0, velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.localPoint = None
@@ -80,6 +83,16 @@ class FixedForceElongation(PositioningElement):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -88,7 +101,7 @@ class FixedForceElongation(PositioningElement):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

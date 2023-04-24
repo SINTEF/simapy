@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simolineardampingmatrix import SIMOLinearDampingMatrixBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.lineardampingmatrix import LinearDampingMatrix
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.dampingmatrixmotionmode import DampingMatrixMotionMode
+from .dampingmatrixmotionmode import DampingMatrixMotionMode
+from sima.hydro import LinearDampingMatrix
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     """
@@ -16,6 +16,8 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     values : ndarray
     name : str
@@ -27,6 +29,7 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     def __init__(self , description="", mode=DampingMatrixMotionMode.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.values = ndarray(1)
         self.name = None
@@ -53,6 +56,16 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -61,7 +74,7 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

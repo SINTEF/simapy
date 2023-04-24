@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.regularvesselmotion import RegularVesselMotionBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.supportvessel import SupportVessel
+    from .supportvessel import SupportVessel
 
 class RegularVesselMotion(MOAO):
     """
@@ -18,6 +18,8 @@ class RegularVesselMotion(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     supportVessel : SupportVessel
     amplitudeX : float
@@ -51,6 +53,7 @@ class RegularVesselMotion(MOAO):
     def __init__(self , description="", amplitudeX=0.0, amplitudeY=0.0, amplitudeZ=0.0, amplitudeXR=0.0, amplitudeYR=0.0, amplitudeZR=0.0, period=0.0, phaseX=0.0, phaseY=0.0, phaseZ=0.0, phaseXR=0.0, phaseYR=0.0, phaseZR=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.supportVessel = None
         self.amplitudeX = amplitudeX
@@ -88,6 +91,16 @@ class RegularVesselMotion(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -96,7 +109,7 @@ class RegularVesselMotion(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

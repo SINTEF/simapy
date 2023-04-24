@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fileresource import FileResourceBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.property import Property
-from sima.sima.scriptablevalue import ScriptableValue
+from .moao import MOAO
+from .property import Property
+from .scriptablevalue import ScriptableValue
 
 class FileResource(MOAO):
     """
@@ -15,6 +15,8 @@ class FileResource(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[Property]
     resource : str
@@ -26,6 +28,7 @@ class FileResource(MOAO):
     def __init__(self , description="", relative=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.properties = list()
         self.resource = None
@@ -52,6 +55,16 @@ class FileResource(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -60,7 +73,7 @@ class FileResource(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -72,7 +85,7 @@ class FileResource(MOAO):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

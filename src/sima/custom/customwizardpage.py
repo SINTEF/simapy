@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.customwizardpage import CustomWizardPageBlueprint
 from typing import Dict
-from sima.custom.customcomponent import CustomComponent
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .customcomponent import CustomComponent
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class CustomWizardPage(MOAO):
     """
@@ -15,6 +15,8 @@ class CustomWizardPage(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     children : List[CustomComponent]
     title : str
@@ -24,6 +26,7 @@ class CustomWizardPage(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.children = list()
         self.title = None
@@ -49,6 +52,16 @@ class CustomWizardPage(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class CustomWizardPage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -69,7 +82,7 @@ class CustomWizardPage(MOAO):
     def children(self, value: List[CustomComponent]):
         """Set children"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__children = value
 
     @property

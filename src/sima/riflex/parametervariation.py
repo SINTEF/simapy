@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.parametervariation import ParameterVariationBlueprint
 from typing import Dict
-from sima.riflex.boundarychangegroup import BoundaryChangeGroup
-from sima.riflex.convergencenorm import ConvergenceNorm
-from sima.riflex.currentvariationitem import CurrentVariationItem
-from sima.riflex.offsetvariationitem import OffsetVariationItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .boundarychangegroup import BoundaryChangeGroup
+from .convergencenorm import ConvergenceNorm
+from .currentvariationitem import CurrentVariationItem
+from .offsetvariationitem import OffsetVariationItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ParameterVariation(MOAO):
     """
@@ -18,6 +18,8 @@ class ParameterVariation(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     numVariations : int
          Number of variations(default 0)
@@ -48,6 +50,7 @@ class ParameterVariation(MOAO):
     def __init__(self , description="", numVariations=0, maxIterations=1, convergenceNorm=ConvergenceNorm.DISP, accuracy=0.0001, energyAccuracy=0.0001, offset=False, current=False, specifiedForce=False, fricActivation=False, springActivation=False, memoActivation=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.numVariations = numVariations
         self.maxIterations = maxIterations
@@ -85,6 +88,16 @@ class ParameterVariation(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -93,7 +106,7 @@ class ParameterVariation(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

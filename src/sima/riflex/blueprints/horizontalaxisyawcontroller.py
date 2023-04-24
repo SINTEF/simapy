@@ -13,6 +13,7 @@ class HorizontalAxisYawControllerBlueprint(YawControllerBlueprint):
     def __init__(self, name="HorizontalAxisYawController", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("yawControllerType","sima/windturbine/YawControllerType",""))
         self.add_attribute(Attribute("timeStep","number","",default=0.0))

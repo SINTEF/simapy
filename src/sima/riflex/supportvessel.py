@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.supportvessel import SupportVesselBlueprint
 from typing import Dict
-from sima.hydro.diffractedwavefield import DiffractedWaveField
-from sima.hydro.firstordermotiontransferfunction import FirstOrderMotionTransferFunction
-from sima.sima.appearance import Appearance
-from sima.sima.body import Body
-from sima.sima.bodyviewpoint import BodyViewpoint
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.hydro import DiffractedWaveField
+from sima.hydro import FirstOrderMotionTransferFunction
+from sima.sima import Appearance
+from sima.sima import Body
+from sima.sima import BodyViewpoint
+from sima.sima import Position
+from sima.sima import ScriptableValue
 
 class SupportVessel(Body):
     """
@@ -19,6 +19,8 @@ class SupportVessel(Body):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -38,6 +40,7 @@ class SupportVessel(Body):
     def __init__(self , description="", length=10.0, width=5.0, height=5.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.length = length
@@ -70,6 +73,16 @@ class SupportVessel(Body):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -78,7 +91,7 @@ class SupportVessel(Body):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -150,7 +163,7 @@ class SupportVessel(Body):
     def viewpoints(self, value: List[BodyViewpoint]):
         """Set viewpoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__viewpoints = value
 
     @property
@@ -172,5 +185,5 @@ class SupportVessel(Body):
     def diffractedWaveFields(self, value: List[DiffractedWaveField]):
         """Set diffractedWaveFields"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__diffractedWaveFields = value

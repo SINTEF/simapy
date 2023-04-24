@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simascript import SIMAScriptBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simascriptcontext import SIMAScriptContext
-from sima.sima.simascripttrigger import SIMAScriptTrigger
+from .namedobject import NamedObject
+from .scriptablevalue import ScriptableValue
+from .simascriptcontext import SIMAScriptContext
+from .simascripttrigger import SIMAScriptTrigger
 
 class SIMAScript(NamedObject):
     """
@@ -16,6 +16,8 @@ class SIMAScript(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -28,6 +30,7 @@ class SIMAScript(NamedObject):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.script = None
@@ -55,6 +58,16 @@ class SIMAScript(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class SIMAScript(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -95,7 +108,7 @@ class SIMAScript(NamedObject):
     def contextItems(self, value: List[SIMAScriptContext]):
         """Set contextItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__contextItems = value
 
     @property
@@ -107,5 +120,5 @@ class SIMAScript(NamedObject):
     def triggers(self, value: List[SIMAScriptTrigger]):
         """Set triggers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__triggers = value

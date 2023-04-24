@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.regularlinetype import RegularLineTypeBlueprint
 from typing import Dict
-from sima.riflex.arlinetype import ARLineType
-from sima.riflex.regularsegment import RegularSegment
-from sima.sima.scriptablevalue import ScriptableValue
+from .arlinetype import ARLineType
+from .regularsegment import RegularSegment
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.internalfluidtype import InternalFluidType
-    from sima.riflex.nodalcomponenttype import NodalComponentType
+    from .internalfluidtype import InternalFluidType
+    from .nodalcomponenttype import NodalComponentType
 
 class RegularLineType(ARLineType):
     """
@@ -20,6 +20,8 @@ class RegularLineType(ARLineType):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -33,6 +35,7 @@ class RegularLineType(ARLineType):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.internalFluid = None
@@ -60,6 +63,16 @@ class RegularLineType(ARLineType):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -68,7 +81,7 @@ class RegularLineType(ARLineType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -110,5 +123,5 @@ class RegularLineType(ARLineType):
     def segments(self, value: List[RegularSegment]):
         """Set segments"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__segments = value

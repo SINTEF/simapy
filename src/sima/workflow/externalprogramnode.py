@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.externalprogramnode import ExternalProgramNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.fileformat import FileFormat
-from sima.post.inputslot import InputSlot
-from sima.post.runnode import RunNode
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.fileinputslot import FileInputSlot
-from sima.workflow.fileoutputslot import FileOutputSlot
+from .fileinputslot import FileInputSlot
+from .fileoutputslot import FileOutputSlot
+from sima.post import ControlSignalInputSlot
+from sima.post import FileFormat
+from sima.post import InputSlot
+from sima.post import RunNode
+from sima.sima import ScriptableValue
 
 class ExternalProgramNode(RunNode):
     """
@@ -19,6 +19,8 @@ class ExternalProgramNode(RunNode):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -51,6 +53,7 @@ class ExternalProgramNode(RunNode):
     def __init__(self , description="", x=0, y=0, h=0, w=0, fileFormat=FileFormat.HDF5, failOnErrorCode=True, addInputFiles=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.x = x
@@ -89,6 +92,16 @@ class ExternalProgramNode(RunNode):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -97,7 +110,7 @@ class ExternalProgramNode(RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -159,7 +172,7 @@ class ExternalProgramNode(RunNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -191,7 +204,7 @@ class ExternalProgramNode(RunNode):
     def fileInputSlots(self, value: List[FileInputSlot]):
         """Set fileInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fileInputSlots = value
 
     @property
@@ -203,7 +216,7 @@ class ExternalProgramNode(RunNode):
     def fileOutputSlots(self, value: List[FileOutputSlot]):
         """Set fileOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fileOutputSlots = value
 
     @property

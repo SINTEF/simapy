@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.retardationfunction import RetardationFunctionBlueprint
 from typing import Dict
-from sima.hydro.lineardampingmatrix import LinearDampingMatrix
-from sima.hydro.retardationelementdata import RetardationElementData
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .lineardampingmatrix import LinearDampingMatrix
+from .retardationelementdata import RetardationElementData
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class RetardationFunction(MOAO):
     """
@@ -16,6 +16,8 @@ class RetardationFunction(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     retardationElements : List[RetardationElementData]
     timeDelay : float
@@ -26,6 +28,7 @@ class RetardationFunction(MOAO):
     def __init__(self , description="", timeDelay=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.retardationElements = list()
         self.timeDelay = timeDelay
@@ -52,6 +55,16 @@ class RetardationFunction(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -60,7 +73,7 @@ class RetardationFunction(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -72,7 +85,7 @@ class RetardationFunction(MOAO):
     def retardationElements(self, value: List[RetardationElementData]):
         """Set retardationElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__retardationElements = value
 
     @property

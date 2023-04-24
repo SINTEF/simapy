@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.catenaryline import CatenaryLineBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.failuremode import FailureMode
-from sima.simo.inputmethodtype import InputMethodType
+from .failuremode import FailureMode
+from .inputmethodtype import InputMethodType
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobodypoint import SIMOBodyPoint
-    from sima.simo.linetype import LineType
+    from .simobodypoint import SIMOBodyPoint
+    from .linetype import LineType
 
 class CatenaryLine(NamedObject):
     """
@@ -21,6 +21,8 @@ class CatenaryLine(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -51,6 +53,7 @@ class CatenaryLine(NamedObject):
     def __init__(self , description="", direction=0.0, xglobal=0.0, yglobal=0.0, xwinch=0.0, xhor=0.0, pretension=0.0, inputMethod=InputMethodType.TENSION, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.attachmentPoint = None
@@ -87,6 +90,16 @@ class CatenaryLine(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -95,7 +108,7 @@ class CatenaryLine(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -13,6 +13,7 @@ class SlugForceSpecificationBlueprint(MOAOBlueprint):
     def __init__(self, name="SlugForceSpecification", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("enterTime","number","Time when slug enters first end of main riser line",default=0.0))
         self.add_attribute(EnumAttribute("interruption","sima/riflex/SlugForceInterruption","Interruption parameter"))

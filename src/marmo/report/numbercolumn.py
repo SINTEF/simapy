@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.numbercolumn import NumberColumnBlueprint
 from numpy import ndarray,asarray
-from marmo.report.column import Column
-from marmo.report.font import Font
+from .column import Column
+from .font import Font
 
 class NumberColumn(Column):
     """

@@ -6,16 +6,16 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fixedbodyelement import FixedBodyElementBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
-from sima.simo.fixedbodywaveparticlemethod import FixedBodyWaveParticleMethod
-from sima.simo.loadtype import LoadType
-from sima.simo.waveintegrationmethod import WaveIntegrationMethod
+from .depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
+from .fixedbodywaveparticlemethod import FixedBodyWaveParticleMethod
+from .loadtype import LoadType
+from .waveintegrationmethod import WaveIntegrationMethod
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.hydro.diffractedwave import DiffractedWave
+    from sima.hydro import DiffractedWave
 
 class FixedBodyElement(NamedObject):
     """
@@ -23,6 +23,8 @@ class FixedBodyElement(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -66,6 +68,7 @@ class FixedBodyElement(NamedObject):
     def __init__(self , description="", volume=0.0, mass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=FixedBodyWaveParticleMethod.VELOCITY_AND_ACCELERATION, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.volume = volume
@@ -110,6 +113,16 @@ class FixedBodyElement(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -118,7 +131,7 @@ class FixedBodyElement(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -230,7 +243,7 @@ class FixedBodyElement(NamedObject):
     def depthDependentHydrodynamicCoefficients(self, value: List[DepthDependenthydrodynamicCoefficient]):
         """Set depthDependentHydrodynamicCoefficients"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__depthDependentHydrodynamicCoefficients = value
 
     @property

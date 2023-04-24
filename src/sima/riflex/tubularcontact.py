@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.tubularcontact import TubularContactBlueprint
 from typing import Dict
-from sima.riflex.contactdirection import ContactDirection
-from sima.riflex.controlparameter import ControlParameter
-from sima.riflex.springstiffnessitem import SpringStiffnessItem
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .contactdirection import ContactDirection
+from .controlparameter import ControlParameter
+from .springstiffnessitem import SpringStiffnessItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class TubularContact(NamedObject):
     """
@@ -17,6 +17,8 @@ class TubularContact(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -50,6 +52,7 @@ class TubularContact(NamedObject):
     def __init__(self , description="", radius=0.0, direction=ContactDirection.INWARDS, constantStiffness=False, desiredDamping=0.0, dampingCoefficient=0.0, stiffness=0.0, staticFriction=0.0, dynamicFriction=0.0, slidingFriction=ControlParameter.ON, rotationFriction=ControlParameter.ON, velocityLimit=0.0, compressionStiffness=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.radius = radius
@@ -87,6 +90,16 @@ class TubularContact(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -95,7 +108,7 @@ class TubularContact(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -237,5 +250,5 @@ class TubularContact(NamedObject):
     def stiffnessItems(self, value: List[SpringStiffnessItem]):
         """Set stiffnessItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessItems = value

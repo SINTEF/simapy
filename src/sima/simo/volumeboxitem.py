@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.volumeboxitem import VolumeBoxItemBlueprint
 from typing import Dict
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.volume import Volume
-from sima.simo.volumemassportion import VolumeMassPortion
+from .volume import Volume
+from .volumemassportion import VolumeMassPortion
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class VolumeBoxItem(VolumeMassPortion):
     """
@@ -16,6 +16,8 @@ class VolumeBoxItem(VolumeMassPortion):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     volume : Volume
          Add or subtract volume
@@ -32,6 +34,7 @@ class VolumeBoxItem(VolumeMassPortion):
     def __init__(self , description="", volume=Volume.ADD, lengthX=0.0, lengthY=0.0, lengthZ=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.volume = volume
         self.centerPoint = None
@@ -60,6 +63,16 @@ class VolumeBoxItem(VolumeMassPortion):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -68,7 +81,7 @@ class VolumeBoxItem(VolumeMassPortion):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -6,9 +6,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.taskfolder import TaskFolderBlueprint
 from typing import Dict
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.task import Task
+from .named import Named
+from .scriptablevalue import ScriptableValue
+from .task import Task
 
 class TaskFolder(Named):
     """
@@ -16,6 +16,8 @@ class TaskFolder(Named):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -28,6 +30,7 @@ class TaskFolder(Named):
     def __init__(self , description="", visible=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.childFolders = list()
@@ -55,6 +58,16 @@ class TaskFolder(Named):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class TaskFolder(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -85,7 +98,7 @@ class TaskFolder(Named):
     def childFolders(self, value: List[TaskFolder]):
         """Set childFolders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__childFolders = value
 
     @property
@@ -97,7 +110,7 @@ class TaskFolder(Named):
     def childTasks(self, value: List[Task]):
         """Set childTasks"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__childTasks = value
 
     @property

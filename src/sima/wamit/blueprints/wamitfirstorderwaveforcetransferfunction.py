@@ -14,6 +14,7 @@ class WamitFirstOrderWaveForceTransferFunctionBlueprint(FirstOrderWaveForceTrans
     def __init__(self, name="WamitFirstOrderWaveForceTransferFunction", package_path="sima/wamit", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("directions","number","",Dimension("*"),default=0.0))
         self.add_attribute(Attribute("frequencies","number","",Dimension("*"),default=0.0))

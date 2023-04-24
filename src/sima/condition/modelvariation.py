@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.modelvariation import ModelVariationBlueprint
 from typing import Dict
-from sima.condition.modelvariationoperation import ModelVariationOperation
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .modelvariationoperation import ModelVariationOperation
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class ModelVariation(Named):
     """
@@ -15,6 +15,8 @@ class ModelVariation(Named):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -24,6 +26,7 @@ class ModelVariation(Named):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.operations = list()
@@ -49,6 +52,16 @@ class ModelVariation(Named):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class ModelVariation(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +92,5 @@ class ModelVariation(Named):
     def operations(self, value: List[ModelVariationOperation]):
         """Set operations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__operations = value

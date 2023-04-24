@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.geotechnical import GeoTechnicalBlueprint
 from typing import Dict
-from sima.riflex.geotechnicalpiletype import GeotechnicalPileType
-from sima.riflex.soilitem import SoilItem
-from sima.riflex.soilstiffnesstype import SoilStiffnessType
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .geotechnicalpiletype import GeotechnicalPileType
+from .soilitem import SoilItem
+from .soilstiffnesstype import SoilStiffnessType
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class GeoTechnical(NamedObject):
     """
@@ -17,6 +17,8 @@ class GeoTechnical(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -40,6 +42,7 @@ class GeoTechnical(NamedObject):
     def __init__(self , description="", scourDepth=0.0, diameter=0.0, _type=SoilStiffnessType.STATIC, calculateDiameter=True, calculateAxialPileResistance=False, pileType=GeotechnicalPileType.OPEN, zoneOfInfluence=0.0, curveFittingFactor=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.soilItems = list()
@@ -73,6 +76,16 @@ class GeoTechnical(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class GeoTechnical(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -103,7 +116,7 @@ class GeoTechnical(NamedObject):
     def soilItems(self, value: List[SoilItem]):
         """Set soilItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__soilItems = value
 
     @property

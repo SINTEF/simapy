@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.folderstorage import FolderStorageBlueprint
 from typing import Dict
-from sima.sima.namedstorageresource import NamedStorageResource
-from sima.sima.scriptablevalue import ScriptableValue
+from .namedstorageresource import NamedStorageResource
+from .scriptablevalue import ScriptableValue
 
 class FolderStorage(NamedStorageResource):
     """
@@ -14,6 +14,8 @@ class FolderStorage(NamedStorageResource):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -22,6 +24,7 @@ class FolderStorage(NamedStorageResource):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         for key, value in kwargs.items():
@@ -46,6 +49,16 @@ class FolderStorage(NamedStorageResource):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -54,7 +67,7 @@ class FolderStorage(NamedStorageResource):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

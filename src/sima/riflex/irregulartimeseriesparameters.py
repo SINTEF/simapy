@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.irregulartimeseriesparameters import IrregularTimeSeriesParametersBlueprint
 from typing import Dict
-from sima.riflex.waveamplitudecomputation import WaveAmplitudeComputation
-from sima.riflex.wavecomputationmethod import WaveComputationMethod
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .waveamplitudecomputation import WaveAmplitudeComputation
+from .wavecomputationmethod import WaveComputationMethod
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class IrregularTimeSeriesParameters(MOAO):
     """
@@ -16,6 +16,8 @@ class IrregularTimeSeriesParameters(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     randomSeedWaves : int
          Starting parameter of random number generator(default 1)
@@ -48,6 +50,7 @@ class IrregularTimeSeriesParameters(MOAO):
     def __init__(self , description="", randomSeedWaves=1, useStochasticAmplitudes=False, waveLength=16384.0, timeIncrement=0.5, waveComputationMethod=WaveComputationMethod.FFT, waveAmplitudeComputation=WaveAmplitudeComputation.DETERMINISTIC, numWindWaveFreqComponents=0, numSwellFreqComponents=0, waveCutFactor=0.0, largePatchPoints=0, largePatchLength=0.0, smallPatchPoints=0, patchRatio=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.randomSeedWaves = randomSeedWaves
         self.useStochasticAmplitudes = useStochasticAmplitudes
@@ -84,6 +87,16 @@ class IrregularTimeSeriesParameters(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -92,7 +105,7 @@ class IrregularTimeSeriesParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

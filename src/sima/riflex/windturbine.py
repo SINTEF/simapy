@@ -6,19 +6,19 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.windturbine import WindTurbineBlueprint
 from typing import Dict
-from sima.riflex.bladeitem import BladeItem
-from sima.riflex.horizontalaxiscontroller import HorizontalAxisController
-from sima.riflex.horizontalaxisyawcontroller import HorizontalAxisYawController
-from sima.riflex.measurementelement import MeasurementElement
-from sima.riflex.measurementnode import MeasurementNode
-from sima.riflex.turbineorientation import TurbineOrientation
-from sima.riflex.windturbineloadoption import WindTurbineLoadOption
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .bladeitem import BladeItem
+from .horizontalaxiscontroller import HorizontalAxisController
+from .horizontalaxisyawcontroller import HorizontalAxisYawController
+from .measurementelement import MeasurementElement
+from .measurementnode import MeasurementNode
+from .turbineorientation import TurbineOrientation
+from .windturbineloadoption import WindTurbineLoadOption
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
-    from sima.sima.body import Body
+    from .arline import ARLine
+    from sima.sima import Body
 
 class WindTurbine(NamedObject):
     """
@@ -26,6 +26,8 @@ class WindTurbine(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -63,6 +65,7 @@ class WindTurbine(NamedObject):
     def __init__(self , description="", windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=False, advancedOptions=False, inductionCalculation=True, prandtlTip=True, prandtlRoot=False, prandtlYaw=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.shaftLine = None
@@ -104,6 +107,16 @@ class WindTurbine(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -112,7 +125,7 @@ class WindTurbine(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -144,7 +157,7 @@ class WindTurbine(NamedObject):
     def blades(self, value: List[BladeItem]):
         """Set blades"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__blades = value
 
     @property
@@ -277,7 +290,7 @@ If specified the incoming wind acting on the blades will be modified due to the 
     def measurementNodes(self, value: List[MeasurementNode]):
         """Set measurementNodes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__measurementNodes = value
 
     @property
@@ -289,7 +302,7 @@ If specified the incoming wind acting on the blades will be modified due to the 
     def measurementElements(self, value: List[MeasurementElement]):
         """Set measurementElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__measurementElements = value
 
     @property

@@ -13,6 +13,7 @@ class NonEquidistantSignalBlueprint(GeneratorSignalBlueprint):
     def __init__(self, name="NonEquidistantSignal", package_path="sima/post", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("properties","sima/post/SignalProperties","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))

@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.workflowtask import WorkflowTaskBlueprint
 from typing import Dict
-from sima.sima.doublevariable import DoubleVariable
-from sima.sima.integervariable import IntegerVariable
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simascript import SIMAScript
-from sima.sima.stringvariable import StringVariable
-from sima.sima.task import Task
-from sima.workflow.workflow import Workflow
-from sima.workflow.workflowcontainerpackage import WorkflowContainerPackage
+from .workflow import Workflow
+from .workflowcontainerpackage import WorkflowContainerPackage
+from sima.sima import DoubleVariable
+from sima.sima import IntegerVariable
+from sima.sima import SIMAScript
+from sima.sima import ScriptableValue
+from sima.sima import StringVariable
+from sima.sima import Task
 
 class WorkflowTask(Task):
     """
@@ -20,6 +20,8 @@ class WorkflowTask(Task):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -36,6 +38,7 @@ class WorkflowTask(Task):
     def __init__(self , description="", runNumber=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.doubleVariables = list()
@@ -67,6 +70,16 @@ class WorkflowTask(Task):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -75,7 +88,7 @@ class WorkflowTask(Task):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -97,7 +110,7 @@ class WorkflowTask(Task):
     def doubleVariables(self, value: List[DoubleVariable]):
         """Set doubleVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__doubleVariables = value
 
     @property
@@ -109,7 +122,7 @@ class WorkflowTask(Task):
     def integerVariables(self, value: List[IntegerVariable]):
         """Set integerVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__integerVariables = value
 
     @property
@@ -121,7 +134,7 @@ class WorkflowTask(Task):
     def stringVariables(self, value: List[StringVariable]):
         """Set stringVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stringVariables = value
 
     @property
@@ -143,7 +156,7 @@ class WorkflowTask(Task):
     def scripts(self, value: List[SIMAScript]):
         """Set scripts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scripts = value
 
     @property
@@ -155,7 +168,7 @@ class WorkflowTask(Task):
     def packages(self, value: List[WorkflowContainerPackage]):
         """Set packages"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__packages = value
 
     @property
@@ -167,5 +180,5 @@ class WorkflowTask(Task):
     def workflows(self, value: List[Workflow]):
         """Set workflows"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workflows = value

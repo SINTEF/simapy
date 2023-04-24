@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fileinputslot import FileInputSlotBlueprint
 from typing import Dict
-from sima.post.inputslot import InputSlot
-from sima.post.signalproperties import SignalProperties
-from sima.post.signalpropertiescontainer import SignalPropertiesContainer
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import InputSlot
+from sima.post import SignalProperties
+from sima.post import SignalPropertiesContainer
+from sima.sima import ScriptableValue
 
 class FileInputSlot(InputSlot,SignalPropertiesContainer):
     """
@@ -16,6 +16,8 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -29,6 +31,7 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
     def __init__(self , description="", specifyAdditionalProperties=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.properties = list()
@@ -56,6 +59,16 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -64,7 +77,7 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -86,7 +99,7 @@ class FileInputSlot(InputSlot,SignalPropertiesContainer):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

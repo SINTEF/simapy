@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.tablefilter import TableFilterBlueprint
 from typing import Dict
-from sima.post.columnconfiguration import ColumnConfiguration
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.inputslot import InputSlot
-from sima.post.operationnode import OperationNode
-from sima.post.outputslot import OutputSlot
-from sima.post.signaltable import SignalTable
-from sima.sima.scriptablevalue import ScriptableValue
+from .columnconfiguration import ColumnConfiguration
+from .controlsignalinputslot import ControlSignalInputSlot
+from .inputslot import InputSlot
+from .operationnode import OperationNode
+from .outputslot import OutputSlot
+from .signaltable import SignalTable
+from sima.sima import ScriptableValue
 
 class TableFilter(OperationNode,SignalTable):
     """
@@ -19,6 +19,8 @@ class TableFilter(OperationNode,SignalTable):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -47,6 +49,7 @@ class TableFilter(OperationNode,SignalTable):
     def __init__(self , description="", x=0, y=0, h=0, w=0, renameOutput=True, fixed=False, transposed=False, allInputs=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.x = x
@@ -83,6 +86,16 @@ class TableFilter(OperationNode,SignalTable):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -91,7 +104,7 @@ class TableFilter(OperationNode,SignalTable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -153,7 +166,7 @@ class TableFilter(OperationNode,SignalTable):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -165,7 +178,7 @@ class TableFilter(OperationNode,SignalTable):
     def filterInputSlots(self, value: List[InputSlot]):
         """Set filterInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterInputSlots = value
 
     @property
@@ -177,7 +190,7 @@ class TableFilter(OperationNode,SignalTable):
     def filterOutputSlots(self, value: List[OutputSlot]):
         """Set filterOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterOutputSlots = value
 
     @property
@@ -199,7 +212,7 @@ class TableFilter(OperationNode,SignalTable):
     def columns(self, value: List[ColumnConfiguration]):
         """Set columns"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__columns = value
 
     @property

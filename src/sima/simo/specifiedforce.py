@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.specifiedforce import SpecifiedForceBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.vector3 import Vector3
-from sima.simo.referenceframetype import ReferenceFrameType
-from sima.simo.specifiedloadtype import SpecifiedLoadType
+from .referenceframetype import ReferenceFrameType
+from .specifiedloadtype import SpecifiedLoadType
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
+from sima.sima import Vector3
 
 class SpecifiedForce(NamedObject):
     """
@@ -18,6 +18,8 @@ class SpecifiedForce(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -43,6 +45,7 @@ class SpecifiedForce(NamedObject):
     def __init__(self , description="", referenceFrame=ReferenceFrameType.LOCAL, activationTime=0.0, deactivationTime=100000.0, loadType=SpecifiedLoadType.CONSTANT, period=0.0, phase=0.0, magnitude=0.0, forceDerivative=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.referenceFrame = referenceFrame
@@ -77,6 +80,16 @@ class SpecifiedForce(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -85,7 +98,7 @@ class SpecifiedForce(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

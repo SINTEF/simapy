@@ -64,3 +64,5 @@ from .depthdistribution import DepthDistribution # noqa
 from .directionsymmetry import DirectionSymmetry # noqa
 from .dof import DOF # noqa
 from .gdftype import GDFType # noqa
+from .wavedriftdampingforce import WaveDriftDampingForce # noqa
+from .wavedriftdampingsource import WaveDriftDampingSource # noqa

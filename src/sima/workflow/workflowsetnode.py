@@ -6,20 +6,20 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.workflowsetnode import WorkflowSetNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.iteration import Iteration
-from sima.workflow.modelreferenceinputslot import ModelReferenceInputSlot
-from sima.workflow.variableinputset import VariableInputSet
-from sima.workflow.variableinputsetslot import VariableInputSetSlot
-from sima.workflow.variableinputslot import VariableInputSlot
-from sima.workflow.workflowinputslot import WorkflowInputSlot
-from sima.workflow.workflowoutputslot import WorkflowOutputSlot
-from sima.workflow.workflowreferencenode import WorkflowReferenceNode
-from sima.workflow.workflowsetinput import WorkflowSetInput
+from .iteration import Iteration
+from .modelreferenceinputslot import ModelReferenceInputSlot
+from .variableinputset import VariableInputSet
+from .variableinputsetslot import VariableInputSetSlot
+from .variableinputslot import VariableInputSlot
+from .workflowinputslot import WorkflowInputSlot
+from .workflowoutputslot import WorkflowOutputSlot
+from .workflowreferencenode import WorkflowReferenceNode
+from .workflowsetinput import WorkflowSetInput
+from sima.post import ControlSignalInputSlot
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.workflow.workflow import Workflow
+    from .workflow import Workflow
 
 class WorkflowSetNode(WorkflowReferenceNode):
     """
@@ -27,6 +27,8 @@ class WorkflowSetNode(WorkflowReferenceNode):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -74,6 +76,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def __init__(self , description="", x=0, y=0, h=0, w=0, inputWorkflow=False, setFolderName=False, writeRunStatus=False, input=WorkflowSetInput.MANUAL, iteration=Iteration.COLUMN, distribute=False, grouping=1, iterateOverInput=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.x = x
@@ -122,6 +125,16 @@ class WorkflowSetNode(WorkflowReferenceNode):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -130,7 +143,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -192,7 +205,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -204,7 +217,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def variableInputSlots(self, value: List[VariableInputSlot]):
         """Set variableInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableInputSlots = value
 
     @property
@@ -236,7 +249,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def workflowOutputSlots(self, value: List[WorkflowOutputSlot]):
         """Set workflowOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workflowOutputSlots = value
 
     @property
@@ -248,7 +261,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def workflowInputSlots(self, value: List[WorkflowInputSlot]):
         """Set workflowInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workflowInputSlots = value
 
     @property
@@ -290,7 +303,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def variableInputSets(self, value: List[VariableInputSet]):
         """Set variableInputSets"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableInputSets = value
 
     @property
@@ -302,7 +315,7 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def variableInputSetSlots(self, value: List[VariableInputSetSlot]):
         """Set variableInputSetSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableInputSetSlots = value
 
     @property
@@ -400,5 +413,5 @@ class WorkflowSetNode(WorkflowReferenceNode):
     def workflowInputVariationSlots(self, value: List[WorkflowInputSlot]):
         """Set workflowInputVariationSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workflowInputVariationSlots = value

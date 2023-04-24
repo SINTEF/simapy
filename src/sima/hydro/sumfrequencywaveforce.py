@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.sumfrequencywaveforce import SumFrequencyWaveForceBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.qtfdofitem import QTFDofItem
-from sima.hydro.quadratictransferfunction import QuadraticTransferFunction
-from sima.sima.scriptablevalue import ScriptableValue
+from .qtfdofitem import QTFDofItem
+from .quadratictransferfunction import QuadraticTransferFunction
+from sima.sima import ScriptableValue
 
 class SumFrequencyWaveForce(QuadraticTransferFunction):
     """
@@ -15,6 +15,8 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     nFreq : int
          (default 0)
@@ -41,6 +43,7 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
     def __init__(self , description="", nFreq=0, nDir=0, bichromatic=False, bidirectional=False, onFile=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.nFreq = nFreq
         self.nDir = nDir
@@ -78,6 +81,16 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -86,7 +99,7 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

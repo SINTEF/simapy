@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simplewirecoupling import SimpleWireCouplingBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.activationfailuremode import ActivationFailureMode
-from sima.simo.guidepointspecification import GuidePointSpecification
-from sima.simo.simplecoupling import SimpleCoupling
+from .activationfailuremode import ActivationFailureMode
+from .guidepointspecification import GuidePointSpecification
+from .simplecoupling import SimpleCoupling
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobodypoint import SIMOBodyPoint
+    from .simobodypoint import SIMOBodyPoint
 
 class SimpleWireCoupling(SimpleCoupling):
     """
@@ -20,6 +20,8 @@ class SimpleWireCoupling(SimpleCoupling):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -57,6 +59,7 @@ class SimpleWireCoupling(SimpleCoupling):
     def __init__(self , description="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, ea=0.0, length=0.0, damping=0.0, flexibility=0.0, constantTensionControl=False, tensionLevel=0.0, tensionDeadband=0.0, maxSpeed=0.0, activationTime=0.0, deactivationTime=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.endPoint1 = None
@@ -97,6 +100,16 @@ class SimpleWireCoupling(SimpleCoupling):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -105,7 +118,7 @@ class SimpleWireCoupling(SimpleCoupling):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -217,7 +230,7 @@ class SimpleWireCoupling(SimpleCoupling):
     def guidePointSpecifications(self, value: List[GuidePointSpecification]):
         """Set guidePointSpecifications"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__guidePointSpecifications = value
 
     @property

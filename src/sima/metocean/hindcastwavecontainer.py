@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hindcastwavecontainer import HindcastWaveContainerBlueprint
 from typing import Dict
-from sima.metocean.hindcastwavedata import HindcastWaveData
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .hindcastwavedata import HindcastWaveData
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class HindcastWaveContainer(MOAO):
     """
@@ -15,6 +15,8 @@ class HindcastWaveContainer(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     waves : List[HindcastWaveData]
     """
@@ -22,6 +24,7 @@ class HindcastWaveContainer(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.waves = list()
         for key, value in kwargs.items():
@@ -46,6 +49,16 @@ class HindcastWaveContainer(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -54,7 +67,7 @@ class HindcastWaveContainer(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +79,5 @@ class HindcastWaveContainer(MOAO):
     def waves(self, value: List[HindcastWaveData]):
         """Set waves"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waves = value

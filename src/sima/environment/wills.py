@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wills import WillsBlueprint
 from typing import Dict
-from sima.environment.harris import Harris
-from sima.sima.scriptablevalue import ScriptableValue
+from .harris import Harris
+from sima.sima import ScriptableValue
 
 class Wills(Harris):
     """
@@ -14,13 +14,15 @@ class Wills(Harris):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
-    profileExponent : float
-         Wind profile exponent(default 0.11)
     averageVelocity : float
          Average velocity at reference height(default 0.0)
+    profileExponent : float
+         Wind profile exponent(default 0.11)
     friction : float
          Surface drag coefficient.\nAlso used for transverse gust spectrum, if specified in DYNMOD.(default 0.002)
     referenceHeight : float
@@ -29,13 +31,14 @@ class Wills(Harris):
          Reference length of wind turbulence(default 1200.0)
     """
 
-    def __init__(self , description="", direction=0.0, profileExponent=0.11, averageVelocity=0.0, friction=0.002, referenceHeight=10.0, referenceLength=1200.0, **kwargs):
+    def __init__(self , description="", direction=0.0, averageVelocity=0.0, profileExponent=0.11, friction=0.002, referenceHeight=10.0, referenceLength=1200.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.direction = direction
-        self.profileExponent = profileExponent
         self.averageVelocity = averageVelocity
+        self.profileExponent = profileExponent
         self.friction = friction
         self.referenceHeight = referenceHeight
         self.referenceLength = referenceLength
@@ -61,6 +64,16 @@ class Wills(Harris):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -69,7 +82,7 @@ class Wills(Harris):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -83,16 +96,6 @@ class Wills(Harris):
         self.__direction = float(value)
 
     @property
-    def profileExponent(self) -> float:
-        """Wind profile exponent"""
-        return self.__profileExponent
-
-    @profileExponent.setter
-    def profileExponent(self, value: float):
-        """Set profileExponent"""
-        self.__profileExponent = float(value)
-
-    @property
     def averageVelocity(self) -> float:
         """Average velocity at reference height"""
         return self.__averageVelocity
@@ -101,6 +104,16 @@ class Wills(Harris):
     def averageVelocity(self, value: float):
         """Set averageVelocity"""
         self.__averageVelocity = float(value)
+
+    @property
+    def profileExponent(self) -> float:
+        """Wind profile exponent"""
+        return self.__profileExponent
+
+    @profileExponent.setter
+    def profileExponent(self, value: float):
+        """Set profileExponent"""
+        self.__profileExponent = float(value)
 
     @property
     def friction(self) -> float:

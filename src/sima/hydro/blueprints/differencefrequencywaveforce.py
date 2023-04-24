@@ -13,6 +13,7 @@ class DifferenceFrequencyWaveForceBlueprint(QuadraticTransferFunctionBlueprint):
     def __init__(self, name="DifferenceFrequencyWaveForce", package_path="sima/hydro", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("nFreq","integer","",default=0))
         self.add_attribute(Attribute("nDir","integer","",default=0))

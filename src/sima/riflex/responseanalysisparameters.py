@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.responseanalysisparameters import ResponseAnalysisParametersBlueprint
 from typing import Dict
-from sima.riflex.additionalstructuraldampingparameters import AdditionalStructuralDampingParameters
-from sima.riflex.convergencecriterion import ConvergenceCriterion
-from sima.riflex.forceswitch import ForceSwitch
-from sima.riflex.printswitch import PrintSwitch
-from sima.riflex.responsefrequencyoption import ResponseFrequencyOption
-from sima.riflex.responseiterationmethod import ResponseIterationMethod
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .additionalstructuraldampingparameters import AdditionalStructuralDampingParameters
+from .convergencecriterion import ConvergenceCriterion
+from .forceswitch import ForceSwitch
+from .printswitch import PrintSwitch
+from .responsefrequencyoption import ResponseFrequencyOption
+from .responseiterationmethod import ResponseIterationMethod
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ResponseAnalysisParameters(MOAO):
     """
@@ -20,6 +20,8 @@ class ResponseAnalysisParameters(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     iterationMethod : ResponseIterationMethod
          Response iteration method
@@ -57,6 +59,7 @@ class ResponseAnalysisParameters(MOAO):
     def __init__(self , description="", iterationMethod=ResponseIterationMethod.NEWTON_RAPHSON, retry=False, maxNumberOfIterations=30, convergenceCriterion=ConvergenceCriterion.AMPNOR, convergenceLimit=0.0001, initialResponseEstimate=0.5, responseFrequencyOption=ResponseFrequencyOption.CONCURRENT, numberOfDominatingFrequencies=0, amplitudeLimit=0.01, lowerFrequencyCutoff=0.0, upperFrequencyCutoff=0.0, relativeStructuralDamping=0.0, forceSwitch=ForceSwitch.USE_CURVATURE, printSwitch=PrintSwitch.FINAL_RESULTS, additionalStructuralDampingSpecification=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.iterationMethod = iterationMethod
         self.retry = retry
@@ -96,6 +99,16 @@ class ResponseAnalysisParameters(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -104,7 +117,7 @@ class ResponseAnalysisParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -270,5 +283,5 @@ The structural damping is given as a function of the response curvature and is t
     def additionalStructuralDampingParameters(self, value: List[AdditionalStructuralDampingParameters]):
         """Set additionalStructuralDampingParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__additionalStructuralDampingParameters = value

@@ -5,16 +5,16 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexlocation import RIFLEXLocationBlueprint
 from typing import Dict
-from sima.environment.seasurface import SeaSurface
-from sima.riflex.regular3dbottom import Regular3DBottom
-from sima.sima.flatbottom import FlatBottom
-from sima.sima.infrastructurebody import InfrastructureBody
-from sima.sima.initialviewpoint import InitialViewpoint
-from sima.sima.namedviewpoint import NamedViewpoint
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.commonlocation import CommonLocation
-from sima.simo.physicalconstants import PhysicalConstants
+from .regular3dbottom import Regular3DBottom
+from sima.environment import SeaSurface
+from sima.sima import FlatBottom
+from sima.sima import InfrastructureBody
+from sima.sima import InitialViewpoint
+from sima.sima import NamedViewpoint
+from sima.sima import Point3
+from sima.sima import ScriptableValue
+from sima.simo import CommonLocation
+from sima.simo import PhysicalConstants
 
 class RIFLEXLocation(CommonLocation):
     """
@@ -22,6 +22,8 @@ class RIFLEXLocation(CommonLocation):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -48,6 +50,7 @@ class RIFLEXLocation(CommonLocation):
     def __init__(self , description="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, waterDepth=1000.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.initialViewpoint = None
@@ -85,6 +88,16 @@ class RIFLEXLocation(CommonLocation):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -93,7 +106,7 @@ class RIFLEXLocation(CommonLocation):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -135,7 +148,7 @@ class RIFLEXLocation(CommonLocation):
     def viewpoints(self, value: List[NamedViewpoint]):
         """Set viewpoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__viewpoints = value
 
     @property
@@ -187,7 +200,7 @@ class RIFLEXLocation(CommonLocation):
     def infrastructureBodies(self, value: List[InfrastructureBody]):
         """Set infrastructureBodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__infrastructureBodies = value
 
     @property

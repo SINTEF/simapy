@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.differencefrequencyqtf import DifferenceFrequencyQTFBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.qtfdof import QTFDof
-from sima.hydro.sparseqtf import SparseQTF
-from sima.sima.scriptablevalue import ScriptableValue
+from .qtfdof import QTFDof
+from .sparseqtf import SparseQTF
+from sima.sima import ScriptableValue
 
 class DifferenceFrequencyQTF(SparseQTF):
     """
@@ -15,6 +15,8 @@ class DifferenceFrequencyQTF(SparseQTF):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     nFreq : int
          (default 0)
@@ -38,11 +40,14 @@ class DifferenceFrequencyQTF(SparseQTF):
     roll : QTFDof
     pitch : QTFDof
     yaw : QTFDof
+    enableCurrentCorrection : bool
+         Enable wave-current interaction using extended Aranha formula(default False)
     """
 
-    def __init__(self , description="", nFreq=0, nDir=0, nValues=0, bidirectional=False, bichromatic=False, **kwargs):
+    def __init__(self , description="", nFreq=0, nDir=0, nValues=0, bidirectional=False, bichromatic=False, enableCurrentCorrection=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.nFreq = nFreq
         self.nDir = nDir
@@ -61,6 +66,7 @@ class DifferenceFrequencyQTF(SparseQTF):
         self.roll = None
         self.pitch = None
         self.yaw = None
+        self.enableCurrentCorrection = enableCurrentCorrection
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -83,6 +89,16 @@ class DifferenceFrequencyQTF(SparseQTF):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -91,7 +107,7 @@ class DifferenceFrequencyQTF(SparseQTF):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -263,3 +279,13 @@ class DifferenceFrequencyQTF(SparseQTF):
     def yaw(self, value: QTFDof):
         """Set yaw"""
         self.__yaw = value
+
+    @property
+    def enableCurrentCorrection(self) -> bool:
+        """Enable wave-current interaction using extended Aranha formula"""
+        return self.__enableCurrentCorrection
+
+    @enableCurrentCorrection.setter
+    def enableCurrentCorrection(self, value: bool):
+        """Set enableCurrentCorrection"""
+        self.__enableCurrentCorrection = bool(value)

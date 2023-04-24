@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.workflowrouting import WorkflowRoutingBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.workflowinputvariationitem import WorkflowInputVariationItem
-from sima.workflow.workflowlinkitem import WorkflowLinkItem
-from sima.workflow.workflowsetitem import WorkflowSetItem
+from .workflowinputvariationitem import WorkflowInputVariationItem
+from .workflowlinkitem import WorkflowLinkItem
+from .workflowsetitem import WorkflowSetItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WorkflowRouting(MOAO):
     """
@@ -17,6 +17,8 @@ class WorkflowRouting(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     workflowSetInputs : List[WorkflowSetItem]
     workflowInputVariations : List[WorkflowInputVariationItem]
@@ -27,6 +29,7 @@ class WorkflowRouting(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.workflowSetInputs = list()
         self.workflowInputVariations = list()
@@ -54,6 +57,16 @@ class WorkflowRouting(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -62,7 +75,7 @@ class WorkflowRouting(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -74,7 +87,7 @@ class WorkflowRouting(MOAO):
     def workflowSetInputs(self, value: List[WorkflowSetItem]):
         """Set workflowSetInputs"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workflowSetInputs = value
 
     @property
@@ -86,7 +99,7 @@ class WorkflowRouting(MOAO):
     def workflowInputVariations(self, value: List[WorkflowInputVariationItem]):
         """Set workflowInputVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workflowInputVariations = value
 
     @property
@@ -98,7 +111,7 @@ class WorkflowRouting(MOAO):
     def inputs(self, value: List[WorkflowLinkItem]):
         """Set inputs"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__inputs = value
 
     @property
@@ -110,5 +123,5 @@ class WorkflowRouting(MOAO):
     def outputs(self, value: List[WorkflowLinkItem]):
         """Set outputs"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__outputs = value

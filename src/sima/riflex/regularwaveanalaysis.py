@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.regularwaveanalaysis import RegularWaveAnalaysisBlueprint
 from typing import Dict
-from sima.riflex.platformmotion import PlatformMotion
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .platformmotion import PlatformMotion
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class RegularWaveAnalaysis(MOAO):
     """
@@ -15,6 +15,8 @@ class RegularWaveAnalaysis(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     periods : int
          Number of periods for regular wave analysis, referring to wave or motion periods (of first vessel)(default 1)
@@ -29,6 +31,7 @@ class RegularWaveAnalaysis(MOAO):
     def __init__(self , description="", periods=1, timeSteps=80, waveActing=True, platformMotion=PlatformMotion.GENERATED, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.periods = periods
         self.timeSteps = timeSteps
@@ -56,6 +59,16 @@ class RegularWaveAnalaysis(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -64,7 +77,7 @@ class RegularWaveAnalaysis(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

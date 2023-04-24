@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bodyforcestorage import BodyForceStorageBlueprint
 from typing import Dict
-from sima.riflex.bodyforcestorageitem import BodyForceStorageItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .bodyforcestorageitem import BodyForceStorageItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class BodyForceStorage(MOAO):
     """
@@ -15,6 +15,8 @@ class BodyForceStorage(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     items : List[BodyForceStorageItem]
     timeInterval : float
@@ -24,6 +26,7 @@ class BodyForceStorage(MOAO):
     def __init__(self , description="", timeInterval=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.items = list()
         self.timeInterval = timeInterval
@@ -49,6 +52,16 @@ class BodyForceStorage(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class BodyForceStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -69,7 +82,7 @@ class BodyForceStorage(MOAO):
     def items(self, value: List[BodyForceStorageItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.seafloorcontactspecification import SeafloorContactSpecificationBlueprint
 from typing import Dict
-from sima.riflex.seafloorcontactlinespecification import SeafloorContactLineSpecification
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .seafloorcontactlinespecification import SeafloorContactLineSpecification
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SeafloorContactSpecification(MOAO):
     """
@@ -15,6 +15,8 @@ class SeafloorContactSpecification(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     lineContacts : List[SeafloorContactLineSpecification]
     """
@@ -22,6 +24,7 @@ class SeafloorContactSpecification(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.lineContacts = list()
         for key, value in kwargs.items():
@@ -46,6 +49,16 @@ class SeafloorContactSpecification(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -54,7 +67,7 @@ class SeafloorContactSpecification(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +79,5 @@ class SeafloorContactSpecification(MOAO):
     def lineContacts(self, value: List[SeafloorContactLineSpecification]):
         """Set lineContacts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lineContacts = value

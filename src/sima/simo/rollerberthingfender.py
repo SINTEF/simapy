@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.rollerberthingfender import RollerBerthingFenderBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.vector3 import Vector3
-from sima.simo.fenderattachment import FenderAttachment
-from sima.simo.forcedampingcharacteristic import ForceDampingCharacteristic
-from sima.simo.plane import Plane
+from .fenderattachment import FenderAttachment
+from .forcedampingcharacteristic import ForceDampingCharacteristic
+from .plane import Plane
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
+from sima.sima import Vector3
 
 class RollerBerthingFender(NamedObject):
     """
@@ -19,6 +19,8 @@ class RollerBerthingFender(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -41,6 +43,7 @@ class RollerBerthingFender(NamedObject):
     def __init__(self , description="", dynamicFriction=0.0, staticFriction=0.0, shearStiffnes=0.0, velocityLimit=0.0, attachment=FenderAttachment.GLOBAL_POINT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.dynamicFriction = dynamicFriction
@@ -74,6 +77,16 @@ class RollerBerthingFender(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -82,7 +95,7 @@ class RollerBerthingFender(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

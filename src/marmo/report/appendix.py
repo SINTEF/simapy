@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.appendix import AppendixBlueprint
 from typing import Dict
-from marmo.report.reportitem import ReportItem
-from marmo.report.section import Section
+from .reportitem import ReportItem
+from .section import Section
 
 class Appendix(Section):
     """
@@ -57,7 +57,7 @@ class Appendix(Section):
     def items(self, value: List[ReportItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

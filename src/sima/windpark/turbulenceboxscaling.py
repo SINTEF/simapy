@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.turbulenceboxscaling import TurbulenceBoxScalingBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windpark.scalingoption import ScalingOption
+from .scalingoption import ScalingOption
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class TurbulenceBoxScaling(MOAO):
     """
@@ -15,6 +15,8 @@ class TurbulenceBoxScaling(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     scalingOption : ScalingOption
     windDirectionScalingFactor : float
@@ -28,6 +30,7 @@ class TurbulenceBoxScaling(MOAO):
     def __init__(self , description="", scalingOption=ScalingOption.NONE, windDirectionScalingFactor=1.0, transverseDirectionScalingFactor=0.8, verticalDirectionScalingFactor=0.5, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.scalingOption = scalingOption
         self.windDirectionScalingFactor = windDirectionScalingFactor
@@ -55,6 +58,16 @@ class TurbulenceBoxScaling(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class TurbulenceBoxScaling(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

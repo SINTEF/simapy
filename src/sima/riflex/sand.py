@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.sand import SandBlueprint
 from typing import Dict
-from sima.riflex.soil import Soil
-from sima.riflex.soildampingitem import SoilDampingItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .soil import Soil
+from .soildampingitem import SoilDampingItem
+from sima.sima import ScriptableValue
 
 class Sand(Soil):
     """
@@ -15,6 +15,8 @@ class Sand(Soil):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -50,6 +52,7 @@ class Sand(Soil):
     def __init__(self , description="", strainVelocityExponent=1.0, calculateDamping=False, upperWeight=0.0, lowerWeight=0.0, displacement=0.0, frequency=0.0, initialShearModulus=0.0, upperFrictionAngle=0.0, lowerFrictionAngle=0.0, angleOfSoilFriction=15.0, limitingSkinFriction=48000.0, bearingFactor=8.0, limitingTipResistance=1900000.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.strainVelocityExponent = strainVelocityExponent
@@ -88,6 +91,16 @@ class Sand(Soil):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -96,7 +109,7 @@ class Sand(Soil):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -138,7 +151,7 @@ class Sand(Soil):
     def dampingItems(self, value: List[SoilDampingItem]):
         """Set dampingItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dampingItems = value
 
     @property

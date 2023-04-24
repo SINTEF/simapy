@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.forceresponsestorage import ForceResponseStorageBlueprint
 from typing import Dict
-from sima.riflex.additionalfileformatcode import AdditionalFileFormatCode
-from sima.riflex.elementangle import ElementAngle
-from sima.riflex.elementreference import ElementReference
-from sima.riflex.fileformatcode import FileFormatCode
-from sima.riflex.relativeelementangle import RelativeElementAngle
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .additionalfileformatcode import AdditionalFileFormatCode
+from .elementangle import ElementAngle
+from .elementreference import ElementReference
+from .fileformatcode import FileFormatCode
+from .relativeelementangle import RelativeElementAngle
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ForceResponseStorage(MOAO):
     """
@@ -19,6 +19,8 @@ class ForceResponseStorage(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     storageStep : int
          Code for storage of internal forces. Storage for every <storage step> given.(default 1)
@@ -39,6 +41,7 @@ class ForceResponseStorage(MOAO):
     def __init__(self , description="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices=False, storeBottomContactForces=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.storageStep = storageStep
         self.format = format
@@ -70,6 +73,16 @@ class ForceResponseStorage(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -78,7 +91,7 @@ class ForceResponseStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -110,7 +123,7 @@ class ForceResponseStorage(MOAO):
     def elements(self, value: List[ElementReference]):
         """Set elements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elements = value
 
     @property
@@ -142,7 +155,7 @@ class ForceResponseStorage(MOAO):
     def relativeElementAngles(self, value: List[RelativeElementAngle]):
         """Set relativeElementAngles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__relativeElementAngles = value
 
     @property
@@ -154,7 +167,7 @@ class ForceResponseStorage(MOAO):
     def elementAngles(self, value: List[ElementAngle]):
         """Set elementAngles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elementAngles = value
 
     @property

@@ -13,6 +13,7 @@ class QTFValueBlueprint(MOAOBlueprint):
     def __init__(self, name="QTFValue", package_path="sima/hydro", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("dir1","integer","",default=0))
         self.add_attribute(Attribute("dir2","integer","",default=0))

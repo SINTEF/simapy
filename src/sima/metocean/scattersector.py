@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.scattersector import ScatterSectorBlueprint
 from numpy import ndarray,asarray
-from sima.metocean.scatterdimension import ScatterDimension
-from sima.metocean.scatterlevelcontainer import ScatterLevelContainer
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .scatterdimension import ScatterDimension
+from .scatterlevelcontainer import ScatterLevelContainer
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ScatterSector(MOAO):
     """
@@ -16,6 +16,8 @@ class ScatterSector(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     hsUpperLimits : ScatterDimension
     tpUpperLimits : ScatterDimension
@@ -29,6 +31,7 @@ class ScatterSector(MOAO):
     def __init__(self , description="", direction=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.hsUpperLimits = None
         self.tpUpperLimits = None
@@ -58,6 +61,16 @@ class ScatterSector(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class ScatterSector(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

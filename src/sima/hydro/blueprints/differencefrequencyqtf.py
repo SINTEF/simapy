@@ -13,6 +13,7 @@ class DifferenceFrequencyQTFBlueprint(SparseQTFBlueprint):
     def __init__(self, name="DifferenceFrequencyQTF", package_path="sima/hydro", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("nFreq","integer","",default=0))
         self.add_attribute(Attribute("nDir","integer","",default=0))
@@ -31,3 +32,4 @@ class DifferenceFrequencyQTFBlueprint(SparseQTFBlueprint):
         self.add_attribute(BlueprintAttribute("roll","sima/hydro/QTFDof","",True))
         self.add_attribute(BlueprintAttribute("pitch","sima/hydro/QTFDof","",True))
         self.add_attribute(BlueprintAttribute("yaw","sima/hydro/QTFDof","",True))
+        self.add_attribute(Attribute("enableCurrentCorrection","boolean","Enable wave-current interaction using extended Aranha formula",default=False))

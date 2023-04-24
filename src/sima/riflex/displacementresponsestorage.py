@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.displacementresponsestorage import DisplacementResponseStorageBlueprint
 from typing import Dict
-from sima.riflex.fileformatcode import FileFormatCode
-from sima.riflex.nodereference import NodeReference
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .fileformatcode import FileFormatCode
+from .nodereference import NodeReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DisplacementResponseStorage(MOAO):
     """
@@ -16,6 +16,8 @@ class DisplacementResponseStorage(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     storageStep : int
          Code for storage of nodal displacements. Storage for every <storage step> given.(default 1)
@@ -28,6 +30,7 @@ class DisplacementResponseStorage(MOAO):
     def __init__(self , description="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.storageStep = storageStep
         self.format = format
@@ -54,6 +57,16 @@ class DisplacementResponseStorage(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -62,7 +75,7 @@ class DisplacementResponseStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -94,5 +107,5 @@ class DisplacementResponseStorage(MOAO):
     def nodes(self, value: List[NodeReference]):
         """Set nodes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__nodes = value

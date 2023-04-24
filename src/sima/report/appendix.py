@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.appendix import AppendixBlueprint
 from typing import Dict
-from sima.report.linkable import Linkable
-from sima.report.orientation import Orientation
-from sima.report.reportitem import ReportItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .linkable import Linkable
+from .orientation import Orientation
+from .reportitem import ReportItem
+from sima.sima import ScriptableValue
 
 class Appendix(ReportItem,Linkable):
     """
@@ -16,6 +16,8 @@ class Appendix(ReportItem,Linkable):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     identifier : str
          (default None)
@@ -30,6 +32,7 @@ class Appendix(ReportItem,Linkable):
     def __init__(self , description="", pageBreakBefore=False, orientation=Orientation.PORTRAIT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.identifier = None
         self.items = list()
@@ -58,6 +61,16 @@ class Appendix(ReportItem,Linkable):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class Appendix(ReportItem,Linkable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -88,7 +101,7 @@ class Appendix(ReportItem,Linkable):
     def items(self, value: List[ReportItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

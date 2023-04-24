@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.timedependentpointmass import TimeDependentPointMassBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.flowrateitem import FlowRateItem
+from .flowrateitem import FlowRateItem
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class TimeDependentPointMass(NamedObject):
     """
@@ -16,6 +16,8 @@ class TimeDependentPointMass(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -37,6 +39,7 @@ class TimeDependentPointMass(NamedObject):
     def __init__(self , description="", mass0=0.0, massMax=0.0, massMin=0.0, massRateMax=0.0, massRateMin=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.point = None
@@ -68,6 +71,16 @@ class TimeDependentPointMass(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -76,7 +89,7 @@ class TimeDependentPointMass(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -108,7 +121,7 @@ class TimeDependentPointMass(NamedObject):
     def flowRates(self, value: List[FlowRateItem]):
         """Set flowRates"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__flowRates = value
 
     @property

@@ -5,7 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.image import ImageBlueprint
 from typing import Dict
-from marmo.report.reportitem import ReportItem
+from .reportitem import ReportItem
 
 class Image(ReportItem):
     """

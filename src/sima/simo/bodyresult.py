@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bodyresult import BodyResultBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.couplingelementresult import CouplingElementResult
-from sima.simo.forceresult import ForceResult
+from .couplingelementresult import CouplingElementResult
+from .forceresult import ForceResult
+from sima.sima import MOAO
+from sima.sima import Position
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.positioningelementresult import PositioningElementResult
+    from .positioningelementresult import PositioningElementResult
 
 class BodyResult(MOAO):
     """
@@ -21,6 +21,8 @@ class BodyResult(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     body : str
          Result body(default None)
@@ -37,6 +39,7 @@ class BodyResult(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.body = None
         self.initialPosition = None
@@ -69,6 +72,16 @@ class BodyResult(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -77,7 +90,7 @@ class BodyResult(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -119,7 +132,7 @@ class BodyResult(MOAO):
     def bodyForces(self, value: List[ForceResult]):
         """Set bodyForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bodyForces = value
 
     @property
@@ -131,7 +144,7 @@ class BodyResult(MOAO):
     def positioningElementResults(self, value: List[PositioningElementResult]):
         """Set positioningElementResults"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__positioningElementResults = value
 
     @property
@@ -143,7 +156,7 @@ class BodyResult(MOAO):
     def couplingResults(self, value: List[CouplingElementResult]):
         """Set couplingResults"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__couplingResults = value
 
     @property
@@ -155,7 +168,7 @@ class BodyResult(MOAO):
     def specifiedForces(self, value: List[ForceResult]):
         """Set specifiedForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__specifiedForces = value
 
     @property
@@ -167,7 +180,7 @@ class BodyResult(MOAO):
     def thrusterForces(self, value: List[ForceResult]):
         """Set thrusterForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__thrusterForces = value
 
     @property
@@ -179,5 +192,5 @@ class BodyResult(MOAO):
     def externalForces(self, value: List[ForceResult]):
         """Set externalForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__externalForces = value

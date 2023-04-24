@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fixedelongationcoupling import FixedElongationCouplingBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.activationfailuremode import ActivationFailureMode
-from sima.simo.fixedelongationmethod import FixedElongationMethod
-from sima.simo.forcedampingcharacteristic import ForceDampingCharacteristic
-from sima.simo.simplecoupling import SimpleCoupling
+from .activationfailuremode import ActivationFailureMode
+from .fixedelongationmethod import FixedElongationMethod
+from .forcedampingcharacteristic import ForceDampingCharacteristic
+from .simplecoupling import SimpleCoupling
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobodypoint import SIMOBodyPoint
+    from .simobodypoint import SIMOBodyPoint
 
 class FixedElongationCoupling(SimpleCoupling):
     """
@@ -21,6 +21,8 @@ class FixedElongationCoupling(SimpleCoupling):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -42,6 +44,7 @@ class FixedElongationCoupling(SimpleCoupling):
     def __init__(self , description="", failureMode=ActivationFailureMode.NONE, failureTime=0.0, breakingStrength=0.0, method=FixedElongationMethod.SPRING, velocityLimit=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.endPoint1 = None
@@ -74,6 +77,16 @@ class FixedElongationCoupling(SimpleCoupling):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -82,7 +95,7 @@ class FixedElongationCoupling(SimpleCoupling):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

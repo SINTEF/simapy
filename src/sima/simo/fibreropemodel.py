@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fibreropemodel import FibreRopeModelBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.axialstiffnessitem import AxialStiffnessItem
+from .axialstiffnessitem import AxialStiffnessItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class FibreRopeModel(NamedObject):
     """
@@ -15,6 +15,8 @@ class FibreRopeModel(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -30,6 +32,7 @@ class FibreRopeModel(NamedObject):
     def __init__(self , description="", dynamicStiffnessCoefficientA=0.0, dynamicStiffnessCoefficientB=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.originalCurve = list()
@@ -59,6 +62,16 @@ class FibreRopeModel(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -67,7 +80,7 @@ class FibreRopeModel(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -89,7 +102,7 @@ class FibreRopeModel(NamedObject):
     def originalCurve(self, value: List[AxialStiffnessItem]):
         """Set originalCurve"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__originalCurve = value
 
     @property
@@ -101,7 +114,7 @@ class FibreRopeModel(NamedObject):
     def originalWorkingCurve(self, value: List[AxialStiffnessItem]):
         """Set originalWorkingCurve"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__originalWorkingCurve = value
 
     @property
@@ -113,7 +126,7 @@ class FibreRopeModel(NamedObject):
     def workingCurve(self, value: List[AxialStiffnessItem]):
         """Set workingCurve"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workingCurve = value
 
     @property

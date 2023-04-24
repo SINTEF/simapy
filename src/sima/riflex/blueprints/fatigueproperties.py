@@ -13,6 +13,7 @@ class FatiguePropertiesBlueprint(MOAOBlueprint):
     def __init__(self, name="FatigueProperties", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("calculationOption","sima/riflex/FatigueCalculationOption",""))
         self.add_attribute(Attribute("numCrossSectionPoints","integer","Number of points around cross-section where fatigue is",default=0))

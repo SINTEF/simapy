@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.pisasoillayerprofile import PisaSoilLayerProfileBlueprint
 from typing import Dict
-from sima.riflex.pisalineitem import PisaLineItem
-from sima.riflex.pisasoillayer import PisaSoilLayer
-from sima.riflex.soillayerprofile import SoilLayerProfile
-from sima.riflex.toplevelsoilposition import TopLevelSoilPosition
-from sima.sima.scriptablevalue import ScriptableValue
+from .pisalineitem import PisaLineItem
+from .pisasoillayer import PisaSoilLayer
+from .soillayerprofile import SoilLayerProfile
+from .toplevelsoilposition import TopLevelSoilPosition
+from sima.sima import ScriptableValue
 
 class PisaSoilLayerProfile(SoilLayerProfile):
     """
@@ -17,6 +17,8 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -30,6 +32,7 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     def __init__(self , description="", topLevelSoilPosition=TopLevelSoilPosition.RELATIVE_TO_SEAFLOOR, offsetSeafloorToTopSoil=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.topLevelSoilPosition = topLevelSoilPosition
@@ -58,6 +61,16 @@ class PisaSoilLayerProfile(SoilLayerProfile):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -108,7 +121,7 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     def soilLayers(self, value: List[PisaSoilLayer]):
         """Set soilLayers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__soilLayers = value
 
     @property
@@ -120,5 +133,5 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     def embeddedLines(self, value: List[PisaLineItem]):
         """Set embeddedLines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__embeddedLines = value

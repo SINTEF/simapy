@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.shearwindvelocityprofile import ShearWindVelocityProfileBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ShearWindVelocityProfile(MOAO):
     """
@@ -14,6 +14,8 @@ class ShearWindVelocityProfile(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     verticalCoordinate : float
          Vertical coordinate of profile level(default 0.0)
@@ -28,6 +30,7 @@ class ShearWindVelocityProfile(MOAO):
     def __init__(self , description="", verticalCoordinate=0.0, horizontalVelocityFactor=0.0, verticalVelocityFactor=0.0, direction=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.verticalCoordinate = verticalCoordinate
         self.horizontalVelocityFactor = horizontalVelocityFactor
@@ -55,6 +58,16 @@ class ShearWindVelocityProfile(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class ShearWindVelocityProfile(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

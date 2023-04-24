@@ -6,9 +6,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.container import ContainerBlueprint
 from typing import Dict
-from marmo.containers.attribute import Attribute
-from marmo.containers.signal import Signal
-from marmo.containers.signalitem import SignalItem
+from .attribute import Attribute
+from .signal import Signal
+from .signalitem import SignalItem
 
 class Container(SignalItem):
     """
@@ -71,7 +71,7 @@ class Container(SignalItem):
     def attributes(self, value: List[Attribute]):
         """Set attributes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__attributes = value
 
     @property
@@ -83,7 +83,7 @@ class Container(SignalItem):
     def signals(self, value: List[Signal]):
         """Set signals"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__signals = value
 
     @property
@@ -95,5 +95,5 @@ class Container(SignalItem):
     def containers(self, value: List[Container]):
         """Set containers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__containers = value

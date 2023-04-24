@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.traceconfiguration import TraceConfigurationBlueprint
 from typing import Dict
-from sima.post.linestyle import LineStyle
-from sima.post.pathspecification import PathSpecification
-from sima.post.pointstyle import PointStyle
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simacolor import SIMAColor
+from .linestyle import LineStyle
+from .pathspecification import PathSpecification
+from .pointstyle import PointStyle
+from sima.sima import SIMAColor
+from sima.sima import ScriptableValue
 
 class TraceConfiguration(PathSpecification):
     """
@@ -17,6 +17,8 @@ class TraceConfiguration(PathSpecification):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
          (default None)
@@ -40,6 +42,7 @@ class TraceConfiguration(PathSpecification):
     def __init__(self , description="", lineStyle=LineStyle.SOLID, lineWidth=1, pointStyle=PointStyle.NONE, showStatistics=True, pointSize=1, specifyPath=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.path = None
         self.name = None
@@ -73,6 +76,16 @@ class TraceConfiguration(PathSpecification):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class TraceConfiguration(PathSpecification):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

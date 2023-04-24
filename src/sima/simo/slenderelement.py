@@ -6,17 +6,17 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.slenderelement import SlenderElementBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.aerodynamicdescription import AerodynamicDescription
-from sima.simo.depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
-from sima.simo.loadtype import LoadType
-from sima.simo.waveintegrationmethod import WaveIntegrationMethod
-from sima.simo.waveparticlemethod import WaveParticleMethod
+from .aerodynamicdescription import AerodynamicDescription
+from .depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
+from .loadtype import LoadType
+from .waveintegrationmethod import WaveIntegrationMethod
+from .waveparticlemethod import WaveParticleMethod
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.hydro.diffractedwave import DiffractedWave
+    from sima.hydro import DiffractedWave
 
 class SlenderElement(NamedObject):
     """
@@ -24,6 +24,8 @@ class SlenderElement(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -73,6 +75,7 @@ class SlenderElement(NamedObject):
     def __init__(self , description="", specificVolume=0.0, distributedMass=0.0, waveIntegrationMethod=WaveIntegrationMethod.ACTUAL_WAVE_ELEVATION, loadType=LoadType.GRAVITY_AND_BUOYANCY_INCLUDED, waveParticleMethod=WaveParticleMethod.VELOCITY_AND_ACCELERATION, numberOfStrips=10, zcoef=0.0, c2x=0.0, c2y=0.0, c2z=0.0, c1x=0.0, c1y=0.0, c1z=0.0, amx=0.0, amy=0.0, amz=0.0, windForces=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.specificVolume = specificVolume
@@ -121,6 +124,16 @@ class SlenderElement(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -129,7 +142,7 @@ class SlenderElement(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -251,7 +264,7 @@ class SlenderElement(NamedObject):
     def depthDependentHydrodynamicCoefficients(self, value: List[DepthDependenthydrodynamicCoefficient]):
         """Set depthDependentHydrodynamicCoefficients"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__depthDependentHydrodynamicCoefficients = value
 
     @property

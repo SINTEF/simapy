@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hindcastdata import HindcastDataBlueprint
 from typing import Dict
-from sima.metocean.hindcastlevelcontainer import HindcastLevelContainer
-from sima.metocean.hindcastwavecontainer import HindcastWaveContainer
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .hindcastlevelcontainer import HindcastLevelContainer
+from .hindcastwavecontainer import HindcastWaveContainer
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class HindcastData(NamedObject):
     """
@@ -16,6 +16,8 @@ class HindcastData(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -27,20 +29,27 @@ class HindcastData(NamedObject):
          (default None)
     lastDate : str
          (default None)
+    latitude : float
+         (default 0.0)
+    longitude : float
+         (default 0.0)
     waveData : HindcastWaveContainer
     windData : HindcastLevelContainer
     currentData : HindcastLevelContainer
     """
 
-    def __init__(self , description="", **kwargs):
+    def __init__(self , description="", latitude=0.0, longitude=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.dataFile = None
         self.path = None
         self.firstDate = None
         self.lastDate = None
+        self.latitude = latitude
+        self.longitude = longitude
         self.waveData = None
         self.windData = None
         self.currentData = None
@@ -66,6 +75,16 @@ class HindcastData(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -74,7 +93,7 @@ class HindcastData(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -126,6 +145,26 @@ class HindcastData(NamedObject):
     def lastDate(self, value: str):
         """Set lastDate"""
         self.__lastDate = value
+
+    @property
+    def latitude(self) -> float:
+        """"""
+        return self.__latitude
+
+    @latitude.setter
+    def latitude(self, value: float):
+        """Set latitude"""
+        self.__latitude = float(value)
+
+    @property
+    def longitude(self) -> float:
+        """"""
+        return self.__longitude
+
+    @longitude.setter
+    def longitude(self, value: float):
+        """Set longitude"""
+        self.__longitude = float(value)
 
     @property
     def waveData(self) -> HindcastWaveContainer:

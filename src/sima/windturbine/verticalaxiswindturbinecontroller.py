@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.verticalaxiswindturbinecontroller import VerticalAxisWindTurbineControllerBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.gainschedulingitem import GainSchedulingItem
-from sima.windturbine.tableformat import TableFormat
-from sima.windturbine.windrotorspeeditem import WindRotorSpeedItem
+from .gainschedulingitem import GainSchedulingItem
+from .tableformat import TableFormat
+from .windrotorspeeditem import WindRotorSpeedItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class VerticalAxisWindTurbineController(MOAO):
     """
@@ -17,6 +17,8 @@ class VerticalAxisWindTurbineController(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     sampleInterval : float
          Controller sample interval(default 0.0)
@@ -54,6 +56,7 @@ class VerticalAxisWindTurbineController(MOAO):
     def __init__(self , description="", sampleInterval=0.0, startupLength=0.0, filterPeriodRotorSpeed=0.0, filterPeriodWindSpeed=0.0, filterRadialFrequency=0.0, notchFilterWidth=0.0, gearBoxRatio=0.0, maxTorque=0.0, maxTorqueRate=0.0, proportionalGain=0.0, initialIntegratorGainRatio=0.0, finalIntegratorGainRatio=0.0, integratorRelaxationTime=0.0, windRotorSpeed=TableFormat.DEFAULT, gainScheduling=TableFormat.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.sampleInterval = sampleInterval
         self.startupLength = startupLength
@@ -94,6 +97,16 @@ class VerticalAxisWindTurbineController(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -102,7 +115,7 @@ class VerticalAxisWindTurbineController(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -264,7 +277,7 @@ class VerticalAxisWindTurbineController(MOAO):
     def windRotorSpeedItems(self, value: List[WindRotorSpeedItem]):
         """Set windRotorSpeedItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__windRotorSpeedItems = value
 
     @property
@@ -276,5 +289,5 @@ class VerticalAxisWindTurbineController(MOAO):
     def gainSchedulingItems(self, value: List[GainSchedulingItem]):
         """Set gainSchedulingItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__gainSchedulingItems = value

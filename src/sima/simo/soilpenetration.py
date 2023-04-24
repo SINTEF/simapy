@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.soilpenetration import SoilPenetrationBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.hla import HLA
-from sima.simo.soilcapacityelement import SoilCapacityElement
-from sima.simo.soilfriction import SoilFriction
-from sima.simo.soilfrictionelement import SoilFrictionElement
+from .hla import HLA
+from .soilcapacityelement import SoilCapacityElement
+from .soilfriction import SoilFriction
+from .soilfrictionelement import SoilFrictionElement
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SoilPenetration(MOAO):
     """
@@ -18,6 +18,8 @@ class SoilPenetration(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     frictionModel : SoilFriction
          Soil force control parameter
@@ -46,6 +48,7 @@ class SoilPenetration(MOAO):
     def __init__(self , description="", frictionModel=SoilFriction.OPEN_COMPARTMENT, zcont=0.0, penetrationDepth=0.0, barArea=0.0, sodens=0.0, cArea=0.0, seabedImport=HLA.NO_IMPORT, wstiff=0.0, tsuct=0.0, cflow=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.frictionModel = frictionModel
         self.zcont = zcont
@@ -81,6 +84,16 @@ class SoilPenetration(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -89,7 +102,7 @@ class SoilPenetration(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -172,7 +185,7 @@ contact with the soil (landing)"""
     def frictionElements(self, value: List[SoilFrictionElement]):
         """Set frictionElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__frictionElements = value
 
     @property
@@ -184,7 +197,7 @@ contact with the soil (landing)"""
     def capacityElements(self, value: List[SoilCapacityElement]):
         """Set capacityElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__capacityElements = value
 
     @property

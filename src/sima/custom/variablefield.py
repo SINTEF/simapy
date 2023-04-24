@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.variablefield import VariableFieldBlueprint
 from numpy import ndarray,asarray
-from sima.custom.fieldtype import FieldType
-from sima.custom.filetype import FileType
-from sima.custom.parameterfield import ParameterField
-from sima.sima.scriptablevalue import ScriptableValue
+from .fieldtype import FieldType
+from .filetype import FileType
+from .parameterfield import ParameterField
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.variable import Variable
+    from sima.sima import Variable
 
 class VariableField(ParameterField):
     """
@@ -20,6 +20,8 @@ class VariableField(ParameterField):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     label : str
          (default None)
@@ -46,6 +48,7 @@ class VariableField(ParameterField):
     def __init__(self , description="", fileType=FileType.INPUT, directory=False, _type=FieldType.TEXT, width=10, expandHorizontally=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.label = None
         self.tooltip = None
@@ -81,6 +84,16 @@ class VariableField(ParameterField):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -89,7 +102,7 @@ class VariableField(ParameterField):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

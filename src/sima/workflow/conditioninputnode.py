@@ -6,19 +6,19 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.conditioninputnode import ConditionInputNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.inputslot import InputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.runnode import RunNode
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.filespecification import FileSpecification
-from sima.workflow.modelinputslot import ModelInputSlot
-from sima.workflow.modeloutputspecification import ModelOutputSpecification
-from sima.workflow.modelreferenceinputslot import ModelReferenceInputSlot
-from sima.workflow.variableinputslot import VariableInputSlot
+from .filespecification import FileSpecification
+from .modelinputslot import ModelInputSlot
+from .modeloutputspecification import ModelOutputSpecification
+from .modelreferenceinputslot import ModelReferenceInputSlot
+from .variableinputslot import VariableInputSlot
+from sima.post import ControlSignalInputSlot
+from sima.post import InputSlot
+from sima.post import OutputSlot
+from sima.post import RunNode
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.condition import Condition
+    from sima.sima import Condition
 
 class ConditionInputNode(RunNode):
     """
@@ -26,6 +26,8 @@ class ConditionInputNode(RunNode):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -61,6 +63,7 @@ class ConditionInputNode(RunNode):
     def __init__(self , description="", x=0, y=0, h=0, w=0, inputCondition=False, setFolderName=False, addInputFiles=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.x = x
@@ -103,6 +106,16 @@ class ConditionInputNode(RunNode):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -111,7 +124,7 @@ class ConditionInputNode(RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -173,7 +186,7 @@ class ConditionInputNode(RunNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -185,7 +198,7 @@ class ConditionInputNode(RunNode):
     def variableInputSlots(self, value: List[VariableInputSlot]):
         """Set variableInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableInputSlots = value
 
     @property
@@ -237,7 +250,7 @@ class ConditionInputNode(RunNode):
     def additionalFiles(self, value: List[FileSpecification]):
         """Set additionalFiles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__additionalFiles = value
 
     @property
@@ -249,7 +262,7 @@ class ConditionInputNode(RunNode):
     def modelOutput(self, value: List[ModelOutputSpecification]):
         """Set modelOutput"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__modelOutput = value
 
     @property
@@ -261,7 +274,7 @@ class ConditionInputNode(RunNode):
     def modelInputSlots(self, value: List[ModelInputSlot]):
         """Set modelInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__modelInputSlots = value
 
     @property

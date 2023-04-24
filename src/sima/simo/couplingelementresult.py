@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.couplingelementresult import CouplingElementResultBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.forceresult import ForceResult
+from .forceresult import ForceResult
+from sima.sima import ScriptableValue
 
 class CouplingElementResult(ForceResult):
     """
@@ -14,6 +14,8 @@ class CouplingElementResult(ForceResult):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          Force name(default None)
@@ -40,6 +42,7 @@ class CouplingElementResult(ForceResult):
     def __init__(self , description="", fx=0.0, fy=0.0, fz=0.0, mx=0.0, my=0.0, mz=0.0, mass=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.fx = fx
@@ -73,6 +76,16 @@ class CouplingElementResult(ForceResult):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class CouplingElementResult(ForceResult):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

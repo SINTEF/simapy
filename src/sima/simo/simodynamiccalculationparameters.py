@@ -5,23 +5,23 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simodynamiccalculationparameters import SIMODynamicCalculationParametersBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bodywavemethodoption import BodyWaveMethodOption
-from sima.simo.currentforcemethod import CurrentForceMethod
-from sima.simo.externalcontrolsetup import ExternalControlSetup
-from sima.simo.hydrosystemfiltermethod import HydroSystemFilterMethod
-from sima.simo.integrationmethod import IntegrationMethod
-from sima.simo.multienvironmentsetup import MultiEnvironmentSetup
-from sima.simo.randomgenerator import RandomGenerator
-from sima.simo.wasimresultexport import WasimResultExport
-from sima.simo.wavemethod import WaveMethod
-from sima.simo.wavetimeseries import WaveTimeSeries
-from sima.simo.windforcemethod import WindForceMethod
-from sima.simo.windmethod import WindMethod
-from sima.simo.windspectrumverticaldomain import WindSpectrumVerticalDomain
-from sima.simo.windtimeseriesmethod import WindTimeSeriesMethod
-from sima.simo.windvelocitydimension import WindVelocityDimension
+from .bodywavemethodoption import BodyWaveMethodOption
+from .currentforcemethod import CurrentForceMethod
+from .externalcontrolsetup import ExternalControlSetup
+from .hydrosystemfiltermethod import HydroSystemFilterMethod
+from .integrationmethod import IntegrationMethod
+from .multienvironmentsetup import MultiEnvironmentSetup
+from .randomgenerator import RandomGenerator
+from .wasimresultexport import WasimResultExport
+from .wavemethod import WaveMethod
+from .wavetimeseries import WaveTimeSeries
+from .windforcemethod import WindForceMethod
+from .windmethod import WindMethod
+from .windspectrumverticaldomain import WindSpectrumVerticalDomain
+from .windtimeseriesmethod import WindTimeSeriesMethod
+from .windvelocitydimension import WindVelocityDimension
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SIMODynamicCalculationParameters(MOAO):
     """
@@ -29,6 +29,8 @@ class SIMODynamicCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     externalControlSetup : ExternalControlSetup
     multiEnvironmentSetup : MultiEnvironmentSetup
@@ -165,6 +167,7 @@ class SIMODynamicCalculationParameters(MOAO):
     def __init__(self , description="", timeIncrement=0.5, waveMethod=WaveMethod.FFT_ONLY, integrationMethod=IntegrationMethod.RUNGE_KUTTA, randomSeedWaves=1, randomSeedWind=1, randomGenerator=RandomGenerator.LEGACY, headingCorrection=True, maxHeadingChange=45.0, largePatchLength=2048.0, smallPatchLength=256.0, cutFactorWaves=100, pointsLargePatch=256, pointsSmallPatch=128, writeVisFile=False, waveTimeSeriesFile=False, hydroSystemPeriod=0.0, hydroFilterMethod=HydroSystemFilterMethod.BLOCKED, nWindSeaComponents=2000, nSwellSeaComponents=400, windTimeSeriesMethod=WindTimeSeriesMethod.SAME, windVelocityDimension=WindVelocityDimension.TWO, windForceMethod=WindForceMethod.RELATIVE, windMethod=WindMethod.FFT, quadraticCurrentForceMethod=CurrentForceMethod.RELATIVE, linearCurrentForceMethod=CurrentForceMethod.RELATIVE, exportResultsToWasim=False, storeWindForces=False, storeSumGeneralLineForces=False, storeTotalForces=False, storeRetardationForces=False, storeHydrostaticStiffnessForces=False, storeLinearDamping=False, storeQuadraticDamping=False, storeDistributedHydrodynamicForces=False, storeFixedBodyAndSlenderElementStripResults=False, storeWaveDriftDamping=False, storeLinearCurrentDrag=False, storeQuadraticCurrentDrag=False, storeSmallBodyHydrodynamicForces=False, storeResultantPositioningElementForces=False, storePositioningElementForceComponents=False, storeTotalPositioningForces=False, storeThrusterForces=False, storeSumThrusterForces=False, storeDynamicPositioningEstimators=False, storeSumSpecifiedForces=False, storeSumExternalForces=False, storeSumCouplingForces=False, storeResultantCouplingElementForces=False, storeGlobalCouplingForceComponents=False, storeLocalCouplingForceComponents=False, storeGlobalLowFrequencyPosition=False, storeGlobalTotalPosition=True, storeGlobalAcceleration=False, storeLocalAccelerations=False, storeLocalVelocity=False, storeCatenarySystemForces=False, storeCatenarySystemNodes=False, timeStep=0.5, simulationLength=11000.0, simulationStartTime=0.0, rampDuration=2.5, requestedTimeSeriesLength=16384.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.externalControlSetup = None
         self.multiEnvironmentSetup = None
@@ -257,6 +260,16 @@ class SIMODynamicCalculationParameters(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -265,7 +278,7 @@ class SIMODynamicCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -457,7 +470,7 @@ class SIMODynamicCalculationParameters(MOAO):
     def bodyWaveMethodOptions(self, value: List[BodyWaveMethodOption]):
         """Set bodyWaveMethodOptions"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bodyWaveMethodOptions = value
 
     @property

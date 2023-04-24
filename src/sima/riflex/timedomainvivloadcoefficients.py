@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.timedomainvivloadcoefficients import TimeDomainVIVLoadCoefficientsBlueprint
 from typing import Dict
-from sima.riflex.vivloadformulation import VIVLoadFormulation
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .vivloadformulation import VIVLoadFormulation
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class TimeDomainVIVLoadCoefficients(MOAO):
     """
@@ -15,6 +15,8 @@ class TimeDomainVIVLoadCoefficients(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     vivLoadFormulation : VIVLoadFormulation
     cv : float
@@ -44,6 +46,7 @@ class TimeDomainVIVLoadCoefficients(MOAO):
     def __init__(self , description="", vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.vivLoadFormulation = vivLoadFormulation
         self.cv = cv
@@ -79,6 +82,16 @@ class TimeDomainVIVLoadCoefficients(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -87,7 +100,7 @@ class TimeDomainVIVLoadCoefficients(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

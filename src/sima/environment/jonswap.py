@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.jonswap import JonswapBlueprint
 from typing import Dict
-from sima.environment.wave import Wave
-from sima.environment.wavespreadingtype import WaveSpreadingType
-from sima.sima.scriptablevalue import ScriptableValue
+from .wave import Wave
+from .wavespreadingtype import WaveSpreadingType
+from sima.sima import ScriptableValue
 
 class Jonswap(Wave):
     """
@@ -15,6 +15,8 @@ class Jonswap(Wave):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     direction : float
          Average wave propagation direction(default 0.0)
@@ -33,6 +35,7 @@ class Jonswap(Wave):
     def __init__(self , description="", direction=0.0, spreadingExponent=2.0, numDirections=11, spreadingType=WaveSpreadingType.UNIDIRECTIONAL, significantWaveHeight=0.0, peakPeriod=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.direction = direction
         self.spreadingExponent = spreadingExponent
@@ -62,6 +65,16 @@ class Jonswap(Wave):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -70,7 +83,7 @@ class Jonswap(Wave):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

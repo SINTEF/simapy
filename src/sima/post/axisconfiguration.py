@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.axisconfiguration import AxisConfigurationBlueprint
 from typing import Dict
-from sima.sima.fontdescription import FontDescription
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import FontDescription
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class AxisConfiguration(MOAO):
     """
@@ -15,6 +15,8 @@ class AxisConfiguration(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     font : FontDescription
     log : bool
@@ -38,6 +40,7 @@ class AxisConfiguration(MOAO):
     def __init__(self , description="", log=False, autoFormat=True, format='0.####E0', showGrid=True, dashGridLine=False, autoScale=True, minimum=0.0, maximum=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.font = None
         self.log = log
@@ -70,6 +73,16 @@ class AxisConfiguration(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -78,7 +91,7 @@ class AxisConfiguration(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

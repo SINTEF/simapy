@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.spatiallyvaryingcurrent import SpatiallyVaryingCurrentBlueprint
 from typing import Dict
-from sima.environment.current import Current
-from sima.riflex.currentprofile import CurrentProfile
-from sima.sima.scriptablevalue import ScriptableValue
+from .currentprofile import CurrentProfile
+from sima.environment import Current
+from sima.sima import ScriptableValue
 
 class SpatiallyVaryingCurrent(Current):
     """
@@ -15,6 +15,8 @@ class SpatiallyVaryingCurrent(Current):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     profiles : List[CurrentProfile]
     """
@@ -22,6 +24,7 @@ class SpatiallyVaryingCurrent(Current):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.profiles = list()
         for key, value in kwargs.items():
@@ -46,6 +49,16 @@ class SpatiallyVaryingCurrent(Current):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -54,7 +67,7 @@ class SpatiallyVaryingCurrent(Current):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +79,5 @@ class SpatiallyVaryingCurrent(Current):
     def profiles(self, value: List[CurrentProfile]):
         """Set profiles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__profiles = value

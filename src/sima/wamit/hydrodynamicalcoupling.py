@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hydrodynamicalcoupling import HydrodynamicalCouplingBlueprint
 from typing import Dict
-from sima.hydro.coupledradiationdatagroup import CoupledRadiationDataGroup
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.hydro import CoupledRadiationDataGroup
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.wamit.wamitmodel import WamitModel
-    from sima.wamit.wamitbodyresult import WamitBodyResult
+    from .wamitmodel import WamitModel
+    from .wamitbodyresult import WamitBodyResult
 
 class HydrodynamicalCoupling(NamedObject):
     """
@@ -20,6 +20,8 @@ class HydrodynamicalCoupling(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -32,6 +34,7 @@ class HydrodynamicalCoupling(NamedObject):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.model = None
@@ -60,6 +63,16 @@ class HydrodynamicalCoupling(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -68,7 +81,7 @@ class HydrodynamicalCoupling(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

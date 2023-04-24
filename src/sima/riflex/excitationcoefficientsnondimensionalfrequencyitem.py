@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.excitationcoefficientsnondimensionalfrequencyitem import ExcitationCoefficientsNonDimensionalFrequencyItemBlueprint
 from typing import Dict
-from sima.riflex.amplitudediameterexcitationcoefficientitem import AmplitudeDiameterExcitationCoefficientItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .amplitudediameterexcitationcoefficientitem import AmplitudeDiameterExcitationCoefficientItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ExcitationCoefficientsNonDimensionalFrequencyItem(MOAO):
     """
@@ -15,6 +15,8 @@ class ExcitationCoefficientsNonDimensionalFrequencyItem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     nonDimensionalFrequency : float
          Non-dimensional frequency(default 0.0)
@@ -24,6 +26,7 @@ class ExcitationCoefficientsNonDimensionalFrequencyItem(MOAO):
     def __init__(self , description="", nonDimensionalFrequency=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.nonDimensionalFrequency = nonDimensionalFrequency
         self.amplitudeExcitationRatioProperties = list()
@@ -49,6 +52,16 @@ class ExcitationCoefficientsNonDimensionalFrequencyItem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class ExcitationCoefficientsNonDimensionalFrequencyItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +92,5 @@ class ExcitationCoefficientsNonDimensionalFrequencyItem(MOAO):
     def amplitudeExcitationRatioProperties(self, value: List[AmplitudeDiameterExcitationCoefficientItem]):
         """Set amplitudeExcitationRatioProperties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__amplitudeExcitationRatioProperties = value

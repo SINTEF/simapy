@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.image import ImageBlueprint
 from typing import Dict
-from sima.report.reportitem import ReportItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .reportitem import ReportItem
+from sima.sima import ScriptableValue
 
 class Image(ReportItem):
     """
@@ -14,6 +14,8 @@ class Image(ReportItem):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     caption : str
          Caption(default None)
@@ -28,6 +30,7 @@ class Image(ReportItem):
     def __init__(self , description="", width=0, height=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.caption = None
         self.filePath = None
@@ -55,6 +58,16 @@ class Image(ReportItem):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class Image(ReportItem):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

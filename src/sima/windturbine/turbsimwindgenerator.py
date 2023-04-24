@@ -5,15 +5,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.turbsimwindgenerator import TurbSimWindGeneratorBlueprint
 from typing import Dict
-from sima.sima.conditionselectable import ConditionSelectable
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.iecstandard import IECStandard
-from sima.windturbine.iecturbulencecharacteristics import IECTurbulenceCharacteristics
-from sima.windturbine.iecwindprofiletype import IECWindProfileType
-from sima.windturbine.iecwindtype import IECWindType
-from sima.windturbine.randomseedgeneration import RandomSeedGeneration
-from sima.windturbine.turbulencemodel import TurbulenceModel
+from .iecstandard import IECStandard
+from .iecturbulencecharacteristics import IECTurbulenceCharacteristics
+from .iecwindprofiletype import IECWindProfileType
+from .iecwindtype import IECWindType
+from .randomseedgeneration import RandomSeedGeneration
+from .turbulencemodel import TurbulenceModel
+from sima.sima import ConditionSelectable
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class TurbSimWindGenerator(NamedObject,ConditionSelectable):
     """
@@ -21,6 +21,8 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -67,6 +69,7 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
     def __init__(self , description="", randSeed1=0, seedGeneration=RandomSeedGeneration.INTRINSIC, randSeed2=0, gridPointsZ=0, gridPointsY=0, timeStep=0.0, analysisTime=0.0, usableTime=0.0, hubHeight=0.0, gridHeight=0.0, gridWidth=0.0, turbulenceModel=TurbulenceModel.IECKAI, iecStandard=IECStandard.IEC_61400_1, turbulenceCharacteristics=IECTurbulenceCharacteristics.A, turbulencePercentage=0.0, windType=IECWindType.NTM, etmC=0.0, windProfileType=IECWindProfileType.LOG, referenceHeight=0.0, meanWindSpeed=0.0, powerLawExponent=0.0, surfaceRoughnessLength=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.randSeed1 = randSeed1
@@ -113,6 +116,16 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -121,7 +134,7 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

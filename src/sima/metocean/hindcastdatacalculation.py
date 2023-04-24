@@ -6,16 +6,16 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hindcastdatacalculation import HindcastDataCalculationBlueprint
 from typing import Dict
-from sima.metocean.calculationlevel import CalculationLevel
-from sima.metocean.currentmodel import CurrentModel
-from sima.metocean.inputreferencesystem import InputReferenceSystem
-from sima.sima.conditionselectable import ConditionSelectable
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .calculationlevel import CalculationLevel
+from .currentmodel import CurrentModel
+from .inputreferencesystem import InputReferenceSystem
+from sima.sima import ConditionSelectable
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.metocean.profile import Profile
-    from sima.metocean.hindcastdata import HindcastData
+    from .profile import Profile
+    from .hindcastdata import HindcastData
 
 class HindcastDataCalculation(NamedObject,ConditionSelectable):
     """
@@ -23,6 +23,8 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -53,6 +55,7 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
     def __init__(self , description="", currentModel=CurrentModel.FROM_INPUT, kfactor=1.0, directionRelativeToWind=0.0, windReferenceLevel=0.0, baseCurrentSpeed=0.0, relativeCompassAngle=0.0, inputReferenceSystem=InputReferenceSystem.METOCEAN, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.currentModel = currentModel
@@ -91,6 +94,16 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -99,7 +112,7 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -191,7 +204,7 @@ class HindcastDataCalculation(NamedObject,ConditionSelectable):
     def currentLevels(self, value: List[CalculationLevel]):
         """Set currentLevels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__currentLevels = value
 
     @property
@@ -255,5 +268,5 @@ If the data is defined in the Metocean system the corresponding SIMA coordinate 
     def windLevels(self, value: List[CalculationLevel]):
         """Set windLevels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__windLevels = value

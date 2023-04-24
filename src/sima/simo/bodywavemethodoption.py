@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bodywavemethodoption import BodyWaveMethodOptionBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.kinematicmethod import KinematicMethod
+from .kinematicmethod import KinematicMethod
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class BodyWaveMethodOption(MOAO):
     """
@@ -19,6 +19,8 @@ class BodyWaveMethodOption(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     body : SIMOBody
     waveParticleMotions : KinematicMethod
@@ -42,6 +44,7 @@ class BodyWaveMethodOption(MOAO):
     def __init__(self , description="", waveParticleMotions=KinematicMethod.FFT, waveParticleMotionDistributed=KinematicMethod.FFT, firstOrderWaveForce=KinematicMethod.FFT, firstOrderMotion=KinematicMethod.FFT, waveDriftForce=KinematicMethod.FFT, waveDriftDamping=KinematicMethod.FFT, qtf=KinematicMethod.FFT, diffractedWave=KinematicMethod.FFT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.body = None
         self.waveParticleMotions = waveParticleMotions
@@ -74,6 +77,16 @@ class BodyWaveMethodOption(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -82,7 +95,7 @@ class BodyWaveMethodOption(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

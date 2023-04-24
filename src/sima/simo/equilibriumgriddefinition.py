@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.equilibriumgriddefinition import EquilibriumGridDefinitionBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.equilibriumgriddefinitionrow import EquilibriumGridDefinitionRow
-from sima.simo.equilibriumgridtype import EquilibriumGridType
+from .equilibriumgriddefinitionrow import EquilibriumGridDefinitionRow
+from .equilibriumgridtype import EquilibriumGridType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class EquilibriumGridDefinition(MOAO):
     """
@@ -20,6 +20,8 @@ class EquilibriumGridDefinition(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     roll : EquilibriumGridDefinitionRow
     pitch : EquilibriumGridDefinitionRow
@@ -31,6 +33,7 @@ class EquilibriumGridDefinition(MOAO):
     def __init__(self , description="", typeOfGrid=EquilibriumGridType.ROLL_AND_PITCH_ANGLES, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.roll = None
         self.pitch = None
@@ -58,6 +61,16 @@ class EquilibriumGridDefinition(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class EquilibriumGridDefinition(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

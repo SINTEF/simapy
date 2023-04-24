@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.gdfgeometry import GDFGeometryBlueprint
 from numpy import ndarray,asarray
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class GDFGeometry(MOAO):
     """
@@ -14,6 +14,8 @@ class GDFGeometry(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     xSymmetry : int
          (default 0)
@@ -31,6 +33,7 @@ class GDFGeometry(MOAO):
     def __init__(self , description="", xSymmetry=0, ySymmetry=0, nValues=0, dimensionalLength=1.0, gravitationalAcceleration=9.81, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.xSymmetry = xSymmetry
         self.ySymmetry = ySymmetry
@@ -60,6 +63,16 @@ class GDFGeometry(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -68,7 +81,7 @@ class GDFGeometry(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

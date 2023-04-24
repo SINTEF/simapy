@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.supportvesselmotionscalingitem import SupportVesselMotionScalingItemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.supportvessel import SupportVessel
+    from .supportvessel import SupportVessel
 
 class SupportVesselMotionScalingItem(MOAO):
     """
@@ -18,6 +18,8 @@ class SupportVesselMotionScalingItem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     supportVessel : SupportVessel
     scalx : float
@@ -37,6 +39,7 @@ class SupportVesselMotionScalingItem(MOAO):
     def __init__(self , description="", scalx=1.0, scaly=1.0, scalz=1.0, scalxr=1.0, scalyr=1.0, scalzr=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.supportVessel = None
         self.scalx = scalx
@@ -67,6 +70,16 @@ class SupportVesselMotionScalingItem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -75,7 +88,7 @@ class SupportVesselMotionScalingItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlapiperoute import HLAPipeRouteBlueprint
 from typing import Dict
-from sima.hla.hlaobject import HLAObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaobject import HLAObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.simacolor import SIMAColor
+    from sima.sima import SIMAColor
 
 class HLAPipeRoute(HLAObject):
     """
@@ -18,6 +18,8 @@ class HLAPipeRoute(HLAObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -36,6 +38,7 @@ class HLAPipeRoute(HLAObject):
     def __init__(self , description="", coordsUTM='no', mapOnTerrain='auto', routeWidth=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.routeFile = None
@@ -66,6 +69,16 @@ class HLAPipeRoute(HLAObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -74,7 +87,7 @@ class HLAPipeRoute(HLAObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.positioncontrol import PositionControlBlueprint
 from typing import Dict
-from sima.custom.customcomponent import CustomComponent
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.custom import CustomComponent
+from sima.sima import Position
+from sima.sima import ScriptableValue
 
 class PositionControl(CustomComponent):
     """
@@ -15,6 +15,8 @@ class PositionControl(CustomComponent):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     hlaObjectId : str
          (default None)
@@ -24,6 +26,7 @@ class PositionControl(CustomComponent):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.hlaObjectId = None
         self.reference = None
@@ -49,6 +52,16 @@ class PositionControl(CustomComponent):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class PositionControl(CustomComponent):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

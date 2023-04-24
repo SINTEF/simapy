@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.outputnodevalueassertion import OutputNodeValueAssertionBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.severity import Severity
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
+from sima.sima import Severity
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.post.outputnode import OutputNode
+    from sima.post import OutputNode
 
 class OutputNodeValueAssertion(MOAO):
     """
@@ -19,6 +19,8 @@ class OutputNodeValueAssertion(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     severity : Severity
     message : str
@@ -35,6 +37,7 @@ class OutputNodeValueAssertion(MOAO):
     def __init__(self , description="", severity=Severity.WARNING, tolerance=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.severity = severity
         self.message = None
@@ -64,6 +67,16 @@ class OutputNodeValueAssertion(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -72,7 +85,7 @@ class OutputNodeValueAssertion(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

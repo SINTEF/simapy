@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.lfmotiontimeseries import LFMotionTimeSeriesBlueprint
 from typing import Dict
-from sima.riflex.fileformatascistarnone import FileFormatAsciStarNone
-from sima.riflex.motiontimeseriestype import MotionTimeSeriesType
-from sima.riflex.rotationunit import RotationUnit
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .fileformatascistarnone import FileFormatAsciStarNone
+from .motiontimeseriestype import MotionTimeSeriesType
+from .rotationunit import RotationUnit
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.supportvessel import SupportVessel
+    from .supportvessel import SupportVessel
 
 class LFMotionTimeSeries(MOAO):
     """
@@ -21,6 +21,8 @@ class LFMotionTimeSeries(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     timeSeriesFile : bool
          (default False)
@@ -52,6 +54,7 @@ class LFMotionTimeSeries(MOAO):
     def __init__(self , description="", timeSeriesFile=False, fileFormat=FileFormatAsciStarNone.ASCII, motionTimeSeriesType=MotionTimeSeriesType.POSI, rotationUnit=RotationUnit.DEGR, timeColumnNum=1, xMotionColumn=0, xMotionVersion=0, yMotionColumn=0, yMotionVersion=0, zRotationColumn=0, zRotationVersion=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.timeSeriesFile = timeSeriesFile
         self.supportVessel = None
@@ -88,6 +91,16 @@ class LFMotionTimeSeries(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -96,7 +109,7 @@ class LFMotionTimeSeries(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

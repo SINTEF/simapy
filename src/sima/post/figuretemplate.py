@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.figuretemplate import FigureTemplateBlueprint
 from typing import Dict
-from sima.post.axisconfiguration import AxisConfiguration
-from sima.post.plotsize import PlotSize
-from sima.sima.fontdescription import FontDescription
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .axisconfiguration import AxisConfiguration
+from .plotsize import PlotSize
+from sima.sima import FontDescription
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class FigureTemplate(MOAO):
     """
@@ -17,6 +17,8 @@ class FigureTemplate(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     titleFont : FontDescription
     legendFont : FontDescription
@@ -26,6 +28,8 @@ class FigureTemplate(MOAO):
          (default True)
     showLegend : bool
          (default True)
+    equalAxes : bool
+         (default False)
     size : PlotSize
     width : int
          (default 0)
@@ -33,9 +37,10 @@ class FigureTemplate(MOAO):
          (default 0)
     """
 
-    def __init__(self , description="", showTitle=True, showLegend=True, size=PlotSize.DYNAMIC, width=0, height=0, **kwargs):
+    def __init__(self , description="", showTitle=True, showLegend=True, equalAxes=False, size=PlotSize.DYNAMIC, width=0, height=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.titleFont = None
         self.legendFont = None
@@ -43,6 +48,7 @@ class FigureTemplate(MOAO):
         self.yAxis = None
         self.showTitle = showTitle
         self.showLegend = showLegend
+        self.equalAxes = equalAxes
         self.size = size
         self.width = width
         self.height = height
@@ -68,6 +74,16 @@ class FigureTemplate(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -76,7 +92,7 @@ class FigureTemplate(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -138,6 +154,16 @@ class FigureTemplate(MOAO):
     def showLegend(self, value: bool):
         """Set showLegend"""
         self.__showLegend = bool(value)
+
+    @property
+    def equalAxes(self) -> bool:
+        """"""
+        return self.__equalAxes
+
+    @equalAxes.setter
+    def equalAxes(self, value: bool):
+        """Set equalAxes"""
+        self.__equalAxes = bool(value)
 
     @property
     def size(self) -> PlotSize:

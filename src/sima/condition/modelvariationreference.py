@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.modelvariationreference import ModelVariationReferenceBlueprint
 from typing import Dict
-from sima.condition.modelvariationoperation import ModelVariationOperation
-from sima.sima.scriptablevalue import ScriptableValue
+from .modelvariationoperation import ModelVariationOperation
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.condition.modelvariation import ModelVariation
+    from .modelvariation import ModelVariation
 
 class ModelVariationReference(ModelVariationOperation):
     """
@@ -18,6 +18,8 @@ class ModelVariationReference(ModelVariationOperation):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -27,6 +29,7 @@ class ModelVariationReference(ModelVariationOperation):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.variations = list()
@@ -52,6 +55,16 @@ class ModelVariationReference(ModelVariationOperation):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -60,7 +73,7 @@ class ModelVariationReference(ModelVariationOperation):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -82,5 +95,5 @@ class ModelVariationReference(ModelVariationOperation):
     def variations(self, value: List[ModelVariation]):
         """Set variations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variations = value

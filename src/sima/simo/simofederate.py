@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simofederate import SIMOFederateBlueprint
 from typing import Dict
-from sima.hla.hlafederate import HLAFederate
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.hla import HLAFederate
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.condition.conditiontask import ConditionTask
+    from sima.condition import ConditionTask
 
 class SIMOFederate(HLAFederate):
     """
@@ -18,6 +18,8 @@ class SIMOFederate(HLAFederate):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -29,6 +31,7 @@ class SIMOFederate(HLAFederate):
     def __init__(self , description="", timeStep=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.timeStep = timeStep
@@ -55,6 +58,16 @@ class SIMOFederate(HLAFederate):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class SIMOFederate(HLAFederate):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

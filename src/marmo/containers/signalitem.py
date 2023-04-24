@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.signalitem import SignalItemBlueprint
 from typing import Dict
+from .attribute import Attribute
 from dmt.namedentity import NamedEntity
-from marmo.containers.attribute import Attribute
 
 class SignalItem(NamedEntity):
     """
@@ -64,5 +64,5 @@ class SignalItem(NamedEntity):
     def attributes(self, value: List[Attribute]):
         """Set attributes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__attributes = value

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.directiondependentextremevalues import DirectionDependentExtremeValuesBlueprint
 from typing import Dict
-from sima.metocean.levelextreme import LevelExtreme
-from sima.metocean.sectorextreme import SectorExtreme
-from sima.sima.scriptablevalue import ScriptableValue
+from .levelextreme import LevelExtreme
+from .sectorextreme import SectorExtreme
+from sima.sima import ScriptableValue
 
 class DirectionDependentExtremeValues(LevelExtreme):
     """
@@ -15,6 +15,8 @@ class DirectionDependentExtremeValues(LevelExtreme):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -28,6 +30,7 @@ class DirectionDependentExtremeValues(LevelExtreme):
     def __init__(self , description="", level=0.0, duration=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.level = level
@@ -55,6 +58,16 @@ class DirectionDependentExtremeValues(LevelExtreme):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class DirectionDependentExtremeValues(LevelExtreme):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -105,5 +118,5 @@ class DirectionDependentExtremeValues(LevelExtreme):
     def sectors(self, value: List[SectorExtreme]):
         """Set sectors"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__sectors = value

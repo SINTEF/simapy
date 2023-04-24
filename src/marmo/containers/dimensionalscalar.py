@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dimensionalscalar import DimensionalScalarBlueprint
 from typing import Dict
-from marmo.containers.attribute import Attribute
-from marmo.containers.signal import Signal
+from .attribute import Attribute
+from .signal import Signal
 
 class DimensionalScalar(Signal):
     """
@@ -74,7 +74,7 @@ class DimensionalScalar(Signal):
     def attributes(self, value: List[Attribute]):
         """Set attributes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__attributes = value
 
     @property

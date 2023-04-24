@@ -6,17 +6,17 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.controlsystem import ControlSystemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.allocationsystem import AllocationSystem
-from sima.simo.controlreference import ControlReference
-from sima.simo.dofcontrolconfiguration import DOFControlConfiguration
-from sima.simo.estimator import Estimator
-from sima.simo.guidancesystem import GuidanceSystem
-from sima.simo.windmeasurement import WindMeasurement
+from .allocationsystem import AllocationSystem
+from .controlreference import ControlReference
+from .dofcontrolconfiguration import DOFControlConfiguration
+from .estimator import Estimator
+from .guidancesystem import GuidanceSystem
+from .windmeasurement import WindMeasurement
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class ControlSystem(MOAO):
     """
@@ -24,6 +24,8 @@ class ControlSystem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     relativeBody : SIMOBody
     xRef : float
@@ -69,6 +71,7 @@ class ControlSystem(MOAO):
     def __init__(self , description="", xRef=0.0, yRef=0.0, dirRef=0.0, circleXRef=0.0, circleYRef=0.0, circleRadius=0.0, xLocal=0.0, yLocal=0.0, controlReference=ControlReference.GLOBAL, xyRelative=True, dirRelative=True, referenceCutOff=0.0, intialXForce=0.0, intialYForce=0.0, intialMoment=0.0, windCutOff=0.0, windMeasurement=WindMeasurement.NO, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.relativeBody = None
         self.xRef = xRef
@@ -114,6 +117,16 @@ class ControlSystem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -122,7 +135,7 @@ class ControlSystem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -267,7 +280,7 @@ class ControlSystem(MOAO):
     def controlConfigurations(self, value: List[DOFControlConfiguration]):
         """Set controlConfigurations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlConfigurations = value
 
     @property

@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.sumforceresponsestorage import SumForceResponseStorageBlueprint
 from typing import Dict
-from sima.riflex.additionalfileformatcode import AdditionalFileFormatCode
-from sima.riflex.elementreference import ElementReference
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .additionalfileformatcode import AdditionalFileFormatCode
+from .elementreference import ElementReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SumForceResponseStorage(MOAO):
     """
@@ -16,6 +16,8 @@ class SumForceResponseStorage(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     storageStep : int
          Code for storage of the sum of forces. Storage for every <storage step> given.(default 1)
@@ -28,6 +30,7 @@ class SumForceResponseStorage(MOAO):
     def __init__(self , description="", storageStep=1, format=AdditionalFileFormatCode.BINARY_OUTPUT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.storageStep = storageStep
         self.format = format
@@ -54,6 +57,16 @@ class SumForceResponseStorage(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -62,7 +75,7 @@ class SumForceResponseStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -94,5 +107,5 @@ class SumForceResponseStorage(MOAO):
     def elements(self, value: List[ElementReference]):
         """Set elements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elements = value

@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.globalspring import GlobalSpringBlueprint
 from typing import Dict
-from sima.riflex.globalspringstiffnessitem import GlobalSpringStiffnessItem
-from sima.riflex.nodereference import NodeReference
-from sima.riflex.springdof import SpringDOF
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .globalspringstiffnessitem import GlobalSpringStiffnessItem
+from .nodereference import NodeReference
+from .springdof import SpringDOF
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class GlobalSpring(NodeReference,NamedObject):
     """
@@ -21,6 +21,8 @@ class GlobalSpring(NodeReference,NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     line : ARLine
          Line
@@ -50,6 +52,7 @@ class GlobalSpring(NodeReference,NamedObject):
     def __init__(self , description="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, dof=SpringDOF.GLOBAL_X_DIRECTION, constantStiffness=False, stiffness=0.0, dampingCoefficient=0.0, stiffnessDampingFactor=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.line = None
         self.segment = segment
@@ -85,6 +88,16 @@ class GlobalSpring(NodeReference,NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -93,7 +106,7 @@ class GlobalSpring(NodeReference,NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -215,5 +228,5 @@ class GlobalSpring(NodeReference,NamedObject):
     def stiffnessItems(self, value: List[GlobalSpringStiffnessItem]):
         """Set stiffnessItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessItems = value

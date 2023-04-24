@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.externaldllforce import ExternalDLLForceBlueprint
 from typing import Dict
-from sima.sima.librarypaths import LibraryPaths
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.referenceframetype import ReferenceFrameType
-from sima.simo.stringdoubleitem import StringDoubleItem
-from sima.simo.stringintitem import StringIntItem
-from sima.simo.stringitem import StringItem
+from .referenceframetype import ReferenceFrameType
+from .stringdoubleitem import StringDoubleItem
+from .stringintitem import StringIntItem
+from .stringitem import StringItem
+from sima.sima import LibraryPaths
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class ExternalDLLForce(NamedObject):
     """
@@ -20,6 +20,8 @@ class ExternalDLLForce(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -42,6 +44,7 @@ class ExternalDLLForce(NamedObject):
     def __init__(self , description="", referenceFrame=ReferenceFrameType.LOCAL, nStorageParameters=0, nCurrentPoints=1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.attachmentPoint = None
@@ -75,6 +78,16 @@ class ExternalDLLForce(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -83,7 +96,7 @@ class ExternalDLLForce(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -135,7 +148,7 @@ class ExternalDLLForce(NamedObject):
     def intParameters(self, value: List[StringIntItem]):
         """Set intParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__intParameters = value
 
     @property
@@ -147,7 +160,7 @@ class ExternalDLLForce(NamedObject):
     def doubleParameters(self, value: List[StringDoubleItem]):
         """Set doubleParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__doubleParameters = value
 
     @property
@@ -159,7 +172,7 @@ class ExternalDLLForce(NamedObject):
     def stringParameters(self, value: List[StringItem]):
         """Set stringParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stringParameters = value
 
     @property

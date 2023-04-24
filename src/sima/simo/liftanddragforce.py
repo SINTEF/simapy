@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.liftanddragforce import LiftAndDragForceBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.vector3 import Vector3
-from sima.simo.liftanddragforcecharacteristicitem import LiftAndDragForceCharacteristicItem
-from sima.simo.liftanddraginterpolation import LiftAndDragInterpolation
+from .liftanddragforcecharacteristicitem import LiftAndDragForceCharacteristicItem
+from .liftanddraginterpolation import LiftAndDragInterpolation
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
+from sima.sima import Vector3
 
 class LiftAndDragForce(NamedObject):
     """
@@ -18,6 +18,8 @@ class LiftAndDragForce(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -52,6 +54,7 @@ class LiftAndDragForce(NamedObject):
     def __init__(self , description="", maxAngle=0.0, maxAngleVelocity=0.0, lengthZ=0.0, lengthX=0.0, angle=0.0, currentFactor=0.0, vesselFactor=0.0, thrusterFactor=0.0, dragZ=0.0, interpolation=LiftAndDragInterpolation.LINEAR, symmetric=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.point = None
@@ -91,6 +94,16 @@ class LiftAndDragForce(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -99,7 +112,7 @@ class LiftAndDragForce(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -241,7 +254,7 @@ class LiftAndDragForce(NamedObject):
     def items(self, value: List[LiftAndDragForceCharacteristicItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

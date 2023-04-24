@@ -5,10 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wavedriftdamping import WaveDriftDampingBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.hydro.wavedriftdampingdofitem import WaveDriftDampingDofItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .directionsymmetry import DirectionSymmetry
+from .wavedriftdampingdofitem import WaveDriftDampingDofItem
+from .wavedriftdampingforce import WaveDriftDampingForce
+from .wavedriftdampingsource import WaveDriftDampingSource
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WaveDriftDamping(MOAO):
     """
@@ -16,21 +18,29 @@ class WaveDriftDamping(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     directions : ndarray
     frequencies : ndarray
     symmetry : DirectionSymmetry
     items : List[WaveDriftDampingDofItem]
+    from_ : WaveDriftDampingSource
+         Calculate from
+    forceCalculation : WaveDriftDampingForce
     """
 
-    def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
+    def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, from_=WaveDriftDampingSource.INPUT, forceCalculation=WaveDriftDampingForce.ABSOLUTE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.directions = ndarray(1)
         self.frequencies = ndarray(1)
         self.symmetry = symmetry
         self.items = list()
+        self.from_ = from_
+        self.forceCalculation = forceCalculation
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -53,6 +63,16 @@ class WaveDriftDamping(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -61,7 +81,7 @@ class WaveDriftDamping(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -103,5 +123,25 @@ class WaveDriftDamping(MOAO):
     def items(self, value: List[WaveDriftDampingDofItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
+
+    @property
+    def from_(self) -> WaveDriftDampingSource:
+        """Calculate from"""
+        return self.__from_
+
+    @from_.setter
+    def from_(self, value: WaveDriftDampingSource):
+        """Set from_"""
+        self.__from_ = value
+
+    @property
+    def forceCalculation(self) -> WaveDriftDampingForce:
+        """"""
+        return self.__forceCalculation
+
+    @forceCalculation.setter
+    def forceCalculation(self, value: WaveDriftDampingForce):
+        """Set forceCalculation"""
+        self.__forceCalculation = value

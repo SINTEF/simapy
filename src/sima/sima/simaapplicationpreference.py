@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simaapplicationpreference import SIMAApplicationPreferenceBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simapreference import SIMAPreference
+from .scriptablevalue import ScriptableValue
+from .simapreference import SIMAPreference
 
 class SIMAApplicationPreference(SIMAPreference):
     """
@@ -14,6 +14,8 @@ class SIMAApplicationPreference(SIMAPreference):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     createTimestamp : bool
          (default True)
@@ -36,6 +38,7 @@ class SIMAApplicationPreference(SIMAPreference):
     def __init__(self , description="", createTimestamp=True, deleteAutomatically=True, interpolate=True, overrideTimeZone=True, minimumDiskSpace=1, autoSaveFrequency=5, numberOfSignificantDigits=5, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.createTimestamp = createTimestamp
         self.deleteAutomatically = deleteAutomatically
@@ -67,6 +70,16 @@ class SIMAApplicationPreference(SIMAPreference):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -75,7 +88,7 @@ class SIMAApplicationPreference(SIMAPreference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

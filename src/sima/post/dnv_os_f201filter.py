@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dnv_os_f201filter import DNV_OS_F201FilterBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.inputslot import InputSlot
-from sima.post.limitstatecategory import LimitStateCategory
-from sima.post.operationnode import OperationNode
-from sima.post.outputslot import OutputSlot
-from sima.post.safetyclass import SafetyClass
-from sima.sima.scriptablevalue import ScriptableValue
+from .controlsignalinputslot import ControlSignalInputSlot
+from .inputslot import InputSlot
+from .limitstatecategory import LimitStateCategory
+from .operationnode import OperationNode
+from .outputslot import OutputSlot
+from .safetyclass import SafetyClass
+from sima.sima import ScriptableValue
 
 class DNV_OS_F201Filter(OperationNode):
     """
@@ -19,6 +19,8 @@ class DNV_OS_F201Filter(OperationNode):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -92,6 +94,7 @@ class DNV_OS_F201Filter(OperationNode):
     def __init__(self , description="", x=0, y=0, h=0, w=0, customSafetyClassResistanceFactor=0.0, useCustomSafetyClassResistanceFactor=False, customLoadEffectFactorForEnvironmentalLoads=0.0, useCustomLoadEffectFactorForEnvironmentalLoads=False, customLoadEffectFactorForFunctionalLoads=0.0, useCustomLoadEffectFactorForFunctionalLoads=False, customLoadFactorForAccidentalLoads=0.0, useCustomLoadFactorForAccidentalLoads=False, customMaterialResistanceFactor=0.0, useCustomMaterialResistanceFactor=False, fabricationFactor=0.85, youngsFactor=210000000000.0, poissonsRatio=0.3, yieldStrength=400000000.0, tensileStrength=700000000.0, nomOD=0.2967, pipeThickness=0.05, ovality=0.005, extFluidDensity=1025.0, intFluidDensity=900.0, refPointPressure=500000.0, corrosionAllowance=0.001, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, useWeibullDistributionFitting=False, lowerThresholdForTailFitting=0.87, seastateReturnPeriod=3.0, accelerationOfGravity=9.81, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.x = x
@@ -151,6 +154,16 @@ class DNV_OS_F201Filter(OperationNode):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -159,7 +172,7 @@ class DNV_OS_F201Filter(OperationNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -221,7 +234,7 @@ class DNV_OS_F201Filter(OperationNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -233,7 +246,7 @@ class DNV_OS_F201Filter(OperationNode):
     def filterInputSlots(self, value: List[InputSlot]):
         """Set filterInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterInputSlots = value
 
     @property
@@ -245,7 +258,7 @@ class DNV_OS_F201Filter(OperationNode):
     def filterOutputSlots(self, value: List[OutputSlot]):
         """Set filterOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterOutputSlots = value
 
     @property

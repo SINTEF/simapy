@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.gdfcylinder import GDFCylinderBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class GDFCylinder(MOAO):
     """
@@ -14,6 +14,8 @@ class GDFCylinder(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     dimensionalLength : float
          Dimensional length(default 1.0)
@@ -36,6 +38,7 @@ class GDFCylinder(MOAO):
     def __init__(self , description="", dimensionalLength=1.0, centerX=0.0, centerY=0.0, radius=40.0, numberOfRadialPanels=20, depth=20.0, numberOfVerticalPanels=10, exponent=2.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.dimensionalLength = dimensionalLength
         self.centerX = centerX
@@ -67,6 +70,16 @@ class GDFCylinder(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -75,7 +88,7 @@ class GDFCylinder(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

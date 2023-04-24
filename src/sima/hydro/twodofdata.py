@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.twodofdata import TwoDofDataBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.dof import DOF
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .dof import DOF
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class TwoDofData(MOAO):
     """
@@ -15,6 +15,8 @@ class TwoDofData(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     dof1 : DOF
     dof2 : DOF
@@ -24,6 +26,7 @@ class TwoDofData(MOAO):
     def __init__(self , description="", dof1=DOF.X, dof2=DOF.X, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.dof1 = dof1
         self.dof2 = dof2
@@ -50,6 +53,16 @@ class TwoDofData(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -58,7 +71,7 @@ class TwoDofData(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

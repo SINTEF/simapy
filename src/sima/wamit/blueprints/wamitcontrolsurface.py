@@ -13,6 +13,7 @@ class WamitControlSurfaceBlueprint(MOAOBlueprint):
     def __init__(self, name="WamitControlSurface", package_path="sima/wamit", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("geometryFilename","string","GDF Geometry"))
         self.add_attribute(EnumAttribute("surfacesToIncludeFromMs2File","sima/wamit/SurfacesToIncludeFromMs2FileOption",""))

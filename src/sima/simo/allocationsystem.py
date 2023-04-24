@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.allocationsystem import AllocationSystemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.formulation import Formulation
-from sima.simo.thrusterallocation import ThrusterAllocation
-from sima.simo.thrusterallocationmethod import ThrusterAllocationMethod
-from sima.simo.thrustercontrol import ThrusterControl
+from .formulation import Formulation
+from .thrusterallocation import ThrusterAllocation
+from .thrusterallocationmethod import ThrusterAllocationMethod
+from .thrustercontrol import ThrusterControl
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class AllocationSystem(MOAO):
     """
@@ -18,6 +18,8 @@ class AllocationSystem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     surgeAllocation : bool
          Force allocation in surge(default True)
@@ -39,6 +41,7 @@ class AllocationSystem(MOAO):
     def __init__(self , description="", surgeAllocation=True, swayAllocation=True, yawAllocation=True, manual=False, allocationMethod=ThrusterAllocationMethod.ORDINARY, formulation=Formulation.SIMO_41, dpOff=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.surgeAllocation = surgeAllocation
         self.swayAllocation = swayAllocation
@@ -71,6 +74,16 @@ class AllocationSystem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -79,7 +92,7 @@ class AllocationSystem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -121,7 +134,7 @@ class AllocationSystem(MOAO):
     def thrusters(self, value: List[ThrusterAllocation]):
         """Set thrusters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__thrusters = value
 
     @property
@@ -153,7 +166,7 @@ class AllocationSystem(MOAO):
     def thrusterControls(self, value: List[ThrusterControl]):
         """Set thrusterControls"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__thrusterControls = value
 
     @property

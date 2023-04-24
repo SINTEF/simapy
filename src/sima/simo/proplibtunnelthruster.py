@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.proplibtunnelthruster import ProplibTunnelThrusterBlueprint
 from typing import Dict
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.ithruster import IThruster
-from sima.simo.thrustercontrolsequence import ThrusterControlSequence
-from sima.simo.thrusterdynamics import ThrusterDynamics
-from sima.simo.thrusterfailurespecification import ThrusterFailureSpecification
+from .ithruster import IThruster
+from .thrustercontrolsequence import ThrusterControlSequence
+from .thrusterdynamics import ThrusterDynamics
+from .thrusterfailurespecification import ThrusterFailureSpecification
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class ProplibTunnelThruster(IThruster):
     """
@@ -18,6 +18,8 @@ class ProplibTunnelThruster(IThruster):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -62,6 +64,7 @@ class ProplibTunnelThruster(IThruster):
     def __init__(self , description="", minForce=0.0, maxForce=0.0, force=0.0, forceDirection=0.0, includeSurfaceProximityLoss=False, includeThrusterHullInteraction=False, includeThrusterThrusterInteraction=False, maxRps=0.0, diameter=0.0, tunnelLength=0.0, baselineAngle=0.0, centerlineAngle=0.0, numberOfGrids=0, pitchRatio=0.0, bilgeRadius=0.0, verticalDistanceHull=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.minForce = minForce
@@ -106,6 +109,16 @@ class ProplibTunnelThruster(IThruster):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -114,7 +127,7 @@ class ProplibTunnelThruster(IThruster):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

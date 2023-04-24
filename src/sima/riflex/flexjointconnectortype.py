@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.flexjointconnectortype import FlexJointConnectorTypeBlueprint
 from typing import Dict
-from sima.riflex.nodalcomponenttype import NodalComponentType
-from sima.riflex.rotationalstiffnessitem import RotationalStiffnessItem
-from sima.riflex.rotationalstiffnesstype import RotationalStiffnessType
-from sima.sima.scriptablevalue import ScriptableValue
+from .nodalcomponenttype import NodalComponentType
+from .rotationalstiffnessitem import RotationalStiffnessItem
+from .rotationalstiffnesstype import RotationalStiffnessType
+from sima.sima import ScriptableValue
 
 class FlexJointConnectorType(NodalComponentType):
     """
@@ -16,6 +16,8 @@ class FlexJointConnectorType(NodalComponentType):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -81,6 +83,7 @@ class FlexJointConnectorType(NodalComponentType):
     def __init__(self , description="", mass=0.0, volume=0.0, gyrationRadiusX=0.0, gyrationRadiusY=0.0, gyrationRadiusZ=0.0, dampingRotX=0.0, dampingRotY=0.0, dampingRotZ=0.0, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, addedMassRotX=0.0, addedMassRotY=0.0, addedMassRotZ=0.0, stiffnessTypeRotX=RotationalStiffnessType.FIXED, stiffnessTypeRotY=RotationalStiffnessType.FIXED, stiffnessTypeRotZ=RotationalStiffnessType.FIXED, stiffnessDampingCoeffX=0.0, stiffnessDampingCoeffY=0.0, stiffnessDampingCoeffZ=0.0, linearStiffnessRotX=0.0, linearStiffnessRotY=0.0, linearStiffnessRotZ=0.0, yzStiffnessSymmetry=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.mass = mass
@@ -135,6 +138,16 @@ class FlexJointConnectorType(NodalComponentType):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -143,7 +156,7 @@ class FlexJointConnectorType(NodalComponentType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -435,7 +448,7 @@ class FlexJointConnectorType(NodalComponentType):
     def stiffnessCharacteristicsRotX(self, value: List[RotationalStiffnessItem]):
         """Set stiffnessCharacteristicsRotX"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessCharacteristicsRotX = value
 
     @property
@@ -447,7 +460,7 @@ class FlexJointConnectorType(NodalComponentType):
     def stiffnessCharacteristicsRotY(self, value: List[RotationalStiffnessItem]):
         """Set stiffnessCharacteristicsRotY"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessCharacteristicsRotY = value
 
     @property
@@ -459,5 +472,5 @@ class FlexJointConnectorType(NodalComponentType):
     def stiffnessCharacteristicsRotZ(self, value: List[RotationalStiffnessItem]):
         """Set stiffnessCharacteristicsRotZ"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessCharacteristicsRotZ = value

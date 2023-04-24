@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.horizontalaxiscontroller import HorizontalAxisControllerBlueprint
 from typing import Dict
-from sima.riflex.elementendspesification import ElementEndSpesification
-from sima.sima.librarypaths import LibraryPaths
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.controllertype import ControllerType
-from sima.windturbine.gainitem import GainItem
-from sima.windturbine.horizontalaxiswindturbinecontroller import HorizontalAxisWindTurbineController
-from sima.windturbine.powerextraction import PowerExtraction
-from sima.windturbine.tableformat import TableFormat
+from .elementendspesification import ElementEndSpesification
+from sima.sima import LibraryPaths
+from sima.sima import ScriptableValue
+from sima.windturbine import ControllerType
+from sima.windturbine import GainItem
+from sima.windturbine import HorizontalAxisWindTurbineController
+from sima.windturbine import PowerExtraction
+from sima.windturbine import TableFormat
 
 class HorizontalAxisController(HorizontalAxisWindTurbineController):
     """
@@ -20,6 +20,8 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     kp : float
          Proportionnal gain K that will be used for zero blade pitch angle(default 0.0)
@@ -80,6 +82,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     def __init__(self , description="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, specifyTowerTop=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.kp = kp
         self.ki = ki
@@ -133,6 +136,16 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -141,7 +154,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -263,7 +276,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     def gainItems(self, value: List[GainItem]):
         """Set gainItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__gainItems = value
 
     @property

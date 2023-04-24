@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.stressstorage import StressStorageBlueprint
 from typing import Dict
-from sima.riflex.elementstressstorage import ElementStressStorage
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .elementstressstorage import ElementStressStorage
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class StressStorage(MOAO):
     """
@@ -15,6 +15,8 @@ class StressStorage(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     elements : List[ElementStressStorage]
          Specification of nodes for displacement storage
@@ -23,6 +25,7 @@ class StressStorage(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.elements = list()
         for key, value in kwargs.items():
@@ -47,6 +50,16 @@ class StressStorage(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -55,7 +68,7 @@ class StressStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -67,5 +80,5 @@ class StressStorage(MOAO):
     def elements(self, value: List[ElementStressStorage]):
         """Set elements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elements = value

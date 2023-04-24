@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.reportitemcontainer import ReportItemContainerBlueprint
 from typing import Dict
+from .reportitem import ReportItem
 from dmt.entity import Entity
-from marmo.report.reportitem import ReportItem
 
 class ReportItemContainer(Entity):
     """
@@ -51,5 +51,5 @@ class ReportItemContainer(Entity):
     def items(self, value: List[ReportItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

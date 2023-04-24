@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.columnconfiguration import ColumnConfigurationBlueprint
 from typing import Dict
-from sima.post.pathspecification import PathSpecification
-from sima.sima.scriptablevalue import ScriptableValue
+from .pathspecification import PathSpecification
+from sima.sima import ScriptableValue
 
 class ColumnConfiguration(PathSpecification):
     """
@@ -14,6 +14,8 @@ class ColumnConfiguration(PathSpecification):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
          (default None)
@@ -30,6 +32,7 @@ class ColumnConfiguration(PathSpecification):
     def __init__(self , description="", format='0.####E0', fontSize=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.path = None
         self.header = None
@@ -58,6 +61,16 @@ class ColumnConfiguration(PathSpecification):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class ColumnConfiguration(PathSpecification):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

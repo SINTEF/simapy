@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.envelopecurvespecification import EnvelopeCurveSpecificationBlueprint
 from typing import Dict
-from sima.riflex.matrixplotfileoption import MatrixPlotFileOption
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .matrixplotfileoption import MatrixPlotFileOption
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class EnvelopeCurveSpecification(MOAO):
     """
@@ -15,6 +15,8 @@ class EnvelopeCurveSpecification(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     compDisplacement : bool
          Compute displacement envelopes?(default False)
@@ -38,6 +40,7 @@ class EnvelopeCurveSpecification(MOAO):
     def __init__(self , description="", compDisplacement=False, compForce=False, compCurvature=False, startTime=0.0, endTime=10000000.0, printDisplacement=False, printForce=False, printCurvature=False, plotOption=MatrixPlotFileOption.MAX_AND_STANDARD_DEV, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.compDisplacement = compDisplacement
         self.compForce = compForce
@@ -70,6 +73,16 @@ class EnvelopeCurveSpecification(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -78,7 +91,7 @@ class EnvelopeCurveSpecification(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

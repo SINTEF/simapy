@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.significantwaveheightweibulldata import SignificantWaveHeightWeibullDataBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SignificantWaveHeightWeibullData(MOAO):
     """
@@ -14,6 +14,8 @@ class SignificantWaveHeightWeibullData(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     duration : float
          (default 0.0)
@@ -30,6 +32,7 @@ class SignificantWaveHeightWeibullData(MOAO):
     def __init__(self , description="", duration=0.0, probability=0.0, shape=0.0, scale=0.0, location=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.duration = duration
         self.probability = probability
@@ -58,6 +61,16 @@ class SignificantWaveHeightWeibullData(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class SignificantWaveHeightWeibullData(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

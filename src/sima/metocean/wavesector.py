@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wavesector import WaveSectorBlueprint
 from typing import Dict
-from sima.metocean.contourdata import ContourData
-from sima.metocean.significantwaveheightweibulldata import SignificantWaveHeightWeibullData
-from sima.metocean.spectralpeakperiodrelation import SpectralPeakPeriodRelation
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .contourdata import ContourData
+from .significantwaveheightweibulldata import SignificantWaveHeightWeibullData
+from .spectralpeakperiodrelation import SpectralPeakPeriodRelation
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WaveSector(MOAO):
     """
@@ -17,6 +17,8 @@ class WaveSector(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     contours : List[ContourData]
     spectralPeakRelation : SpectralPeakPeriodRelation
@@ -28,6 +30,7 @@ class WaveSector(MOAO):
     def __init__(self , description="", direction=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.contours = list()
         self.spectralPeakRelation = None
@@ -55,6 +58,16 @@ class WaveSector(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class WaveSector(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -75,7 +88,7 @@ class WaveSector(MOAO):
     def contours(self, value: List[ContourData]):
         """Set contours"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__contours = value
 
     @property

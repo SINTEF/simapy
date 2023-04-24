@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitcontrolsurface import WamitControlSurfaceBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.wamit.directionsofnormalsoption import DirectionsOfNormalsOption
-from sima.wamit.evaluationmodeoption import EvaluationModeOption
-from sima.wamit.parameterlines import ParameterLines
-from sima.wamit.surfacestoincludefromms2fileoption import SurfacesToIncludeFromMs2FileOption
+from .directionsofnormalsoption import DirectionsOfNormalsOption
+from .evaluationmodeoption import EvaluationModeOption
+from .parameterlines import ParameterLines
+from .surfacestoincludefromms2fileoption import SurfacesToIncludeFromMs2FileOption
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WamitControlSurface(MOAO):
     """
@@ -18,6 +18,8 @@ class WamitControlSurface(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     geometryFilename : str
          GDF Geometry(default None)
@@ -40,6 +42,7 @@ class WamitControlSurface(MOAO):
     def __init__(self , description="", surfacesToIncludeFromMs2File=SurfacesToIncludeFromMs2FileOption.ALLVISIBLESURFACES, symmetryAboutX=False, symmetryAboutY=False, evaluationMode=EvaluationModeOption.FAST, divisionsMultiplier=0, directionOfNormals=DirectionsOfNormalsOption.OUTWARD, panelSize=10.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.geometryFilename = None
         self.surfacesToIncludeFromMs2File = surfacesToIncludeFromMs2File
@@ -73,6 +76,16 @@ class WamitControlSurface(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class WamitControlSurface(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -173,7 +186,7 @@ class WamitControlSurface(MOAO):
     def parameterLines(self, value: List[ParameterLines]):
         """Set parameterLines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__parameterLines = value
 
     @property

@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexstaticcalculationparameters import RIFLEXStaticCalculationParametersBlueprint
 from typing import Dict
-from sima.riflex.loadandmassformulation import LoadAndMassFormulation
-from sima.riflex.matrixplotstorage import MatrixPlotStorage
-from sima.riflex.matrixstorage import MatrixStorage
-from sima.riflex.parametervariation import ParameterVariation
-from sima.riflex.staticloadcomponent import StaticLoadComponent
-from sima.riflex.staticloadtypeitem import StaticLoadTypeItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .loadandmassformulation import LoadAndMassFormulation
+from .matrixplotstorage import MatrixPlotStorage
+from .matrixstorage import MatrixStorage
+from .parametervariation import ParameterVariation
+from .staticloadcomponent import StaticLoadComponent
+from .staticloadtypeitem import StaticLoadTypeItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class RIFLEXStaticCalculationParameters(MOAO):
     """
@@ -20,6 +20,8 @@ class RIFLEXStaticCalculationParameters(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     loadTypeItems : List[StaticLoadTypeItem]
     matrixStorage : MatrixStorage
@@ -38,11 +40,14 @@ class RIFLEXStaticCalculationParameters(MOAO):
          Storage option for Matrix Plot
     startAtZero : bool
          Start arc length at zero for each line(default True)
+    storeStructuralData : bool
+         Store additional FEM data(default False)
     """
 
-    def __init__(self , description="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, **kwargs):
+    def __init__(self , description="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, storeStructuralData=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.loadTypeItems = list()
         self.matrixStorage = matrixStorage
@@ -55,6 +60,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
         self.storeVisualisationResponses = storeVisualisationResponses
         self.matrixPlotStorage = matrixPlotStorage
         self.startAtZero = startAtZero
+        self.storeStructuralData = storeStructuralData
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -77,6 +83,16 @@ class RIFLEXStaticCalculationParameters(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -85,7 +101,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -97,7 +113,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
     def loadTypeItems(self, value: List[StaticLoadTypeItem]):
         """Set loadTypeItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__loadTypeItems = value
 
     @property
@@ -129,7 +145,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
     def staticLoadComponents(self, value: List[StaticLoadComponent]):
         """Set staticLoadComponents"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__staticLoadComponents = value
 
     @property
@@ -201,3 +217,13 @@ class RIFLEXStaticCalculationParameters(MOAO):
     def startAtZero(self, value: bool):
         """Set startAtZero"""
         self.__startAtZero = bool(value)
+
+    @property
+    def storeStructuralData(self) -> bool:
+        """Store additional FEM data"""
+        return self.__storeStructuralData
+
+    @storeStructuralData.setter
+    def storeStructuralData(self, value: bool):
+        """Set storeStructuralData"""
+        self.__storeStructuralData = bool(value)

@@ -6,15 +6,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.conditionspace import ConditionSpaceBlueprint
 from typing import Dict
-from sima.condition.conditiontaskcondition import ConditionTaskCondition
-from sima.condition.variableitemset import VariableItemSet
-from sima.sima.namedobject import NamedObject
-from sima.sima.resultcontainer import ResultContainer
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.variableitem import VariableItem
+from .conditiontaskcondition import ConditionTaskCondition
+from .variableitemset import VariableItemSet
+from sima.sima import NamedObject
+from sima.sima import ResultContainer
+from sima.sima import ScriptableValue
+from sima.sima import VariableItem
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.conditionselectable import ConditionSelectable
+    from sima.sima import ConditionSelectable
 
 class ConditionSpace(ConditionTaskCondition,NamedObject):
     """
@@ -22,6 +22,8 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -40,6 +42,7 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     def __init__(self , description="", changeNumber=0, inputFromFile=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.changeNumber = changeNumber
@@ -71,6 +74,16 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -79,7 +92,7 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -131,7 +144,7 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     def variableItems(self, value: List[VariableItem]):
         """Set variableItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableItems = value
 
     @property
@@ -143,7 +156,7 @@ class ConditionSpace(ConditionTaskCondition,NamedObject):
     def variableItemSets(self, value: List[VariableItemSet]):
         """Set variableItemSets"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableItemSets = value
 
     @property

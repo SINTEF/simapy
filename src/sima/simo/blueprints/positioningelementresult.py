@@ -13,6 +13,7 @@ class PositioningElementResultBlueprint(ForceResultBlueprint):
     def __init__(self, name="PositioningElementResult", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string","Force name"))
         self.add_attribute(Attribute("fx","number","Statically calculated force",default=0.0))

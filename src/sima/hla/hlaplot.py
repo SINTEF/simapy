@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlaplot import HLAPlotBlueprint
 from numpy import ndarray,asarray
-from sima.hla.hlaobject import HLAObject
-from sima.hla.range import Range
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaobject import HLAObject
+from .range import Range
+from sima.sima import ScriptableValue
 
 class HLAPlot(HLAObject):
     """
@@ -15,6 +15,8 @@ class HLAPlot(HLAObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -40,6 +42,7 @@ class HLAPlot(HLAObject):
     def __init__(self , description="", showTimeMarker=False, fadePrecedingCurves=False, fadePrecedingCurvesCount=5, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.curves = ndarray(1)
@@ -74,6 +77,16 @@ class HLAPlot(HLAObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -82,7 +95,7 @@ class HLAPlot(HLAObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

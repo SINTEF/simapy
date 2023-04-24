@@ -5,28 +5,28 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.generator import GeneratorBlueprint
 from typing import Dict
-from sima.sima.conditionselectable import ConditionSelectable
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windpark.areaaveragingoption import AreaAveragingOption
-from sima.windpark.deficitanalysisoption import DeficitAnalysisOption
-from sima.windpark.deficitfilecontents import DeficitFileContents
-from sima.windpark.fileformat import FileFormat
-from sima.windpark.filterlengthoption import FilterLengthOption
-from sima.windpark.focus import Focus
-from sima.windpark.incomingwind import IncomingWind
-from sima.windpark.lowpassfrequencyoption import LowPassFrequencyOption
-from sima.windpark.meanderinganalysisoption import MeanderingAnalysisOption
-from sima.windpark.multipledeficitmethod import MultipleDeficitMethod
-from sima.windpark.nearwakelengthmodel import NearWakeLengthModel
-from sima.windpark.poweroption import PowerOption
-from sima.windpark.stabilityclass import StabilityClass
-from sima.windpark.turbulenceboxoption import TurbulenceBoxOption
-from sima.windpark.turbulenceboxscaling import TurbulenceBoxScaling
-from sima.windpark.viscosityfilter import ViscosityFilter
-from sima.windpark.weightoption import WeightOption
-from sima.windpark.windparkturbine import WindParkTurbine
-from sima.windpark.windturbinetype import WindTurbineType
+from .areaaveragingoption import AreaAveragingOption
+from .deficitanalysisoption import DeficitAnalysisOption
+from .deficitfilecontents import DeficitFileContents
+from .fileformat import FileFormat
+from .filterlengthoption import FilterLengthOption
+from .focus import Focus
+from .incomingwind import IncomingWind
+from .lowpassfrequencyoption import LowPassFrequencyOption
+from .meanderinganalysisoption import MeanderingAnalysisOption
+from .multipledeficitmethod import MultipleDeficitMethod
+from .nearwakelengthmodel import NearWakeLengthModel
+from .poweroption import PowerOption
+from .stabilityclass import StabilityClass
+from .turbulenceboxoption import TurbulenceBoxOption
+from .turbulenceboxscaling import TurbulenceBoxScaling
+from .viscosityfilter import ViscosityFilter
+from .weightoption import WeightOption
+from .windparkturbine import WindParkTurbine
+from .windturbinetype import WindTurbineType
+from sima.sima import ConditionSelectable
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class Generator(Named,ConditionSelectable):
     """
@@ -34,6 +34,8 @@ class Generator(Named,ConditionSelectable):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -124,6 +126,7 @@ class Generator(Named,ConditionSelectable):
     def __init__(self , description="", airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.CONSTANT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=False, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.airDensity = airDensity
@@ -195,6 +198,16 @@ class Generator(Named,ConditionSelectable):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -203,7 +216,7 @@ class Generator(Named,ConditionSelectable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -425,7 +438,7 @@ class Generator(Named,ConditionSelectable):
     def windTurbineTypes(self, value: List[WindTurbineType]):
         """Set windTurbineTypes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__windTurbineTypes = value
 
     @property
@@ -437,7 +450,7 @@ class Generator(Named,ConditionSelectable):
     def windParkLayout(self, value: List[WindParkTurbine]):
         """Set windParkLayout"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__windParkLayout = value
 
     @property

@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.lineplot import LinePlotBlueprint
 from typing import Dict
+from .axis import Axis
+from .font import Font
+from .plotline import PlotLine
+from .plotsize import PlotSize
 from dmt.entity import Entity
-from marmo.report.axis import Axis
-from marmo.report.font import Font
-from marmo.report.plotline import PlotLine
-from marmo.report.plotsize import PlotSize
 
 class LinePlot(Entity):
     """
@@ -218,5 +218,5 @@ class LinePlot(Entity):
     def lines(self, value: List[PlotLine]):
         """Set lines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lines = value

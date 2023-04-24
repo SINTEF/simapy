@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simoheavecompensator import SIMOHeaveCompensatorBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.compensatorlimitation import CompensatorLimitation
-from sima.simo.compensatortype import CompensatorType
+from .compensatorlimitation import CompensatorLimitation
+from .compensatortype import CompensatorType
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class SIMOHeaveCompensator(NamedObject):
     """
@@ -16,6 +16,8 @@ class SIMOHeaveCompensator(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -53,6 +55,7 @@ class SIMOHeaveCompensator(NamedObject):
     def __init__(self , description="", _type=CompensatorType.GENERIC, limitationMode=CompensatorLimitation.FACTOR, factor=0.0, clippingLevel=0.0, numWiresCylinder=2, strokeLength=0.0, cylinderArea=0.0, feedbackGainFactor=0.0, feedbackTimeDerivative=0.0, feedforwardGainFactor=0.0, feedforwardTimeDerivative=0.0, valveCharacteristics=0.0, valveTimeConstant=0.0, lowPassTimeConstant=0.0, numWiresTopHook=1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self._type = _type
@@ -92,6 +95,16 @@ class SIMOHeaveCompensator(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -100,7 +113,7 @@ class SIMOHeaveCompensator(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wavedriftdampingdofitem import WaveDriftDampingDofItemBlueprint
 from typing import Dict
-from sima.hydro.directiondependentvalues import DirectionDependentValues
-from sima.hydro.dof import DOF
-from sima.hydro.values import Values
-from sima.sima.scriptablevalue import ScriptableValue
+from .directiondependentvalues import DirectionDependentValues
+from .dof import DOF
+from .values import Values
+from sima.sima import ScriptableValue
 
 class WaveDriftDampingDofItem(DirectionDependentValues):
     """
@@ -16,6 +16,8 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     directionalValues : List[Values]
     dof1 : DOF
@@ -25,6 +27,7 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     def __init__(self , description="", dof1=DOF.X, dof2=DOF.X, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.directionalValues = list()
         self.dof1 = dof1
@@ -51,6 +54,16 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -59,7 +72,7 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -71,7 +84,7 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     def directionalValues(self, value: List[Values]):
         """Set directionalValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__directionalValues = value
 
     @property

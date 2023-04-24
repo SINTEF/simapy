@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlasurface import HLASurfaceBlueprint
 from typing import Dict
-from sima.hla.hlaobject import HLAObject
-from sima.hla.surfacetype import SurfaceType
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaobject import HLAObject
+from .surfacetype import SurfaceType
+from sima.sima import ScriptableValue
 
 class HLASurface(HLAObject):
     """
@@ -15,6 +15,8 @@ class HLASurface(HLAObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -30,6 +32,7 @@ class HLASurface(HLAObject):
     def __init__(self , description="", _type=SurfaceType.OCEAN_SURFACE, transparency=0.0, sizeX=0.0, sizeY=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self._type = _type
@@ -58,6 +61,16 @@ class HLASurface(HLAObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -66,7 +79,7 @@ class HLASurface(HLAObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

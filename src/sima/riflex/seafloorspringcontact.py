@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.seafloorspringcontact import SeafloorSpringContactBlueprint
 from typing import Dict
-from sima.riflex.seafloorcontact import SeafloorContact
-from sima.sima.scriptablevalue import ScriptableValue
+from .seafloorcontact import SeafloorContact
+from sima.sima import ScriptableValue
 
 class SeafloorSpringContact(SeafloorContact):
     """
@@ -14,6 +14,8 @@ class SeafloorSpringContact(SeafloorContact):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -40,6 +42,7 @@ class SeafloorSpringContact(SeafloorContact):
     def __init__(self , description="", axialStiffness=0.0, axialFriction=0.0, axialDamping=0.0, lateralStiffness=0.0, lateralFriction=0.0, lateralDamping=0.0, normalStiffness=0.0, normalDamping=0.0, applyLateralContactForces=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.axialStiffness = axialStiffness
@@ -73,6 +76,16 @@ class SeafloorSpringContact(SeafloorContact):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class SeafloorSpringContact(SeafloorContact):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

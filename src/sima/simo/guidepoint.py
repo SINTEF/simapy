@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.guidepoint import GuidePointBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.vector3 import Vector3
-from sima.simo.simobodypoint import SIMOBodyPoint
-from sima.simo.simoheavecompensator import SIMOHeaveCompensator
-from sima.simo.simotensioner import SIMOTensioner
-from sima.simo.winch import Winch
+from .simobodypoint import SIMOBodyPoint
+from .simoheavecompensator import SIMOHeaveCompensator
+from .simotensioner import SIMOTensioner
+from .winch import Winch
+from sima.sima import ScriptableValue
+from sima.sima import Vector3
 
 class GuidePoint(SIMOBodyPoint):
     """
@@ -18,6 +18,8 @@ class GuidePoint(SIMOBodyPoint):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -39,6 +41,7 @@ class GuidePoint(SIMOBodyPoint):
     def __init__(self , description="", x=0.0, y=0.0, z=0.0, diameter=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.winch = None
@@ -71,6 +74,16 @@ class GuidePoint(SIMOBodyPoint):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -79,7 +92,7 @@ class GuidePoint(SIMOBodyPoint):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

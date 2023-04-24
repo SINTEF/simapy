@@ -13,6 +13,7 @@ class ISO_13628_7CombinedLoadingBlueprint(CombinedLoadingBlueprint):
     def __init__(self, name="ISO_13628_7CombinedLoading", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("refPointPressure","number","Internal design pressure at vertical reference position",default=0.0))

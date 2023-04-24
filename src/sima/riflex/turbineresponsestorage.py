@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.turbineresponsestorage import TurbineResponseStorageBlueprint
 from typing import Dict
-from sima.riflex.storagetype import StorageType
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .storagetype import StorageType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class TurbineResponseStorage(MOAO):
     """
@@ -15,6 +15,8 @@ class TurbineResponseStorage(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     store : bool
          (default False)
@@ -26,6 +28,7 @@ class TurbineResponseStorage(MOAO):
     def __init__(self , description="", store=False, timeInterval=0.0, fileFormat=StorageType.BINARY, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.store = store
         self.timeInterval = timeInterval
@@ -52,6 +55,16 @@ class TurbineResponseStorage(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -60,7 +73,7 @@ class TurbineResponseStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

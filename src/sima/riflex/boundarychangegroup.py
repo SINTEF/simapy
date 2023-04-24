@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.boundarychangegroup import BoundaryChangeGroupBlueprint
 from typing import Dict
-from sima.riflex.nodeboundarychangeitem import NodeBoundaryChangeItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .nodeboundarychangeitem import NodeBoundaryChangeItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class BoundaryChangeGroup(MOAO):
     """
@@ -15,6 +15,8 @@ class BoundaryChangeGroup(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     timeChange : float
          Time for boundary change(default 0.0)
@@ -24,6 +26,7 @@ class BoundaryChangeGroup(MOAO):
     def __init__(self , description="", timeChange=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.timeChange = timeChange
         self.nodeBoundaryChanges = list()
@@ -49,6 +52,16 @@ class BoundaryChangeGroup(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class BoundaryChangeGroup(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +92,5 @@ class BoundaryChangeGroup(MOAO):
     def nodeBoundaryChanges(self, value: List[NodeBoundaryChangeItem]):
         """Set nodeBoundaryChanges"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__nodeBoundaryChanges = value

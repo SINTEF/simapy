@@ -13,5 +13,5 @@ class PackageInfoBlueprint(NamedEntityBlueprint):
     def __init__(self, name="PackageInfo", package_path="sima", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("name","string",""))
+        self.add_attribute(Attribute("name","string","",optional=False))
         self.add_attribute(Attribute("version","integer","",default=0))

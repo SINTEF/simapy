@@ -13,6 +13,7 @@ class NonLinearHydrostaticStiffnessBlueprint(MOAOBlueprint):
     def __init__(self, name="NonLinearHydrostaticStiffness", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("geometryPosition","sima/sima/Position","",True))
         self.add_attribute(Attribute("geometryFile","string","Geometry definition file"))

@@ -5,15 +5,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlalocation import HLALocationBlueprint
 from typing import Dict
-from sima.hla.hlaseasurface import HLASeaSurface
-from sima.hla.sim3dbottom import SIM3DBottom
-from sima.sima.flatbottom import FlatBottom
-from sima.sima.infrastructurebody import InfrastructureBody
-from sima.sima.initialviewpoint import InitialViewpoint
-from sima.sima.location import Location
-from sima.sima.namedviewpoint import NamedViewpoint
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaseasurface import HLASeaSurface
+from .sim3dbottom import SIM3DBottom
+from sima.sima import FlatBottom
+from sima.sima import InfrastructureBody
+from sima.sima import InitialViewpoint
+from sima.sima import Location
+from sima.sima import NamedViewpoint
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class HLALocation(Location):
     """
@@ -21,6 +21,8 @@ class HLALocation(Location):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -44,6 +46,7 @@ class HLALocation(Location):
     def __init__(self , description="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.initialViewpoint = None
@@ -79,6 +82,16 @@ class HLALocation(Location):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -87,7 +100,7 @@ class HLALocation(Location):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -129,7 +142,7 @@ class HLALocation(Location):
     def viewpoints(self, value: List[NamedViewpoint]):
         """Set viewpoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__viewpoints = value
 
     @property
@@ -181,7 +194,7 @@ class HLALocation(Location):
     def infrastructureBodies(self, value: List[InfrastructureBody]):
         """Set infrastructureBodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__infrastructureBodies = value
 
     @property

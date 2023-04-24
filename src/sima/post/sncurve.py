@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.sncurve import SNCurveBlueprint
 from typing import Dict
-from sima.post.fatiguelimitindicator import FatigueLimitIndicator
-from sima.post.sncurveitem import SNCurveItem
-from sima.post.sncurvetype import SNCurveType
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .fatiguelimitindicator import FatigueLimitIndicator
+from .sncurveitem import SNCurveItem
+from .sncurvetype import SNCurveType
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class SNCurve(NamedObject):
     """
@@ -17,6 +17,8 @@ class SNCurve(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -42,6 +44,7 @@ class SNCurve(NamedObject):
     def __init__(self , description="", usePredefinedCurve=False, predefinedCurve=SNCurveType.DNV_B1, negativeInverseSlope=0.0, interceptStress=0.0, thicknessExponent=1.0, referenceThicknessFactor=1.0, fatigueLimitIndicator=FatigueLimitIndicator.STRESS_RANGE, fatigueLimitStress=0.0, fatigueLimitCycles=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.usePredefinedCurve = usePredefinedCurve
@@ -76,6 +79,16 @@ class SNCurve(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -84,7 +97,7 @@ class SNCurve(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -166,7 +179,7 @@ class SNCurve(NamedObject):
     def curveItems(self, value: List[SNCurveItem]):
         """Set curveItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__curveItems = value
 
     @property

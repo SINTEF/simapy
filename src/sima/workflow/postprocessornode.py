@@ -6,15 +6,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.postprocessornode import PostProcessorNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.runnode import RunNode
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.postprocessorinputslot import PostprocessorInputSlot
-from sima.workflow.postprocessoroutputslot import PostprocessorOutputSlot
-from sima.workflow.variableinputslot import VariableInputSlot
+from .postprocessorinputslot import PostprocessorInputSlot
+from .postprocessoroutputslot import PostprocessorOutputSlot
+from .variableinputslot import VariableInputSlot
+from sima.post import ControlSignalInputSlot
+from sima.post import RunNode
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.post.postprocessorspecification import PostProcessorSpecification
+    from sima.post import PostProcessorSpecification
 
 class PostProcessorNode(RunNode):
     """
@@ -22,6 +22,8 @@ class PostProcessorNode(RunNode):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -43,6 +45,7 @@ class PostProcessorNode(RunNode):
     def __init__(self , description="", x=0, y=0, h=0, w=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.x = x
@@ -76,6 +79,16 @@ class PostProcessorNode(RunNode):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -84,7 +97,7 @@ class PostProcessorNode(RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -146,7 +159,7 @@ class PostProcessorNode(RunNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -158,7 +171,7 @@ class PostProcessorNode(RunNode):
     def variableInputSlots(self, value: List[VariableInputSlot]):
         """Set variableInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableInputSlots = value
 
     @property
@@ -180,7 +193,7 @@ class PostProcessorNode(RunNode):
     def postOutputSlots(self, value: List[PostprocessorOutputSlot]):
         """Set postOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__postOutputSlots = value
 
     @property
@@ -192,5 +205,5 @@ class PostProcessorNode(RunNode):
     def postInputSlots(self, value: List[PostprocessorInputSlot]):
         """Set postInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__postInputSlots = value

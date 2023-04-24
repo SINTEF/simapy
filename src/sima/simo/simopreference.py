@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simopreference import SIMOPreferenceBlueprint
 from numpy import ndarray,asarray
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simapreference import SIMAPreference
+from sima.sima import SIMAPreference
+from sima.sima import ScriptableValue
 
 class SIMOPreference(SIMAPreference):
     """
@@ -14,6 +14,8 @@ class SIMOPreference(SIMAPreference):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     selectedVersion : str
          Selected SIMO/RIFLEX installation(default 'Default')
@@ -27,6 +29,7 @@ class SIMOPreference(SIMAPreference):
     def __init__(self , description="", selectedVersion='Default', **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.selectedVersion = selectedVersion
         self.locations = ndarray(1)
@@ -54,6 +57,16 @@ class SIMOPreference(SIMAPreference):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -62,7 +75,7 @@ class SIMOPreference(SIMAPreference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

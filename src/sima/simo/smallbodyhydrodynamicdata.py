@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.smallbodyhydrodynamicdata import SmallBodyHydrodynamicDataBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.depthdependency import DepthDependency
-from sima.simo.depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
-from sima.simo.soilpenetration import SoilPenetration
+from .depthdependency import DepthDependency
+from .depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
+from .soilpenetration import SoilPenetration
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.hydro.diffractedwave import DiffractedWave
+    from sima.hydro import DiffractedWave
 
 class SmallBodyHydrodynamicData(MOAO):
     """
@@ -21,6 +21,8 @@ class SmallBodyHydrodynamicData(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     svol : float
          Fully submerged volume(default 0.0)
@@ -54,6 +56,7 @@ class SmallBodyHydrodynamicData(MOAO):
     def __init__(self , description="", svol=0.0, am1=0.0, am2=0.0, am3=0.0, c11=0.0, c12=0.0, c13=0.0, c21=0.0, c22=0.0, c23=0.0, zcoef=0.0, depthDependency=DepthDependency.WAVE_ELEVATION, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.svol = svol
         self.am1 = am1
@@ -92,6 +95,16 @@ class SmallBodyHydrodynamicData(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -100,7 +113,7 @@ class SmallBodyHydrodynamicData(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -237,7 +250,7 @@ fully submerged"""
     def depthDependentHydrodynamicCoefficients(self, value: List[DepthDependenthydrodynamicCoefficient]):
         """Set depthDependentHydrodynamicCoefficients"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__depthDependentHydrodynamicCoefficients = value
 
     @property

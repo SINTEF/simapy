@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.guidancesystem import GuidanceSystemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.guidance import Guidance
-from sima.simo.headingreference import HeadingReference
-from sima.simo.waypoint import Waypoint
-from sima.simo.waypointreference import WaypointReference
+from .guidance import Guidance
+from .headingreference import HeadingReference
+from .waypoint import Waypoint
+from .waypointreference import WaypointReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class GuidanceSystem(MOAO):
     """
@@ -18,6 +18,8 @@ class GuidanceSystem(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     guidance : Guidance
     waypointReference : WaypointReference
@@ -34,6 +36,7 @@ class GuidanceSystem(MOAO):
     def __init__(self , description="", guidance=Guidance.STRAIGHT_LINES, waypointReference=WaypointReference.LOCAL, headingReference=HeadingReference.TANGENTIAL, startTime=200.0, maxAccelerationX=0.0, maxAccelerationY=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.guidance = guidance
         self.waypointReference = waypointReference
@@ -64,6 +67,16 @@ class GuidanceSystem(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -72,7 +85,7 @@ class GuidanceSystem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -144,5 +157,5 @@ class GuidanceSystem(MOAO):
     def waypoints(self, value: List[Waypoint]):
         """Set waypoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waypoints = value

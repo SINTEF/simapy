@@ -5,20 +5,20 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.thruster import ThrusterBlueprint
 from typing import Dict
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.controlsequenceitem import ControlSequenceItem
-from sima.simo.formulation import Formulation
-from sima.simo.ithruster import IThruster
-from sima.simo.surfaceproximityreductionfactor import SurfaceProximityReductionFactor
-from sima.simo.thrustcoefficientmodel import ThrustCoefficientModel
-from sima.simo.thrusterfailuremode import ThrusterFailureMode
-from sima.simo.thrusterforbiddenzone import ThrusterForbiddenZone
-from sima.simo.thrusterreduction import ThrusterReduction
-from sima.simo.thrustertype import ThrusterType
-from sima.simo.thrustloss import ThrustLoss
-from sima.simo.thrustsignaltype import ThrustSignalType
-from sima.simo.thrusttorquecoefficient import ThrustTorqueCoefficient
+from .controlsequenceitem import ControlSequenceItem
+from .formulation import Formulation
+from .ithruster import IThruster
+from .surfaceproximityreductionfactor import SurfaceProximityReductionFactor
+from .thrustcoefficientmodel import ThrustCoefficientModel
+from .thrusterfailuremode import ThrusterFailureMode
+from .thrusterforbiddenzone import ThrusterForbiddenZone
+from .thrusterreduction import ThrusterReduction
+from .thrustertype import ThrusterType
+from .thrustloss import ThrustLoss
+from .thrustsignaltype import ThrustSignalType
+from .thrusttorquecoefficient import ThrustTorqueCoefficient
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class Thruster(IThruster):
     """
@@ -26,6 +26,8 @@ class Thruster(IThruster):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -92,6 +94,7 @@ class Thruster(IThruster):
     def __init__(self , description="", minForce=0.0, maxForce=0.0, _type=ThrusterType.FIXED_CONVENTIONAL, diameter=1.0, forceDirection=0.0, force=0.0, minTimeChange=0.0, maxRevolvingSpeed=10.0, failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, maxRudderAngle=0.0, rudderCoefficient=0.0, relativeDeadBand=0.01, thrustReductionFactor=1.0, minDirectionChange=0.0, formulation=Formulation.SIMO_41, ctForward=1.0, cqForward=1.0, ctReverse=1.0, cqReverse=1.0, pdRatio=1.0, tcThrust=0.0, tcAzimuth=0.0, coefficientModel=ThrustCoefficientModel.INTERNAL, thrustLoss=ThrustLoss.NONE, specifyControlSequence=False, controlSequenceSignalType=ThrustSignalType.FORCE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.minForce = minForce
@@ -150,6 +153,16 @@ class Thruster(IThruster):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -158,7 +171,7 @@ class Thruster(IThruster):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -310,7 +323,7 @@ class Thruster(IThruster):
     def reductionItems(self, value: List[ThrusterReduction]):
         """Set reductionItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__reductionItems = value
 
     @property
@@ -352,7 +365,7 @@ class Thruster(IThruster):
     def forbiddenZoneItems(self, value: List[ThrusterForbiddenZone]):
         """Set forbiddenZoneItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__forbiddenZoneItems = value
 
     @property
@@ -454,7 +467,7 @@ class Thruster(IThruster):
     def forwardThrustTorqueCoefficients(self, value: List[ThrustTorqueCoefficient]):
         """Set forwardThrustTorqueCoefficients"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__forwardThrustTorqueCoefficients = value
 
     @property
@@ -466,7 +479,7 @@ class Thruster(IThruster):
     def reverseThrustTorqueCoefficients(self, value: List[ThrustTorqueCoefficient]):
         """Set reverseThrustTorqueCoefficients"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__reverseThrustTorqueCoefficients = value
 
     @property
@@ -488,7 +501,7 @@ class Thruster(IThruster):
     def surfaceProximityReductionFactors(self, value: List[SurfaceProximityReductionFactor]):
         """Set surfaceProximityReductionFactors"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__surfaceProximityReductionFactors = value
 
     @property
@@ -520,5 +533,5 @@ class Thruster(IThruster):
     def controlSequence(self, value: List[ControlSequenceItem]):
         """Set controlSequence"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSequence = value

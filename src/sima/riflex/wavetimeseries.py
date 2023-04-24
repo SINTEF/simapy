@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wavetimeseries import WaveTimeSeriesBlueprint
 from typing import Dict
-from sima.riflex.fileformatascistar import FileFormatAsciStar
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .fileformatascistar import FileFormatAsciStar
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WaveTimeSeries(MOAO):
     """
@@ -15,6 +15,8 @@ class WaveTimeSeries(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     fileName : str
          Wave time series file(default None)
@@ -37,6 +39,7 @@ class WaveTimeSeries(MOAO):
     def __init__(self , description="", fileFormat=FileFormatAsciStar.ASCII, timeColumnNum=1, waveColumnNum=2, starFileVersion=0, direction=0.0, xgWav=0.0, ygWav=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.fileName = None
         self.fileFormat = fileFormat
@@ -68,6 +71,16 @@ class WaveTimeSeries(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -76,7 +89,7 @@ class WaveTimeSeries(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

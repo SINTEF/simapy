@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.airfoil import AirfoilBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.foilpoint import FoilPoint
-from sima.windturbine.reynolditem import ReynoldItem
+from .foilpoint import FoilPoint
+from .reynolditem import ReynoldItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class Airfoil(NamedObject):
     """
@@ -16,6 +16,8 @@ class Airfoil(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -40,6 +42,7 @@ class Airfoil(NamedObject):
     def __init__(self , description="", deepstallRegime=False, inputStallPoints=False, upperTailAngle=0.0, lowerTailAngle=0.0, upperNoseAngle=0.0, lowerNoseAngle=0.0, noseRadiusRatio=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.deepstallRegime = deepstallRegime
@@ -73,6 +76,16 @@ class Airfoil(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class Airfoil(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -173,7 +186,7 @@ class Airfoil(NamedObject):
     def reynoldItems(self, value: List[ReynoldItem]):
         """Set reynoldItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__reynoldItems = value
 
     @property
@@ -185,5 +198,5 @@ class Airfoil(NamedObject):
     def points(self, value: List[FoilPoint]):
         """Set points"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__points = value

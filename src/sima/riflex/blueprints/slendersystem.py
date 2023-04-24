@@ -13,6 +13,7 @@ class SlenderSystemBlueprint(MOAOBlueprint):
     def __init__(self, name="SlenderSystem", package_path="sima/riflex", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("superNodes","sima/riflex/SuperNode","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("lines","sima/riflex/ARLine","",True,Dimension("*")))
@@ -43,3 +44,4 @@ class SlenderSystemBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("marineGrowthItems","sima/riflex/MarineGrowth","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("soilLayerProfiles","sima/riflex/SoilLayerProfile","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("soilTypes","sima/riflex/SoilType","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("userdefinedElements","sima/riflex/UserdefinedElement","",True,Dimension("*")))

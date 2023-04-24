@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.winch import WinchBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.winchcontrol import WinchControl
-from sima.simo.winchruninterval import WinchRunInterval
+from .winchcontrol import WinchControl
+from .winchruninterval import WinchRunInterval
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class Winch(NamedObject):
     """
@@ -16,6 +16,8 @@ class Winch(NamedObject):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -35,6 +37,7 @@ class Winch(NamedObject):
     def __init__(self , description="", controlType=WinchControl.PREDEFINED, maximumSpeed=0.0, acceleration=0.0, maximumLength=0.0, drumLength=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.controlType = controlType
@@ -65,6 +68,16 @@ class Winch(NamedObject):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -73,7 +86,7 @@ class Winch(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -145,5 +158,5 @@ class Winch(NamedObject):
     def intervals(self, value: List[WinchRunInterval]):
         """Set intervals"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__intervals = value

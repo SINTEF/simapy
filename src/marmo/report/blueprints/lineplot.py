@@ -13,7 +13,7 @@ class LinePlotBlueprint(EntityBlueprint):
     def __init__(self, name="LinePlot", package_path="marmo/report", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
-        self.add_attribute(Attribute("title","string",""))
+        self.add_attribute(Attribute("title","string","",optional=False))
         self.add_attribute(Attribute("xlabel","string",""))
         self.add_attribute(Attribute("ylabel","string",""))
         self.add_attribute(Attribute("showlegend","boolean","",default=True))

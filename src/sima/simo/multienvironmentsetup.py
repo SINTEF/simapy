@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.multienvironmentsetup import MultiEnvironmentSetupBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class MultiEnvironmentSetup(MOAO):
     """
@@ -14,6 +14,8 @@ class MultiEnvironmentSetup(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     windWaveLowerFrequency : float
          Wind wave lower frequency limit(default 0.1)
@@ -28,6 +30,7 @@ class MultiEnvironmentSetup(MOAO):
     def __init__(self , description="", windWaveLowerFrequency=0.1, windWaveUpperFrequency=3.0, swellWaveLowerFrequency=0.05, swellWaveUpperFrequency=2.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.windWaveLowerFrequency = windWaveLowerFrequency
         self.windWaveUpperFrequency = windWaveUpperFrequency
@@ -55,6 +58,16 @@ class MultiEnvironmentSetup(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class MultiEnvironmentSetup(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

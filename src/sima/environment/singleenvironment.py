@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.singleenvironment import SingleEnvironmentBlueprint
 from typing import Dict
-from sima.environment.current import Current
-from sima.environment.environment import Environment
-from sima.environment.wave import Wave
-from sima.environment.wind import Wind
-from sima.sima.scriptablevalue import ScriptableValue
+from .current import Current
+from .environment import Environment
+from .wave import Wave
+from .wind import Wind
+from sima.sima import ScriptableValue
 
 class SingleEnvironment(Environment):
     """
@@ -17,6 +17,8 @@ class SingleEnvironment(Environment):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -29,6 +31,7 @@ class SingleEnvironment(Environment):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.wave = None
@@ -57,6 +60,16 @@ class SingleEnvironment(Environment):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -65,7 +78,7 @@ class SingleEnvironment(Environment):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

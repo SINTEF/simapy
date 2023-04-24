@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.regularwaveloading import RegularWaveLoadingBlueprint
 from typing import Dict
-from sima.riflex.kinematicsinwavezone import KinematicsInWaveZone
-from sima.riflex.riserposition import RiserPosition
-from sima.riflex.wavetheory import WaveTheory
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .kinematicsinwavezone import KinematicsInWaveZone
+from .riserposition import RiserPosition
+from .wavetheory import WaveTheory
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class RegularWaveLoading(MOAO):
     """
@@ -17,6 +17,8 @@ class RegularWaveLoading(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     waveTheory : WaveTheory
          Wave theory:\n - Airy linear wave theory\n - Stoke 5th order wave theory
@@ -29,6 +31,7 @@ class RegularWaveLoading(MOAO):
     def __init__(self , description="", waveTheory=WaveTheory.AIRY_LINEAR, seaSurfaceDefinition=KinematicsInWaveZone.MEAN_WATER_LEVEL, riserPosition=RiserPosition.DYNAMIC_POSITIONS, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.waveTheory = waveTheory
         self.seaSurfaceDefinition = seaSurfaceDefinition
@@ -55,6 +58,16 @@ class RegularWaveLoading(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -63,7 +76,7 @@ class RegularWaveLoading(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

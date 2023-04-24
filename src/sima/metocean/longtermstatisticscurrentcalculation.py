@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.longtermstatisticscurrentcalculation import LongTermStatisticsCurrentCalculationBlueprint
 from typing import Dict
-from sima.metocean.calculationlevel import CalculationLevel
-from sima.metocean.levelstatisticsmethod import LevelStatisticsMethod
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .calculationlevel import CalculationLevel
+from .levelstatisticsmethod import LevelStatisticsMethod
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.metocean.currentlongtermstatistics import CurrentLongTermStatistics
+    from .currentlongtermstatistics import CurrentLongTermStatistics
 
 class LongTermStatisticsCurrentCalculation(MOAO):
     """
@@ -20,6 +20,8 @@ class LongTermStatisticsCurrentCalculation(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     returnPeriod : float
          (default 0.0)
@@ -35,6 +37,7 @@ class LongTermStatisticsCurrentCalculation(MOAO):
     def __init__(self , description="", returnPeriod=0.0, method=LevelStatisticsMethod.FROM_DISTRIBUTION, omniMethod=LevelStatisticsMethod.FROM_DISTRIBUTION, directionRelativeToWind=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.returnPeriod = returnPeriod
         self.levels = list()
@@ -65,6 +68,16 @@ class LongTermStatisticsCurrentCalculation(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -73,7 +86,7 @@ class LongTermStatisticsCurrentCalculation(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -95,7 +108,7 @@ class LongTermStatisticsCurrentCalculation(MOAO):
     def levels(self, value: List[CalculationLevel]):
         """Set levels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__levels = value
 
     @property

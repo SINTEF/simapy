@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.reporttextfile import ReportTextFileBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.reportfragmentitem import ReportFragmentItem
+from .reportfragmentitem import ReportFragmentItem
+from sima.sima import ScriptableValue
 
 class ReportTextFile(ReportFragmentItem):
     """
@@ -14,6 +14,8 @@ class ReportTextFile(ReportFragmentItem):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     path : str
          (default None)
@@ -24,6 +26,7 @@ class ReportTextFile(ReportFragmentItem):
     def __init__(self , description="", plainText=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.path = None
         self.plainText = plainText
@@ -49,6 +52,16 @@ class ReportTextFile(ReportFragmentItem):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class ReportTextFile(ReportFragmentItem):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.font import FontBlueprint
 from typing import Dict
+from .fontstyle import FontStyle
 from dmt.entity import Entity
-from marmo.report.fontstyle import FontStyle
 
 class Font(Entity):
     """

@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlasignalplot import HLASignalPlotBlueprint
 from typing import Dict
-from sima.hla.hlasignal import HLASignal
-from sima.post.figuretemplate import FigureTemplate
-from sima.post.traceconfiguration import TraceConfiguration
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlasignal import HLASignal
+from sima.post import FigureTemplate
+from sima.post import TraceConfiguration
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class HLASignalPlot(Named):
     """
@@ -17,6 +17,8 @@ class HLASignalPlot(Named):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -40,6 +42,7 @@ class HLASignalPlot(Named):
     def __init__(self , description="", fixed=False, selectAll=False, timeWindow=60.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.figureTemplate = None
@@ -73,6 +76,16 @@ class HLASignalPlot(Named):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -81,7 +94,7 @@ class HLASignalPlot(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -113,7 +126,7 @@ class HLASignalPlot(Named):
     def traces(self, value: List[TraceConfiguration]):
         """Set traces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__traces = value
 
     @property
@@ -175,7 +188,7 @@ class HLASignalPlot(Named):
     def signals(self, value: List[HLASignal]):
         """Set signals"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__signals = value
 
     @property

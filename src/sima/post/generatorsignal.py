@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.generatorsignal import GeneratorSignalBlueprint
 from typing import Dict
-from sima.post.signalproperties import SignalProperties
-from sima.post.signalpropertiescontainer import SignalPropertiesContainer
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .signalproperties import SignalProperties
+from .signalpropertiescontainer import SignalPropertiesContainer
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class GeneratorSignal(SignalPropertiesContainer,Named):
     """
@@ -16,6 +16,8 @@ class GeneratorSignal(SignalPropertiesContainer,Named):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     properties : List[SignalProperties]
     name : str
@@ -25,6 +27,7 @@ class GeneratorSignal(SignalPropertiesContainer,Named):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.properties = list()
         self.name = None
@@ -50,6 +53,16 @@ class GeneratorSignal(SignalPropertiesContainer,Named):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -58,7 +71,7 @@ class GeneratorSignal(SignalPropertiesContainer,Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -70,7 +83,7 @@ class GeneratorSignal(SignalPropertiesContainer,Named):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

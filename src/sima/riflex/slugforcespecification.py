@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.slugforcespecification import SlugForceSpecificationBlueprint
 from typing import Dict
-from sima.riflex.slugforcedensitycontrol import SlugForceDensityControl
-from sima.riflex.slugforceinterruption import SlugForceInterruption
-from sima.riflex.slugforcevelocitycontrol import SlugForceVelocityControl
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .slugforcedensitycontrol import SlugForceDensityControl
+from .slugforceinterruption import SlugForceInterruption
+from .slugforcevelocitycontrol import SlugForceVelocityControl
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SlugForceSpecification(MOAO):
     """
@@ -17,6 +17,8 @@ class SlugForceSpecification(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     enterTime : float
          Time when slug enters first end of main riser line(default 0.0)
@@ -57,6 +59,7 @@ class SlugForceSpecification(MOAO):
     def __init__(self , description="", enterTime=0.0, interruption=SlugForceInterruption.SLUG, length=0.0, mass=0.0, velocity=0.0, densityControl=SlugForceDensityControl.CONSTANT, velocityControl=SlugForceVelocityControl.CONSTANT, cycles=1, cycleTime=0.0, secondPosition=0.0, massAtSecondPosition=0.0, referenceDepth=0.0, velocitySpecification=0.0, velocityExponent=0.0, importFlow=False, addedFlow=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.enterTime = enterTime
         self.interruption = interruption
@@ -97,6 +100,16 @@ class SlugForceSpecification(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -105,7 +118,7 @@ class SlugForceSpecification(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

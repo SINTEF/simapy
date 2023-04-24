@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlamodel import HLAModelBlueprint
 from typing import Dict
-from sima.hla.hlaforce import HLAForce
-from sima.hla.hlalocation import HLALocation
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaforce import HLAForce
+from .hlalocation import HLALocation
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class HLAModel(MOAO):
     """
@@ -16,6 +16,8 @@ class HLAModel(MOAO):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     location : HLALocation
     forces : List[HLAForce]
@@ -24,6 +26,7 @@ class HLAModel(MOAO):
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.location = None
         self.forces = list()
@@ -49,6 +52,16 @@ class HLAModel(MOAO):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -57,7 +70,7 @@ class HLAModel(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +92,5 @@ class HLAModel(MOAO):
     def forces(self, value: List[HLAForce]):
         """Set forces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__forces = value

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fatigueanalysis import FatigueAnalysisBlueprint
 from typing import Dict
-from sima.riflex.fatigueanalysisitem import FatigueAnalysisItem
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .fatigueanalysisitem import FatigueAnalysisItem
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class FatigueAnalysis(Named):
     """
@@ -15,6 +15,8 @@ class FatigueAnalysis(Named):
     -----------------
     description : str
          (default "")
+    _id : str
+         (default None)
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
@@ -35,6 +37,7 @@ class FatigueAnalysis(Named):
     def __init__(self , description="", numberOfPoints=8, includeAllPoints=False, specifyTimeWindow=False, startTime=0.0, endTime=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
+        self._id = None
         self.scriptableValues = list()
         self.name = None
         self.numberOfPoints = numberOfPoints
@@ -65,6 +68,16 @@ class FatigueAnalysis(Named):
         self.__description = value
 
     @property
+    def _id(self) -> str:
+        """"""
+        return self.___id
+
+    @_id.setter
+    def _id(self, value: str):
+        """Set _id"""
+        self.___id = value
+
+    @property
     def scriptableValues(self) -> List[ScriptableValue]:
         """"""
         return self.__scriptableValues
@@ -73,7 +86,7 @@ class FatigueAnalysis(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -115,7 +128,7 @@ class FatigueAnalysis(Named):
     def items(self, value: List[FatigueAnalysisItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property
