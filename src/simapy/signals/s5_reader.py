@@ -1,17 +1,17 @@
-""" Export entites as h5"""
+""" Read entities from SIMA s5 file"""
+import json
 from collections import OrderedDict
 from importlib import import_module
 from typing import Callable, Dict, Sequence
-from marmo import containers
 
 import h5py as h5
-import json
 import numpy as np
-
 from dmt.attribute import Attribute
 from dmt.blueprint_attribute import BlueprintAttribute
 from dmt.entity import Entity
 from dmt.enum_attribute import EnumAttribute
+
+from sima import signals as containers
 
 
 class S5Reader:
@@ -35,6 +35,7 @@ class S5Reader:
         if external_refs:
             self.external_refs = external_refs
         self.datasource = None
+        self.__h5_file = None
 
     def read(self, filename) -> Sequence[Entity]:
         """Read entities from s5 file"""
@@ -50,8 +51,6 @@ class S5Reader:
             entities_dict = json.loads(json_data)
             for name, dicts in entities_dict.items():
                 entities.extend(self.__read_group(name, dicts))
-            # for group in root.values():
-            #     entities.append(self.__read_group(group))
 
         self.__resolve_all()
         return entities
@@ -59,7 +58,7 @@ class S5Reader:
     def __resolve_all(self):
         for ref in self.unresolved:
             if not self.__resolve(ref):
-                raise Exception(f"Unresolved reference: {ref}")
+                raise ValueError(f"Unresolved reference: {ref}")
 
     def __read_group(self, name, e_dicts: Sequence[Dict]) -> Entity:
         """Read entities from Dict"""
@@ -72,7 +71,7 @@ class S5Reader:
         entity_type: str = e_dict.attrs["type"]
         constructor = self._resolve_type(entity_type)
         if not constructor:
-            raise Exception(f"Unkown entity type {entity_type}")
+            raise ValueError(f"Unkown entity type {entity_type}")
         entity_instance: Entity = constructor()
         blueprint = entity_instance.blueprint
         for name, node in e_dict.items():
@@ -113,12 +112,23 @@ class S5Reader:
                 s = self.__read_signal(s_dict)
                 if s:
                     c.signals.append(s)
+                    s_p_dicts = s_dict.get("p")
+                    if s_p_dicts:
+                        self.__read_attributes(s_p_dicts,s.attributes)
 
+        p_dicts = e_dict.get("p")
+        if p_dicts:
+            self.__read_attributes(p_dicts,c.attributes)
         return c
+
+    def __read_attributes(self, p_dict: Dict,attributes: Sequence[Attribute]) -> None:
+        """Read attribute from Dict"""
+        for name, value in p_dict.items():
+            attributes.append(containers.Attribute(name=name, value=value))
+
 
     def __read_signal(self, s_dict: Dict) -> containers.Signal:
         sname = s_dict["name"]
-        props = s_dict.get("p",{})
         for name, dvalue in s_dict.items():
             if name == "n":
                 return containers.DimensionalScalar(
@@ -139,6 +149,7 @@ class S5Reader:
                 return signal
             if name == "xy":
                 signal = containers.NonEquallySpacedSignal(name=sname)
+                props = s_dict.get("p",{})
                 for name, value in props.items():
                     if name == "ylabel":
                         name = "label"
