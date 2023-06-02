@@ -27,6 +27,7 @@ class FatigueProperties(MOAO):
          Number of points around cross-section where fatigue is(default 0)
     resultPrintOption : ResultPrintOption
     timeSeriesPrintOption : TimeSeriesPrintOption
+         Optional tension/curvature export to ascci file ( viv_tension_curvature_ts.txt )
     timeSeriesLength : float
          Length of stress time series to be generated for fatigue calculation(default 0.0)
     timeStep : float
@@ -153,7 +154,7 @@ class FatigueProperties(MOAO):
 
     @property
     def timeSeriesPrintOption(self) -> TimeSeriesPrintOption:
-        """"""
+        """Optional tension/curvature export to ascci file ( viv_tension_curvature_ts.txt )"""
         return self.__timeSeriesPrintOption
 
     @timeSeriesPrintOption.setter

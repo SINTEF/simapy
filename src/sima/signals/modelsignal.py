@@ -7,7 +7,7 @@ from .blueprints.modelsignal import ModelSignalBlueprint
 from typing import Dict
 from .attribute import Attribute
 from .signal import Signal
-from dmt.entity import Entity
+from sima.sima import MOAO
 
 class ModelSignal(Signal):
     """
@@ -18,7 +18,7 @@ class ModelSignal(Signal):
     name : str
          (default None)
     attributes : List[Attribute]
-    value : Entity
+    value : MOAO
     """
 
     def __init__(self , description="", **kwargs):
@@ -71,11 +71,11 @@ class ModelSignal(Signal):
         self.__attributes = value
 
     @property
-    def value(self) -> Entity:
+    def value(self) -> MOAO:
         """"""
         return self.__value
 
     @value.setter
-    def value(self, value: Entity):
+    def value(self, value: MOAO):
         """Set value"""
         self.__value = value

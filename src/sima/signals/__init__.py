@@ -4,6 +4,7 @@ from .booleanarray import BooleanArray # noqa
 from .container import Container # noqa
 from .dimensionalmatrix import DimensionalMatrix # noqa
 from .dimensionalscalar import DimensionalScalar # noqa
+from .entitysignal import EntitySignal # noqa
 from .equallyspacedsignal import EquallySpacedSignal # noqa
 from .integerarray import IntegerArray # noqa
 from .integerscalar import IntegerScalar # noqa

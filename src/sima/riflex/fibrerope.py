@@ -15,7 +15,6 @@ from .crsstiffnessdamping import CRSStiffnessDamping
 from .fibreropemassvolume import FibreRopeMassVolume
 from .hydrodynamicinputcode import HydrodynamicInputCode
 from .loadformulation import LoadFormulation
-from .tangentialfroudekrylovscaling import TangentialFroudeKrylovScaling
 from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -55,6 +54,10 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
          Added mass in normal direction(default 0.0)
     dampingNormDir : float
          Damping coefficients in normal direction(default 0.0)
+    normalDirectionScaling : float
+         Scaling factor for Froude-Krylov term in Morison’s equation in normal direction(default 1.0)
+    tangentialDirectionScaling : float
+         Scale for Froude-Krylov term in Morison’s equation in tangential direction(default 1.0)
     cdt : float
          Quadratic drag coefficient in tangential direction.(default 0.0)
     cdn : float
@@ -79,10 +82,6 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
          Linear drag force coefficient in tangential direction.(default 0.0)
     cdly : float
          Linear drag force coefficient in normal direction.(default 0.0)
-    scfk : float
-         Scaling factor for Froude-Krylov term in Morison’s equation in normal direction(default 1.0)
-    scfkt : TangentialFroudeKrylovScaling
-         Scale for Froude-Krylov term in Morison’s equation in tangential direction
     hydrodynamicRadiationInputCode : HydrodynamicInputCode
          Code for input of simplified radiation force coefficients
     massDampingSpecification : bool
@@ -122,7 +121,7 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     fibreRopeModel : FibreRopeModel
     """
 
-    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, tensionCapacity=0.0, maxCurvature=0.0, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, tmax=0.0, **kwargs):
+    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, normalDirectionScaling=1.0, tangentialDirectionScaling=1.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, tensionCapacity=0.0, maxCurvature=0.0, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, tmax=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self._id = None
@@ -140,6 +139,8 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.addedMassTanDir = addedMassTanDir
         self.addedMassNormDir = addedMassNormDir
         self.dampingNormDir = dampingNormDir
+        self.normalDirectionScaling = normalDirectionScaling
+        self.tangentialDirectionScaling = tangentialDirectionScaling
         self.cdt = cdt
         self.cdn = cdn
         self.cmt = cmt
@@ -152,8 +153,6 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.amy = amy
         self.cdlx = cdlx
         self.cdly = cdly
-        self.scfk = scfk
-        self.scfkt = scfkt
         self.hydrodynamicRadiationInputCode = hydrodynamicRadiationInputCode
         self.massDampingSpecification = massDampingSpecification
         self.stiffnessDampingSpecification = stiffnessDampingSpecification
@@ -349,6 +348,26 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.__dampingNormDir = float(value)
 
     @property
+    def normalDirectionScaling(self) -> float:
+        """Scaling factor for Froude-Krylov term in Morison’s equation in normal direction"""
+        return self.__normalDirectionScaling
+
+    @normalDirectionScaling.setter
+    def normalDirectionScaling(self, value: float):
+        """Set normalDirectionScaling"""
+        self.__normalDirectionScaling = float(value)
+
+    @property
+    def tangentialDirectionScaling(self) -> float:
+        """Scale for Froude-Krylov term in Morison’s equation in tangential direction"""
+        return self.__tangentialDirectionScaling
+
+    @tangentialDirectionScaling.setter
+    def tangentialDirectionScaling(self, value: float):
+        """Set tangentialDirectionScaling"""
+        self.__tangentialDirectionScaling = float(value)
+
+    @property
     def cdt(self) -> float:
         """Quadratic drag coefficient in tangential direction."""
         return self.__cdt
@@ -467,26 +486,6 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     def cdly(self, value: float):
         """Set cdly"""
         self.__cdly = float(value)
-
-    @property
-    def scfk(self) -> float:
-        """Scaling factor for Froude-Krylov term in Morison’s equation in normal direction"""
-        return self.__scfk
-
-    @scfk.setter
-    def scfk(self, value: float):
-        """Set scfk"""
-        self.__scfk = float(value)
-
-    @property
-    def scfkt(self) -> TangentialFroudeKrylovScaling:
-        """Scale for Froude-Krylov term in Morison’s equation in tangential direction"""
-        return self.__scfkt
-
-    @scfkt.setter
-    def scfkt(self, value: TangentialFroudeKrylovScaling):
-        """Set scfkt"""
-        self.__scfkt = value
 
     @property
     def hydrodynamicRadiationInputCode(self) -> HydrodynamicInputCode:

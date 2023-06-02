@@ -33,9 +33,11 @@ class DistanceLineToLineFilter(OperationNode):
     controlSignalInputSlots : List[ControlSignalInputSlot]
     filterInputSlots : List[InputSlot]
     filterOutputSlots : List[OutputSlot]
+    outputVector : bool
+         (default False)
     """
 
-    def __init__(self , description="", x=0, y=0, h=0, w=0, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, outputVector=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self._id = None
@@ -48,6 +50,7 @@ class DistanceLineToLineFilter(OperationNode):
         self.controlSignalInputSlots = list()
         self.filterInputSlots = list()
         self.filterOutputSlots = list()
+        self.outputVector = outputVector
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -176,3 +179,13 @@ class DistanceLineToLineFilter(OperationNode):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__filterOutputSlots = value
+
+    @property
+    def outputVector(self) -> bool:
+        """"""
+        return self.__outputVector
+
+    @outputVector.setter
+    def outputVector(self, value: bool):
+        """Set outputVector"""
+        self.__outputVector = bool(value)

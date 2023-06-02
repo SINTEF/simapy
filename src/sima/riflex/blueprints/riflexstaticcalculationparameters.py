@@ -27,3 +27,4 @@ class RIFLEXStaticCalculationParametersBlueprint(MOAOBlueprint):
         self.add_attribute(EnumAttribute("matrixPlotStorage","sima/riflex/MatrixPlotStorage","Storage option for Matrix Plot"))
         self.add_attribute(Attribute("startAtZero","boolean","Start arc length at zero for each line",default=True))
         self.add_attribute(Attribute("storeStructuralData","boolean","Store additional FEM data",default=False))
+        self.add_attribute(BlueprintAttribute("massSummary","sima/riflex/MassSummary","",True))

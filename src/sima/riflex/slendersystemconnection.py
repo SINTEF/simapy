@@ -49,7 +49,7 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     name : str
          (default 'connection')
     location : BodyLocation
-         If a supernode is used as location option and it is not part of a line, a dummy line will be created automatically.
+         A SIMO body node is added to the element model for each body. \nThe node may have a rigid connection to a slender system node or may be a free or fixed node without connection to the slender system.
     superNode : SuperNode
          Line
     artificialStiffness : bool
@@ -242,7 +242,8 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
 
     @property
     def location(self) -> BodyLocation:
-        """If a supernode is used as location option and it is not part of a line, a dummy line will be created automatically."""
+        """A SIMO body node is added to the element model for each body. 
+The node may have a rigid connection to a slender system node or may be a free or fixed node without connection to the slender system."""
         return self.__location
 
     @location.setter

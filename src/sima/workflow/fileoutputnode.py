@@ -53,10 +53,12 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
          Specify additional properties in the file root(default False)
     writeRawText : bool
          Writes a single input string into the given file(default False)
+    indent : bool
+         Indent the output text(default False)
     outputSlot : OutputSlot
     """
 
-    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFormat=FileFormat.CSV, addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFormat=FileFormat.CSV, addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, indent=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self._id = None
@@ -77,6 +79,7 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
         self.skipHeader = skipHeader
         self.specifyAdditionalProperties = specifyAdditionalProperties
         self.writeRawText = writeRawText
+        self.indent = indent
         self.outputSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -285,6 +288,16 @@ decimal-separator will make semicolon the value-separator."""
     def writeRawText(self, value: bool):
         """Set writeRawText"""
         self.__writeRawText = bool(value)
+
+    @property
+    def indent(self) -> bool:
+        """Indent the output text"""
+        return self.__indent
+
+    @indent.setter
+    def indent(self, value: bool):
+        """Set indent"""
+        self.__indent = bool(value)
 
     @property
     def outputSlot(self) -> OutputSlot:

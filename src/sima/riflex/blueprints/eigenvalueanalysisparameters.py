@@ -16,7 +16,7 @@ class EigenvalueAnalysisParametersBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("numberOfEigenvalues","integer","Number of eigenvalues to be calculated",default=10))
-        self.add_attribute(Attribute("maxRelativeError","number","Maximum acceptable relative error in computed eigenvalues",default=0.0))
+        self.add_attribute(Attribute("maxRelativeError","number","Maximum acceptable relative error in computed eigenvalues",default=1e-10))
         self.add_attribute(Attribute("numberOfLanczoSteps","integer","Maximum number of Lanczos steps (vectors) to be used",default=0))
         self.add_attribute(Attribute("storeVisualisationResponses","boolean","Store eigenvalue visualization file",default=True))
         self.add_attribute(Attribute("visualisationScaling","number","Scaling of eigenvectors in visual results",default=10.0))

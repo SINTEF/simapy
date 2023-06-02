@@ -20,7 +20,7 @@ class EigenvalueAnalysisParameters(MOAO):
     numberOfEigenvalues : int
          Number of eigenvalues to be calculated(default 10)
     maxRelativeError : float
-         Maximum acceptable relative error in computed eigenvalues(default 0.0)
+         Maximum acceptable relative error in computed eigenvalues(default 1e-10)
     numberOfLanczoSteps : int
          Maximum number of Lanczos steps (vectors) to be used(default 0)
     storeVisualisationResponses : bool
@@ -31,7 +31,7 @@ class EigenvalueAnalysisParameters(MOAO):
          Number of eigenvectors to be printed(default 0)
     """
 
-    def __init__(self , description="", numberOfEigenvalues=10, maxRelativeError=0.0, numberOfLanczoSteps=0, storeVisualisationResponses=True, visualisationScaling=10.0, numberOfEigenvectors=0, **kwargs):
+    def __init__(self , description="", numberOfEigenvalues=10, maxRelativeError=1e-10, numberOfLanczoSteps=0, storeVisualisationResponses=True, visualisationScaling=10.0, numberOfEigenvectors=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self._id = None

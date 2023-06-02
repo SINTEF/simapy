@@ -31,8 +31,6 @@ class TimeDomainVIVLoadCoefficients(MOAO):
          Number of time steps used in calculation of standard deviation(default 500)
     cvil : float
          Load coefficient for in-line excitation(default 0.0)
-    alphil : float
-         Nondimensional parameter giving freedom to in-line excitation frequency(default 0.0)
     chh : float
          Higher harmonic load coefficient (nondimensional)(default 0.0)
     fnullil : float
@@ -43,7 +41,7 @@ class TimeDomainVIVLoadCoefficients(MOAO):
          Maximum in-line vortex shedding frequency (nondimensional)(default 0.0)
     """
 
-    def __init__(self , description="", vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, **kwargs):
+    def __init__(self , description="", vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self._id = None
@@ -55,7 +53,6 @@ class TimeDomainVIVLoadCoefficients(MOAO):
         self.fmax = fmax
         self.nmem = nmem
         self.cvil = cvil
-        self.alphil = alphil
         self.chh = chh
         self.fnullil = fnullil
         self.fminil = fminil
@@ -172,16 +169,6 @@ class TimeDomainVIVLoadCoefficients(MOAO):
     def cvil(self, value: float):
         """Set cvil"""
         self.__cvil = float(value)
-
-    @property
-    def alphil(self) -> float:
-        """Nondimensional parameter giving freedom to in-line excitation frequency"""
-        return self.__alphil
-
-    @alphil.setter
-    def alphil(self, value: float):
-        """Set alphil"""
-        self.__alphil = float(value)
 
     @property
     def chh(self) -> float:

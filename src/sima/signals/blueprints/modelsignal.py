@@ -15,4 +15,4 @@ class ModelSignalBlueprint(SignalBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(Attribute("name","string","",optional=False))
         self.add_attribute(BlueprintAttribute("attributes","sima/signals/Attribute","",True,Dimension("*")))
-        self.add_attribute(BlueprintAttribute("value","system/SIMOS/Entity","",True))
+        self.add_attribute(BlueprintAttribute("value","sima/sima/MOAO","",True))

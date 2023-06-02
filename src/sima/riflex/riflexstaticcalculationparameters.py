@@ -6,6 +6,7 @@ from dmt.blueprint import Blueprint
 from .blueprints.riflexstaticcalculationparameters import RIFLEXStaticCalculationParametersBlueprint
 from typing import Dict
 from .loadandmassformulation import LoadAndMassFormulation
+from .masssummary import MassSummary
 from .matrixplotstorage import MatrixPlotStorage
 from .matrixstorage import MatrixStorage
 from .parametervariation import ParameterVariation
@@ -42,6 +43,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
          Start arc length at zero for each line(default True)
     storeStructuralData : bool
          Store additional FEM data(default False)
+    massSummary : MassSummary
     """
 
     def __init__(self , description="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, storeStructuralData=False, **kwargs):
@@ -61,6 +63,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
         self.matrixPlotStorage = matrixPlotStorage
         self.startAtZero = startAtZero
         self.storeStructuralData = storeStructuralData
+        self.massSummary = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -227,3 +230,13 @@ class RIFLEXStaticCalculationParameters(MOAO):
     def storeStructuralData(self, value: bool):
         """Set storeStructuralData"""
         self.__storeStructuralData = bool(value)
+
+    @property
+    def massSummary(self) -> MassSummary:
+        """"""
+        return self.__massSummary
+
+    @massSummary.setter
+    def massSummary(self, value: MassSummary):
+        """Set massSummary"""
+        self.__massSummary = value

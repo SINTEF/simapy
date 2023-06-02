@@ -1,2 +1,92 @@
-{ "type" : "sima/ModelContent", "header" : { "type" : "sima/Header" }, "contents" : [{ "name" : "container", "type" : "marmo/containers/Container", "containers" : [{ "name" : "constants", "type" : "marmo/containers/Container", "signals" : [{ "attributes" : [{ "type" : "marmo/containers/Attribute", "name" : "some", "value" : "attribute" }], "name" : "myBoolean", "type" : "marmo/containers/SimpleBoolean", "value" : true }, { "attributes" : [{ "type" : "marmo/containers/Attribute", "name" : "some", "value" : "atribute" }], "name" : "myConst", "unit" : "m", "type" : "marmo/containers/DimensionalScalar", "value" : 10.0 }, { "attributes" : [{ "type" : "marmo/containers/Attribute", "name" : "some", "value" : "attribute" }], "name" : "myInt", "type" : "marmo/containers/IntegerScalar", "value" : 1 }, { "attributes" : [{ "type" : "marmo/containers/Attribute", "name" : "some", "value" : "attribute" }], "name" : "myText", "type" : "marmo/containers/SimpleString", "value" : "s1" }] }, { "name" : "arrays", "type" : "marmo/containers/Container", "signals" : [{ "attributes" : [{ "type" : "marmo/containers/Attribute", "name" : "some", "value" : "attribute" }], "name" : "myTexts", "type" : "marmo/containers/StringArray", "value" : ["s1", "s2"] }, { "attributes" : [{ "type" : "marmo/containers/Attribute", "name" : "some", "value" : "attribute" }], "name" : "time_series", "unit" : "N", "type" : "marmo/containers/EquallySpacedSignal", "xstart" : 10.0, "xdelta" : 0.1, "value" : [1000.0, 2000.0], "xunit" : "s" }, { "attributes" : [{ "type" : "marmo/containers/Attribute", "name" : "ylabel", "value" : "ylabel" }], "name" : "xy", "unit" : "m", "type" : "marmo/containers/NonEquallySpacedSignal", "xvalue" : [1.0, 3.0], "value" : [2.0, 4.0], "xunit" : "m", "xlabel" : "xlabel" }] }] }], "_meta_" : { "type" : "core:Meta", "version" : "0.0.1", "dependencies" : [{ "alias" : "core", "address" : "system/SIMOS", "version" : "0.0.1", "protocol" : "dmss" }, { "alias" : "marmo", "address" : "marmo", "version" : "1.0.0", "protocol" : "dmss" }, { "alias" : "sima", "address" : "sima", "version" : "4.5.0", "protocol" : "dmss" }] } }
-
+{
+ "type" : "sima/ModelContent",
+ "header" : {
+  "type" : "sima/Header"
+ },
+ "contents" : [{
+   "name" : "container",
+   "type" : "sima/signals/Container",
+   "containers" : [{
+     "name" : "constants",
+     "type" : "sima/signals/Container",
+     "signals" : [{
+       "attributes" : [{
+         "type" : "sima/signals/Attribute",
+         "name" : "some",
+         "value" : "attribute"
+        }],
+       "name" : "myBoolean",
+       "type" : "sima/signals/SimpleBoolean",
+       "value" : true
+      }, {
+       "attributes" : [{
+         "type" : "sima/signals/Attribute",
+         "name" : "some",
+         "value" : "atribute"
+        }],
+       "name" : "myConst",
+       "unit" : "m",
+       "type" : "sima/signals/DimensionalScalar",
+       "value" : 10.0
+      }, {
+       "attributes" : [{
+         "type" : "sima/signals/Attribute",
+         "name" : "some",
+         "value" : "attribute"
+        }],
+       "name" : "myInt",
+       "type" : "sima/signals/IntegerScalar",
+       "value" : 1
+      }, {
+       "attributes" : [{
+         "type" : "sima/signals/Attribute",
+         "name" : "some",
+         "value" : "attribute"
+        }],
+       "name" : "myText",
+       "type" : "sima/signals/SimpleString",
+       "value" : "s1"
+      }]
+    }, {
+     "name" : "arrays",
+     "type" : "sima/signals/Container",
+     "signals" : [{
+       "attributes" : [{
+         "type" : "sima/signals/Attribute",
+         "name" : "some",
+         "value" : "attribute"
+        }],
+       "name" : "myTexts",
+       "type" : "sima/signals/StringArray",
+       "value" : ["s1", "s2"]
+      }, {
+       "attributes" : [{
+         "type" : "sima/signals/Attribute",
+         "name" : "some",
+         "value" : "attribute"
+        }],
+       "name" : "time_series",
+       "unit" : "N",
+       "type" : "sima/signals/EquallySpacedSignal",
+       "xstart" : 10.0,
+       "xdelta" : 0.1,
+       "value" : [1000.0, 2000.0],
+       "xunit" : "s"
+      }, {
+       "attributes" : [{
+         "type" : "sima/signals/Attribute",
+         "name" : "ylabel",
+         "value" : "ylabel2"
+        }],
+       "name" : "xy",
+       "unit" : "m",
+       "type" : "sima/signals/NonEquallySpacedSignal",
+       "xvalue" : [1.0, 3.0],
+       "value" : [2.0, 4.0],
+       "xunit" : "m",
+       "label" : "ylabel",
+       "xlabel" : "xlabel"
+      }]
+    }]
+  }]
+}

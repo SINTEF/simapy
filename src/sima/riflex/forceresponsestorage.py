@@ -8,6 +8,7 @@ from typing import Dict
 from .additionalfileformatcode import AdditionalFileFormatCode
 from .elementangle import ElementAngle
 from .elementreference import ElementReference
+from .elementtransformation import ElementTransformation
 from .fileformatcode import FileFormatCode
 from .relativeelementangle import RelativeElementAngle
 from sima.sima import MOAO
@@ -36,6 +37,7 @@ class ForceResponseStorage(MOAO):
     elementAngles : List[ElementAngle]
     storeBottomContactForces : bool
          Store results for seafloor contact elements and / or soil layer profile (SLP) contact elements(default False)
+    transformations : List[ElementTransformation]
     """
 
     def __init__(self , description="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices=False, storeBottomContactForces=False, **kwargs):
@@ -51,6 +53,7 @@ class ForceResponseStorage(MOAO):
         self.relativeElementAngles = list()
         self.elementAngles = list()
         self.storeBottomContactForces = storeBottomContactForces
+        self.transformations = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -179,3 +182,15 @@ class ForceResponseStorage(MOAO):
     def storeBottomContactForces(self, value: bool):
         """Set storeBottomContactForces"""
         self.__storeBottomContactForces = bool(value)
+
+    @property
+    def transformations(self) -> List[ElementTransformation]:
+        """"""
+        return self.__transformations
+
+    @transformations.setter
+    def transformations(self, value: List[ElementTransformation]):
+        """Set transformations"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__transformations = value

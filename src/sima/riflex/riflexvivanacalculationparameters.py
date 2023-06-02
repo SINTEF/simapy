@@ -50,7 +50,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     addedMassFrequencyDependence : AddedMassFrequencyDependency
     """
 
-    def __init__(self , description="", vivLoadType=VIVLoadType.CROSS_FLOW, waterTemperature=4.0, randomGenerator=RandomGenerator.LEGACY, addedMassFirstModeNumber=1000000, addedMassLastModeNumber=1000000, addedMassFrequencyDependence=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
+    def __init__(self , description="", vivLoadType=VIVLoadType.CROSS_FLOW, waterTemperature=4.0, randomGenerator=RandomGenerator.MERSENNE, addedMassFirstModeNumber=1000000, addedMassLastModeNumber=1000000, addedMassFrequencyDependence=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self._id = None

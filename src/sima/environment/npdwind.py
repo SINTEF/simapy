@@ -24,7 +24,7 @@ class NPDWind(Wind):
     profileExponent : float
          Wind profile exponent(default 0.11)
     friction : float
-         Surface drag coefficient.\nAlso used for transverse gust spectrum, if specified in DYNMOD.(default 0.002)
+         Surface drag coefficient.\nAlso used for transverse gust spectrum, if specified.(default 0.002)
     referenceHeight : float
          Reference height for wind velocity, fixed = 10 m.(default 10.0)
     """
@@ -115,7 +115,7 @@ class NPDWind(Wind):
     @property
     def friction(self) -> float:
         """Surface drag coefficient.
-Also used for transverse gust spectrum, if specified in DYNMOD."""
+Also used for transverse gust spectrum, if specified."""
         return self.__friction
 
     @friction.setter

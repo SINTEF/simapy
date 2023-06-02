@@ -24,18 +24,15 @@ class WasimResultExport(MOAO):
     scriptableValues : List[ScriptableValue]
     floaterBody : SIMOBody
     pointForces : List[BodyForceComponentReference]
-    maxNumberOfWaveComponents : int
-         Limit the number of wave components exported to file(default 0)
     """
 
-    def __init__(self , description="", maxNumberOfWaveComponents=0, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self._id = None
         self.scriptableValues = list()
         self.floaterBody = None
         self.pointForces = list()
-        self.maxNumberOfWaveComponents = maxNumberOfWaveComponents
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -100,13 +97,3 @@ class WasimResultExport(MOAO):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__pointForces = value
-
-    @property
-    def maxNumberOfWaveComponents(self) -> int:
-        """Limit the number of wave components exported to file"""
-        return self.__maxNumberOfWaveComponents
-
-    @maxNumberOfWaveComponents.setter
-    def maxNumberOfWaveComponents(self, value: int):
-        """Set maxNumberOfWaveComponents"""
-        self.__maxNumberOfWaveComponents = int(value)

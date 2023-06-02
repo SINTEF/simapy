@@ -23,9 +23,11 @@ class ESDUWind(Wind):
          Average velocity at reference height(default 0.0)
     psi : float
          Site latitude in decimal degrees(default 0.0)
+    friction : float
+         Surface drag coefficient used for transverse gust spectrum(default 0.002)
     """
 
-    def __init__(self , description="", direction=0.0, averageVelocity=0.0, psi=0.0, **kwargs):
+    def __init__(self , description="", direction=0.0, averageVelocity=0.0, psi=0.0, friction=0.002, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self._id = None
@@ -33,6 +35,7 @@ class ESDUWind(Wind):
         self.direction = direction
         self.averageVelocity = averageVelocity
         self.psi = psi
+        self.friction = friction
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -105,3 +108,13 @@ class ESDUWind(Wind):
     def psi(self, value: float):
         """Set psi"""
         self.__psi = float(value)
+
+    @property
+    def friction(self) -> float:
+        """Surface drag coefficient used for transverse gust spectrum"""
+        return self.__friction
+
+    @friction.setter
+    def friction(self, value: float):
+        """Set friction"""
+        self.__friction = float(value)

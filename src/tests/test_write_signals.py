@@ -1,6 +1,7 @@
 from os import path
 from math import sin
-from marmo import containers
+from sima import signals as containers
+from sima.signals import report
 from simapy.sima_writer import SIMAWriter
 
 
@@ -13,9 +14,29 @@ def test_signal_creation(tmpdir):
     child.signals.append(__create_equally_spaced())
     child.signals.append(__create_non_equally_spaced())
 
-    filename = tmpdir + '/signals.json'
+    container.containers.append(child)
+
+    rc = containers.Container(name="myReport")
+    rc.signals.append(__create_report())
+    container.containers.append(rc)
+
+    filename = tmpdir / 'signals_dm.json'
     SIMAWriter().write([container],filename)
     assert path.exists(filename)
+
+def __create_report() -> containers.DimensionalScalar:
+    ms = containers.ModelSignal()
+    thereport = report.ReportFragment(name="testreport", description="testreport description")
+    thereport.title = "testreport title"
+    sec = report.Section(name="section1", description="section1 description")
+    sec.title = "section1 title"
+    plot = report.LinePlot()
+    plot.title = "plot title"
+    plot.lines.append(report.PlotLine(x=[1,2,3], y=[1,2,3], name="line1"))
+    sec.items.append(plot)
+    thereport.items.append(sec)
+    ms.value = thereport
+    return ms
 
 def __create_scalar() -> containers.DimensionalScalar:
     scalar = containers.DimensionalScalar()
