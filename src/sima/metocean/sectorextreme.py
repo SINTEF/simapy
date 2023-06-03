@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.sectorextreme import SectorExtremeBlueprint
 from typing import Dict
-from sima.metocean.extremevalue import ExtremeValue
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .extremevalue import ExtremeValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SectorExtreme(MOAO):
     """
@@ -60,7 +60,7 @@ class SectorExtreme(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -92,5 +92,5 @@ class SectorExtreme(MOAO):
     def extremeValues(self, value: List[ExtremeValue]):
         """Set extremeValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__extremeValues = value

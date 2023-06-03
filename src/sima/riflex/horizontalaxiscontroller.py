@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.horizontalaxiscontroller import HorizontalAxisControllerBlueprint
 from typing import Dict
-from sima.riflex.elementendspesification import ElementEndSpesification
-from sima.sima.librarypaths import LibraryPaths
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.controllertype import ControllerType
-from sima.windturbine.gainitem import GainItem
-from sima.windturbine.horizontalaxiswindturbinecontroller import HorizontalAxisWindTurbineController
-from sima.windturbine.powerextraction import PowerExtraction
-from sima.windturbine.tableformat import TableFormat
+from .elementendspesification import ElementEndSpesification
+from sima.sima import LibraryPaths
+from sima.sima import ScriptableValue
+from sima.windturbine import ControllerType
+from sima.windturbine import GainItem
+from sima.windturbine import HorizontalAxisWindTurbineController
+from sima.windturbine import PowerExtraction
+from sima.windturbine import TableFormat
 
 class HorizontalAxisController(HorizontalAxisWindTurbineController):
     """
@@ -141,7 +141,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -263,7 +263,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     def gainItems(self, value: List[GainItem]):
         """Set gainItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__gainItems = value
 
     @property

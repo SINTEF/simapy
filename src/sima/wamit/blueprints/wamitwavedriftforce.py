@@ -24,4 +24,5 @@ class WamitWaveDriftForceBlueprint(WaveDriftForceBlueprint,NamedBlueprint):
         self.add_attribute(BlueprintAttribute("mx","sima/hydro/DirectionDependentValues","",True))
         self.add_attribute(BlueprintAttribute("my","sima/hydro/DirectionDependentValues","",True))
         self.add_attribute(BlueprintAttribute("mz","sima/hydro/DirectionDependentValues","",True))
+        self.add_attribute(Attribute("enableCurrentCorrection","boolean","Enable wave-current interaction using extended Aranha formula",default=False))
         self.add_attribute(Attribute("name","string",""))

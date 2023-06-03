@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.regularsegment import RegularSegmentBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.crosssection import CrossSection
-    from sima.riflex.nodalcomponenttype import NodalComponentType
-    from sima.riflex.externalwrappingtype import ExternalWrappingType
+    from .crosssection import CrossSection
+    from .nodalcomponenttype import NodalComponentType
+    from .externalwrappingtype import ExternalWrappingType
 
 class RegularSegment(MOAO):
     """
@@ -31,10 +31,6 @@ class RegularSegment(MOAO):
          Nodal component (body or connector) attached at end 1 of the segment.
     externalWrapping : ExternalWrappingType
          External wrapping (distributed weight or buoyancy) component.
-    numSubElementsStatic : int
-         Number of subelements each element is divided into for hydrodynamic calculation; static analysis.(default 3)
-    numSubElementsDynamic : int
-         Number of subelements each element is divided into for hydrodynamic load calculation; dynamic analysis.(default 5)
     stressfreeLength : float
          Actual stressfree segment length.(default 0.0)
     twistEnd1 : float
@@ -47,7 +43,7 @@ class RegularSegment(MOAO):
          Offset in line local Z-axis segment end 2(default 0.0)
     """
 
-    def __init__(self , description="", length=0.0, numElements=10, numSubElementsStatic=3, numSubElementsDynamic=5, stressfreeLength=0.0, twistEnd1=0.0, twistEnd2=0.0, offsetY=0.0, offsetZ=0.0, **kwargs):
+    def __init__(self , description="", length=0.0, numElements=10, stressfreeLength=0.0, twistEnd1=0.0, twistEnd2=0.0, offsetY=0.0, offsetZ=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -56,8 +52,6 @@ class RegularSegment(MOAO):
         self.crossSection = None
         self.nodalComponent = None
         self.externalWrapping = None
-        self.numSubElementsStatic = numSubElementsStatic
-        self.numSubElementsDynamic = numSubElementsDynamic
         self.stressfreeLength = stressfreeLength
         self.twistEnd1 = twistEnd1
         self.twistEnd2 = twistEnd2
@@ -93,7 +87,7 @@ class RegularSegment(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -145,26 +139,6 @@ class RegularSegment(MOAO):
     def externalWrapping(self, value: ExternalWrappingType):
         """Set externalWrapping"""
         self.__externalWrapping = value
-
-    @property
-    def numSubElementsStatic(self) -> int:
-        """Number of subelements each element is divided into for hydrodynamic calculation; static analysis."""
-        return self.__numSubElementsStatic
-
-    @numSubElementsStatic.setter
-    def numSubElementsStatic(self, value: int):
-        """Set numSubElementsStatic"""
-        self.__numSubElementsStatic = int(value)
-
-    @property
-    def numSubElementsDynamic(self) -> int:
-        """Number of subelements each element is divided into for hydrodynamic load calculation; dynamic analysis."""
-        return self.__numSubElementsDynamic
-
-    @numSubElementsDynamic.setter
-    def numSubElementsDynamic(self, value: int):
-        """Set numSubElementsDynamic"""
-        self.__numSubElementsDynamic = int(value)
 
     @property
     def stressfreeLength(self) -> float:

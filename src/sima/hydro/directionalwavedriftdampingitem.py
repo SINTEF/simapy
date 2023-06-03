@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.directionalwavedriftdampingitem import DirectionalWaveDriftDampingItemBlueprint
 from typing import Dict
-from sima.hydro.simplifiedwavedriftdamping import SimplifiedWaveDriftDamping
-from sima.hydro.wavedriftdampingitem import WaveDriftDampingItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .simplifiedwavedriftdamping import SimplifiedWaveDriftDamping
+from .wavedriftdampingitem import WaveDriftDampingItem
+from sima.sima import ScriptableValue
 
 class DirectionalWaveDriftDampingItem(SimplifiedWaveDriftDamping):
     """
@@ -57,7 +57,7 @@ class DirectionalWaveDriftDampingItem(SimplifiedWaveDriftDamping):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -69,7 +69,7 @@ class DirectionalWaveDriftDampingItem(SimplifiedWaveDriftDamping):
     def items(self, value: List[WaveDriftDampingItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

@@ -6,15 +6,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.arwinch import ARWinchBlueprint
 from typing import Dict
-from sima.riflex.centerofwinch import CenterOfWinch
-from sima.riflex.end import End
-from sima.riflex.segmentreference import SegmentReference
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .centerofwinch import CenterOfWinch
+from .end import End
+from .segmentreference import SegmentReference
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
-    from sima.sima.body import Body
+    from .arline import ARLine
+    from sima.sima import Body
 
 class ARWinch(SegmentReference,NamedObject):
     """
@@ -112,7 +112,7 @@ class ARWinch(SegmentReference,NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

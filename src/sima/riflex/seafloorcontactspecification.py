@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.seafloorcontactspecification import SeafloorContactSpecificationBlueprint
 from typing import Dict
-from sima.riflex.seafloorcontactlinespecification import SeafloorContactLineSpecification
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .seafloorcontactlinespecification import SeafloorContactLineSpecification
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SeafloorContactSpecification(MOAO):
     """
@@ -54,7 +54,7 @@ class SeafloorContactSpecification(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +66,5 @@ class SeafloorContactSpecification(MOAO):
     def lineContacts(self, value: List[SeafloorContactLineSpecification]):
         """Set lineContacts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lineContacts = value

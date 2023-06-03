@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.longtermstatisticswavecalculation import LongTermStatisticsWaveCalculationBlueprint
 from typing import Dict
-from sima.metocean.calculationdirection import CalculationDirection
-from sima.metocean.wavestatisticsmethod import WaveStatisticsMethod
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .calculationdirection import CalculationDirection
+from .wavestatisticsmethod import WaveStatisticsMethod
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.metocean.wavelongtermstatistics import WaveLongTermStatistics
-    from sima.metocean.omnidirectionalwavelongtermstatistics import OmniDirectionalWaveLongTermStatistics
+    from .wavelongtermstatistics import WaveLongTermStatistics
+    from .omnidirectionalwavelongtermstatistics import OmniDirectionalWaveLongTermStatistics
 
 class LongTermStatisticsWaveCalculation(MOAO):
     """
@@ -69,7 +69,7 @@ class LongTermStatisticsWaveCalculation(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -121,5 +121,5 @@ class LongTermStatisticsWaveCalculation(MOAO):
     def directions(self, value: List[CalculationDirection]):
         """Set directions"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__directions = value

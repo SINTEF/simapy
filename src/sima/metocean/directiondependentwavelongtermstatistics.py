@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.directiondependentwavelongtermstatistics import DirectionDependentWaveLongTermStatisticsBlueprint
 from typing import Dict
-from sima.metocean.wavelongtermstatistics import WaveLongTermStatistics
-from sima.metocean.wavesector import WaveSector
-from sima.sima.scriptablevalue import ScriptableValue
+from .wavelongtermstatistics import WaveLongTermStatistics
+from .wavesector import WaveSector
+from sima.sima import ScriptableValue
 
 class DirectionDependentWaveLongTermStatistics(WaveLongTermStatistics):
     """
@@ -57,7 +57,7 @@ class DirectionDependentWaveLongTermStatistics(WaveLongTermStatistics):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class DirectionDependentWaveLongTermStatistics(WaveLongTermStatistics):
     def sectors(self, value: List[WaveSector]):
         """Set sectors"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__sectors = value

@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simofrequencydomaincalculation import SIMOFrequencyDomainCalculationBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.frequencyanalysistype import FrequencyAnalysisType
-from sima.simo.frequencydomainbodyitem import FrequencyDomainBodyItem
-from sima.simo.frequencyrangedefinition import FrequencyRangeDefinition
-from sima.simo.frequnecydomainlineitem import FrequnecyDomainLineItem
-from sima.simo.linearization import Linearization
+from .frequencyanalysistype import FrequencyAnalysisType
+from .frequencydomainbodyitem import FrequencyDomainBodyItem
+from .frequencyrangedefinition import FrequencyRangeDefinition
+from .frequnecydomainlineitem import FrequnecyDomainLineItem
+from .linearization import Linearization
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SIMOFrequencyDomainCalculation(MOAO):
     """
@@ -80,7 +80,7 @@ class SIMOFrequencyDomainCalculation(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -122,7 +122,7 @@ class SIMOFrequencyDomainCalculation(MOAO):
     def bodies(self, value: List[FrequencyDomainBodyItem]):
         """Set bodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bodies = value
 
     @property
@@ -184,5 +184,5 @@ class SIMOFrequencyDomainCalculation(MOAO):
     def linesToSimulate(self, value: List[FrequnecyDomainLineItem]):
         """Set linesToSimulate"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__linesToSimulate = value

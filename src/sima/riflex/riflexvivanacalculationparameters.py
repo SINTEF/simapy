@@ -5,20 +5,20 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexvivanacalculationparameters import RIFLEXVivanaCalculationParametersBlueprint
 from typing import Dict
-from sima.riflex.addedmassfrequencydependency import AddedMassFrequencyDependency
-from sima.riflex.addedmassproperty import AddedMassProperty
-from sima.riflex.dampingfactorproperty import DampingFactorProperty
-from sima.riflex.eigenvalueanalysisparameters import EigenvalueAnalysisParameters
-from sima.riflex.excitationcoefficientsproperty import ExcitationCoefficientsProperty
-from sima.riflex.excitationzoneproperty import ExcitationZoneProperty
-from sima.riflex.fatigueproperties import FatigueProperties
-from sima.riflex.hydrodynamiccrosssectionproperties import HydrodynamicCrossSectionProperties
-from sima.riflex.responseanalysisparameters import ResponseAnalysisParameters
-from sima.riflex.strouhalspecificationproperty import StrouhalSpecificationProperty
-from sima.riflex.vivloadtype import VIVLoadType
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.randomgenerator import RandomGenerator
+from .addedmassfrequencydependency import AddedMassFrequencyDependency
+from .addedmassproperty import AddedMassProperty
+from .dampingfactorproperty import DampingFactorProperty
+from .eigenvalueanalysisparameters import EigenvalueAnalysisParameters
+from .excitationcoefficientsproperty import ExcitationCoefficientsProperty
+from .excitationzoneproperty import ExcitationZoneProperty
+from .fatigueproperties import FatigueProperties
+from .hydrodynamiccrosssectionproperties import HydrodynamicCrossSectionProperties
+from .responseanalysisparameters import ResponseAnalysisParameters
+from .strouhalspecificationproperty import StrouhalSpecificationProperty
+from .vivloadtype import VIVLoadType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
+from sima.simo import RandomGenerator
 
 class RIFLEXVivanaCalculationParameters(MOAO):
     """
@@ -48,7 +48,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     addedMassFrequencyDependence : AddedMassFrequencyDependency
     """
 
-    def __init__(self , description="", vivLoadType=VIVLoadType.CROSS_FLOW, waterTemperature=4.0, randomGenerator=RandomGenerator.LEGACY, addedMassFirstModeNumber=1000000, addedMassLastModeNumber=1000000, addedMassFrequencyDependence=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
+    def __init__(self , description="", vivLoadType=VIVLoadType.CROSS_FLOW, waterTemperature=4.0, randomGenerator=RandomGenerator.MERSENNE, addedMassFirstModeNumber=1000000, addedMassLastModeNumber=1000000, addedMassFrequencyDependence=AddedMassFrequencyDependency.FREQUENCY_ADDED_MASS, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -97,7 +97,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -169,7 +169,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     def hydrodynamicCrossSectionProperties(self, value: List[HydrodynamicCrossSectionProperties]):
         """Set hydrodynamicCrossSectionProperties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__hydrodynamicCrossSectionProperties = value
 
     @property
@@ -181,7 +181,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     def excitationZoneProperties(self, value: List[ExcitationZoneProperty]):
         """Set excitationZoneProperties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__excitationZoneProperties = value
 
     @property
@@ -193,7 +193,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     def addedMassProperties(self, value: List[AddedMassProperty]):
         """Set addedMassProperties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__addedMassProperties = value
 
     @property
@@ -205,7 +205,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     def excitationCoefficientProperties(self, value: List[ExcitationCoefficientsProperty]):
         """Set excitationCoefficientProperties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__excitationCoefficientProperties = value
 
     @property
@@ -217,7 +217,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     def dampingFactorProperties(self, value: List[DampingFactorProperty]):
         """Set dampingFactorProperties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dampingFactorProperties = value
 
     @property
@@ -229,7 +229,7 @@ class RIFLEXVivanaCalculationParameters(MOAO):
     def strouhalSpecificationProperties(self, value: List[StrouhalSpecificationProperty]):
         """Set strouhalSpecificationProperties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__strouhalSpecificationProperties = value
 
     @property

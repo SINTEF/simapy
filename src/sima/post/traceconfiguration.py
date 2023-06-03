@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.traceconfiguration import TraceConfigurationBlueprint
 from typing import Dict
-from sima.post.linestyle import LineStyle
-from sima.post.pathspecification import PathSpecification
-from sima.post.pointstyle import PointStyle
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simacolor import SIMAColor
+from .linestyle import LineStyle
+from .pathspecification import PathSpecification
+from .pointstyle import PointStyle
+from sima.sima import SIMAColor
+from sima.sima import ScriptableValue
 
 class TraceConfiguration(PathSpecification):
     """
@@ -81,7 +81,7 @@ class TraceConfiguration(PathSpecification):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -28,3 +28,4 @@ class RealNumberInputBlueprint(ValueInputNodeBlueprint):
         self.add_attribute(Attribute("value","number","",default=0.0))
         self.add_attribute(Attribute("array","boolean","Create an array output",default=False))
         self.add_attribute(Attribute("values","number","",Dimension("*"),default=0.0))
+        self.add_attribute(Attribute("unit","string","",default='-'))

@@ -21,7 +21,6 @@ class TimeDomainVIVLoadCoefficientsBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("fmax","number","Maximum cross-flow vortex shedding frequency (nondimensional)",default=0.0))
         self.add_attribute(Attribute("nmem","integer","Number of time steps used in calculation of standard deviation",default=500))
         self.add_attribute(Attribute("cvil","number","Load coefficient for in-line excitation",default=0.0))
-        self.add_attribute(Attribute("alphil","number","Nondimensional parameter giving freedom to in-line excitation frequency",default=0.0))
         self.add_attribute(Attribute("chh","number","Higher harmonic load coefficient (nondimensional)",default=0.0))
         self.add_attribute(Attribute("fnullil","number","Natural in-line vortex shedding frequency (nondimensional)",default=0.0))
         self.add_attribute(Attribute("fminil","number","Minimum in-line vortex shedding frequency (nondimensional)",default=0.0))

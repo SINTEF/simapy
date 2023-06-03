@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.linearcurrentcoefficient import LinearCurrentCoefficientBlueprint
 from typing import Dict
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.hydro.linearcurrentcoefficientitem import LinearCurrentCoefficientItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .directionsymmetry import DirectionSymmetry
+from .linearcurrentcoefficientitem import LinearCurrentCoefficientItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class LinearCurrentCoefficient(MOAO):
     """
@@ -57,7 +57,7 @@ class LinearCurrentCoefficient(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class LinearCurrentCoefficient(MOAO):
     def items(self, value: List[LinearCurrentCoefficientItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

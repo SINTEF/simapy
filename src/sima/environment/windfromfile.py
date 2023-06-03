@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.windfromfile import WindFromFileBlueprint
 from typing import Dict
-from sima.environment.wind import Wind
-from sima.sima.scriptablevalue import ScriptableValue
+from .wind import Wind
+from sima.sima import ScriptableValue
 
 class WindFromFile(Wind):
     """
@@ -57,7 +57,7 @@ class WindFromFile(Wind):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

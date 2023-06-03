@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.equidistantsignal import EquidistantSignalBlueprint
 from numpy import ndarray,asarray
-from sima.post.generatorsignal import GeneratorSignal
-from sima.post.signalproperties import SignalProperties
-from sima.sima.scriptablevalue import ScriptableValue
+from .generatorsignal import GeneratorSignal
+from .signalproperties import SignalProperties
+from sima.sima import ScriptableValue
 
 class EquidistantSignal(GeneratorSignal):
     """
@@ -21,7 +21,7 @@ class EquidistantSignal(GeneratorSignal):
          (default None)
     directInput : bool
          (default True)
-    values : ndarray
+    values : ndarray of float
     xunit : str
          Defines the unit of the x axis(default 's')
     yunit : str
@@ -43,7 +43,7 @@ class EquidistantSignal(GeneratorSignal):
         self.properties = list()
         self.name = None
         self.directInput = directInput
-        self.values = ndarray(1)
+        self.values = []
         self.xunit = xunit
         self.yunit = yunit
         self.offset = offset
@@ -80,7 +80,7 @@ class EquidistantSignal(GeneratorSignal):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -92,7 +92,7 @@ class EquidistantSignal(GeneratorSignal):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -123,7 +123,10 @@ class EquidistantSignal(GeneratorSignal):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array
 
     @property
     def xunit(self) -> str:

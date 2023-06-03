@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.advancedbumper import AdvancedBumperBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.forcedampingcharacteristic import ForceDampingCharacteristic
+from .forcedampingcharacteristic import ForceDampingCharacteristic
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class AdvancedBumper(NamedObject):
     """
@@ -77,7 +77,7 @@ class AdvancedBumper(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

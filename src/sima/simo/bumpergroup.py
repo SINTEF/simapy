@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bumpergroup import BumperGroupBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bumperpart import BumperPart
+from .bumperpart import BumperPart
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class BumperGroup(NamedObject):
     """
@@ -70,7 +70,7 @@ class BumperGroup(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -122,7 +122,7 @@ class BumperGroup(NamedObject):
     def body1Bumpers(self, value: List[BumperPart]):
         """Set body1Bumpers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__body1Bumpers = value
 
     @property
@@ -134,5 +134,5 @@ class BumperGroup(NamedObject):
     def body2Bumpers(self, value: List[BumperPart]):
         """Set body2Bumpers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__body2Bumpers = value

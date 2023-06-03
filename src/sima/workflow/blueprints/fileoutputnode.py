@@ -31,4 +31,5 @@ class FileOutputNodeBlueprint(OutputNodeBlueprint,SignalPropertiesContainerBluep
         self.add_attribute(Attribute("skipHeader","boolean","Do not write a header on the file",default=False))
         self.add_attribute(Attribute("specifyAdditionalProperties","boolean","Specify additional properties in the file root",default=False))
         self.add_attribute(Attribute("writeRawText","boolean","Writes a single input string into the given file",default=False))
+        self.add_attribute(Attribute("indent","boolean","Indent the output text",default=False))
         self.add_attribute(BlueprintAttribute("outputSlot","sima/post/OutputSlot","",True))

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.directiondependentscatterdata import DirectionDependentScatterDataBlueprint
 from typing import Dict
-from sima.metocean.scatterdata import ScatterData
-from sima.metocean.scattersector import ScatterSector
-from sima.sima.scriptablevalue import ScriptableValue
+from .scatterdata import ScatterData
+from .scattersector import ScatterSector
+from sima.sima import ScriptableValue
 
 class DirectionDependentScatterData(ScatterData):
     """
@@ -57,7 +57,7 @@ class DirectionDependentScatterData(ScatterData):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class DirectionDependentScatterData(ScatterData):
     def sectors(self, value: List[ScatterSector]):
         """Set sectors"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__sectors = value

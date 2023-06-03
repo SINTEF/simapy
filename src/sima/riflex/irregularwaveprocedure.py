@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.irregularwaveprocedure import IrregularWaveProcedureBlueprint
 from typing import Dict
-from sima.riflex.kinematicsinwavezone import KinematicsInWaveZone
-from sima.riflex.kinematicspositions import KinematicsPositions
-from sima.riflex.storagetype import StorageType
-from sima.riflex.wavekinematicsdiffpoint import WaveKinematicsDiffPoint
-from sima.riflex.wavekinematicsnodepoint import WaveKinematicsNodePoint
-from sima.riflex.wavekinematicstimeseriesreference import WaveKinematicsTimeSeriesReference
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .kinematicsinwavezone import KinematicsInWaveZone
+from .kinematicspositions import KinematicsPositions
+from .storagetype import StorageType
+from .wavekinematicsdiffpoint import WaveKinematicsDiffPoint
+from .wavekinematicsnodepoint import WaveKinematicsNodePoint
+from .wavekinematicstimeseriesreference import WaveKinematicsTimeSeriesReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class IrregularWaveProcedure(MOAO):
     """
@@ -101,7 +101,7 @@ class IrregularWaveProcedure(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -184,7 +184,7 @@ and Z Upper"""
     def waveKinematicDiffPoints(self, value: List[WaveKinematicsDiffPoint]):
         """Set waveKinematicDiffPoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waveKinematicDiffPoints = value
 
     @property
@@ -196,7 +196,7 @@ and Z Upper"""
     def waveKinematicNodePoints(self, value: List[WaveKinematicsNodePoint]):
         """Set waveKinematicNodePoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waveKinematicNodePoints = value
 
     @property
@@ -228,7 +228,7 @@ and Z Upper"""
     def waveKinematicsTimeSeriesReferences(self, value: List[WaveKinematicsTimeSeriesReference]):
         """Set waveKinematicsTimeSeriesReferences"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waveKinematicsTimeSeriesReferences = value
 
     @property

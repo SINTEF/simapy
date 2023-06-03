@@ -16,4 +16,3 @@ class WasimResultExportBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("floaterBody","sima/simo/SIMOBody","",False))
         self.add_attribute(BlueprintAttribute("pointForces","sima/simo/BodyForceComponentReference","",True,Dimension("*")))
-        self.add_attribute(Attribute("maxNumberOfWaveComponents","integer","Limit the number of wave components exported to file",default=0))

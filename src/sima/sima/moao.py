@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.moao import MOAOBlueprint
 from typing import Dict
+from .scriptablevalue import ScriptableValue
 from dmt.entity import Entity
-from sima.sima.scriptablevalue import ScriptableValue
 
 class MOAO(Entity):
     """
@@ -51,5 +51,5 @@ class MOAO(Entity):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value

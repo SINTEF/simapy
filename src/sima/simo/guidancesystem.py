@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.guidancesystem import GuidanceSystemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.guidance import Guidance
-from sima.simo.headingreference import HeadingReference
-from sima.simo.waypoint import Waypoint
-from sima.simo.waypointreference import WaypointReference
+from .guidance import Guidance
+from .headingreference import HeadingReference
+from .waypoint import Waypoint
+from .waypointreference import WaypointReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class GuidanceSystem(MOAO):
     """
@@ -72,7 +72,7 @@ class GuidanceSystem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -144,5 +144,5 @@ class GuidanceSystem(MOAO):
     def waypoints(self, value: List[Waypoint]):
         """Set waypoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waypoints = value

@@ -26,7 +26,7 @@ class SlenderSystemConnectionBlueprint(ElementReferenceBlueprint,NodeReferenceBl
         self.add_attribute(Attribute("allEnds","boolean","All ends",default=False))
         self.add_attribute(EnumAttribute("elementEnd","sima/riflex/End","End number 1 or 2"))
         self.add_attribute(Attribute("name","string","",default='connection'))
-        self.add_attribute(EnumAttribute("location","sima/riflex/BodyLocation","If a supernode is used as location option and it is not part of a line, a dummy line will be created automatically."))
+        self.add_attribute(EnumAttribute("location","sima/riflex/BodyLocation","A SIMO body node is added to the element model for each body. \nThe node may have a rigid connection to a slender system node or may be a free or fixed node without connection to the slender system."))
         self.add_attribute(BlueprintAttribute("superNode","sima/riflex/SuperNode","Line",False))
         self.add_attribute(Attribute("artificialStiffness","boolean","Artificial stiffness option",default=False))
         self.add_attribute(Attribute("stx","number","Stiffness in global X-direction",default=0.0))

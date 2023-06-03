@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.matrixplotresult import MatrixPlotResultBlueprint
 from typing import Dict
-from sima.sima.property import Property
-from sima.sima.result import Result
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simamessage import SimaMessage
+from sima.sima import Property
+from sima.sima import Result
+from sima.sima import ScriptableValue
+from sima.sima import SimaMessage
 
 class MatrixPlotResult(Result):
     """
@@ -78,7 +78,7 @@ class MatrixPlotResult(Result):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -100,7 +100,7 @@ class MatrixPlotResult(Result):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -172,5 +172,5 @@ class MatrixPlotResult(Result):
     def messages(self, value: List[SimaMessage]):
         """Set messages"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__messages = value

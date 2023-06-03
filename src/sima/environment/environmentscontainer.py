@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.environmentscontainer import EnvironmentsContainerBlueprint
 from typing import Dict
-from sima.environment.environment import Environment
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .environment import Environment
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class EnvironmentsContainer(MOAO):
     """
@@ -54,7 +54,7 @@ class EnvironmentsContainer(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +66,5 @@ class EnvironmentsContainer(MOAO):
     def environments(self, value: List[Environment]):
         """Set environments"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__environments = value

@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexfederate import RIFLEXFederateBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.simofederate import SIMOFederate
+from sima.sima import ScriptableValue
+from sima.simo import SIMOFederate
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.condition.conditiontask import ConditionTask
+    from sima.condition import ConditionTask
 
 class RIFLEXFederate(SIMOFederate):
     """
@@ -63,7 +63,7 @@ class RIFLEXFederate(SIMOFederate):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

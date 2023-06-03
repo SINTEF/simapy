@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.generatorsignal import GeneratorSignalBlueprint
 from typing import Dict
-from sima.post.signalproperties import SignalProperties
-from sima.post.signalpropertiescontainer import SignalPropertiesContainer
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .signalproperties import SignalProperties
+from .signalpropertiescontainer import SignalPropertiesContainer
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class GeneratorSignal(SignalPropertiesContainer,Named):
     """
@@ -58,7 +58,7 @@ class GeneratorSignal(SignalPropertiesContainer,Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -70,7 +70,7 @@ class GeneratorSignal(SignalPropertiesContainer,Named):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

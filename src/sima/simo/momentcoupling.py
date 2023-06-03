@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.momentcoupling import MomentCouplingBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.vector3 import Vector3
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
+from sima.sima import Vector3
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class MomentCoupling(NamedObject):
     """
@@ -83,7 +83,7 @@ class MomentCoupling(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

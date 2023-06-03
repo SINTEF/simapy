@@ -21,7 +21,7 @@ class SIMODynamicCalculationParametersBlueprint(MOAOBlueprint):
         self.add_attribute(EnumAttribute("integrationMethod","sima/simo/IntegrationMethod","Selected integration method"))
         self.add_attribute(Attribute("randomSeedWaves","integer","Random seed waves",default=1))
         self.add_attribute(Attribute("randomSeedWind","integer","Random seed wind",default=1))
-        self.add_attribute(EnumAttribute("randomGenerator","sima/simo/RandomGenerator",""))
+        self.add_attribute(EnumAttribute("randomNumberGenerator","sima/simo/RandomGenerator",""))
         self.add_attribute(Attribute("headingCorrection","boolean","Use correction due to heading change",default=True))
         self.add_attribute(Attribute("maxHeadingChange","number","Max heading change",default=45.0))
         self.add_attribute(Attribute("largePatchLength","number","Large visualization wave patch length",default=2048.0))

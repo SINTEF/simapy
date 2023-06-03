@@ -6,16 +6,16 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.nodeboundarychangeitem import NodeBoundaryChangeItemBlueprint
 from typing import Dict
-from sima.riflex.boundarychangeoption import BoundaryChangeOption
-from sima.riflex.boundarychangereference import BoundaryChangeReference
-from sima.riflex.boundarycondition import BoundaryCondition
-from sima.riflex.nodereference import NodeReference
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .boundarychangeoption import BoundaryChangeOption
+from .boundarychangereference import BoundaryChangeReference
+from .boundarycondition import BoundaryCondition
+from .nodereference import NodeReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.supportvessel import SupportVessel
-    from sima.simo.supernodereference import SuperNodeReference
+    from .supportvessel import SupportVessel
+    from sima.simo import SuperNodeReference
 
 class NodeBoundaryChangeItem(MOAO):
     """
@@ -95,7 +95,7 @@ class NodeBoundaryChangeItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

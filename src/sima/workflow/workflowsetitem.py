@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.workflowsetitem import WorkflowSetItemBlueprint
 from numpy import ndarray,asarray
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WorkflowSetItem(MOAO):
     """
@@ -17,7 +17,7 @@ class WorkflowSetItem(MOAO):
     scriptableValues : List[ScriptableValue]
     parameterId : str
          (default None)
-    values : ndarray
+    values : ndarray of str
     """
 
     def __init__(self , description="", **kwargs):
@@ -25,7 +25,7 @@ class WorkflowSetItem(MOAO):
         self.description = description
         self.scriptableValues = list()
         self.parameterId = None
-        self.values = ndarray(1)
+        self.values = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -56,7 +56,7 @@ class WorkflowSetItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -77,4 +77,7 @@ class WorkflowSetItem(MOAO):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array

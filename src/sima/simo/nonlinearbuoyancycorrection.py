@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.nonlinearbuoyancycorrection import NonlinearBuoyancyCorrectionBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.nonlinearbuoyancycorrectionmethod import NonlinearBuoyancyCorrectionMethod
+from .nonlinearbuoyancycorrectionmethod import NonlinearBuoyancyCorrectionMethod
+from sima.sima import MOAO
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class NonlinearBuoyancyCorrection(MOAO):
     """
@@ -66,7 +66,7 @@ class NonlinearBuoyancyCorrection(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

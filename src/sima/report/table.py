@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.table import TableBlueprint
 from typing import Dict
-from sima.report.reportitem import ReportItem
-from sima.report.tablecolumn import TableColumn
-from sima.sima.scriptablevalue import ScriptableValue
+from .reportitem import ReportItem
+from .tablecolumn import TableColumn
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.moao import MOAO
+    from sima.sima import MOAO
 
 class Table(ReportItem):
     """
@@ -69,7 +69,7 @@ class Table(ReportItem):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -111,7 +111,7 @@ class Table(ReportItem):
     def columns(self, value: List[TableColumn]):
         """Set columns"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__columns = value
 
     @property

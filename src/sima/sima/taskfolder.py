@@ -6,9 +6,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.taskfolder import TaskFolderBlueprint
 from typing import Dict
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.task import Task
+from .named import Named
+from .scriptablevalue import ScriptableValue
+from .task import Task
 
 class TaskFolder(Named):
     """
@@ -63,7 +63,7 @@ class TaskFolder(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -85,7 +85,7 @@ class TaskFolder(Named):
     def childFolders(self, value: List[TaskFolder]):
         """Set childFolders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__childFolders = value
 
     @property
@@ -97,7 +97,7 @@ class TaskFolder(Named):
     def childTasks(self, value: List[Task]):
         """Set childTasks"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__childTasks = value
 
     @property

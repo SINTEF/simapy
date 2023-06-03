@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.ochi import OchiBlueprint
 from typing import Dict
-from sima.environment.wave import Wave
-from sima.environment.wavespreadingtype import WaveSpreadingType
-from sima.sima.scriptablevalue import ScriptableValue
+from .wave import Wave
+from .wavespreadingtype import WaveSpreadingType
+from sima.sima import ScriptableValue
 
 class Ochi(Wave):
     """
@@ -67,7 +67,7 @@ class Ochi(Wave):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

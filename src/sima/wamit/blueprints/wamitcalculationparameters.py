@@ -57,3 +57,4 @@ class WamitCalculationParametersBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("waveDriftForceControlSurfaceIntegration","boolean","",default=False))
         self.add_attribute(Attribute("runPotenOnceInConditionSetsAndSpaces","boolean","This will make WAMIT run POTEN for one condition only, and copy that result and only run FORCE on the the rest of the conditions.",default=False))
         self.add_attribute(Attribute("ignoreExitCode","boolean","Ignore process exit code. Be careful to check the result when checked",default=False))
+        self.add_attribute(Attribute("waterlineGapTolerance","number","Waterline gap tolerance (TOLGAPWL)",default=0.001))

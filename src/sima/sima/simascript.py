@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simascript import SIMAScriptBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simascriptcontext import SIMAScriptContext
-from sima.sima.simascripttrigger import SIMAScriptTrigger
+from .namedobject import NamedObject
+from .scriptablevalue import ScriptableValue
+from .simascriptcontext import SIMAScriptContext
+from .simascripttrigger import SIMAScriptTrigger
 
 class SIMAScript(NamedObject):
     """
@@ -63,7 +63,7 @@ class SIMAScript(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -95,7 +95,7 @@ class SIMAScript(NamedObject):
     def contextItems(self, value: List[SIMAScriptContext]):
         """Set contextItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__contextItems = value
 
     @property
@@ -107,5 +107,5 @@ class SIMAScript(NamedObject):
     def triggers(self, value: List[SIMAScriptTrigger]):
         """Set triggers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__triggers = value

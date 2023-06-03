@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.reportfragmentnode import ReportFragmentNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.runnode import RunNode
-from sima.report.reportfragmentreference import ReportFragmentReference
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.reportfragmentitemcontainer import ReportFragmentItemContainer
+from .reportfragmentitemcontainer import ReportFragmentItemContainer
+from sima.post import ControlSignalInputSlot
+from sima.post import OutputSlot
+from sima.post import RunNode
+from sima.report import ReportFragmentReference
+from sima.sima import ScriptableValue
 
 class ReportFragmentNode(ReportFragmentReference,RunNode):
     """
@@ -76,7 +76,7 @@ class ReportFragmentNode(ReportFragmentReference,RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -138,7 +138,7 @@ class ReportFragmentNode(ReportFragmentReference,RunNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property

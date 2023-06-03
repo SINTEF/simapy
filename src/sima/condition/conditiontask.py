@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.conditiontask import ConditionTaskBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.task import Task
+from sima.sima import ScriptableValue
+from sima.sima import Task
 
 class ConditionTask(Task):
     """
@@ -54,7 +54,7 @@ class ConditionTask(Task):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.initialviewpoint import InitialViewpointBlueprint
 from typing import Dict
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.vector3 import Vector3
-from sima.sima.viewpoint import Viewpoint
+from .point3 import Point3
+from .scriptablevalue import ScriptableValue
+from .vector3 import Vector3
+from .viewpoint import Viewpoint
 
 class InitialViewpoint(Viewpoint):
     """
@@ -59,7 +59,7 @@ class InitialViewpoint(Viewpoint):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

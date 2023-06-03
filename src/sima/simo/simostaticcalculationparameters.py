@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simostaticcalculationparameters import SIMOStaticCalculationParametersBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bodyeigenvalueitem import BodyEigenvalueItem
-from sima.simo.dofelimination import DOFElimination
-from sima.simo.equilibriumcalculationoption import EquilibriumCalculationOption
-from sima.simo.equilibriumgriddefinition import EquilibriumGridDefinition
-from sima.simo.staticequilibriumbody import StaticEquilibriumBody
+from .bodyeigenvalueitem import BodyEigenvalueItem
+from .dofelimination import DOFElimination
+from .equilibriumcalculationoption import EquilibriumCalculationOption
+from .equilibriumgriddefinition import EquilibriumGridDefinition
+from .staticequilibriumbody import StaticEquilibriumBody
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SIMOStaticCalculationParameters(MOAO):
     """
@@ -110,7 +110,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -222,7 +222,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def eliminations(self, value: List[DOFElimination]):
         """Set eliminations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__eliminations = value
 
     @property
@@ -234,7 +234,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def eigenvalueItems(self, value: List[BodyEigenvalueItem]):
         """Set eigenvalueItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__eigenvalueItems = value
 
     @property
@@ -276,7 +276,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def staticEquilibriumBody(self, value: List[StaticEquilibriumBody]):
         """Set staticEquilibriumBody"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__staticEquilibriumBody = value
 
     @property
@@ -288,7 +288,7 @@ class SIMOStaticCalculationParameters(MOAO):
     def restrainFromGlobalDOFBodies(self, value: List[DOFElimination]):
         """Set restrainFromGlobalDOFBodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__restrainFromGlobalDOFBodies = value
 
     @property

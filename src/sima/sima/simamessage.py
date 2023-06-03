@@ -6,9 +6,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simamessage import SimaMessageBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.severity import Severity
+from .moao import MOAO
+from .scriptablevalue import ScriptableValue
+from .severity import Severity
 
 class SimaMessage(MOAO):
     """
@@ -60,7 +60,7 @@ class SimaMessage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -92,5 +92,5 @@ class SimaMessage(MOAO):
     def messages(self, value: List[SimaMessage]):
         """Set messages"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__messages = value

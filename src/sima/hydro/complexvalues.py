@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.complexvalues import ComplexValuesBlueprint
 from numpy import ndarray,asarray
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ComplexValues(MOAO):
     """
@@ -15,16 +15,16 @@ class ComplexValues(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    realValues : ndarray
-    imagValues : ndarray
+    realValues : ndarray of float
+    imagValues : ndarray of float
     """
 
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.realValues = ndarray(1)
-        self.imagValues = ndarray(1)
+        self.realValues = []
+        self.imagValues = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -55,7 +55,7 @@ class ComplexValues(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,7 +66,10 @@ class ComplexValues(MOAO):
     @realValues.setter
     def realValues(self, value: ndarray):
         """Set realValues"""
-        self.__realValues = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__realValues = array
 
     @property
     def imagValues(self) -> ndarray:
@@ -76,4 +79,7 @@ class ComplexValues(MOAO):
     @imagValues.setter
     def imagValues(self, value: ndarray):
         """Set imagValues"""
-        self.__imagValues = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__imagValues = array

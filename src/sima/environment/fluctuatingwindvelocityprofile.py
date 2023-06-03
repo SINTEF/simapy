@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fluctuatingwindvelocityprofile import FluctuatingWindVelocityProfileBlueprint
 from typing import Dict
-from sima.environment.windvelocityprofile import WindVelocityProfile
-from sima.sima.scriptablevalue import ScriptableValue
+from .windvelocityprofile import WindVelocityProfile
+from sima.sima import ScriptableValue
 
 class FluctuatingWindVelocityProfile(WindVelocityProfile):
     """
@@ -66,7 +66,7 @@ class FluctuatingWindVelocityProfile(WindVelocityProfile):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

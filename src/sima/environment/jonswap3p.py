@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.jonswap3p import Jonswap3PBlueprint
 from typing import Dict
-from sima.environment.jonswap import Jonswap
-from sima.environment.wavespreadingtype import WaveSpreadingType
-from sima.sima.scriptablevalue import ScriptableValue
+from .jonswap import Jonswap
+from .wavespreadingtype import WaveSpreadingType
+from sima.sima import ScriptableValue
 
 class Jonswap3P(Jonswap):
     """
@@ -73,7 +73,7 @@ class Jonswap3P(Jonswap):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

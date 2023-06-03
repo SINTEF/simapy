@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.initialcondition import InitialConditionBlueprint
 from typing import Dict
-from sima.sima.condition import Condition
-from sima.sima.namedobject import NamedObject
-from sima.sima.resultcontainer import ResultContainer
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import Condition
+from sima.sima import NamedObject
+from sima.sima import ResultContainer
+from sima.sima import ScriptableValue
 
 class InitialCondition(Condition,NamedObject):
     """
@@ -61,7 +61,7 @@ class InitialCondition(Condition,NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

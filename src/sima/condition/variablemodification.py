@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.variablemodification import VariableModificationBlueprint
 from typing import Dict
-from sima.condition.modelvariationoperation import ModelVariationOperation
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.variableitem import VariableItem
+from .modelvariationoperation import ModelVariationOperation
+from sima.sima import ScriptableValue
+from sima.sima import VariableItem
 
 class VariableModification(ModelVariationOperation):
     """
@@ -57,7 +57,7 @@ class VariableModification(ModelVariationOperation):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class VariableModification(ModelVariationOperation):
     def variableItems(self, value: List[VariableItem]):
         """Set variableItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableItems = value

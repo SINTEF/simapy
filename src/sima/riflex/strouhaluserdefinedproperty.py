@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.strouhaluserdefinedproperty import StrouhalUserDefinedPropertyBlueprint
 from typing import Dict
-from sima.riflex.reynoldstrouhalnumberitem import ReynoldStrouhalNumberItem
-from sima.riflex.strouhalspecificationproperty import StrouhalSpecificationProperty
-from sima.sima.scriptablevalue import ScriptableValue
+from .reynoldstrouhalnumberitem import ReynoldStrouhalNumberItem
+from .strouhalspecificationproperty import StrouhalSpecificationProperty
+from sima.sima import ScriptableValue
 
 class StrouhalUserDefinedProperty(StrouhalSpecificationProperty):
     """
@@ -57,7 +57,7 @@ class StrouhalUserDefinedProperty(StrouhalSpecificationProperty):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class StrouhalUserDefinedProperty(StrouhalSpecificationProperty):
     def reynoldStrouhalProperties(self, value: List[ReynoldStrouhalNumberItem]):
         """Set reynoldStrouhalProperties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__reynoldStrouhalProperties = value

@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.soil import SoilBlueprint
 from typing import Dict
-from sima.riflex.material import Material
-from sima.sima.scriptablevalue import ScriptableValue
+from .material import Material
+from sima.sima import ScriptableValue
 
 class Soil(Material):
     """
@@ -54,7 +54,7 @@ class Soil(Material):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

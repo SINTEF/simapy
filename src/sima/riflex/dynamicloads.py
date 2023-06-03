@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicloads import DynamicLoadsBlueprint
 from typing import Dict
-from sima.riflex.dynamiccurrentvariation import DynamicCurrentVariation
-from sima.riflex.dynamicnodalforces import DynamicNodalForces
-from sima.riflex.rigidmoonpoolcolumn import RigidMoonpoolColumn
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .dynamiccurrentvariation import DynamicCurrentVariation
+from .dynamicnodalforces import DynamicNodalForces
+from .rigidmoonpoolcolumn import RigidMoonpoolColumn
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DynamicLoads(MOAO):
     """
@@ -60,7 +60,7 @@ class DynamicLoads(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

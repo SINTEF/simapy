@@ -6,7 +6,6 @@ from .bodyviewpoint import BodyViewpoint # noqa
 from .condition import Condition # noqa
 from .conditionresultcontainer import ConditionResultContainer # noqa
 from .conditionselectable import ConditionSelectable # noqa
-from .dependency import Dependency # noqa
 from .doublevariable import DoubleVariable # noqa
 from .fileresource import FileResource # noqa
 from .filestorage import FileStorage # noqa
@@ -26,7 +25,6 @@ from .moao import MOAO # noqa
 from .moaofolder import MOAOFolder # noqa
 from .modelreference import ModelReference # noqa
 from .modelreferencevariable import ModelReferenceVariable # noqa
-from .multifeaturedependency import MultiFeatureDependency # noqa
 from .named import Named # noqa
 from .namedobject import NamedObject # noqa
 from .namedstorageresource import NamedStorageResource # noqa

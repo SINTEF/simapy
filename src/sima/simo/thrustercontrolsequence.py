@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.thrustercontrolsequence import ThrusterControlSequenceBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.controlsequenceitem import ControlSequenceItem
-from sima.simo.thrustsignaltype import ThrustSignalType
+from .controlsequenceitem import ControlSequenceItem
+from .thrustsignaltype import ThrustSignalType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ThrusterControlSequence(MOAO):
     """
@@ -61,7 +61,7 @@ class ThrusterControlSequence(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -93,5 +93,5 @@ class ThrusterControlSequence(MOAO):
     def items(self, value: List[ControlSequenceItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

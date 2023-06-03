@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.licensepreference import LicensePreferenceBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simapreference import SIMAPreference
+from .scriptablevalue import ScriptableValue
+from .simapreference import SIMAPreference
 
 class LicensePreference(SIMAPreference):
     """
@@ -54,7 +54,7 @@ class LicensePreference(SIMAPreference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,29 +5,27 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.axisymmetriccrosssection import AxisymmetricCrossSectionBlueprint
 from typing import Dict
-from sima.riflex.aerodynamicinputcode import AerodynamicInputCode
-from sima.riflex.axialstiffness import AxialStiffness
-from sima.riflex.axialstiffnessitem import AxialStiffnessItem
-from sima.riflex.axisymmetriccrosssectionmassvolume import AxisymmetricCrossSectionMassVolume
-from sima.riflex.barbeam import BarBeam
-from sima.riflex.bendingstiffness import BendingStiffness
-from sima.riflex.bendingstiffnessy_item import BendingStiffnessY_Item
-from sima.riflex.crosssection import CrossSection
-from sima.riflex.crsaxialdamping import CRSAxialDamping
-from sima.riflex.crsaxialfrictionmodel import CRSAxialFrictionModel
-from sima.riflex.crsmassdamping import CRSMassDamping
-from sima.riflex.crsstiffnessdamping import CRSStiffnessDamping
-from sima.riflex.hydrodynamicinputcode import HydrodynamicInputCode
-from sima.riflex.hysteresis import Hysteresis
-from sima.riflex.loadformulation import LoadFormulation
-from sima.riflex.tangentialfroudekrylovscaling import TangentialFroudeKrylovScaling
-from sima.riflex.timedomainvivloadcoefficients import TimeDomainVIVLoadCoefficients
-from sima.riflex.torsionstiffness import TorsionStiffness
-from sima.riflex.torsionstiffnessitem import TorsionStiffnessItem
-from sima.riflex.vivloadformulation import VIVLoadFormulation
-from sima.sima.scriptablevalue import ScriptableValue
+from .aerodynamicinputcode import AerodynamicInputCode
+from .axialstiffness import AxialStiffness
+from .axialstiffnessitem import AxialStiffnessItem
+from .axisymmetriccrosssectionmassvolume import AxisymmetricCrossSectionMassVolume
+from .barbeam import BarBeam
+from .bendingstiffness import BendingStiffness
+from .bendingstiffnessy_item import BendingStiffnessY_Item
+from .crosssection import CrossSection
+from .crsaxialdamping import CRSAxialDamping
+from .crsaxialfrictionmodel import CRSAxialFrictionModel
+from .crsmassdamping import CRSMassDamping
+from .crsstiffnessdamping import CRSStiffnessDamping
+from .hydrodynamicinputcode import HydrodynamicInputCode
+from .hysteresis import Hysteresis
+from .loadformulation import LoadFormulation
+from .timedomainvivloadcoefficients import TimeDomainVIVLoadCoefficients
+from .torsionstiffness import TorsionStiffness
+from .torsionstiffnessitem import TorsionStiffnessItem
+from sima.sima import ScriptableValue
 
-class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVLoadCoefficients):
+class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel):
     """
     Keyword arguments
     -----------------
@@ -46,40 +44,23 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
          Relative elongation(default 0.0)
     axialFriction : bool
          Local axial friction model(default False)
-    vivLoadFormulation : VIVLoadFormulation
-    cv : float
-         Vortex shedding load coefficient for cross-flow excitation (nondimensional)(default 0.0)
-    fnull : float
-         Natural cross-flow vortex shedding frequency (nondimensional)(default 0.0)
-    fmin : float
-         Minimum cross-flow vortex shedding frequency (nondimensional)(default 0.0)
-    fmax : float
-         Maximum cross-flow vortex shedding frequency (nondimensional)(default 0.0)
-    nmem : int
-         Number of time steps used in calculation of standard deviation(default 500)
-    cvil : float
-         Load coefficient for in-line excitation(default 0.0)
-    alphil : float
-         Nondimensional parameter giving freedom to in-line excitation frequency(default 0.0)
-    chh : float
-         Higher harmonic load coefficient (nondimensional)(default 0.0)
-    fnullil : float
-         Natural in-line vortex shedding frequency (nondimensional)(default 0.0)
-    fminil : float
-         Minimum in-line vortex shedding frequency (nondimensional)(default 0.0)
-    fmaxil : float
-         Maximum in-line vortex shedding frequency (nondimensional)(default 0.0)
     scfkSpecification : bool
          Scaling of Froude-Krylov term in Morison’s equation in normal direction(default False)
     loadFormulation : LoadFormulation
     hydrodynamicDiameter : float
          Hydrodynamic diameter(default 0.0)
+    hydrodynamicInputCode : HydrodynamicInputCode
+         Hydrodynamic input code
     addedMassTanDir : float
          Added mass in tangential direction(default 0.0)
     addedMassNormDir : float
          Added mass in normal direction(default 0.0)
     dampingNormDir : float
          Damping coefficients in normal direction(default 0.0)
+    normalDirectionScaling : float
+         Scaling factor for Froude-Krylov term in Morison’s equation in normal direction(default 1.0)
+    tangentialDirectionScaling : float
+         Scale for Froude-Krylov term in Morison’s equation in tangential direction(default 1.0)
     cdt : float
          Quadratic drag coefficient in tangential direction.(default 0.0)
     cdn : float
@@ -104,29 +85,29 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
          Linear drag force coefficient in tangential direction.(default 0.0)
     cdly : float
          Linear drag force coefficient in normal direction.(default 0.0)
-    hydrodynamicInputCode : HydrodynamicInputCode
-         Hydrodynamic input code
-    scfk : float
-         Scaling factor for Froude-Krylov term in Morison’s equation in normal direction(default 1.0)
-    scfkt : TangentialFroudeKrylovScaling
-         Scale for Froude-Krylov term in Morison’s equation in tangential direction
+    hydrodynamicRadiationInputCode : HydrodynamicInputCode
+         Code for input of simplified radiation force coefficients
     massDampingSpecification : bool
          Mass proportional Rayleigh damping(default False)
     stiffnessDampingSpecification : bool
          Stiffness proportional Rayleigh damping(default False)
     axialDampingSpecification : bool
          Local axial damping model(default False)
+    massDamping : CRSMassDamping
+    stiffnessDamping : CRSStiffnessDamping
+    axialDamping : CRSAxialDamping
     temperature : float
          Temperature at which the specification applies(default 0.0)
     alpha : float
          Thermal expansion coefficient(default 0.0)
     beta : float
          Pressure expansion coefficient(default 0.0)
-    massDamping : CRSMassDamping
-    stiffnessDamping : CRSStiffnessDamping
-    axialDamping : CRSAxialDamping
     defaultExpansion : bool
          Use default thermal and pressure expansion settings(default True)
+    tensionCapacity : float
+         Tension capacity(default 0.0)
+    maxCurvature : float
+         Maximum curvature(default 0.0)
     cdax : float
          Quadratic aerodynamic drag force coefficient per unit length in tangential direction(default 0.0)
     cday : float
@@ -137,6 +118,15 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
          Aerodynamic input code
     aerodynamicDiameter : float
          Aerodynamic diameter(default 0.0)
+    netWidthEnd1 : float
+         Net width at segment end 1(default 0.0)
+    netWidthEnd2 : float
+         Net width at segment end 2(default 0.0)
+    currentVelocityScaling : float
+         Ratio between reduced current speed and ambient current speed due to upstream net shadowing effects(default 1.0)
+    solidityRatio : float
+         Solidity ratio.(default 0.0)
+    vivCoefficients : TimeDomainVIVLoadCoefficients
     massVolume : AxisymmetricCrossSectionMassVolume
     axialStiffnessInput : AxialStiffness
          Axial stiffness input specification
@@ -165,31 +155,15 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     positiveTorsionStiffness : float
          Torsion stiffness for positive twist.(default 0.0)
     torsionStiffnessCharacteristics : List[TorsionStiffnessItem]
-    tensionCapacity : float
-         Tension capacity(default 0.0)
-    maxCurvature : float
-         Maximum curvature(default 0.0)
     barBeam : BarBeam
          Cross section type
     stiffnessFactor : float
          Initial stiffness factor for internal friction moment(default 10.0)
-    submerged : bool
-         Use formulation for partly submerged cross-section(default False)
     coupledBendingTorsion : bool
          Geometric stiffness coupling between bending and torsion(default False)
-    hydrodynamicRadiationInputCode : HydrodynamicInputCode
-         Code for input of simplified radiation force coefficients
-    solidityRatio : float
-         Solidity ratio.(default 0.0)
-    netWidthEnd1 : float
-         Net width at segment end 1(default 0.0)
-    netWidthEnd2 : float
-         Net width at segment end 2(default 0.0)
-    currentVelocityScaling : float
-         Ratio between reduced current speed and ambient current speed due to upstream net shadowing effects(default 1.0)
     """
 
-    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, vivLoadFormulation=VIVLoadFormulation.CROSSFLOW_VIV_ONLY, cv=0.0, fnull=0.0, fmin=0.0, fmax=0.0, nmem=500, cvil=0.0, alphil=0.0, chh=0.0, fnullil=0.0, fminil=0.0, fmaxil=0.0, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, bendingStiffnessInput=BendingStiffness.CONSTANT, torsionStiffnessInput=TorsionStiffness.CONSTANT, pressureDependency=0, hysteresisOption=Hysteresis.NO_HYSTERESIS, hardeningParameter=0.0, axialStiffness=0.0, bendingStiffness=0.0, intFrictionMoment=0.0, shearStiffness=0.0, negativeTorsionStiffness=0.0, positiveTorsionStiffness=0.0, tensionCapacity=0.0, maxCurvature=0.0, barBeam=BarBeam.BAR, stiffnessFactor=10.0, submerged=False, coupledBendingTorsion=False, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, solidityRatio=0.0, netWidthEnd1=0.0, netWidthEnd2=0.0, currentVelocityScaling=1.0, **kwargs):
+    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, normalDirectionScaling=1.0, tangentialDirectionScaling=1.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, tensionCapacity=0.0, maxCurvature=0.0, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, netWidthEnd1=0.0, netWidthEnd2=0.0, currentVelocityScaling=1.0, solidityRatio=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, bendingStiffnessInput=BendingStiffness.CONSTANT, torsionStiffnessInput=TorsionStiffness.CONSTANT, pressureDependency=0, hysteresisOption=Hysteresis.NO_HYSTERESIS, hardeningParameter=0.0, axialStiffness=0.0, bendingStiffness=0.0, intFrictionMoment=0.0, shearStiffness=0.0, negativeTorsionStiffness=0.0, positiveTorsionStiffness=0.0, barBeam=BarBeam.BAR, stiffnessFactor=10.0, coupledBendingTorsion=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -199,24 +173,15 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
         self.dynamicFriction = dynamicFriction
         self.dynamicElongation = dynamicElongation
         self.axialFriction = axialFriction
-        self.vivLoadFormulation = vivLoadFormulation
-        self.cv = cv
-        self.fnull = fnull
-        self.fmin = fmin
-        self.fmax = fmax
-        self.nmem = nmem
-        self.cvil = cvil
-        self.alphil = alphil
-        self.chh = chh
-        self.fnullil = fnullil
-        self.fminil = fminil
-        self.fmaxil = fmaxil
         self.scfkSpecification = scfkSpecification
         self.loadFormulation = loadFormulation
         self.hydrodynamicDiameter = hydrodynamicDiameter
+        self.hydrodynamicInputCode = hydrodynamicInputCode
         self.addedMassTanDir = addedMassTanDir
         self.addedMassNormDir = addedMassNormDir
         self.dampingNormDir = dampingNormDir
+        self.normalDirectionScaling = normalDirectionScaling
+        self.tangentialDirectionScaling = tangentialDirectionScaling
         self.cdt = cdt
         self.cdn = cdn
         self.cmt = cmt
@@ -229,24 +194,29 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
         self.amy = amy
         self.cdlx = cdlx
         self.cdly = cdly
-        self.hydrodynamicInputCode = hydrodynamicInputCode
-        self.scfk = scfk
-        self.scfkt = scfkt
+        self.hydrodynamicRadiationInputCode = hydrodynamicRadiationInputCode
         self.massDampingSpecification = massDampingSpecification
         self.stiffnessDampingSpecification = stiffnessDampingSpecification
         self.axialDampingSpecification = axialDampingSpecification
-        self.temperature = temperature
-        self.alpha = alpha
-        self.beta = beta
         self.massDamping = None
         self.stiffnessDamping = None
         self.axialDamping = None
+        self.temperature = temperature
+        self.alpha = alpha
+        self.beta = beta
         self.defaultExpansion = defaultExpansion
+        self.tensionCapacity = tensionCapacity
+        self.maxCurvature = maxCurvature
         self.cdax = cdax
         self.cday = cday
         self.cdaz = cdaz
         self.aerodynamicInputCode = aerodynamicInputCode
         self.aerodynamicDiameter = aerodynamicDiameter
+        self.netWidthEnd1 = netWidthEnd1
+        self.netWidthEnd2 = netWidthEnd2
+        self.currentVelocityScaling = currentVelocityScaling
+        self.solidityRatio = solidityRatio
+        self.vivCoefficients = None
         self.massVolume = None
         self.axialStiffnessInput = axialStiffnessInput
         self.bendingStiffnessInput = bendingStiffnessInput
@@ -263,17 +233,9 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
         self.negativeTorsionStiffness = negativeTorsionStiffness
         self.positiveTorsionStiffness = positiveTorsionStiffness
         self.torsionStiffnessCharacteristics = list()
-        self.tensionCapacity = tensionCapacity
-        self.maxCurvature = maxCurvature
         self.barBeam = barBeam
         self.stiffnessFactor = stiffnessFactor
-        self.submerged = submerged
         self.coupledBendingTorsion = coupledBendingTorsion
-        self.hydrodynamicRadiationInputCode = hydrodynamicRadiationInputCode
-        self.solidityRatio = solidityRatio
-        self.netWidthEnd1 = netWidthEnd1
-        self.netWidthEnd2 = netWidthEnd2
-        self.currentVelocityScaling = currentVelocityScaling
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -304,7 +266,7 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -368,126 +330,6 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
         self.__axialFriction = bool(value)
 
     @property
-    def vivLoadFormulation(self) -> VIVLoadFormulation:
-        """"""
-        return self.__vivLoadFormulation
-
-    @vivLoadFormulation.setter
-    def vivLoadFormulation(self, value: VIVLoadFormulation):
-        """Set vivLoadFormulation"""
-        self.__vivLoadFormulation = value
-
-    @property
-    def cv(self) -> float:
-        """Vortex shedding load coefficient for cross-flow excitation (nondimensional)"""
-        return self.__cv
-
-    @cv.setter
-    def cv(self, value: float):
-        """Set cv"""
-        self.__cv = float(value)
-
-    @property
-    def fnull(self) -> float:
-        """Natural cross-flow vortex shedding frequency (nondimensional)"""
-        return self.__fnull
-
-    @fnull.setter
-    def fnull(self, value: float):
-        """Set fnull"""
-        self.__fnull = float(value)
-
-    @property
-    def fmin(self) -> float:
-        """Minimum cross-flow vortex shedding frequency (nondimensional)"""
-        return self.__fmin
-
-    @fmin.setter
-    def fmin(self, value: float):
-        """Set fmin"""
-        self.__fmin = float(value)
-
-    @property
-    def fmax(self) -> float:
-        """Maximum cross-flow vortex shedding frequency (nondimensional)"""
-        return self.__fmax
-
-    @fmax.setter
-    def fmax(self, value: float):
-        """Set fmax"""
-        self.__fmax = float(value)
-
-    @property
-    def nmem(self) -> int:
-        """Number of time steps used in calculation of standard deviation"""
-        return self.__nmem
-
-    @nmem.setter
-    def nmem(self, value: int):
-        """Set nmem"""
-        self.__nmem = int(value)
-
-    @property
-    def cvil(self) -> float:
-        """Load coefficient for in-line excitation"""
-        return self.__cvil
-
-    @cvil.setter
-    def cvil(self, value: float):
-        """Set cvil"""
-        self.__cvil = float(value)
-
-    @property
-    def alphil(self) -> float:
-        """Nondimensional parameter giving freedom to in-line excitation frequency"""
-        return self.__alphil
-
-    @alphil.setter
-    def alphil(self, value: float):
-        """Set alphil"""
-        self.__alphil = float(value)
-
-    @property
-    def chh(self) -> float:
-        """Higher harmonic load coefficient (nondimensional)"""
-        return self.__chh
-
-    @chh.setter
-    def chh(self, value: float):
-        """Set chh"""
-        self.__chh = float(value)
-
-    @property
-    def fnullil(self) -> float:
-        """Natural in-line vortex shedding frequency (nondimensional)"""
-        return self.__fnullil
-
-    @fnullil.setter
-    def fnullil(self, value: float):
-        """Set fnullil"""
-        self.__fnullil = float(value)
-
-    @property
-    def fminil(self) -> float:
-        """Minimum in-line vortex shedding frequency (nondimensional)"""
-        return self.__fminil
-
-    @fminil.setter
-    def fminil(self, value: float):
-        """Set fminil"""
-        self.__fminil = float(value)
-
-    @property
-    def fmaxil(self) -> float:
-        """Maximum in-line vortex shedding frequency (nondimensional)"""
-        return self.__fmaxil
-
-    @fmaxil.setter
-    def fmaxil(self, value: float):
-        """Set fmaxil"""
-        self.__fmaxil = float(value)
-
-    @property
     def scfkSpecification(self) -> bool:
         """Scaling of Froude-Krylov term in Morison’s equation in normal direction"""
         return self.__scfkSpecification
@@ -518,6 +360,16 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
         self.__hydrodynamicDiameter = float(value)
 
     @property
+    def hydrodynamicInputCode(self) -> HydrodynamicInputCode:
+        """Hydrodynamic input code"""
+        return self.__hydrodynamicInputCode
+
+    @hydrodynamicInputCode.setter
+    def hydrodynamicInputCode(self, value: HydrodynamicInputCode):
+        """Set hydrodynamicInputCode"""
+        self.__hydrodynamicInputCode = value
+
+    @property
     def addedMassTanDir(self) -> float:
         """Added mass in tangential direction"""
         return self.__addedMassTanDir
@@ -546,6 +398,26 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     def dampingNormDir(self, value: float):
         """Set dampingNormDir"""
         self.__dampingNormDir = float(value)
+
+    @property
+    def normalDirectionScaling(self) -> float:
+        """Scaling factor for Froude-Krylov term in Morison’s equation in normal direction"""
+        return self.__normalDirectionScaling
+
+    @normalDirectionScaling.setter
+    def normalDirectionScaling(self, value: float):
+        """Set normalDirectionScaling"""
+        self.__normalDirectionScaling = float(value)
+
+    @property
+    def tangentialDirectionScaling(self) -> float:
+        """Scale for Froude-Krylov term in Morison’s equation in tangential direction"""
+        return self.__tangentialDirectionScaling
+
+    @tangentialDirectionScaling.setter
+    def tangentialDirectionScaling(self, value: float):
+        """Set tangentialDirectionScaling"""
+        self.__tangentialDirectionScaling = float(value)
 
     @property
     def cdt(self) -> float:
@@ -668,34 +540,14 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
         self.__cdly = float(value)
 
     @property
-    def hydrodynamicInputCode(self) -> HydrodynamicInputCode:
-        """Hydrodynamic input code"""
-        return self.__hydrodynamicInputCode
+    def hydrodynamicRadiationInputCode(self) -> HydrodynamicInputCode:
+        """Code for input of simplified radiation force coefficients"""
+        return self.__hydrodynamicRadiationInputCode
 
-    @hydrodynamicInputCode.setter
-    def hydrodynamicInputCode(self, value: HydrodynamicInputCode):
-        """Set hydrodynamicInputCode"""
-        self.__hydrodynamicInputCode = value
-
-    @property
-    def scfk(self) -> float:
-        """Scaling factor for Froude-Krylov term in Morison’s equation in normal direction"""
-        return self.__scfk
-
-    @scfk.setter
-    def scfk(self, value: float):
-        """Set scfk"""
-        self.__scfk = float(value)
-
-    @property
-    def scfkt(self) -> TangentialFroudeKrylovScaling:
-        """Scale for Froude-Krylov term in Morison’s equation in tangential direction"""
-        return self.__scfkt
-
-    @scfkt.setter
-    def scfkt(self, value: TangentialFroudeKrylovScaling):
-        """Set scfkt"""
-        self.__scfkt = value
+    @hydrodynamicRadiationInputCode.setter
+    def hydrodynamicRadiationInputCode(self, value: HydrodynamicInputCode):
+        """Set hydrodynamicRadiationInputCode"""
+        self.__hydrodynamicRadiationInputCode = value
 
     @property
     def massDampingSpecification(self) -> bool:
@@ -728,36 +580,6 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
         self.__axialDampingSpecification = bool(value)
 
     @property
-    def temperature(self) -> float:
-        """Temperature at which the specification applies"""
-        return self.__temperature
-
-    @temperature.setter
-    def temperature(self, value: float):
-        """Set temperature"""
-        self.__temperature = float(value)
-
-    @property
-    def alpha(self) -> float:
-        """Thermal expansion coefficient"""
-        return self.__alpha
-
-    @alpha.setter
-    def alpha(self, value: float):
-        """Set alpha"""
-        self.__alpha = float(value)
-
-    @property
-    def beta(self) -> float:
-        """Pressure expansion coefficient"""
-        return self.__beta
-
-    @beta.setter
-    def beta(self, value: float):
-        """Set beta"""
-        self.__beta = float(value)
-
-    @property
     def massDamping(self) -> CRSMassDamping:
         """"""
         return self.__massDamping
@@ -788,6 +610,36 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
         self.__axialDamping = value
 
     @property
+    def temperature(self) -> float:
+        """Temperature at which the specification applies"""
+        return self.__temperature
+
+    @temperature.setter
+    def temperature(self, value: float):
+        """Set temperature"""
+        self.__temperature = float(value)
+
+    @property
+    def alpha(self) -> float:
+        """Thermal expansion coefficient"""
+        return self.__alpha
+
+    @alpha.setter
+    def alpha(self, value: float):
+        """Set alpha"""
+        self.__alpha = float(value)
+
+    @property
+    def beta(self) -> float:
+        """Pressure expansion coefficient"""
+        return self.__beta
+
+    @beta.setter
+    def beta(self, value: float):
+        """Set beta"""
+        self.__beta = float(value)
+
+    @property
     def defaultExpansion(self) -> bool:
         """Use default thermal and pressure expansion settings"""
         return self.__defaultExpansion
@@ -796,6 +648,26 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     def defaultExpansion(self, value: bool):
         """Set defaultExpansion"""
         self.__defaultExpansion = bool(value)
+
+    @property
+    def tensionCapacity(self) -> float:
+        """Tension capacity"""
+        return self.__tensionCapacity
+
+    @tensionCapacity.setter
+    def tensionCapacity(self, value: float):
+        """Set tensionCapacity"""
+        self.__tensionCapacity = float(value)
+
+    @property
+    def maxCurvature(self) -> float:
+        """Maximum curvature"""
+        return self.__maxCurvature
+
+    @maxCurvature.setter
+    def maxCurvature(self, value: float):
+        """Set maxCurvature"""
+        self.__maxCurvature = float(value)
 
     @property
     def cdax(self) -> float:
@@ -846,6 +718,56 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     def aerodynamicDiameter(self, value: float):
         """Set aerodynamicDiameter"""
         self.__aerodynamicDiameter = float(value)
+
+    @property
+    def netWidthEnd1(self) -> float:
+        """Net width at segment end 1"""
+        return self.__netWidthEnd1
+
+    @netWidthEnd1.setter
+    def netWidthEnd1(self, value: float):
+        """Set netWidthEnd1"""
+        self.__netWidthEnd1 = float(value)
+
+    @property
+    def netWidthEnd2(self) -> float:
+        """Net width at segment end 2"""
+        return self.__netWidthEnd2
+
+    @netWidthEnd2.setter
+    def netWidthEnd2(self, value: float):
+        """Set netWidthEnd2"""
+        self.__netWidthEnd2 = float(value)
+
+    @property
+    def currentVelocityScaling(self) -> float:
+        """Ratio between reduced current speed and ambient current speed due to upstream net shadowing effects"""
+        return self.__currentVelocityScaling
+
+    @currentVelocityScaling.setter
+    def currentVelocityScaling(self, value: float):
+        """Set currentVelocityScaling"""
+        self.__currentVelocityScaling = float(value)
+
+    @property
+    def solidityRatio(self) -> float:
+        """Solidity ratio."""
+        return self.__solidityRatio
+
+    @solidityRatio.setter
+    def solidityRatio(self, value: float):
+        """Set solidityRatio"""
+        self.__solidityRatio = float(value)
+
+    @property
+    def vivCoefficients(self) -> TimeDomainVIVLoadCoefficients:
+        """"""
+        return self.__vivCoefficients
+
+    @vivCoefficients.setter
+    def vivCoefficients(self, value: TimeDomainVIVLoadCoefficients):
+        """Set vivCoefficients"""
+        self.__vivCoefficients = value
 
     @property
     def massVolume(self) -> AxisymmetricCrossSectionMassVolume:
@@ -936,7 +858,7 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     def axialStiffnessCharacteristics(self, value: List[AxialStiffnessItem]):
         """Set axialStiffnessCharacteristics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__axialStiffnessCharacteristics = value
 
     @property
@@ -978,7 +900,7 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     def bendingStiffnessCharacteristics(self, value: List[BendingStiffnessY_Item]):
         """Set bendingStiffnessCharacteristics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bendingStiffnessCharacteristics = value
 
     @property
@@ -1010,28 +932,8 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     def torsionStiffnessCharacteristics(self, value: List[TorsionStiffnessItem]):
         """Set torsionStiffnessCharacteristics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__torsionStiffnessCharacteristics = value
-
-    @property
-    def tensionCapacity(self) -> float:
-        """Tension capacity"""
-        return self.__tensionCapacity
-
-    @tensionCapacity.setter
-    def tensionCapacity(self, value: float):
-        """Set tensionCapacity"""
-        self.__tensionCapacity = float(value)
-
-    @property
-    def maxCurvature(self) -> float:
-        """Maximum curvature"""
-        return self.__maxCurvature
-
-    @maxCurvature.setter
-    def maxCurvature(self, value: float):
-        """Set maxCurvature"""
-        self.__maxCurvature = float(value)
 
     @property
     def barBeam(self) -> BarBeam:
@@ -1054,16 +956,6 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
         self.__stiffnessFactor = float(value)
 
     @property
-    def submerged(self) -> bool:
-        """Use formulation for partly submerged cross-section"""
-        return self.__submerged
-
-    @submerged.setter
-    def submerged(self, value: bool):
-        """Set submerged"""
-        self.__submerged = bool(value)
-
-    @property
     def coupledBendingTorsion(self) -> bool:
         """Geometric stiffness coupling between bending and torsion"""
         return self.__coupledBendingTorsion
@@ -1072,53 +964,3 @@ class AxisymmetricCrossSection(CrossSection,CRSAxialFrictionModel,TimeDomainVIVL
     def coupledBendingTorsion(self, value: bool):
         """Set coupledBendingTorsion"""
         self.__coupledBendingTorsion = bool(value)
-
-    @property
-    def hydrodynamicRadiationInputCode(self) -> HydrodynamicInputCode:
-        """Code for input of simplified radiation force coefficients"""
-        return self.__hydrodynamicRadiationInputCode
-
-    @hydrodynamicRadiationInputCode.setter
-    def hydrodynamicRadiationInputCode(self, value: HydrodynamicInputCode):
-        """Set hydrodynamicRadiationInputCode"""
-        self.__hydrodynamicRadiationInputCode = value
-
-    @property
-    def solidityRatio(self) -> float:
-        """Solidity ratio."""
-        return self.__solidityRatio
-
-    @solidityRatio.setter
-    def solidityRatio(self, value: float):
-        """Set solidityRatio"""
-        self.__solidityRatio = float(value)
-
-    @property
-    def netWidthEnd1(self) -> float:
-        """Net width at segment end 1"""
-        return self.__netWidthEnd1
-
-    @netWidthEnd1.setter
-    def netWidthEnd1(self, value: float):
-        """Set netWidthEnd1"""
-        self.__netWidthEnd1 = float(value)
-
-    @property
-    def netWidthEnd2(self) -> float:
-        """Net width at segment end 2"""
-        return self.__netWidthEnd2
-
-    @netWidthEnd2.setter
-    def netWidthEnd2(self, value: float):
-        """Set netWidthEnd2"""
-        self.__netWidthEnd2 = float(value)
-
-    @property
-    def currentVelocityScaling(self) -> float:
-        """Ratio between reduced current speed and ambient current speed due to upstream net shadowing effects"""
-        return self.__currentVelocityScaling
-
-    @currentVelocityScaling.setter
-    def currentVelocityScaling(self, value: float):
-        """Set currentVelocityScaling"""
-        self.__currentVelocityScaling = float(value)

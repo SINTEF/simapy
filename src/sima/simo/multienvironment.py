@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.multienvironment import MultiEnvironmentBlueprint
 from typing import Dict
-from sima.environment.environment import Environment
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.multienvironmentitem import MultiEnvironmentItem
+from .multienvironmentitem import MultiEnvironmentItem
+from sima.environment import Environment
+from sima.sima import ScriptableValue
 
 class MultiEnvironment(Environment):
     """
@@ -57,7 +57,7 @@ class MultiEnvironment(Environment):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class MultiEnvironment(Environment):
     def items(self, value: List[MultiEnvironmentItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.gittaskfolder import GitTaskFolderBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.task import Task
-from sima.sima.taskfolder import TaskFolder
+from .scriptablevalue import ScriptableValue
+from .task import Task
+from .taskfolder import TaskFolder
 
 class GitTaskFolder(TaskFolder):
     """
@@ -74,7 +74,7 @@ class GitTaskFolder(TaskFolder):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -96,7 +96,7 @@ class GitTaskFolder(TaskFolder):
     def childFolders(self, value: List[TaskFolder]):
         """Set childFolders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__childFolders = value
 
     @property
@@ -108,7 +108,7 @@ class GitTaskFolder(TaskFolder):
     def childTasks(self, value: List[Task]):
         """Set childTasks"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__childTasks = value
 
     @property

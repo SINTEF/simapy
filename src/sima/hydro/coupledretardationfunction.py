@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.coupledretardationfunction import CoupledRetardationFunctionBlueprint
 from typing import Dict
-from sima.hydro.lineardampingmatrix import LinearDampingMatrix
-from sima.hydro.retardationelementdata import RetardationElementData
-from sima.hydro.retardationfunction import RetardationFunction
-from sima.sima.scriptablevalue import ScriptableValue
+from .lineardampingmatrix import LinearDampingMatrix
+from .retardationelementdata import RetardationElementData
+from .retardationfunction import RetardationFunction
+from sima.sima import ScriptableValue
 
 class CoupledRetardationFunction(RetardationFunction):
     """
@@ -60,7 +60,7 @@ class CoupledRetardationFunction(RetardationFunction):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -72,7 +72,7 @@ class CoupledRetardationFunction(RetardationFunction):
     def retardationElements(self, value: List[RetardationElementData]):
         """Set retardationElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__retardationElements = value
 
     @property

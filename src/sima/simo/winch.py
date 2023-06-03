@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.winch import WinchBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.winchcontrol import WinchControl
-from sima.simo.winchruninterval import WinchRunInterval
+from .winchcontrol import WinchControl
+from .winchruninterval import WinchRunInterval
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class Winch(NamedObject):
     """
@@ -73,7 +73,7 @@ class Winch(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -145,5 +145,5 @@ class Winch(NamedObject):
     def intervals(self, value: List[WinchRunInterval]):
         """Set intervals"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__intervals = value

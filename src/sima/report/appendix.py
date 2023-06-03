@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.appendix import AppendixBlueprint
 from typing import Dict
-from sima.report.linkable import Linkable
-from sima.report.orientation import Orientation
-from sima.report.reportitem import ReportItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .linkable import Linkable
+from .orientation import Orientation
+from .reportitem import ReportItem
+from sima.sima import ScriptableValue
 
 class Appendix(ReportItem,Linkable):
     """
@@ -66,7 +66,7 @@ class Appendix(ReportItem,Linkable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -88,7 +88,7 @@ class Appendix(ReportItem,Linkable):
     def items(self, value: List[ReportItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

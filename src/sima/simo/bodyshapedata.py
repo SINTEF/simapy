@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bodyshapedata import BodyShapeDataBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.point2 import Point2
+from .point2 import Point2
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class BodyShapeData(MOAO):
     """
@@ -78,7 +78,7 @@ class BodyShapeData(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -170,5 +170,5 @@ class BodyShapeData(MOAO):
     def waterlinePoints(self, value: List[Point2]):
         """Set waterlinePoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waterlinePoints = value

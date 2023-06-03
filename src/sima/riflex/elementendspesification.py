@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.elementendspesification import ElementEndSpesificationBlueprint
 from typing import Dict
-from sima.riflex.elementreference import ElementReference
-from sima.riflex.end import End
-from sima.sima.scriptablevalue import ScriptableValue
+from .elementreference import ElementReference
+from .end import End
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class ElementEndSpesification(ElementReference):
     """
@@ -77,7 +77,7 @@ class ElementEndSpesification(ElementReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

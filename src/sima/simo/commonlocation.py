@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.commonlocation import CommonLocationBlueprint
 from typing import Dict
-from sima.sima.location import Location
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import Location
+from sima.sima import ScriptableValue
 
 class CommonLocation(Location):
     """
@@ -54,7 +54,7 @@ class CommonLocation(Location):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -13,8 +13,8 @@ class ScriptableValueBlueprint(EntityBlueprint):
     def __init__(self, name="ScriptableValue", package_path="sima/sima", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
+        self.add_attribute(Attribute("_id","string",""))
         self.add_attribute(Attribute("script","string",""))
-        self.add_attribute(BlueprintAttribute("dependencies","sima/sima/Dependency","",True,Dimension("*")))
         self.add_attribute(Attribute("cyclic","boolean","",default=False))
         self.add_attribute(Attribute("feature","string",""))
         self.add_attribute(Attribute("index","integer","",default=-1))

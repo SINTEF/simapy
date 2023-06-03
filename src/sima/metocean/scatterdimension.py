@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.scatterdimension import ScatterDimensionBlueprint
 from numpy import ndarray,asarray
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ScatterDimension(MOAO):
     """
@@ -17,7 +17,7 @@ class ScatterDimension(MOAO):
     scriptableValues : List[ScriptableValue]
     nValues : int
          (default 0)
-    values : ndarray
+    values : ndarray of float
          Scatter values
     """
 
@@ -26,7 +26,7 @@ class ScatterDimension(MOAO):
         self.description = description
         self.scriptableValues = list()
         self.nValues = nValues
-        self.values = ndarray(1)
+        self.values = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -57,7 +57,7 @@ class ScatterDimension(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -78,4 +78,7 @@ class ScatterDimension(MOAO):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array

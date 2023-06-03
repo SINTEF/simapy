@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.curvatureresponsestorage import CurvatureResponseStorageBlueprint
 from typing import Dict
-from sima.riflex.elementreference import ElementReference
-from sima.riflex.fileformatcode import FileFormatCode
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .elementreference import ElementReference
+from .fileformatcode import FileFormatCode
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class CurvatureResponseStorage(MOAO):
     """
@@ -62,7 +62,7 @@ class CurvatureResponseStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -94,5 +94,5 @@ class CurvatureResponseStorage(MOAO):
     def elements(self, value: List[ElementReference]):
         """Set elements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elements = value

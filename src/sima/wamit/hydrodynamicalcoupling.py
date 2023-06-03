@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hydrodynamicalcoupling import HydrodynamicalCouplingBlueprint
 from typing import Dict
-from sima.hydro.coupledradiationdatagroup import CoupledRadiationDataGroup
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.hydro import CoupledRadiationDataGroup
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.wamit.wamitmodel import WamitModel
-    from sima.wamit.wamitbodyresult import WamitBodyResult
+    from .wamitmodel import WamitModel
+    from .wamitbodyresult import WamitBodyResult
 
 class HydrodynamicalCoupling(NamedObject):
     """
@@ -68,7 +68,7 @@ class HydrodynamicalCoupling(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

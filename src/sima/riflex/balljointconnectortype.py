@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.balljointconnectortype import BallJointConnectorTypeBlueprint
 from typing import Dict
-from sima.riflex.boundarycondition import BoundaryCondition
-from sima.riflex.nodalcomponenttype import NodalComponentType
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.referenceframetype import ReferenceFrameType
+from .boundarycondition import BoundaryCondition
+from .nodalcomponenttype import NodalComponentType
+from sima.sima import ScriptableValue
+from sima.simo import ReferenceFrameType
 
 class BallJointConnectorType(NodalComponentType):
     """
@@ -92,7 +92,7 @@ class BallJointConnectorType(NodalComponentType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

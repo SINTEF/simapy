@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.conditionnoderesult import ConditionNodeResultBlueprint
 from numpy import ndarray,asarray
-from sima.post.signalstorage import SignalStorage
-from sima.sima.resultcontainer import ResultContainer
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import SignalStorage
+from sima.sima import ResultContainer
+from sima.sima import ScriptableValue
 
 class ConditionNodeResult(SignalStorage):
     """
@@ -17,7 +17,7 @@ class ConditionNodeResult(SignalStorage):
          (default "")
     scriptableValues : List[ScriptableValue]
     resultContainer : ResultContainer
-    filenames : ndarray
+    filenames : ndarray of str
     """
 
     def __init__(self , description="", **kwargs):
@@ -25,7 +25,7 @@ class ConditionNodeResult(SignalStorage):
         self.description = description
         self.scriptableValues = list()
         self.resultContainer = None
-        self.filenames = ndarray(1)
+        self.filenames = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -56,7 +56,7 @@ class ConditionNodeResult(SignalStorage):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -77,4 +77,7 @@ class ConditionNodeResult(SignalStorage):
     @filenames.setter
     def filenames(self, value: ndarray):
         """Set filenames"""
-        self.__filenames = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__filenames = array

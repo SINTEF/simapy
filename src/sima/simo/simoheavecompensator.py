@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simoheavecompensator import SIMOHeaveCompensatorBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.compensatorlimitation import CompensatorLimitation
-from sima.simo.compensatortype import CompensatorType
+from .compensatorlimitation import CompensatorLimitation
+from .compensatortype import CompensatorType
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class SIMOHeaveCompensator(NamedObject):
     """
@@ -100,7 +100,7 @@ class SIMOHeaveCompensator(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

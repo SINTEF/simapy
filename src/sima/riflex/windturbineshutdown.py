@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.windturbineshutdown import WindTurbineShutdownBlueprint
 from typing import Dict
-from sima.riflex.bladepitchchangeitem import BladePitchChangeItem
-from sima.riflex.generatortorquefault import GeneratorTorqueFault
-from sima.riflex.mechanicalbrakeoption import MechanicalBrakeOption
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .bladepitchchangeitem import BladePitchChangeItem
+from .generatortorquefault import GeneratorTorqueFault
+from .mechanicalbrakeoption import MechanicalBrakeOption
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WindTurbineShutdown(MOAO):
     """
@@ -72,7 +72,7 @@ class WindTurbineShutdown(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -94,7 +94,7 @@ class WindTurbineShutdown(MOAO):
     def bladePitchChangeItems(self, value: List[BladePitchChangeItem]):
         """Set bladePitchChangeItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bladePitchChangeItems = value
 
     @property

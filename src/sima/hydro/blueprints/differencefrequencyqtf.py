@@ -31,3 +31,4 @@ class DifferenceFrequencyQTFBlueprint(SparseQTFBlueprint):
         self.add_attribute(BlueprintAttribute("roll","sima/hydro/QTFDof","",True))
         self.add_attribute(BlueprintAttribute("pitch","sima/hydro/QTFDof","",True))
         self.add_attribute(BlueprintAttribute("yaw","sima/hydro/QTFDof","",True))
+        self.add_attribute(Attribute("enableCurrentCorrection","boolean","Enable wave-current interaction using extended Aranha formula",default=False))

@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.nonlinearforcemodel import NonLinearForceModelBlueprint
 from typing import Dict
-from sima.riflex.dampingmatrixcalculationoption import DampingMatrixCalculationOption
-from sima.riflex.hydrodynamicforceindicator import HydrodynamicForceIndicator
-from sima.riflex.slugforcespecification import SlugForceSpecification
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .dampingmatrixcalculationoption import DampingMatrixCalculationOption
+from .hydrodynamicforceindicator import HydrodynamicForceIndicator
+from .slugforcespecification import SlugForceSpecification
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class NonLinearForceModel(MOAO):
     """
@@ -83,7 +83,7 @@ class NonLinearForceModel(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

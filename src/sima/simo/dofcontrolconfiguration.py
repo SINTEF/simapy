@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dofcontrolconfiguration import DOFControlConfigurationBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.controldof import ControlDOF
+from .controldof import ControlDOF
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DOFControlConfiguration(MOAO):
     """
@@ -88,7 +88,7 @@ class DOFControlConfiguration(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.staticconditionresult import StaticConditionResultBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bodyresult import BodyResult
+from .bodyresult import BodyResult
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class StaticConditionResult(MOAO):
     """
@@ -66,7 +66,7 @@ class StaticConditionResult(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -78,7 +78,7 @@ class StaticConditionResult(MOAO):
     def bodyResults(self, value: List[BodyResult]):
         """Set bodyResults"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bodyResults = value
 
     @property

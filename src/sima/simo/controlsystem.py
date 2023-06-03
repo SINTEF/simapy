@@ -6,17 +6,17 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.controlsystem import ControlSystemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.allocationsystem import AllocationSystem
-from sima.simo.controlreference import ControlReference
-from sima.simo.dofcontrolconfiguration import DOFControlConfiguration
-from sima.simo.estimator import Estimator
-from sima.simo.guidancesystem import GuidanceSystem
-from sima.simo.windmeasurement import WindMeasurement
+from .allocationsystem import AllocationSystem
+from .controlreference import ControlReference
+from .dofcontrolconfiguration import DOFControlConfiguration
+from .estimator import Estimator
+from .guidancesystem import GuidanceSystem
+from .windmeasurement import WindMeasurement
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class ControlSystem(MOAO):
     """
@@ -122,7 +122,7 @@ class ControlSystem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -267,7 +267,7 @@ class ControlSystem(MOAO):
     def controlConfigurations(self, value: List[DOFControlConfiguration]):
         """Set controlConfigurations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlConfigurations = value
 
     @property

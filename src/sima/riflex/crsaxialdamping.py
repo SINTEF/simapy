@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.crsaxialdamping import CRSAxialDampingBlueprint
 from typing import Dict
-from sima.riflex.crsaxialdampingitem import CRSAxialDampingItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .crsaxialdampingitem import CRSAxialDampingItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class CRSAxialDamping(MOAO):
     """
@@ -63,7 +63,7 @@ class CRSAxialDamping(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -105,5 +105,5 @@ class CRSAxialDamping(MOAO):
     def dampingCoefficientCharacteristics(self, value: List[CRSAxialDampingItem]):
         """Set dampingCoefficientCharacteristics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dampingCoefficientCharacteristics = value

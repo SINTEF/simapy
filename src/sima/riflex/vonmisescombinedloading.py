@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.vonmisescombinedloading import VonMisesCombinedLoadingBlueprint
 from typing import Dict
-from sima.riflex.combinedloading import CombinedLoading
-from sima.riflex.combinedloadingproperties import CombinedLoadingProperties
-from sima.riflex.vonmisesstress import VonMisesStress
-from sima.sima.scriptablevalue import ScriptableValue
+from .combinedloading import CombinedLoading
+from .combinedloadingproperties import CombinedLoadingProperties
+from .vonmisesstress import VonMisesStress
+from sima.sima import ScriptableValue
 
 class VonMisesCombinedLoading(CombinedLoading):
     """
@@ -92,7 +92,7 @@ class VonMisesCombinedLoading(CombinedLoading):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -175,7 +175,7 @@ Given as the Z coordinate in global coordinate system."""
     def properties(self, value: List[CombinedLoadingProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.differencefrequencyqtf import DifferenceFrequencyQTFBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.qtfdof import QTFDof
-from sima.hydro.sparseqtf import SparseQTF
-from sima.sima.scriptablevalue import ScriptableValue
+from .qtfdof import QTFDof
+from .sparseqtf import SparseQTF
+from sima.sima import ScriptableValue
 
 class DifferenceFrequencyQTF(SparseQTF):
     """
@@ -26,21 +26,23 @@ class DifferenceFrequencyQTF(SparseQTF):
          (default False)
     bichromatic : bool
          (default False)
-    directions : ndarray
-    frequencies : ndarray
-    di : ndarray
-    dj : ndarray
-    wi : ndarray
-    wj : ndarray
+    directions : ndarray of float
+    frequencies : ndarray of float
+    di : ndarray of int
+    dj : ndarray of int
+    wi : ndarray of int
+    wj : ndarray of int
     surge : QTFDof
     sway : QTFDof
     heave : QTFDof
     roll : QTFDof
     pitch : QTFDof
     yaw : QTFDof
+    enableCurrentCorrection : bool
+         Enable wave-current interaction using extended Aranha formula(default False)
     """
 
-    def __init__(self , description="", nFreq=0, nDir=0, nValues=0, bidirectional=False, bichromatic=False, **kwargs):
+    def __init__(self , description="", nFreq=0, nDir=0, nValues=0, bidirectional=False, bichromatic=False, enableCurrentCorrection=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -49,18 +51,19 @@ class DifferenceFrequencyQTF(SparseQTF):
         self.nValues = nValues
         self.bidirectional = bidirectional
         self.bichromatic = bichromatic
-        self.directions = ndarray(1)
-        self.frequencies = ndarray(1)
-        self.di = ndarray(1)
-        self.dj = ndarray(1)
-        self.wi = ndarray(1)
-        self.wj = ndarray(1)
+        self.directions = []
+        self.frequencies = []
+        self.di = []
+        self.dj = []
+        self.wi = []
+        self.wj = []
         self.surge = None
         self.sway = None
         self.heave = None
         self.roll = None
         self.pitch = None
         self.yaw = None
+        self.enableCurrentCorrection = enableCurrentCorrection
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -91,7 +94,7 @@ class DifferenceFrequencyQTF(SparseQTF):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -152,7 +155,10 @@ class DifferenceFrequencyQTF(SparseQTF):
     @directions.setter
     def directions(self, value: ndarray):
         """Set directions"""
-        self.__directions = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__directions = array
 
     @property
     def frequencies(self) -> ndarray:
@@ -162,7 +168,10 @@ class DifferenceFrequencyQTF(SparseQTF):
     @frequencies.setter
     def frequencies(self, value: ndarray):
         """Set frequencies"""
-        self.__frequencies = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__frequencies = array
 
     @property
     def di(self) -> ndarray:
@@ -172,7 +181,10 @@ class DifferenceFrequencyQTF(SparseQTF):
     @di.setter
     def di(self, value: ndarray):
         """Set di"""
-        self.__di = asarray(value)
+        array = asarray(value, dtype=int)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__di = array
 
     @property
     def dj(self) -> ndarray:
@@ -182,7 +194,10 @@ class DifferenceFrequencyQTF(SparseQTF):
     @dj.setter
     def dj(self, value: ndarray):
         """Set dj"""
-        self.__dj = asarray(value)
+        array = asarray(value, dtype=int)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__dj = array
 
     @property
     def wi(self) -> ndarray:
@@ -192,7 +207,10 @@ class DifferenceFrequencyQTF(SparseQTF):
     @wi.setter
     def wi(self, value: ndarray):
         """Set wi"""
-        self.__wi = asarray(value)
+        array = asarray(value, dtype=int)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__wi = array
 
     @property
     def wj(self) -> ndarray:
@@ -202,7 +220,10 @@ class DifferenceFrequencyQTF(SparseQTF):
     @wj.setter
     def wj(self, value: ndarray):
         """Set wj"""
-        self.__wj = asarray(value)
+        array = asarray(value, dtype=int)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__wj = array
 
     @property
     def surge(self) -> QTFDof:
@@ -263,3 +284,13 @@ class DifferenceFrequencyQTF(SparseQTF):
     def yaw(self, value: QTFDof):
         """Set yaw"""
         self.__yaw = value
+
+    @property
+    def enableCurrentCorrection(self) -> bool:
+        """Enable wave-current interaction using extended Aranha formula"""
+        return self.__enableCurrentCorrection
+
+    @enableCurrentCorrection.setter
+    def enableCurrentCorrection(self, value: bool):
+        """Set enableCurrentCorrection"""
+        self.__enableCurrentCorrection = bool(value)

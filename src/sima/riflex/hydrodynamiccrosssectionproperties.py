@@ -6,15 +6,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hydrodynamiccrosssectionproperties import HydrodynamicCrossSectionPropertiesBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.excitationzoneproperty import ExcitationZoneProperty
-    from sima.riflex.addedmassproperty import AddedMassProperty
-    from sima.riflex.excitationcoefficientsproperty import ExcitationCoefficientsProperty
-    from sima.riflex.dampingfactorproperty import DampingFactorProperty
-    from sima.riflex.strouhalspecificationproperty import StrouhalSpecificationProperty
+    from .excitationzoneproperty import ExcitationZoneProperty
+    from .addedmassproperty import AddedMassProperty
+    from .excitationcoefficientsproperty import ExcitationCoefficientsProperty
+    from .dampingfactorproperty import DampingFactorProperty
+    from .strouhalspecificationproperty import StrouhalSpecificationProperty
 
 class HydrodynamicCrossSectionProperties(MOAO):
     """
@@ -83,7 +83,7 @@ class HydrodynamicCrossSectionProperties(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

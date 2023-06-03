@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.plotnode import PlotNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.figuretemplate import FigureTemplate
-from sima.post.inputslot import InputSlot
-from sima.post.outputnode import OutputNode
-from sima.post.outputslot import OutputSlot
-from sima.post.traceconfiguration import TraceConfiguration
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import ControlSignalInputSlot
+from sima.post import FigureTemplate
+from sima.post import InputSlot
+from sima.post import OutputNode
+from sima.post import OutputSlot
+from sima.post import TraceConfiguration
+from sima.sima import ScriptableValue
 
 class PlotNode(OutputNode):
     """
@@ -99,7 +99,7 @@ class PlotNode(OutputNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -161,7 +161,7 @@ class PlotNode(OutputNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -193,7 +193,7 @@ class PlotNode(OutputNode):
     def traces(self, value: List[TraceConfiguration]):
         """Set traces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__traces = value
 
     @property

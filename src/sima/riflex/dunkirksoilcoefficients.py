@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dunkirksoilcoefficients import DunkirkSoilCoefficientsBlueprint
 from typing import Dict
-from sima.riflex.dunkirksoilcoefficientsitem import DunkirkSoilCoefficientsItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .dunkirksoilcoefficientsitem import DunkirkSoilCoefficientsItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DunkirkSoilCoefficients(MOAO):
     """
@@ -60,7 +60,7 @@ class DunkirkSoilCoefficients(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

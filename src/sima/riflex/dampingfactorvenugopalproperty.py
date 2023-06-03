@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dampingfactorvenugopalproperty import DampingFactorVenugopalPropertyBlueprint
 from typing import Dict
-from sima.riflex.dampingfactorproperty import DampingFactorProperty
-from sima.sima.scriptablevalue import ScriptableValue
+from .dampingfactorproperty import DampingFactorProperty
+from sima.sima import ScriptableValue
 
 class DampingFactorVenugopalProperty(DampingFactorProperty):
     """
@@ -63,7 +63,7 @@ class DampingFactorVenugopalProperty(DampingFactorProperty):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

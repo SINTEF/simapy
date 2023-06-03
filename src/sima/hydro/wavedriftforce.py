@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wavedriftforce import WaveDriftForceBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.directiondependentvalues import DirectionDependentValues
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .directiondependentvalues import DirectionDependentValues
+from .directionsymmetry import DirectionSymmetry
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WaveDriftForce(MOAO):
     """
@@ -17,8 +17,8 @@ class WaveDriftForce(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    directions : ndarray
-    frequencies : ndarray
+    directions : ndarray of float
+    frequencies : ndarray of float
     symmetry : DirectionSymmetry
     fx : DirectionDependentValues
     fy : DirectionDependentValues
@@ -26,14 +26,16 @@ class WaveDriftForce(MOAO):
     mx : DirectionDependentValues
     my : DirectionDependentValues
     mz : DirectionDependentValues
+    enableCurrentCorrection : bool
+         Enable wave-current interaction using extended Aranha formula(default False)
     """
 
-    def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, **kwargs):
+    def __init__(self , description="", symmetry=DirectionSymmetry.NO_SYMMETRY, enableCurrentCorrection=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.directions = ndarray(1)
-        self.frequencies = ndarray(1)
+        self.directions = []
+        self.frequencies = []
         self.symmetry = symmetry
         self.fx = None
         self.fy = None
@@ -41,6 +43,7 @@ class WaveDriftForce(MOAO):
         self.mx = None
         self.my = None
         self.mz = None
+        self.enableCurrentCorrection = enableCurrentCorrection
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -71,7 +74,7 @@ class WaveDriftForce(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -82,7 +85,10 @@ class WaveDriftForce(MOAO):
     @directions.setter
     def directions(self, value: ndarray):
         """Set directions"""
-        self.__directions = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__directions = array
 
     @property
     def frequencies(self) -> ndarray:
@@ -92,7 +98,10 @@ class WaveDriftForce(MOAO):
     @frequencies.setter
     def frequencies(self, value: ndarray):
         """Set frequencies"""
-        self.__frequencies = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__frequencies = array
 
     @property
     def symmetry(self) -> DirectionSymmetry:
@@ -163,3 +172,13 @@ class WaveDriftForce(MOAO):
     def mz(self, value: DirectionDependentValues):
         """Set mz"""
         self.__mz = value
+
+    @property
+    def enableCurrentCorrection(self) -> bool:
+        """Enable wave-current interaction using extended Aranha formula"""
+        return self.__enableCurrentCorrection
+
+    @enableCurrentCorrection.setter
+    def enableCurrentCorrection(self, value: bool):
+        """Set enableCurrentCorrection"""
+        self.__enableCurrentCorrection = bool(value)

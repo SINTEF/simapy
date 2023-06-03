@@ -5,15 +5,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fileoutputnode import FileOutputNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.decimalseparator import DecimalSeparator
-from sima.post.fileformat import FileFormat
-from sima.post.inputslot import InputSlot
-from sima.post.outputnode import OutputNode
-from sima.post.outputslot import OutputSlot
-from sima.post.signalproperties import SignalProperties
-from sima.post.signalpropertiescontainer import SignalPropertiesContainer
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import ControlSignalInputSlot
+from sima.post import DecimalSeparator
+from sima.post import FileFormat
+from sima.post import InputSlot
+from sima.post import OutputNode
+from sima.post import OutputSlot
+from sima.post import SignalProperties
+from sima.post import SignalPropertiesContainer
+from sima.sima import ScriptableValue
 
 class FileOutputNode(OutputNode,SignalPropertiesContainer):
     """
@@ -51,10 +51,12 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
          Specify additional properties in the file root(default False)
     writeRawText : bool
          Writes a single input string into the given file(default False)
+    indent : bool
+         Indent the output text(default False)
     outputSlot : OutputSlot
     """
 
-    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFormat=FileFormat.CSV, addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFormat=FileFormat.CSV, addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, indent=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -74,6 +76,7 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
         self.skipHeader = skipHeader
         self.specifyAdditionalProperties = specifyAdditionalProperties
         self.writeRawText = writeRawText
+        self.indent = indent
         self.outputSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -105,7 +108,7 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -127,7 +130,7 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -179,7 +182,7 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -272,6 +275,16 @@ decimal-separator will make semicolon the value-separator."""
     def writeRawText(self, value: bool):
         """Set writeRawText"""
         self.__writeRawText = bool(value)
+
+    @property
+    def indent(self) -> bool:
+        """Indent the output text"""
+        return self.__indent
+
+    @indent.setter
+    def indent(self, value: bool):
+        """Set indent"""
+        self.__indent = bool(value)
 
     @property
     def outputSlot(self) -> OutputSlot:

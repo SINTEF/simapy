@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.geotechnical import GeoTechnicalBlueprint
 from typing import Dict
-from sima.riflex.geotechnicalpiletype import GeotechnicalPileType
-from sima.riflex.soilitem import SoilItem
-from sima.riflex.soilstiffnesstype import SoilStiffnessType
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .geotechnicalpiletype import GeotechnicalPileType
+from .soilitem import SoilItem
+from .soilstiffnesstype import SoilStiffnessType
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class GeoTechnical(NamedObject):
     """
@@ -81,7 +81,7 @@ class GeoTechnical(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -103,7 +103,7 @@ class GeoTechnical(NamedObject):
     def soilItems(self, value: List[SoilItem]):
         """Set soilItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__soilItems = value
 
     @property

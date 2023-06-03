@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.horizontalaxiswindturbinecontroller import HorizontalAxisWindTurbineControllerBlueprint
 from typing import Dict
-from sima.sima.librarypaths import LibraryPaths
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.controllertype import ControllerType
-from sima.windturbine.gainitem import GainItem
-from sima.windturbine.powerextraction import PowerExtraction
-from sima.windturbine.tableformat import TableFormat
+from .controllertype import ControllerType
+from .gainitem import GainItem
+from .powerextraction import PowerExtraction
+from .tableformat import TableFormat
+from sima.sima import LibraryPaths
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class HorizontalAxisWindTurbineController(MOAO):
     """
@@ -135,7 +135,7 @@ class HorizontalAxisWindTurbineController(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -257,7 +257,7 @@ class HorizontalAxisWindTurbineController(MOAO):
     def gainItems(self, value: List[GainItem]):
         """Set gainItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__gainItems = value
 
     @property

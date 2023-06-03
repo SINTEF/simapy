@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.windturbinetype import WindTurbineTypeBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windpark.bladeelement import BladeElement
-from sima.windpark.performancerelation import PerformanceRelation
-from sima.windpark.turbinedirection import TurbineDirection
+from .bladeelement import BladeElement
+from .performancerelation import PerformanceRelation
+from .turbinedirection import TurbineDirection
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class WindTurbineType(NamedObject):
     """
@@ -81,7 +81,7 @@ class WindTurbineType(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -153,7 +153,7 @@ class WindTurbineType(NamedObject):
     def bladeElements(self, value: List[BladeElement]):
         """Set bladeElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bladeElements = value
 
     @property
@@ -185,5 +185,5 @@ class WindTurbineType(NamedObject):
     def performanceRelations(self, value: List[PerformanceRelation]):
         """Set performanceRelations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__performanceRelations = value

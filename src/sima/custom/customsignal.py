@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.customsignal import CustomSignalBlueprint
 from numpy import ndarray,asarray
-from sima.custom.customcomponent import CustomComponent
-from sima.custom.fieldtype import FieldType
-from sima.custom.filetype import FileType
-from sima.sima.scriptablevalue import ScriptableValue
+from .customcomponent import CustomComponent
+from .fieldtype import FieldType
+from .filetype import FileType
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.post.generatorsignal import GeneratorSignal
+    from sima.post import GeneratorSignal
 
 class CustomSignal(CustomComponent):
     """
@@ -30,7 +30,7 @@ class CustomSignal(CustomComponent):
          (default False)
     fileExtensions : str
          Describes legal file extensions separated by semicolon, example:  *.txt;*.dat(default None)
-    options : ndarray
+    options : ndarray of str
     _type : FieldType
     width : int
          (default 10)
@@ -48,7 +48,7 @@ class CustomSignal(CustomComponent):
         self.fileType = fileType
         self.directory = directory
         self.fileExtensions = None
-        self.options = ndarray(1)
+        self.options = []
         self._type = _type
         self.width = width
         self.expandHorizontally = expandHorizontally
@@ -83,7 +83,7 @@ class CustomSignal(CustomComponent):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -144,7 +144,10 @@ class CustomSignal(CustomComponent):
     @options.setter
     def options(self, value: ndarray):
         """Set options"""
-        self.__options = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__options = array
 
     @property
     def _type(self) -> FieldType:

@@ -5,22 +5,22 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitbody import WamitBodyBlueprint
 from typing import Dict
-from sima.hydro.hydrostaticstiffnessmatrix import HydrostaticStiffnessMatrix
-from sima.hydro.lineardampingmatrix import LinearDampingMatrix
-from sima.hydro.massmatrix import MassMatrix
-from sima.sima.appearance import Appearance
-from sima.sima.body import Body
-from sima.sima.bodyviewpoint import BodyViewpoint
-from sima.sima.point3 import Point3
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.wamit.directionsofnormalsoption import DirectionsOfNormalsOption
-from sima.wamit.evaluationmodeoption import EvaluationModeOption
-from sima.wamit.modesofmotion import ModesOfMotion
-from sima.wamit.parameterlines import ParameterLines
-from sima.wamit.removeirregularfrequenciesoption import RemoveIrregularFrequenciesOption
-from sima.wamit.surfacestoincludefromms2fileoption import SurfacesToIncludeFromMs2FileOption
-from sima.wamit.wamitcontrolsurface import WamitControlSurface
+from .directionsofnormalsoption import DirectionsOfNormalsOption
+from .evaluationmodeoption import EvaluationModeOption
+from .modesofmotion import ModesOfMotion
+from .parameterlines import ParameterLines
+from .removeirregularfrequenciesoption import RemoveIrregularFrequenciesOption
+from .surfacestoincludefromms2fileoption import SurfacesToIncludeFromMs2FileOption
+from .wamitcontrolsurface import WamitControlSurface
+from sima.hydro import HydrostaticStiffnessMatrix
+from sima.hydro import LinearDampingMatrix
+from sima.hydro import MassMatrix
+from sima.sima import Appearance
+from sima.sima import Body
+from sima.sima import BodyViewpoint
+from sima.sima import Point3
+from sima.sima import Position
+from sima.sima import ScriptableValue
 
 class WamitBody(Body):
     """
@@ -145,7 +145,7 @@ class WamitBody(Body):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -217,7 +217,7 @@ class WamitBody(Body):
     def viewpoints(self, value: List[BodyViewpoint]):
         """Set viewpoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__viewpoints = value
 
     @property
@@ -309,7 +309,7 @@ class WamitBody(Body):
     def parameterLines(self, value: List[ParameterLines]):
         """Set parameterLines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__parameterLines = value
 
     @property

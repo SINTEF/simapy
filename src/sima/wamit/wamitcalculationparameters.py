@@ -5,18 +5,18 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitcalculationparameters import WamitCalculationParametersBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.wamit.calculateexcitingforcesoption import CalculateExcitingForcesOption
-from sima.wamit.calculatemeanforceandmomentintegrationoption import CalculateMeanForceAndMomentIntegrationOption
-from sima.wamit.calculateresponseamplitudeoperatoroption import CalculateResponseAmplitudeOperatorOption
-from sima.wamit.diffractionpotentailoption import DiffractionPotentailOption
-from sima.wamit.geometryorderoption import GeometryOrderOption
-from sima.wamit.linearsystemsolvingmethod import LinearSystemSolvingMethod
-from sima.wamit.pointfield import PointField
-from sima.wamit.potenproblemoption import PotenProblemOption
-from sima.wamit.yesnooption import YesNoOption
+from .calculateexcitingforcesoption import CalculateExcitingForcesOption
+from .calculatemeanforceandmomentintegrationoption import CalculateMeanForceAndMomentIntegrationOption
+from .calculateresponseamplitudeoperatoroption import CalculateResponseAmplitudeOperatorOption
+from .diffractionpotentailoption import DiffractionPotentailOption
+from .geometryorderoption import GeometryOrderOption
+from .linearsystemsolvingmethod import LinearSystemSolvingMethod
+from .pointfield import PointField
+from .potenproblemoption import PotenProblemOption
+from .yesnooption import YesNoOption
+from sima.sima import MOAO
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class WamitCalculationParameters(MOAO):
     """
@@ -109,9 +109,11 @@ class WamitCalculationParameters(MOAO):
          This will make WAMIT run POTEN for one condition only, and copy that result and only run FORCE on the the rest of the conditions.(default False)
     ignoreExitCode : bool
          Ignore process exit code. Be careful to check the result when checked(default False)
+    waterlineGapTolerance : float
+         Waterline gap tolerance (TOLGAPWL)(default 0.001)
     """
 
-    def __init__(self , description="", solveRadiationProblem=YesNoOption.YES, solveDiffractionProblem=PotenProblemOption.YESFORALL, calculateAddedMassAndDampingCoefficients=YesNoOption.YES, calculateExcitingForcesFromHaskindRelations=CalculateExcitingForcesOption.NO, calculateExcitingForcesFromDiffractionPotential=CalculateExcitingForcesOption.YES, calculateResponseAmplitudeOperator=CalculateResponseAmplitudeOperatorOption.YESDIFFRACTION, useMomentumIntegration=CalculateMeanForceAndMomentIntegrationOption.YESUNIDIRECTIONAL, usePressureIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, useControlSurfaceIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, methodForSolvingLinearSystems=LinearSystemSolvingMethod.ITERATIVE, numberOfBlocksInBlockIterativeSolver=2, geometryMethod=GeometryOrderOption.LOW, integrateLogarithmicSingularitySeparately=YesNoOption.NO, panelSize=10.0, evaluateSourceStrength=YesNoOption.NO, calculationOfDiffractionPotential=DiffractionPotentailOption.DIFFRACTION, useInfiniteWaterDepth=True, maximumNumberOfIterations=35, maxNumOfIterationsAdaptiveIntegrationMomentum=8, generateReport=False, briefOverviewOfTheory=False, taskDescription=False, wavePeriodsAndHeadings=False, calculationParameters=False, hydrostaticResults=False, structuralMass=False, externalStiffnessMatrix=False, linearDampingMatrix=False, firstOrderMotionTransferFunction=False, firstOrderWaveForceTransferFunctionDiffraction=False, firstOrderWaveForceTransferFunctionHaskind=False, addedMassZeroFrequency=False, addedMassInfiniteFrequency=False, frequencyDependentAddedMass=False, frequencyDependentDamping=False, diffractedWaveField=False, waveDriftForcePressure=False, waveDriftForceMomentum=False, waveDriftForceControlSurfaceIntegration=False, runPotenOnceInConditionSetsAndSpaces=False, ignoreExitCode=False, **kwargs):
+    def __init__(self , description="", solveRadiationProblem=YesNoOption.YES, solveDiffractionProblem=PotenProblemOption.YESFORALL, calculateAddedMassAndDampingCoefficients=YesNoOption.YES, calculateExcitingForcesFromHaskindRelations=CalculateExcitingForcesOption.NO, calculateExcitingForcesFromDiffractionPotential=CalculateExcitingForcesOption.YES, calculateResponseAmplitudeOperator=CalculateResponseAmplitudeOperatorOption.YESDIFFRACTION, useMomentumIntegration=CalculateMeanForceAndMomentIntegrationOption.YESUNIDIRECTIONAL, usePressureIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, useControlSurfaceIntegration=CalculateMeanForceAndMomentIntegrationOption.NO, methodForSolvingLinearSystems=LinearSystemSolvingMethod.ITERATIVE, numberOfBlocksInBlockIterativeSolver=2, geometryMethod=GeometryOrderOption.LOW, integrateLogarithmicSingularitySeparately=YesNoOption.NO, panelSize=10.0, evaluateSourceStrength=YesNoOption.NO, calculationOfDiffractionPotential=DiffractionPotentailOption.DIFFRACTION, useInfiniteWaterDepth=True, maximumNumberOfIterations=35, maxNumOfIterationsAdaptiveIntegrationMomentum=8, generateReport=False, briefOverviewOfTheory=False, taskDescription=False, wavePeriodsAndHeadings=False, calculationParameters=False, hydrostaticResults=False, structuralMass=False, externalStiffnessMatrix=False, linearDampingMatrix=False, firstOrderMotionTransferFunction=False, firstOrderWaveForceTransferFunctionDiffraction=False, firstOrderWaveForceTransferFunctionHaskind=False, addedMassZeroFrequency=False, addedMassInfiniteFrequency=False, frequencyDependentAddedMass=False, frequencyDependentDamping=False, diffractedWaveField=False, waveDriftForcePressure=False, waveDriftForceMomentum=False, waveDriftForceControlSurfaceIntegration=False, runPotenOnceInConditionSetsAndSpaces=False, ignoreExitCode=False, waterlineGapTolerance=0.001, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -158,6 +160,7 @@ class WamitCalculationParameters(MOAO):
         self.waveDriftForceControlSurfaceIntegration = waveDriftForceControlSurfaceIntegration
         self.runPotenOnceInConditionSetsAndSpaces = runPotenOnceInConditionSetsAndSpaces
         self.ignoreExitCode = ignoreExitCode
+        self.waterlineGapTolerance = waterlineGapTolerance
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -188,7 +191,7 @@ class WamitCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -280,7 +283,7 @@ class WamitCalculationParameters(MOAO):
     def pointField(self, value: List[PointField]):
         """Set pointField"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pointField = value
 
     @property
@@ -372,7 +375,7 @@ class WamitCalculationParameters(MOAO):
     def fieldPoints(self, value: List[Point3]):
         """Set fieldPoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fieldPoints = value
 
     @property
@@ -624,3 +627,13 @@ class WamitCalculationParameters(MOAO):
     def ignoreExitCode(self, value: bool):
         """Set ignoreExitCode"""
         self.__ignoreExitCode = bool(value)
+
+    @property
+    def waterlineGapTolerance(self) -> float:
+        """Waterline gap tolerance (TOLGAPWL)"""
+        return self.__waterlineGapTolerance
+
+    @waterlineGapTolerance.setter
+    def waterlineGapTolerance(self, value: float):
+        """Set waterlineGapTolerance"""
+        self.__waterlineGapTolerance = float(value)

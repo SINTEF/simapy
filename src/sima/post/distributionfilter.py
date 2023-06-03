@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.distributionfilter import DistributionFilterBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.distribution import Distribution
-from sima.post.inputslot import InputSlot
-from sima.post.operationnode import OperationNode
-from sima.post.outputslot import OutputSlot
-from sima.post.peakextreme import PeakExtreme
-from sima.sima.scriptablevalue import ScriptableValue
+from .controlsignalinputslot import ControlSignalInputSlot
+from .distribution import Distribution
+from .inputslot import InputSlot
+from .operationnode import OperationNode
+from .outputslot import OutputSlot
+from .peakextreme import PeakExtreme
+from sima.sima import ScriptableValue
 
 class DistributionFilter(OperationNode):
     """
@@ -101,7 +101,7 @@ class DistributionFilter(OperationNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -163,7 +163,7 @@ class DistributionFilter(OperationNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -175,7 +175,7 @@ class DistributionFilter(OperationNode):
     def filterInputSlots(self, value: List[InputSlot]):
         """Set filterInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterInputSlots = value
 
     @property
@@ -187,7 +187,7 @@ class DistributionFilter(OperationNode):
     def filterOutputSlots(self, value: List[OutputSlot]):
         """Set filterOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterOutputSlots = value
 
     @property

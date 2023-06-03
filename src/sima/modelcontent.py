@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.modelcontent import ModelContentBlueprint
 from typing import Dict
+from .header import Header
 from dmt.entity import Entity
-from sima.header import Header
 
 class ModelContent(Entity):
     """
@@ -63,5 +63,5 @@ class ModelContent(Entity):
     def contents(self, value: List[Entity]):
         """Set contents"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__contents = value

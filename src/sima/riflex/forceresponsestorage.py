@@ -5,13 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.forceresponsestorage import ForceResponseStorageBlueprint
 from typing import Dict
-from sima.riflex.additionalfileformatcode import AdditionalFileFormatCode
-from sima.riflex.elementangle import ElementAngle
-from sima.riflex.elementreference import ElementReference
-from sima.riflex.fileformatcode import FileFormatCode
-from sima.riflex.relativeelementangle import RelativeElementAngle
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .additionalfileformatcode import AdditionalFileFormatCode
+from .elementangle import ElementAngle
+from .elementreference import ElementReference
+from .elementtransformation import ElementTransformation
+from .fileformatcode import FileFormatCode
+from .relativeelementangle import RelativeElementAngle
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ForceResponseStorage(MOAO):
     """
@@ -34,6 +35,7 @@ class ForceResponseStorage(MOAO):
     elementAngles : List[ElementAngle]
     storeBottomContactForces : bool
          Store results for seafloor contact elements and / or soil layer profile (SLP) contact elements(default False)
+    transformations : List[ElementTransformation]
     """
 
     def __init__(self , description="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices=False, storeBottomContactForces=False, **kwargs):
@@ -48,6 +50,7 @@ class ForceResponseStorage(MOAO):
         self.relativeElementAngles = list()
         self.elementAngles = list()
         self.storeBottomContactForces = storeBottomContactForces
+        self.transformations = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -78,7 +81,7 @@ class ForceResponseStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -110,7 +113,7 @@ class ForceResponseStorage(MOAO):
     def elements(self, value: List[ElementReference]):
         """Set elements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elements = value
 
     @property
@@ -142,7 +145,7 @@ class ForceResponseStorage(MOAO):
     def relativeElementAngles(self, value: List[RelativeElementAngle]):
         """Set relativeElementAngles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__relativeElementAngles = value
 
     @property
@@ -154,7 +157,7 @@ class ForceResponseStorage(MOAO):
     def elementAngles(self, value: List[ElementAngle]):
         """Set elementAngles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elementAngles = value
 
     @property
@@ -166,3 +169,15 @@ class ForceResponseStorage(MOAO):
     def storeBottomContactForces(self, value: bool):
         """Set storeBottomContactForces"""
         self.__storeBottomContactForces = bool(value)
+
+    @property
+    def transformations(self) -> List[ElementTransformation]:
+        """"""
+        return self.__transformations
+
+    @transformations.setter
+    def transformations(self, value: List[ElementTransformation]):
+        """Set transformations"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__transformations = value

@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlarov import HLAROVBlueprint
 from typing import Dict
-from sima.hla.hlabody import HLABody
-from sima.hla.hlabodyviewpoint import HLABodyViewpoint
-from sima.sima.appearance import Appearance
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlabody import HLABody
+from .hlabodyviewpoint import HLABodyViewpoint
+from sima.sima import Appearance
+from sima.sima import Position
+from sima.sima import ScriptableValue
 
 class HLAROV(HLABody):
     """
@@ -72,7 +72,7 @@ class HLAROV(HLABody):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -144,5 +144,5 @@ class HLAROV(HLABody):
     def viewpoints(self, value: List[HLABodyViewpoint]):
         """Set viewpoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__viewpoints = value

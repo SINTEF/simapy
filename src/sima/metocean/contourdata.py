@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.contourdata import ContourDataBlueprint
 from typing import Dict
-from sima.metocean.contourdatapoint import ContourDataPoint
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .contourdatapoint import ContourDataPoint
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ContourData(MOAO):
     """
@@ -57,7 +57,7 @@ class ContourData(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class ContourData(MOAO):
     def contourDataPoints(self, value: List[ContourDataPoint]):
         """Set contourDataPoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__contourDataPoints = value

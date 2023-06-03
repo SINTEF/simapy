@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.timedependentpointmass import TimeDependentPointMassBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.flowrateitem import FlowRateItem
+from .flowrateitem import FlowRateItem
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class TimeDependentPointMass(NamedObject):
     """
@@ -76,7 +76,7 @@ class TimeDependentPointMass(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -108,7 +108,7 @@ class TimeDependentPointMass(NamedObject):
     def flowRates(self, value: List[FlowRateItem]):
         """Set flowRates"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__flowRates = value
 
     @property

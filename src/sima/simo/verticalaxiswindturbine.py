@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.verticalaxiswindturbine import VerticalAxisWindTurbineBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.verticalbladeitem import VerticalBladeItem
-from sima.windturbine.verticalaxiswindturbinecontroller import VerticalAxisWindTurbineController
+from .verticalbladeitem import VerticalBladeItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
+from sima.windturbine import VerticalAxisWindTurbineController
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.momentcoupling import MomentCoupling
+    from .momentcoupling import MomentCoupling
 
 class VerticalAxisWindTurbine(NamedObject):
     """
@@ -90,7 +90,7 @@ class VerticalAxisWindTurbine(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -182,7 +182,7 @@ class VerticalAxisWindTurbine(NamedObject):
     def bladeItems(self, value: List[VerticalBladeItem]):
         """Set bladeItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bladeItems = value
 
     @property

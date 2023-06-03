@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.controlsignalinputslot import ControlSignalInputSlotBlueprint
 from typing import Dict
-from sima.post.inputslot import InputSlot
-from sima.post.signalproperties import SignalProperties
-from sima.post.signalpropertiescontainer import SignalPropertiesContainer
-from sima.sima.scriptablevalue import ScriptableValue
+from .inputslot import InputSlot
+from .signalproperties import SignalProperties
+from .signalpropertiescontainer import SignalPropertiesContainer
+from sima.sima import ScriptableValue
 
 class ControlSignalInputSlot(InputSlot,SignalPropertiesContainer):
     """
@@ -58,7 +58,7 @@ class ControlSignalInputSlot(InputSlot,SignalPropertiesContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -80,5 +80,5 @@ class ControlSignalInputSlot(InputSlot,SignalPropertiesContainer):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value

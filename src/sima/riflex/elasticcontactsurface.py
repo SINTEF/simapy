@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.elasticcontactsurface import ElasticContactSurfaceBlueprint
 from typing import Dict
-from sima.riflex.contactsurfaceline import ContactSurfaceLine
-from sima.riflex.contactsurfacepoint import ContactSurfacePoint
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .contactsurfaceline import ContactSurfaceLine
+from .contactsurfacepoint import ContactSurfacePoint
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class ElasticContactSurface(NamedObject):
     """
@@ -60,7 +60,7 @@ class ElasticContactSurface(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -82,7 +82,7 @@ class ElasticContactSurface(NamedObject):
     def points(self, value: List[ContactSurfacePoint]):
         """Set points"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__points = value
 
     @property
@@ -94,5 +94,5 @@ class ElasticContactSurface(NamedObject):
     def lines(self, value: List[ContactSurfaceLine]):
         """Set lines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lines = value

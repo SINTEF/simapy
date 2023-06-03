@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.slugforcespecification import SlugForceSpecificationBlueprint
 from typing import Dict
-from sima.riflex.slugforcedensitycontrol import SlugForceDensityControl
-from sima.riflex.slugforceinterruption import SlugForceInterruption
-from sima.riflex.slugforcevelocitycontrol import SlugForceVelocityControl
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .slugforcedensitycontrol import SlugForceDensityControl
+from .slugforceinterruption import SlugForceInterruption
+from .slugforcevelocitycontrol import SlugForceVelocityControl
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SlugForceSpecification(MOAO):
     """
@@ -105,7 +105,7 @@ class SlugForceSpecification(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

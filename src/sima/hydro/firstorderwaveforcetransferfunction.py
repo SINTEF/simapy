@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.firstorderwaveforcetransferfunction import FirstOrderWaveForceTransferFunctionBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.directiondependentcomplexvalues import DirectionDependentComplexValues
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .directiondependentcomplexvalues import DirectionDependentComplexValues
+from .directionsymmetry import DirectionSymmetry
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class FirstOrderWaveForceTransferFunction(MOAO):
     """
@@ -17,8 +17,8 @@ class FirstOrderWaveForceTransferFunction(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    directions : ndarray
-    frequencies : ndarray
+    directions : ndarray of float
+    frequencies : ndarray of float
     symmetry : DirectionSymmetry
     fx : DirectionDependentComplexValues
     fy : DirectionDependentComplexValues
@@ -32,8 +32,8 @@ class FirstOrderWaveForceTransferFunction(MOAO):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.directions = ndarray(1)
-        self.frequencies = ndarray(1)
+        self.directions = []
+        self.frequencies = []
         self.symmetry = symmetry
         self.fx = None
         self.fy = None
@@ -71,7 +71,7 @@ class FirstOrderWaveForceTransferFunction(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -82,7 +82,10 @@ class FirstOrderWaveForceTransferFunction(MOAO):
     @directions.setter
     def directions(self, value: ndarray):
         """Set directions"""
-        self.__directions = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__directions = array
 
     @property
     def frequencies(self) -> ndarray:
@@ -92,7 +95,10 @@ class FirstOrderWaveForceTransferFunction(MOAO):
     @frequencies.setter
     def frequencies(self, value: ndarray):
         """Set frequencies"""
-        self.__frequencies = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__frequencies = array
 
     @property
     def symmetry(self) -> DirectionSymmetry:

@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.plot import PlotBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.figuretemplate import FigureTemplate
-from sima.post.inputslot import InputSlot
-from sima.post.operationnode import OperationNode
-from sima.post.outputnode import OutputNode
-from sima.post.outputslot import OutputSlot
-from sima.post.traceconfiguration import TraceConfiguration
-from sima.sima.scriptablevalue import ScriptableValue
+from .controlsignalinputslot import ControlSignalInputSlot
+from .figuretemplate import FigureTemplate
+from .inputslot import InputSlot
+from .operationnode import OperationNode
+from .outputnode import OutputNode
+from .outputslot import OutputSlot
+from .traceconfiguration import TraceConfiguration
+from sima.sima import ScriptableValue
 
 class Plot(OperationNode,OutputNode):
     """
@@ -97,7 +97,7 @@ class Plot(OperationNode,OutputNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -159,7 +159,7 @@ class Plot(OperationNode,OutputNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -171,7 +171,7 @@ class Plot(OperationNode,OutputNode):
     def filterInputSlots(self, value: List[InputSlot]):
         """Set filterInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterInputSlots = value
 
     @property
@@ -183,7 +183,7 @@ class Plot(OperationNode,OutputNode):
     def filterOutputSlots(self, value: List[OutputSlot]):
         """Set filterOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterOutputSlots = value
 
     @property
@@ -205,7 +205,7 @@ class Plot(OperationNode,OutputNode):
     def traces(self, value: List[TraceConfiguration]):
         """Set traces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__traces = value
 
     @property

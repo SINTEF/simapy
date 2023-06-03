@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fileresource import FileResourceBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.property import Property
-from sima.sima.scriptablevalue import ScriptableValue
+from .moao import MOAO
+from .property import Property
+from .scriptablevalue import ScriptableValue
 
 class FileResource(MOAO):
     """
@@ -60,7 +60,7 @@ class FileResource(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -72,7 +72,7 @@ class FileResource(MOAO):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

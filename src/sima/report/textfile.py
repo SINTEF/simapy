@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.textfile import TextFileBlueprint
 from typing import Dict
-from sima.report.reportitem import ReportItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .reportitem import ReportItem
+from sima.sima import ScriptableValue
 
 class TextFile(ReportItem):
     """
@@ -57,7 +57,7 @@ class TextFile(ReportItem):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

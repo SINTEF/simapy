@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.envelopecurvespecification import EnvelopeCurveSpecificationBlueprint
 from typing import Dict
-from sima.riflex.matrixplotfileoption import MatrixPlotFileOption
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .matrixplotfileoption import MatrixPlotFileOption
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class EnvelopeCurveSpecification(MOAO):
     """
@@ -78,7 +78,7 @@ class EnvelopeCurveSpecification(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

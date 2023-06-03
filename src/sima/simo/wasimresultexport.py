@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wasimresultexport import WasimResultExportBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bodyforcecomponentreference import BodyForceComponentReference
+from .bodyforcecomponentreference import BodyForceComponentReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobody import SIMOBody
+    from .simobody import SIMOBody
 
 class WasimResultExport(MOAO):
     """
@@ -22,17 +22,14 @@ class WasimResultExport(MOAO):
     scriptableValues : List[ScriptableValue]
     floaterBody : SIMOBody
     pointForces : List[BodyForceComponentReference]
-    maxNumberOfWaveComponents : int
-         Limit the number of wave components exported to file(default 0)
     """
 
-    def __init__(self , description="", maxNumberOfWaveComponents=0, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.floaterBody = None
         self.pointForces = list()
-        self.maxNumberOfWaveComponents = maxNumberOfWaveComponents
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -63,7 +60,7 @@ class WasimResultExport(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -85,15 +82,5 @@ class WasimResultExport(MOAO):
     def pointForces(self, value: List[BodyForceComponentReference]):
         """Set pointForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pointForces = value
-
-    @property
-    def maxNumberOfWaveComponents(self) -> int:
-        """Limit the number of wave components exported to file"""
-        return self.__maxNumberOfWaveComponents
-
-    @maxNumberOfWaveComponents.setter
-    def maxNumberOfWaveComponents(self, value: int):
-        """Set maxNumberOfWaveComponents"""
-        self.__maxNumberOfWaveComponents = int(value)

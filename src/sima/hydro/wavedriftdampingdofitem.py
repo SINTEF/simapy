@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wavedriftdampingdofitem import WaveDriftDampingDofItemBlueprint
 from typing import Dict
-from sima.hydro.directiondependentvalues import DirectionDependentValues
-from sima.hydro.dof import DOF
-from sima.hydro.values import Values
-from sima.sima.scriptablevalue import ScriptableValue
+from .directiondependentvalues import DirectionDependentValues
+from .dof import DOF
+from .values import Values
+from sima.sima import ScriptableValue
 
 class WaveDriftDampingDofItem(DirectionDependentValues):
     """
@@ -59,7 +59,7 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -71,7 +71,7 @@ class WaveDriftDampingDofItem(DirectionDependentValues):
     def directionalValues(self, value: List[Values]):
         """Set directionalValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__directionalValues = value
 
     @property

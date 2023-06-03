@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicnodalforces import DynamicNodalForcesBlueprint
 from typing import Dict
-from sima.riflex.dynamicnodalforceitem import DynamicNodalForceItem
-from sima.riflex.forcespecificationtype import ForceSpecificationType
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .dynamicnodalforceitem import DynamicNodalForceItem
+from .forcespecificationtype import ForceSpecificationType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DynamicNodalForces(MOAO):
     """
@@ -61,7 +61,7 @@ class DynamicNodalForces(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -102,5 +102,5 @@ each time instant.
     def items(self, value: List[DynamicNodalForceItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

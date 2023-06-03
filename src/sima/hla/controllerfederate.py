@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.controllerfederate import ControllerFederateBlueprint
 from typing import Dict
-from sima.hla.hlacontrolconfiguration import HLAControlConfiguration
-from sima.hla.hlafederate import HLAFederate
-from sima.hla.hlawinchgroup import HLAWinchGroup
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlacontrolconfiguration import HLAControlConfiguration
+from .hlafederate import HLAFederate
+from .hlawinchgroup import HLAWinchGroup
+from sima.sima import ScriptableValue
 
 class ControllerFederate(HLAFederate):
     """
@@ -63,7 +63,7 @@ class ControllerFederate(HLAFederate):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -95,7 +95,7 @@ class ControllerFederate(HLAFederate):
     def allHLAControlConfigurations(self, value: List[HLAControlConfiguration]):
         """Set allHLAControlConfigurations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__allHLAControlConfigurations = value
 
     @property
@@ -107,5 +107,5 @@ class ControllerFederate(HLAFederate):
     def winchGroups(self, value: List[HLAWinchGroup]):
         """Set winchGroups"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__winchGroups = value

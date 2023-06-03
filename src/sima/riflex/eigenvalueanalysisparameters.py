@@ -5,9 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.eigenvalueanalysisparameters import EigenvalueAnalysisParametersBlueprint
 from typing import Dict
-from sima.riflex.eigenvaluestartvector import EigenvalueStartVector
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class EigenvalueAnalysisParameters(MOAO):
     """
@@ -18,49 +17,28 @@ class EigenvalueAnalysisParameters(MOAO):
     scriptableValues : List[ScriptableValue]
     numberOfEigenvalues : int
          Number of eigenvalues to be calculated(default 10)
-    numberOfEigenvectors : int
-         Number of eigenvectors to be calculated(default 10)
     maxRelativeError : float
-         Maximum acceptable relative error in computed eigenvalues(default 0.0)
-    limitValue : float
-         Limit value for singularity test during factorization(default 0.0)
-    orthogonalityLimit : float
-         Orthogonality limit(default 0.0)
-    startVector : EigenvalueStartVector
-         Start vector code
-    maxNumberOfIterations : int
-         A positive number gives an iterative Gram-Schmidt procedure. A negative number gives a multi-pass Gram-Schmidt procedure.(default 5)
-    frequencyControlParameter : int
-         Parameter controlling frequency for solving small tridiagonal eigenvalue problem(default 0)
-    shiftValue : float
-         Shift value(default 0.0)
+         Maximum acceptable relative error in computed eigenvalues(default 1e-10)
     numberOfLanczoSteps : int
-         Number of Lanczos steps to be used, 0.0 result in an automatic computaion of suitable value(default 0)
-    premultiplyStartVector : bool
-         Whether the start vector should be premultiplied with H or not(default True)
+         Maximum number of Lanczos steps (vectors) to be used(default 0)
     storeVisualisationResponses : bool
          Store eigenvalue visualization file(default True)
     visualisationScaling : float
          Scaling of eigenvectors in visual results(default 10.0)
+    numberOfEigenvectors : int
+         Number of eigenvectors to be printed(default 0)
     """
 
-    def __init__(self , description="", numberOfEigenvalues=10, numberOfEigenvectors=10, maxRelativeError=0.0, limitValue=0.0, orthogonalityLimit=0.0, startVector=EigenvalueStartVector.PSEUDORANDOM_STARTVECTOR, maxNumberOfIterations=5, frequencyControlParameter=0, shiftValue=0.0, numberOfLanczoSteps=0, premultiplyStartVector=True, storeVisualisationResponses=True, visualisationScaling=10.0, **kwargs):
+    def __init__(self , description="", numberOfEigenvalues=10, maxRelativeError=1e-10, numberOfLanczoSteps=0, storeVisualisationResponses=True, visualisationScaling=10.0, numberOfEigenvectors=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.numberOfEigenvalues = numberOfEigenvalues
-        self.numberOfEigenvectors = numberOfEigenvectors
         self.maxRelativeError = maxRelativeError
-        self.limitValue = limitValue
-        self.orthogonalityLimit = orthogonalityLimit
-        self.startVector = startVector
-        self.maxNumberOfIterations = maxNumberOfIterations
-        self.frequencyControlParameter = frequencyControlParameter
-        self.shiftValue = shiftValue
         self.numberOfLanczoSteps = numberOfLanczoSteps
-        self.premultiplyStartVector = premultiplyStartVector
         self.storeVisualisationResponses = storeVisualisationResponses
         self.visualisationScaling = visualisationScaling
+        self.numberOfEigenvectors = numberOfEigenvectors
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -91,7 +69,7 @@ class EigenvalueAnalysisParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -105,16 +83,6 @@ class EigenvalueAnalysisParameters(MOAO):
         self.__numberOfEigenvalues = int(value)
 
     @property
-    def numberOfEigenvectors(self) -> int:
-        """Number of eigenvectors to be calculated"""
-        return self.__numberOfEigenvectors
-
-    @numberOfEigenvectors.setter
-    def numberOfEigenvectors(self, value: int):
-        """Set numberOfEigenvectors"""
-        self.__numberOfEigenvectors = int(value)
-
-    @property
     def maxRelativeError(self) -> float:
         """Maximum acceptable relative error in computed eigenvalues"""
         return self.__maxRelativeError
@@ -125,84 +93,14 @@ class EigenvalueAnalysisParameters(MOAO):
         self.__maxRelativeError = float(value)
 
     @property
-    def limitValue(self) -> float:
-        """Limit value for singularity test during factorization"""
-        return self.__limitValue
-
-    @limitValue.setter
-    def limitValue(self, value: float):
-        """Set limitValue"""
-        self.__limitValue = float(value)
-
-    @property
-    def orthogonalityLimit(self) -> float:
-        """Orthogonality limit"""
-        return self.__orthogonalityLimit
-
-    @orthogonalityLimit.setter
-    def orthogonalityLimit(self, value: float):
-        """Set orthogonalityLimit"""
-        self.__orthogonalityLimit = float(value)
-
-    @property
-    def startVector(self) -> EigenvalueStartVector:
-        """Start vector code"""
-        return self.__startVector
-
-    @startVector.setter
-    def startVector(self, value: EigenvalueStartVector):
-        """Set startVector"""
-        self.__startVector = value
-
-    @property
-    def maxNumberOfIterations(self) -> int:
-        """A positive number gives an iterative Gram-Schmidt procedure. A negative number gives a multi-pass Gram-Schmidt procedure."""
-        return self.__maxNumberOfIterations
-
-    @maxNumberOfIterations.setter
-    def maxNumberOfIterations(self, value: int):
-        """Set maxNumberOfIterations"""
-        self.__maxNumberOfIterations = int(value)
-
-    @property
-    def frequencyControlParameter(self) -> int:
-        """Parameter controlling frequency for solving small tridiagonal eigenvalue problem"""
-        return self.__frequencyControlParameter
-
-    @frequencyControlParameter.setter
-    def frequencyControlParameter(self, value: int):
-        """Set frequencyControlParameter"""
-        self.__frequencyControlParameter = int(value)
-
-    @property
-    def shiftValue(self) -> float:
-        """Shift value"""
-        return self.__shiftValue
-
-    @shiftValue.setter
-    def shiftValue(self, value: float):
-        """Set shiftValue"""
-        self.__shiftValue = float(value)
-
-    @property
     def numberOfLanczoSteps(self) -> int:
-        """Number of Lanczos steps to be used, 0.0 result in an automatic computaion of suitable value"""
+        """Maximum number of Lanczos steps (vectors) to be used"""
         return self.__numberOfLanczoSteps
 
     @numberOfLanczoSteps.setter
     def numberOfLanczoSteps(self, value: int):
         """Set numberOfLanczoSteps"""
         self.__numberOfLanczoSteps = int(value)
-
-    @property
-    def premultiplyStartVector(self) -> bool:
-        """Whether the start vector should be premultiplied with H or not"""
-        return self.__premultiplyStartVector
-
-    @premultiplyStartVector.setter
-    def premultiplyStartVector(self, value: bool):
-        """Set premultiplyStartVector"""
-        self.__premultiplyStartVector = bool(value)
 
     @property
     def storeVisualisationResponses(self) -> bool:
@@ -223,3 +121,13 @@ class EigenvalueAnalysisParameters(MOAO):
     def visualisationScaling(self, value: float):
         """Set visualisationScaling"""
         self.__visualisationScaling = float(value)
+
+    @property
+    def numberOfEigenvectors(self) -> int:
+        """Number of eigenvectors to be printed"""
+        return self.__numberOfEigenvectors
+
+    @numberOfEigenvectors.setter
+    def numberOfEigenvectors(self, value: int):
+        """Set numberOfEigenvectors"""
+        self.__numberOfEigenvectors = int(value)

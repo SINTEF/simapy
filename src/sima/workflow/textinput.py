@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.textinput import TextInputBlueprint
 from numpy import ndarray,asarray
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.signalproperties import SignalProperties
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.valueinputnode import ValueInputNode
+from .valueinputnode import ValueInputNode
+from sima.post import ControlSignalInputSlot
+from sima.post import OutputSlot
+from sima.post import SignalProperties
+from sima.sima import ScriptableValue
 
 class TextInput(ValueInputNode):
     """
@@ -41,7 +41,7 @@ class TextInput(ValueInputNode):
          (default None)
     array : bool
          Create a text array output(default False)
-    values : ndarray
+    values : ndarray of str
     """
 
     def __init__(self , description="", x=0, y=0, h=0, w=0, specifyAdditionalProperties=False, array=False, **kwargs):
@@ -61,7 +61,7 @@ class TextInput(ValueInputNode):
         self.specifyAdditionalProperties = specifyAdditionalProperties
         self.value = None
         self.array = array
-        self.values = ndarray(1)
+        self.values = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -92,7 +92,7 @@ class TextInput(ValueInputNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -154,7 +154,7 @@ class TextInput(ValueInputNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -196,7 +196,7 @@ class TextInput(ValueInputNode):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -237,4 +237,7 @@ class TextInput(ValueInputNode):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array

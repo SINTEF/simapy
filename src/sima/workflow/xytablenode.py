@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.xytablenode import XYTableNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.inputslot import InputSlot
-from sima.post.outputnode import OutputNode
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import ControlSignalInputSlot
+from sima.post import InputSlot
+from sima.post import OutputNode
+from sima.sima import ScriptableValue
 
 class XYTableNode(OutputNode):
     """
@@ -81,7 +81,7 @@ class XYTableNode(OutputNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -143,7 +143,7 @@ class XYTableNode(OutputNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property

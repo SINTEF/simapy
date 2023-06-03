@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.offsetvariationitem import OffsetVariationItemBlueprint
 from typing import Dict
-from sima.riflex.referencetype import ReferenceType
-from sima.riflex.rotationcode import RotationCode
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .referencetype import ReferenceType
+from .rotationcode import RotationCode
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.supernode import SuperNode
-    from sima.riflex.supportvessel import SupportVessel
+    from .supernode import SuperNode
+    from .supportvessel import SupportVessel
 
 class OffsetVariationItem(MOAO):
     """
@@ -80,7 +80,7 @@ class OffsetVariationItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

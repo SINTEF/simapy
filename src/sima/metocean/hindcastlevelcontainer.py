@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hindcastlevelcontainer import HindcastLevelContainerBlueprint
 from typing import Dict
-from sima.metocean.hindcastlevel import HindcastLevel
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .hindcastlevel import HindcastLevel
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class HindcastLevelContainer(MOAO):
     """
@@ -54,7 +54,7 @@ class HindcastLevelContainer(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +66,5 @@ class HindcastLevelContainer(MOAO):
     def levels(self, value: List[HindcastLevel]):
         """Set levels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__levels = value

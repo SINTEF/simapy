@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.customtable import CustomTableBlueprint
 from typing import Dict
-from sima.custom.customcomponent import CustomComponent
-from sima.sima.scriptablevalue import ScriptableValue
+from .customcomponent import CustomComponent
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.post.signaltable import SignalTable
+    from sima.post import SignalTable
 
 class CustomTable(CustomComponent):
     """
@@ -57,7 +57,7 @@ class CustomTable(CustomComponent):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

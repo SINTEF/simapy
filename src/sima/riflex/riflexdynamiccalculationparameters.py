@@ -5,37 +5,37 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexdynamiccalculationparameters import RIFLEXDynamicCalculationParametersBlueprint
 from typing import Dict
-from sima.riflex.bladepitchfault import BladePitchFault
-from sima.riflex.bodyforcestorage import BodyForceStorage
-from sima.riflex.boundarychangegroup import BoundaryChangeGroup
-from sima.riflex.curvatureresponsestorage import CurvatureResponseStorage
-from sima.riflex.displacementresponsestorage import DisplacementResponseStorage
-from sima.riflex.dynamicloads import DynamicLoads
-from sima.riflex.dynamicpressurevariationitem import DynamicPressureVariationItem
-from sima.riflex.dynamictemperaturevariationitem import DynamicTemperatureVariationItem
-from sima.riflex.dynamicwinchvariationitem import DynamicWinchVariationItem
-from sima.riflex.dynamicwindchange import DynamicWindChange
-from sima.riflex.dynmodvisualisationresponses import DynmodVisualisationResponses
-from sima.riflex.envelopecurvespecification import EnvelopeCurveSpecification
-from sima.riflex.forceresponsestorage import ForceResponseStorage
-from sima.riflex.hlaelementforce import HLAElementForce
-from sima.riflex.hydrodynamicloadstorage import HydrodynamicLoadStorage
-from sima.riflex.importvesselitem import ImportVesselItem
-from sima.riflex.irregularresponseanalysis import IrregularResponseAnalysis
-from sima.riflex.irregulartimeseriesparameters import IrregularTimeSeriesParameters
-from sima.riflex.regularvesselmotion import RegularVesselMotion
-from sima.riflex.regularwaveanalaysis import RegularWaveAnalaysis
-from sima.riflex.regularwaveloading import RegularWaveLoading
-from sima.riflex.segmentlengthvariationitem import SegmentLengthVariationItem
-from sima.riflex.stressstorage import StressStorage
-from sima.riflex.sumforceresponsestorage import SumForceResponseStorage
-from sima.riflex.supportvesselforcestorage import SupportVesselForceStorage
-from sima.riflex.timedomainprocedure import TimeDomainProcedure
-from sima.riflex.turbinebladeresponsestorage import TurbineBladeResponseStorage
-from sima.riflex.turbineresponsestorage import TurbineResponseStorage
-from sima.riflex.windturbineshutdown import WindTurbineShutdown
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .bladepitchfault import BladePitchFault
+from .bodyforcestorage import BodyForceStorage
+from .boundarychangegroup import BoundaryChangeGroup
+from .curvatureresponsestorage import CurvatureResponseStorage
+from .displacementresponsestorage import DisplacementResponseStorage
+from .dynamicloads import DynamicLoads
+from .dynamicpressurevariationitem import DynamicPressureVariationItem
+from .dynamictemperaturevariationitem import DynamicTemperatureVariationItem
+from .dynamicwinchvariationitem import DynamicWinchVariationItem
+from .dynamicwindchange import DynamicWindChange
+from .dynmodvisualisationresponses import DynmodVisualisationResponses
+from .envelopecurvespecification import EnvelopeCurveSpecification
+from .forceresponsestorage import ForceResponseStorage
+from .hlaelementforce import HLAElementForce
+from .hydrodynamicloadstorage import HydrodynamicLoadStorage
+from .importvesselitem import ImportVesselItem
+from .irregularresponseanalysis import IrregularResponseAnalysis
+from .irregulartimeseriesparameters import IrregularTimeSeriesParameters
+from .regularvesselmotion import RegularVesselMotion
+from .regularwaveanalaysis import RegularWaveAnalaysis
+from .regularwaveloading import RegularWaveLoading
+from .segmentlengthvariationitem import SegmentLengthVariationItem
+from .stressstorage import StressStorage
+from .sumforceresponsestorage import SumForceResponseStorage
+from .supportvesselforcestorage import SupportVesselForceStorage
+from .timedomainprocedure import TimeDomainProcedure
+from .turbinebladeresponsestorage import TurbineBladeResponseStorage
+from .turbineresponsestorage import TurbineResponseStorage
+from .windturbineshutdown import WindTurbineShutdown
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class RIFLEXDynamicCalculationParameters(MOAO):
     """
@@ -150,7 +150,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -302,7 +302,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def hlaElementForces(self, value: List[HLAElementForce]):
         """Set hlaElementForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__hlaElementForces = value
 
     @property
@@ -314,7 +314,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def hlaImportedBodies(self, value: List[ImportVesselItem]):
         """Set hlaImportedBodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__hlaImportedBodies = value
 
     @property
@@ -326,7 +326,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def segmentLengthVariations(self, value: List[SegmentLengthVariationItem]):
         """Set segmentLengthVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__segmentLengthVariations = value
 
     @property
@@ -338,7 +338,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def temperatureVariations(self, value: List[DynamicTemperatureVariationItem]):
         """Set temperatureVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__temperatureVariations = value
 
     @property
@@ -350,7 +350,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def pressureVariations(self, value: List[DynamicPressureVariationItem]):
         """Set pressureVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pressureVariations = value
 
     @property
@@ -362,7 +362,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def winchVariations(self, value: List[DynamicWinchVariationItem]):
         """Set winchVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__winchVariations = value
 
     @property
@@ -404,7 +404,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def boundaryChangeGroups(self, value: List[BoundaryChangeGroup]):
         """Set boundaryChangeGroups"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__boundaryChangeGroups = value
 
     @property
@@ -446,7 +446,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def regularVesselMotions(self, value: List[RegularVesselMotion]):
         """Set regularVesselMotions"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__regularVesselMotions = value
 
     @property

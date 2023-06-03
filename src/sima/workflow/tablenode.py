@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.tablenode import TableNodeBlueprint
 from typing import Dict
-from sima.post.columnconfiguration import ColumnConfiguration
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.inputslot import InputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.signaltable import SignalTable
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import ColumnConfiguration
+from sima.post import ControlSignalInputSlot
+from sima.post import InputSlot
+from sima.post import OutputSlot
+from sima.post import SignalTable
+from sima.sima import ScriptableValue
 
 class TableNode(SignalTable):
     """
@@ -87,7 +87,7 @@ class TableNode(SignalTable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -149,7 +149,7 @@ class TableNode(SignalTable):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -161,7 +161,7 @@ class TableNode(SignalTable):
     def columns(self, value: List[ColumnConfiguration]):
         """Set columns"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__columns = value
 
     @property

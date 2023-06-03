@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlanamedviewpoint import HLANamedViewpointBlueprint
 from typing import Dict
-from sima.hla.hlaobject import HLAObject
-from sima.hla.hlaviewpoint import HLAViewpoint
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaobject import HLAObject
+from .hlaviewpoint import HLAViewpoint
+from sima.sima import ScriptableValue
 
 class HLANamedViewpoint(HLAViewpoint,HLAObject):
     """
@@ -55,7 +55,7 @@ class HLANamedViewpoint(HLAViewpoint,HLAObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

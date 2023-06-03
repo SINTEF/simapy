@@ -19,8 +19,6 @@ class RegularSegmentBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("crossSection","sima/riflex/CrossSection","Cross-sectional component type.",False))
         self.add_attribute(BlueprintAttribute("nodalComponent","sima/riflex/NodalComponentType","Nodal component (body or connector) attached at end 1 of the segment.",False))
         self.add_attribute(BlueprintAttribute("externalWrapping","sima/riflex/ExternalWrappingType","External wrapping (distributed weight or buoyancy) component.",False))
-        self.add_attribute(Attribute("numSubElementsStatic","integer","Number of subelements each element is divided into for hydrodynamic calculation; static analysis.",default=3))
-        self.add_attribute(Attribute("numSubElementsDynamic","integer","Number of subelements each element is divided into for hydrodynamic load calculation; dynamic analysis.",default=5))
         self.add_attribute(Attribute("stressfreeLength","number","Actual stressfree segment length.",default=0.0))
         self.add_attribute(Attribute("twistEnd1","number","Relative twist segment end 1",default=0.0))
         self.add_attribute(Attribute("twistEnd2","number","Relative twist segment end 2",default=0.0))

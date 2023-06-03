@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.globalspring import GlobalSpringBlueprint
 from typing import Dict
-from sima.riflex.globalspringstiffnessitem import GlobalSpringStiffnessItem
-from sima.riflex.nodereference import NodeReference
-from sima.riflex.springdof import SpringDOF
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .globalspringstiffnessitem import GlobalSpringStiffnessItem
+from .nodereference import NodeReference
+from .springdof import SpringDOF
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class GlobalSpring(NodeReference,NamedObject):
     """
@@ -93,7 +93,7 @@ class GlobalSpring(NodeReference,NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -215,5 +215,5 @@ class GlobalSpring(NodeReference,NamedObject):
     def stiffnessItems(self, value: List[GlobalSpringStiffnessItem]):
         """Set stiffnessItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessItems = value

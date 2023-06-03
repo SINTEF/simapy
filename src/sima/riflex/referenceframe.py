@@ -6,8 +6,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.referenceframe import ReferenceFrameBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class ReferenceFrame(NamedObject):
     """
@@ -19,32 +19,32 @@ class ReferenceFrame(NamedObject):
     name : str
          (default None)
     parent : ReferenceFrame
-    xGlobal : float
-         Global coordinate X(default 0.0)
-    yGlobal : float
-         Global coordinate Y(default 0.0)
-    zGlobal : float
-         Global coordinate Z(default 0.0)
-    rxGlobal : float
-         Global  X-axis rotation(default 0.0)
-    ryGlobal : float
-         Global  Y-axis rotation(default 0.0)
-    rzGlobal : float
-         Global  Z-axis rotation(default 0.0)
+    xLocal : float
+         Local (in parent frame) coordinate X(default 0.0)
+    yLocal : float
+         Local (in parent frame) coordinate Y(default 0.0)
+    zLocal : float
+         Local (in parent frame) coordinate Z(default 0.0)
+    rxLocal : float
+         Local (relative to parent frame)  X-axis rotation(default 0.0)
+    ryLocal : float
+         Local (relative to parent frame)  Y-axis rotation(default 0.0)
+    rzLocal : float
+         Local (relative to parent frame)  Z-axis rotation(default 0.0)
     """
 
-    def __init__(self , description="", xGlobal=0.0, yGlobal=0.0, zGlobal=0.0, rxGlobal=0.0, ryGlobal=0.0, rzGlobal=0.0, **kwargs):
+    def __init__(self , description="", xLocal=0.0, yLocal=0.0, zLocal=0.0, rxLocal=0.0, ryLocal=0.0, rzLocal=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
         self.parent = None
-        self.xGlobal = xGlobal
-        self.yGlobal = yGlobal
-        self.zGlobal = zGlobal
-        self.rxGlobal = rxGlobal
-        self.ryGlobal = ryGlobal
-        self.rzGlobal = rzGlobal
+        self.xLocal = xLocal
+        self.yLocal = yLocal
+        self.zLocal = zLocal
+        self.rxLocal = rxLocal
+        self.ryLocal = ryLocal
+        self.rzLocal = rzLocal
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -75,7 +75,7 @@ class ReferenceFrame(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -99,61 +99,61 @@ class ReferenceFrame(NamedObject):
         self.__parent = value
 
     @property
-    def xGlobal(self) -> float:
-        """Global coordinate X"""
-        return self.__xGlobal
+    def xLocal(self) -> float:
+        """Local (in parent frame) coordinate X"""
+        return self.__xLocal
 
-    @xGlobal.setter
-    def xGlobal(self, value: float):
-        """Set xGlobal"""
-        self.__xGlobal = float(value)
-
-    @property
-    def yGlobal(self) -> float:
-        """Global coordinate Y"""
-        return self.__yGlobal
-
-    @yGlobal.setter
-    def yGlobal(self, value: float):
-        """Set yGlobal"""
-        self.__yGlobal = float(value)
+    @xLocal.setter
+    def xLocal(self, value: float):
+        """Set xLocal"""
+        self.__xLocal = float(value)
 
     @property
-    def zGlobal(self) -> float:
-        """Global coordinate Z"""
-        return self.__zGlobal
+    def yLocal(self) -> float:
+        """Local (in parent frame) coordinate Y"""
+        return self.__yLocal
 
-    @zGlobal.setter
-    def zGlobal(self, value: float):
-        """Set zGlobal"""
-        self.__zGlobal = float(value)
-
-    @property
-    def rxGlobal(self) -> float:
-        """Global  X-axis rotation"""
-        return self.__rxGlobal
-
-    @rxGlobal.setter
-    def rxGlobal(self, value: float):
-        """Set rxGlobal"""
-        self.__rxGlobal = float(value)
+    @yLocal.setter
+    def yLocal(self, value: float):
+        """Set yLocal"""
+        self.__yLocal = float(value)
 
     @property
-    def ryGlobal(self) -> float:
-        """Global  Y-axis rotation"""
-        return self.__ryGlobal
+    def zLocal(self) -> float:
+        """Local (in parent frame) coordinate Z"""
+        return self.__zLocal
 
-    @ryGlobal.setter
-    def ryGlobal(self, value: float):
-        """Set ryGlobal"""
-        self.__ryGlobal = float(value)
+    @zLocal.setter
+    def zLocal(self, value: float):
+        """Set zLocal"""
+        self.__zLocal = float(value)
 
     @property
-    def rzGlobal(self) -> float:
-        """Global  Z-axis rotation"""
-        return self.__rzGlobal
+    def rxLocal(self) -> float:
+        """Local (relative to parent frame)  X-axis rotation"""
+        return self.__rxLocal
 
-    @rzGlobal.setter
-    def rzGlobal(self, value: float):
-        """Set rzGlobal"""
-        self.__rzGlobal = float(value)
+    @rxLocal.setter
+    def rxLocal(self, value: float):
+        """Set rxLocal"""
+        self.__rxLocal = float(value)
+
+    @property
+    def ryLocal(self) -> float:
+        """Local (relative to parent frame)  Y-axis rotation"""
+        return self.__ryLocal
+
+    @ryLocal.setter
+    def ryLocal(self, value: float):
+        """Set ryLocal"""
+        self.__ryLocal = float(value)
+
+    @property
+    def rzLocal(self) -> float:
+        """Local (relative to parent frame)  Z-axis rotation"""
+        return self.__rzLocal
+
+    @rzLocal.setter
+    def rzLocal(self, value: float):
+        """Set rzLocal"""
+        self.__rzLocal = float(value)

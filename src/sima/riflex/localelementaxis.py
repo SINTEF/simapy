@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.localelementaxis import LocalElementAxisBlueprint
 from typing import Dict
-from sima.riflex.elementreference import ElementReference
-from sima.sima.scriptablevalue import ScriptableValue
+from .elementreference import ElementReference
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
-    from sima.riflex.referenceframe import ReferenceFrame
+    from .arline import ARLine
+    from .referenceframe import ReferenceFrame
 
 class LocalElementAxis(ElementReference):
     """
@@ -83,7 +83,7 @@ class LocalElementAxis(ElementReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

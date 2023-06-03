@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simoresultcontainer import SIMOResultContainerBlueprint
 from typing import Dict
-from sima.sima.conditionresultcontainer import ConditionResultContainer
-from sima.sima.property import Property
-from sima.sima.resultentry import ResultEntry
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.simodynamicresultentry import SIMODynamicResultEntry
-from sima.simo.simostaticresultentry import SIMOStaticResultEntry
+from .simodynamicresultentry import SIMODynamicResultEntry
+from .simostaticresultentry import SIMOStaticResultEntry
+from sima.sima import ConditionResultContainer
+from sima.sima import Property
+from sima.sima import ResultEntry
+from sima.sima import ScriptableValue
 
 class SIMOResultContainer(ConditionResultContainer):
     """
@@ -74,7 +74,7 @@ class SIMOResultContainer(ConditionResultContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -96,7 +96,7 @@ class SIMOResultContainer(ConditionResultContainer):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

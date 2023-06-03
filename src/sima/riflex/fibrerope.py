@@ -6,20 +6,19 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fibrerope import FibreRopeBlueprint
 from typing import Dict
-from sima.riflex.aerodynamicinputcode import AerodynamicInputCode
-from sima.riflex.crosssection import CrossSection
-from sima.riflex.crsaxialdamping import CRSAxialDamping
-from sima.riflex.crsaxialfrictionmodel import CRSAxialFrictionModel
-from sima.riflex.crsmassdamping import CRSMassDamping
-from sima.riflex.crsstiffnessdamping import CRSStiffnessDamping
-from sima.riflex.fibreropemassvolume import FibreRopeMassVolume
-from sima.riflex.hydrodynamicinputcode import HydrodynamicInputCode
-from sima.riflex.loadformulation import LoadFormulation
-from sima.riflex.tangentialfroudekrylovscaling import TangentialFroudeKrylovScaling
-from sima.sima.scriptablevalue import ScriptableValue
+from .aerodynamicinputcode import AerodynamicInputCode
+from .crosssection import CrossSection
+from .crsaxialdamping import CRSAxialDamping
+from .crsaxialfrictionmodel import CRSAxialFrictionModel
+from .crsmassdamping import CRSMassDamping
+from .crsstiffnessdamping import CRSStiffnessDamping
+from .fibreropemassvolume import FibreRopeMassVolume
+from .hydrodynamicinputcode import HydrodynamicInputCode
+from .loadformulation import LoadFormulation
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.fibreropemodel import FibreRopeModel
+    from sima.simo import FibreRopeModel
 
 class FibreRope(CrossSection,CRSAxialFrictionModel):
     """
@@ -45,12 +44,18 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     loadFormulation : LoadFormulation
     hydrodynamicDiameter : float
          Hydrodynamic diameter(default 0.0)
+    hydrodynamicInputCode : HydrodynamicInputCode
+         Hydrodynamic input code
     addedMassTanDir : float
          Added mass in tangential direction(default 0.0)
     addedMassNormDir : float
          Added mass in normal direction(default 0.0)
     dampingNormDir : float
          Damping coefficients in normal direction(default 0.0)
+    normalDirectionScaling : float
+         Scaling factor for Froude-Krylov term in Morison’s equation in normal direction(default 1.0)
+    tangentialDirectionScaling : float
+         Scale for Froude-Krylov term in Morison’s equation in tangential direction(default 1.0)
     cdt : float
          Quadratic drag coefficient in tangential direction.(default 0.0)
     cdn : float
@@ -75,29 +80,29 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
          Linear drag force coefficient in tangential direction.(default 0.0)
     cdly : float
          Linear drag force coefficient in normal direction.(default 0.0)
-    hydrodynamicInputCode : HydrodynamicInputCode
-         Hydrodynamic input code
-    scfk : float
-         Scaling factor for Froude-Krylov term in Morison’s equation in normal direction(default 1.0)
-    scfkt : TangentialFroudeKrylovScaling
-         Scale for Froude-Krylov term in Morison’s equation in tangential direction
+    hydrodynamicRadiationInputCode : HydrodynamicInputCode
+         Code for input of simplified radiation force coefficients
     massDampingSpecification : bool
          Mass proportional Rayleigh damping(default False)
     stiffnessDampingSpecification : bool
          Stiffness proportional Rayleigh damping(default False)
     axialDampingSpecification : bool
          Local axial damping model(default False)
+    massDamping : CRSMassDamping
+    stiffnessDamping : CRSStiffnessDamping
+    axialDamping : CRSAxialDamping
     temperature : float
          Temperature at which the specification applies(default 0.0)
     alpha : float
          Thermal expansion coefficient(default 0.0)
     beta : float
          Pressure expansion coefficient(default 0.0)
-    massDamping : CRSMassDamping
-    stiffnessDamping : CRSStiffnessDamping
-    axialDamping : CRSAxialDamping
     defaultExpansion : bool
          Use default thermal and pressure expansion settings(default True)
+    tensionCapacity : float
+         Tension capacity(default 0.0)
+    maxCurvature : float
+         Maximum curvature(default 0.0)
     cdax : float
          Quadratic aerodynamic drag force coefficient per unit length in tangential direction(default 0.0)
     cday : float
@@ -109,18 +114,12 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     aerodynamicDiameter : float
          Aerodynamic diameter(default 0.0)
     massVolume : FibreRopeMassVolume
-    tensionCapacity : float
-         Tension capacity(default 0.0)
-    maxCurvature : float
-         Maximum curvature(default 0.0)
-    submerged : bool
-         Use formulation for partly submerged cross-section(default False)
     tmax : float
          (default 0.0)
     fibreRopeModel : FibreRopeModel
     """
 
-    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, scfk=1.0, scfkt=TangentialFroudeKrylovScaling.ON, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, tensionCapacity=0.0, maxCurvature=0.0, submerged=False, tmax=0.0, **kwargs):
+    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, normalDirectionScaling=1.0, tangentialDirectionScaling=1.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, tensionCapacity=0.0, maxCurvature=0.0, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, tmax=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -133,9 +132,12 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.scfkSpecification = scfkSpecification
         self.loadFormulation = loadFormulation
         self.hydrodynamicDiameter = hydrodynamicDiameter
+        self.hydrodynamicInputCode = hydrodynamicInputCode
         self.addedMassTanDir = addedMassTanDir
         self.addedMassNormDir = addedMassNormDir
         self.dampingNormDir = dampingNormDir
+        self.normalDirectionScaling = normalDirectionScaling
+        self.tangentialDirectionScaling = tangentialDirectionScaling
         self.cdt = cdt
         self.cdn = cdn
         self.cmt = cmt
@@ -148,28 +150,25 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.amy = amy
         self.cdlx = cdlx
         self.cdly = cdly
-        self.hydrodynamicInputCode = hydrodynamicInputCode
-        self.scfk = scfk
-        self.scfkt = scfkt
+        self.hydrodynamicRadiationInputCode = hydrodynamicRadiationInputCode
         self.massDampingSpecification = massDampingSpecification
         self.stiffnessDampingSpecification = stiffnessDampingSpecification
         self.axialDampingSpecification = axialDampingSpecification
-        self.temperature = temperature
-        self.alpha = alpha
-        self.beta = beta
         self.massDamping = None
         self.stiffnessDamping = None
         self.axialDamping = None
+        self.temperature = temperature
+        self.alpha = alpha
+        self.beta = beta
         self.defaultExpansion = defaultExpansion
+        self.tensionCapacity = tensionCapacity
+        self.maxCurvature = maxCurvature
         self.cdax = cdax
         self.cday = cday
         self.cdaz = cdaz
         self.aerodynamicInputCode = aerodynamicInputCode
         self.aerodynamicDiameter = aerodynamicDiameter
         self.massVolume = None
-        self.tensionCapacity = tensionCapacity
-        self.maxCurvature = maxCurvature
-        self.submerged = submerged
         self.tmax = tmax
         self.fibreRopeModel = None
         for key, value in kwargs.items():
@@ -202,7 +201,7 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -296,6 +295,16 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.__hydrodynamicDiameter = float(value)
 
     @property
+    def hydrodynamicInputCode(self) -> HydrodynamicInputCode:
+        """Hydrodynamic input code"""
+        return self.__hydrodynamicInputCode
+
+    @hydrodynamicInputCode.setter
+    def hydrodynamicInputCode(self, value: HydrodynamicInputCode):
+        """Set hydrodynamicInputCode"""
+        self.__hydrodynamicInputCode = value
+
+    @property
     def addedMassTanDir(self) -> float:
         """Added mass in tangential direction"""
         return self.__addedMassTanDir
@@ -324,6 +333,26 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     def dampingNormDir(self, value: float):
         """Set dampingNormDir"""
         self.__dampingNormDir = float(value)
+
+    @property
+    def normalDirectionScaling(self) -> float:
+        """Scaling factor for Froude-Krylov term in Morison’s equation in normal direction"""
+        return self.__normalDirectionScaling
+
+    @normalDirectionScaling.setter
+    def normalDirectionScaling(self, value: float):
+        """Set normalDirectionScaling"""
+        self.__normalDirectionScaling = float(value)
+
+    @property
+    def tangentialDirectionScaling(self) -> float:
+        """Scale for Froude-Krylov term in Morison’s equation in tangential direction"""
+        return self.__tangentialDirectionScaling
+
+    @tangentialDirectionScaling.setter
+    def tangentialDirectionScaling(self, value: float):
+        """Set tangentialDirectionScaling"""
+        self.__tangentialDirectionScaling = float(value)
 
     @property
     def cdt(self) -> float:
@@ -446,34 +475,14 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.__cdly = float(value)
 
     @property
-    def hydrodynamicInputCode(self) -> HydrodynamicInputCode:
-        """Hydrodynamic input code"""
-        return self.__hydrodynamicInputCode
+    def hydrodynamicRadiationInputCode(self) -> HydrodynamicInputCode:
+        """Code for input of simplified radiation force coefficients"""
+        return self.__hydrodynamicRadiationInputCode
 
-    @hydrodynamicInputCode.setter
-    def hydrodynamicInputCode(self, value: HydrodynamicInputCode):
-        """Set hydrodynamicInputCode"""
-        self.__hydrodynamicInputCode = value
-
-    @property
-    def scfk(self) -> float:
-        """Scaling factor for Froude-Krylov term in Morison’s equation in normal direction"""
-        return self.__scfk
-
-    @scfk.setter
-    def scfk(self, value: float):
-        """Set scfk"""
-        self.__scfk = float(value)
-
-    @property
-    def scfkt(self) -> TangentialFroudeKrylovScaling:
-        """Scale for Froude-Krylov term in Morison’s equation in tangential direction"""
-        return self.__scfkt
-
-    @scfkt.setter
-    def scfkt(self, value: TangentialFroudeKrylovScaling):
-        """Set scfkt"""
-        self.__scfkt = value
+    @hydrodynamicRadiationInputCode.setter
+    def hydrodynamicRadiationInputCode(self, value: HydrodynamicInputCode):
+        """Set hydrodynamicRadiationInputCode"""
+        self.__hydrodynamicRadiationInputCode = value
 
     @property
     def massDampingSpecification(self) -> bool:
@@ -506,36 +515,6 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.__axialDampingSpecification = bool(value)
 
     @property
-    def temperature(self) -> float:
-        """Temperature at which the specification applies"""
-        return self.__temperature
-
-    @temperature.setter
-    def temperature(self, value: float):
-        """Set temperature"""
-        self.__temperature = float(value)
-
-    @property
-    def alpha(self) -> float:
-        """Thermal expansion coefficient"""
-        return self.__alpha
-
-    @alpha.setter
-    def alpha(self, value: float):
-        """Set alpha"""
-        self.__alpha = float(value)
-
-    @property
-    def beta(self) -> float:
-        """Pressure expansion coefficient"""
-        return self.__beta
-
-    @beta.setter
-    def beta(self, value: float):
-        """Set beta"""
-        self.__beta = float(value)
-
-    @property
     def massDamping(self) -> CRSMassDamping:
         """"""
         return self.__massDamping
@@ -566,6 +545,36 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.__axialDamping = value
 
     @property
+    def temperature(self) -> float:
+        """Temperature at which the specification applies"""
+        return self.__temperature
+
+    @temperature.setter
+    def temperature(self, value: float):
+        """Set temperature"""
+        self.__temperature = float(value)
+
+    @property
+    def alpha(self) -> float:
+        """Thermal expansion coefficient"""
+        return self.__alpha
+
+    @alpha.setter
+    def alpha(self, value: float):
+        """Set alpha"""
+        self.__alpha = float(value)
+
+    @property
+    def beta(self) -> float:
+        """Pressure expansion coefficient"""
+        return self.__beta
+
+    @beta.setter
+    def beta(self, value: float):
+        """Set beta"""
+        self.__beta = float(value)
+
+    @property
     def defaultExpansion(self) -> bool:
         """Use default thermal and pressure expansion settings"""
         return self.__defaultExpansion
@@ -574,6 +583,26 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     def defaultExpansion(self, value: bool):
         """Set defaultExpansion"""
         self.__defaultExpansion = bool(value)
+
+    @property
+    def tensionCapacity(self) -> float:
+        """Tension capacity"""
+        return self.__tensionCapacity
+
+    @tensionCapacity.setter
+    def tensionCapacity(self, value: float):
+        """Set tensionCapacity"""
+        self.__tensionCapacity = float(value)
+
+    @property
+    def maxCurvature(self) -> float:
+        """Maximum curvature"""
+        return self.__maxCurvature
+
+    @maxCurvature.setter
+    def maxCurvature(self, value: float):
+        """Set maxCurvature"""
+        self.__maxCurvature = float(value)
 
     @property
     def cdax(self) -> float:
@@ -634,36 +663,6 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     def massVolume(self, value: FibreRopeMassVolume):
         """Set massVolume"""
         self.__massVolume = value
-
-    @property
-    def tensionCapacity(self) -> float:
-        """Tension capacity"""
-        return self.__tensionCapacity
-
-    @tensionCapacity.setter
-    def tensionCapacity(self, value: float):
-        """Set tensionCapacity"""
-        self.__tensionCapacity = float(value)
-
-    @property
-    def maxCurvature(self) -> float:
-        """Maximum curvature"""
-        return self.__maxCurvature
-
-    @maxCurvature.setter
-    def maxCurvature(self, value: float):
-        """Set maxCurvature"""
-        self.__maxCurvature = float(value)
-
-    @property
-    def submerged(self) -> bool:
-        """Use formulation for partly submerged cross-section"""
-        return self.__submerged
-
-    @submerged.setter
-    def submerged(self, value: bool):
-        """Set submerged"""
-        self.__submerged = bool(value)
 
     @property
     def tmax(self) -> float:

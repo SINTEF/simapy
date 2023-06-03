@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.parametervariation import ParameterVariationBlueprint
 from typing import Dict
-from sima.riflex.boundarychangegroup import BoundaryChangeGroup
-from sima.riflex.convergencenorm import ConvergenceNorm
-from sima.riflex.currentvariationitem import CurrentVariationItem
-from sima.riflex.offsetvariationitem import OffsetVariationItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .boundarychangegroup import BoundaryChangeGroup
+from .convergencenorm import ConvergenceNorm
+from .currentvariationitem import CurrentVariationItem
+from .offsetvariationitem import OffsetVariationItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ParameterVariation(MOAO):
     """
@@ -93,7 +93,7 @@ class ParameterVariation(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

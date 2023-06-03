@@ -6,9 +6,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.workflowcontainerpackage import WorkflowContainerPackageBlueprint
 from typing import Dict
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.workflow import Workflow
+from .workflow import Workflow
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class WorkflowContainerPackage(Named):
     """
@@ -63,7 +63,7 @@ class WorkflowContainerPackage(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -85,7 +85,7 @@ class WorkflowContainerPackage(Named):
     def packages(self, value: List[WorkflowContainerPackage]):
         """Set packages"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__packages = value
 
     @property
@@ -97,7 +97,7 @@ class WorkflowContainerPackage(Named):
     def workflows(self, value: List[Workflow]):
         """Set workflows"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workflows = value
 
     @property

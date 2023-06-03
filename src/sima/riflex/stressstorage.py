@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.stressstorage import StressStorageBlueprint
 from typing import Dict
-from sima.riflex.elementstressstorage import ElementStressStorage
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .elementstressstorage import ElementStressStorage
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class StressStorage(MOAO):
     """
@@ -55,7 +55,7 @@ class StressStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -67,5 +67,5 @@ class StressStorage(MOAO):
     def elements(self, value: List[ElementStressStorage]):
         """Set elements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elements = value

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hydrodynamicloadstorage import HydrodynamicLoadStorageBlueprint
 from typing import Dict
-from sima.riflex.hydrodynamicloadelementstorage import HydrodynamicLoadElementStorage
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .hydrodynamicloadelementstorage import HydrodynamicLoadElementStorage
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class HydrodynamicLoadStorage(MOAO):
     """
@@ -61,7 +61,7 @@ class HydrodynamicLoadStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -93,5 +93,5 @@ class HydrodynamicLoadStorage(MOAO):
     def elements(self, value: List[HydrodynamicLoadElementStorage]):
         """Set elements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elements = value

@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.tablecellstyle import TableCellStyleBlueprint
 from typing import Dict
-from sima.report.horizontalalignment import HorizontalAlignment
-from sima.report.verticalalignment import VerticalAlignment
-from sima.sima.fontdescription import FontDescription
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .horizontalalignment import HorizontalAlignment
+from .verticalalignment import VerticalAlignment
+from sima.sima import FontDescription
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class TableCellStyle(MOAO):
     """
@@ -60,7 +60,7 @@ class TableCellStyle(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

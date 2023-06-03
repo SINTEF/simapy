@@ -6,18 +6,18 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.supernode import SuperNodeBlueprint
 from typing import Dict
-from sima.riflex.boundarycondition import BoundaryCondition
-from sima.riflex.boundaryconditionframe import BoundaryConditionFrame
-from sima.riflex.nodeconstraint import NodeConstraint
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.supernodereference import SuperNodeReference
+from .boundarycondition import BoundaryCondition
+from .boundaryconditionframe import BoundaryConditionFrame
+from .nodeconstraint import NodeConstraint
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
+from sima.simo import SuperNodeReference
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.referenceframe import ReferenceFrame
-    from sima.riflex.supportvessel import SupportVessel
-    from sima.simo.supernodereference import SuperNodeReference
-    from sima.riflex.arline import ARLine
+    from .referenceframe import ReferenceFrame
+    from .supportvessel import SupportVessel
+    from sima.simo import SuperNodeReference
+    from .arline import ARLine
 
 class SuperNode(NamedObject,SuperNodeReference):
     """
@@ -50,18 +50,18 @@ class SuperNode(NamedObject,SuperNodeReference):
          Boundary condition for rotation about Y-axis
     rzConstraint : BoundaryCondition
          Boundary condition for rotation about Z-axis
-    xGInitial : float
-         Initial (stress-free) global coordinate X(default 0.0)
-    yGInitial : float
-         Initial (stress-free) global coordinate Y(default 0.0)
-    zGInitial : float
-         Initial (stress-free) global coordinate Z(default 0.0)
-    xGStatic : float
-         Static global coordinate X(default 0.0)
-    yGStatic : float
-         Static global coordinate Y(default 0.0)
-    zGStatic : float
-         Static global coordinate Z(default 0.0)
+    xInitial : float
+         Initial (stress-free) local coordinate X(default 0.0)
+    yInitial : float
+         Initial (stress-free) local coordinate Y(default 0.0)
+    zInitial : float
+         Initial (stress-free) local coordinate Z(default 0.0)
+    xStatic : float
+         Static local coordinate X(default 0.0)
+    yStatic : float
+         Static local coordinate Y(default 0.0)
+    zStatic : float
+         Static local coordinate Z(default 0.0)
     rotation : float
          Specified rotation of supernode from stress free position \nto static equilibrium position.(default 0.0)
     direction : float
@@ -98,7 +98,7 @@ class SuperNode(NamedObject,SuperNodeReference):
          XY-plane reference vector z-component  in reference system(default 0.0)
     """
 
-    def __init__(self , description="", constraint=NodeConstraint.FIXED_PRESCRIBED, automaticInitialPosition=False, xConstraint=BoundaryCondition.FREE, yConstraint=BoundaryCondition.FREE, zConstraint=BoundaryCondition.FREE, rxConstraint=BoundaryCondition.FREE, ryConstraint=BoundaryCondition.FREE, rzConstraint=BoundaryCondition.FREE, xGInitial=0.0, yGInitial=0.0, zGInitial=0.0, xGStatic=0.0, yGStatic=0.0, zGStatic=0.0, rotation=0.0, direction=0.0, beta=0.0, radial=False, radialAngle=0.0, verticalOffset=0.0, radialDistance=0.0, boundaryConditionFrame=BoundaryConditionFrame.GLOBAL, xx=0.0, xy=0.0, xz=0.0, xp=0.0, yp=0.0, zp=0.0, **kwargs):
+    def __init__(self , description="", constraint=NodeConstraint.FIXED_PRESCRIBED, automaticInitialPosition=False, xConstraint=BoundaryCondition.FREE, yConstraint=BoundaryCondition.FREE, zConstraint=BoundaryCondition.FREE, rxConstraint=BoundaryCondition.FREE, ryConstraint=BoundaryCondition.FREE, rzConstraint=BoundaryCondition.FREE, xInitial=0.0, yInitial=0.0, zInitial=0.0, xStatic=0.0, yStatic=0.0, zStatic=0.0, rotation=0.0, direction=0.0, beta=0.0, radial=False, radialAngle=0.0, verticalOffset=0.0, radialDistance=0.0, boundaryConditionFrame=BoundaryConditionFrame.GLOBAL, xx=0.0, xy=0.0, xz=0.0, xp=0.0, yp=0.0, zp=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -114,12 +114,12 @@ class SuperNode(NamedObject,SuperNodeReference):
         self.rxConstraint = rxConstraint
         self.ryConstraint = ryConstraint
         self.rzConstraint = rzConstraint
-        self.xGInitial = xGInitial
-        self.yGInitial = yGInitial
-        self.zGInitial = zGInitial
-        self.xGStatic = xGStatic
-        self.yGStatic = yGStatic
-        self.zGStatic = zGStatic
+        self.xInitial = xInitial
+        self.yInitial = yInitial
+        self.zInitial = zInitial
+        self.xStatic = xStatic
+        self.yStatic = yStatic
+        self.zStatic = zStatic
         self.rotation = rotation
         self.direction = direction
         self.referenceLine = None
@@ -167,7 +167,7 @@ class SuperNode(NamedObject,SuperNodeReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -291,64 +291,64 @@ class SuperNode(NamedObject,SuperNodeReference):
         self.__rzConstraint = value
 
     @property
-    def xGInitial(self) -> float:
-        """Initial (stress-free) global coordinate X"""
-        return self.__xGInitial
+    def xInitial(self) -> float:
+        """Initial (stress-free) local coordinate X"""
+        return self.__xInitial
 
-    @xGInitial.setter
-    def xGInitial(self, value: float):
-        """Set xGInitial"""
-        self.__xGInitial = float(value)
-
-    @property
-    def yGInitial(self) -> float:
-        """Initial (stress-free) global coordinate Y"""
-        return self.__yGInitial
-
-    @yGInitial.setter
-    def yGInitial(self, value: float):
-        """Set yGInitial"""
-        self.__yGInitial = float(value)
+    @xInitial.setter
+    def xInitial(self, value: float):
+        """Set xInitial"""
+        self.__xInitial = float(value)
 
     @property
-    def zGInitial(self) -> float:
-        """Initial (stress-free) global coordinate Z"""
-        return self.__zGInitial
+    def yInitial(self) -> float:
+        """Initial (stress-free) local coordinate Y"""
+        return self.__yInitial
 
-    @zGInitial.setter
-    def zGInitial(self, value: float):
-        """Set zGInitial"""
-        self.__zGInitial = float(value)
-
-    @property
-    def xGStatic(self) -> float:
-        """Static global coordinate X"""
-        return self.__xGStatic
-
-    @xGStatic.setter
-    def xGStatic(self, value: float):
-        """Set xGStatic"""
-        self.__xGStatic = float(value)
+    @yInitial.setter
+    def yInitial(self, value: float):
+        """Set yInitial"""
+        self.__yInitial = float(value)
 
     @property
-    def yGStatic(self) -> float:
-        """Static global coordinate Y"""
-        return self.__yGStatic
+    def zInitial(self) -> float:
+        """Initial (stress-free) local coordinate Z"""
+        return self.__zInitial
 
-    @yGStatic.setter
-    def yGStatic(self, value: float):
-        """Set yGStatic"""
-        self.__yGStatic = float(value)
+    @zInitial.setter
+    def zInitial(self, value: float):
+        """Set zInitial"""
+        self.__zInitial = float(value)
 
     @property
-    def zGStatic(self) -> float:
-        """Static global coordinate Z"""
-        return self.__zGStatic
+    def xStatic(self) -> float:
+        """Static local coordinate X"""
+        return self.__xStatic
 
-    @zGStatic.setter
-    def zGStatic(self, value: float):
-        """Set zGStatic"""
-        self.__zGStatic = float(value)
+    @xStatic.setter
+    def xStatic(self, value: float):
+        """Set xStatic"""
+        self.__xStatic = float(value)
+
+    @property
+    def yStatic(self) -> float:
+        """Static local coordinate Y"""
+        return self.__yStatic
+
+    @yStatic.setter
+    def yStatic(self, value: float):
+        """Set yStatic"""
+        self.__yStatic = float(value)
+
+    @property
+    def zStatic(self) -> float:
+        """Static local coordinate Z"""
+        return self.__zStatic
+
+    @zStatic.setter
+    def zStatic(self, value: float):
+        """Set zStatic"""
+        self.__zStatic = float(value)
 
     @property
     def rotation(self) -> float:

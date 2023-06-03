@@ -6,65 +6,65 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simobody import SIMOBodyBlueprint
 from typing import Dict
-from sima.hydro.diffractedwavefield import DiffractedWaveField
-from sima.hydro.firstordermotiontransferfunction import FirstOrderMotionTransferFunction
-from sima.hydro.firstorderwaveforcetransferfunction import FirstOrderWaveForceTransferFunction
-from sima.hydro.gdfgeometry import GDFGeometry
-from sima.hydro.hydrostaticstiffnessdata import HydrostaticStiffnessData
-from sima.hydro.linearcurrentcoefficient import LinearCurrentCoefficient
-from sima.hydro.lineardampingmatrix import LinearDampingMatrix
-from sima.hydro.quadraticcurrentcoefficient import QuadraticCurrentCoefficient
-from sima.hydro.quadraticdampingmatrix import QuadraticDampingMatrix
-from sima.hydro.quadraticwindcoefficient import QuadraticWindCoefficient
-from sima.hydro.radiationdatagroup import RadiationDataGroup
-from sima.hydro.simplifiedwavedriftdamping import SimplifiedWaveDriftDamping
-from sima.hydro.sparseqtf import SparseQTF
-from sima.hydro.structuralmass import StructuralMass
-from sima.hydro.wavedriftdamping import WaveDriftDamping
-from sima.hydro.wavedriftforce import WaveDriftForce
-from sima.sima.appearance import Appearance
-from sima.sima.body import Body
-from sima.sima.bodyviewpoint import BodyViewpoint
-from sima.sima.point3 import Point3
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.articulatedstructuredata import ArticulatedStructureData
-from sima.simo.ballastsystem import BallastSystem
-from sima.simo.bodyshapedata import BodyShapeData
-from sima.simo.bodyslendersystemconnection import BodySlenderSystemConnection
-from sima.simo.bodytype import BodyType
-from sima.simo.bumperdata import BumperData
-from sima.simo.catenarysystem import CatenarySystem
-from sima.simo.dockingconepositioning import DockingConePositioning
-from sima.simo.externalcontrolsystem import ExternalControlSystem
-from sima.simo.externaldllforce import ExternalDLLForce
-from sima.simo.externalforcefromfile import ExternalForceFromFile
-from sima.simo.externalhlaforce import ExternalHLAForce
-from sima.simo.fixedbodyelement import FixedBodyElement
-from sima.simo.fixedforceelongation import FixedForceElongation
-from sima.simo.genericexternalcontrolsystem import GenericExternalControlSystem
-from sima.simo.horizontalaxiswindturbine import HorizontalAxisWindTurbine
-from sima.simo.hydrodynamicseparationmethod import HydrodynamicSeparationMethod
-from sima.simo.ithruster import IThruster
-from sima.simo.liftanddragforce import LiftAndDragForce
-from sima.simo.nonlinearbuoyancycorrection import NonlinearBuoyancyCorrection
-from sima.simo.nonlinearhydrostaticstiffness import NonLinearHydrostaticStiffness
-from sima.simo.pointberthingfender import PointBerthingFender
-from sima.simo.positionsimporttype import PositionsImportType
-from sima.simo.rollerberthingfender import RollerBerthingFender
-from sima.simo.simobodypoint import SIMOBodyPoint
-from sima.simo.simolineardampingmatrix import SIMOLinearDampingMatrix
-from sima.simo.simoquadraticdampingmatrix import SIMOQuadraticDampingMatrix
-from sima.simo.slenderelement import SlenderElement
-from sima.simo.smallbodyhydrodynamicdata import SmallBodyHydrodynamicData
-from sima.simo.specifiedforce import SpecifiedForce
-from sima.simo.specifiedmoment import SpecifiedMoment
-from sima.simo.timedependentpointmass import TimeDependentPointMass
-from sima.simo.timedependentvolumemass import TimeDependentVolumeMass
-from sima.simo.verticalaxiswindturbine import VerticalAxisWindTurbine
+from .articulatedstructuredata import ArticulatedStructureData
+from .ballastsystem import BallastSystem
+from .bodyshapedata import BodyShapeData
+from .bodyslendersystemconnection import BodySlenderSystemConnection
+from .bodytype import BodyType
+from .bumperdata import BumperData
+from .catenarysystem import CatenarySystem
+from .dockingconepositioning import DockingConePositioning
+from .externalcontrolsystem import ExternalControlSystem
+from .externaldllforce import ExternalDLLForce
+from .externalforcefromfile import ExternalForceFromFile
+from .externalhlaforce import ExternalHLAForce
+from .fixedbodyelement import FixedBodyElement
+from .fixedforceelongation import FixedForceElongation
+from .genericexternalcontrolsystem import GenericExternalControlSystem
+from .horizontalaxiswindturbine import HorizontalAxisWindTurbine
+from .hydrodynamicseparationmethod import HydrodynamicSeparationMethod
+from .ithruster import IThruster
+from .liftanddragforce import LiftAndDragForce
+from .nonlinearbuoyancycorrection import NonlinearBuoyancyCorrection
+from .nonlinearhydrostaticstiffness import NonLinearHydrostaticStiffness
+from .pointberthingfender import PointBerthingFender
+from .positionsimporttype import PositionsImportType
+from .rollerberthingfender import RollerBerthingFender
+from .simobodypoint import SIMOBodyPoint
+from .simolineardampingmatrix import SIMOLinearDampingMatrix
+from .simoquadraticdampingmatrix import SIMOQuadraticDampingMatrix
+from .slenderelement import SlenderElement
+from .smallbodyhydrodynamicdata import SmallBodyHydrodynamicData
+from .specifiedforce import SpecifiedForce
+from .specifiedmoment import SpecifiedMoment
+from .timedependentpointmass import TimeDependentPointMass
+from .timedependentvolumemass import TimeDependentVolumeMass
+from .verticalaxiswindturbine import VerticalAxisWindTurbine
+from sima.hydro import DiffractedWaveField
+from sima.hydro import FirstOrderMotionTransferFunction
+from sima.hydro import FirstOrderWaveForceTransferFunction
+from sima.hydro import GDFGeometry
+from sima.hydro import HydrostaticStiffnessData
+from sima.hydro import LinearCurrentCoefficient
+from sima.hydro import LinearDampingMatrix
+from sima.hydro import QuadraticCurrentCoefficient
+from sima.hydro import QuadraticDampingMatrix
+from sima.hydro import QuadraticWindCoefficient
+from sima.hydro import RadiationDataGroup
+from sima.hydro import SimplifiedWaveDriftDamping
+from sima.hydro import SparseQTF
+from sima.hydro import StructuralMass
+from sima.hydro import WaveDriftDamping
+from sima.hydro import WaveDriftForce
+from sima.sima import Appearance
+from sima.sima import Body
+from sima.sima import BodyViewpoint
+from sima.sima import Point3
+from sima.sima import Position
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.controlsystem import ControlSystem
+    from .controlsystem import ControlSystem
 
 class SIMOBody(Body):
     """
@@ -246,7 +246,7 @@ class SIMOBody(Body):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -318,7 +318,7 @@ class SIMOBody(Body):
     def viewpoints(self, value: List[BodyViewpoint]):
         """Set viewpoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__viewpoints = value
 
     @property
@@ -380,7 +380,7 @@ class SIMOBody(Body):
     def bodyPoints(self, value: List[SIMOBodyPoint]):
         """Set bodyPoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bodyPoints = value
 
     @property
@@ -432,7 +432,7 @@ class SIMOBody(Body):
     def linearDampingMatrices(self, value: List[SIMOLinearDampingMatrix]):
         """Set linearDampingMatrices"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__linearDampingMatrices = value
 
     @property
@@ -444,7 +444,7 @@ class SIMOBody(Body):
     def quadraticDampingMatrices(self, value: List[SIMOQuadraticDampingMatrix]):
         """Set quadraticDampingMatrices"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__quadraticDampingMatrices = value
 
     @property
@@ -596,7 +596,7 @@ class SIMOBody(Body):
     def specifiedForces(self, value: List[SpecifiedForce]):
         """Set specifiedForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__specifiedForces = value
 
     @property
@@ -608,7 +608,7 @@ class SIMOBody(Body):
     def specifiedMoments(self, value: List[SpecifiedMoment]):
         """Set specifiedMoments"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__specifiedMoments = value
 
     @property
@@ -620,7 +620,7 @@ class SIMOBody(Body):
     def thrusters(self, value: List[IThruster]):
         """Set thrusters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__thrusters = value
 
     @property
@@ -642,7 +642,7 @@ class SIMOBody(Body):
     def slenderElements(self, value: List[SlenderElement]):
         """Set slenderElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__slenderElements = value
 
     @property
@@ -654,7 +654,7 @@ class SIMOBody(Body):
     def externalDLLForces(self, value: List[ExternalDLLForce]):
         """Set externalDLLForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__externalDLLForces = value
 
     @property
@@ -666,7 +666,7 @@ class SIMOBody(Body):
     def externalHLAForces(self, value: List[ExternalHLAForce]):
         """Set externalHLAForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__externalHLAForces = value
 
     @property
@@ -678,7 +678,7 @@ class SIMOBody(Body):
     def externalForcesFromFile(self, value: List[ExternalForceFromFile]):
         """Set externalForcesFromFile"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__externalForcesFromFile = value
 
     @property
@@ -690,7 +690,7 @@ class SIMOBody(Body):
     def fixedBodyElements(self, value: List[FixedBodyElement]):
         """Set fixedBodyElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fixedBodyElements = value
 
     @property
@@ -702,7 +702,7 @@ class SIMOBody(Body):
     def timeDependentPointMasses(self, value: List[TimeDependentPointMass]):
         """Set timeDependentPointMasses"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__timeDependentPointMasses = value
 
     @property
@@ -714,7 +714,7 @@ class SIMOBody(Body):
     def timeDependentVolumeMasses(self, value: List[TimeDependentVolumeMass]):
         """Set timeDependentVolumeMasses"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__timeDependentVolumeMasses = value
 
     @property
@@ -746,7 +746,7 @@ class SIMOBody(Body):
     def fixedForceElongations(self, value: List[FixedForceElongation]):
         """Set fixedForceElongations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fixedForceElongations = value
 
     @property
@@ -768,7 +768,7 @@ class SIMOBody(Body):
     def liftAndDragForces(self, value: List[LiftAndDragForce]):
         """Set liftAndDragForces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__liftAndDragForces = value
 
     @property
@@ -800,7 +800,7 @@ class SIMOBody(Body):
     def dockingConePositionings(self, value: List[DockingConePositioning]):
         """Set dockingConePositionings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dockingConePositionings = value
 
     @property
@@ -812,7 +812,7 @@ class SIMOBody(Body):
     def pointBerthingFenders(self, value: List[PointBerthingFender]):
         """Set pointBerthingFenders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pointBerthingFenders = value
 
     @property
@@ -824,7 +824,7 @@ class SIMOBody(Body):
     def rollerBerthingFenders(self, value: List[RollerBerthingFender]):
         """Set rollerBerthingFenders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__rollerBerthingFenders = value
 
     @property
@@ -836,7 +836,7 @@ class SIMOBody(Body):
     def bumperDatas(self, value: List[BumperData]):
         """Set bumperDatas"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bumperDatas = value
 
     @property
@@ -868,7 +868,7 @@ class SIMOBody(Body):
     def genericExternalControlSystems(self, value: List[GenericExternalControlSystem]):
         """Set genericExternalControlSystems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__genericExternalControlSystems = value
 
     @property

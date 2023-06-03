@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.smallbodyhydrodynamicdata import SmallBodyHydrodynamicDataBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.depthdependency import DepthDependency
-from sima.simo.depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
-from sima.simo.soilpenetration import SoilPenetration
+from .depthdependency import DepthDependency
+from .depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
+from .soilpenetration import SoilPenetration
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.hydro.diffractedwave import DiffractedWave
+    from sima.hydro import DiffractedWave
 
 class SmallBodyHydrodynamicData(MOAO):
     """
@@ -100,7 +100,7 @@ class SmallBodyHydrodynamicData(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -237,7 +237,7 @@ fully submerged"""
     def depthDependentHydrodynamicCoefficients(self, value: List[DepthDependenthydrodynamicCoefficient]):
         """Set depthDependentHydrodynamicCoefficients"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__depthDependentHydrodynamicCoefficients = value
 
     @property

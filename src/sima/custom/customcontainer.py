@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.customcontainer import CustomContainerBlueprint
 from typing import Dict
-from sima.custom.customcomponent import CustomComponent
-from sima.custom.customvisibilityparameter import CustomVisibilityParameter
-from sima.sima.scriptablevalue import ScriptableValue
+from .customcomponent import CustomComponent
+from .customvisibilityparameter import CustomVisibilityParameter
+from sima.sima import ScriptableValue
 
 class CustomContainer(CustomComponent):
     """
@@ -59,7 +59,7 @@ class CustomContainer(CustomComponent):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -71,7 +71,7 @@ class CustomContainer(CustomComponent):
     def children(self, value: List[CustomComponent]):
         """Set children"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__children = value
 
     @property
@@ -83,7 +83,7 @@ class CustomContainer(CustomComponent):
     def visibilityParameters(self, value: List[CustomVisibilityParameter]):
         """Set visibilityParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__visibilityParameters = value
 
     @property

@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.modelreferenceinputslot import ModelReferenceInputSlotBlueprint
 from typing import Dict
-from sima.post.inputslot import InputSlot
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import InputSlot
+from sima.sima import ScriptableValue
 
 class ModelReferenceInputSlot(InputSlot):
     """
@@ -54,7 +54,7 @@ class ModelReferenceInputSlot(InputSlot):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.directiondependentweibulldistribution import DirectionDependentWeibullDistributionBlueprint
 from typing import Dict
-from sima.metocean.weibulldistribution import WeibullDistribution
-from sima.metocean.weibulldistributionitem import WeibullDistributionItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .weibulldistribution import WeibullDistribution
+from .weibulldistributionitem import WeibullDistributionItem
+from sima.sima import ScriptableValue
 
 class DirectionDependentWeibullDistribution(WeibullDistribution):
     """
@@ -66,7 +66,7 @@ class DirectionDependentWeibullDistribution(WeibullDistribution):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -118,5 +118,5 @@ class DirectionDependentWeibullDistribution(WeibullDistribution):
     def items(self, value: List[WeibullDistributionItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

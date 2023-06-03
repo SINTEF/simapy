@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.modelvariationreference import ModelVariationReferenceBlueprint
 from typing import Dict
-from sima.condition.modelvariationoperation import ModelVariationOperation
-from sima.sima.scriptablevalue import ScriptableValue
+from .modelvariationoperation import ModelVariationOperation
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.condition.modelvariation import ModelVariation
+    from .modelvariation import ModelVariation
 
 class ModelVariationReference(ModelVariationOperation):
     """
@@ -60,7 +60,7 @@ class ModelVariationReference(ModelVariationOperation):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -82,5 +82,5 @@ class ModelVariationReference(ModelVariationOperation):
     def variations(self, value: List[ModelVariation]):
         """Set variations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variations = value

@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.omnidirectionalscatterdata import OmniDirectionalScatterDataBlueprint
 from numpy import ndarray,asarray
-from sima.metocean.scatterdata import ScatterData
-from sima.metocean.scatterdimension import ScatterDimension
-from sima.metocean.scatterlevelcontainer import ScatterLevelContainer
-from sima.sima.scriptablevalue import ScriptableValue
+from .scatterdata import ScatterData
+from .scatterdimension import ScatterDimension
+from .scatterlevelcontainer import ScatterLevelContainer
+from sima.sima import ScriptableValue
 
 class OmniDirectionalScatterData(ScatterData):
     """
@@ -23,7 +23,7 @@ class OmniDirectionalScatterData(ScatterData):
     tpUpperLimits : ScatterDimension
     windScatter : ScatterLevelContainer
     currentScatter : ScatterLevelContainer
-    occurrences : ndarray
+    occurrences : ndarray of int
     """
 
     def __init__(self , description="", **kwargs):
@@ -35,7 +35,7 @@ class OmniDirectionalScatterData(ScatterData):
         self.tpUpperLimits = None
         self.windScatter = None
         self.currentScatter = None
-        self.occurrences = ndarray(1)
+        self.occurrences = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -66,7 +66,7 @@ class OmniDirectionalScatterData(ScatterData):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -127,4 +127,7 @@ class OmniDirectionalScatterData(ScatterData):
     @occurrences.setter
     def occurrences(self, value: ndarray):
         """Set occurrences"""
-        self.__occurrences = asarray(value)
+        array = asarray(value, dtype=int)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__occurrences = array

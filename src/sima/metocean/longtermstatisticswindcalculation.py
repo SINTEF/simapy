@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.longtermstatisticswindcalculation import LongTermStatisticsWindCalculationBlueprint
 from typing import Dict
-from sima.metocean.calculationlevel import CalculationLevel
-from sima.metocean.levelstatisticsmethod import LevelStatisticsMethod
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .calculationlevel import CalculationLevel
+from .levelstatisticsmethod import LevelStatisticsMethod
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.metocean.windlongtermstatistics import WindLongTermStatistics
+    from .windlongtermstatistics import WindLongTermStatistics
 
 class LongTermStatisticsWindCalculation(MOAO):
     """
@@ -73,7 +73,7 @@ class LongTermStatisticsWindCalculation(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -95,7 +95,7 @@ class LongTermStatisticsWindCalculation(MOAO):
     def levels(self, value: List[CalculationLevel]):
         """Set levels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__levels = value
 
     @property

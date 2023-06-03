@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fatigueproperties import FatiguePropertiesBlueprint
 from typing import Dict
-from sima.riflex.crosssectionreference import CrossSectionReference
-from sima.riflex.fatiguecalculationoption import FatigueCalculationOption
-from sima.riflex.resultprintoption import ResultPrintOption
-from sima.riflex.sncurvereference import SNCurveReference
-from sima.riflex.timeseriesprintoption import TimeSeriesPrintOption
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .crosssectionreference import CrossSectionReference
+from .fatiguecalculationoption import FatigueCalculationOption
+from .resultprintoption import ResultPrintOption
+from .sncurvereference import SNCurveReference
+from .timeseriesprintoption import TimeSeriesPrintOption
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class FatigueProperties(MOAO):
     """
@@ -25,6 +25,7 @@ class FatigueProperties(MOAO):
          Number of points around cross-section where fatigue is(default 0)
     resultPrintOption : ResultPrintOption
     timeSeriesPrintOption : TimeSeriesPrintOption
+         Optional tension/curvature export to ascci file ( viv_tension_curvature_ts.txt )
     timeSeriesLength : float
          Length of stress time series to be generated for fatigue calculation(default 0.0)
     timeStep : float
@@ -105,7 +106,7 @@ class FatigueProperties(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -140,7 +141,7 @@ class FatigueProperties(MOAO):
 
     @property
     def timeSeriesPrintOption(self) -> TimeSeriesPrintOption:
-        """"""
+        """Optional tension/curvature export to ascci file ( viv_tension_curvature_ts.txt )"""
         return self.__timeSeriesPrintOption
 
     @timeSeriesPrintOption.setter
@@ -247,7 +248,7 @@ class FatigueProperties(MOAO):
     def snCurves(self, value: List[SNCurveReference]):
         """Set snCurves"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__snCurves = value
 
     @property
@@ -269,7 +270,7 @@ class FatigueProperties(MOAO):
     def crossSectionReferences(self, value: List[CrossSectionReference]):
         """Set crossSectionReferences"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__crossSectionReferences = value
 
     @property

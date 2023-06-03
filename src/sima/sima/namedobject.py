@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.namedobject import NamedObjectBlueprint
 from typing import Dict
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .named import Named
+from .scriptablevalue import ScriptableValue
 
 class NamedObject(Named):
     """
@@ -54,7 +54,7 @@ class NamedObject(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

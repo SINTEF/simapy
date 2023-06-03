@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.proplibtunnelthruster import ProplibTunnelThrusterBlueprint
 from typing import Dict
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.ithruster import IThruster
-from sima.simo.thrustercontrolsequence import ThrusterControlSequence
-from sima.simo.thrusterdynamics import ThrusterDynamics
-from sima.simo.thrusterfailurespecification import ThrusterFailureSpecification
+from .ithruster import IThruster
+from .thrustercontrolsequence import ThrusterControlSequence
+from .thrusterdynamics import ThrusterDynamics
+from .thrusterfailurespecification import ThrusterFailureSpecification
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class ProplibTunnelThruster(IThruster):
     """
@@ -114,7 +114,7 @@ class ProplibTunnelThruster(IThruster):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

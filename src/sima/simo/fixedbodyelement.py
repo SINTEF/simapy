@@ -6,16 +6,16 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fixedbodyelement import FixedBodyElementBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
-from sima.simo.fixedbodywaveparticlemethod import FixedBodyWaveParticleMethod
-from sima.simo.loadtype import LoadType
-from sima.simo.waveintegrationmethod import WaveIntegrationMethod
+from .depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoefficient
+from .fixedbodywaveparticlemethod import FixedBodyWaveParticleMethod
+from .loadtype import LoadType
+from .waveintegrationmethod import WaveIntegrationMethod
+from sima.sima import NamedObject
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.hydro.diffractedwave import DiffractedWave
+    from sima.hydro import DiffractedWave
 
 class FixedBodyElement(NamedObject):
     """
@@ -118,7 +118,7 @@ class FixedBodyElement(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -230,7 +230,7 @@ class FixedBodyElement(NamedObject):
     def depthDependentHydrodynamicCoefficients(self, value: List[DepthDependenthydrodynamicCoefficient]):
         """Set depthDependentHydrodynamicCoefficients"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__depthDependentHydrodynamicCoefficients = value
 
     @property

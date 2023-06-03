@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.displacementresponsestorage import DisplacementResponseStorageBlueprint
 from typing import Dict
-from sima.riflex.fileformatcode import FileFormatCode
-from sima.riflex.nodereference import NodeReference
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .fileformatcode import FileFormatCode
+from .nodereference import NodeReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DisplacementResponseStorage(MOAO):
     """
@@ -62,7 +62,7 @@ class DisplacementResponseStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -94,5 +94,5 @@ class DisplacementResponseStorage(MOAO):
     def nodes(self, value: List[NodeReference]):
         """Set nodes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__nodes = value

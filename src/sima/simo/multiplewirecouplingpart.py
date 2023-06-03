@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.multiplewirecouplingpart import MultipleWireCouplingPartBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.failuremode import FailureMode
+from .failuremode import FailureMode
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobodypoint import SIMOBodyPoint
+    from .simobodypoint import SIMOBodyPoint
 
 class MultipleWireCouplingPart(NamedObject):
     """
@@ -82,7 +82,7 @@ class MultipleWireCouplingPart(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

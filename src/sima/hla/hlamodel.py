@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlamodel import HLAModelBlueprint
 from typing import Dict
-from sima.hla.hlaforce import HLAForce
-from sima.hla.hlalocation import HLALocation
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaforce import HLAForce
+from .hlalocation import HLALocation
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class HLAModel(MOAO):
     """
@@ -57,7 +57,7 @@ class HLAModel(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class HLAModel(MOAO):
     def forces(self, value: List[HLAForce]):
         """Set forces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__forces = value

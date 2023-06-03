@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlaplot import HLAPlotBlueprint
 from numpy import ndarray,asarray
-from sima.hla.hlaobject import HLAObject
-from sima.hla.range import Range
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaobject import HLAObject
+from .range import Range
+from sima.sima import ScriptableValue
 
 class HLAPlot(HLAObject):
     """
@@ -18,7 +18,7 @@ class HLAPlot(HLAObject):
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
-    curves : ndarray
+    curves : ndarray of str
     crossPlotXAxisValues : str
          (default None)
     minMaxX : Range
@@ -42,7 +42,7 @@ class HLAPlot(HLAObject):
         self.description = description
         self.scriptableValues = list()
         self.name = None
-        self.curves = ndarray(1)
+        self.curves = []
         self.crossPlotXAxisValues = None
         self.minMaxX = None
         self.minMaxY = None
@@ -82,7 +82,7 @@ class HLAPlot(HLAObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -103,7 +103,10 @@ class HLAPlot(HLAObject):
     @curves.setter
     def curves(self, value: ndarray):
         """Set curves"""
-        self.__curves = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__curves = array
 
     @property
     def crossPlotXAxisValues(self) -> str:

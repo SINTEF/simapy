@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.turbineresponsestorage import TurbineResponseStorageBlueprint
 from typing import Dict
-from sima.riflex.storagetype import StorageType
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .storagetype import StorageType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class TurbineResponseStorage(MOAO):
     """
@@ -60,7 +60,7 @@ class TurbineResponseStorage(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

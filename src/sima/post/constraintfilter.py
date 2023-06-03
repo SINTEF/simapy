@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.constraintfilter import ConstraintFilterBlueprint
 from typing import Dict
-from sima.post.constraintitem import ConstraintItem
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.inputslot import InputSlot
-from sima.post.operationnode import OperationNode
-from sima.post.outputslot import OutputSlot
-from sima.sima.scriptablevalue import ScriptableValue
+from .constraintitem import ConstraintItem
+from .controlsignalinputslot import ControlSignalInputSlot
+from .inputslot import InputSlot
+from .operationnode import OperationNode
+from .outputslot import OutputSlot
+from sima.sima import ScriptableValue
 
 class ConstraintFilter(OperationNode):
     """
@@ -81,7 +81,7 @@ class ConstraintFilter(OperationNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -143,7 +143,7 @@ class ConstraintFilter(OperationNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -155,7 +155,7 @@ class ConstraintFilter(OperationNode):
     def filterInputSlots(self, value: List[InputSlot]):
         """Set filterInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterInputSlots = value
 
     @property
@@ -167,7 +167,7 @@ class ConstraintFilter(OperationNode):
     def filterOutputSlots(self, value: List[OutputSlot]):
         """Set filterOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterOutputSlots = value
 
     @property
@@ -189,5 +189,5 @@ class ConstraintFilter(OperationNode):
     def constraints(self, value: List[ConstraintItem]):
         """Set constraints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__constraints = value

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bodyinputslot import BodyInputSlotBlueprint
 from typing import Dict
-from sima.post.inputslot import InputSlot
-from sima.sima.appearance import Appearance
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import InputSlot
+from sima.sima import Appearance
+from sima.sima import ScriptableValue
 
 class BodyInputSlot(InputSlot):
     """
@@ -66,7 +66,7 @@ class BodyInputSlot(InputSlot):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.directiondependentextremevalues import DirectionDependentExtremeValuesBlueprint
 from typing import Dict
-from sima.metocean.levelextreme import LevelExtreme
-from sima.metocean.sectorextreme import SectorExtreme
-from sima.sima.scriptablevalue import ScriptableValue
+from .levelextreme import LevelExtreme
+from .sectorextreme import SectorExtreme
+from sima.sima import ScriptableValue
 
 class DirectionDependentExtremeValues(LevelExtreme):
     """
@@ -63,7 +63,7 @@ class DirectionDependentExtremeValues(LevelExtreme):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -105,5 +105,5 @@ class DirectionDependentExtremeValues(LevelExtreme):
     def sectors(self, value: List[SectorExtreme]):
         """Set sectors"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__sectors = value

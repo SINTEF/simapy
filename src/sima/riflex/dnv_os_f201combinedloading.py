@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dnv_os_f201combinedloading import DNV_OS_F201CombinedLoadingBlueprint
 from typing import Dict
-from sima.post.limitstatecategory import LimitStateCategory
-from sima.post.safetyclass import SafetyClass
-from sima.riflex.combinedloading import CombinedLoading
-from sima.riflex.combinedloadingapproach import CombinedLoadingApproach
-from sima.riflex.combinedloadingproperties import CombinedLoadingProperties
-from sima.sima.scriptablevalue import ScriptableValue
+from .combinedloading import CombinedLoading
+from .combinedloadingapproach import CombinedLoadingApproach
+from .combinedloadingproperties import CombinedLoadingProperties
+from sima.post import LimitStateCategory
+from sima.post import SafetyClass
+from sima.sima import ScriptableValue
 
 class DNV_OS_F201CombinedLoading(CombinedLoading):
     """
@@ -115,7 +115,7 @@ class DNV_OS_F201CombinedLoading(CombinedLoading):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -198,7 +198,7 @@ Given as the Z coordinate in global coordinate system."""
     def properties(self, value: List[CombinedLoadingProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

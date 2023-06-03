@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.coupledfrequencydependentdamping import CoupledFrequencyDependentDampingBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.twodofdata import TwoDofData
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .twodofdata import TwoDofData
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class CoupledFrequencyDependentDamping(MOAO):
     """
@@ -16,7 +16,7 @@ class CoupledFrequencyDependentDamping(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    frequencies : ndarray
+    frequencies : ndarray of float
     items : List[TwoDofData]
     """
 
@@ -24,7 +24,7 @@ class CoupledFrequencyDependentDamping(MOAO):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.frequencies = ndarray(1)
+        self.frequencies = []
         self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -56,7 +56,7 @@ class CoupledFrequencyDependentDamping(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -67,7 +67,10 @@ class CoupledFrequencyDependentDamping(MOAO):
     @frequencies.setter
     def frequencies(self, value: ndarray):
         """Set frequencies"""
-        self.__frequencies = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__frequencies = array
 
     @property
     def items(self) -> List[TwoDofData]:
@@ -78,5 +81,5 @@ class CoupledFrequencyDependentDamping(MOAO):
     def items(self, value: List[TwoDofData]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

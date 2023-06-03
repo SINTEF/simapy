@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.buoytype import BuoyTypeBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.forceitem import ForceItem
+from .forceitem import ForceItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class BuoyType(NamedObject):
     """
@@ -57,7 +57,7 @@ class BuoyType(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class BuoyType(NamedObject):
     def forceCharacteristic(self, value: List[ForceItem]):
         """Set forceCharacteristic"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__forceCharacteristic = value

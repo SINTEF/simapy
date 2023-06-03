@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.spatiallyvaryingcurrent import SpatiallyVaryingCurrentBlueprint
 from typing import Dict
-from sima.environment.current import Current
-from sima.riflex.currentprofile import CurrentProfile
-from sima.sima.scriptablevalue import ScriptableValue
+from .currentprofile import CurrentProfile
+from sima.environment import Current
+from sima.sima import ScriptableValue
 
 class SpatiallyVaryingCurrent(Current):
     """
@@ -54,7 +54,7 @@ class SpatiallyVaryingCurrent(Current):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +66,5 @@ class SpatiallyVaryingCurrent(Current):
     def profiles(self, value: List[CurrentProfile]):
         """Set profiles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__profiles = value
