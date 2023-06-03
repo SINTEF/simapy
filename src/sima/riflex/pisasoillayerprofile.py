@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.pisasoillayerprofile import PisaSoilLayerProfileBlueprint
 from typing import Dict
-from sima.riflex.pisalineitem import PisaLineItem
-from sima.riflex.pisasoillayer import PisaSoilLayer
-from sima.riflex.soillayerprofile import SoilLayerProfile
-from sima.riflex.toplevelsoilposition import TopLevelSoilPosition
-from sima.sima.scriptablevalue import ScriptableValue
+from .pisalineitem import PisaLineItem
+from .pisasoillayer import PisaSoilLayer
+from .soillayerprofile import SoilLayerProfile
+from .toplevelsoilposition import TopLevelSoilPosition
+from sima.sima import ScriptableValue
 
 class PisaSoilLayerProfile(SoilLayerProfile):
     """
@@ -66,7 +66,7 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -108,7 +108,7 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     def soilLayers(self, value: List[PisaSoilLayer]):
         """Set soilLayers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__soilLayers = value
 
     @property
@@ -120,5 +120,5 @@ class PisaSoilLayerProfile(SoilLayerProfile):
     def embeddedLines(self, value: List[PisaLineItem]):
         """Set embeddedLines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__embeddedLines = value

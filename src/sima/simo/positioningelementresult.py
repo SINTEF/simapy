@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.positioningelementresult import PositioningElementResultBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.forceresult import ForceResult
+from .forceresult import ForceResult
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.bodyresult import BodyResult
+    from .bodyresult import BodyResult
 
 class PositioningElementResult(ForceResult):
     """
@@ -81,7 +81,7 @@ class PositioningElementResult(ForceResult):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

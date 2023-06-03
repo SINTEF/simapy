@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.customtext import CustomTextBlueprint
 from numpy import ndarray,asarray
-from sima.custom.fieldtype import FieldType
-from sima.custom.filetype import FileType
-from sima.custom.parameterfield import ParameterField
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .fieldtype import FieldType
+from .filetype import FileType
+from .parameterfield import ParameterField
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class CustomText(ParameterField,Named):
     """
@@ -29,7 +29,7 @@ class CustomText(ParameterField,Named):
          (default False)
     fileExtensions : str
          Describes legal file extensions separated by semicolon, example:  *.txt;*.dat(default None)
-    options : ndarray
+    options : ndarray of str
     _type : FieldType
     width : int
          (default 10)
@@ -49,7 +49,7 @@ class CustomText(ParameterField,Named):
         self.fileType = fileType
         self.directory = directory
         self.fileExtensions = None
-        self.options = ndarray(1)
+        self.options = []
         self._type = _type
         self.width = width
         self.expandHorizontally = expandHorizontally
@@ -84,7 +84,7 @@ class CustomText(ParameterField,Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -155,7 +155,10 @@ class CustomText(ParameterField,Named):
     @options.setter
     def options(self, value: ndarray):
         """Set options"""
-        self.__options = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__options = array
 
     @property
     def _type(self) -> FieldType:

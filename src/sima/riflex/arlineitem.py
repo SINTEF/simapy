@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.arlineitem import ARLineItemBlueprint
 from typing import Dict
-from sima.riflex.end import End
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .end import End
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class ARLineItem(MOAO):
     """
@@ -60,7 +60,7 @@ class ARLineItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,37 +5,38 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.slendersystem import SlenderSystemBlueprint
 from typing import Dict
-from sima.riflex.arline import ARLine
-from sima.riflex.arlinetype import ARLineType
-from sima.riflex.arwinch import ARWinch
-from sima.riflex.balljointconnectortype import BallJointConnectorType
-from sima.riflex.crosssection import CrossSection
-from sima.riflex.dragchaintype import DragChainType
-from sima.riflex.elasticcontactsurface import ElasticContactSurface
-from sima.riflex.externalwrappingtype import ExternalWrappingType
-from sima.riflex.flexjointconnectortype import FlexJointConnectorType
-from sima.riflex.geotechnical import GeoTechnical
-from sima.riflex.geotechnicallinespecification import GeotechnicalLineSpecification
-from sima.riflex.geotechnicalspring import GeotechnicalSpring
-from sima.riflex.globalspring import GlobalSpring
-from sima.riflex.internalfluidtype import InternalFluidType
-from sima.riflex.localelementaxis import LocalElementAxis
-from sima.riflex.mainriserline import MainRiserLine
-from sima.riflex.marinegrowth import MarineGrowth
-from sima.riflex.material import Material
-from sima.riflex.nodalbodytype import NodalBodyType
-from sima.riflex.pipeinpipecontact import PipeInPipeContact
-from sima.riflex.rollercontact import RollerContact
-from sima.riflex.seafloorcontact import SeafloorContact
-from sima.riflex.seafloorcontactspecification import SeafloorContactSpecification
-from sima.riflex.soillayerprofile import SoilLayerProfile
-from sima.riflex.soiltype import SoilType
-from sima.riflex.supernode import SuperNode
-from sima.riflex.tensioner import Tensioner
-from sima.riflex.tubularcontact import TubularContact
-from sima.riflex.windturbine import WindTurbine
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .arline import ARLine
+from .arlinetype import ARLineType
+from .arwinch import ARWinch
+from .balljointconnectortype import BallJointConnectorType
+from .crosssection import CrossSection
+from .dragchaintype import DragChainType
+from .elasticcontactsurface import ElasticContactSurface
+from .externalwrappingtype import ExternalWrappingType
+from .flexjointconnectortype import FlexJointConnectorType
+from .geotechnical import GeoTechnical
+from .geotechnicallinespecification import GeotechnicalLineSpecification
+from .geotechnicalspring import GeotechnicalSpring
+from .globalspring import GlobalSpring
+from .internalfluidtype import InternalFluidType
+from .localelementaxis import LocalElementAxis
+from .mainriserline import MainRiserLine
+from .marinegrowth import MarineGrowth
+from .material import Material
+from .nodalbodytype import NodalBodyType
+from .pipeinpipecontact import PipeInPipeContact
+from .rollercontact import RollerContact
+from .seafloorcontact import SeafloorContact
+from .seafloorcontactspecification import SeafloorContactSpecification
+from .soillayerprofile import SoilLayerProfile
+from .soiltype import SoilType
+from .supernode import SuperNode
+from .tensioner import Tensioner
+from .tubularcontact import TubularContact
+from .userdefinedelement import UserdefinedElement
+from .windturbine import WindTurbine
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SlenderSystem(MOAO):
     """
@@ -73,6 +74,7 @@ class SlenderSystem(MOAO):
     marineGrowthItems : List[MarineGrowth]
     soilLayerProfiles : List[SoilLayerProfile]
     soilTypes : List[SoilType]
+    userdefinedElements : List[UserdefinedElement]
     """
 
     def __init__(self , description="", **kwargs):
@@ -108,6 +110,7 @@ class SlenderSystem(MOAO):
         self.marineGrowthItems = list()
         self.soilLayerProfiles = list()
         self.soilTypes = list()
+        self.userdefinedElements = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -138,7 +141,7 @@ class SlenderSystem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -150,7 +153,7 @@ class SlenderSystem(MOAO):
     def superNodes(self, value: List[SuperNode]):
         """Set superNodes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__superNodes = value
 
     @property
@@ -162,7 +165,7 @@ class SlenderSystem(MOAO):
     def lines(self, value: List[ARLine]):
         """Set lines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lines = value
 
     @property
@@ -174,7 +177,7 @@ class SlenderSystem(MOAO):
     def lineTypes(self, value: List[ARLineType]):
         """Set lineTypes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lineTypes = value
 
     @property
@@ -186,7 +189,7 @@ class SlenderSystem(MOAO):
     def crossSections(self, value: List[CrossSection]):
         """Set crossSections"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__crossSections = value
 
     @property
@@ -198,7 +201,7 @@ class SlenderSystem(MOAO):
     def mainRiserLines(self, value: List[MainRiserLine]):
         """Set mainRiserLines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__mainRiserLines = value
 
     @property
@@ -210,7 +213,7 @@ class SlenderSystem(MOAO):
     def externalWrappings(self, value: List[ExternalWrappingType]):
         """Set externalWrappings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__externalWrappings = value
 
     @property
@@ -222,7 +225,7 @@ class SlenderSystem(MOAO):
     def ballJointConnectors(self, value: List[BallJointConnectorType]):
         """Set ballJointConnectors"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__ballJointConnectors = value
 
     @property
@@ -234,7 +237,7 @@ class SlenderSystem(MOAO):
     def flexJointConnectors(self, value: List[FlexJointConnectorType]):
         """Set flexJointConnectors"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__flexJointConnectors = value
 
     @property
@@ -246,7 +249,7 @@ class SlenderSystem(MOAO):
     def nodalBodies(self, value: List[NodalBodyType]):
         """Set nodalBodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__nodalBodies = value
 
     @property
@@ -258,7 +261,7 @@ class SlenderSystem(MOAO):
     def internalFluids(self, value: List[InternalFluidType]):
         """Set internalFluids"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__internalFluids = value
 
     @property
@@ -270,7 +273,7 @@ class SlenderSystem(MOAO):
     def pipeInPipeContacts(self, value: List[PipeInPipeContact]):
         """Set pipeInPipeContacts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pipeInPipeContacts = value
 
     @property
@@ -282,7 +285,7 @@ class SlenderSystem(MOAO):
     def winches(self, value: List[ARWinch]):
         """Set winches"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__winches = value
 
     @property
@@ -294,7 +297,7 @@ class SlenderSystem(MOAO):
     def elasticContactSurfaces(self, value: List[ElasticContactSurface]):
         """Set elasticContactSurfaces"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elasticContactSurfaces = value
 
     @property
@@ -306,7 +309,7 @@ class SlenderSystem(MOAO):
     def tensioners(self, value: List[Tensioner]):
         """Set tensioners"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__tensioners = value
 
     @property
@@ -318,7 +321,7 @@ class SlenderSystem(MOAO):
     def rollerContacts(self, value: List[RollerContact]):
         """Set rollerContacts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__rollerContacts = value
 
     @property
@@ -330,7 +333,7 @@ class SlenderSystem(MOAO):
     def tubularContacts(self, value: List[TubularContact]):
         """Set tubularContacts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__tubularContacts = value
 
     @property
@@ -342,7 +345,7 @@ class SlenderSystem(MOAO):
     def globalSprings(self, value: List[GlobalSpring]):
         """Set globalSprings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__globalSprings = value
 
     @property
@@ -354,7 +357,7 @@ class SlenderSystem(MOAO):
     def windTurbines(self, value: List[WindTurbine]):
         """Set windTurbines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__windTurbines = value
 
     @property
@@ -366,7 +369,7 @@ class SlenderSystem(MOAO):
     def localElementAxes(self, value: List[LocalElementAxis]):
         """Set localElementAxes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__localElementAxes = value
 
     @property
@@ -378,7 +381,7 @@ class SlenderSystem(MOAO):
     def dragChains(self, value: List[DragChainType]):
         """Set dragChains"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dragChains = value
 
     @property
@@ -390,7 +393,7 @@ class SlenderSystem(MOAO):
     def geotechnicalSprings(self, value: List[GeotechnicalSpring]):
         """Set geotechnicalSprings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__geotechnicalSprings = value
 
     @property
@@ -402,7 +405,7 @@ class SlenderSystem(MOAO):
     def seafloorContactComponents(self, value: List[SeafloorContact]):
         """Set seafloorContactComponents"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__seafloorContactComponents = value
 
     @property
@@ -424,7 +427,7 @@ class SlenderSystem(MOAO):
     def materials(self, value: List[Material]):
         """Set materials"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__materials = value
 
     @property
@@ -436,7 +439,7 @@ class SlenderSystem(MOAO):
     def geotechnicals(self, value: List[GeoTechnical]):
         """Set geotechnicals"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__geotechnicals = value
 
     @property
@@ -458,7 +461,7 @@ class SlenderSystem(MOAO):
     def marineGrowthItems(self, value: List[MarineGrowth]):
         """Set marineGrowthItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__marineGrowthItems = value
 
     @property
@@ -470,7 +473,7 @@ class SlenderSystem(MOAO):
     def soilLayerProfiles(self, value: List[SoilLayerProfile]):
         """Set soilLayerProfiles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__soilLayerProfiles = value
 
     @property
@@ -482,5 +485,17 @@ class SlenderSystem(MOAO):
     def soilTypes(self, value: List[SoilType]):
         """Set soilTypes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__soilTypes = value
+
+    @property
+    def userdefinedElements(self) -> List[UserdefinedElement]:
+        """"""
+        return self.__userdefinedElements
+
+    @userdefinedElements.setter
+    def userdefinedElements(self, value: List[UserdefinedElement]):
+        """Set userdefinedElements"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__userdefinedElements = value

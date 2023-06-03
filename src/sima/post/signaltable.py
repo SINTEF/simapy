@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.signaltable import SignalTableBlueprint
 from typing import Dict
-from sima.post.runnode import RunNode
-from sima.sima.scriptablevalue import ScriptableValue
+from .runnode import RunNode
+from sima.sima import ScriptableValue
 
 class SignalTable(RunNode):
     """
@@ -54,7 +54,7 @@ class SignalTable(RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

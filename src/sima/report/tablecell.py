@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.tablecell import TableCellBlueprint
 from typing import Dict
-from sima.report.horizontalalignment import HorizontalAlignment
-from sima.report.tablecellstyle import TableCellStyle
-from sima.report.verticalalignment import VerticalAlignment
-from sima.sima.fontdescription import FontDescription
-from sima.sima.scriptablevalue import ScriptableValue
+from .horizontalalignment import HorizontalAlignment
+from .tablecellstyle import TableCellStyle
+from .verticalalignment import VerticalAlignment
+from sima.sima import FontDescription
+from sima.sima import ScriptableValue
 
 class TableCell(TableCellStyle):
     """
@@ -63,7 +63,7 @@ class TableCell(TableCellStyle):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

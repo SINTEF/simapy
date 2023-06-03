@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.namespecification import NameSpecificationBlueprint
 from typing import Dict
-from sima.post.pathspecification import PathSpecification
-from sima.sima.scriptablevalue import ScriptableValue
+from .pathspecification import PathSpecification
+from sima.sima import ScriptableValue
 
 class NameSpecification(PathSpecification):
     """
@@ -57,7 +57,7 @@ class NameSpecification(PathSpecification):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexdynamicresultentry import RIFLEXDynamicResultEntryBlueprint
 from typing import Dict
-from sima.riflex.resfile import ResFile
-from sima.sima.property import Property
-from sima.sima.result import Result
-from sima.sima.resultentry import ResultEntry
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.lisfile import LisFile
-from sima.simo.simodynamicresultentry import SIMODynamicResultEntry
-from sima.simo.timesimulationresult import TimeSimulationResult
+from .resfile import ResFile
+from sima.sima import Property
+from sima.sima import Result
+from sima.sima import ResultEntry
+from sima.sima import ScriptableValue
+from sima.simo import LisFile
+from sima.simo import SIMODynamicResultEntry
+from sima.simo import TimeSimulationResult
 
 class RIFLEXDynamicResultEntry(SIMODynamicResultEntry):
     """
@@ -89,7 +89,7 @@ class RIFLEXDynamicResultEntry(SIMODynamicResultEntry):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -111,7 +111,7 @@ class RIFLEXDynamicResultEntry(SIMODynamicResultEntry):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -153,7 +153,7 @@ class RIFLEXDynamicResultEntry(SIMODynamicResultEntry):
     def results(self, value: List[Result]):
         """Set results"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__results = value
 
     @property
@@ -165,7 +165,7 @@ class RIFLEXDynamicResultEntry(SIMODynamicResultEntry):
     def entries(self, value: List[ResultEntry]):
         """Set entries"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__entries = value
 
     @property
@@ -227,7 +227,7 @@ class RIFLEXDynamicResultEntry(SIMODynamicResultEntry):
     def combinedLoadingResuls(self, value: List[Result]):
         """Set combinedLoadingResuls"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__combinedLoadingResuls = value
 
     @property
@@ -239,5 +239,5 @@ class RIFLEXDynamicResultEntry(SIMODynamicResultEntry):
     def outmodResuls(self, value: List[Result]):
         """Set outmodResuls"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__outmodResuls = value

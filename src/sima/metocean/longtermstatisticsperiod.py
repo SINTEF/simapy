@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.longtermstatisticsperiod import LongTermStatisticsPeriodBlueprint
 from typing import Dict
-from sima.metocean.currentlongtermstatistics import CurrentLongTermStatistics
-from sima.metocean.wavelongtermstatistics import WaveLongTermStatistics
-from sima.metocean.windlongtermstatistics import WindLongTermStatistics
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .currentlongtermstatistics import CurrentLongTermStatistics
+from .wavelongtermstatistics import WaveLongTermStatistics
+from .windlongtermstatistics import WindLongTermStatistics
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class LongTermStatisticsPeriod(Named):
     """
@@ -63,7 +63,7 @@ class LongTermStatisticsPeriod(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -85,7 +85,7 @@ class LongTermStatisticsPeriod(Named):
     def waveStatistics(self, value: List[WaveLongTermStatistics]):
         """Set waveStatistics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waveStatistics = value
 
     @property
@@ -97,7 +97,7 @@ class LongTermStatisticsPeriod(Named):
     def windStatistics(self, value: List[WindLongTermStatistics]):
         """Set windStatistics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__windStatistics = value
 
     @property
@@ -109,5 +109,5 @@ class LongTermStatisticsPeriod(Named):
     def currentStatistics(self, value: List[CurrentLongTermStatistics]):
         """Set currentStatistics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__currentStatistics = value

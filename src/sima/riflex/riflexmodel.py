@@ -5,40 +5,40 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexmodel import RIFLEXModelBlueprint
 from typing import Dict
-from sima.environment.environment import Environment
-from sima.riflex.combinedloading import CombinedLoading
-from sima.riflex.fatigueanalysis import FatigueAnalysis
-from sima.riflex.potentialflowlibrary import PotentialFlowLibrary
-from sima.riflex.referenceframe import ReferenceFrame
-from sima.riflex.riflexdynamiccalculationparameters import RIFLEXDynamicCalculationParameters
-from sima.riflex.riflexeigenvaluecalculationparameters import RIFLEXEigenvalueCalculationParameters
-from sima.riflex.riflexlocation import RIFLEXLocation
-from sima.riflex.riflexstaticcalculationparameters import RIFLEXStaticCalculationParameters
-from sima.riflex.riflexvivanacalculationparameters import RIFLEXVivanaCalculationParameters
-from sima.riflex.slendersystem import SlenderSystem
-from sima.riflex.sncurve import SNCurve
-from sima.riflex.supportvessel import SupportVessel
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.advancedbumper import AdvancedBumper
-from sima.simo.bumpergroup import BumperGroup
-from sima.simo.dockingcone import DockingCone
-from sima.simo.fibreropemodel import FibreRopeModel
-from sima.simo.fixedelongationcoupling import FixedElongationCoupling
-from sima.simo.hydrodynamiccoupling import HydrodynamicCoupling
-from sima.simo.liftlinecoupling import LiftLineCoupling
-from sima.simo.momentcoupling import MomentCoupling
-from sima.simo.multiplewirecoupling import MultipleWireCoupling
-from sima.simo.pointfender import PointFender
-from sima.simo.ratchetcoupling import RatchetCoupling
-from sima.simo.rollerfender import RollerFender
-from sima.simo.simobody import SIMOBody
-from sima.simo.simodynamiccalculationparameters import SIMODynamicCalculationParameters
-from sima.simo.simofrequencydomaincalculation import SIMOFrequencyDomainCalculation
-from sima.simo.simomodel import SIMOModel
-from sima.simo.simostaticcalculationparameters import SIMOStaticCalculationParameters
-from sima.simo.simplewirecoupling import SimpleWireCoupling
-from sima.simo.stabilitycalculationparameters import StabilityCalculationParameters
-from sima.windturbine.airfoil import Airfoil
+from .combinedloading import CombinedLoading
+from .fatigueanalysis import FatigueAnalysis
+from .potentialflowlibrary import PotentialFlowLibrary
+from .referenceframe import ReferenceFrame
+from .riflexdynamiccalculationparameters import RIFLEXDynamicCalculationParameters
+from .riflexeigenvaluecalculationparameters import RIFLEXEigenvalueCalculationParameters
+from .riflexlocation import RIFLEXLocation
+from .riflexstaticcalculationparameters import RIFLEXStaticCalculationParameters
+from .riflexvivanacalculationparameters import RIFLEXVivanaCalculationParameters
+from .slendersystem import SlenderSystem
+from .sncurve import SNCurve
+from .supportvessel import SupportVessel
+from sima.environment import Environment
+from sima.sima import ScriptableValue
+from sima.simo import AdvancedBumper
+from sima.simo import BumperGroup
+from sima.simo import DockingCone
+from sima.simo import FibreRopeModel
+from sima.simo import FixedElongationCoupling
+from sima.simo import HydrodynamicCoupling
+from sima.simo import LiftLineCoupling
+from sima.simo import MomentCoupling
+from sima.simo import MultipleWireCoupling
+from sima.simo import PointFender
+from sima.simo import RatchetCoupling
+from sima.simo import RollerFender
+from sima.simo import SIMOBody
+from sima.simo import SIMODynamicCalculationParameters
+from sima.simo import SIMOFrequencyDomainCalculation
+from sima.simo import SIMOModel
+from sima.simo import SIMOStaticCalculationParameters
+from sima.simo import SimpleWireCoupling
+from sima.simo import StabilityCalculationParameters
+from sima.windturbine import Airfoil
 
 class RIFLEXModel(SIMOModel):
     """
@@ -147,7 +147,7 @@ class RIFLEXModel(SIMOModel):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -159,7 +159,7 @@ class RIFLEXModel(SIMOModel):
     def environments(self, value: List[Environment]):
         """Set environments"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__environments = value
 
     @property
@@ -171,7 +171,7 @@ class RIFLEXModel(SIMOModel):
     def airfoils(self, value: List[Airfoil]):
         """Set airfoils"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__airfoils = value
 
     @property
@@ -193,7 +193,7 @@ class RIFLEXModel(SIMOModel):
     def bodies(self, value: List[SIMOBody]):
         """Set bodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bodies = value
 
     @property
@@ -205,7 +205,7 @@ class RIFLEXModel(SIMOModel):
     def hydrodynamicCouplings(self, value: List[HydrodynamicCoupling]):
         """Set hydrodynamicCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__hydrodynamicCouplings = value
 
     @property
@@ -217,7 +217,7 @@ class RIFLEXModel(SIMOModel):
     def simpleWireCouplings(self, value: List[SimpleWireCoupling]):
         """Set simpleWireCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__simpleWireCouplings = value
 
     @property
@@ -229,7 +229,7 @@ class RIFLEXModel(SIMOModel):
     def fixedElongationCouplings(self, value: List[FixedElongationCoupling]):
         """Set fixedElongationCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fixedElongationCouplings = value
 
     @property
@@ -241,7 +241,7 @@ class RIFLEXModel(SIMOModel):
     def dockingCones(self, value: List[DockingCone]):
         """Set dockingCones"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dockingCones = value
 
     @property
@@ -253,7 +253,7 @@ class RIFLEXModel(SIMOModel):
     def pointFenders(self, value: List[PointFender]):
         """Set pointFenders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pointFenders = value
 
     @property
@@ -265,7 +265,7 @@ class RIFLEXModel(SIMOModel):
     def rollerFenders(self, value: List[RollerFender]):
         """Set rollerFenders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__rollerFenders = value
 
     @property
@@ -277,7 +277,7 @@ class RIFLEXModel(SIMOModel):
     def ratchets(self, value: List[RatchetCoupling]):
         """Set ratchets"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__ratchets = value
 
     @property
@@ -289,7 +289,7 @@ class RIFLEXModel(SIMOModel):
     def multipleWireCouplings(self, value: List[MultipleWireCoupling]):
         """Set multipleWireCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__multipleWireCouplings = value
 
     @property
@@ -301,7 +301,7 @@ class RIFLEXModel(SIMOModel):
     def bumperGroups(self, value: List[BumperGroup]):
         """Set bumperGroups"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bumperGroups = value
 
     @property
@@ -313,7 +313,7 @@ class RIFLEXModel(SIMOModel):
     def advancedBumpers(self, value: List[AdvancedBumper]):
         """Set advancedBumpers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__advancedBumpers = value
 
     @property
@@ -325,7 +325,7 @@ class RIFLEXModel(SIMOModel):
     def liftLineCouplings(self, value: List[LiftLineCoupling]):
         """Set liftLineCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__liftLineCouplings = value
 
     @property
@@ -337,7 +337,7 @@ class RIFLEXModel(SIMOModel):
     def momentCouplings(self, value: List[MomentCoupling]):
         """Set momentCouplings"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__momentCouplings = value
 
     @property
@@ -389,7 +389,7 @@ class RIFLEXModel(SIMOModel):
     def fibreRopeModels(self, value: List[FibreRopeModel]):
         """Set fibreRopeModels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fibreRopeModels = value
 
     @property
@@ -411,7 +411,7 @@ class RIFLEXModel(SIMOModel):
     def supportVessels(self, value: List[SupportVessel]):
         """Set supportVessels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__supportVessels = value
 
     @property
@@ -423,7 +423,7 @@ class RIFLEXModel(SIMOModel):
     def referenceFrames(self, value: List[ReferenceFrame]):
         """Set referenceFrames"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__referenceFrames = value
 
     @property
@@ -435,7 +435,7 @@ class RIFLEXModel(SIMOModel):
     def combinedLoadingAnalyses(self, value: List[CombinedLoading]):
         """Set combinedLoadingAnalyses"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__combinedLoadingAnalyses = value
 
     @property
@@ -497,7 +497,7 @@ class RIFLEXModel(SIMOModel):
     def fatigueAnalyses(self, value: List[FatigueAnalysis]):
         """Set fatigueAnalyses"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fatigueAnalyses = value
 
     @property
@@ -509,5 +509,5 @@ class RIFLEXModel(SIMOModel):
     def snCurves(self, value: List[SNCurve]):
         """Set snCurves"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__snCurves = value

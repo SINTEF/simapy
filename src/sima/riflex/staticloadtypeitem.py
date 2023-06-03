@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.staticloadtypeitem import StaticLoadTypeItemBlueprint
 from typing import Dict
-from sima.riflex.boundarychangegroup import BoundaryChangeGroup
-from sima.riflex.convergencenorm import ConvergenceNorm
-from sima.riflex.pressurevariationitem import PressureVariationItem
-from sima.riflex.staticloadtype import StaticLoadType
-from sima.riflex.temperaturevariationitem import TemperatureVariationItem
-from sima.riflex.winchvariationitem import WinchVariationItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .boundarychangegroup import BoundaryChangeGroup
+from .convergencenorm import ConvergenceNorm
+from .pressurevariationitem import PressureVariationItem
+from .staticloadtype import StaticLoadType
+from .temperaturevariationitem import TemperatureVariationItem
+from .winchvariationitem import WinchVariationItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class StaticLoadTypeItem(MOAO):
     """
@@ -94,7 +94,7 @@ class StaticLoadTypeItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -196,7 +196,7 @@ class StaticLoadTypeItem(MOAO):
     def temperatureVariations(self, value: List[TemperatureVariationItem]):
         """Set temperatureVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__temperatureVariations = value
 
     @property
@@ -208,7 +208,7 @@ class StaticLoadTypeItem(MOAO):
     def pressureVariations(self, value: List[PressureVariationItem]):
         """Set pressureVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__pressureVariations = value
 
     @property
@@ -220,7 +220,7 @@ class StaticLoadTypeItem(MOAO):
     def winchVariations(self, value: List[WinchVariationItem]):
         """Set winchVariations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__winchVariations = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.librarypaths import LibraryPathsBlueprint
 from typing import Dict
-from sima.sima.librarypathitem import LibraryPathItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .librarypathitem import LibraryPathItem
+from .moao import MOAO
+from .scriptablevalue import ScriptableValue
 
 class LibraryPaths(MOAO):
     """
@@ -54,7 +54,7 @@ class LibraryPaths(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +66,5 @@ class LibraryPaths(MOAO):
     def items(self, value: List[LibraryPathItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

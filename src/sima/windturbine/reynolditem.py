@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.reynolditem import ReynoldItemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.airfoilitem import AirFoilItem
-from sima.windturbine.stallpoint import StallPoint
+from .airfoilitem import AirFoilItem
+from .stallpoint import StallPoint
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ReynoldItem(MOAO):
     """
@@ -60,7 +60,7 @@ class ReynoldItem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -82,7 +82,7 @@ class ReynoldItem(MOAO):
     def items(self, value: List[AirFoilItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.regularwave import RegularWaveBlueprint
 from typing import Dict
-from sima.environment.regularwaveitem import RegularWaveItem
-from sima.environment.wave import Wave
-from sima.sima.scriptablevalue import ScriptableValue
+from .regularwaveitem import RegularWaveItem
+from .wave import Wave
+from sima.sima import ScriptableValue
 
 class RegularWave(Wave):
     """
@@ -54,7 +54,7 @@ class RegularWave(Wave):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +66,5 @@ class RegularWave(Wave):
     def items(self, value: List[RegularWaveItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value

@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.allocationsystem import AllocationSystemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.formulation import Formulation
-from sima.simo.thrusterallocation import ThrusterAllocation
-from sima.simo.thrusterallocationmethod import ThrusterAllocationMethod
-from sima.simo.thrustercontrol import ThrusterControl
+from .formulation import Formulation
+from .thrusterallocation import ThrusterAllocation
+from .thrusterallocationmethod import ThrusterAllocationMethod
+from .thrustercontrol import ThrusterControl
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class AllocationSystem(MOAO):
     """
@@ -79,7 +79,7 @@ class AllocationSystem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -121,7 +121,7 @@ class AllocationSystem(MOAO):
     def thrusters(self, value: List[ThrusterAllocation]):
         """Set thrusters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__thrusters = value
 
     @property
@@ -153,7 +153,7 @@ class AllocationSystem(MOAO):
     def thrusterControls(self, value: List[ThrusterControl]):
         """Set thrusterControls"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__thrusterControls = value
 
     @property

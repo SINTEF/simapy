@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.infrastructurebody import InfrastructureBodyBlueprint
 from typing import Dict
-from sima.sima.appearance import Appearance
-from sima.sima.body import Body
-from sima.sima.bodyviewpoint import BodyViewpoint
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
+from .appearance import Appearance
+from .body import Body
+from .bodyviewpoint import BodyViewpoint
+from .position import Position
+from .scriptablevalue import ScriptableValue
 
 class InfrastructureBody(Body):
     """
@@ -78,7 +78,7 @@ class InfrastructureBody(Body):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -150,7 +150,7 @@ class InfrastructureBody(Body):
     def viewpoints(self, value: List[BodyViewpoint]):
         """Set viewpoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__viewpoints = value
 
     @property

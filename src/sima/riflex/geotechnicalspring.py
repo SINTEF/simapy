@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.geotechnicalspring import GeotechnicalSpringBlueprint
 from typing import Dict
-from sima.riflex.dampingdisplacementitem import DampingDisplacementItem
-from sima.riflex.geotechnicalspringstiffnessitem import GeotechnicalSpringStiffnessItem
-from sima.riflex.nodereference import NodeReference
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .dampingdisplacementitem import DampingDisplacementItem
+from .geotechnicalspringstiffnessitem import GeotechnicalSpringStiffnessItem
+from .nodereference import NodeReference
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class GeotechnicalSpring(NodeReference,NamedObject):
     """
@@ -86,7 +86,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -158,7 +158,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     def stiffnessItems(self, value: List[GeotechnicalSpringStiffnessItem]):
         """Set stiffnessItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessItems = value
 
     @property
@@ -170,7 +170,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
     def dampingDisplacementItems(self, value: List[DampingDisplacementItem]):
         """Set dampingDisplacementItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dampingDisplacementItems = value
 
     @property

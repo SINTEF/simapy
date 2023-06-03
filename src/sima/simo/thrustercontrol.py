@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.thrustercontrol import ThrusterControlBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.dpthrustertype import DPThrusterType
+from .dpthrustertype import DPThrusterType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.ithruster import IThruster
+    from .ithruster import IThruster
 
 class ThrusterControl(MOAO):
     """
@@ -86,7 +86,7 @@ class ThrusterControl(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitlocation import WamitLocationBlueprint
 from typing import Dict
-from sima.sima.infrastructurebody import InfrastructureBody
-from sima.sima.initialviewpoint import InitialViewpoint
-from sima.sima.location import Location
-from sima.sima.namedviewpoint import NamedViewpoint
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.wamit.physicalconstants import PhysicalConstants
-from sima.wamit.seasurface import SeaSurface
+from .physicalconstants import PhysicalConstants
+from .seasurface import SeaSurface
+from sima.sima import InfrastructureBody
+from sima.sima import InitialViewpoint
+from sima.sima import Location
+from sima.sima import NamedViewpoint
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class WamitLocation(Location):
     """
@@ -87,7 +87,7 @@ class WamitLocation(Location):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -129,7 +129,7 @@ class WamitLocation(Location):
     def viewpoints(self, value: List[NamedViewpoint]):
         """Set viewpoints"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__viewpoints = value
 
     @property
@@ -181,7 +181,7 @@ class WamitLocation(Location):
     def infrastructureBodies(self, value: List[InfrastructureBody]):
         """Set infrastructureBodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__infrastructureBodies = value
 
     @property

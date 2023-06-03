@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hindcastwavecontainer import HindcastWaveContainerBlueprint
 from typing import Dict
-from sima.metocean.hindcastwavedata import HindcastWaveData
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .hindcastwavedata import HindcastWaveData
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class HindcastWaveContainer(MOAO):
     """
@@ -54,7 +54,7 @@ class HindcastWaveContainer(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +66,5 @@ class HindcastWaveContainer(MOAO):
     def waves(self, value: List[HindcastWaveData]):
         """Set waves"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__waves = value

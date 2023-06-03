@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.inputlink import InputLinkBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.runnode import RunNode
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import ControlSignalInputSlot
+from sima.post import OutputSlot
+from sima.post import RunNode
+from sima.sima import ScriptableValue
 
 class InputLink(RunNode):
     """
@@ -78,7 +78,7 @@ class InputLink(RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -140,7 +140,7 @@ class InputLink(RunNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property

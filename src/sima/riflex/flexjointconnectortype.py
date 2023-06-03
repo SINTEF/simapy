@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.flexjointconnectortype import FlexJointConnectorTypeBlueprint
 from typing import Dict
-from sima.riflex.nodalcomponenttype import NodalComponentType
-from sima.riflex.rotationalstiffnessitem import RotationalStiffnessItem
-from sima.riflex.rotationalstiffnesstype import RotationalStiffnessType
-from sima.sima.scriptablevalue import ScriptableValue
+from .nodalcomponenttype import NodalComponentType
+from .rotationalstiffnessitem import RotationalStiffnessItem
+from .rotationalstiffnesstype import RotationalStiffnessType
+from sima.sima import ScriptableValue
 
 class FlexJointConnectorType(NodalComponentType):
     """
@@ -143,7 +143,7 @@ class FlexJointConnectorType(NodalComponentType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -435,7 +435,7 @@ class FlexJointConnectorType(NodalComponentType):
     def stiffnessCharacteristicsRotX(self, value: List[RotationalStiffnessItem]):
         """Set stiffnessCharacteristicsRotX"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessCharacteristicsRotX = value
 
     @property
@@ -447,7 +447,7 @@ class FlexJointConnectorType(NodalComponentType):
     def stiffnessCharacteristicsRotY(self, value: List[RotationalStiffnessItem]):
         """Set stiffnessCharacteristicsRotY"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessCharacteristicsRotY = value
 
     @property
@@ -459,5 +459,5 @@ class FlexJointConnectorType(NodalComponentType):
     def stiffnessCharacteristicsRotZ(self, value: List[RotationalStiffnessItem]):
         """Set stiffnessCharacteristicsRotZ"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessCharacteristicsRotZ = value

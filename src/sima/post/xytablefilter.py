@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.xytablefilter import XYTableFilterBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.inputslot import InputSlot
-from sima.post.operationnode import OperationNode
-from sima.post.outputnode import OutputNode
-from sima.post.outputslot import OutputSlot
-from sima.sima.scriptablevalue import ScriptableValue
+from .controlsignalinputslot import ControlSignalInputSlot
+from .inputslot import InputSlot
+from .operationnode import OperationNode
+from .outputnode import OutputNode
+from .outputslot import OutputSlot
+from sima.sima import ScriptableValue
 
 class XYTableFilter(OperationNode,OutputNode):
     """
@@ -85,7 +85,7 @@ class XYTableFilter(OperationNode,OutputNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -147,7 +147,7 @@ class XYTableFilter(OperationNode,OutputNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -159,7 +159,7 @@ class XYTableFilter(OperationNode,OutputNode):
     def filterInputSlots(self, value: List[InputSlot]):
         """Set filterInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterInputSlots = value
 
     @property
@@ -171,7 +171,7 @@ class XYTableFilter(OperationNode,OutputNode):
     def filterOutputSlots(self, value: List[OutputSlot]):
         """Set filterOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterOutputSlots = value
 
     @property

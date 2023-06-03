@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.linesegment import LineSegmentBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.segmenttype import SegmentType
+from .segmenttype import SegmentType
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.buoytype import BuoyType
-    from sima.simo.elongationcharacteristic import ElongationCharacteristic
+    from .buoytype import BuoyType
+    from .elongationcharacteristic import ElongationCharacteristic
 
 class LineSegment(MOAO):
     """
@@ -95,7 +95,7 @@ class LineSegment(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

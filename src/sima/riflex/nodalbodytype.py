@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.nodalbodytype import NodalBodyTypeBlueprint
 from typing import Dict
-from sima.riflex.nodalcomponenttype import NodalComponentType
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.referenceframetype import ReferenceFrameType
+from .nodalcomponenttype import NodalComponentType
+from sima.sima import ScriptableValue
+from sima.simo import ReferenceFrameType
 
 class NodalBodyType(NodalComponentType):
     """
@@ -82,7 +82,7 @@ class NodalBodyType(NodalComponentType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

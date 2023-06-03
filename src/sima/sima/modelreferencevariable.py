@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.modelreferencevariable import ModelReferenceVariableBlueprint
 from typing import Dict
-from sima.sima.modelreference import ModelReference
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .modelreference import ModelReference
+from .namedobject import NamedObject
+from .scriptablevalue import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.moao import MOAO
+    from .moao import MOAO
 
 class ModelReferenceVariable(NamedObject,ModelReference):
     """
@@ -61,7 +61,7 @@ class ModelReferenceVariable(NamedObject,ModelReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

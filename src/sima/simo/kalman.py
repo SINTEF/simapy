@@ -5,14 +5,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.kalman import KalmanBlueprint
 from typing import Dict
-from sima.hydro.matrix3 import Matrix3
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.estimator import Estimator
-from sima.simo.hawserforcemeasurement import HawserForceMeasurement
-from sima.simo.kalmanestimationmethod import KalmanEstimationMethod
-from sima.simo.kalmanlinetension import KalmanLineTension
-from sima.simo.linecharacteristicitem import LineCharacteristicItem
-from sima.simo.linemeasurementitem import LineMeasurementItem
+from .estimator import Estimator
+from .hawserforcemeasurement import HawserForceMeasurement
+from .kalmanestimationmethod import KalmanEstimationMethod
+from .kalmanlinetension import KalmanLineTension
+from .linecharacteristicitem import LineCharacteristicItem
+from .linemeasurementitem import LineMeasurementItem
+from sima.hydro import Matrix3
+from sima.sima import ScriptableValue
 
 class Kalman(Estimator):
     """
@@ -77,7 +77,7 @@ class Kalman(Estimator):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -129,7 +129,7 @@ class Kalman(Estimator):
     def lineCharacteristicItems(self, value: List[LineCharacteristicItem]):
         """Set lineCharacteristicItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lineCharacteristicItems = value
 
     @property
@@ -141,7 +141,7 @@ class Kalman(Estimator):
     def hawserForceMeasurements(self, value: List[HawserForceMeasurement]):
         """Set hawserForceMeasurements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__hawserForceMeasurements = value
 
     @property
@@ -163,5 +163,5 @@ class Kalman(Estimator):
     def lines(self, value: List[LineMeasurementItem]):
         """Set lines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lines = value

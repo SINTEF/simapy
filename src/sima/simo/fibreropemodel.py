@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fibreropemodel import FibreRopeModelBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.axialstiffnessitem import AxialStiffnessItem
+from .axialstiffnessitem import AxialStiffnessItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class FibreRopeModel(NamedObject):
     """
@@ -67,7 +67,7 @@ class FibreRopeModel(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -89,7 +89,7 @@ class FibreRopeModel(NamedObject):
     def originalCurve(self, value: List[AxialStiffnessItem]):
         """Set originalCurve"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__originalCurve = value
 
     @property
@@ -101,7 +101,7 @@ class FibreRopeModel(NamedObject):
     def originalWorkingCurve(self, value: List[AxialStiffnessItem]):
         """Set originalWorkingCurve"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__originalWorkingCurve = value
 
     @property
@@ -113,7 +113,7 @@ class FibreRopeModel(NamedObject):
     def workingCurve(self, value: List[AxialStiffnessItem]):
         """Set workingCurve"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__workingCurve = value
 
     @property

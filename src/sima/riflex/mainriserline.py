@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.mainriserline import MainRiserLineBlueprint
 from typing import Dict
-from sima.riflex.arlineitem import ARLineItem
-from sima.riflex.end import End
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .arlineitem import ARLineItem
+from .end import End
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class MainRiserLine(NamedObject):
     """
@@ -70,7 +70,7 @@ class MainRiserLine(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -92,7 +92,7 @@ class MainRiserLine(NamedObject):
     def riserLines(self, value: List[ARLineItem]):
         """Set riserLines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__riserLines = value
 
     @property

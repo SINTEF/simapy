@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.soilpenetration import SoilPenetrationBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.hla import HLA
-from sima.simo.soilcapacityelement import SoilCapacityElement
-from sima.simo.soilfriction import SoilFriction
-from sima.simo.soilfrictionelement import SoilFrictionElement
+from .hla import HLA
+from .soilcapacityelement import SoilCapacityElement
+from .soilfriction import SoilFriction
+from .soilfrictionelement import SoilFrictionElement
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SoilPenetration(MOAO):
     """
@@ -89,7 +89,7 @@ class SoilPenetration(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -172,7 +172,7 @@ contact with the soil (landing)"""
     def frictionElements(self, value: List[SoilFrictionElement]):
         """Set frictionElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__frictionElements = value
 
     @property
@@ -184,7 +184,7 @@ contact with the soil (landing)"""
     def capacityElements(self, value: List[SoilCapacityElement]):
         """Set capacityElements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__capacityElements = value
 
     @property

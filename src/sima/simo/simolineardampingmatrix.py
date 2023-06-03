@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simolineardampingmatrix import SIMOLinearDampingMatrixBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.lineardampingmatrix import LinearDampingMatrix
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.dampingmatrixmotionmode import DampingMatrixMotionMode
+from .dampingmatrixmotionmode import DampingMatrixMotionMode
+from sima.hydro import LinearDampingMatrix
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     """
@@ -17,7 +17,7 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    values : ndarray
+    values : ndarray of float
     name : str
          (default None)
     mode : DampingMatrixMotionMode
@@ -28,7 +28,7 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.values = ndarray(1)
+        self.values = []
         self.name = None
         self.mode = mode
         for key, value in kwargs.items():
@@ -61,7 +61,7 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -72,7 +72,10 @@ class SIMOLinearDampingMatrix(LinearDampingMatrix,Named):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array
 
     @property
     def name(self) -> str:

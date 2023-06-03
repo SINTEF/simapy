@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitmodel import WamitModelBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.wamit.wamitbody import WamitBody
-from sima.wamit.wamitcalculationparameters import WamitCalculationParameters
-from sima.wamit.wamitenvironment import WamitEnvironment
-from sima.wamit.wamitlocation import WamitLocation
+from .wamitbody import WamitBody
+from .wamitcalculationparameters import WamitCalculationParameters
+from .wamitenvironment import WamitEnvironment
+from .wamitlocation import WamitLocation
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WamitModel(MOAO):
     """
@@ -63,7 +63,7 @@ class WamitModel(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -75,7 +75,7 @@ class WamitModel(MOAO):
     def environments(self, value: List[WamitEnvironment]):
         """Set environments"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__environments = value
 
     @property
@@ -97,7 +97,7 @@ class WamitModel(MOAO):
     def bodies(self, value: List[WamitBody]):
         """Set bodies"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__bodies = value
 
     @property

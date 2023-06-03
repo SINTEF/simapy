@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.iso_13628_7combinedloading import ISO_13628_7CombinedLoadingBlueprint
 from typing import Dict
-from sima.riflex.combinedloading import CombinedLoading
-from sima.riflex.combinedloadingproperties import CombinedLoadingProperties
-from sima.sima.scriptablevalue import ScriptableValue
+from .combinedloading import CombinedLoading
+from .combinedloadingproperties import CombinedLoadingProperties
+from sima.sima import ScriptableValue
 
 class ISO_13628_7CombinedLoading(CombinedLoading):
     """
@@ -88,7 +88,7 @@ class ISO_13628_7CombinedLoading(CombinedLoading):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -171,7 +171,7 @@ Given as the Z coordinate in global coordinate system."""
     def properties(self, value: List[CombinedLoadingProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.doublemodelspectrum import DoubleModelSpectrumBlueprint
 from typing import Dict
-from sima.environment.wave import Wave
-from sima.sima.scriptablevalue import ScriptableValue
+from .wave import Wave
+from sima.sima import ScriptableValue
 
 class DoubleModelSpectrum(Wave):
     """
@@ -81,7 +81,7 @@ class DoubleModelSpectrum(Wave):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

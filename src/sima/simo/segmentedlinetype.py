@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.segmentedlinetype import SegmentedLineTypeBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bottomcontactoption import BottomContactOption
-from sima.simo.linecharacteristicmethod import LineCharacteristicMethod
-from sima.simo.linesegment import LineSegment
-from sima.simo.linetype import LineType
+from .bottomcontactoption import BottomContactOption
+from .linecharacteristicmethod import LineCharacteristicMethod
+from .linesegment import LineSegment
+from .linetype import LineType
+from sima.sima import ScriptableValue
 
 class SegmentedLineType(LineType):
     """
@@ -41,9 +41,11 @@ class SegmentedLineType(LineType):
          Number of points in the line characteristics matrix, offset variation in the vertical plane.(default 5)
     slope : float
          The angle of the seabed under the catenary line. Slope = 0 means a flat seabed. Positive slope means that the seabed is sloping downwards from the anchor towards the attachment point.(default 0.0)
+    allowVerticalExtrapolation : bool
+         Controls wether a fairlead position outside the vmin, vmax range should be an error(default False)
     """
 
-    def __init__(self , description="", vmin=0.0, vmax=0.0, bottomContactOption=BottomContactOption.LINE_END_ONLY, anchorZ=0.0, maxTension=0.0, minHTension=0.0, method=LineCharacteristicMethod.SHOOTING, npth=40, nptv=5, slope=0.0, **kwargs):
+    def __init__(self , description="", vmin=0.0, vmax=0.0, bottomContactOption=BottomContactOption.LINE_END_ONLY, anchorZ=0.0, maxTension=0.0, minHTension=0.0, method=LineCharacteristicMethod.SHOOTING, npth=40, nptv=5, slope=0.0, allowVerticalExtrapolation=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -59,6 +61,7 @@ class SegmentedLineType(LineType):
         self.npth = npth
         self.nptv = nptv
         self.slope = slope
+        self.allowVerticalExtrapolation = allowVerticalExtrapolation
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -89,7 +92,7 @@ class SegmentedLineType(LineType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -111,7 +114,7 @@ class SegmentedLineType(LineType):
     def segments(self, value: List[LineSegment]):
         """Set segments"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__segments = value
 
     @property
@@ -215,3 +218,13 @@ of line characteristics"""
     def slope(self, value: float):
         """Set slope"""
         self.__slope = float(value)
+
+    @property
+    def allowVerticalExtrapolation(self) -> bool:
+        """Controls wether a fairlead position outside the vmin, vmax range should be an error"""
+        return self.__allowVerticalExtrapolation
+
+    @allowVerticalExtrapolation.setter
+    def allowVerticalExtrapolation(self, value: bool):
+        """Set allowVerticalExtrapolation"""
+        self.__allowVerticalExtrapolation = bool(value)

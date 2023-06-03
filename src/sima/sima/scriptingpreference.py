@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.scriptingpreference import ScriptingPreferenceBlueprint
 from numpy import ndarray,asarray
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simapreference import SIMAPreference
+from .scriptablevalue import ScriptableValue
+from .simapreference import SIMAPreference
 
 class ScriptingPreference(SIMAPreference):
     """
@@ -17,10 +17,10 @@ class ScriptingPreference(SIMAPreference):
     scriptableValues : List[ScriptableValue]
     showScripts : bool
          (default False)
-    javaScriptLocations : ndarray
+    javaScriptLocations : ndarray of str
     pythonHome : str
          Override python home folder(default None)
-    pythonPaths : ndarray
+    pythonPaths : ndarray of str
     """
 
     def __init__(self , description="", showScripts=False, **kwargs):
@@ -28,9 +28,9 @@ class ScriptingPreference(SIMAPreference):
         self.description = description
         self.scriptableValues = list()
         self.showScripts = showScripts
-        self.javaScriptLocations = ndarray(1)
+        self.javaScriptLocations = []
         self.pythonHome = None
-        self.pythonPaths = ndarray(1)
+        self.pythonPaths = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -61,7 +61,7 @@ class ScriptingPreference(SIMAPreference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -82,7 +82,10 @@ class ScriptingPreference(SIMAPreference):
     @javaScriptLocations.setter
     def javaScriptLocations(self, value: ndarray):
         """Set javaScriptLocations"""
-        self.__javaScriptLocations = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__javaScriptLocations = array
 
     @property
     def pythonHome(self) -> str:
@@ -102,4 +105,7 @@ class ScriptingPreference(SIMAPreference):
     @pythonPaths.setter
     def pythonPaths(self, value: ndarray):
         """Set pythonPaths"""
-        self.__pythonPaths = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__pythonPaths = array

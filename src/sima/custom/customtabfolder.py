@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.customtabfolder import CustomTabFolderBlueprint
 from typing import Dict
-from sima.custom.customcomponent import CustomComponent
-from sima.custom.customtabitem import CustomTabItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .customcomponent import CustomComponent
+from .customtabitem import CustomTabItem
+from sima.sima import ScriptableValue
 
 class CustomTabFolder(CustomComponent):
     """
@@ -54,7 +54,7 @@ class CustomTabFolder(CustomComponent):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +66,5 @@ class CustomTabFolder(CustomComponent):
     def tabItems(self, value: List[CustomTabItem]):
         """Set tabItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__tabItems = value

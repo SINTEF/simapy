@@ -5,16 +5,16 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.irregularresponseanalysis import IrregularResponseAnalysisBlueprint
 from typing import Dict
-from sima.riflex.irregularmotionindicator import IrregularMotionIndicator
-from sima.riflex.irregularwaveindicator import IrregularWaveIndicator
-from sima.riflex.irregularwaveprocedure import IrregularWaveProcedure
-from sima.riflex.lfmotiontimeseries import LFMotionTimeSeries
-from sima.riflex.lowfrequencymotionindicator import LowFrequencyMotionIndicator
-from sima.riflex.supportvesselmotionscalingitem import SupportVesselMotionScalingItem
-from sima.riflex.wavetimeseries import WaveTimeSeries
-from sima.riflex.wfmotiontimeseries import WFMotionTimeSeries
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .irregularmotionindicator import IrregularMotionIndicator
+from .irregularwaveindicator import IrregularWaveIndicator
+from .irregularwaveprocedure import IrregularWaveProcedure
+from .lfmotiontimeseries import LFMotionTimeSeries
+from .lowfrequencymotionindicator import LowFrequencyMotionIndicator
+from .supportvesselmotionscalingitem import SupportVesselMotionScalingItem
+from .wavetimeseries import WaveTimeSeries
+from .wfmotiontimeseries import WFMotionTimeSeries
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class IrregularResponseAnalysis(MOAO):
     """
@@ -93,7 +93,7 @@ class IrregularResponseAnalysis(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -185,7 +185,7 @@ class IrregularResponseAnalysis(MOAO):
     def supportVesselMotionScalingItems(self, value: List[SupportVesselMotionScalingItem]):
         """Set supportVesselMotionScalingItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__supportVesselMotionScalingItems = value
 
     @property
@@ -217,7 +217,7 @@ class IrregularResponseAnalysis(MOAO):
     def wfMotionTimeSeries(self, value: List[WFMotionTimeSeries]):
         """Set wfMotionTimeSeries"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__wfMotionTimeSeries = value
 
     @property
@@ -229,5 +229,5 @@ class IrregularResponseAnalysis(MOAO):
     def lfMotionTimeSeries(self, value: List[LFMotionTimeSeries]):
         """Set lfMotionTimeSeries"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__lfMotionTimeSeries = value

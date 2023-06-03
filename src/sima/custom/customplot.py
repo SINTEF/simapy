@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.customplot import CustomPlotBlueprint
 from typing import Dict
-from sima.custom.customcomponent import CustomComponent
-from sima.sima.scriptablevalue import ScriptableValue
+from .customcomponent import CustomComponent
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.post.outputnode import OutputNode
+    from sima.post import OutputNode
 
 class CustomPlot(CustomComponent):
     """
@@ -63,7 +63,7 @@ class CustomPlot(CustomComponent):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

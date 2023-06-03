@@ -5,17 +5,17 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlatask import HLATaskBlueprint
 from typing import Dict
-from sima.hla.controlpanel import ControlPanel
-from sima.hla.hladatatable import HLADataTable
-from sima.hla.hlafederate import HLAFederate
-from sima.hla.hlamodel import HLAModel
-from sima.hla.hlasignalplot import HLASignalPlot
-from sima.sima.doublevariable import DoubleVariable
-from sima.sima.integervariable import IntegerVariable
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simascript import SIMAScript
-from sima.sima.stringvariable import StringVariable
-from sima.sima.task import Task
+from .controlpanel import ControlPanel
+from .hladatatable import HLADataTable
+from .hlafederate import HLAFederate
+from .hlamodel import HLAModel
+from .hlasignalplot import HLASignalPlot
+from sima.sima import DoubleVariable
+from sima.sima import IntegerVariable
+from sima.sima import SIMAScript
+from sima.sima import ScriptableValue
+from sima.sima import StringVariable
+from sima.sima import Task
 
 class HLATask(Task):
     """
@@ -90,7 +90,7 @@ class HLATask(Task):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -112,7 +112,7 @@ class HLATask(Task):
     def doubleVariables(self, value: List[DoubleVariable]):
         """Set doubleVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__doubleVariables = value
 
     @property
@@ -124,7 +124,7 @@ class HLATask(Task):
     def integerVariables(self, value: List[IntegerVariable]):
         """Set integerVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__integerVariables = value
 
     @property
@@ -136,7 +136,7 @@ class HLATask(Task):
     def stringVariables(self, value: List[StringVariable]):
         """Set stringVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stringVariables = value
 
     @property
@@ -158,7 +158,7 @@ class HLATask(Task):
     def scripts(self, value: List[SIMAScript]):
         """Set scripts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scripts = value
 
     @property
@@ -180,7 +180,7 @@ class HLATask(Task):
     def federates(self, value: List[HLAFederate]):
         """Set federates"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__federates = value
 
     @property
@@ -212,7 +212,7 @@ class HLATask(Task):
     def dataTables(self, value: List[HLADataTable]):
         """Set dataTables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dataTables = value
 
     @property
@@ -224,7 +224,7 @@ class HLATask(Task):
     def plots(self, value: List[HLASignalPlot]):
         """Set plots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__plots = value
 
     @property
@@ -236,5 +236,5 @@ class HLATask(Task):
     def controlPanels(self, value: List[ControlPanel]):
         """Set controlPanels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlPanels = value

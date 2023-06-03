@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.stressjointlinetype import StressJointLineTypeBlueprint
 from typing import Dict
-from sima.riflex.arlinetype import ARLineType
-from sima.riflex.stressjointloadformulation import StressJointLoadFormulation
-from sima.riflex.stressjointsegment import StressJointSegment
-from sima.riflex.timedomainvivloadcoefficients import TimeDomainVIVLoadCoefficients
-from sima.sima.scriptablevalue import ScriptableValue
+from .arlinetype import ARLineType
+from .stressjointloadformulation import StressJointLoadFormulation
+from .stressjointsegment import StressJointSegment
+from .timedomainvivloadcoefficients import TimeDomainVIVLoadCoefficients
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.internalfluidtype import InternalFluidType
+    from .internalfluidtype import InternalFluidType
 
 class StressJointLineType(ARLineType):
     """
@@ -82,7 +82,7 @@ class StressJointLineType(ARLineType):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -154,7 +154,7 @@ class StressJointLineType(ARLineType):
     def segments(self, value: List[StressJointSegment]):
         """Set segments"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__segments = value
 
     @property

@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.variableitemset import VariableItemSetBlueprint
 from numpy import ndarray,asarray
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.variable import Variable
+    from sima.sima import Variable
 
 class VariableItemSet(MOAO):
     """
@@ -20,7 +20,7 @@ class VariableItemSet(MOAO):
          (default "")
     scriptableValues : List[ScriptableValue]
     variable : Variable
-    variations : ndarray
+    variations : ndarray of str
     """
 
     def __init__(self , description="", **kwargs):
@@ -28,7 +28,7 @@ class VariableItemSet(MOAO):
         self.description = description
         self.scriptableValues = list()
         self.variable = None
-        self.variations = ndarray(1)
+        self.variations = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -59,7 +59,7 @@ class VariableItemSet(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -80,4 +80,7 @@ class VariableItemSet(MOAO):
     @variations.setter
     def variations(self, value: ndarray):
         """Set variations"""
-        self.__variations = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__variations = array

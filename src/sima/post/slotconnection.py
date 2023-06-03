@@ -6,14 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.slotconnection import SlotConnectionBlueprint
 from typing import Dict
-from sima.graph.point import Point
-from sima.post.requirement import Requirement
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .requirement import Requirement
+from sima.graph import Point
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.post.inputslot import InputSlot
-    from sima.post.outputslot import OutputSlot
+    from .inputslot import InputSlot
+    from .outputslot import OutputSlot
 
 class SlotConnection(MOAO):
     """
@@ -72,7 +72,7 @@ class SlotConnection(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -104,7 +104,7 @@ class SlotConnection(MOAO):
     def userRequirements(self, value: List[Requirement]):
         """Set userRequirements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__userRequirements = value
 
     @property
@@ -116,7 +116,7 @@ class SlotConnection(MOAO):
     def points(self, value: List[Point]):
         """Set points"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__points = value
 
     @property

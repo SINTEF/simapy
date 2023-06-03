@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.unitpreference import UnitPreferenceBlueprint
 from typing import Dict
-from sima.sima.forceunit import ForceUnit
-from sima.sima.frequency import Frequency
-from sima.sima.lengthunit import LengthUnit
-from sima.sima.massunit import MassUnit
-from sima.sima.powerunit import PowerUnit
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simapreference import SIMAPreference
+from .forceunit import ForceUnit
+from .frequency import Frequency
+from .lengthunit import LengthUnit
+from .massunit import MassUnit
+from .powerunit import PowerUnit
+from .scriptablevalue import ScriptableValue
+from .simapreference import SIMAPreference
 
 class UnitPreference(SIMAPreference):
     """
@@ -66,7 +66,7 @@ class UnitPreference(SIMAPreference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

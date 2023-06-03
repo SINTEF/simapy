@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.variableinputsetslot import VariableInputSetSlotBlueprint
 from typing import Dict
-from sima.post.inputslot import InputSlot
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import InputSlot
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.sima.singleparameter import SingleParameter
+    from sima.sima import SingleParameter
 
 class VariableInputSetSlot(InputSlot):
     """
@@ -60,7 +60,7 @@ class VariableInputSetSlot(InputSlot):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

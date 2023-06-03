@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.header import HeaderBlueprint
 from typing import Dict
+from .packageinfo import PackageInfo
 from dmt.entity import Entity
-from sima.packageinfo import PackageInfo
 
 class Header(Entity):
     """
@@ -51,5 +51,5 @@ class Header(Entity):
     def packages(self, value: List[PackageInfo]):
         """Set packages"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__packages = value

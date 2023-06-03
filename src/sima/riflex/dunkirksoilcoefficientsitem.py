@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dunkirksoilcoefficientsitem import DunkirkSoilCoefficientsItemBlueprint
 from typing import Dict
-from sima.riflex.commonsoilcoefficientsitem import CommonSoilCoefficientsItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .commonsoilcoefficientsitem import CommonSoilCoefficientsItem
+from sima.sima import ScriptableValue
 
 class DunkirkSoilCoefficientsItem(CommonSoilCoefficientsItem):
     """
@@ -63,7 +63,7 @@ class DunkirkSoilCoefficientsItem(CommonSoilCoefficientsItem):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

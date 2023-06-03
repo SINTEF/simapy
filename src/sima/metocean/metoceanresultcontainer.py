@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.metoceanresultcontainer import MetoceanResultContainerBlueprint
 from typing import Dict
-from sima.sima.conditionresultcontainer import ConditionResultContainer
-from sima.sima.property import Property
-from sima.sima.resultentry import ResultEntry
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import ConditionResultContainer
+from sima.sima import Property
+from sima.sima import ResultEntry
+from sima.sima import ScriptableValue
 
 class MetoceanResultContainer(ConditionResultContainer):
     """
@@ -66,7 +66,7 @@ class MetoceanResultContainer(ConditionResultContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -88,7 +88,7 @@ class MetoceanResultContainer(ConditionResultContainer):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

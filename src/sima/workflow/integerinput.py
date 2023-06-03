@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.integerinput import IntegerInputBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.signalproperties import SignalProperties
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.valueinputnode import ValueInputNode
+from .valueinputnode import ValueInputNode
+from sima.post import ControlSignalInputSlot
+from sima.post import OutputSlot
+from sima.post import SignalProperties
+from sima.sima import ScriptableValue
 
 class IntegerInput(ValueInputNode):
     """
@@ -87,7 +87,7 @@ class IntegerInput(ValueInputNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -149,7 +149,7 @@ class IntegerInput(ValueInputNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -191,7 +191,7 @@ class IntegerInput(ValueInputNode):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

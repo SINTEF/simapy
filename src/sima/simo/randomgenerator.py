@@ -5,11 +5,11 @@ from enum import auto
 
 class RandomGenerator(Enum):
     """"""
-    LEGACY = auto()
     MERSENNE = auto()
+    LEGACY = auto()
 
     def label(self):
-        if self == RandomGenerator.LEGACY:
-            return "Legacy"
         if self == RandomGenerator.MERSENNE:
             return "Mersenne twister"
+        if self == RandomGenerator.LEGACY:
+            return "Legacy"

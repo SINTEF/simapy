@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.sumfrequencywaveforce import SumFrequencyWaveForceBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.qtfdofitem import QTFDofItem
-from sima.hydro.quadratictransferfunction import QuadraticTransferFunction
-from sima.sima.scriptablevalue import ScriptableValue
+from .qtfdofitem import QTFDofItem
+from .quadratictransferfunction import QuadraticTransferFunction
+from sima.sima import ScriptableValue
 
 class SumFrequencyWaveForce(QuadraticTransferFunction):
     """
@@ -24,8 +24,8 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
          (default False)
     bidirectional : bool
          (default False)
-    frequencies : ndarray
-    directions : ndarray
+    frequencies : ndarray of float
+    directions : ndarray of float
     onFile : bool
          (default False)
     file : str
@@ -46,8 +46,8 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
         self.nDir = nDir
         self.bichromatic = bichromatic
         self.bidirectional = bidirectional
-        self.frequencies = ndarray(1)
-        self.directions = ndarray(1)
+        self.frequencies = []
+        self.directions = []
         self.onFile = onFile
         self.file = None
         self.surge = None
@@ -86,7 +86,7 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -137,7 +137,10 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
     @frequencies.setter
     def frequencies(self, value: ndarray):
         """Set frequencies"""
-        self.__frequencies = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__frequencies = array
 
     @property
     def directions(self) -> ndarray:
@@ -147,7 +150,10 @@ class SumFrequencyWaveForce(QuadraticTransferFunction):
     @directions.setter
     def directions(self, value: ndarray):
         """Set directions"""
-        self.__directions = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__directions = array
 
     @property
     def onFile(self) -> bool:

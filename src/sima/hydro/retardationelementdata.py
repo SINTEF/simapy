@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.retardationelementdata import RetardationElementDataBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.dof import DOF
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .dof import DOF
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class RetardationElementData(MOAO):
     """
@@ -18,7 +18,7 @@ class RetardationElementData(MOAO):
     scriptableValues : List[ScriptableValue]
     dof1 : DOF
     dof2 : DOF
-    values : ndarray
+    values : ndarray of float
     """
 
     def __init__(self , description="", dof1=DOF.X, dof2=DOF.X, **kwargs):
@@ -27,7 +27,7 @@ class RetardationElementData(MOAO):
         self.scriptableValues = list()
         self.dof1 = dof1
         self.dof2 = dof2
-        self.values = ndarray(1)
+        self.values = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -58,7 +58,7 @@ class RetardationElementData(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -89,4 +89,7 @@ class RetardationElementData(MOAO):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array

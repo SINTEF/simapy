@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.quadraticcurrentcoefficient import QuadraticCurrentCoefficientBlueprint
 from typing import Dict
-from sima.hydro.coefficienttype import CoefficientType
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.hydro.quadraticcurrentcoefficientitem import QuadraticCurrentCoefficientItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .coefficienttype import CoefficientType
+from .directionsymmetry import DirectionSymmetry
+from .quadraticcurrentcoefficientitem import QuadraticCurrentCoefficientItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class QuadraticCurrentCoefficient(MOAO):
     """
@@ -64,7 +64,7 @@ class QuadraticCurrentCoefficient(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -86,7 +86,7 @@ class QuadraticCurrentCoefficient(MOAO):
     def items(self, value: List[QuadraticCurrentCoefficientItem]):
         """Set items"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__items = value
 
     @property

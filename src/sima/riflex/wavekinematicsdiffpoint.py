@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wavekinematicsdiffpoint import WaveKinematicsDiffPointBlueprint
 from typing import Dict
-from sima.riflex.nodereference import NodeReference
-from sima.sima.scriptablevalue import ScriptableValue
+from .nodereference import NodeReference
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
-    from sima.hydro.diffractedwavefield import DiffractedWaveField
+    from .arline import ARLine
+    from sima.hydro import DiffractedWaveField
 
 class WaveKinematicsDiffPoint(NodeReference):
     """
@@ -74,7 +74,7 @@ class WaveKinematicsDiffPoint(NodeReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

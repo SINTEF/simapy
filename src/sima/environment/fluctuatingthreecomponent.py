@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fluctuatingthreecomponent import FluctuatingThreeComponentBlueprint
 from typing import Dict
-from sima.environment.fluctuatingwindvelocityprofile import FluctuatingWindVelocityProfile
-from sima.environment.wind import Wind
-from sima.sima.scriptablevalue import ScriptableValue
+from .fluctuatingwindvelocityprofile import FluctuatingWindVelocityProfile
+from .wind import Wind
+from sima.sima import ScriptableValue
 
 class FluctuatingThreeComponent(Wind):
     """
@@ -99,7 +99,7 @@ class FluctuatingThreeComponent(Wind):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -131,7 +131,7 @@ class FluctuatingThreeComponent(Wind):
     def velocityProfiles(self, value: List[FluctuatingWindVelocityProfile]):
         """Set velocityProfiles"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__velocityProfiles = value
 
     @property

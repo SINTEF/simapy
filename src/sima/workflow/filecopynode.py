@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.filecopynode import FileCopyNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.inputslot import InputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.runnode import RunNode
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.post import ControlSignalInputSlot
+from sima.post import InputSlot
+from sima.post import OutputSlot
+from sima.post import RunNode
+from sima.sima import ScriptableValue
 
 class FileCopyNode(RunNode):
     """
@@ -90,7 +90,7 @@ class FileCopyNode(RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -152,7 +152,7 @@ class FileCopyNode(RunNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property

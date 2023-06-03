@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.arline import ARLineBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.lineforceprovider import LineForceProvider
+from sima.sima import ScriptableValue
+from sima.simo import LineForceProvider
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arlinetype import ARLineType
-    from sima.riflex.supernode import SuperNode
+    from .arlinetype import ARLineType
+    from .supernode import SuperNode
 
 class ARLine(LineForceProvider):
     """
@@ -71,7 +71,7 @@ class ARLine(LineForceProvider):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

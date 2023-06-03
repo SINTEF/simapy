@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.timedomainprocedure import TimeDomainProcedureBlueprint
 from typing import Dict
-from sima.riflex.methodindicator import MethodIndicator
-from sima.riflex.nonlinearforcemodel import NonLinearForceModel
-from sima.riflex.nonlinearintegrationprocedure import NonLinearIntegrationProcedure
-from sima.riflex.procedureindicator import ProcedureIndicator
-from sima.riflex.rayleighdamping import RayleighDamping
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .methodindicator import MethodIndicator
+from .nonlinearforcemodel import NonLinearForceModel
+from .nonlinearintegrationprocedure import NonLinearIntegrationProcedure
+from .procedureindicator import ProcedureIndicator
+from .rayleighdamping import RayleighDamping
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class TimeDomainProcedure(MOAO):
     """
@@ -117,7 +117,7 @@ class TimeDomainProcedure(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

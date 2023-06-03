@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.folderstorage import FolderStorageBlueprint
 from typing import Dict
-from sima.sima.namedstorageresource import NamedStorageResource
-from sima.sima.scriptablevalue import ScriptableValue
+from .namedstorageresource import NamedStorageResource
+from .scriptablevalue import ScriptableValue
 
 class FolderStorage(NamedStorageResource):
     """
@@ -54,7 +54,7 @@ class FolderStorage(NamedStorageResource):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

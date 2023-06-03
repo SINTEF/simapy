@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitwave import WamitWaveBlueprint
 from numpy import ndarray,asarray
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WamitWave(MOAO):
     """
@@ -15,9 +15,9 @@ class WamitWave(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    periods : ndarray
+    periods : ndarray of float
          Wave periods
-    headings : ndarray
+    headings : ndarray of float
          Wave headings
     """
 
@@ -25,8 +25,8 @@ class WamitWave(MOAO):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.periods = ndarray(1)
-        self.headings = ndarray(1)
+        self.periods = []
+        self.headings = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -57,7 +57,7 @@ class WamitWave(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -68,7 +68,10 @@ class WamitWave(MOAO):
     @periods.setter
     def periods(self, value: ndarray):
         """Set periods"""
-        self.__periods = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__periods = array
 
     @property
     def headings(self) -> ndarray:
@@ -78,4 +81,7 @@ class WamitWave(MOAO):
     @headings.setter
     def headings(self, value: ndarray):
         """Set headings"""
-        self.__headings = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__headings = array

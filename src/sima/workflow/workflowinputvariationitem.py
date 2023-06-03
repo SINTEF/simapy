@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.workflowinputvariationitem import WorkflowInputVariationItemBlueprint
 from numpy import ndarray,asarray
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.workflowlinkitem import WorkflowLinkItem
+from .workflowlinkitem import WorkflowLinkItem
+from sima.sima import ScriptableValue
 
 class WorkflowInputVariationItem(WorkflowLinkItem):
     """
@@ -19,7 +19,7 @@ class WorkflowInputVariationItem(WorkflowLinkItem):
          (default None)
     toId : str
          (default None)
-    runRoots : ndarray
+    runRoots : ndarray of str
     """
 
     def __init__(self , description="", **kwargs):
@@ -28,7 +28,7 @@ class WorkflowInputVariationItem(WorkflowLinkItem):
         self.scriptableValues = list()
         self.fromId = None
         self.toId = None
-        self.runRoots = ndarray(1)
+        self.runRoots = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -59,7 +59,7 @@ class WorkflowInputVariationItem(WorkflowLinkItem):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -90,4 +90,7 @@ class WorkflowInputVariationItem(WorkflowLinkItem):
     @runRoots.setter
     def runRoots(self, value: ndarray):
         """Set runRoots"""
-        self.__runRoots = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__runRoots = array

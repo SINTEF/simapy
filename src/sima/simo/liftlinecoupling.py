@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.liftlinecoupling import LiftLineCouplingBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.activationfailuremode import ActivationFailureMode
-from sima.simo.simplecoupling import SimpleCoupling
+from .activationfailuremode import ActivationFailureMode
+from .simplecoupling import SimpleCoupling
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobodypoint import SIMOBodyPoint
+    from .simobodypoint import SIMOBodyPoint
 
 class LiftLineCoupling(SimpleCoupling):
     """
@@ -108,7 +108,7 @@ class LiftLineCoupling(SimpleCoupling):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

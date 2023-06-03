@@ -6,16 +6,16 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.pipeinpipecontact import PipeInPipeContactBlueprint
 from typing import Dict
-from sima.riflex.contactspringstiffnessitem import ContactSpringStiffnessItem
-from sima.riflex.innerouter import InnerOuter
-from sima.riflex.innerpipeloading import InnerPipeLoading
-from sima.riflex.stiffnesstype import StiffnessType
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .contactspringstiffnessitem import ContactSpringStiffnessItem
+from .innerouter import InnerOuter
+from .innerpipeloading import InnerPipeLoading
+from .stiffnesstype import StiffnessType
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
-    from sima.riflex.mainriserline import MainRiserLine
+    from .arline import ARLine
+    from .mainriserline import MainRiserLine
 
 class PipeInPipeContact(NamedObject):
     """
@@ -130,7 +130,7 @@ class PipeInPipeContact(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -324,7 +324,7 @@ displacement status (static friction)"""
     def stiffnessCharacteristics(self, value: List[ContactSpringStiffnessItem]):
         """Set stiffnessCharacteristics"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessCharacteristics = value
 
     @property

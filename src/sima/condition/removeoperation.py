@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.removeoperation import RemoveOperationBlueprint
 from typing import Dict
-from sima.condition.modelvariationoperation import ModelVariationOperation
-from sima.sima.modelreference import ModelReference
-from sima.sima.scriptablevalue import ScriptableValue
+from .modelvariationoperation import ModelVariationOperation
+from sima.sima import ModelReference
+from sima.sima import ScriptableValue
 
 class RemoveOperation(ModelVariationOperation):
     """
@@ -57,7 +57,7 @@ class RemoveOperation(ModelVariationOperation):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class RemoveOperation(ModelVariationOperation):
     def removals(self, value: List[ModelReference]):
         """Set removals"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__removals = value

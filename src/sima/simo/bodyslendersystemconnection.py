@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.bodyslendersystemconnection import BodySlenderSystemConnectionBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.supernodereference import SuperNodeReference
+from .supernodereference import SuperNodeReference
+from sima.sima import ScriptableValue
 
 class BodySlenderSystemConnection(SuperNodeReference):
     """
@@ -51,5 +51,5 @@ class BodySlenderSystemConnection(SuperNodeReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value

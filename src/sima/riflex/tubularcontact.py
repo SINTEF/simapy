@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.tubularcontact import TubularContactBlueprint
 from typing import Dict
-from sima.riflex.contactdirection import ContactDirection
-from sima.riflex.controlparameter import ControlParameter
-from sima.riflex.springstiffnessitem import SpringStiffnessItem
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .contactdirection import ContactDirection
+from .controlparameter import ControlParameter
+from .springstiffnessitem import SpringStiffnessItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class TubularContact(NamedObject):
     """
@@ -95,7 +95,7 @@ class TubularContact(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -237,5 +237,5 @@ class TubularContact(NamedObject):
     def stiffnessItems(self, value: List[SpringStiffnessItem]):
         """Set stiffnessItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessItems = value

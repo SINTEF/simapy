@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.excitationcoefficientscurveproperty import ExcitationCoefficientsCurvePropertyBlueprint
 from typing import Dict
-from sima.riflex.amplitudediameterpropertyitem import AmplitudeDiameterPropertyItem
-from sima.riflex.excitationcoefficientsproperty import ExcitationCoefficientsProperty
-from sima.sima.scriptablevalue import ScriptableValue
+from .amplitudediameterpropertyitem import AmplitudeDiameterPropertyItem
+from .excitationcoefficientsproperty import ExcitationCoefficientsProperty
+from sima.sima import ScriptableValue
 
 class ExcitationCoefficientsCurveProperty(ExcitationCoefficientsProperty):
     """
@@ -57,7 +57,7 @@ class ExcitationCoefficientsCurveProperty(ExcitationCoefficientsProperty):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class ExcitationCoefficientsCurveProperty(ExcitationCoefficientsProperty):
     def amplitudeDiameterPropertyItems(self, value: List[AmplitudeDiameterPropertyItem]):
         """Set amplitudeDiameterPropertyItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__amplitudeDiameterPropertyItems = value

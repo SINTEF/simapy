@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.directiondependentvalues import DirectionDependentValuesBlueprint
 from typing import Dict
-from sima.hydro.values import Values
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .values import Values
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DirectionDependentValues(MOAO):
     """
@@ -54,7 +54,7 @@ class DirectionDependentValues(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -66,5 +66,5 @@ class DirectionDependentValues(MOAO):
     def directionalValues(self, value: List[Values]):
         """Set directionalValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__directionalValues = value

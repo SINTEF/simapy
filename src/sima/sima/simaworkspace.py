@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simaworkspace import SIMAWorkspaceBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.task import Task
-from sima.sima.taskfolder import TaskFolder
+from .moao import MOAO
+from .scriptablevalue import ScriptableValue
+from .task import Task
+from .taskfolder import TaskFolder
 
 class SIMAWorkspace(MOAO):
     """
@@ -63,7 +63,7 @@ class SIMAWorkspace(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -75,7 +75,7 @@ class SIMAWorkspace(MOAO):
     def childFolders(self, value: List[TaskFolder]):
         """Set childFolders"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__childFolders = value
 
     @property
@@ -87,7 +87,7 @@ class SIMAWorkspace(MOAO):
     def tasks(self, value: List[Task]):
         """Set tasks"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__tasks = value
 
     @property

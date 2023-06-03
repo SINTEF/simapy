@@ -6,17 +6,17 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.reportgeneratornode import ReportGeneratorNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.outputslot import OutputSlot
-from sima.post.runnode import RunNode
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.modelreferenceinputslot import ModelReferenceInputSlot
-from sima.workflow.reportformat import ReportFormat
-from sima.workflow.reportfragmentreferenceinputslot import ReportFragmentReferenceInputSlot
-from sima.workflow.variableinputslot import VariableInputSlot
+from .modelreferenceinputslot import ModelReferenceInputSlot
+from .reportformat import ReportFormat
+from .reportfragmentreferenceinputslot import ReportFragmentReferenceInputSlot
+from .variableinputslot import VariableInputSlot
+from sima.post import ControlSignalInputSlot
+from sima.post import OutputSlot
+from sima.post import RunNode
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.report.report import Report
+    from sima.report import Report
 
 class ReportGeneratorNode(RunNode):
     """
@@ -93,7 +93,7 @@ class ReportGeneratorNode(RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -155,7 +155,7 @@ class ReportGeneratorNode(RunNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -167,7 +167,7 @@ class ReportGeneratorNode(RunNode):
     def variableInputSlots(self, value: List[VariableInputSlot]):
         """Set variableInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variableInputSlots = value
 
     @property
@@ -199,7 +199,7 @@ class ReportGeneratorNode(RunNode):
     def fragmentInputSlots(self, value: List[ReportFragmentReferenceInputSlot]):
         """Set fragmentInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fragmentInputSlots = value
 
     @property

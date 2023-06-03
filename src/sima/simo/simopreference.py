@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simopreference import SIMOPreferenceBlueprint
 from numpy import ndarray,asarray
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simapreference import SIMAPreference
+from sima.sima import SIMAPreference
+from sima.sima import ScriptableValue
 
 class SIMOPreference(SIMAPreference):
     """
@@ -17,7 +17,7 @@ class SIMOPreference(SIMAPreference):
     scriptableValues : List[ScriptableValue]
     selectedVersion : str
          Selected SIMO/RIFLEX installation(default 'Default')
-    locations : ndarray
+    locations : ndarray of str
     frevesLocation : str
          Freves bin folder(default None)
     frelinLocation : str
@@ -29,7 +29,7 @@ class SIMOPreference(SIMAPreference):
         self.description = description
         self.scriptableValues = list()
         self.selectedVersion = selectedVersion
-        self.locations = ndarray(1)
+        self.locations = []
         self.frevesLocation = None
         self.frelinLocation = None
         for key, value in kwargs.items():
@@ -62,7 +62,7 @@ class SIMOPreference(SIMAPreference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -83,7 +83,10 @@ class SIMOPreference(SIMAPreference):
     @locations.setter
     def locations(self, value: ndarray):
         """Set locations"""
-        self.__locations = asarray(value)
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__locations = array
 
     @property
     def frevesLocation(self) -> str:

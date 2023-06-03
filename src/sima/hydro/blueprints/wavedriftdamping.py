@@ -18,3 +18,5 @@ class WaveDriftDampingBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("frequencies","number","",Dimension("*"),default=0.0))
         self.add_attribute(EnumAttribute("symmetry","sima/hydro/DirectionSymmetry",""))
         self.add_attribute(BlueprintAttribute("items","sima/hydro/WaveDriftDampingDofItem","",True,Dimension("*")))
+        self.add_attribute(EnumAttribute("from","sima/hydro/WaveDriftDampingSource","Calculate from"))
+        self.add_attribute(EnumAttribute("forceCalculation","sima/hydro/WaveDriftDampingForce",""))

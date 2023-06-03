@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.measurementnode import MeasurementNodeBlueprint
 from typing import Dict
-from sima.riflex.nodereference import NodeReference
-from sima.riflex.nodesystem import NodeSystem
-from sima.sima.scriptablevalue import ScriptableValue
+from .nodereference import NodeReference
+from .nodesystem import NodeSystem
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class MeasurementNode(NodeReference):
     """
@@ -73,7 +73,7 @@ class MeasurementNode(NodeReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

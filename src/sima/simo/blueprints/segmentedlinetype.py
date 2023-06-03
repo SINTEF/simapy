@@ -26,3 +26,4 @@ class SegmentedLineTypeBlueprint(LineTypeBlueprint):
         self.add_attribute(Attribute("npth","integer","Number of points in the line characteristics matrix, offset variation in the horizontal plane.",default=40))
         self.add_attribute(Attribute("nptv","integer","Number of points in the line characteristics matrix, offset variation in the vertical plane.",default=5))
         self.add_attribute(Attribute("slope","number","The angle of the seabed under the catenary line. Slope = 0 means a flat seabed. Positive slope means that the seabed is sloping downwards from the anchor towards the attachment point.",default=0.0))
+        self.add_attribute(Attribute("allowVerticalExtrapolation","boolean","Controls wether a fairlead position outside the vmin, vmax range should be an error",default=False))

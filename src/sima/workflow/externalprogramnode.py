@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.externalprogramnode import ExternalProgramNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.fileformat import FileFormat
-from sima.post.inputslot import InputSlot
-from sima.post.runnode import RunNode
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.fileinputslot import FileInputSlot
-from sima.workflow.fileoutputslot import FileOutputSlot
+from .fileinputslot import FileInputSlot
+from .fileoutputslot import FileOutputSlot
+from sima.post import ControlSignalInputSlot
+from sima.post import FileFormat
+from sima.post import InputSlot
+from sima.post import RunNode
+from sima.sima import ScriptableValue
 
 class ExternalProgramNode(RunNode):
     """
@@ -97,7 +97,7 @@ class ExternalProgramNode(RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -159,7 +159,7 @@ class ExternalProgramNode(RunNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -191,7 +191,7 @@ class ExternalProgramNode(RunNode):
     def fileInputSlots(self, value: List[FileInputSlot]):
         """Set fileInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fileInputSlots = value
 
     @property
@@ -203,7 +203,7 @@ class ExternalProgramNode(RunNode):
     def fileOutputSlots(self, value: List[FileOutputSlot]):
         """Set fileOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__fileOutputSlots = value
 
     @property

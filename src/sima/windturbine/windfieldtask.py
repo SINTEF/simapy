@@ -5,18 +5,18 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.windfieldtask import WindFieldTaskBlueprint
 from typing import Dict
-from sima.condition.conditiontask import ConditionTask
-from sima.condition.conditiontaskcondition import ConditionTaskCondition
-from sima.condition.initialcondition import InitialCondition
-from sima.condition.modelvariation import ModelVariation
-from sima.sima.doublevariable import DoubleVariable
-from sima.sima.integervariable import IntegerVariable
-from sima.sima.modelreferencevariable import ModelReferenceVariable
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simascript import SIMAScript
-from sima.sima.stringvariable import StringVariable
-from sima.windturbine.mannwindgenerator import MannWindGenerator
-from sima.windturbine.turbsimwindgenerator import TurbSimWindGenerator
+from .mannwindgenerator import MannWindGenerator
+from .turbsimwindgenerator import TurbSimWindGenerator
+from sima.condition import ConditionTask
+from sima.condition import ConditionTaskCondition
+from sima.condition import InitialCondition
+from sima.condition import ModelVariation
+from sima.sima import DoubleVariable
+from sima.sima import IntegerVariable
+from sima.sima import ModelReferenceVariable
+from sima.sima import SIMAScript
+from sima.sima import ScriptableValue
+from sima.sima import StringVariable
 
 class WindFieldTask(ConditionTask):
     """
@@ -87,7 +87,7 @@ class WindFieldTask(ConditionTask):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -109,7 +109,7 @@ class WindFieldTask(ConditionTask):
     def doubleVariables(self, value: List[DoubleVariable]):
         """Set doubleVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__doubleVariables = value
 
     @property
@@ -121,7 +121,7 @@ class WindFieldTask(ConditionTask):
     def integerVariables(self, value: List[IntegerVariable]):
         """Set integerVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__integerVariables = value
 
     @property
@@ -133,7 +133,7 @@ class WindFieldTask(ConditionTask):
     def stringVariables(self, value: List[StringVariable]):
         """Set stringVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stringVariables = value
 
     @property
@@ -155,7 +155,7 @@ class WindFieldTask(ConditionTask):
     def scripts(self, value: List[SIMAScript]):
         """Set scripts"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scripts = value
 
     @property
@@ -167,7 +167,7 @@ class WindFieldTask(ConditionTask):
     def variations(self, value: List[ModelVariation]):
         """Set variations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__variations = value
 
     @property
@@ -179,7 +179,7 @@ class WindFieldTask(ConditionTask):
     def referenceVariables(self, value: List[ModelReferenceVariable]):
         """Set referenceVariables"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__referenceVariables = value
 
     @property
@@ -201,7 +201,7 @@ class WindFieldTask(ConditionTask):
     def conditions(self, value: List[ConditionTaskCondition]):
         """Set conditions"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__conditions = value
 
     @property
@@ -213,7 +213,7 @@ class WindFieldTask(ConditionTask):
     def mannWindGenerator(self, value: List[MannWindGenerator]):
         """Set mannWindGenerator"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__mannWindGenerator = value
 
     @property
@@ -225,5 +225,5 @@ class WindFieldTask(ConditionTask):
     def turbSimWindGenerator(self, value: List[TurbSimWindGenerator]):
         """Set turbSimWindGenerator"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__turbSimWindGenerator = value

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.scatterdiagram import ScatterDiagramBlueprint
 from numpy import ndarray,asarray
-from sima.metocean.scatterdimension import ScatterDimension
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .scatterdimension import ScatterDimension
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class ScatterDiagram(Named):
     """
@@ -20,7 +20,7 @@ class ScatterDiagram(Named):
          (default None)
     hsUpperLimits : ScatterDimension
     tpUpperLimits : ScatterDimension
-    values : ndarray
+    values : ndarray of float
     unit : str
          (default None)
     """
@@ -32,7 +32,7 @@ class ScatterDiagram(Named):
         self.name = None
         self.hsUpperLimits = None
         self.tpUpperLimits = None
-        self.values = ndarray(1)
+        self.values = []
         self.unit = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -64,7 +64,7 @@ class ScatterDiagram(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -105,7 +105,10 @@ class ScatterDiagram(Named):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array
 
     @property
     def unit(self) -> str:

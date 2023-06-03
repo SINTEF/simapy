@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.conditionresultentrycontainer import ConditionResultEntryContainerBlueprint
 from typing import Dict
-from sima.sima.conditionresultcontainer import ConditionResultContainer
-from sima.sima.property import Property
-from sima.sima.result import Result
-from sima.sima.resultentry import ResultEntry
-from sima.sima.resultentrycontainer import ResultEntryContainer
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import ConditionResultContainer
+from sima.sima import Property
+from sima.sima import Result
+from sima.sima import ResultEntry
+from sima.sima import ResultEntryContainer
+from sima.sima import ScriptableValue
 
 class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContainer):
     """
@@ -79,7 +79,7 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -101,7 +101,7 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -143,7 +143,7 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     def results(self, value: List[Result]):
         """Set results"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__results = value
 
     @property
@@ -155,7 +155,7 @@ class ConditionResultEntryContainer(ResultEntryContainer,ConditionResultContaine
     def entries(self, value: List[ResultEntry]):
         """Set entries"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__entries = value
 
     @property

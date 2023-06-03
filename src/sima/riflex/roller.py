@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.roller import RollerBlueprint
 from typing import Dict
-from sima.riflex.springstiffnessitem import SpringStiffnessItem
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .springstiffnessitem import SpringStiffnessItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class Roller(NamedObject):
     """
@@ -81,7 +81,7 @@ class Roller(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -183,5 +183,5 @@ class Roller(NamedObject):
     def stiffnessItems(self, value: List[SpringStiffnessItem]):
         """Set stiffnessItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stiffnessItems = value

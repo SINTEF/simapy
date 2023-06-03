@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.numericalwave import NumericalWaveBlueprint
 from numpy import ndarray,asarray
-from sima.environment.wave import Wave
-from sima.sima.scriptablevalue import ScriptableValue
+from .wave import Wave
+from sima.sima import ScriptableValue
 
 class NumericalWave(Wave):
     """
@@ -15,20 +15,20 @@ class NumericalWave(Wave):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    directions : ndarray
+    directions : ndarray of float
          Number of wave directions
-    frequencies : ndarray
+    frequencies : ndarray of float
          Number of wave frequencies
-    values : ndarray
+    values : ndarray of float
     """
 
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.directions = ndarray(1)
-        self.frequencies = ndarray(1)
-        self.values = ndarray(1)
+        self.directions = []
+        self.frequencies = []
+        self.values = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -59,7 +59,7 @@ class NumericalWave(Wave):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -70,7 +70,10 @@ class NumericalWave(Wave):
     @directions.setter
     def directions(self, value: ndarray):
         """Set directions"""
-        self.__directions = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__directions = array
 
     @property
     def frequencies(self) -> ndarray:
@@ -80,7 +83,10 @@ class NumericalWave(Wave):
     @frequencies.setter
     def frequencies(self, value: ndarray):
         """Set frequencies"""
-        self.__frequencies = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__frequencies = array
 
     @property
     def values(self) -> ndarray:
@@ -90,4 +96,7 @@ class NumericalWave(Wave):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array

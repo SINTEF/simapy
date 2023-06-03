@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.regularwaveloading import RegularWaveLoadingBlueprint
 from typing import Dict
-from sima.riflex.kinematicsinwavezone import KinematicsInWaveZone
-from sima.riflex.riserposition import RiserPosition
-from sima.riflex.wavetheory import WaveTheory
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .kinematicsinwavezone import KinematicsInWaveZone
+from .riserposition import RiserPosition
+from .wavetheory import WaveTheory
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class RegularWaveLoading(MOAO):
     """
@@ -63,7 +63,7 @@ class RegularWaveLoading(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlawinchgroup import HLAWinchGroupBlueprint
 from typing import Dict
-from sima.hla.hlaobject import HLAObject
-from sima.hla.hlawinchcontrolconfiguration import HLAWinchControlConfiguration
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaobject import HLAObject
+from .hlawinchcontrolconfiguration import HLAWinchControlConfiguration
+from sima.sima import ScriptableValue
 
 class HLAWinchGroup(HLAObject):
     """
@@ -57,7 +57,7 @@ class HLAWinchGroup(HLAObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class HLAWinchGroup(HLAObject):
     def winchConfigurations(self, value: List[HLAWinchControlConfiguration]):
         """Set winchConfigurations"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__winchConfigurations = value

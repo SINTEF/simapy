@@ -6,15 +6,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.contactsurfacepoint import ContactSurfacePointBlueprint
 from typing import Dict
-from sima.riflex.end import End
-from sima.riflex.segmentreference import SegmentReference
-from sima.sima.scriptablevalue import ScriptableValue
+from .end import End
+from .segmentreference import SegmentReference
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
-    from sima.riflex.tensioner import Tensioner
-    from sima.riflex.rollercontact import RollerContact
-    from sima.riflex.tubularcontact import TubularContact
+    from .arline import ARLine
+    from .tensioner import Tensioner
+    from .rollercontact import RollerContact
+    from .tubularcontact import TubularContact
 
 class ContactSurfacePoint(SegmentReference):
     """
@@ -80,7 +80,7 @@ class ContactSurfacePoint(SegmentReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

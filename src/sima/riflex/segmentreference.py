@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.segmentreference import SegmentReferenceBlueprint
 from typing import Dict
-from sima.riflex.linereference import LineReference
-from sima.sima.scriptablevalue import ScriptableValue
+from .linereference import LineReference
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
+    from .arline import ARLine
 
 class SegmentReference(LineReference):
     """
@@ -64,7 +64,7 @@ class SegmentReference(LineReference):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

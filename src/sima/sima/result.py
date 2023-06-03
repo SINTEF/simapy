@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.result import ResultBlueprint
 from typing import Dict
-from sima.sima.named import Named
-from sima.sima.property import Property
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simamessage import SimaMessage
+from .named import Named
+from .property import Property
+from .scriptablevalue import ScriptableValue
+from .simamessage import SimaMessage
 
 class Result(Named):
     """
@@ -78,7 +78,7 @@ class Result(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -100,7 +100,7 @@ class Result(Named):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -172,5 +172,5 @@ class Result(Named):
     def messages(self, value: List[SimaMessage]):
         """Set messages"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__messages = value

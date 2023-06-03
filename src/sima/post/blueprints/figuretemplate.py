@@ -20,6 +20,7 @@ class FigureTemplateBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("yAxis","sima/post/AxisConfiguration","",True))
         self.add_attribute(Attribute("showTitle","boolean","",default=True))
         self.add_attribute(Attribute("showLegend","boolean","",default=True))
+        self.add_attribute(Attribute("equalAxes","boolean","",default=False))
         self.add_attribute(EnumAttribute("size","sima/post/PlotSize",""))
         self.add_attribute(Attribute("width","integer","",default=0))
         self.add_attribute(Attribute("height","integer","",default=0))

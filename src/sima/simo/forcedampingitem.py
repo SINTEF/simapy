@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.forcedampingitem import ForceDampingItemBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.forceitem import ForceItem
+from .forceitem import ForceItem
+from sima.sima import ScriptableValue
 
 class ForceDampingItem(ForceItem):
     """
@@ -60,7 +60,7 @@ class ForceDampingItem(ForceItem):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

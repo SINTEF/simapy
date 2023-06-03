@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.sncurve import SNCurveBlueprint
 from typing import Dict
-from sima.riflex.fatiguelimitindicator import FatigueLimitIndicator
-from sima.riflex.sncurveitem import SNCurveItem
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .fatiguelimitindicator import FatigueLimitIndicator
+from .sncurveitem import SNCurveItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class SNCurve(NamedObject):
     """
@@ -76,7 +76,7 @@ class SNCurve(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -158,5 +158,5 @@ class SNCurve(NamedObject):
     def curveItems(self, value: List[SNCurveItem]):
         """Set curveItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__curveItems = value

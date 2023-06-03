@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.gdfgeometry import GDFGeometryBlueprint
 from numpy import ndarray,asarray
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class GDFGeometry(MOAO):
     """
@@ -21,7 +21,7 @@ class GDFGeometry(MOAO):
          (default 0)
     nValues : int
          (default 0)
-    values : ndarray
+    values : ndarray of float
     dimensionalLength : float
          (default 1.0)
     gravitationalAcceleration : float
@@ -35,7 +35,7 @@ class GDFGeometry(MOAO):
         self.xSymmetry = xSymmetry
         self.ySymmetry = ySymmetry
         self.nValues = nValues
-        self.values = ndarray(1)
+        self.values = []
         self.dimensionalLength = dimensionalLength
         self.gravitationalAcceleration = gravitationalAcceleration
         for key, value in kwargs.items():
@@ -68,7 +68,7 @@ class GDFGeometry(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -109,7 +109,10 @@ class GDFGeometry(MOAO):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array
 
     @property
     def dimensionalLength(self) -> float:

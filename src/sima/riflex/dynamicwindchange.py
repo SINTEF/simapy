@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dynamicwindchange import DynamicWindChangeBlueprint
 from typing import Dict
-from sima.riflex.iec2005windeventtype import IEC2005WindEventType
-from sima.riflex.iec2005windturbineclass import IEC2005WindTurbineClass
-from sima.riflex.winddirection import WindDirection
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .iec2005windeventtype import IEC2005WindEventType
+from .iec2005windturbineclass import IEC2005WindTurbineClass
+from .winddirection import WindDirection
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DynamicWindChange(MOAO):
     """
@@ -84,7 +84,7 @@ class DynamicWindChange(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

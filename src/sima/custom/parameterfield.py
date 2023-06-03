@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.parameterfield import ParameterFieldBlueprint
 from typing import Dict
-from sima.custom.customcomponent import CustomComponent
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.singleparameter import SingleParameter
+from .customcomponent import CustomComponent
+from sima.sima import ScriptableValue
+from sima.sima import SingleParameter
 
 class ParameterField(CustomComponent,SingleParameter):
     """
@@ -52,5 +52,5 @@ class ParameterField(CustomComponent,SingleParameter):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value

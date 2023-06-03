@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.omnidirectionalextremevalues import OmniDirectionalExtremeValuesBlueprint
 from typing import Dict
-from sima.metocean.extremevalue import ExtremeValue
-from sima.metocean.levelextreme import LevelExtreme
-from sima.sima.scriptablevalue import ScriptableValue
+from .extremevalue import ExtremeValue
+from .levelextreme import LevelExtreme
+from sima.sima import ScriptableValue
 
 class OmniDirectionalExtremeValues(LevelExtreme):
     """
@@ -66,7 +66,7 @@ class OmniDirectionalExtremeValues(LevelExtreme):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -118,5 +118,5 @@ class OmniDirectionalExtremeValues(LevelExtreme):
     def extremeValues(self, value: List[ExtremeValue]):
         """Set extremeValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__extremeValues = value

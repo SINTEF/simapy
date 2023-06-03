@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hlacontrollableparam import HLAControllableParamBlueprint
 from typing import Dict
-from sima.hla.hlaobject import HLAObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlaobject import HLAObject
+from sima.sima import ScriptableValue
 
 class HLAControllableParam(HLAObject):
     """
@@ -54,7 +54,7 @@ class HLAControllableParam(HLAObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

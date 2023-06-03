@@ -22,3 +22,4 @@ class DistanceLineToLineFilterBlueprint(OperationNodeBlueprint):
         self.add_attribute(BlueprintAttribute("controlSignalInputSlots","sima/post/ControlSignalInputSlot","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("filterInputSlots","sima/post/InputSlot","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("filterOutputSlots","sima/post/OutputSlot","",True,Dimension("*")))
+        self.add_attribute(Attribute("outputVector","boolean","",default=False))

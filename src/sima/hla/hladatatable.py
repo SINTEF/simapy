@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.hladatatable import HLADataTableBlueprint
 from typing import Dict
-from sima.hla.hlasignal import HLASignal
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .hlasignal import HLASignal
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class HLADataTable(Named):
     """
@@ -60,7 +60,7 @@ class HLADataTable(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -82,7 +82,7 @@ class HLADataTable(Named):
     def signals(self, value: List[HLASignal]):
         """Set signals"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__signals = value
 
     @property

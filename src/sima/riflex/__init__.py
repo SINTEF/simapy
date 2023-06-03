@@ -29,6 +29,8 @@ from .commonsoiltype import CommonSoilType # noqa
 from .contactspringstiffnessitem import ContactSpringStiffnessItem # noqa
 from .contactsurfaceline import ContactSurfaceLine # noqa
 from .contactsurfacepoint import ContactSurfacePoint # noqa
+from .coupledaxialtorsionstrainitem import CoupledAxialTorsionStrainItem # noqa
+from .coupledaxialtorsionstrainmodel import CoupledAxialTorsionStrainModel # noqa
 from .crosssection import CrossSection # noqa
 from .crosssectionreference import CrossSectionReference # noqa
 from .crsaxialdamping import CRSAxialDamping # noqa
@@ -67,6 +69,7 @@ from .elementangle import ElementAngle # noqa
 from .elementendspesification import ElementEndSpesification # noqa
 from .elementreference import ElementReference # noqa
 from .elementstressstorage import ElementStressStorage # noqa
+from .elementtransformation import ElementTransformation # noqa
 from .envelopecurvespecification import EnvelopeCurveSpecification # noqa
 from .excitationcoefficientscurveproperty import ExcitationCoefficientsCurveProperty # noqa
 from .excitationcoefficientsnondimensionalfrequencyitem import ExcitationCoefficientsNonDimensionalFrequencyItem # noqa
@@ -81,7 +84,6 @@ from .fatigueanalysistask import FatigueAnalysisTask # noqa
 from .fatigueproperties import FatigueProperties # noqa
 from .fibrerope import FibreRope # noqa
 from .fibreropemassvolume import FibreRopeMassVolume # noqa
-from .fishnet import FishNet # noqa
 from .flexjointconnectortype import FlexJointConnectorType # noqa
 from .forceresponsestorage import ForceResponseStorage # noqa
 from .generalcrosssection import GeneralCrossSection # noqa
@@ -111,6 +113,7 @@ from .localelementaxis import LocalElementAxis # noqa
 from .mainriserline import MainRiserLine # noqa
 from .marinegrowth import MarineGrowth # noqa
 from .massfrequencyproperty import MassFrequencyProperty # noqa
+from .masssummary import MassSummary # noqa
 from .material import Material # noqa
 from .matrixplotresult import MatrixPlotResult # noqa
 from .measurementelement import MeasurementElement # noqa
@@ -209,6 +212,7 @@ from .torsionstiffnessitem import TorsionStiffnessItem # noqa
 from .tubularcontact import TubularContact # noqa
 from .turbinebladeresponsestorage import TurbineBladeResponseStorage # noqa
 from .turbineresponsestorage import TurbineResponseStorage # noqa
+from .userdefinedelement import UserdefinedElement # noqa
 from .vonmisescombinedloading import VonMisesCombinedLoading # noqa
 from .wavekinematicsdiffpoint import WaveKinematicsDiffPoint # noqa
 from .wavekinematicsnodepoint import WaveKinematicsNodePoint # noqa
@@ -242,7 +246,6 @@ from .convergencenorm import ConvergenceNorm # noqa
 from .coordinatesystem import CoordinateSystem # noqa
 from .dampingmatrixcalculationoption import DampingMatrixCalculationOption # noqa
 from .detaillevel import DetailLevel # noqa
-from .eigenvaluestartvector import EigenvalueStartVector # noqa
 from .end import End # noqa
 from .fatiguecalculationoption import FatigueCalculationOption # noqa
 from .fatiguelimitindicator import FatigueLimitIndicator # noqa
@@ -271,6 +274,8 @@ from .loadandmassformulation import LoadAndMassFormulation # noqa
 from .loadformulation import LoadFormulation # noqa
 from .loadspecificationtype import LoadSpecificationType # noqa
 from .lowfrequencymotionindicator import LowFrequencyMotionIndicator # noqa
+from .masssummaryreference import MassSummaryReference # noqa
+from .masssummarystep import MassSummaryStep # noqa
 from .materialmodel import MaterialModel # noqa
 from .matrixplotfileoption import MatrixPlotFileOption # noqa
 from .matrixplotstorage import MatrixPlotStorage # noqa
@@ -304,7 +309,6 @@ from .stiffnesstype import StiffnessType # noqa
 from .storagetype import StorageType # noqa
 from .stressjointloadformulation import StressJointLoadFormulation # noqa
 from .stresstype import StressType # noqa
-from .tangentialfroudekrylovscaling import TangentialFroudeKrylovScaling # noqa
 from .timeseriesprintoption import TimeSeriesPrintOption # noqa
 from .toplevelsoilposition import TopLevelSoilPosition # noqa
 from .torsionstiffness import TorsionStiffness # noqa

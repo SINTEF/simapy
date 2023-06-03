@@ -17,7 +17,7 @@ class FatiguePropertiesBlueprint(MOAOBlueprint):
         self.add_attribute(EnumAttribute("calculationOption","sima/riflex/FatigueCalculationOption",""))
         self.add_attribute(Attribute("numCrossSectionPoints","integer","Number of points around cross-section where fatigue is",default=0))
         self.add_attribute(EnumAttribute("resultPrintOption","sima/riflex/ResultPrintOption",""))
-        self.add_attribute(EnumAttribute("timeSeriesPrintOption","sima/riflex/TimeSeriesPrintOption",""))
+        self.add_attribute(EnumAttribute("timeSeriesPrintOption","sima/riflex/TimeSeriesPrintOption","Optional tension/curvature export to ascci file ( viv_tension_curvature_ts.txt )"))
         self.add_attribute(Attribute("timeSeriesLength","number","Length of stress time series to be generated for fatigue calculation",default=0.0))
         self.add_attribute(Attribute("timeStep","number","Time step to be used in the stress time series",default=0.0))
         self.add_attribute(Attribute("seed","integer","Seed for generating random phase angles",default=31415))

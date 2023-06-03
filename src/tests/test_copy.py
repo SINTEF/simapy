@@ -15,12 +15,12 @@ def test_different_copies():
     line2.attachmentPoint = bp2
     sys.lines = [line1, line2]
 
-    # First create a simple copy of the line
-    line1_copy = line1.copy()
+    # First create a simple copy of the line without external references
+    line1_copy = line1.copy(keep_uncontained_references=False)
     # Then the copy should not have an attachment point
     assert line1_copy.attachmentPoint is None
 
-    # Make a copy with external references
+    # Make a copy with external references (the default)
     line1_copy = line1.copy(keep_uncontained_references=True)
     # Now the copy should retain the attachment point
     assert line1_copy.attachmentPoint is bp1

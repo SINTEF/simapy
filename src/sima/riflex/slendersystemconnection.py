@@ -6,18 +6,18 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.slendersystemconnection import SlenderSystemConnectionBlueprint
 from typing import Dict
-from sima.riflex.bodylocation import BodyLocation
-from sima.riflex.elementreference import ElementReference
-from sima.riflex.end import End
-from sima.riflex.nodeconstraint import NodeConstraint
-from sima.riflex.nodereference import NodeReference
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.bodyslendersystemconnection import BodySlenderSystemConnection
+from .bodylocation import BodyLocation
+from .elementreference import ElementReference
+from .end import End
+from .nodeconstraint import NodeConstraint
+from .nodereference import NodeReference
+from sima.sima import Position
+from sima.sima import ScriptableValue
+from sima.simo import BodySlenderSystemConnection
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.riflex.arline import ARLine
-    from sima.riflex.supernode import SuperNode
+    from .arline import ARLine
+    from .supernode import SuperNode
 
 class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemConnection):
     """
@@ -47,7 +47,7 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     name : str
          (default 'connection')
     location : BodyLocation
-         If a supernode is used as location option and it is not part of a line, a dummy line will be created automatically.
+         A SIMO body node is added to the element model for each body. \nThe node may have a rigid connection to a slender system node or may be a free or fixed node without connection to the slender system.
     superNode : SuperNode
          Line
     artificialStiffness : bool
@@ -124,7 +124,7 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -229,7 +229,8 @@ class SlenderSystemConnection(ElementReference,NodeReference,BodySlenderSystemCo
 
     @property
     def location(self) -> BodyLocation:
-        """If a supernode is used as location option and it is not part of a line, a dummy line will be created automatically."""
+        """A SIMO body node is added to the element model for each body. 
+The node may have a rigid connection to a slender system node or may be a free or fixed node without connection to the slender system."""
         return self.__location
 
     @location.setter

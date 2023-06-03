@@ -6,11 +6,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simofederate import SIMOFederateBlueprint
 from typing import Dict
-from sima.hla.hlafederate import HLAFederate
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.hla import HLAFederate
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.condition.conditiontask import ConditionTask
+    from sima.condition import ConditionTask
 
 class SIMOFederate(HLAFederate):
     """
@@ -63,7 +63,7 @@ class SIMOFederate(HLAFederate):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

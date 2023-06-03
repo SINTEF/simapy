@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.rollercontact import RollerContactBlueprint
 from typing import Dict
-from sima.riflex.roller import Roller
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .roller import Roller
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class RollerContact(NamedObject):
     """
@@ -57,7 +57,7 @@ class RollerContact(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class RollerContact(NamedObject):
     def rollers(self, value: List[Roller]):
         """Set rollers"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__rollers = value

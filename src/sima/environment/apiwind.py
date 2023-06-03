@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.apiwind import APIWindBlueprint
 from typing import Dict
-from sima.environment.wind import Wind
-from sima.sima.scriptablevalue import ScriptableValue
+from .wind import Wind
+from sima.sima import ScriptableValue
 
 class APIWind(Wind):
     """
@@ -17,27 +17,27 @@ class APIWind(Wind):
     scriptableValues : List[ScriptableValue]
     direction : float
          Wind propagation direction(default 0.0)
+    averageVelocity : float
+         Average velocity at reference height(default 0.0)
     frequencyParameter : float
          Frequency parameter(default 0.025)
     layerThickness : float
          Surface Layer Thickness(default 20.0)
     profileExponent : float
          Wind profile exponent(default 0.125)
-    averageVelocity : float
-         Average velocity at reference height(default 0.0)
     friction : float
          Surface drag coefficient.\nAlso used for transverse gust spectrum, if specified in DYNMOD.(default 0.002)
     """
 
-    def __init__(self , description="", direction=0.0, frequencyParameter=0.025, layerThickness=20.0, profileExponent=0.125, averageVelocity=0.0, friction=0.002, **kwargs):
+    def __init__(self , description="", direction=0.0, averageVelocity=0.0, frequencyParameter=0.025, layerThickness=20.0, profileExponent=0.125, friction=0.002, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.direction = direction
+        self.averageVelocity = averageVelocity
         self.frequencyParameter = frequencyParameter
         self.layerThickness = layerThickness
         self.profileExponent = profileExponent
-        self.averageVelocity = averageVelocity
         self.friction = friction
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -69,7 +69,7 @@ class APIWind(Wind):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -81,6 +81,16 @@ class APIWind(Wind):
     def direction(self, value: float):
         """Set direction"""
         self.__direction = float(value)
+
+    @property
+    def averageVelocity(self) -> float:
+        """Average velocity at reference height"""
+        return self.__averageVelocity
+
+    @averageVelocity.setter
+    def averageVelocity(self, value: float):
+        """Set averageVelocity"""
+        self.__averageVelocity = float(value)
 
     @property
     def frequencyParameter(self) -> float:
@@ -111,16 +121,6 @@ class APIWind(Wind):
     def profileExponent(self, value: float):
         """Set profileExponent"""
         self.__profileExponent = float(value)
-
-    @property
-    def averageVelocity(self) -> float:
-        """Average velocity at reference height"""
-        return self.__averageVelocity
-
-    @averageVelocity.setter
-    def averageVelocity(self, value: float):
-        """Set averageVelocity"""
-        self.__averageVelocity = float(value)
 
     @property
     def friction(self) -> float:

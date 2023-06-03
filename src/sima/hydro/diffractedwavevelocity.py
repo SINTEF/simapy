@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.diffractedwavevelocity import DiffractedWaveVelocityBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.directiondependentcomplexvalues import DirectionDependentComplexValues
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .directiondependentcomplexvalues import DirectionDependentComplexValues
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class DiffractedWaveVelocity(MOAO):
     """
@@ -16,8 +16,8 @@ class DiffractedWaveVelocity(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    directions : ndarray
-    frequencies : ndarray
+    directions : ndarray of float
+    frequencies : ndarray of float
     u : DirectionDependentComplexValues
     v : DirectionDependentComplexValues
     w : DirectionDependentComplexValues
@@ -27,8 +27,8 @@ class DiffractedWaveVelocity(MOAO):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.directions = ndarray(1)
-        self.frequencies = ndarray(1)
+        self.directions = []
+        self.frequencies = []
         self.u = None
         self.v = None
         self.w = None
@@ -62,7 +62,7 @@ class DiffractedWaveVelocity(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -73,7 +73,10 @@ class DiffractedWaveVelocity(MOAO):
     @directions.setter
     def directions(self, value: ndarray):
         """Set directions"""
-        self.__directions = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__directions = array
 
     @property
     def frequencies(self) -> ndarray:
@@ -83,7 +86,10 @@ class DiffractedWaveVelocity(MOAO):
     @frequencies.setter
     def frequencies(self, value: ndarray):
         """Set frequencies"""
-        self.__frequencies = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__frequencies = array
 
     @property
     def u(self) -> DirectionDependentComplexValues:

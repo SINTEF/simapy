@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.spectralpeakperiodrelation import SpectralPeakPeriodRelationBlueprint
 from numpy import ndarray,asarray
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class SpectralPeakPeriodRelation(MOAO):
     """
@@ -15,20 +15,20 @@ class SpectralPeakPeriodRelation(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    hs : ndarray
-    interval5 : ndarray
-    mean : ndarray
-    interval95 : ndarray
+    hs : ndarray of float
+    interval5 : ndarray of float
+    mean : ndarray of float
+    interval95 : ndarray of float
     """
 
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.hs = ndarray(1)
-        self.interval5 = ndarray(1)
-        self.mean = ndarray(1)
-        self.interval95 = ndarray(1)
+        self.hs = []
+        self.interval5 = []
+        self.mean = []
+        self.interval95 = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -59,7 +59,7 @@ class SpectralPeakPeriodRelation(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -70,7 +70,10 @@ class SpectralPeakPeriodRelation(MOAO):
     @hs.setter
     def hs(self, value: ndarray):
         """Set hs"""
-        self.__hs = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__hs = array
 
     @property
     def interval5(self) -> ndarray:
@@ -80,7 +83,10 @@ class SpectralPeakPeriodRelation(MOAO):
     @interval5.setter
     def interval5(self, value: ndarray):
         """Set interval5"""
-        self.__interval5 = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__interval5 = array
 
     @property
     def mean(self) -> ndarray:
@@ -90,7 +96,10 @@ class SpectralPeakPeriodRelation(MOAO):
     @mean.setter
     def mean(self, value: ndarray):
         """Set mean"""
-        self.__mean = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__mean = array
 
     @property
     def interval95(self) -> ndarray:
@@ -100,4 +109,7 @@ class SpectralPeakPeriodRelation(MOAO):
     @interval95.setter
     def interval95(self, value: ndarray):
         """Set interval95"""
-        self.__interval95 = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__interval95 = array

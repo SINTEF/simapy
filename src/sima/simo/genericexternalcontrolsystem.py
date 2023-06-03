@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.genericexternalcontrolsystem import GenericExternalControlSystemBlueprint
 from typing import Dict
-from sima.sima.librarypaths import LibraryPaths
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.nameddoubleparameter import NamedDoubleParameter
-from sima.simo.namedintparameter import NamedIntParameter
-from sima.simo.namedstringparameter import NamedStringParameter
-from sima.simo.signalentity import SignalEntity
+from .nameddoubleparameter import NamedDoubleParameter
+from .namedintparameter import NamedIntParameter
+from .namedstringparameter import NamedStringParameter
+from .signalentity import SignalEntity
+from sima.sima import LibraryPaths
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class GenericExternalControlSystem(NamedObject):
     """
@@ -77,7 +77,7 @@ class GenericExternalControlSystem(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -119,7 +119,7 @@ class GenericExternalControlSystem(NamedObject):
     def measurementEntities(self, value: List[SignalEntity]):
         """Set measurementEntities"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__measurementEntities = value
 
     @property
@@ -131,7 +131,7 @@ class GenericExternalControlSystem(NamedObject):
     def feedbackEntities(self, value: List[SignalEntity]):
         """Set feedbackEntities"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__feedbackEntities = value
 
     @property
@@ -143,7 +143,7 @@ class GenericExternalControlSystem(NamedObject):
     def intParameters(self, value: List[NamedIntParameter]):
         """Set intParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__intParameters = value
 
     @property
@@ -155,7 +155,7 @@ class GenericExternalControlSystem(NamedObject):
     def doubleParameters(self, value: List[NamedDoubleParameter]):
         """Set doubleParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__doubleParameters = value
 
     @property
@@ -167,7 +167,7 @@ class GenericExternalControlSystem(NamedObject):
     def stringParameters(self, value: List[NamedStringParameter]):
         """Set stringParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stringParameters = value
 
     @property

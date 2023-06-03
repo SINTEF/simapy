@@ -6,13 +6,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simplewirecoupling import SimpleWireCouplingBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.activationfailuremode import ActivationFailureMode
-from sima.simo.guidepointspecification import GuidePointSpecification
-from sima.simo.simplecoupling import SimpleCoupling
+from .activationfailuremode import ActivationFailureMode
+from .guidepointspecification import GuidePointSpecification
+from .simplecoupling import SimpleCoupling
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.simo.simobodypoint import SIMOBodyPoint
+    from .simobodypoint import SIMOBodyPoint
 
 class SimpleWireCoupling(SimpleCoupling):
     """
@@ -105,7 +105,7 @@ class SimpleWireCoupling(SimpleCoupling):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -217,7 +217,7 @@ class SimpleWireCoupling(SimpleCoupling):
     def guidePointSpecifications(self, value: List[GuidePointSpecification]):
         """Set guidePointSpecifications"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__guidePointSpecifications = value
 
     @property

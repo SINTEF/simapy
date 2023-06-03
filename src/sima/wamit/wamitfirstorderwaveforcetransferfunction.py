@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitfirstorderwaveforcetransferfunction import WamitFirstOrderWaveForceTransferFunctionBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.directiondependentcomplexvalues import DirectionDependentComplexValues
-from sima.hydro.directionsymmetry import DirectionSymmetry
-from sima.hydro.firstorderwaveforcetransferfunction import FirstOrderWaveForceTransferFunction
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.hydro import DirectionDependentComplexValues
+from sima.hydro import DirectionSymmetry
+from sima.hydro import FirstOrderWaveForceTransferFunction
+from sima.sima import Named
+from sima.sima import ScriptableValue
 
 class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFunction,Named):
     """
@@ -18,8 +18,8 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    directions : ndarray
-    frequencies : ndarray
+    directions : ndarray of float
+    frequencies : ndarray of float
     symmetry : DirectionSymmetry
     fx : DirectionDependentComplexValues
     fy : DirectionDependentComplexValues
@@ -35,8 +35,8 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.directions = ndarray(1)
-        self.frequencies = ndarray(1)
+        self.directions = []
+        self.frequencies = []
         self.symmetry = symmetry
         self.fx = None
         self.fy = None
@@ -75,7 +75,7 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -86,7 +86,10 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
     @directions.setter
     def directions(self, value: ndarray):
         """Set directions"""
-        self.__directions = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__directions = array
 
     @property
     def frequencies(self) -> ndarray:
@@ -96,7 +99,10 @@ class WamitFirstOrderWaveForceTransferFunction(FirstOrderWaveForceTransferFuncti
     @frequencies.setter
     def frequencies(self, value: ndarray):
         """Set frequencies"""
-        self.__frequencies = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__frequencies = array
 
     @property
     def symmetry(self) -> DirectionSymmetry:

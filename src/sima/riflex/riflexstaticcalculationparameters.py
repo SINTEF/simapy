@@ -5,14 +5,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexstaticcalculationparameters import RIFLEXStaticCalculationParametersBlueprint
 from typing import Dict
-from sima.riflex.loadandmassformulation import LoadAndMassFormulation
-from sima.riflex.matrixplotstorage import MatrixPlotStorage
-from sima.riflex.matrixstorage import MatrixStorage
-from sima.riflex.parametervariation import ParameterVariation
-from sima.riflex.staticloadcomponent import StaticLoadComponent
-from sima.riflex.staticloadtypeitem import StaticLoadTypeItem
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .loadandmassformulation import LoadAndMassFormulation
+from .masssummary import MassSummary
+from .matrixplotstorage import MatrixPlotStorage
+from .matrixstorage import MatrixStorage
+from .parametervariation import ParameterVariation
+from .staticloadcomponent import StaticLoadComponent
+from .staticloadtypeitem import StaticLoadTypeItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class RIFLEXStaticCalculationParameters(MOAO):
     """
@@ -38,9 +39,12 @@ class RIFLEXStaticCalculationParameters(MOAO):
          Storage option for Matrix Plot
     startAtZero : bool
          Start arc length at zero for each line(default True)
+    storeStructuralData : bool
+         Store additional FEM data(default False)
+    massSummary : MassSummary
     """
 
-    def __init__(self , description="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, **kwargs):
+    def __init__(self , description="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, storeStructuralData=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -55,6 +59,8 @@ class RIFLEXStaticCalculationParameters(MOAO):
         self.storeVisualisationResponses = storeVisualisationResponses
         self.matrixPlotStorage = matrixPlotStorage
         self.startAtZero = startAtZero
+        self.storeStructuralData = storeStructuralData
+        self.massSummary = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -85,7 +91,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -97,7 +103,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
     def loadTypeItems(self, value: List[StaticLoadTypeItem]):
         """Set loadTypeItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__loadTypeItems = value
 
     @property
@@ -129,7 +135,7 @@ class RIFLEXStaticCalculationParameters(MOAO):
     def staticLoadComponents(self, value: List[StaticLoadComponent]):
         """Set staticLoadComponents"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__staticLoadComponents = value
 
     @property
@@ -201,3 +207,23 @@ class RIFLEXStaticCalculationParameters(MOAO):
     def startAtZero(self, value: bool):
         """Set startAtZero"""
         self.__startAtZero = bool(value)
+
+    @property
+    def storeStructuralData(self) -> bool:
+        """Store additional FEM data"""
+        return self.__storeStructuralData
+
+    @storeStructuralData.setter
+    def storeStructuralData(self, value: bool):
+        """Set storeStructuralData"""
+        self.__storeStructuralData = bool(value)
+
+    @property
+    def massSummary(self) -> MassSummary:
+        """"""
+        return self.__massSummary
+
+    @massSummary.setter
+    def massSummary(self, value: MassSummary):
+        """Set massSummary"""
+        self.__massSummary = value

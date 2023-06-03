@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.massmatrix import MassMatrixBlueprint
 from numpy import ndarray,asarray
-from sima.hydro.matrix6 import Matrix6
-from sima.sima.point3 import Point3
-from sima.sima.scriptablevalue import ScriptableValue
+from .matrix6 import Matrix6
+from sima.sima import Point3
+from sima.sima import ScriptableValue
 
 class MassMatrix(Matrix6):
     """
@@ -16,7 +16,7 @@ class MassMatrix(Matrix6):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    values : ndarray
+    values : ndarray of float
     cog : Point3
          Coordinates of centre of gravity, (L)
     """
@@ -25,7 +25,7 @@ class MassMatrix(Matrix6):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.values = ndarray(1)
+        self.values = []
         self.cog = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -57,7 +57,7 @@ class MassMatrix(Matrix6):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -68,7 +68,10 @@ class MassMatrix(Matrix6):
     @values.setter
     def values(self, value: ndarray):
         """Set values"""
-        self.__values = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__values = array
 
     @property
     def cog(self) -> Point3:

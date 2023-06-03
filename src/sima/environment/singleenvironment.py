@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.singleenvironment import SingleEnvironmentBlueprint
 from typing import Dict
-from sima.environment.current import Current
-from sima.environment.environment import Environment
-from sima.environment.wave import Wave
-from sima.environment.wind import Wind
-from sima.sima.scriptablevalue import ScriptableValue
+from .current import Current
+from .environment import Environment
+from .wave import Wave
+from .wind import Wind
+from sima.sima import ScriptableValue
 
 class SingleEnvironment(Environment):
     """
@@ -65,7 +65,7 @@ class SingleEnvironment(Environment):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

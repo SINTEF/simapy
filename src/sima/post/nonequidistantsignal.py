@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.nonequidistantsignal import NonEquidistantSignalBlueprint
 from typing import Dict
-from sima.post.generatorsignal import GeneratorSignal
-from sima.post.signalproperties import SignalProperties
-from sima.post.xyitem import XYItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .generatorsignal import GeneratorSignal
+from .signalproperties import SignalProperties
+from .xyitem import XYItem
+from sima.sima import ScriptableValue
 
 class NonEquidistantSignal(GeneratorSignal):
     """
@@ -72,7 +72,7 @@ class NonEquidistantSignal(GeneratorSignal):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -84,7 +84,7 @@ class NonEquidistantSignal(GeneratorSignal):
     def properties(self, value: List[SignalProperties]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property
@@ -126,7 +126,7 @@ class NonEquidistantSignal(GeneratorSignal):
     def values(self, value: List[XYItem]):
         """Set values"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__values = value
 
     @property

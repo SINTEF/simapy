@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.ballasttank import BallastTankBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.position import Position
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.ballastquantitytype import BallastQuantityType
-from sima.simo.ballasttankstate import BallastTankState
+from .ballastquantitytype import BallastQuantityType
+from .ballasttankstate import BallastTankState
+from sima.sima import NamedObject
+from sima.sima import Position
+from sima.sima import ScriptableValue
 
 class BallastTank(NamedObject):
     """
@@ -91,7 +91,7 @@ class BallastTank(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

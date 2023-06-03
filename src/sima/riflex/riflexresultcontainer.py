@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.riflexresultcontainer import RIFLEXResultContainerBlueprint
 from typing import Dict
-from sima.riflex.riflexdynamicresultentry import RIFLEXDynamicResultEntry
-from sima.riflex.riflexeigenvalueresultentry import RIFLEXEigenvalueResultEntry
-from sima.riflex.riflexstaticresultentry import RIFLEXStaticResultEntry
-from sima.riflex.riflexvivanaresultentry import RIFLEXVivanaResultEntry
-from sima.sima.conditionresultcontainer import ConditionResultContainer
-from sima.sima.property import Property
-from sima.sima.scriptablevalue import ScriptableValue
+from .riflexdynamicresultentry import RIFLEXDynamicResultEntry
+from .riflexeigenvalueresultentry import RIFLEXEigenvalueResultEntry
+from .riflexstaticresultentry import RIFLEXStaticResultEntry
+from .riflexvivanaresultentry import RIFLEXVivanaResultEntry
+from sima.sima import ConditionResultContainer
+from sima.sima import Property
+from sima.sima import ScriptableValue
 
 class RIFLEXResultContainer(ConditionResultContainer):
     """
@@ -75,7 +75,7 @@ class RIFLEXResultContainer(ConditionResultContainer):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -97,7 +97,7 @@ class RIFLEXResultContainer(ConditionResultContainer):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value
 
     @property

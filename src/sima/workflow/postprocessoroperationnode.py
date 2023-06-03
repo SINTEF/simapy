@@ -6,16 +6,16 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.postprocessoroperationnode import PostProcessorOperationNodeBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.operationnode import OperationNode
-from sima.post.runnode import RunNode
-from sima.post.slotconnection import SlotConnection
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.workflow.operationinputslot import OperationInputSlot
-from sima.workflow.operationoutputslot import OperationOutputSlot
+from .operationinputslot import OperationInputSlot
+from .operationoutputslot import OperationOutputSlot
+from sima.post import ControlSignalInputSlot
+from sima.post import OperationNode
+from sima.post import RunNode
+from sima.post import SlotConnection
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.post.operationnode import OperationNode
+    from sima.post import OperationNode
 
 class PostProcessorOperationNode(RunNode):
     """
@@ -87,7 +87,7 @@ class PostProcessorOperationNode(RunNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -149,7 +149,7 @@ class PostProcessorOperationNode(RunNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -161,7 +161,7 @@ class PostProcessorOperationNode(RunNode):
     def nodes(self, value: List[OperationNode]):
         """Set nodes"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__nodes = value
 
     @property
@@ -173,7 +173,7 @@ class PostProcessorOperationNode(RunNode):
     def connections(self, value: List[SlotConnection]):
         """Set connections"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__connections = value
 
     @property
@@ -195,7 +195,7 @@ class PostProcessorOperationNode(RunNode):
     def operationOutputSlots(self, value: List[OperationOutputSlot]):
         """Set operationOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__operationOutputSlots = value
 
     @property
@@ -207,5 +207,5 @@ class PostProcessorOperationNode(RunNode):
     def operationInputSlots(self, value: List[OperationInputSlot]):
         """Set operationInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__operationInputSlots = value

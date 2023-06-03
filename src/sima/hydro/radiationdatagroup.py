@@ -5,13 +5,13 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.radiationdatagroup import RadiationDataGroupBlueprint
 from typing import Dict
-from sima.hydro.addedmassinfinitefrequency import AddedMassInfiniteFrequency
-from sima.hydro.addedmasszerofrequency import AddedMassZeroFrequency
-from sima.hydro.frequencydependentaddedmass import FrequencyDependentAddedMass
-from sima.hydro.frequencydependentdamping import FrequencyDependentDamping
-from sima.hydro.retardationfunction import RetardationFunction
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .addedmassinfinitefrequency import AddedMassInfiniteFrequency
+from .addedmasszerofrequency import AddedMassZeroFrequency
+from .frequencydependentaddedmass import FrequencyDependentAddedMass
+from .frequencydependentdamping import FrequencyDependentDamping
+from .retardationfunction import RetardationFunction
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class RadiationDataGroup(MOAO):
     """
@@ -66,7 +66,7 @@ class RadiationDataGroup(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

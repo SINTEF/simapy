@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.fontdescription import FontDescriptionBlueprint
 from typing import Dict
-from sima.sima.fontstyle import FontStyle
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.simacolor import SIMAColor
+from .fontstyle import FontStyle
+from .moao import MOAO
+from .scriptablevalue import ScriptableValue
+from .simacolor import SIMAColor
 
 class FontDescription(MOAO):
     """
@@ -63,7 +63,7 @@ class FontDescription(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

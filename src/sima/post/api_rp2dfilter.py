@@ -5,15 +5,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.api_rp2dfilter import API_RP2DFilterBlueprint
 from typing import Dict
-from sima.post.controlsignalinputslot import ControlSignalInputSlot
-from sima.post.fabricationfactor import FabricationFactor
-from sima.post.inputslot import InputSlot
-from sima.post.internalpressuredesignfactor import InternalPressureDesignFactor
-from sima.post.limitstatecategory import LimitStateCategory
-from sima.post.operationnode import OperationNode
-from sima.post.outputslot import OutputSlot
-from sima.post.pipetype import PipeType
-from sima.sima.scriptablevalue import ScriptableValue
+from .controlsignalinputslot import ControlSignalInputSlot
+from .fabricationfactor import FabricationFactor
+from .inputslot import InputSlot
+from .internalpressuredesignfactor import InternalPressureDesignFactor
+from .limitstatecategory import LimitStateCategory
+from .operationnode import OperationNode
+from .outputslot import OutputSlot
+from .pipetype import PipeType
+from sima.sima import ScriptableValue
 
 class API_RP2DFilter(OperationNode):
     """
@@ -126,7 +126,7 @@ class API_RP2DFilter(OperationNode):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -188,7 +188,7 @@ class API_RP2DFilter(OperationNode):
     def controlSignalInputSlots(self, value: List[ControlSignalInputSlot]):
         """Set controlSignalInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSignalInputSlots = value
 
     @property
@@ -200,7 +200,7 @@ class API_RP2DFilter(OperationNode):
     def filterInputSlots(self, value: List[InputSlot]):
         """Set filterInputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterInputSlots = value
 
     @property
@@ -212,7 +212,7 @@ class API_RP2DFilter(OperationNode):
     def filterOutputSlots(self, value: List[OutputSlot]):
         """Set filterOutputSlots"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__filterOutputSlots = value
 
     @property

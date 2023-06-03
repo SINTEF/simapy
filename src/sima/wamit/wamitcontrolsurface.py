@@ -5,12 +5,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitcontrolsurface import WamitControlSurfaceBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.wamit.directionsofnormalsoption import DirectionsOfNormalsOption
-from sima.wamit.evaluationmodeoption import EvaluationModeOption
-from sima.wamit.parameterlines import ParameterLines
-from sima.wamit.surfacestoincludefromms2fileoption import SurfacesToIncludeFromMs2FileOption
+from .directionsofnormalsoption import DirectionsOfNormalsOption
+from .evaluationmodeoption import EvaluationModeOption
+from .parameterlines import ParameterLines
+from .surfacestoincludefromms2fileoption import SurfacesToIncludeFromMs2FileOption
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class WamitControlSurface(MOAO):
     """
@@ -81,7 +81,7 @@ class WamitControlSurface(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -173,7 +173,7 @@ class WamitControlSurface(MOAO):
     def parameterLines(self, value: List[ParameterLines]):
         """Set parameterLines"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__parameterLines = value
 
     @property

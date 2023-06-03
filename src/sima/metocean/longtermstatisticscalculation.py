@@ -6,17 +6,17 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.longtermstatisticscalculation import LongTermStatisticsCalculationBlueprint
 from typing import Dict
-from sima.metocean.inputreferencesystem import InputReferenceSystem
-from sima.metocean.longtermstatisticscurrentcalculation import LongTermStatisticsCurrentCalculation
-from sima.metocean.longtermstatisticswavecalculation import LongTermStatisticsWaveCalculation
-from sima.metocean.longtermstatisticswindcalculation import LongTermStatisticsWindCalculation
-from sima.sima.conditionselectable import ConditionSelectable
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .inputreferencesystem import InputReferenceSystem
+from .longtermstatisticscurrentcalculation import LongTermStatisticsCurrentCalculation
+from .longtermstatisticswavecalculation import LongTermStatisticsWaveCalculation
+from .longtermstatisticswindcalculation import LongTermStatisticsWindCalculation
+from sima.sima import ConditionSelectable
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.metocean.longtermstatistics import LongTermStatistics
-    from sima.metocean.longtermstatisticsperiod import LongTermStatisticsPeriod
+    from .longtermstatistics import LongTermStatistics
+    from .longtermstatisticsperiod import LongTermStatisticsPeriod
 
 class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
     """
@@ -83,7 +83,7 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

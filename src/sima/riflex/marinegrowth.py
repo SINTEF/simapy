@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.marinegrowth import MarineGrowthBlueprint
 from typing import Dict
-from sima.riflex.growthlevel import GrowthLevel
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
+from .growthlevel import GrowthLevel
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class MarineGrowth(NamedObject):
     """
@@ -57,7 +57,7 @@ class MarineGrowth(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class MarineGrowth(NamedObject):
     def growthLevels(self, value: List[GrowthLevel]):
         """Set growthLevels"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__growthLevels = value

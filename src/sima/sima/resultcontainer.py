@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.resultcontainer import ResultContainerBlueprint
 from typing import Dict
-from sima.sima.named import Named
-from sima.sima.property import Property
-from sima.sima.scriptablevalue import ScriptableValue
+from .named import Named
+from .property import Property
+from .scriptablevalue import ScriptableValue
 
 class ResultContainer(Named):
     """
@@ -57,7 +57,7 @@ class ResultContainer(Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class ResultContainer(Named):
     def properties(self, value: List[Property]):
         """Set properties"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__properties = value

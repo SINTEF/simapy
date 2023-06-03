@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.clay import ClayBlueprint
 from typing import Dict
-from sima.riflex.soil import Soil
-from sima.riflex.soildampingitem import SoilDampingItem
-from sima.sima.scriptablevalue import ScriptableValue
+from .soil import Soil
+from .soildampingitem import SoilDampingItem
+from sima.sima import ScriptableValue
 
 class Clay(Soil):
     """
@@ -96,7 +96,7 @@ class Clay(Soil):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -138,7 +138,7 @@ class Clay(Soil):
     def dampingItems(self, value: List[SoilDampingItem]):
         """Set dampingItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__dampingItems = value
 
     @property

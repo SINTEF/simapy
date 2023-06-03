@@ -5,15 +5,15 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.turbsimwindgenerator import TurbSimWindGeneratorBlueprint
 from typing import Dict
-from sima.sima.conditionselectable import ConditionSelectable
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.iecstandard import IECStandard
-from sima.windturbine.iecturbulencecharacteristics import IECTurbulenceCharacteristics
-from sima.windturbine.iecwindprofiletype import IECWindProfileType
-from sima.windturbine.iecwindtype import IECWindType
-from sima.windturbine.randomseedgeneration import RandomSeedGeneration
-from sima.windturbine.turbulencemodel import TurbulenceModel
+from .iecstandard import IECStandard
+from .iecturbulencecharacteristics import IECTurbulenceCharacteristics
+from .iecwindprofiletype import IECWindProfileType
+from .iecwindtype import IECWindType
+from .randomseedgeneration import RandomSeedGeneration
+from .turbulencemodel import TurbulenceModel
+from sima.sima import ConditionSelectable
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class TurbSimWindGenerator(NamedObject,ConditionSelectable):
     """
@@ -121,7 +121,7 @@ class TurbSimWindGenerator(NamedObject,ConditionSelectable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

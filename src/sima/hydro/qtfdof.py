@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.qtfdof import QTFDofBlueprint
 from numpy import ndarray,asarray
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class QTFDof(MOAO):
     """
@@ -17,8 +17,8 @@ class QTFDof(MOAO):
     scriptableValues : List[ScriptableValue]
     nValues : int
          (default 0)
-    re : ndarray
-    im : ndarray
+    re : ndarray of float
+    im : ndarray of float
     """
 
     def __init__(self , description="", nValues=0, **kwargs):
@@ -26,8 +26,8 @@ class QTFDof(MOAO):
         self.description = description
         self.scriptableValues = list()
         self.nValues = nValues
-        self.re = ndarray(1)
-        self.im = ndarray(1)
+        self.re = []
+        self.im = []
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -58,7 +58,7 @@ class QTFDof(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,7 +79,10 @@ class QTFDof(MOAO):
     @re.setter
     def re(self, value: ndarray):
         """Set re"""
-        self.__re = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__re = array
 
     @property
     def im(self) -> ndarray:
@@ -89,4 +92,7 @@ class QTFDof(MOAO):
     @im.setter
     def im(self, value: ndarray):
         """Set im"""
-        self.__im = asarray(value)
+        array = asarray(value, dtype=float)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__im = array

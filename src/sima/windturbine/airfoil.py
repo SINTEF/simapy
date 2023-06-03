@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.airfoil import AirfoilBlueprint
 from typing import Dict
-from sima.sima.namedobject import NamedObject
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.foilpoint import FoilPoint
-from sima.windturbine.reynolditem import ReynoldItem
+from .foilpoint import FoilPoint
+from .reynolditem import ReynoldItem
+from sima.sima import NamedObject
+from sima.sima import ScriptableValue
 
 class Airfoil(NamedObject):
     """
@@ -81,7 +81,7 @@ class Airfoil(NamedObject):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -173,7 +173,7 @@ class Airfoil(NamedObject):
     def reynoldItems(self, value: List[ReynoldItem]):
         """Set reynoldItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__reynoldItems = value
 
     @property
@@ -185,5 +185,5 @@ class Airfoil(NamedObject):
     def points(self, value: List[FoilPoint]):
         """Set points"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__points = value

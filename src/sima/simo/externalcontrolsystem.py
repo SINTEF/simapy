@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.externalcontrolsystem import ExternalControlSystemBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.simo.nameddoubleparameter import NamedDoubleParameter
-from sima.simo.namedintparameter import NamedIntParameter
-from sima.simo.namedstringparameter import NamedStringParameter
+from .nameddoubleparameter import NamedDoubleParameter
+from .namedintparameter import NamedIntParameter
+from .namedstringparameter import NamedStringParameter
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class ExternalControlSystem(MOAO):
     """
@@ -60,7 +60,7 @@ class ExternalControlSystem(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -72,7 +72,7 @@ class ExternalControlSystem(MOAO):
     def intParameters(self, value: List[NamedIntParameter]):
         """Set intParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__intParameters = value
 
     @property
@@ -84,7 +84,7 @@ class ExternalControlSystem(MOAO):
     def doubleParameters(self, value: List[NamedDoubleParameter]):
         """Set doubleParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__doubleParameters = value
 
     @property
@@ -96,5 +96,5 @@ class ExternalControlSystem(MOAO):
     def stringParameters(self, value: List[NamedStringParameter]):
         """Set stringParameters"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__stringParameters = value

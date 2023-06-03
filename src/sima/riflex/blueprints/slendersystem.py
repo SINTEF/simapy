@@ -43,3 +43,4 @@ class SlenderSystemBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("marineGrowthItems","sima/riflex/MarineGrowth","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("soilLayerProfiles","sima/riflex/SoilLayerProfile","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("soilTypes","sima/riflex/SoilType","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("userdefinedElements","sima/riflex/UserdefinedElement","",True,Dimension("*")))

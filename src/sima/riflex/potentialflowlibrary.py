@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.potentialflowlibrary import PotentialFlowLibraryBlueprint
 from typing import Dict
-from sima.riflex.elementreference import ElementReference
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
+from .elementreference import ElementReference
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class PotentialFlowLibrary(MOAO):
     """
@@ -57,7 +57,7 @@ class PotentialFlowLibrary(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -79,5 +79,5 @@ class PotentialFlowLibrary(MOAO):
     def elements(self, value: List[ElementReference]):
         """Set elements"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__elements = value

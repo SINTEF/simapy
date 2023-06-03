@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.verticalaxiswindturbinecontroller import VerticalAxisWindTurbineControllerBlueprint
 from typing import Dict
-from sima.sima.moao import MOAO
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.windturbine.gainschedulingitem import GainSchedulingItem
-from sima.windturbine.tableformat import TableFormat
-from sima.windturbine.windrotorspeeditem import WindRotorSpeedItem
+from .gainschedulingitem import GainSchedulingItem
+from .tableformat import TableFormat
+from .windrotorspeeditem import WindRotorSpeedItem
+from sima.sima import MOAO
+from sima.sima import ScriptableValue
 
 class VerticalAxisWindTurbineController(MOAO):
     """
@@ -102,7 +102,7 @@ class VerticalAxisWindTurbineController(MOAO):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
@@ -264,7 +264,7 @@ class VerticalAxisWindTurbineController(MOAO):
     def windRotorSpeedItems(self, value: List[WindRotorSpeedItem]):
         """Set windRotorSpeedItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__windRotorSpeedItems = value
 
     @property
@@ -276,5 +276,5 @@ class VerticalAxisWindTurbineController(MOAO):
     def gainSchedulingItems(self, value: List[GainSchedulingItem]):
         """Set gainSchedulingItems"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__gainSchedulingItems = value

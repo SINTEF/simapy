@@ -6,12 +6,12 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.reportfragment import ReportFragmentBlueprint
 from typing import Dict
-from sima.report.reportitem import ReportItem
-from sima.sima.named import Named
-from sima.sima.scriptablevalue import ScriptableValue
+from .reportitem import ReportItem
+from sima.sima import Named
+from sima.sima import ScriptableValue
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from sima.report.reportfragmentreference import ReportFragmentReference
+    from .reportfragmentreference import ReportFragmentReference
 
 class ReportFragment(ReportItem,Named):
     """
@@ -61,7 +61,7 @@ class ReportFragment(ReportItem,Named):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property

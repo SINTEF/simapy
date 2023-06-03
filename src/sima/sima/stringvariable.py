@@ -5,8 +5,8 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.stringvariable import StringVariableBlueprint
 from typing import Dict
-from sima.sima.scriptablevalue import ScriptableValue
-from sima.sima.variable import Variable
+from .scriptablevalue import ScriptableValue
+from .variable import Variable
 
 class StringVariable(Variable):
     """
@@ -57,7 +57,7 @@ class StringVariable(Variable):
     def scriptableValues(self, value: List[ScriptableValue]):
         """Set scriptableValues"""
         if not isinstance(value, Sequence):
-            raise Exception("Expected sequense, but was " , type(value))
+            raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
 
     @property
