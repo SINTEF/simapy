@@ -1,6 +1,6 @@
 from os import path
-from sima import simo
-from sima import sima
+from simapy.sima import simo
+from simapy.sima import sima
 
 from simapy.sima_writer import SIMAWriter
 from simapy.sima_reader import SIMAReader

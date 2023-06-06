@@ -1,4 +1,4 @@
-from sima import simo
+from simapy.sima import simo
 
 
 def test_different_copies():

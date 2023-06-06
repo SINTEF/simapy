@@ -1,6 +1,6 @@
 from os import path
 from math import sin
-from sima import signals as containers
+from simapy.sima import signals as containers
 from simapy.sima_writer import SIMAWriter
 
 

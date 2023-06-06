@@ -1,26 +1,26 @@
 """ Export entites with package information"""
 
-import json
-from sima.packageinfo import PackageInfo
-from dmt.entity import Entity
 from typing import Dict, Sequence
+
 from dmt.dmt_writer import DMTWriter
-from sima.modelcontent import ModelContent
-from sima.header import Header
-from sima.package_info import packages
+from dmt.entity import Entity
+
+from .sima.header import Header
+from .sima.modelcontent import ModelContent
+from .sima.package_info import packages
+from .sima.packageinfo import PackageInfo
+from .sima.sima.moao import MOAO
+
 
 class SIMAWriter():
     """ Export entites as SIMA objects"""
 
+    def write(self, models: Sequence[MOAO], filename: str, indent=0):
+        """Write SIMA models to file"""
+        content = self.__to_model_content(models)
+        DMTWriter().write(content, filename, indent=indent)
 
-    def write(self, models: Sequence[Entity], filename: str, indent=0):
-        with open(filename, 'w', encoding="utf-8") as fp:
-            dict=self.to_dict(models)
-            json.dump(dict,fp,indent=indent)
-
-
-    def to_dict(self, models: Sequence[Entity]) -> Dict:
-        """Convert to SIMA dictionary"""
+    def __to_model_content(self, models: Sequence[Entity]) -> ModelContent:
         content = ModelContent()
         header = Header()
 
@@ -29,4 +29,9 @@ class SIMAWriter():
 
         content.header = header
         content.contents.extend(models)
+        return content
+
+    def to_dict(self, models: Sequence[MOAO]) -> Dict:
+        """Convert to SIMA dictionary"""
+        content = self.__to_model_content(models)
         return DMTWriter().to_dict(content)
