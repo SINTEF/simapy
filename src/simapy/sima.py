@@ -3,6 +3,7 @@ import asyncio
 import os
 from pathlib import Path
 from typing import Sequence
+from simapy.sima_writer import SIMAWriter
 
 
 async def run_command(args, error_file, out_file):
@@ -41,7 +42,7 @@ class SIMA:
                 raise ValueError("No executable given, and SRE_EXE environment variable is not set")
 
 
-    def run(self, working_dir: Path, command_args: Sequence[str]):
+    def run(self, working_dir: Path, command_args: Sequence):
         """Run the sima executable and print output to standard out. 
            Standard err is piped to stderr.txt in the working directory"""
         arguments = [self.exe]
@@ -49,8 +50,8 @@ class SIMA:
         arguments.append("-consoleLog")
         arguments.append("--progress")
         arguments.extend(["-data", working_dir])
-        arguments.extend(command_args)
         working_dir.mkdir(parents=True, exist_ok=True)
+        self.__add_command_args(working_dir, arguments, command_args)
         err_file = working_dir / "stderr.txt"
         out_file = working_dir / "stdout.txt"
         with open(err_file, "w", encoding="utf8") as ef, open(
@@ -60,10 +61,15 @@ class SIMA:
             if exit_code != 0 and self.fail_on_error:
                 raise RuntimeError(f"SIMA exited with error code {exit_code}")
 
-    def run_command(self, working_dir: Path, command_file: Path):
-        """Run commands from a file"""
-        args = ["--commands",f"file={command_file}"]
-        self.run(working_dir,args)
+    def __add_command_args(self, working_dir: Path, args: Sequence, command_args: Sequence[str]):
+        """Add command arguments to the list of arguments"""
+        if len(command_args) > 0:
+            if isinstance(command_args[0], str):
+                args.extend(command_args)
+            else:
+                filename = working_dir / "commands.json"
+                SIMAWriter().write(command_args, filename)
+                args.extend(["--commands",f"file={filename}"])
 
 def main():
     """Run a single command and read back the result"""
