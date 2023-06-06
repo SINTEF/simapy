@@ -1,5 +1,5 @@
-from sima import simo
-from sima import hydro
+from simapy.sima import simo
+from simapy.sima import hydro
 from simapy.sima_writer import SIMAWriter
 from simapy.sima_reader import SIMAReader
 

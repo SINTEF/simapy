@@ -1,11 +1,10 @@
 from datetime import datetime, timedelta
 import numpy as np
 
-from dmt.dmt_reader import DMTReader
-from dmt.dmt_writer import DMTWriter
+from simapy.sima_reader import SIMAReader
+from simapy.sima_writer import SIMAWriter
 
 from simapy.metocean import hindcast
-import simapy
 
 
 def test_metocean_package(tmpdir):
@@ -32,10 +31,10 @@ def test_metocean_package(tmpdir):
 
     filename = tmpdir + '/metocean.h5'
 
-    writer = DMTWriter()
-    writer.write(hc, filename)
+    writer = SIMAWriter()
+    writer.write([hc], filename)
 
-    reader = DMTReader(root_package=simapy.__name__)
+    reader = SIMAReader()
     hc2 = reader.read(filename)[0]
 
     assert hc2.name == hc.name
