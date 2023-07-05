@@ -5,12 +5,20 @@ from typing import List, Sequence
 from pathlib import Path
 
 
+class SIMARunException(Exception):
+    def __init__(self, message=None):
+        if message:
+            description = 'Execution of SIMA failed:\n\n' + message
+        else:
+            description = 'Execution of SIMA failed'
+        super(SIMARunException, self).__init__(description)
+
+
 class SIMA:
     """"Run a command using SIMA runtime engine (sre executable)"""
 
     def __init__(self, exe=None) -> None:
         self.exe = self.__get_executable(exe)
-        self.proc = None
 
     def __get_executable(self, exe):
         if exe:
@@ -20,7 +28,7 @@ class SIMA:
             raise Exception("No executable given, and SIMA_EXE environment variable is not set")
         return exe
 
-    def run(self, workspace: str, commands: Sequence[str], env=None) -> Sequence[str]:
+    def run(self, workspace: str, commands: Sequence[str], env=None) -> str:
         """Run the sima executable and return output from standard out and standard err"""
         if not Path(self.exe).exists():
             raise Exception(f"Executable does not exist: {self.exe}")
@@ -31,24 +39,19 @@ class SIMA:
         args.append(workspace)
         args = args + commands
 
-
-        self.proc = subprocess.Popen(args,
+        proc = subprocess.Popen(args,
                             stdin=subprocess.PIPE,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT,env=env)
-        return self.__read_lines()
+        stdout_data, stderr_data = proc.communicate()
+        if proc.returncode != 0:
+            if stderr_data:
+                raise SIMARunException(stderr_data.decode('utf8'))
+            else:
+                raise SIMARunException()
+        else:
+            return stdout_data.decode('utf8')
 
-
-    def __read_lines(self) -> List[str]:
-        proc = self.proc
-        lines = []
-        while True:
-            line = proc.stdout.readline()
-            if not line:
-                break
-            lines.append(line.decode(encoding="utf8").rstrip())
-
-        return lines
 
 def main():
     """Run a single command and read back the result"""
