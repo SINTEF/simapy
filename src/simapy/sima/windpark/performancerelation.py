@@ -7,6 +7,7 @@ from .blueprints.performancerelation import PerformanceRelationBlueprint
 from typing import Dict
 from ..sima import MOAO
 from ..sima import ScriptableValue
+from .performancerelationitem import PerformanceRelationItem
 
 class PerformanceRelation(MOAO):
     """
@@ -15,27 +16,17 @@ class PerformanceRelation(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    windSpeed : float
-         (default 0.0)
-    rotorSpeed : float
-         (default 0.0)
-    bladePitch : float
-         (default 0.0)
-    power : float
-         (default 0.0)
-    thrust : float
-         (default 0.0)
+    yawAngle : float
+         Yaw misalignment(default 0.0)
+    items : List[PerformanceRelationItem]
     """
 
-    def __init__(self , description="", windSpeed=0.0, rotorSpeed=0.0, bladePitch=0.0, power=0.0, thrust=0.0, **kwargs):
+    def __init__(self , description="", yawAngle=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.windSpeed = windSpeed
-        self.rotorSpeed = rotorSpeed
-        self.bladePitch = bladePitch
-        self.power = power
-        self.thrust = thrust
+        self.yawAngle = yawAngle
+        self.items = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -70,51 +61,23 @@ class PerformanceRelation(MOAO):
         self.__scriptableValues = value
 
     @property
-    def windSpeed(self) -> float:
-        """"""
-        return self.__windSpeed
+    def yawAngle(self) -> float:
+        """Yaw misalignment"""
+        return self.__yawAngle
 
-    @windSpeed.setter
-    def windSpeed(self, value: float):
-        """Set windSpeed"""
-        self.__windSpeed = float(value)
-
-    @property
-    def rotorSpeed(self) -> float:
-        """"""
-        return self.__rotorSpeed
-
-    @rotorSpeed.setter
-    def rotorSpeed(self, value: float):
-        """Set rotorSpeed"""
-        self.__rotorSpeed = float(value)
+    @yawAngle.setter
+    def yawAngle(self, value: float):
+        """Set yawAngle"""
+        self.__yawAngle = float(value)
 
     @property
-    def bladePitch(self) -> float:
+    def items(self) -> List[PerformanceRelationItem]:
         """"""
-        return self.__bladePitch
+        return self.__items
 
-    @bladePitch.setter
-    def bladePitch(self, value: float):
-        """Set bladePitch"""
-        self.__bladePitch = float(value)
-
-    @property
-    def power(self) -> float:
-        """"""
-        return self.__power
-
-    @power.setter
-    def power(self, value: float):
-        """Set power"""
-        self.__power = float(value)
-
-    @property
-    def thrust(self) -> float:
-        """"""
-        return self.__thrust
-
-    @thrust.setter
-    def thrust(self, value: float):
-        """Set thrust"""
-        self.__thrust = float(value)
+    @items.setter
+    def items(self, value: List[PerformanceRelationItem]):
+        """Set items"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__items = value

@@ -5,11 +5,11 @@ from enum import auto
 
 class IncomingWind(Enum):
     """"""
-    CONSTANT = auto()
+    AMBIENT = auto()
     INCOMING = auto()
 
     def label(self):
-        if self == IncomingWind.CONSTANT:
-            return "Constant"
+        if self == IncomingWind.AMBIENT:
+            return "Ambient"
         if self == IncomingWind.INCOMING:
             return "Incoming"

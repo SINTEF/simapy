@@ -20,4 +20,5 @@ class WindParkTurbineBlueprint(NamedObjectBlueprint):
         self.add_attribute(Attribute("y","number","Global y-coordinate of the hub",default=0.0))
         self.add_attribute(Attribute("z","number","Global z-coordinate of the hub",default=0.0))
         self.add_attribute(Attribute("shaftAngle","number","",default=0.0))
+        self.add_attribute(EnumAttribute("shaftDirection","sima/windpark/ShaftDirection","Kind of shaft direction definition"))
         self.add_attribute(Attribute("target","boolean","",default=False))

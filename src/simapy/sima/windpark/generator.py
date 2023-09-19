@@ -20,12 +20,15 @@ from .meanderinganalysisoption import MeanderingAnalysisOption
 from .multipledeficitmethod import MultipleDeficitMethod
 from .nearwakelengthmodel import NearWakeLengthModel
 from .poweroption import PowerOption
+from .shaftdirection import ShaftDirection
 from .stabilityclass import StabilityClass
 from .turbulenceboxoption import TurbulenceBoxOption
 from .turbulenceboxscaling import TurbulenceBoxScaling
 from .viscosityfilter import ViscosityFilter
+from .wakeflowmodel import WakeFlowModel
 from .weightoption import WeightOption
 from .windparkturbine import WindParkTurbine
+from .windturbinemotion import WindTurbineMotion
 from .windturbinetype import WindTurbineType
 
 class Generator(Named,ConditionSelectable):
@@ -119,9 +122,19 @@ class Generator(Named,ConditionSelectable):
          Lowpass cutoff frequency option
     lowPassFrequency : float
          Cutoff frequency(default 0.0)
+    useYawMisalignment : bool
+         (default False)
+    interpolateYawMisalignment : bool
+         Option for interpolation on specified yaw misalignment performance relations(default False)
+    wakeFlowModel : WakeFlowModel
+    yawIncrement : float
+         Yaw misalignment increment used in deficit computation(default 0.0)
+    shaftDirectionDefinition : ShaftDirection
+         Kind of shaft direction definition
+    windTurbineMotions : List[WindTurbineMotion]
     """
 
-    def __init__(self , description="", airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.CONSTANT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=False, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, **kwargs):
+    def __init__(self , description="", airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.AMBIENT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=False, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, useYawMisalignment=False, interpolateYawMisalignment=False, wakeFlowModel=WakeFlowModel.JIMENEZ, yawIncrement=0.0, shaftDirectionDefinition=ShaftDirection.YAW, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -173,6 +186,12 @@ class Generator(Named,ConditionSelectable):
         self.applyAreaAveraging = applyAreaAveraging
         self.lowPassFrequencyOption = lowPassFrequencyOption
         self.lowPassFrequency = lowPassFrequency
+        self.useYawMisalignment = useYawMisalignment
+        self.interpolateYawMisalignment = interpolateYawMisalignment
+        self.wakeFlowModel = wakeFlowModel
+        self.yawIncrement = yawIncrement
+        self.shaftDirectionDefinition = shaftDirectionDefinition
+        self.windTurbineMotions = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -691,3 +710,65 @@ class Generator(Named,ConditionSelectable):
     def lowPassFrequency(self, value: float):
         """Set lowPassFrequency"""
         self.__lowPassFrequency = float(value)
+
+    @property
+    def useYawMisalignment(self) -> bool:
+        """"""
+        return self.__useYawMisalignment
+
+    @useYawMisalignment.setter
+    def useYawMisalignment(self, value: bool):
+        """Set useYawMisalignment"""
+        self.__useYawMisalignment = bool(value)
+
+    @property
+    def interpolateYawMisalignment(self) -> bool:
+        """Option for interpolation on specified yaw misalignment performance relations"""
+        return self.__interpolateYawMisalignment
+
+    @interpolateYawMisalignment.setter
+    def interpolateYawMisalignment(self, value: bool):
+        """Set interpolateYawMisalignment"""
+        self.__interpolateYawMisalignment = bool(value)
+
+    @property
+    def wakeFlowModel(self) -> WakeFlowModel:
+        """"""
+        return self.__wakeFlowModel
+
+    @wakeFlowModel.setter
+    def wakeFlowModel(self, value: WakeFlowModel):
+        """Set wakeFlowModel"""
+        self.__wakeFlowModel = value
+
+    @property
+    def yawIncrement(self) -> float:
+        """Yaw misalignment increment used in deficit computation"""
+        return self.__yawIncrement
+
+    @yawIncrement.setter
+    def yawIncrement(self, value: float):
+        """Set yawIncrement"""
+        self.__yawIncrement = float(value)
+
+    @property
+    def shaftDirectionDefinition(self) -> ShaftDirection:
+        """Kind of shaft direction definition"""
+        return self.__shaftDirectionDefinition
+
+    @shaftDirectionDefinition.setter
+    def shaftDirectionDefinition(self, value: ShaftDirection):
+        """Set shaftDirectionDefinition"""
+        self.__shaftDirectionDefinition = value
+
+    @property
+    def windTurbineMotions(self) -> List[WindTurbineMotion]:
+        """"""
+        return self.__windTurbineMotions
+
+    @windTurbineMotions.setter
+    def windTurbineMotions(self, value: List[WindTurbineMotion]):
+        """Set windTurbineMotions"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__windTurbineMotions = value

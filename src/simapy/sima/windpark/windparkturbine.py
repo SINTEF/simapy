@@ -8,6 +8,7 @@ from .blueprints.windparkturbine import WindParkTurbineBlueprint
 from typing import Dict
 from ..sima import NamedObject
 from ..sima import ScriptableValue
+from .shaftdirection import ShaftDirection
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .windturbinetype import WindTurbineType
@@ -30,11 +31,13 @@ class WindParkTurbine(NamedObject):
          Global z-coordinate of the hub(default 0.0)
     shaftAngle : float
          (default 0.0)
+    shaftDirection : ShaftDirection
+         Kind of shaft direction definition
     target : bool
          (default False)
     """
 
-    def __init__(self , description="", x=0.0, y=0.0, z=0.0, shaftAngle=0.0, target=False, **kwargs):
+    def __init__(self , description="", x=0.0, y=0.0, z=0.0, shaftAngle=0.0, shaftDirection=ShaftDirection.POSI, target=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -44,6 +47,7 @@ class WindParkTurbine(NamedObject):
         self.y = y
         self.z = z
         self.shaftAngle = shaftAngle
+        self.shaftDirection = shaftDirection
         self.target = target
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -137,6 +141,16 @@ class WindParkTurbine(NamedObject):
     def shaftAngle(self, value: float):
         """Set shaftAngle"""
         self.__shaftAngle = float(value)
+
+    @property
+    def shaftDirection(self) -> ShaftDirection:
+        """Kind of shaft direction definition"""
+        return self.__shaftDirection
+
+    @shaftDirection.setter
+    def shaftDirection(self, value: ShaftDirection):
+        """Set shaftDirection"""
+        self.__shaftDirection = value
 
     @property
     def target(self) -> bool:
