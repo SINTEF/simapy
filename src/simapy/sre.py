@@ -42,22 +42,24 @@ class SIMA:
                 raise ValueError("No executable given, and SRE_EXE environment variable is not set")
 
 
-    def run(self, working_dir: Path, command_args: Sequence):
+    def run(self, working_dir, command_args: Sequence[str]):
         """Run the sima executable and print output to standard out. 
            Standard err is piped to stderr.txt in the working directory"""
+
+        wdir = Path(str(working_dir))
         arguments = [self.exe]
         arguments.extend(["-configuration", "/var/opt/sima/config"])
         arguments.append("-consoleLog")
         arguments.append("--progress")
         arguments.extend(["-data", working_dir])
-        working_dir.mkdir(parents=True, exist_ok=True)
+        wdir.mkdir(parents=True, exist_ok=True)
         self.__add_command_args(working_dir, arguments, command_args)
-        err_file = working_dir / "stderr.txt"
-        out_file = working_dir / "stdout.txt"
-        with open(err_file, "w", encoding="utf8") as ef, open(
+        err_file = wdir / "stderr.txt"
+        out_file = wdir / "stdout.txt"
+        with open(err_file, "w", encoding="utf8") as e_f, open(
             out_file, "w", encoding="utf8"
-        ) as of:
-            exit_code = asyncio.run(run_command(arguments, ef, of))
+        ) as o_f:
+            exit_code = asyncio.run(run_command(arguments, e_f, o_f))
             if exit_code != 0 and self.fail_on_error:
                 raise RuntimeError(f"SIMA exited with error code {exit_code}")
 
