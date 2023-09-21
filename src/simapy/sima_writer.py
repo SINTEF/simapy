@@ -24,8 +24,8 @@ class SIMAWriter():
         content = ModelContent()
         header = Header()
 
-        for package in packages:
-            header.packages.append(PackageInfo(**package))
+        for name,version in packages.items():
+            header.packages.append(PackageInfo(name=name,version=version))
 
         content.header = header
         content.contents.extend(models)
