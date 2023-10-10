@@ -3,7 +3,7 @@ SIMAPY - Python utilities for SIMA
 
 This Python library can be used to interact with [SIMA](https://sima.sintef.no)
 
-Parts of the library is generated from DMT models using a DMT Python code generator
+Parts of the library is generated from [data models](https://github.com/SINTEF/sima-dmt-models) using a [Python code generator](https://github.com/SINTEF/dmt-gen-py)
 
 Please examine the tests for ways to interact
 
