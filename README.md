@@ -9,6 +9,14 @@ Please examine the tests for ways to interact
 
 Also check out the examples in [simapy-examples](https://github.com/SINTEF/simapy-examples)
 
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install simapy.
+
+```bash
+pip install simapy
+```
+
 ## Dependencies
 
 * [DMTPY](https://github.com/SINTEF/dmtpy)
