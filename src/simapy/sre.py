@@ -11,6 +11,7 @@ class SIMA:
 
     def __init__(self, exe=None, fail_on_error=True):
         self.fail_on_error = fail_on_error
+        self.environment = os.environ.copy()
         # A Console handler is a function that can handle standard out from the process
         # This can i.e. be used to parse @STATUS messages from the SIMA process wich can be used for progress indication
         self.console_handler: Callable[[str],None] = self.__handle_console_output
@@ -20,6 +21,16 @@ class SIMA:
             self.exe =  os.getenv('SRE_EXE',os.getenv('SIMA_EXE'))
             if not self.exe:
                 raise ValueError("No executable given, and SRE_EXE environment variable is not set")
+
+
+    def set_max_concurrent_runs(self, value: int):
+        """Set the maximum number of concurrent condition and workflow runs.
+        0 means no SIMA will determine this automatically."""
+        if value < 0:
+            raise ValueError("Value must be greater than or equal to 0")
+        self.environment["MAX_CONCURRENT_CONDITION_RUNS"]=str(value)
+        self.environment["MAX_CONCURRENT_WORKFLOW_RUNS"]=str(value)
+
 
     def __handle_console_output(self, sline: str) -> None:
         print(sline, end="\n")
@@ -40,7 +51,8 @@ class SIMA:
             proc = subprocess.Popen(arguments,
                         stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
-                        stderr=subprocess.STDOUT)
+                        stderr=subprocess.STDOUT,
+                        env=self.environment)
             self.__read_lines(proc, o_f)
             # Wait for the process to finish
             exit_code = proc.wait()
