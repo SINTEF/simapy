@@ -1,32 +1,9 @@
 """Run a command using SIMA runtime engine (sre executable)"""
-import asyncio
+import subprocess
 import os
 from pathlib import Path
-from typing import Sequence
+from typing import Sequence,Callable
 from simapy.sima_writer import SIMAWriter
-
-
-async def run_command(args, error_file, out_file):
-    """"Run a command asynchronously and print output to standard out. 
-    Standard err is piped to stderr.txt in the working directory"""
-    process = await asyncio.create_subprocess_exec(
-        *args, stdout=asyncio.subprocess.PIPE, stderr=error_file
-    )
-
-    while True:
-        stdout, _ = await process.communicate()
-
-        if stdout:
-            for line in stdout.splitlines():
-                sline = line.decode("utf-8")
-                if sline.startswith("@STATUS"):
-                    print("STATUS found:" + sline, end="\n")
-                else:
-                    print(sline, end="\n")
-                    print(sline, end="\n", file=out_file)
-
-        if process.returncode is not None:
-            return process.returncode
 
 
 class SIMA:
@@ -34,6 +11,9 @@ class SIMA:
 
     def __init__(self, exe=None, fail_on_error=True):
         self.fail_on_error = fail_on_error
+        # A Console handler is a function that can handle standard out from the process
+        # This can i.e. be used to parse @STATUS messages from the SIMA process wich can be used for progress indication
+        self.console_handler: Callable[[str],None] = self.__handle_console_output
         if exe:
             self.exe = exe
         else:
@@ -41,27 +21,41 @@ class SIMA:
             if not self.exe:
                 raise ValueError("No executable given, and SRE_EXE environment variable is not set")
 
+    def __handle_console_output(self, sline: str) -> None:
+        print(sline, end="\n")
 
     def run(self, working_dir, command_args: Sequence[str]):
-        """Run the sima executable and print output to standard out. 
+        """Run the sima executable and print output to standard out.
            Standard err is piped to stderr.txt in the working directory"""
 
         wdir = Path(str(working_dir))
         arguments = [self.exe]
-        arguments.extend(["-configuration", "/var/opt/sima/config"])
         arguments.append("-consoleLog")
         arguments.append("--progress")
         arguments.extend(["-data", working_dir])
         wdir.mkdir(parents=True, exist_ok=True)
         self.__add_command_args(working_dir, arguments, command_args)
-        err_file = wdir / "stderr.txt"
         out_file = wdir / "stdout.txt"
-        with open(err_file, "w", encoding="utf8") as e_f, open(
-            out_file, "w", encoding="utf8"
-        ) as o_f:
-            exit_code = asyncio.run(run_command(arguments, e_f, o_f))
+        with open(out_file, "w", encoding="utf8") as o_f:
+            proc = subprocess.Popen(arguments,
+                        stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT)
+            self.__read_lines(proc, o_f)
+            # Wait for the process to finish
+            exit_code = proc.wait()
             if exit_code != 0 and self.fail_on_error:
                 raise RuntimeError(f"SIMA exited with error code {exit_code}")
+
+    def __read_lines(self,proc,out_file):
+        console_handler = self.console_handler
+        while True:
+            line = proc.stdout.readline()
+            if not line:
+                break
+            sline = line.decode(encoding="utf8").rstrip()
+            console_handler(sline)
+            print(sline, end="\n", file=out_file)
 
     def __add_command_args(self, working_dir: Path, args: Sequence, command_args: Sequence[str]):
         """Add command arguments to the list of arguments"""
