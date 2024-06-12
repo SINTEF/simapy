@@ -13,8 +13,6 @@ class ScriptableValue(Entity):
     -----------------
     description : str
          (default "")
-    _id : str
-         (default None)
     script : str
          (default None)
     cyclic : bool
@@ -28,7 +26,6 @@ class ScriptableValue(Entity):
     def __init__(self , description="", cyclic=False, index=-1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
-        self._id = None
         self.script = None
         self.cyclic = cyclic
         self.feature = None
@@ -53,16 +50,6 @@ class ScriptableValue(Entity):
     def description(self, value: str):
         """Set description"""
         self.__description = value
-
-    @property
-    def _id(self) -> str:
-        """"""
-        return self.___id
-
-    @_id.setter
-    def _id(self, value: str):
-        """Set _id"""
-        self.___id = value
 
     @property
     def script(self) -> str:

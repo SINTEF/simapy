@@ -17,4 +17,4 @@ class ExportBlueprintCommandBlueprint(CommandBlueprint):
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("parameters","sima/sima/Property","Additional parameters",True,Dimension("*")))
         self.add_attribute(Attribute("output","string","Optional output directory. If not specified the blueprints will be imported into the current workspace"))
-        self.add_attribute(Attribute("versions","boolean","Write package version files",default=False))
+        self.add_attribute(Attribute("delete","boolean","Delete the content of the output folder before exporting",default=False))

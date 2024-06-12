@@ -25,11 +25,11 @@ class GuidePoint(SIMOBodyPoint):
     tensioner : SIMOTensioner
     heaveCompensator : SIMOHeaveCompensator
     x : float
-         Local  x position(default 0.0)
+         X-coordinate of attachment point in body fixed (local) coordinate system(default 0.0)
     y : float
-         Local  y position(default 0.0)
+         Y-coordinate of attachment point in body fixed (local) coordinate system(default 0.0)
     z : float
-         Local z position(default 0.0)
+         Z-coordinate of attachment point in body fixed (local) coordinate system(default 0.0)
     diameter : float
          Diameter of guide hole(default 0.0)
     normalVector : Vector3
@@ -124,7 +124,7 @@ class GuidePoint(SIMOBodyPoint):
 
     @property
     def x(self) -> float:
-        """Local  x position"""
+        """X-coordinate of attachment point in body fixed (local) coordinate system"""
         return self.__x
 
     @x.setter
@@ -134,7 +134,7 @@ class GuidePoint(SIMOBodyPoint):
 
     @property
     def y(self) -> float:
-        """Local  y position"""
+        """Y-coordinate of attachment point in body fixed (local) coordinate system"""
         return self.__y
 
     @y.setter
@@ -144,7 +144,7 @@ class GuidePoint(SIMOBodyPoint):
 
     @property
     def z(self) -> float:
-        """Local z position"""
+        """Z-coordinate of attachment point in body fixed (local) coordinate system"""
         return self.__z
 
     @z.setter

@@ -22,18 +22,18 @@ class ExportBlueprintCommand(Command):
          Additional parameters
     output : str
          Optional output directory. If not specified the blueprints will be imported into the current workspace(default None)
-    versions : bool
-         Write package version files(default False)
+    delete : bool
+         Delete the content of the output folder before exporting(default False)
     """
 
-    def __init__(self , description="", versions=False, **kwargs):
+    def __init__(self , description="", delete=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
         self.parameters = list()
         self.output = None
-        self.versions = versions
+        self.delete = delete
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -100,11 +100,11 @@ class ExportBlueprintCommand(Command):
         self.__output = value
 
     @property
-    def versions(self) -> bool:
-        """Write package version files"""
-        return self.__versions
+    def delete(self) -> bool:
+        """Delete the content of the output folder before exporting"""
+        return self.__delete
 
-    @versions.setter
-    def versions(self, value: bool):
-        """Set versions"""
-        self.__versions = bool(value)
+    @delete.setter
+    def delete(self, value: bool):
+        """Set delete"""
+        self.__delete = bool(value)

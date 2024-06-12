@@ -34,3 +34,4 @@ class SIMOStaticCalculationParametersBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("multipleEquilibriumCalculations","boolean","",default=False))
         self.add_attribute(BlueprintAttribute("equilibriumGridDefinition","sima/simo/EquilibriumGridDefinition","",True))
         self.add_attribute(Attribute("requireSuccessfulCalculation","boolean","When checked, static calculation will fail if no equilibrium position is found",default=True))
+        self.add_attribute(BlueprintAttribute("storageParameters","sima/simo/SIMOStaticResultStorageParameters","",True))

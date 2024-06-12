@@ -16,9 +16,9 @@ class GlobalSpringStiffnessItem(MOAO):
          (default "")
     scriptableValues : List[ScriptableValue]
     force : float
-         Spring force / moment corresponding to.(default 0.0)
+         (default 0.0)
     displacement : float
-         Spring displacement.(default 0.0)
+         (default 0.0)
     """
 
     def __init__(self , description="", force=0.0, displacement=0.0, **kwargs):
@@ -62,7 +62,7 @@ class GlobalSpringStiffnessItem(MOAO):
 
     @property
     def force(self) -> float:
-        """Spring force / moment corresponding to."""
+        """"""
         return self.__force
 
     @force.setter
@@ -72,7 +72,7 @@ class GlobalSpringStiffnessItem(MOAO):
 
     @property
     def displacement(self) -> float:
-        """Spring displacement."""
+        """"""
         return self.__displacement
 
     @displacement.setter

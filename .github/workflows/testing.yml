@@ -9,6 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: "Build Docker Images"
-        run: docker-compose build simapy
+        run: docker compose build simapy
       - name: "Tests"
-        run: docker-compose run simapy pytest --junitxml output/report.xml
+        run: docker compose run simapy pytest --junitxml output/report.xml

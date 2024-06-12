@@ -22,21 +22,18 @@ class Plot(ReportItem):
     object : MOAO
     caption : str
          Caption(default None)
-    mergeSeries : bool
-         Merge all series in one plot(default False)
     xLabel : str
          (default None)
     yLabel : str
          (default None)
     """
 
-    def __init__(self , description="", mergeSeries=False, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.object = None
         self.caption = None
-        self.mergeSeries = mergeSeries
         self.xLabel = None
         self.yLabel = None
         for key, value in kwargs.items():
@@ -91,16 +88,6 @@ class Plot(ReportItem):
     def caption(self, value: str):
         """Set caption"""
         self.__caption = value
-
-    @property
-    def mergeSeries(self) -> bool:
-        """Merge all series in one plot"""
-        return self.__mergeSeries
-
-    @mergeSeries.setter
-    def mergeSeries(self, value: bool):
-        """Set mergeSeries"""
-        self.__mergeSeries = bool(value)
 
     @property
     def xLabel(self) -> str:

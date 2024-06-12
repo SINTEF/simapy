@@ -1,13 +1,13 @@
 
 from .bladeelement import BladeElement # noqa
 from .generator import Generator # noqa
-from .performancerelation import PerformanceRelation # noqa
 from .performancerelationitem import PerformanceRelationItem # noqa
 from .turbulenceboxscaling import TurbulenceBoxScaling # noqa
 from .windparktask import WindParkTask # noqa
 from .windparkturbine import WindParkTurbine # noqa
 from .windturbinemotion import WindTurbineMotion # noqa
 from .windturbinetype import WindTurbineType # noqa
+from .yawperformancerelation import YawPerformanceRelation # noqa
 from .areaaveragingoption import AreaAveragingOption # noqa
 from .deficitanalysisoption import DeficitAnalysisOption # noqa
 from .deficitfilecontents import DeficitFileContents # noqa

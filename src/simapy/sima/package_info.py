@@ -1,1 +1,3 @@
-packages =  {'command': 1, 'condition': 19,'custom': 12,'doc': 11,'environment': 22,'graph': 4,'hla': 24,'hydro': 28,'metocean': 10,'optimization': 1,'post': 27,'report': 11,'riflex': 43,'signals': 2, 'sima': 24,'simo': 45,'wamit': 14,'windpark': 1,'windturbine': 10,'workflow': 19}
+
+version = "4.8.0"
+packages =  {'command': 2, 'condition': 20, 'custom': 13, 'doc': 12, 'environment': 23, 'graph': 5, 'hla': 25, 'hydro': 29, 'metocean': 11, 'optimization': 1, 'post': 28, 'report': 12, 'riflex': 44, 'signals': 2, 'sima': 25, 'simo': 46, 'wamit': 15, 'windpark': 1, 'windturbine': 11, 'workflow': 20}

@@ -18,7 +18,7 @@ with open('requirements.txt',encoding='utf8') as f:
 
 setup(
     name="simapy",
-    version="4.6.1.dev2",
+    version="4.8.0",
     author="SINTEF Ocean",
     description="Python utilities for SIMA",
     url="https://github.com/SINTEF/simapy",

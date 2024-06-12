@@ -39,8 +39,6 @@ class DNV_OS_F201CombinedLoading(CombinedLoading):
          Calculate characteristic extreme values of utilization factors using Gumbel distribution fitting(default False)
     seastateReturnPeriod : float
          Return period used for estimating the characteristic extreme value(default 3.0)
-    percentile : float
-         Specify percentile in extreme value distribution. \nThe value 0.57038 corresponds to the expected extreme, and 0.9 corresponds to 90% estimate of the extreme response(default 0.57038)
     approach : CombinedLoadingApproach
     customSafetyClassResistanceFactor : float
          Safety class resistance factor (ɣ SC)(default 0.0)
@@ -60,7 +58,7 @@ class DNV_OS_F201CombinedLoading(CombinedLoading):
          Number of the last load group in static calculation parameter that is part of the functional load(default 0)
     """
 
-    def __init__(self , description="", refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, percentile=0.57038, approach=CombinedLoadingApproach.LRFD, customSafetyClassResistanceFactor=0.0, customLoadEffectFactorForEnvironmentalLoads=0.0, customLoadEffectFactorForFunctionalLoads=0.0, customLoadFactorForAccidentalLoads=0.0, customMaterialResistanceFactor=0.0, fabricationFactor=0.85, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, lastFunctionalLoadGroup=0, **kwargs):
+    def __init__(self , description="", refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, approach=CombinedLoadingApproach.LRFD, customSafetyClassResistanceFactor=0.0, customLoadEffectFactorForEnvironmentalLoads=0.0, customLoadEffectFactorForFunctionalLoads=0.0, customLoadFactorForAccidentalLoads=0.0, customMaterialResistanceFactor=0.0, fabricationFactor=0.85, safetyClass=SafetyClass.LOW, limitStateCategory=LimitStateCategory.SLS, lastFunctionalLoadGroup=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -74,7 +72,6 @@ class DNV_OS_F201CombinedLoading(CombinedLoading):
         self.properties = list()
         self.useDistributionFitting = useDistributionFitting
         self.seastateReturnPeriod = seastateReturnPeriod
-        self.percentile = percentile
         self.approach = approach
         self.customSafetyClassResistanceFactor = customSafetyClassResistanceFactor
         self.customLoadEffectFactorForEnvironmentalLoads = customLoadEffectFactorForEnvironmentalLoads
@@ -220,17 +217,6 @@ Given as the Z coordinate in global coordinate system."""
     def seastateReturnPeriod(self, value: float):
         """Set seastateReturnPeriod"""
         self.__seastateReturnPeriod = float(value)
-
-    @property
-    def percentile(self) -> float:
-        """Specify percentile in extreme value distribution. 
-The value 0.57038 corresponds to the expected extreme, and 0.9 corresponds to 90% estimate of the extreme response"""
-        return self.__percentile
-
-    @percentile.setter
-    def percentile(self, value: float):
-        """Set percentile"""
-        self.__percentile = float(value)
 
     @property
     def approach(self) -> CombinedLoadingApproach:

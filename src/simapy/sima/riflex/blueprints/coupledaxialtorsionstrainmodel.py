@@ -47,7 +47,6 @@ class CoupledAxialTorsionStrainModelBlueprint(CrossSectionBlueprint,CRSAxialFric
         self.add_attribute(Attribute("stiffnessDampingSpecification","boolean","Stiffness proportional Rayleigh damping",default=False))
         self.add_attribute(Attribute("axialDampingSpecification","boolean","Local axial damping model",default=False))
         self.add_attribute(BlueprintAttribute("massDamping","sima/riflex/CRSMassDamping","",True))
-        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/CRSStiffnessDamping","",True))
         self.add_attribute(BlueprintAttribute("axialDamping","sima/riflex/CRSAxialDamping","",True))
         self.add_attribute(Attribute("temperature","number","Temperature at which the specification applies",default=0.0))
         self.add_attribute(Attribute("alpha","number","Thermal expansion coefficient",default=0.0))
@@ -70,3 +69,4 @@ class CoupledAxialTorsionStrainModelBlueprint(CrossSectionBlueprint,CRSAxialFric
         self.add_attribute(Attribute("stiffnessFactor","number","Initial stiffness factor for internal friction moment",default=10.0))
         self.add_attribute(BlueprintAttribute("coupledAxialTorsionItems","sima/riflex/CoupledAxialTorsionStrainItem","",True,Dimension("*")))
         self.add_attribute(Attribute("tensionTorsionCoupling","number"," Tension/torsion coupling parameter",default=0.0))
+        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/CRSStiffnessDamping","",True))

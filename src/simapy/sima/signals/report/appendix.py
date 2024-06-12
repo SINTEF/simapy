@@ -19,14 +19,17 @@ class Appendix(Section):
          (default None)
     landscape : bool
          (default False)
+    pageBreakBefore : bool
+         (default False)
     """
 
-    def __init__(self , description="", landscape=False, **kwargs):
+    def __init__(self , description="", landscape=False, pageBreakBefore=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.items = list()
         self.title = None
         self.landscape = landscape
+        self.pageBreakBefore = pageBreakBefore
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -79,3 +82,13 @@ class Appendix(Section):
     def landscape(self, value: bool):
         """Set landscape"""
         self.__landscape = bool(value)
+
+    @property
+    def pageBreakBefore(self) -> bool:
+        """"""
+        return self.__pageBreakBefore
+
+    @pageBreakBefore.setter
+    def pageBreakBefore(self, value: bool):
+        """Set pageBreakBefore"""
+        self.__pageBreakBefore = bool(value)

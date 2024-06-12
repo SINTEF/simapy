@@ -11,6 +11,7 @@ from .bodyeigenvalueitem import BodyEigenvalueItem
 from .dofelimination import DOFElimination
 from .equilibriumcalculationoption import EquilibriumCalculationOption
 from .equilibriumgriddefinition import EquilibriumGridDefinition
+from .simostaticresultstorageparameters import SIMOStaticResultStorageParameters
 from .staticequilibriumbody import StaticEquilibriumBody
 
 class SIMOStaticCalculationParameters(MOAO):
@@ -54,6 +55,7 @@ class SIMOStaticCalculationParameters(MOAO):
     equilibriumGridDefinition : EquilibriumGridDefinition
     requireSuccessfulCalculation : bool
          When checked, static calculation will fail if no equilibrium position is found(default True)
+    storageParameters : SIMOStaticResultStorageParameters
     """
 
     def __init__(self , description="", runStaticAutomatically=False, calculateEquilibrium=True, maxPeriod=10.0, posTol=0.1, dirTol=0.1, timeStep=0.01, maxStep=10000, criticalDamping=True, writeVisFile=True, calculateEigenvalues=False, equilibriumCalculationMethod=EquilibriumCalculationOption.TRANSIENT, forceTolerance=100.0, momentTolerance=1000.0, multipleEquilibriumCalculations=False, requireSuccessfulCalculation=True, **kwargs):
@@ -80,6 +82,7 @@ class SIMOStaticCalculationParameters(MOAO):
         self.multipleEquilibriumCalculations = multipleEquilibriumCalculations
         self.equilibriumGridDefinition = None
         self.requireSuccessfulCalculation = requireSuccessfulCalculation
+        self.storageParameters = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -320,3 +323,13 @@ class SIMOStaticCalculationParameters(MOAO):
     def requireSuccessfulCalculation(self, value: bool):
         """Set requireSuccessfulCalculation"""
         self.__requireSuccessfulCalculation = bool(value)
+
+    @property
+    def storageParameters(self) -> SIMOStaticResultStorageParameters:
+        """"""
+        return self.__storageParameters
+
+    @storageParameters.setter
+    def storageParameters(self, value: SIMOStaticResultStorageParameters):
+        """Set storageParameters"""
+        self.__storageParameters = value

@@ -15,4 +15,5 @@ class FontBlueprint(EntityBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(Attribute("size","integer","",default=10))
         self.add_attribute(Attribute("font","string",""))
+        self.add_attribute(Attribute("color","string",""))
         self.add_attribute(EnumAttribute("style","sima/signals/report/FontStyle",""))

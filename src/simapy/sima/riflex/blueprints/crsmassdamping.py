@@ -16,4 +16,4 @@ class CRSMassDampingBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("axialFactor","number","Factor for mass proportional damping in axial dof",default=0.0))
         self.add_attribute(Attribute("torsionalFactor","number","Factor for mass proportional damping in torsional dof",default=0.0))
-        self.add_attribute(Attribute("bendingFactor","number","Factor for mass proportional damping in bending dof",default=0.0))
+        self.add_attribute(Attribute("bendingFactor","number","Factor for mass proportional damping in bending/shear dofs",default=0.0))

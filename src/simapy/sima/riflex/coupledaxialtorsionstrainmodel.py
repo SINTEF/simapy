@@ -88,7 +88,6 @@ class CoupledAxialTorsionStrainModel(CrossSection,CRSAxialFrictionModel):
     axialDampingSpecification : bool
          Local axial damping model(default False)
     massDamping : CRSMassDamping
-    stiffnessDamping : CRSStiffnessDamping
     axialDamping : CRSAxialDamping
     temperature : float
          Temperature at which the specification applies(default 0.0)
@@ -129,6 +128,7 @@ class CoupledAxialTorsionStrainModel(CrossSection,CRSAxialFrictionModel):
     coupledAxialTorsionItems : List[CoupledAxialTorsionStrainItem]
     tensionTorsionCoupling : float
           Tension/torsion coupling parameter(default 0.0)
+    stiffnessDamping : CRSStiffnessDamping
     """
 
     def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, normalDirectionScaling=1.0, tangentialDirectionScaling=1.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, tensionCapacity=0.0, maxCurvature=0.0, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, axialStiffnessInput=AxialStiffness.CONSTANT, axialStiffness=0.0, torsionStiffness=0.0, bendingStiffness=0.0, intFrictionMoment=10.0, stiffnessFactor=10.0, tensionTorsionCoupling=0.0, **kwargs):
@@ -167,7 +167,6 @@ class CoupledAxialTorsionStrainModel(CrossSection,CRSAxialFrictionModel):
         self.stiffnessDampingSpecification = stiffnessDampingSpecification
         self.axialDampingSpecification = axialDampingSpecification
         self.massDamping = None
-        self.stiffnessDamping = None
         self.axialDamping = None
         self.temperature = temperature
         self.alpha = alpha
@@ -190,6 +189,7 @@ class CoupledAxialTorsionStrainModel(CrossSection,CRSAxialFrictionModel):
         self.stiffnessFactor = stiffnessFactor
         self.coupledAxialTorsionItems = list()
         self.tensionTorsionCoupling = tensionTorsionCoupling
+        self.stiffnessDamping = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -544,16 +544,6 @@ class CoupledAxialTorsionStrainModel(CrossSection,CRSAxialFrictionModel):
         self.__massDamping = value
 
     @property
-    def stiffnessDamping(self) -> CRSStiffnessDamping:
-        """"""
-        return self.__stiffnessDamping
-
-    @stiffnessDamping.setter
-    def stiffnessDamping(self, value: CRSStiffnessDamping):
-        """Set stiffnessDamping"""
-        self.__stiffnessDamping = value
-
-    @property
     def axialDamping(self) -> CRSAxialDamping:
         """"""
         return self.__axialDamping
@@ -774,3 +764,13 @@ class CoupledAxialTorsionStrainModel(CrossSection,CRSAxialFrictionModel):
     def tensionTorsionCoupling(self, value: float):
         """Set tensionTorsionCoupling"""
         self.__tensionTorsionCoupling = float(value)
+
+    @property
+    def stiffnessDamping(self) -> CRSStiffnessDamping:
+        """"""
+        return self.__stiffnessDamping
+
+    @stiffnessDamping.setter
+    def stiffnessDamping(self, value: CRSStiffnessDamping):
+        """Set stiffnessDamping"""
+        self.__stiffnessDamping = value

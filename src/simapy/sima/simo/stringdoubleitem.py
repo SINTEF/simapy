@@ -19,14 +19,17 @@ class StringDoubleItem(MOAO):
          (default None)
     value : float
          (default 0.0)
+    unit : str
+         (default '-')
     """
 
-    def __init__(self , description="", value=0.0, **kwargs):
+    def __init__(self , description="", value=0.0, unit='-', **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.text = None
         self.value = value
+        self.unit = unit
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -79,3 +82,13 @@ class StringDoubleItem(MOAO):
     def value(self, value: float):
         """Set value"""
         self.__value = float(value)
+
+    @property
+    def unit(self) -> str:
+        """"""
+        return self.__unit
+
+    @unit.setter
+    def unit(self, value: str):
+        """Set unit"""
+        self.__unit = value

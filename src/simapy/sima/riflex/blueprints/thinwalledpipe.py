@@ -47,7 +47,6 @@ class ThinWalledPipeBlueprint(CrossSectionBlueprint,CRSAxialFrictionModelBluepri
         self.add_attribute(Attribute("stiffnessDampingSpecification","boolean","Stiffness proportional Rayleigh damping",default=False))
         self.add_attribute(Attribute("axialDampingSpecification","boolean","Local axial damping model",default=False))
         self.add_attribute(BlueprintAttribute("massDamping","sima/riflex/CRSMassDamping","",True))
-        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/CRSStiffnessDamping","",True))
         self.add_attribute(BlueprintAttribute("axialDamping","sima/riflex/CRSAxialDamping","",True))
         self.add_attribute(Attribute("temperature","number","Temperature at which the specification applies",default=0.0))
         self.add_attribute(Attribute("alpha","number","Thermal expansion coefficient",default=0.0))
@@ -72,3 +71,4 @@ class ThinWalledPipeBlueprint(CrossSectionBlueprint,CRSAxialFrictionModelBluepri
         self.add_attribute(Attribute("calculateBeta","boolean","Let RIFLEX calculate beta",default=False))
         self.add_attribute(EnumAttribute("diameterType","sima/riflex/InnerOuter","Inner or outer diameter"))
         self.add_attribute(Attribute("coupledBendingTorsion","boolean","Geometric stiffness coupling between bending and torsion",default=False))
+        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/CRSStiffnessDamping","",True))

@@ -18,6 +18,8 @@ class Font(Entity):
          (default 10)
     font : str
          (default None)
+    color : str
+         (default None)
     style : FontStyle
     """
 
@@ -26,6 +28,7 @@ class Font(Entity):
         self.description = description
         self.size = size
         self.font = None
+        self.color = None
         self.style = style
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -67,6 +70,16 @@ class Font(Entity):
     def font(self, value: str):
         """Set font"""
         self.__font = value
+
+    @property
+    def color(self) -> str:
+        """"""
+        return self.__color
+
+    @color.setter
+    def color(self, value: str):
+        """Set color"""
+        self.__color = value
 
     @property
     def style(self) -> FontStyle:

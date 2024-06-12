@@ -15,20 +15,26 @@ class NumericalWave(Wave):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    fromFile : bool
+         Define numerical spectrum in external file(default False)
     directions : ndarray of float
          Number of wave directions
     frequencies : ndarray of float
          Number of wave frequencies
     values : ndarray of float
+    file : str
+         Name of external file with specified numerical spectrum data(default None)
     """
 
-    def __init__(self , description="", **kwargs):
+    def __init__(self , description="", fromFile=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
+        self.fromFile = fromFile
         self.directions = []
         self.frequencies = []
         self.values = []
+        self.file = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -61,6 +67,16 @@ class NumericalWave(Wave):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def fromFile(self) -> bool:
+        """Define numerical spectrum in external file"""
+        return self.__fromFile
+
+    @fromFile.setter
+    def fromFile(self, value: bool):
+        """Set fromFile"""
+        self.__fromFile = bool(value)
 
     @property
     def directions(self) -> ndarray:
@@ -100,3 +116,13 @@ class NumericalWave(Wave):
         if len(array) > 0 and array.ndim != 1:
             raise ValueError("Expected array with 1 dimensions")
         self.__values = array
+
+    @property
+    def file(self) -> str:
+        """Name of external file with specified numerical spectrum data"""
+        return self.__file
+
+    @file.setter
+    def file(self, value: str):
+        """Set file"""
+        self.__file = value
