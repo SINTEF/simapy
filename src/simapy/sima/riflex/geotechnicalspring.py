@@ -36,13 +36,11 @@ class GeotechnicalSpring(NodeReference,NamedObject):
          (default None)
     stiffnessItems : List[GeotechnicalSpringStiffnessItem]
     dampingDisplacementItems : List[DampingDisplacementItem]
-    strainVelocityExponent : float
-         (default 1.0)
-    relativeLength : float
-         Relative length for result scaling(default 1.0)
+    velocityExponent : float
+         Exponent of velocity in damping calculation(default 1.0)
     """
 
-    def __init__(self , description="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, strainVelocityExponent=1.0, relativeLength=1.0, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, nodeNumber=1, allNodes=False, velocityExponent=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -54,8 +52,7 @@ class GeotechnicalSpring(NodeReference,NamedObject):
         self.name = None
         self.stiffnessItems = list()
         self.dampingDisplacementItems = list()
-        self.strainVelocityExponent = strainVelocityExponent
-        self.relativeLength = relativeLength
+        self.velocityExponent = velocityExponent
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -174,21 +171,11 @@ class GeotechnicalSpring(NodeReference,NamedObject):
         self.__dampingDisplacementItems = value
 
     @property
-    def strainVelocityExponent(self) -> float:
-        """"""
-        return self.__strainVelocityExponent
+    def velocityExponent(self) -> float:
+        """Exponent of velocity in damping calculation"""
+        return self.__velocityExponent
 
-    @strainVelocityExponent.setter
-    def strainVelocityExponent(self, value: float):
-        """Set strainVelocityExponent"""
-        self.__strainVelocityExponent = float(value)
-
-    @property
-    def relativeLength(self) -> float:
-        """Relative length for result scaling"""
-        return self.__relativeLength
-
-    @relativeLength.setter
-    def relativeLength(self, value: float):
-        """Set relativeLength"""
-        self.__relativeLength = float(value)
+    @velocityExponent.setter
+    def velocityExponent(self, value: float):
+        """Set velocityExponent"""
+        self.__velocityExponent = float(value)

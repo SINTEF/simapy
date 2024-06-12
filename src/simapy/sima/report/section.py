@@ -6,22 +6,19 @@ from dmt.blueprint import Blueprint
 from .blueprints.section import SectionBlueprint
 from typing import Dict
 from ..sima import ScriptableValue
-from .linkable import Linkable
 from .orientation import Orientation
 from .reportitem import ReportItem
 
-class Section(ReportItem,Linkable):
+class Section(ReportItem):
     """
     Keyword arguments
     -----------------
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    identifier : str
-         (default None)
     items : List[ReportItem]
     title : str
-         The title of the section.(default None)
+         (default None)
     pageBreakBefore : bool
          (default False)
     orientation : Orientation
@@ -31,7 +28,6 @@ class Section(ReportItem,Linkable):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.identifier = None
         self.items = list()
         self.title = None
         self.pageBreakBefore = pageBreakBefore
@@ -70,16 +66,6 @@ class Section(ReportItem,Linkable):
         self.__scriptableValues = value
 
     @property
-    def identifier(self) -> str:
-        """"""
-        return self.__identifier
-
-    @identifier.setter
-    def identifier(self, value: str):
-        """Set identifier"""
-        self.__identifier = value
-
-    @property
     def items(self) -> List[ReportItem]:
         """"""
         return self.__items
@@ -93,7 +79,7 @@ class Section(ReportItem,Linkable):
 
     @property
     def title(self) -> str:
-        """The title of the section."""
+        """"""
         return self.__title
 
     @title.setter

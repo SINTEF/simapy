@@ -44,8 +44,6 @@ class RIFLEXTask(SIMOTask):
          (default True)
     exportMassUnit : MassUnit
          Used as export unit for mass ( and indirectly force)
-    exportAsFMU : bool
-         Generate FMU (Functional Mockup Unit) from model(default False)
     riflexStamodMemory : int
          Enables override of the default memory settings. Given in MB(default 512)
     numRiflexStamodArrays : int
@@ -62,7 +60,7 @@ class RIFLEXTask(SIMOTask):
          (default True)
     """
 
-    def __init__(self , description="", runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, exportAsFMU=False, riflexStamodMemory=512, numRiflexStamodArrays=20000, riflexDynmodMemory=512, vivanaWorkArraySize=9000000, maxRiflexArrays=2000, riflexOutmodMemory=32, skipRiflexDynmodTransformation=True, **kwargs):
+    def __init__(self , description="", runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, riflexStamodMemory=512, numRiflexStamodArrays=20000, riflexDynmodMemory=512, vivanaWorkArraySize=9000000, maxRiflexArrays=2000, riflexOutmodMemory=32, skipRiflexDynmodTransformation=True, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -80,7 +78,6 @@ class RIFLEXTask(SIMOTask):
         self.simoMemory = simoMemory
         self.removeIntermediateFiles = removeIntermediateFiles
         self.exportMassUnit = exportMassUnit
-        self.exportAsFMU = exportAsFMU
         self.riflexStamodMemory = riflexStamodMemory
         self.numRiflexStamodArrays = numRiflexStamodArrays
         self.riflexDynmodMemory = riflexDynmodMemory
@@ -274,16 +271,6 @@ class RIFLEXTask(SIMOTask):
     def exportMassUnit(self, value: MassUnit):
         """Set exportMassUnit"""
         self.__exportMassUnit = value
-
-    @property
-    def exportAsFMU(self) -> bool:
-        """Generate FMU (Functional Mockup Unit) from model"""
-        return self.__exportAsFMU
-
-    @exportAsFMU.setter
-    def exportAsFMU(self, value: bool):
-        """Set exportAsFMU"""
-        self.__exportAsFMU = bool(value)
 
     @property
     def riflexStamodMemory(self) -> int:

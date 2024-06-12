@@ -5,9 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from dmt.blueprints.entity import EntityBlueprint
+from .reportitem import ReportItemBlueprint
 
-class LinePlotBlueprint(EntityBlueprint):
+class LinePlotBlueprint(ReportItemBlueprint):
     """"""
 
     def __init__(self, name="LinePlot", package_path="sima/signals/report", description=""):

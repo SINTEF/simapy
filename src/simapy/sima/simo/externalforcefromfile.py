@@ -19,12 +19,12 @@ class ExternalForceFromFile(NamedObject):
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
-    forceFile : str
-         ' File heading,  arbitrary number of lines with \n' apostrophe in the first position of the input line\nNCOL: Number of columns (=6)\nNROW: Number of rows (i.e. no. of time incidents)\nSAMP: Sampling interval [T]\nForce components, NROW lines (one per time incident)\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\n(default None)
     referenceFrame : ReferenceFrameType
          Which coordinate system is the force is given in?
     attachmentPoint : Point3
          Attack point of force.
+    forceFile : str
+         ' File heading,  arbitrary number of lines with \n' apostrophe in the first position of the input line\nNCOL: Number of columns (=6)\nNROW: Number of rows (i.e. no. of time incidents)\nSAMP: Sampling interval [T]\nForce components, NROW lines (one per time incident)\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\nFX   FY   FZ   MX   MY   MZ\n(default None)
     fx : float
          Force in X-direction(default 0.0)
     fy : float
@@ -44,9 +44,9 @@ class ExternalForceFromFile(NamedObject):
         self.description = description
         self.scriptableValues = list()
         self.name = None
-        self.forceFile = None
         self.referenceFrame = referenceFrame
         self.attachmentPoint = None
+        self.forceFile = None
         self.fx = fx
         self.fy = fy
         self.fz = fz
@@ -97,26 +97,6 @@ class ExternalForceFromFile(NamedObject):
         self.__name = value
 
     @property
-    def forceFile(self) -> str:
-        """' File heading,  arbitrary number of lines with 
-' apostrophe in the first position of the input line
-NCOL: Number of columns (=6)
-NROW: Number of rows (i.e. no. of time incidents)
-SAMP: Sampling interval [T]
-Force components, NROW lines (one per time incident)
-FX   FY   FZ   MX   MY   MZ
-FX   FY   FZ   MX   MY   MZ
-FX   FY   FZ   MX   MY   MZ
-FX   FY   FZ   MX   MY   MZ
-"""
-        return self.__forceFile
-
-    @forceFile.setter
-    def forceFile(self, value: str):
-        """Set forceFile"""
-        self.__forceFile = value
-
-    @property
     def referenceFrame(self) -> ReferenceFrameType:
         """Which coordinate system is the force is given in?"""
         return self.__referenceFrame
@@ -135,6 +115,26 @@ FX   FY   FZ   MX   MY   MZ
     def attachmentPoint(self, value: Point3):
         """Set attachmentPoint"""
         self.__attachmentPoint = value
+
+    @property
+    def forceFile(self) -> str:
+        """' File heading,  arbitrary number of lines with 
+' apostrophe in the first position of the input line
+NCOL: Number of columns (=6)
+NROW: Number of rows (i.e. no. of time incidents)
+SAMP: Sampling interval [T]
+Force components, NROW lines (one per time incident)
+FX   FY   FZ   MX   MY   MZ
+FX   FY   FZ   MX   MY   MZ
+FX   FY   FZ   MX   MY   MZ
+FX   FY   FZ   MX   MY   MZ
+"""
+        return self.__forceFile
+
+    @forceFile.setter
+    def forceFile(self, value: str):
+        """Set forceFile"""
+        self.__forceFile = value
 
     @property
     def fx(self) -> float:

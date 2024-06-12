@@ -19,20 +19,23 @@ class ESDUWind(Wind):
          Wind propagation direction(default 0.0)
     averageVelocity : float
          Average velocity at reference height(default 0.0)
+    profileExponent : float
+         Wind profile exponent(default 0.11)
+    friction : float
+         Surface drag coefficient.\nAlso used for transverse gust spectrum, if specified.(default 0.002)
     psi : float
          Site latitude in decimal degrees(default 0.0)
-    friction : float
-         Surface drag coefficient used for transverse gust spectrum(default 0.002)
     """
 
-    def __init__(self , description="", direction=0.0, averageVelocity=0.0, psi=0.0, friction=0.002, **kwargs):
+    def __init__(self , description="", direction=0.0, averageVelocity=0.0, profileExponent=0.11, friction=0.002, psi=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.direction = direction
         self.averageVelocity = averageVelocity
-        self.psi = psi
+        self.profileExponent = profileExponent
         self.friction = friction
+        self.psi = psi
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -87,6 +90,27 @@ class ESDUWind(Wind):
         self.__averageVelocity = float(value)
 
     @property
+    def profileExponent(self) -> float:
+        """Wind profile exponent"""
+        return self.__profileExponent
+
+    @profileExponent.setter
+    def profileExponent(self, value: float):
+        """Set profileExponent"""
+        self.__profileExponent = float(value)
+
+    @property
+    def friction(self) -> float:
+        """Surface drag coefficient.
+Also used for transverse gust spectrum, if specified."""
+        return self.__friction
+
+    @friction.setter
+    def friction(self, value: float):
+        """Set friction"""
+        self.__friction = float(value)
+
+    @property
     def psi(self) -> float:
         """Site latitude in decimal degrees"""
         return self.__psi
@@ -95,13 +119,3 @@ class ESDUWind(Wind):
     def psi(self, value: float):
         """Set psi"""
         self.__psi = float(value)
-
-    @property
-    def friction(self) -> float:
-        """Surface drag coefficient used for transverse gust spectrum"""
-        return self.__friction
-
-    @friction.setter
-    def friction(self, value: float):
-        """Set friction"""
-        self.__friction = float(value)

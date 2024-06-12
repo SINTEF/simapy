@@ -37,15 +37,13 @@ class VonMisesCombinedLoading(CombinedLoading):
          Calculate characteristic extreme values of utilization factors using Gumbel distribution fitting(default False)
     seastateReturnPeriod : float
          Return period used for estimating the characteristic extreme value(default 3.0)
-    percentile : float
-         Specify percentile in extreme value distribution. \nThe value 0.57038 corresponds to the expected extreme, and 0.9 corresponds to 90% estimate of the extreme response(default 0.57038)
     usageFactor : float
          Usage factor according to e.g. API 2RD(default 1.0)
     stress : VonMisesStress
          Usage factor according to e.g. API 2RD
     """
 
-    def __init__(self , description="", refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, percentile=0.57038, usageFactor=1.0, stress=VonMisesStress.MIDWALL, **kwargs):
+    def __init__(self , description="", refPointPressure=0.0, referencePoint=0.0, limitTimeInterval=False, startTime=0.0, endTime=0.0, addIntermediateResults=False, useDistributionFitting=False, seastateReturnPeriod=3.0, usageFactor=1.0, stress=VonMisesStress.MIDWALL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -59,7 +57,6 @@ class VonMisesCombinedLoading(CombinedLoading):
         self.properties = list()
         self.useDistributionFitting = useDistributionFitting
         self.seastateReturnPeriod = seastateReturnPeriod
-        self.percentile = percentile
         self.usageFactor = usageFactor
         self.stress = stress
         for key, value in kwargs.items():
@@ -197,17 +194,6 @@ Given as the Z coordinate in global coordinate system."""
     def seastateReturnPeriod(self, value: float):
         """Set seastateReturnPeriod"""
         self.__seastateReturnPeriod = float(value)
-
-    @property
-    def percentile(self) -> float:
-        """Specify percentile in extreme value distribution. 
-The value 0.57038 corresponds to the expected extreme, and 0.9 corresponds to 90% estimate of the extreme response"""
-        return self.__percentile
-
-    @percentile.setter
-    def percentile(self, value: float):
-        """Set percentile"""
-        self.__percentile = float(value)
 
     @property
     def usageFactor(self) -> float:

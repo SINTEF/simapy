@@ -132,9 +132,15 @@ class Generator(Named,ConditionSelectable):
     shaftDirectionDefinition : ShaftDirection
          Kind of shaft direction definition
     windTurbineMotions : List[WindTurbineMotion]
+    useTimeWindow : bool
+         If selected simulations will be performed for user defined start time and duration, otherwise DIWA will estimate the simulations time duration from turbulence boxes.(default False)
+    timeWindowStart : float
+         Starting time of meandering(default 0.0)
+    timeWindowDuration : float
+         Total duration of meandering(default 0.0)
     """
 
-    def __init__(self , description="", airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.AMBIENT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=False, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, useYawMisalignment=False, interpolateYawMisalignment=False, wakeFlowModel=WakeFlowModel.JIMENEZ, yawIncrement=0.0, shaftDirectionDefinition=ShaftDirection.YAW, **kwargs):
+    def __init__(self , description="", airDensity=1.3, kinematicViscosity=1.824e-05, meanderingOption=MeanderingAnalysisOption.COMP, powerOption=PowerOption.COMP, deficitOption=DeficitAnalysisOption.COMP, focusOption=Focus.TARGET, angleChange=3.0, maxLaps=30, deficitFileContents=DeficitFileContents.INDUCTION_PROFILE, ambientMixingParameter=0.0, deficitParameter=0.0, multipleDeficitMethod=MultipleDeficitMethod.MAXOP, nearWakeLengthModel=NearWakeLengthModel.ROTOR_DIAMETERS, viscosityFilter=ViscosityFilter.MADSEN, incomingWind=IncomingWind.AMBIENT, speedIncrement=0.25, deficitDepthFactor=0.6, deficitGradientFactor=0.35, cutOffFilterLengthFactor=2.0, windVelocity=0.0, windDirection=0.0, turbulenceIntencity=0.0, stabilityClass=StabilityClass.NONE, turbulenceBoxOption=TurbulenceBoxOption.DTUMANN, outputPrefix='diwa', includePowerResult=False, powerResultFormat=FileFormat.BINARY, includeVisualization=False, visualizationFormat=FileFormat.BINARY, animationTime=0.0, areaAveragingOption=AreaAveragingOption.RADIAL, filterLengthOption=FilterLengthOption.ROTOR, weightOption=WeightOption.UNIFORM, weightConst=1.0, applyLowPassFilter=True, applyAreaAveraging=False, lowPassFrequencyOption=LowPassFrequencyOption.CALC, lowPassFrequency=0.0, useYawMisalignment=False, interpolateYawMisalignment=False, wakeFlowModel=WakeFlowModel.JIMENEZ, yawIncrement=0.0, shaftDirectionDefinition=ShaftDirection.YAW, useTimeWindow=False, timeWindowStart=0.0, timeWindowDuration=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -192,6 +198,9 @@ class Generator(Named,ConditionSelectable):
         self.yawIncrement = yawIncrement
         self.shaftDirectionDefinition = shaftDirectionDefinition
         self.windTurbineMotions = list()
+        self.useTimeWindow = useTimeWindow
+        self.timeWindowStart = timeWindowStart
+        self.timeWindowDuration = timeWindowDuration
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -772,3 +781,33 @@ class Generator(Named,ConditionSelectable):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__windTurbineMotions = value
+
+    @property
+    def useTimeWindow(self) -> bool:
+        """If selected simulations will be performed for user defined start time and duration, otherwise DIWA will estimate the simulations time duration from turbulence boxes."""
+        return self.__useTimeWindow
+
+    @useTimeWindow.setter
+    def useTimeWindow(self, value: bool):
+        """Set useTimeWindow"""
+        self.__useTimeWindow = bool(value)
+
+    @property
+    def timeWindowStart(self) -> float:
+        """Starting time of meandering"""
+        return self.__timeWindowStart
+
+    @timeWindowStart.setter
+    def timeWindowStart(self, value: float):
+        """Set timeWindowStart"""
+        self.__timeWindowStart = float(value)
+
+    @property
+    def timeWindowDuration(self) -> float:
+        """Total duration of meandering"""
+        return self.__timeWindowDuration
+
+    @timeWindowDuration.setter
+    def timeWindowDuration(self, value: float):
+        """Set timeWindowDuration"""
+        self.__timeWindowDuration = float(value)

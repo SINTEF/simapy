@@ -1,5 +1,5 @@
 # 
-# Generated with NPDWindBlueprint
+# Generated with ISO199011WindBlueprint
 from dmt.blueprint import Blueprint
 from dmt.dimension import Dimension
 from dmt.attribute import Attribute
@@ -7,10 +7,10 @@ from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
 from .wind import WindBlueprint
 
-class NPDWindBlueprint(WindBlueprint):
+class ISO199011WindBlueprint(WindBlueprint):
     """"""
 
-    def __init__(self, name="NPDWind", package_path="sima/environment", description=""):
+    def __init__(self, name="ISO199011Wind", package_path="sima/environment", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))

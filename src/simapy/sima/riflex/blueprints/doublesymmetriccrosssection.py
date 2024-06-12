@@ -47,7 +47,6 @@ class DoubleSymmetricCrossSectionBlueprint(CrossSectionBlueprint,CRSAxialFrictio
         self.add_attribute(Attribute("stiffnessDampingSpecification","boolean","Stiffness proportional Rayleigh damping",default=False))
         self.add_attribute(Attribute("axialDampingSpecification","boolean","Local axial damping model",default=False))
         self.add_attribute(BlueprintAttribute("massDamping","sima/riflex/CRSMassDamping","",True))
-        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/CRSStiffnessDamping","",True))
         self.add_attribute(BlueprintAttribute("axialDamping","sima/riflex/CRSAxialDamping","",True))
         self.add_attribute(Attribute("cdax","number","Quadratic aerodynamic drag force coefficient per unit length in tangential direction",default=0.0))
         self.add_attribute(Attribute("cday","number","Quadratic aerodynamic drag force coefficient per unit length in normal direction",default=0.0))
@@ -82,3 +81,4 @@ class DoubleSymmetricCrossSectionBlueprint(CrossSectionBlueprint,CRSAxialFrictio
         self.add_attribute(Attribute("shearStiffnessZ","number","Shear stiffness in Z-direction",default=0.0))
         self.add_attribute(Attribute("shearStiffnessY","number","Shear stiffness in Y-direction",default=0.0))
         self.add_attribute(EnumAttribute("hydrodynamicRadiationInputCode","sima/riflex/HydrodynamicInputCode","Code for input of simplified radiation force coefficients"))
+        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/DoubleSymmetricStiffnessDamping","",True))

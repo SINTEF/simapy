@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.outputslot import OutputSlotBlueprint
 from typing import Dict
-from ..sima import Named
+from ..graph import NodeOutputSlot
 from ..sima import ScriptableValue
 
-class OutputSlot(Named):
+class OutputSlot(NodeOutputSlot):
     """
     Keyword arguments
     -----------------

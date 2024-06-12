@@ -21,5 +21,4 @@ class ForceResponseStorageBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("readTransformationMatrices","boolean","Make transformation matrices available in the post processor",default=False))
         self.add_attribute(BlueprintAttribute("relativeElementAngles","sima/riflex/RelativeElementAngle","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("elementAngles","sima/riflex/ElementAngle","",True,Dimension("*")))
-        self.add_attribute(Attribute("storeBottomContactForces","boolean","Store results for seafloor contact elements and / or soil layer profile (SLP) contact elements",default=False))
         self.add_attribute(BlueprintAttribute("transformations","sima/riflex/ElementTransformation","",True,Dimension("*")))

@@ -16,3 +16,4 @@ class AppendixBlueprint(SectionBlueprint):
         self.add_attribute(BlueprintAttribute("items","sima/signals/report/ReportItem","",True,Dimension("*")))
         self.add_attribute(Attribute("title","string","",optional=False))
         self.add_attribute(Attribute("landscape","boolean","",default=False))
+        self.add_attribute(Attribute("pageBreakBefore","boolean","",default=False))

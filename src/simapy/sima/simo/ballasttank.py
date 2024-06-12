@@ -9,6 +9,7 @@ from ..sima import NamedObject
 from ..sima import Position
 from ..sima import ScriptableValue
 from .ballastquantitytype import BallastQuantityType
+from .ballasttankpressuremeasurement import BallastTankPressureMeasurement
 from .ballasttankstate import BallastTankState
 
 class BallastTank(NamedObject):
@@ -42,6 +43,7 @@ class BallastTank(NamedObject):
          Geometry definition file ( STL or GDF)(default None)
     state : BallastTankState
          State of ballast tank
+    pressureMeasurements : List[BallastTankPressureMeasurement]
     """
 
     def __init__(self , description="", x=0.0, y=0.0, z=0.0, volumeTolerance=0.001, permeabilityFactor=1.0, initialBallastQuantity=0.0, quantityType=BallastQuantityType.PERCENTAGE, ballastFluidDensity=1025.0, state=BallastTankState.INTACT, **kwargs):
@@ -61,6 +63,7 @@ class BallastTank(NamedObject):
         self.geometryPosition = None
         self.geometryFile = None
         self.state = state
+        self.pressureMeasurements = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -223,3 +226,15 @@ class BallastTank(NamedObject):
     def state(self, value: BallastTankState):
         """Set state"""
         self.__state = value
+
+    @property
+    def pressureMeasurements(self) -> List[BallastTankPressureMeasurement]:
+        """"""
+        return self.__pressureMeasurements
+
+    @pressureMeasurements.setter
+    def pressureMeasurements(self, value: List[BallastTankPressureMeasurement]):
+        """Set pressureMeasurements"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__pressureMeasurements = value

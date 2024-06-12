@@ -31,8 +31,6 @@ class CatenaryLine(NamedObject):
          X-coordinate of the anchor in global coordinate\nsystem(default 0.0)
     yglobal : float
          Y-coordinate of the anchor in global coordinate\nsystem(default 0.0)
-    xwinch : float
-         Run length of winch(default 0.0)
     xhor : float
          Horizontal distance from attachment point\nto anchor(default 0.0)
     pretension : float
@@ -48,7 +46,7 @@ class CatenaryLine(NamedObject):
          Breaking strength(default 0.0)
     """
 
-    def __init__(self , description="", direction=0.0, xglobal=0.0, yglobal=0.0, xwinch=0.0, xhor=0.0, pretension=0.0, inputMethod=InputMethodType.TENSION, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
+    def __init__(self , description="", direction=0.0, xglobal=0.0, yglobal=0.0, xhor=0.0, pretension=0.0, inputMethod=InputMethodType.TENSION, failureMode=FailureMode.NONE, failureTime=0.0, breakingStrength=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -57,7 +55,6 @@ class CatenaryLine(NamedObject):
         self.direction = direction
         self.xglobal = xglobal
         self.yglobal = yglobal
-        self.xwinch = xwinch
         self.xhor = xhor
         self.pretension = pretension
         self.lineType = None
@@ -149,16 +146,6 @@ system"""
     def yglobal(self, value: float):
         """Set yglobal"""
         self.__yglobal = float(value)
-
-    @property
-    def xwinch(self) -> float:
-        """Run length of winch"""
-        return self.__xwinch
-
-    @xwinch.setter
-    def xwinch(self, value: float):
-        """Set xwinch"""
-        self.__xwinch = float(value)
 
     @property
     def xhor(self) -> float:

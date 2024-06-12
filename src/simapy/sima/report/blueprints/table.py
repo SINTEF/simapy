@@ -16,6 +16,5 @@ class TableBlueprint(ReportItemBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("object","sima/sima/MOAO","",False))
         self.add_attribute(Attribute("caption","string","Caption"))
-        self.add_attribute(Attribute("autoSplit","boolean","Automatically split a large table into multiple tables.",default=True))
         self.add_attribute(BlueprintAttribute("columns","sima/report/TableColumn","",True,Dimension("*")))
         self.add_attribute(Attribute("customisableTable","boolean","",default=False))

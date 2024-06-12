@@ -33,6 +33,8 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
          Rated electrical torque(default 0.0)
     gearBoxRatio : float
          Gear box ratio(default 0.0)
+    generatorEfficiency : float
+         Generator efficiency due to electrical and mechanical losses(default 1.0)
     maxPitchRate : float
          Maximum pitch rate(default 0.0)
     maxPitch : float
@@ -77,7 +79,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     towerTop : ElementEndSpesification
     """
 
-    def __init__(self , description="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, specifyTowerTop=False, **kwargs):
+    def __init__(self , description="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, generatorEfficiency=1.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, specifyTowerTop=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -87,6 +89,7 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
         self.ratedOmega = ratedOmega
         self.ratedTorque = ratedTorque
         self.gearBoxRatio = gearBoxRatio
+        self.generatorEfficiency = generatorEfficiency
         self.maxPitchRate = maxPitchRate
         self.maxPitch = maxPitch
         self.maxTorqueRate = maxTorqueRate
@@ -203,6 +206,16 @@ class HorizontalAxisController(HorizontalAxisWindTurbineController):
     def gearBoxRatio(self, value: float):
         """Set gearBoxRatio"""
         self.__gearBoxRatio = float(value)
+
+    @property
+    def generatorEfficiency(self) -> float:
+        """Generator efficiency due to electrical and mechanical losses"""
+        return self.__generatorEfficiency
+
+    @generatorEfficiency.setter
+    def generatorEfficiency(self, value: float):
+        """Set generatorEfficiency"""
+        self.__generatorEfficiency = float(value)
 
     @property
     def maxPitchRate(self) -> float:

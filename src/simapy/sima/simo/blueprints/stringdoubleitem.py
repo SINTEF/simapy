@@ -16,3 +16,4 @@ class StringDoubleItemBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("text","string",""))
         self.add_attribute(Attribute("value","number","",default=0.0))
+        self.add_attribute(Attribute("unit","string","",default='-'))

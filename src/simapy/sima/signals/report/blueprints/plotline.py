@@ -15,6 +15,7 @@ class PlotLineBlueprint(EntityBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(Attribute("xlabel","string",""))
         self.add_attribute(Attribute("ylabel","string",""))
+        self.add_attribute(Attribute("legend","string",""))
         self.add_attribute(Attribute("showlegend","boolean","",default=True))
         self.add_attribute(Attribute("x","number","",Dimension("*"),default=0.0))
         self.add_attribute(Attribute("y","number","",Dimension("*"),default=0.0))

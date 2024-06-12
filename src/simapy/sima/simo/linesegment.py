@@ -35,7 +35,7 @@ class LineSegment(MOAO):
     eMod : float
          Modulus of elasticity(default 0.0)
     emFac : float
-         Factor of elasticity - 2 for chains - 1 for other segment types(default 1.0)
+         Factor of elasticity(default 1.0)
     transverseDrag : float
          Transverse drag coefficient(default 0.0)
     longitudinalDrag : float
@@ -170,7 +170,7 @@ class LineSegment(MOAO):
 
     @property
     def emFac(self) -> float:
-        """Factor of elasticity - 2 for chains - 1 for other segment types"""
+        """Factor of elasticity"""
         return self.__emFac
 
     @emFac.setter

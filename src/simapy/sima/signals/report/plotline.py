@@ -19,6 +19,8 @@ class PlotLine(Entity):
          (default None)
     ylabel : str
          (default None)
+    legend : str
+         (default None)
     showlegend : bool
          (default True)
     x : ndarray of float
@@ -38,6 +40,7 @@ class PlotLine(Entity):
         self.description = description
         self.xlabel = None
         self.ylabel = None
+        self.legend = None
         self.showlegend = showlegend
         self.x = []
         self.y = []
@@ -86,6 +89,16 @@ class PlotLine(Entity):
     def ylabel(self, value: str):
         """Set ylabel"""
         self.__ylabel = value
+
+    @property
+    def legend(self) -> str:
+        """"""
+        return self.__legend
+
+    @legend.setter
+    def legend(self, value: str):
+        """Set legend"""
+        self.__legend = value
 
     @property
     def showlegend(self) -> bool:
