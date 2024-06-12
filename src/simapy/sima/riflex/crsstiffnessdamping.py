@@ -21,7 +21,7 @@ class CRSStiffnessDamping(MOAO):
     torsionalFactor : float
          Factor for stiffness proportional damping in torsional dof(default 0.0)
     bendingFactor : float
-         Factor for stiffness proportional damping in bending dof(default 0.0)
+         Factor for stiffness proportional damping in bending/shear dofs(default 0.0)
     option : RayleighDamping
          Stiffness proportional damping options
     """
@@ -89,7 +89,7 @@ class CRSStiffnessDamping(MOAO):
 
     @property
     def bendingFactor(self) -> float:
-        """Factor for stiffness proportional damping in bending dof"""
+        """Factor for stiffness proportional damping in bending/shear dofs"""
         return self.__bendingFactor
 
     @bendingFactor.setter

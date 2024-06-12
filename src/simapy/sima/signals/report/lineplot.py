@@ -9,9 +9,9 @@ from .axis import Axis
 from .font import Font
 from .plotline import PlotLine
 from .plotsize import PlotSize
-from dmt.entity import Entity
+from .reportitem import ReportItem
 
-class LinePlot(Entity):
+class LinePlot(ReportItem):
     """
     Keyword arguments
     -----------------

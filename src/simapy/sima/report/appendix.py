@@ -6,19 +6,16 @@ from dmt.blueprint import Blueprint
 from .blueprints.appendix import AppendixBlueprint
 from typing import Dict
 from ..sima import ScriptableValue
-from .linkable import Linkable
 from .orientation import Orientation
 from .reportitem import ReportItem
 
-class Appendix(ReportItem,Linkable):
+class Appendix(ReportItem):
     """
     Keyword arguments
     -----------------
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    identifier : str
-         (default None)
     items : List[ReportItem]
     title : str
          (default None)
@@ -31,7 +28,6 @@ class Appendix(ReportItem,Linkable):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.identifier = None
         self.items = list()
         self.title = None
         self.pageBreakBefore = pageBreakBefore
@@ -68,16 +64,6 @@ class Appendix(ReportItem,Linkable):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
-
-    @property
-    def identifier(self) -> str:
-        """"""
-        return self.__identifier
-
-    @identifier.setter
-    def identifier(self, value: str):
-        """Set identifier"""
-        self.__identifier = value
 
     @property
     def items(self) -> List[ReportItem]:

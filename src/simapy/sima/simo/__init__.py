@@ -6,6 +6,7 @@ from .articulatedstructuredata import ArticulatedStructureData # noqa
 from .axialstiffnessitem import AxialStiffnessItem # noqa
 from .ballastsystem import BallastSystem # noqa
 from .ballasttank import BallastTank # noqa
+from .ballasttankpressuremeasurement import BallastTankPressureMeasurement # noqa
 from .bladeitem import BladeItem # noqa
 from .bodyeigenvalueitem import BodyEigenvalueItem # noqa
 from .bodyeigenvalueresult import BodyEigenvalueResult # noqa
@@ -44,7 +45,7 @@ from .externalcontrolsetup import ExternalControlSetup # noqa
 from .externalcontrolsystem import ExternalControlSystem # noqa
 from .externaldllforce import ExternalDLLForce # noqa
 from .externalforcefromfile import ExternalForceFromFile # noqa
-from .externalhlaforce import ExternalHLAForce # noqa
+from .externalpythonforce import ExternalPythonForce # noqa
 from .fibreropemodel import FibreRopeModel # noqa
 from .fixedbodyelement import FixedBodyElement # noqa
 from .fixedelongationcoupling import FixedElongationCoupling # noqa
@@ -121,6 +122,7 @@ from .simoquadraticdampingmatrix import SIMOQuadraticDampingMatrix # noqa
 from .simoresultcontainer import SIMOResultContainer # noqa
 from .simostaticcalculationparameters import SIMOStaticCalculationParameters # noqa
 from .simostaticresultentry import SIMOStaticResultEntry # noqa
+from .simostaticresultstorageparameters import SIMOStaticResultStorageParameters # noqa
 from .simotask import SIMOTask # noqa
 from .simotensioner import SIMOTensioner # noqa
 from .simplecoupling import SimpleCoupling # noqa

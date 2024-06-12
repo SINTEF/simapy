@@ -21,7 +21,7 @@ class LineSegmentBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("bottomFriction","number","Friction coefficient between line and sea bottom",default=0.0))
         self.add_attribute(Attribute("diameter","number","Segment diameter",default=0.0))
         self.add_attribute(Attribute("eMod","number","Modulus of elasticity",default=0.0))
-        self.add_attribute(Attribute("emFac","number","Factor of elasticity - 2 for chains - 1 for other segment types",default=1.0))
+        self.add_attribute(Attribute("emFac","number","Factor of elasticity",default=1.0))
         self.add_attribute(Attribute("transverseDrag","number","Transverse drag coefficient",default=0.0))
         self.add_attribute(Attribute("longitudinalDrag","number","Longitudinal drag coefficient",default=0.0))
         self.add_attribute(Attribute("uwia","number","Unit weight in air",default=0.0))

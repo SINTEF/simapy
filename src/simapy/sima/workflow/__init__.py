@@ -28,6 +28,7 @@ from .postprocessorinputslot import PostprocessorInputSlot # noqa
 from .postprocessornode import PostProcessorNode # noqa
 from .postprocessoroperationnode import PostProcessorOperationNode # noqa
 from .postprocessoroutputslot import PostprocessorOutputSlot # noqa
+from .pythonprogramnode import PythonProgramNode # noqa
 from .realnumberinput import RealNumberInput # noqa
 from .reportfragmentinputslot import ReportFragmentInputSlot # noqa
 from .reportfragmentitem import ReportFragmentItem # noqa

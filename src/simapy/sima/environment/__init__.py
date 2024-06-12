@@ -14,11 +14,11 @@ from .fluctuatingthreecomponent import FluctuatingThreeComponent # noqa
 from .fluctuatingtwocomponent import FluctuatingTwoComponent # noqa
 from .fluctuatingwindvelocityprofile import FluctuatingWindVelocityProfile # noqa
 from .harris import Harris # noqa
+from .iso199011wind import ISO199011Wind # noqa
 from .jonswap import Jonswap # noqa
 from .jonswap3p import Jonswap3P # noqa
 from .jonswap6p import Jonswap6P # noqa
 from .jonswapdoublepeaked import JonswapDoublePeaked # noqa
-from .npdwind import NPDWind # noqa
 from .numericalwave import NumericalWave # noqa
 from .ochi import Ochi # noqa
 from .piersonmoskowitz import PiersonMoskowitz # noqa

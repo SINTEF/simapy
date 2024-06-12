@@ -19,7 +19,6 @@ class CatenaryLineBlueprint(NamedObjectBlueprint):
         self.add_attribute(Attribute("direction","number","Direction of line in horizontal plane",default=0.0))
         self.add_attribute(Attribute("xglobal","number","X-coordinate of the anchor in global coordinate\nsystem",default=0.0))
         self.add_attribute(Attribute("yglobal","number","Y-coordinate of the anchor in global coordinate\nsystem",default=0.0))
-        self.add_attribute(Attribute("xwinch","number","Run length of winch",default=0.0))
         self.add_attribute(Attribute("xhor","number","Horizontal distance from attachment point\nto anchor",default=0.0))
         self.add_attribute(Attribute("pretension","number","Pretension",default=0.0))
         self.add_attribute(BlueprintAttribute("lineType","sima/simo/LineType","",False))

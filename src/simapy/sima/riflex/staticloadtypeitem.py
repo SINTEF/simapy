@@ -23,7 +23,6 @@ class StaticLoadTypeItem(MOAO):
     scriptableValues : List[ScriptableValue]
     runWithPrevious : bool
          Run the load group together with the last(default False)
-    boundaryChangeGroup : BoundaryChangeGroup
     loadType : StaticLoadType
          Load Type
     nStep : int
@@ -37,6 +36,7 @@ class StaticLoadTypeItem(MOAO):
           Required accuracy measured by energy norm. Value is not used if convergence norm is 'Displacement'.(default 1e-05)
     entered : bool
          start condition for pipe-in-pipe contact(default True)
+    boundaryChangeGroup : BoundaryChangeGroup
     temperatureVariations : List[TemperatureVariationItem]
     pressureVariations : List[PressureVariationItem]
     winchVariations : List[WinchVariationItem]
@@ -51,7 +51,6 @@ class StaticLoadTypeItem(MOAO):
         self.description = description
         self.scriptableValues = list()
         self.runWithPrevious = runWithPrevious
-        self.boundaryChangeGroup = None
         self.loadType = loadType
         self.nStep = nStep
         self.maxIterations = maxIterations
@@ -59,6 +58,7 @@ class StaticLoadTypeItem(MOAO):
         self.convergenceNorm = convergenceNorm
         self.energyAccuracy = energyAccuracy
         self.entered = entered
+        self.boundaryChangeGroup = None
         self.temperatureVariations = list()
         self.pressureVariations = list()
         self.winchVariations = list()
@@ -106,16 +106,6 @@ class StaticLoadTypeItem(MOAO):
     def runWithPrevious(self, value: bool):
         """Set runWithPrevious"""
         self.__runWithPrevious = bool(value)
-
-    @property
-    def boundaryChangeGroup(self) -> BoundaryChangeGroup:
-        """"""
-        return self.__boundaryChangeGroup
-
-    @boundaryChangeGroup.setter
-    def boundaryChangeGroup(self, value: BoundaryChangeGroup):
-        """Set boundaryChangeGroup"""
-        self.__boundaryChangeGroup = value
 
     @property
     def loadType(self) -> StaticLoadType:
@@ -186,6 +176,16 @@ class StaticLoadTypeItem(MOAO):
     def entered(self, value: bool):
         """Set entered"""
         self.__entered = bool(value)
+
+    @property
+    def boundaryChangeGroup(self) -> BoundaryChangeGroup:
+        """"""
+        return self.__boundaryChangeGroup
+
+    @boundaryChangeGroup.setter
+    def boundaryChangeGroup(self, value: BoundaryChangeGroup):
+        """Set boundaryChangeGroup"""
+        self.__boundaryChangeGroup = value
 
     @property
     def temperatureVariations(self) -> List[TemperatureVariationItem]:

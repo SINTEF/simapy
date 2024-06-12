@@ -53,10 +53,12 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
          Writes a single input string into the given file(default False)
     indent : bool
          Indent the output text(default False)
+    directModelExport : bool
+         Drop the extra signal layer If a model is encountered in the output(default False)
     outputSlot : OutputSlot
     """
 
-    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFormat=FileFormat.CSV, addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, indent=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFormat=FileFormat.CSV, addMetaTags=False, decimalSeparator=DecimalSeparator.PERIOD, skipHeader=False, specifyAdditionalProperties=False, writeRawText=False, indent=False, directModelExport=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -77,6 +79,7 @@ class FileOutputNode(OutputNode,SignalPropertiesContainer):
         self.specifyAdditionalProperties = specifyAdditionalProperties
         self.writeRawText = writeRawText
         self.indent = indent
+        self.directModelExport = directModelExport
         self.outputSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -285,6 +288,16 @@ decimal-separator will make semicolon the value-separator."""
     def indent(self, value: bool):
         """Set indent"""
         self.__indent = bool(value)
+
+    @property
+    def directModelExport(self) -> bool:
+        """Drop the extra signal layer If a model is encountered in the output"""
+        return self.__directModelExport
+
+    @directModelExport.setter
+    def directModelExport(self, value: bool):
+        """Set directModelExport"""
+        self.__directModelExport = bool(value)
 
     @property
     def outputSlot(self) -> OutputSlot:

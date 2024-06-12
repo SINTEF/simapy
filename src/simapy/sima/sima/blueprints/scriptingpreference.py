@@ -14,7 +14,6 @@ class ScriptingPreferenceBlueprint(SIMAPreferenceBlueprint):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("showScripts","boolean","",default=False))
         self.add_attribute(Attribute("javaScriptLocations","string","",Dimension("*")))
         self.add_attribute(Attribute("pythonHome","string","Override python home folder"))
         self.add_attribute(Attribute("pythonPaths","string","",Dimension("*")))

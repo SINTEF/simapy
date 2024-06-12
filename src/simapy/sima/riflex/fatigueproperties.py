@@ -22,7 +22,7 @@ class FatigueProperties(MOAO):
     scriptableValues : List[ScriptableValue]
     calculationOption : FatigueCalculationOption
     numCrossSectionPoints : int
-         Number of points around cross-section where fatigue is(default 0)
+         Number of points around cross-section where fatigue is(default 8)
     resultPrintOption : ResultPrintOption
     timeSeriesPrintOption : TimeSeriesPrintOption
          Optional tension/curvature export to ascci file ( viv_tension_curvature_ts.txt )
@@ -54,7 +54,7 @@ class FatigueProperties(MOAO):
          (default False)
     """
 
-    def __init__(self , description="", calculationOption=FatigueCalculationOption.DEFAULT, numCrossSectionPoints=0, resultPrintOption=ResultPrintOption.MOST_CRITICAL_POINT, timeSeriesPrintOption=TimeSeriesPrintOption.NO_PRINT, timeSeriesLength=0.0, timeStep=0.0, seed=31415, axialFactor=1.0, myFactor=1.0, mzFactor=1.0, crossSectionArea=0.0, sectionModulus=0.0, wallThickness=0.0, includeAllSNCurves=False, relativeDuration=0.0, scaledContributions=False, **kwargs):
+    def __init__(self , description="", calculationOption=FatigueCalculationOption.DEFAULT, numCrossSectionPoints=8, resultPrintOption=ResultPrintOption.MOST_CRITICAL_POINT, timeSeriesPrintOption=TimeSeriesPrintOption.NO_PRINT, timeSeriesLength=0.0, timeStep=0.0, seed=31415, axialFactor=1.0, myFactor=1.0, mzFactor=1.0, crossSectionArea=0.0, sectionModulus=0.0, wallThickness=0.0, includeAllSNCurves=False, relativeDuration=0.0, scaledContributions=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()

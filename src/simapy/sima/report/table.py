@@ -23,20 +23,17 @@ class Table(ReportItem):
     object : MOAO
     caption : str
          Caption(default None)
-    autoSplit : bool
-         Automatically split a large table into multiple tables.(default True)
     columns : List[TableColumn]
     customisableTable : bool
          (default False)
     """
 
-    def __init__(self , description="", autoSplit=True, customisableTable=False, **kwargs):
+    def __init__(self , description="", customisableTable=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.object = None
         self.caption = None
-        self.autoSplit = autoSplit
         self.columns = list()
         self.customisableTable = customisableTable
         for key, value in kwargs.items():
@@ -91,16 +88,6 @@ class Table(ReportItem):
     def caption(self, value: str):
         """Set caption"""
         self.__caption = value
-
-    @property
-    def autoSplit(self) -> bool:
-        """Automatically split a large table into multiple tables."""
-        return self.__autoSplit
-
-    @autoSplit.setter
-    def autoSplit(self, value: bool):
-        """Set autoSplit"""
-        self.__autoSplit = bool(value)
 
     @property
     def columns(self) -> List[TableColumn]:

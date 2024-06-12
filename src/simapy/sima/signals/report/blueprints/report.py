@@ -14,5 +14,5 @@ class ReportBlueprint(ReportItemContainerBlueprint):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("items","sima/signals/report/ReportItem","",True,Dimension("*")))
-        self.add_attribute(Attribute("title","string","",optional=False))
+        self.add_attribute(Attribute("title","string",""))
         self.add_attribute(Attribute("subtitle","string",""))

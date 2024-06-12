@@ -86,6 +86,7 @@ from .rotationmatrix import RotationMatrix # noqa
 from .runnode import RunNode # noqa
 from .samplecountoperation import SampleCountOperation # noqa
 from .scalefilter import ScaleFilter # noqa
+from .signalfiltersetup import SignalFilterSetup # noqa
 from .signalgenerator import SignalGenerator # noqa
 from .signalgeneratorcontainer import SignalGeneratorContainer # noqa
 from .signalinputoperation import SignalInputOperation # noqa
@@ -135,6 +136,7 @@ from .fabricationfactor import FabricationFactor # noqa
 from .fatiguelimitindicator import FatigueLimitIndicator # noqa
 from .fileformat import FileFormat # noqa
 from .fileinputformat import FileInputFormat # noqa
+from .filtering import Filtering # noqa
 from .gumbelmethod import GumbelMethod # noqa
 from .internalpressuredesignfactor import InternalPressureDesignFactor # noqa
 from .iso19901_7_analysis import ISO19901_7_analysis # noqa

@@ -23,4 +23,5 @@ class WindTurbineTypeBlueprint(NamedObjectBlueprint):
         self.add_attribute(BlueprintAttribute("bladeElements","sima/windpark/BladeElement","",True,Dimension("*")))
         self.add_attribute(Attribute("cutInWindSpeed","number","",default=0.0))
         self.add_attribute(Attribute("cutOutWindSpeed","number","",default=0.0))
-        self.add_attribute(BlueprintAttribute("performanceRelations","sima/windpark/PerformanceRelation","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("yawPerformanceRelations","sima/windpark/YawPerformanceRelation","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("performanceRelations","sima/windpark/PerformanceRelationItem","",True,Dimension("*")))

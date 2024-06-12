@@ -20,7 +20,7 @@ class CRSMassDamping(MOAO):
     torsionalFactor : float
          Factor for mass proportional damping in torsional dof(default 0.0)
     bendingFactor : float
-         Factor for mass proportional damping in bending dof(default 0.0)
+         Factor for mass proportional damping in bending/shear dofs(default 0.0)
     """
 
     def __init__(self , description="", axialFactor=0.0, torsionalFactor=0.0, bendingFactor=0.0, **kwargs):
@@ -85,7 +85,7 @@ class CRSMassDamping(MOAO):
 
     @property
     def bendingFactor(self) -> float:
-        """Factor for mass proportional damping in bending dof"""
+        """Factor for mass proportional damping in bending/shear dofs"""
         return self.__bendingFactor
 
     @bendingFactor.setter

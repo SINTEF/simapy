@@ -29,6 +29,8 @@ class WindTurbineBlueprint(NamedObjectBlueprint):
         self.add_attribute(Attribute("prandtlTip","boolean","The correction for tip loss due to the finite number of blades may be applied or removed.",default=True))
         self.add_attribute(Attribute("prandtlRoot","boolean","The correction for hub loss due to the finite number of blades may be applied or removed.",default=False))
         self.add_attribute(Attribute("prandtlYaw","boolean","If yaw correction is selected, the Prandtl factor is modified based on the angle between the incoming wind and the rotor plane.",default=True))
+        self.add_attribute(Attribute("skewedWake","boolean","If skewed wake factor is selected, user can define yaw correction in BEM",default=False))
+        self.add_attribute(Attribute("skewedWakeFactor","number","Skewed wake factor",default=1.0))
         self.add_attribute(BlueprintAttribute("measurementNodes","sima/riflex/MeasurementNode","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("measurementElements","sima/riflex/MeasurementElement","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("yawController","sima/riflex/HorizontalAxisYawController","",True))

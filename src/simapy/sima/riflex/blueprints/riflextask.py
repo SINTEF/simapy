@@ -28,7 +28,6 @@ class RIFLEXTaskBlueprint(SIMOTaskBlueprint):
         self.add_attribute(Attribute("simoMemory","integer","Enables override of the default memory settings for SIMO. Given in MB",default=128))
         self.add_attribute(Attribute("removeIntermediateFiles","boolean","",default=True))
         self.add_attribute(EnumAttribute("exportMassUnit","sima/simo/MassUnit","Used as export unit for mass ( and indirectly force)"))
-        self.add_attribute(Attribute("exportAsFMU","boolean","Generate FMU (Functional Mockup Unit) from model",default=False))
         self.add_attribute(Attribute("riflexStamodMemory","integer","Enables override of the default memory settings. Given in MB",default=512))
         self.add_attribute(Attribute("numRiflexStamodArrays","integer","Enables override of the default memory settings",default=20000))
         self.add_attribute(Attribute("riflexDynmodMemory","integer","Enables override of the default memory settings. Given in MB. Also used for VIVANA and Eigenvalue analysis",default=512))

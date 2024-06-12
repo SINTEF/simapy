@@ -34,3 +34,4 @@ class FileOutputBlueprint(OperationNodeBlueprint,OutputNodeBlueprint,SignalPrope
         self.add_attribute(Attribute("specifyAdditionalProperties","boolean","Specify additional properties in the file root",default=False))
         self.add_attribute(Attribute("writeRawText","boolean","Writes a single input string into the given file",default=False))
         self.add_attribute(Attribute("indent","boolean","Indent the output text",default=False))
+        self.add_attribute(Attribute("directModelExport","boolean","Drop the extra signal layer If a model is encountered in the output",default=False))

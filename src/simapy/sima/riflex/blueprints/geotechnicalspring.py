@@ -23,5 +23,4 @@ class GeotechnicalSpringBlueprint(NodeReferenceBlueprint,NamedObjectBlueprint):
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("stiffnessItems","sima/riflex/GeotechnicalSpringStiffnessItem","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("dampingDisplacementItems","sima/riflex/DampingDisplacementItem","",True,Dimension("*")))
-        self.add_attribute(Attribute("strainVelocityExponent","number","",default=1.0))
-        self.add_attribute(Attribute("relativeLength","number","Relative length for result scaling",default=1.0))
+        self.add_attribute(Attribute("velocityExponent","number","Exponent of velocity in damping calculation",default=1.0))

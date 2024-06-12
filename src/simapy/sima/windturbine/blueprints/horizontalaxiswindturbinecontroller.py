@@ -20,6 +20,7 @@ class HorizontalAxisWindTurbineControllerBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("ratedOmega","number","Rated electrical omega",default=0.0))
         self.add_attribute(Attribute("ratedTorque","number","Rated electrical torque",default=0.0))
         self.add_attribute(Attribute("gearBoxRatio","number","Gear box ratio",default=0.0))
+        self.add_attribute(Attribute("generatorEfficiency","number","Generator efficiency due to electrical and mechanical losses",default=1.0))
         self.add_attribute(Attribute("maxPitchRate","number","Maximum pitch rate",default=0.0))
         self.add_attribute(Attribute("maxPitch","number","Maximum pitch",default=0.0))
         self.add_attribute(Attribute("maxTorqueRate","number","Maximum torque rate",default=0.0))

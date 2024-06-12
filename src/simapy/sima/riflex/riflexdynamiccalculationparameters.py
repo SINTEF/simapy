@@ -9,6 +9,7 @@ from ..sima import MOAO
 from ..sima import ScriptableValue
 from .bladepitchfault import BladePitchFault
 from .bodyforcestorage import BodyForceStorage
+from .bottomcontactstorage import BottomContactStorage
 from .boundarychangegroup import BoundaryChangeGroup
 from .curvatureresponsestorage import CurvatureResponseStorage
 from .displacementresponsestorage import DisplacementResponseStorage
@@ -81,6 +82,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     changeStaticLoads : bool
          Change applied static loads at the start of the dynamic analysis(default False)
     dynamicLoads : DynamicLoads
+    bottomContactStorage : BottomContactStorage
     """
 
     def __init__(self , description="", volumeForcesScaling=1.0, specifiedForcesScaling=1.0, currentVelocitiesScaling=1.0, changeStaticLoads=False, **kwargs):
@@ -120,6 +122,7 @@ class RIFLEXDynamicCalculationParameters(MOAO):
         self.currentVelocitiesScaling = currentVelocitiesScaling
         self.changeStaticLoads = changeStaticLoads
         self.dynamicLoads = None
+        self.bottomContactStorage = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -498,3 +501,13 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def dynamicLoads(self, value: DynamicLoads):
         """Set dynamicLoads"""
         self.__dynamicLoads = value
+
+    @property
+    def bottomContactStorage(self) -> BottomContactStorage:
+        """"""
+        return self.__bottomContactStorage
+
+    @bottomContactStorage.setter
+    def bottomContactStorage(self, value: BottomContactStorage):
+        """Set bottomContactStorage"""
+        self.__bottomContactStorage = value

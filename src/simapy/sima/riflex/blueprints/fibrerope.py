@@ -47,7 +47,6 @@ class FibreRopeBlueprint(CrossSectionBlueprint,CRSAxialFrictionModelBlueprint):
         self.add_attribute(Attribute("stiffnessDampingSpecification","boolean","Stiffness proportional Rayleigh damping",default=False))
         self.add_attribute(Attribute("axialDampingSpecification","boolean","Local axial damping model",default=False))
         self.add_attribute(BlueprintAttribute("massDamping","sima/riflex/CRSMassDamping","",True))
-        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/CRSStiffnessDamping","",True))
         self.add_attribute(BlueprintAttribute("axialDamping","sima/riflex/CRSAxialDamping","",True))
         self.add_attribute(Attribute("temperature","number","Temperature at which the specification applies",default=0.0))
         self.add_attribute(Attribute("alpha","number","Thermal expansion coefficient",default=0.0))
@@ -63,3 +62,4 @@ class FibreRopeBlueprint(CrossSectionBlueprint,CRSAxialFrictionModelBlueprint):
         self.add_attribute(BlueprintAttribute("massVolume","sima/riflex/FibreRopeMassVolume","",True))
         self.add_attribute(Attribute("tmax","number","",default=0.0))
         self.add_attribute(BlueprintAttribute("fibreRopeModel","sima/simo/FibreRopeModel","",False))
+        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/CRSStiffnessDamping","",True))

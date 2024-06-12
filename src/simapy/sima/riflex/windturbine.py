@@ -55,12 +55,16 @@ class WindTurbine(NamedObject):
          The correction for hub loss due to the finite number of blades may be applied or removed.(default False)
     prandtlYaw : bool
          If yaw correction is selected, the Prandtl factor is modified based on the angle between the incoming wind and the rotor plane.(default True)
+    skewedWake : bool
+         If skewed wake factor is selected, user can define yaw correction in BEM(default False)
+    skewedWakeFactor : float
+         Skewed wake factor(default 1.0)
     measurementNodes : List[MeasurementNode]
     measurementElements : List[MeasurementElement]
     yawController : HorizontalAxisYawController
     """
 
-    def __init__(self , description="", windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=False, advancedOptions=False, inductionCalculation=True, prandtlTip=True, prandtlRoot=False, prandtlYaw=True, **kwargs):
+    def __init__(self , description="", windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=False, advancedOptions=False, inductionCalculation=True, prandtlTip=True, prandtlRoot=False, prandtlYaw=True, skewedWake=False, skewedWakeFactor=1.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -79,6 +83,8 @@ class WindTurbine(NamedObject):
         self.prandtlTip = prandtlTip
         self.prandtlRoot = prandtlRoot
         self.prandtlYaw = prandtlYaw
+        self.skewedWake = skewedWake
+        self.skewedWakeFactor = skewedWakeFactor
         self.measurementNodes = list()
         self.measurementElements = list()
         self.yawController = None
@@ -267,6 +273,26 @@ If specified the incoming wind acting on the blades will be modified due to the 
     def prandtlYaw(self, value: bool):
         """Set prandtlYaw"""
         self.__prandtlYaw = bool(value)
+
+    @property
+    def skewedWake(self) -> bool:
+        """If skewed wake factor is selected, user can define yaw correction in BEM"""
+        return self.__skewedWake
+
+    @skewedWake.setter
+    def skewedWake(self, value: bool):
+        """Set skewedWake"""
+        self.__skewedWake = bool(value)
+
+    @property
+    def skewedWakeFactor(self) -> float:
+        """Skewed wake factor"""
+        return self.__skewedWakeFactor
+
+    @skewedWakeFactor.setter
+    def skewedWakeFactor(self, value: float):
+        """Set skewedWakeFactor"""
+        self.__skewedWakeFactor = float(value)
 
     @property
     def measurementNodes(self) -> List[MeasurementNode]:

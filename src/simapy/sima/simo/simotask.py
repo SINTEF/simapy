@@ -44,11 +44,9 @@ class SIMOTask(ConditionTask):
          (default True)
     exportMassUnit : MassUnit
          Used as export unit for mass ( and indirectly force)
-    exportAsFMU : bool
-         Generate FMU (Functional Mockup Unit) from model(default False)
     """
 
-    def __init__(self , description="", runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, exportAsFMU=False, **kwargs):
+    def __init__(self , description="", runNumber=0, simoMemory=128, removeIntermediateFiles=True, exportMassUnit=MassUnit.MG, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -66,7 +64,6 @@ class SIMOTask(ConditionTask):
         self.simoMemory = simoMemory
         self.removeIntermediateFiles = removeIntermediateFiles
         self.exportMassUnit = exportMassUnit
-        self.exportAsFMU = exportAsFMU
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -253,13 +250,3 @@ class SIMOTask(ConditionTask):
     def exportMassUnit(self, value: MassUnit):
         """Set exportMassUnit"""
         self.__exportMassUnit = value
-
-    @property
-    def exportAsFMU(self) -> bool:
-        """Generate FMU (Functional Mockup Unit) from model"""
-        return self.__exportAsFMU
-
-    @exportAsFMU.setter
-    def exportAsFMU(self, value: bool):
-        """Set exportAsFMU"""
-        self.__exportAsFMU = bool(value)

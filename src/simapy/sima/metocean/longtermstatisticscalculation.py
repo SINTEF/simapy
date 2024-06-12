@@ -32,7 +32,7 @@ class LongTermStatisticsCalculation(NamedObject,ConditionSelectable):
     inputReferenceSystem : InputReferenceSystem
          Defines the input reference system of the data.\nIf the data is defined in the Metocean system the corresponding SIMA coordinate system data is generated
     applyNorsok : bool
-          Apply NORSOK N-006(default True)
+          Apply NORSOK N-006 ( A directional factor of 6 (corresponding to 12 directions) is applied to the return period)(default True)
     longTermStatistics : LongTermStatistics
     period : LongTermStatisticsPeriod
     waveCalculation : LongTermStatisticsWaveCalculation
@@ -120,7 +120,7 @@ If the data is defined in the Metocean system the corresponding SIMA coordinate 
 
     @property
     def applyNorsok(self) -> bool:
-        """ Apply NORSOK N-006"""
+        """ Apply NORSOK N-006 ( A directional factor of 6 (corresponding to 12 directions) is applied to the return period)"""
         return self.__applyNorsok
 
     @applyNorsok.setter

@@ -32,7 +32,7 @@ class DistanceLineToLineFilter(OperationNode):
     filterInputSlots : List[InputSlot]
     filterOutputSlots : List[OutputSlot]
     outputVector : bool
-         (default False)
+         Output the distance vector(default False)
     """
 
     def __init__(self , description="", x=0, y=0, h=0, w=0, outputVector=False, **kwargs):
@@ -169,7 +169,7 @@ class DistanceLineToLineFilter(OperationNode):
 
     @property
     def outputVector(self) -> bool:
-        """"""
+        """Output the distance vector"""
         return self.__outputVector
 
     @outputVector.setter

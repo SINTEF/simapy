@@ -47,7 +47,6 @@ class GeneralCrossSectionBlueprint(CrossSectionBlueprint,CRSAxialFrictionModelBl
         self.add_attribute(Attribute("stiffnessDampingSpecification","boolean","Stiffness proportional Rayleigh damping",default=False))
         self.add_attribute(Attribute("axialDampingSpecification","boolean","Local axial damping model",default=False))
         self.add_attribute(BlueprintAttribute("massDamping","sima/riflex/CRSMassDamping","",True))
-        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/CRSStiffnessDamping","",True))
         self.add_attribute(BlueprintAttribute("axialDamping","sima/riflex/CRSAxialDamping","",True))
         self.add_attribute(Attribute("cdax","number","Quadratic aerodynamic drag force coefficient per unit length in tangential direction",default=0.0))
         self.add_attribute(Attribute("cday","number","Quadratic aerodynamic drag force coefficient per unit length in normal direction",default=0.0))
@@ -86,3 +85,4 @@ class GeneralCrossSectionBlueprint(CrossSectionBlueprint,CRSAxialFrictionModelBl
         self.add_attribute(Attribute("bendingStiffnessW","number","Bending stiffness around principal W-axis",default=0.0))
         self.add_attribute(Attribute("shearStiffnessW","number","Shear stiffness in principal W-direction. Infinite shear stiffness if equal to zero",default=0.0))
         self.add_attribute(Attribute("shearStiffnessV","number","Shear stiffness in principal V-direction. Infinite shear stiffness if equal to zero",default=0.0))
+        self.add_attribute(BlueprintAttribute("stiffnessDamping","sima/riflex/GeneralCrossSectionStiffnessDamping","",True))

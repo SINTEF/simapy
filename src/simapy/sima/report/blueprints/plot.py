@@ -16,6 +16,5 @@ class PlotBlueprint(ReportItemBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("object","sima/sima/MOAO","",False))
         self.add_attribute(Attribute("caption","string","Caption"))
-        self.add_attribute(Attribute("mergeSeries","boolean","Merge all series in one plot",default=False))
         self.add_attribute(Attribute("xLabel","string",""))
         self.add_attribute(Attribute("yLabel","string",""))

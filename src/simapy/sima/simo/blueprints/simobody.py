@@ -53,7 +53,7 @@ class SIMOBodyBlueprint(BodyBlueprint):
         self.add_attribute(BlueprintAttribute("controlSystem","sima/simo/ControlSystem","",True))
         self.add_attribute(BlueprintAttribute("slenderElements","sima/simo/SlenderElement","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("externalDLLForces","sima/simo/ExternalDLLForce","",True,Dimension("*")))
-        self.add_attribute(BlueprintAttribute("externalHLAForces","sima/simo/ExternalHLAForce","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("externalPythonForces","sima/simo/ExternalPythonForce","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("externalForcesFromFile","sima/simo/ExternalForceFromFile","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("fixedBodyElements","sima/simo/FixedBodyElement","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("timeDependentPointMasses","sima/simo/TimeDependentPointMass","",True,Dimension("*")))

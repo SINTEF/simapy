@@ -14,6 +14,8 @@ class NumericalWaveBlueprint(WaveBlueprint):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("fromFile","boolean","Define numerical spectrum in external file",default=False))
         self.add_attribute(Attribute("directions","number","Number of wave directions",Dimension("*"),default=0.0))
         self.add_attribute(Attribute("frequencies","number","Number of wave frequencies",Dimension("*"),default=0.0))
         self.add_attribute(Attribute("values","number","",Dimension("*"),default=0.0))
+        self.add_attribute(Attribute("file","string","Name of external file with specified numerical spectrum data"))

@@ -25,11 +25,11 @@ class SIMOBodyPoint(NamedObject,BodyForceComponent):
     tensioner : SIMOTensioner
     heaveCompensator : SIMOHeaveCompensator
     x : float
-         Local  x position(default 0.0)
+         X-coordinate of attachment point in body fixed (local) coordinate system(default 0.0)
     y : float
-         Local  y position(default 0.0)
+         Y-coordinate of attachment point in body fixed (local) coordinate system(default 0.0)
     z : float
-         Local z position(default 0.0)
+         Z-coordinate of attachment point in body fixed (local) coordinate system(default 0.0)
     """
 
     def __init__(self , description="", x=0.0, y=0.0, z=0.0, **kwargs):
@@ -118,7 +118,7 @@ class SIMOBodyPoint(NamedObject,BodyForceComponent):
 
     @property
     def x(self) -> float:
-        """Local  x position"""
+        """X-coordinate of attachment point in body fixed (local) coordinate system"""
         return self.__x
 
     @x.setter
@@ -128,7 +128,7 @@ class SIMOBodyPoint(NamedObject,BodyForceComponent):
 
     @property
     def y(self) -> float:
-        """Local  y position"""
+        """Y-coordinate of attachment point in body fixed (local) coordinate system"""
         return self.__y
 
     @y.setter
@@ -138,7 +138,7 @@ class SIMOBodyPoint(NamedObject,BodyForceComponent):
 
     @property
     def z(self) -> float:
-        """Local z position"""
+        """Z-coordinate of attachment point in body fixed (local) coordinate system"""
         return self.__z
 
     @z.setter

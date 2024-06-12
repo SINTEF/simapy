@@ -16,5 +16,5 @@ class CRSStiffnessDampingBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("axialFactor","number","Factor for stiffness proportional damping in axial dof",default=0.0))
         self.add_attribute(Attribute("torsionalFactor","number","Factor for stiffness proportional damping in torsional dof",default=0.0))
-        self.add_attribute(Attribute("bendingFactor","number","Factor for stiffness proportional damping in bending dof",default=0.0))
+        self.add_attribute(Attribute("bendingFactor","number","Factor for stiffness proportional damping in bending/shear dofs",default=0.0))
         self.add_attribute(EnumAttribute("option","sima/riflex/RayleighDamping","Stiffness proportional damping options"))

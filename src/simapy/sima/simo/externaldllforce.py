@@ -23,36 +23,36 @@ class ExternalDLLForce(NamedObject):
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
-    attachmentPoint : Point3
-         Attack point of force.
-    referenceFrame : ReferenceFrameType
-         Which coordinate system is the force is given in?
-    nStorageParameters : int
-         Number of parameters for intermediate storage(default 0)
-    intParameters : List[StringIntItem]
-    doubleParameters : List[StringDoubleItem]
-    stringParameters : List[StringItem]
     nCurrentPoints : int
          Number of points where current velocities shall be given.(default 1)
     dllFile : str
          (default None)
     libraryPaths : LibraryPaths
+    nStorageParameters : int
+         Number of parameters for intermediate storage(default 0)
+    intParameters : List[StringIntItem]
+    doubleParameters : List[StringDoubleItem]
+    stringParameters : List[StringItem]
+    referenceFrame : ReferenceFrameType
+         Which coordinate system is the force is given in?
+    attachmentPoint : Point3
+         Attack point of force.
     """
 
-    def __init__(self , description="", referenceFrame=ReferenceFrameType.LOCAL, nStorageParameters=0, nCurrentPoints=1, **kwargs):
+    def __init__(self , description="", nCurrentPoints=1, nStorageParameters=0, referenceFrame=ReferenceFrameType.LOCAL, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
-        self.attachmentPoint = None
-        self.referenceFrame = referenceFrame
+        self.nCurrentPoints = nCurrentPoints
+        self.dllFile = None
+        self.libraryPaths = None
         self.nStorageParameters = nStorageParameters
         self.intParameters = list()
         self.doubleParameters = list()
         self.stringParameters = list()
-        self.nCurrentPoints = nCurrentPoints
-        self.dllFile = None
-        self.libraryPaths = None
+        self.referenceFrame = referenceFrame
+        self.attachmentPoint = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -97,24 +97,34 @@ class ExternalDLLForce(NamedObject):
         self.__name = value
 
     @property
-    def attachmentPoint(self) -> Point3:
-        """Attack point of force."""
-        return self.__attachmentPoint
+    def nCurrentPoints(self) -> int:
+        """Number of points where current velocities shall be given."""
+        return self.__nCurrentPoints
 
-    @attachmentPoint.setter
-    def attachmentPoint(self, value: Point3):
-        """Set attachmentPoint"""
-        self.__attachmentPoint = value
+    @nCurrentPoints.setter
+    def nCurrentPoints(self, value: int):
+        """Set nCurrentPoints"""
+        self.__nCurrentPoints = int(value)
 
     @property
-    def referenceFrame(self) -> ReferenceFrameType:
-        """Which coordinate system is the force is given in?"""
-        return self.__referenceFrame
+    def dllFile(self) -> str:
+        """"""
+        return self.__dllFile
 
-    @referenceFrame.setter
-    def referenceFrame(self, value: ReferenceFrameType):
-        """Set referenceFrame"""
-        self.__referenceFrame = value
+    @dllFile.setter
+    def dllFile(self, value: str):
+        """Set dllFile"""
+        self.__dllFile = value
+
+    @property
+    def libraryPaths(self) -> LibraryPaths:
+        """"""
+        return self.__libraryPaths
+
+    @libraryPaths.setter
+    def libraryPaths(self, value: LibraryPaths):
+        """Set libraryPaths"""
+        self.__libraryPaths = value
 
     @property
     def nStorageParameters(self) -> int:
@@ -163,31 +173,21 @@ class ExternalDLLForce(NamedObject):
         self.__stringParameters = value
 
     @property
-    def nCurrentPoints(self) -> int:
-        """Number of points where current velocities shall be given."""
-        return self.__nCurrentPoints
+    def referenceFrame(self) -> ReferenceFrameType:
+        """Which coordinate system is the force is given in?"""
+        return self.__referenceFrame
 
-    @nCurrentPoints.setter
-    def nCurrentPoints(self, value: int):
-        """Set nCurrentPoints"""
-        self.__nCurrentPoints = int(value)
-
-    @property
-    def dllFile(self) -> str:
-        """"""
-        return self.__dllFile
-
-    @dllFile.setter
-    def dllFile(self, value: str):
-        """Set dllFile"""
-        self.__dllFile = value
+    @referenceFrame.setter
+    def referenceFrame(self, value: ReferenceFrameType):
+        """Set referenceFrame"""
+        self.__referenceFrame = value
 
     @property
-    def libraryPaths(self) -> LibraryPaths:
-        """"""
-        return self.__libraryPaths
+    def attachmentPoint(self) -> Point3:
+        """Attack point of force."""
+        return self.__attachmentPoint
 
-    @libraryPaths.setter
-    def libraryPaths(self, value: LibraryPaths):
-        """Set libraryPaths"""
-        self.__libraryPaths = value
+    @attachmentPoint.setter
+    def attachmentPoint(self, value: Point3):
+        """Set attachmentPoint"""
+        self.__attachmentPoint = value

@@ -16,5 +16,6 @@ class ESDUWindBlueprint(WindBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("direction","number","Wind propagation direction",default=0.0))
         self.add_attribute(Attribute("averageVelocity","number","Average velocity at reference height",default=0.0))
+        self.add_attribute(Attribute("profileExponent","number","Wind profile exponent",default=0.11))
+        self.add_attribute(Attribute("friction","number","Surface drag coefficient.\nAlso used for transverse gust spectrum, if specified.",default=0.002))
         self.add_attribute(Attribute("psi","number","Site latitude in decimal degrees",default=0.0))
-        self.add_attribute(Attribute("friction","number","Surface drag coefficient used for transverse gust spectrum",default=0.002))

@@ -5,9 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from ...sima.blueprints.named import NamedBlueprint
+from ...graph.blueprints.nodeinputslot import NodeInputSlotBlueprint
 
-class InputSlotBlueprint(NamedBlueprint):
+class InputSlotBlueprint(NodeInputSlotBlueprint):
     """"""
 
     def __init__(self, name="InputSlot", package_path="sima/post", description=""):

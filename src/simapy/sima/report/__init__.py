@@ -1,8 +1,6 @@
 
 from .appendix import Appendix # noqa
-from .formula import Formula # noqa
 from .image import Image # noqa
-from .linkable import Linkable # noqa
 from .modeldescription import ModelDescription # noqa
 from .plot import Plot # noqa
 from .report import Report # noqa

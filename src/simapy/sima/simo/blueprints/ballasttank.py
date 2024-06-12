@@ -27,3 +27,4 @@ class BallastTankBlueprint(NamedObjectBlueprint):
         self.add_attribute(BlueprintAttribute("geometryPosition","sima/sima/Position","",True))
         self.add_attribute(Attribute("geometryFile","string","Geometry definition file ( STL or GDF)"))
         self.add_attribute(EnumAttribute("state","sima/simo/BallastTankState","State of ballast tank"))
+        self.add_attribute(BlueprintAttribute("pressureMeasurements","sima/simo/BallastTankPressureMeasurement","",True,Dimension("*")))

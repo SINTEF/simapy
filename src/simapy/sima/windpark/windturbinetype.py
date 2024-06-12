@@ -8,8 +8,9 @@ from typing import Dict
 from ..sima import NamedObject
 from ..sima import ScriptableValue
 from .bladeelement import BladeElement
-from .performancerelation import PerformanceRelation
+from .performancerelationitem import PerformanceRelationItem
 from .turbinedirection import TurbineDirection
+from .yawperformancerelation import YawPerformanceRelation
 
 class WindTurbineType(NamedObject):
     """
@@ -34,7 +35,8 @@ class WindTurbineType(NamedObject):
          (default 0.0)
     cutOutWindSpeed : float
          (default 0.0)
-    performanceRelations : List[PerformanceRelation]
+    yawPerformanceRelations : List[YawPerformanceRelation]
+    performanceRelations : List[PerformanceRelationItem]
     """
 
     def __init__(self , description="", direction=TurbineDirection.UPWIND, outerRadius=0.0, numberOfBlades=0, turbineDirection=TurbineDirection.UPWIND, cutInWindSpeed=0.0, cutOutWindSpeed=0.0, **kwargs):
@@ -50,6 +52,7 @@ class WindTurbineType(NamedObject):
         self.bladeElements = list()
         self.cutInWindSpeed = cutInWindSpeed
         self.cutOutWindSpeed = cutOutWindSpeed
+        self.yawPerformanceRelations = list()
         self.performanceRelations = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -177,12 +180,24 @@ class WindTurbineType(NamedObject):
         self.__cutOutWindSpeed = float(value)
 
     @property
-    def performanceRelations(self) -> List[PerformanceRelation]:
+    def yawPerformanceRelations(self) -> List[YawPerformanceRelation]:
+        """"""
+        return self.__yawPerformanceRelations
+
+    @yawPerformanceRelations.setter
+    def yawPerformanceRelations(self, value: List[YawPerformanceRelation]):
+        """Set yawPerformanceRelations"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__yawPerformanceRelations = value
+
+    @property
+    def performanceRelations(self) -> List[PerformanceRelationItem]:
         """"""
         return self.__performanceRelations
 
     @performanceRelations.setter
-    def performanceRelations(self, value: List[PerformanceRelation]):
+    def performanceRelations(self, value: List[PerformanceRelationItem]):
         """Set performanceRelations"""
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))

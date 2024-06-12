@@ -69,3 +69,6 @@ class GeneratorBlueprint(NamedBlueprint,ConditionSelectableBlueprint):
         self.add_attribute(Attribute("yawIncrement","number","Yaw misalignment increment used in deficit computation",default=0.0))
         self.add_attribute(EnumAttribute("shaftDirectionDefinition","sima/windpark/ShaftDirection","Kind of shaft direction definition"))
         self.add_attribute(BlueprintAttribute("windTurbineMotions","sima/windpark/WindTurbineMotion","",True,Dimension("*")))
+        self.add_attribute(Attribute("useTimeWindow","boolean","If selected simulations will be performed for user defined start time and duration, otherwise DIWA will estimate the simulations time duration from turbulence boxes.",default=False))
+        self.add_attribute(Attribute("timeWindowStart","number","Starting time of meandering",default=0.0))
+        self.add_attribute(Attribute("timeWindowDuration","number","Total duration of meandering",default=0.0))

@@ -33,12 +33,10 @@ class ForceResponseStorage(MOAO):
          Make transformation matrices available in the post processor(default False)
     relativeElementAngles : List[RelativeElementAngle]
     elementAngles : List[ElementAngle]
-    storeBottomContactForces : bool
-         Store results for seafloor contact elements and / or soil layer profile (SLP) contact elements(default False)
     transformations : List[ElementTransformation]
     """
 
-    def __init__(self , description="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices=False, storeBottomContactForces=False, **kwargs):
+    def __init__(self , description="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -49,7 +47,6 @@ class ForceResponseStorage(MOAO):
         self.readTransformationMatrices = readTransformationMatrices
         self.relativeElementAngles = list()
         self.elementAngles = list()
-        self.storeBottomContactForces = storeBottomContactForces
         self.transformations = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -159,16 +156,6 @@ class ForceResponseStorage(MOAO):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__elementAngles = value
-
-    @property
-    def storeBottomContactForces(self) -> bool:
-        """Store results for seafloor contact elements and / or soil layer profile (SLP) contact elements"""
-        return self.__storeBottomContactForces
-
-    @storeBottomContactForces.setter
-    def storeBottomContactForces(self, value: bool):
-        """Set storeBottomContactForces"""
-        self.__storeBottomContactForces = bool(value)
 
     @property
     def transformations(self) -> List[ElementTransformation]:

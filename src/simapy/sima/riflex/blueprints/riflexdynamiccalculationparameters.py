@@ -47,3 +47,4 @@ class RIFLEXDynamicCalculationParametersBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("currentVelocitiesScaling","number","Scaling of current velocities.",default=1.0))
         self.add_attribute(Attribute("changeStaticLoads","boolean","Change applied static loads at the start of the dynamic analysis",default=False))
         self.add_attribute(BlueprintAttribute("dynamicLoads","sima/riflex/DynamicLoads","",True))
+        self.add_attribute(BlueprintAttribute("bottomContactStorage","sima/riflex/BottomContactStorage","",True))

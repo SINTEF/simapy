@@ -15,19 +15,16 @@ class ScriptingPreference(SIMAPreference):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    showScripts : bool
-         (default False)
     javaScriptLocations : ndarray of str
     pythonHome : str
          Override python home folder(default None)
     pythonPaths : ndarray of str
     """
 
-    def __init__(self , description="", showScripts=False, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.showScripts = showScripts
         self.javaScriptLocations = []
         self.pythonHome = None
         self.pythonPaths = []
@@ -63,16 +60,6 @@ class ScriptingPreference(SIMAPreference):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
-
-    @property
-    def showScripts(self) -> bool:
-        """"""
-        return self.__showScripts
-
-    @showScripts.setter
-    def showScripts(self, value: bool):
-        """Set showScripts"""
-        self.__showScripts = bool(value)
 
     @property
     def javaScriptLocations(self) -> ndarray:
