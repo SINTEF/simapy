@@ -1,4 +1,4 @@
-SIMAPY - Python utilities for SIMA
+SIMAPy - Python utilities for SIMA
 =================================================================
 
 This Python library can be used to interact with [SIMA](https://sima.sintef.no)

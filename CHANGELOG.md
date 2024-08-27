@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Updated data model to relfect SIMA 4.6.0
+- Updated data model to reflect SIMA 4.6.0
 - New metocean package to enable creation of SIMA metocean data
 
 ### Changed
@@ -21,6 +21,8 @@ All notable changes to this project will be documented in this file.
 - Fixed copy of cross references. Possibility to remove or keep (default) uncontained cross references when copying
 
 ## [4.8.0]
+
+- Updated data model to reflect SIMA 4.8.0
 
 Model changes per package:
 
