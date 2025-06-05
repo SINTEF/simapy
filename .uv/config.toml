@@ -1,0 +1,7 @@
+[tool]
+# Store the virtual environments in the project directory
+venv-location = ".venv"
+
+[install]
+# Always upgrade packages when installing
+upgrade = true
