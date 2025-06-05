@@ -8,6 +8,7 @@ from typing import Dict
 from ..sima import Named
 from ..sima import ScriptableValue
 from .fatigueanalysisitem import FatigueAnalysisItem
+from .tnfatigueanalysisitem import TnFatigueAnalysisItem
 
 class FatigueAnalysis(Named):
     """
@@ -30,6 +31,8 @@ class FatigueAnalysis(Named):
          (default 0.0)
     endTime : float
          (default 0.0)
+    tnItems : List[TnFatigueAnalysisItem]
+         Specification of nodes for displacement storage
     """
 
     def __init__(self , description="", numberOfPoints=8, includeAllPoints=False, specifyTimeWindow=False, startTime=0.0, endTime=0.0, **kwargs):
@@ -43,6 +46,7 @@ class FatigueAnalysis(Named):
         self.specifyTimeWindow = specifyTimeWindow
         self.startTime = startTime
         self.endTime = endTime
+        self.tnItems = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -147,3 +151,15 @@ class FatigueAnalysis(Named):
     def endTime(self, value: float):
         """Set endTime"""
         self.__endTime = float(value)
+
+    @property
+    def tnItems(self) -> List[TnFatigueAnalysisItem]:
+        """Specification of nodes for displacement storage"""
+        return self.__tnItems
+
+    @tnItems.setter
+    def tnItems(self, value: List[TnFatigueAnalysisItem]):
+        """Set tnItems"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__tnItems = value

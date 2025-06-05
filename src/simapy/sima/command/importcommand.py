@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.importcommand import ImportCommandBlueprint
 from typing import Dict
+from ..sima import Command
 from ..sima import Property
 from ..sima import ScriptableValue
-from .command import Command
 
 class ImportCommand(Command):
     """
@@ -22,6 +22,8 @@ class ImportCommand(Command):
          Additional parameters
     file : str
          Path to file, e.g stask(default None)
+    configuration : str
+         Path to configuration file (context specific)(default None)
     """
 
     def __init__(self , description="", **kwargs):
@@ -31,6 +33,7 @@ class ImportCommand(Command):
         self.name = None
         self.parameters = list()
         self.file = None
+        self.configuration = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -95,3 +98,13 @@ class ImportCommand(Command):
     def file(self, value: str):
         """Set file"""
         self.__file = value
+
+    @property
+    def configuration(self) -> str:
+        """Path to configuration file (context specific)"""
+        return self.__configuration
+
+    @configuration.setter
+    def configuration(self, value: str):
+        """Set configuration"""
+        self.__configuration = value

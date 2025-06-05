@@ -19,7 +19,7 @@ class StationaryUniformBlueprint(WindBlueprint):
         self.add_attribute(Attribute("verticalVelocity","number","Vertical wind velocity component",default=0.0))
         self.add_attribute(BlueprintAttribute("velocityProfiles","sima/environment/ShearWindVelocityProfile","",True,Dimension("*")))
         self.add_attribute(Attribute("lowerEdgeZ","number","Z coordinate of the lower edge of the wind field domain",default=0.0))
-        self.add_attribute(Attribute("domainResolution","number","Domain resolution in Z- (vertical) direction",default=0.0))
+        self.add_attribute(Attribute("domainResolution","number","Distance between grid points in the vertical direction",default=0.0))
         self.add_attribute(Attribute("numGridPoints","integer","Number of grid points in Z- (vertical) direction",default=0))
         self.add_attribute(EnumAttribute("shearProfile","sima/environment/ShearProfile",""))
         self.add_attribute(Attribute("referenceHeight","number","Reference height for which the horizontal and vertical wind velocity values are given.",default=0.0))

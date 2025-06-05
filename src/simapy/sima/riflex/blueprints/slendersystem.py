@@ -32,7 +32,6 @@ class SlenderSystemBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("tubularContacts","sima/riflex/TubularContact","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("globalSprings","sima/riflex/GlobalSpring","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("windTurbines","sima/riflex/WindTurbine","",True,Dimension("*")))
-        self.add_attribute(BlueprintAttribute("localElementAxes","sima/riflex/LocalElementAxis","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("dragChains","sima/riflex/DragChainType","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("geotechnicalSprings","sima/riflex/GeotechnicalSpring","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("seafloorContactComponents","sima/riflex/SeafloorContact","",True,Dimension("*")))

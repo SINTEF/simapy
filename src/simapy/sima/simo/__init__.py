@@ -87,7 +87,6 @@ from .multiplewirecouplingpart import MultipleWireCouplingPart # noqa
 from .nameddoubleparameter import NamedDoubleParameter # noqa
 from .namedintparameter import NamedIntParameter # noqa
 from .namedstringparameter import NamedStringParameter # noqa
-from .nonlinearbuoyancycorrection import NonlinearBuoyancyCorrection # noqa
 from .nonlinearhydrostaticstiffness import NonLinearHydrostaticStiffness # noqa
 from .notchfilter import NotchFilter # noqa
 from .periodeigenvalueresult import PeriodEigenvalueResult # noqa
@@ -214,7 +213,6 @@ from .loadtype import LoadType # noqa
 from .massunit import MassUnit # noqa
 from .motionmode import MotionMode # noqa
 from .motionsequencetype import MotionSequenceType # noqa
-from .nonlinearbuoyancycorrectionmethod import NonlinearBuoyancyCorrectionMethod # noqa
 from .positionsimporttype import PositionsImportType # noqa
 from .randomgenerator import RandomGenerator # noqa
 from .ratchettype import RatchetType # noqa

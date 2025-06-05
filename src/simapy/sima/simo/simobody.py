@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simobody import SIMOBodyBlueprint
 from typing import Dict
+from ..hydro import DifferenceFrequencyQTF
 from ..hydro import DiffractedWaveField
 from ..hydro import FirstOrderMotionTransferFunction
 from ..hydro import FirstOrderWaveForceTransferFunction
@@ -17,8 +18,8 @@ from ..hydro import QuadraticDampingMatrix
 from ..hydro import QuadraticWindCoefficient
 from ..hydro import RadiationDataGroup
 from ..hydro import SimplifiedWaveDriftDamping
-from ..hydro import SparseQTF
 from ..hydro import StructuralMass
+from ..hydro import SumFrequencyQTF
 from ..hydro import WaveDriftDamping
 from ..hydro import WaveDriftForce
 from ..sima import Appearance
@@ -47,8 +48,6 @@ from .horizontalaxiswindturbine import HorizontalAxisWindTurbine
 from .hydrodynamicseparationmethod import HydrodynamicSeparationMethod
 from .ithruster import IThruster
 from .liftanddragforce import LiftAndDragForce
-from .nonlinearbuoyancycorrection import NonlinearBuoyancyCorrection
-from .nonlinearhydrostaticstiffness import NonLinearHydrostaticStiffness
 from .pointberthingfender import PointBerthingFender
 from .positionsimporttype import PositionsImportType
 from .rollerberthingfender import RollerBerthingFender
@@ -99,8 +98,6 @@ class SIMOBody(Body):
     linearDampingMatrices : List[SIMOLinearDampingMatrix]
     quadraticDampingMatrices : List[SIMOQuadraticDampingMatrix]
     hydrostaticStiffnessData : HydrostaticStiffnessData
-    nonLinearHydrostaticStiffness : NonLinearHydrostaticStiffness
-    nonlinearBuoyancyCorrection : NonlinearBuoyancyCorrection
     firstOrderMotionTransferFunction : FirstOrderMotionTransferFunction
     firstOrderWaveForceTransferFunction : FirstOrderWaveForceTransferFunction
     waveDriftForce : WaveDriftForce
@@ -143,7 +140,8 @@ class SIMOBody(Body):
     hydrodynamicFilterCutOffPeriod : float
          Cut off period used to estimate low ferquency motion from total motion(default 0.0)
     bodyShapeData : BodyShapeData
-    qtf : SparseQTF
+    differenceFrequencyQtf : DifferenceFrequencyQTF
+    sumFrequencyQtf : SumFrequencyQTF
     """
 
     def __init__(self , description="", length=10.0, width=5.0, height=5.0, _type=BodyType.SIX_DOF_TIME_DOMAIN, positionsImportType=PositionsImportType.FIXED_POSITION, applyGravityForce=False, hydrodynamicSeparationMethod=HydrodynamicSeparationMethod.BW2_FILTERING, hydrodynamicFilterCutOffPeriod=0.0, **kwargs):
@@ -170,8 +168,6 @@ class SIMOBody(Body):
         self.linearDampingMatrices = list()
         self.quadraticDampingMatrices = list()
         self.hydrostaticStiffnessData = None
-        self.nonLinearHydrostaticStiffness = None
-        self.nonlinearBuoyancyCorrection = None
         self.firstOrderMotionTransferFunction = None
         self.firstOrderWaveForceTransferFunction = None
         self.waveDriftForce = None
@@ -212,7 +208,8 @@ class SIMOBody(Body):
         self.hydrodynamicSeparationMethod = hydrodynamicSeparationMethod
         self.hydrodynamicFilterCutOffPeriod = hydrodynamicFilterCutOffPeriod
         self.bodyShapeData = None
-        self.qtf = None
+        self.differenceFrequencyQtf = None
+        self.sumFrequencyQtf = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -453,26 +450,6 @@ class SIMOBody(Body):
     def hydrostaticStiffnessData(self, value: HydrostaticStiffnessData):
         """Set hydrostaticStiffnessData"""
         self.__hydrostaticStiffnessData = value
-
-    @property
-    def nonLinearHydrostaticStiffness(self) -> NonLinearHydrostaticStiffness:
-        """"""
-        return self.__nonLinearHydrostaticStiffness
-
-    @nonLinearHydrostaticStiffness.setter
-    def nonLinearHydrostaticStiffness(self, value: NonLinearHydrostaticStiffness):
-        """Set nonLinearHydrostaticStiffness"""
-        self.__nonLinearHydrostaticStiffness = value
-
-    @property
-    def nonlinearBuoyancyCorrection(self) -> NonlinearBuoyancyCorrection:
-        """"""
-        return self.__nonlinearBuoyancyCorrection
-
-    @nonlinearBuoyancyCorrection.setter
-    def nonlinearBuoyancyCorrection(self, value: NonlinearBuoyancyCorrection):
-        """Set nonlinearBuoyancyCorrection"""
-        self.__nonlinearBuoyancyCorrection = value
 
     @property
     def firstOrderMotionTransferFunction(self) -> FirstOrderMotionTransferFunction:
@@ -909,11 +886,21 @@ class SIMOBody(Body):
         self.__bodyShapeData = value
 
     @property
-    def qtf(self) -> SparseQTF:
+    def differenceFrequencyQtf(self) -> DifferenceFrequencyQTF:
         """"""
-        return self.__qtf
+        return self.__differenceFrequencyQtf
 
-    @qtf.setter
-    def qtf(self, value: SparseQTF):
-        """Set qtf"""
-        self.__qtf = value
+    @differenceFrequencyQtf.setter
+    def differenceFrequencyQtf(self, value: DifferenceFrequencyQTF):
+        """Set differenceFrequencyQtf"""
+        self.__differenceFrequencyQtf = value
+
+    @property
+    def sumFrequencyQtf(self) -> SumFrequencyQTF:
+        """"""
+        return self.__sumFrequencyQtf
+
+    @sumFrequencyQtf.setter
+    def sumFrequencyQtf(self, value: SumFrequencyQTF):
+        """Set sumFrequencyQtf"""
+        self.__sumFrequencyQtf = value

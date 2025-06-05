@@ -22,6 +22,8 @@ class RIFLEXStaticCalculationParameters(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    automaticLoading : bool
+         Automatic static loading sequence(default False)
     loadTypeItems : List[StaticLoadTypeItem]
     matrixStorage : MatrixStorage
     currentProfileScaling : float
@@ -44,10 +46,11 @@ class RIFLEXStaticCalculationParameters(MOAO):
     massSummary : MassSummary
     """
 
-    def __init__(self , description="", matrixStorage=MatrixStorage.SPARSE, currentProfileScaling=1.0, stressFreeConfiguration=False, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, storeStructuralData=False, **kwargs):
+    def __init__(self , description="", automaticLoading=False, matrixStorage=MatrixStorage.AUTOMATIC, currentProfileScaling=1.0, stressFreeConfiguration=False, loadAndMassFormulation=LoadAndMassFormulation.LUMPED, storeVisualisationResponses=True, matrixPlotStorage=MatrixPlotStorage.LOAD_GROUP, startAtZero=True, storeStructuralData=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
+        self.automaticLoading = automaticLoading
         self.loadTypeItems = list()
         self.matrixStorage = matrixStorage
         self.currentProfileScaling = currentProfileScaling
@@ -93,6 +96,16 @@ class RIFLEXStaticCalculationParameters(MOAO):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def automaticLoading(self) -> bool:
+        """Automatic static loading sequence"""
+        return self.__automaticLoading
+
+    @automaticLoading.setter
+    def automaticLoading(self, value: bool):
+        """Set automaticLoading"""
+        self.__automaticLoading = bool(value)
 
     @property
     def loadTypeItems(self) -> List[StaticLoadTypeItem]:

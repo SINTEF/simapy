@@ -21,7 +21,6 @@ from .geotechnicallinespecification import GeotechnicalLineSpecification
 from .geotechnicalspring import GeotechnicalSpring
 from .globalspring import GlobalSpring
 from .internalfluidtype import InternalFluidType
-from .localelementaxis import LocalElementAxis
 from .mainriserline import MainRiserLine
 from .marinegrowth import MarineGrowth
 from .material import Material
@@ -63,7 +62,6 @@ class SlenderSystem(MOAO):
     tubularContacts : List[TubularContact]
     globalSprings : List[GlobalSpring]
     windTurbines : List[WindTurbine]
-    localElementAxes : List[LocalElementAxis]
     dragChains : List[DragChainType]
     geotechnicalSprings : List[GeotechnicalSpring]
     seafloorContactComponents : List[SeafloorContact]
@@ -99,7 +97,6 @@ class SlenderSystem(MOAO):
         self.tubularContacts = list()
         self.globalSprings = list()
         self.windTurbines = list()
-        self.localElementAxes = list()
         self.dragChains = list()
         self.geotechnicalSprings = list()
         self.seafloorContactComponents = list()
@@ -359,18 +356,6 @@ class SlenderSystem(MOAO):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__windTurbines = value
-
-    @property
-    def localElementAxes(self) -> List[LocalElementAxis]:
-        """"""
-        return self.__localElementAxes
-
-    @localElementAxes.setter
-    def localElementAxes(self, value: List[LocalElementAxis]):
-        """Set localElementAxes"""
-        if not isinstance(value, Sequence):
-            raise ValueError("Expected sequense, but was " , type(value))
-        self.__localElementAxes = value
 
     @property
     def dragChains(self) -> List[DragChainType]:

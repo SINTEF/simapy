@@ -31,7 +31,7 @@ class HorizontalAxisWindTurbineController(MOAO):
     ratedTorque : float
          Rated electrical torque(default 0.0)
     gearBoxRatio : float
-         Gear box ratio(default 0.0)
+         Gear box ratio(default 1.0)
     generatorEfficiency : float
          Generator efficiency due to electrical and mechanical losses(default 1.0)
     maxPitchRate : float
@@ -73,9 +73,11 @@ class HorizontalAxisWindTurbineController(MOAO):
     controllerType : ControllerType
     logFile : bool
          Log of signals to and from controller are written to a log file. The file <turbine name>.log is stored in the analysis folder. This option should be used for debugging purposes only. Avaliable for external controller only.(default False)
+    accelerationFromDisplacement : bool
+         Acceleration is calculated from the displacements(default False)
     """
 
-    def __init__(self , description="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=0.0, generatorEfficiency=1.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, **kwargs):
+    def __init__(self , description="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=1.0, generatorEfficiency=1.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, accelerationFromDisplacement=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -108,6 +110,7 @@ class HorizontalAxisWindTurbineController(MOAO):
         self.sampleInterval = sampleInterval
         self.controllerType = controllerType
         self.logFile = logFile
+        self.accelerationFromDisplacement = accelerationFromDisplacement
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -432,3 +435,13 @@ class HorizontalAxisWindTurbineController(MOAO):
     def logFile(self, value: bool):
         """Set logFile"""
         self.__logFile = bool(value)
+
+    @property
+    def accelerationFromDisplacement(self) -> bool:
+        """Acceleration is calculated from the displacements"""
+        return self.__accelerationFromDisplacement
+
+    @accelerationFromDisplacement.setter
+    def accelerationFromDisplacement(self, value: bool):
+        """Set accelerationFromDisplacement"""
+        self.__accelerationFromDisplacement = bool(value)

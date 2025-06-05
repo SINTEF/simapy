@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.nonlinearhydrostaticstiffness import NonLinearHydrostaticStiffnessBlueprint
 from typing import Dict
-from ..sima import MOAO
+from ..hydro import HydrostaticStiffnessData
 from ..sima import Position
 from ..sima import ScriptableValue
 
-class NonLinearHydrostaticStiffness(MOAO):
+class NonLinearHydrostaticStiffness(HydrostaticStiffnessData):
     """
     Keyword arguments
     -----------------

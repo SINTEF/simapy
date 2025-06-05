@@ -19,3 +19,4 @@ class ARLineBlueprint(LineForceProviderBlueprint):
         self.add_attribute(BlueprintAttribute("end1","sima/riflex/SuperNode","Supernode at end 1.",False))
         self.add_attribute(BlueprintAttribute("end2","sima/riflex/SuperNode","Supernode at end 2.",False))
         self.add_attribute(Attribute("disabled","boolean","Do not include this line in the calculations",default=False))
+        self.add_attribute(BlueprintAttribute("localElementAxes","sima/riflex/LocalElementAxis","",True,Dimension("*")))

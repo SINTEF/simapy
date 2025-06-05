@@ -25,9 +25,9 @@ class ParameterVariation(MOAO):
          Maximum number of iterations for each variation(default 1)
     convergenceNorm : ConvergenceNorm
     accuracy : float
-         Required accuracy measured by displacement norm(default 0.0001)
+         Required accuracy measured by displacement norm(default 1e-05)
     energyAccuracy : float
-         Required accuracy measured by energy norm. This value is relevant only if Convergence Norm is 'Both'.(default 0.0001)
+         Required accuracy measured by energy norm. This value is relevant only if Convergence Norm is 'Both'.(default 1e-05)
     offset : bool
          (default False)
     current : bool
@@ -43,9 +43,11 @@ class ParameterVariation(MOAO):
          Activate global springs(default False)
     memoActivation : bool
          Activate material memory formulation (isotropic / kinematic hardening)(default False)
+    deactivateCurrent : bool
+         Deactivates any current in the first load step of the offset variation(default False)
     """
 
-    def __init__(self , description="", numVariations=0, maxIterations=1, convergenceNorm=ConvergenceNorm.DISP, accuracy=0.0001, energyAccuracy=0.0001, offset=False, current=False, specifiedForce=False, fricActivation=False, springActivation=False, memoActivation=False, **kwargs):
+    def __init__(self , description="", numVariations=0, maxIterations=1, convergenceNorm=ConvergenceNorm.DISP, accuracy=1e-05, energyAccuracy=1e-05, offset=False, current=False, specifiedForce=False, fricActivation=False, springActivation=False, memoActivation=False, deactivateCurrent=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -63,6 +65,7 @@ class ParameterVariation(MOAO):
         self.fricActivation = fricActivation
         self.springActivation = springActivation
         self.memoActivation = memoActivation
+        self.deactivateCurrent = deactivateCurrent
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -235,3 +238,13 @@ class ParameterVariation(MOAO):
     def memoActivation(self, value: bool):
         """Set memoActivation"""
         self.__memoActivation = bool(value)
+
+    @property
+    def deactivateCurrent(self) -> bool:
+        """Deactivates any current in the first load step of the offset variation"""
+        return self.__deactivateCurrent
+
+    @deactivateCurrent.setter
+    def deactivateCurrent(self, value: bool):
+        """Set deactivateCurrent"""
+        self.__deactivateCurrent = bool(value)

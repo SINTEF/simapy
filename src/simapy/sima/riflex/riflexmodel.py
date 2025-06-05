@@ -27,6 +27,7 @@ from ..simo import SIMOStaticCalculationParameters
 from ..simo import SimpleWireCoupling
 from ..simo import StabilityCalculationParameters
 from ..windturbine import Airfoil
+from .capacitycheck import CapacityCheck
 from .combinedloading import CombinedLoading
 from .fatigueanalysis import FatigueAnalysis
 from .potentialflowlibrary import PotentialFlowLibrary
@@ -72,6 +73,7 @@ class RIFLEXModel(SIMOModel):
     supportVessels : List[SupportVessel]
     referenceFrames : List[ReferenceFrame]
     combinedLoadingAnalyses : List[CombinedLoading]
+    capacityChecks : List[CapacityCheck]
     riflexStaticCalculationParameters : RIFLEXStaticCalculationParameters
     riflexDynamicCalculationParameters : RIFLEXDynamicCalculationParameters
     riflexEigenvalueCalculationParameters : RIFLEXEigenvalueCalculationParameters
@@ -110,6 +112,7 @@ class RIFLEXModel(SIMOModel):
         self.supportVessels = list()
         self.referenceFrames = list()
         self.combinedLoadingAnalyses = list()
+        self.capacityChecks = list()
         self.riflexStaticCalculationParameters = None
         self.riflexDynamicCalculationParameters = None
         self.riflexEigenvalueCalculationParameters = None
@@ -437,6 +440,18 @@ class RIFLEXModel(SIMOModel):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__combinedLoadingAnalyses = value
+
+    @property
+    def capacityChecks(self) -> List[CapacityCheck]:
+        """"""
+        return self.__capacityChecks
+
+    @capacityChecks.setter
+    def capacityChecks(self, value: List[CapacityCheck]):
+        """Set capacityChecks"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__capacityChecks = value
 
     @property
     def riflexStaticCalculationParameters(self) -> RIFLEXStaticCalculationParameters:

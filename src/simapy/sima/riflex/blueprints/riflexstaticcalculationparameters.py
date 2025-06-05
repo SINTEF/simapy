@@ -14,6 +14,7 @@ class RIFLEXStaticCalculationParametersBlueprint(MOAOBlueprint):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("automaticLoading","boolean","Automatic static loading sequence",default=False))
         self.add_attribute(BlueprintAttribute("loadTypeItems","sima/riflex/StaticLoadTypeItem","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("matrixStorage","sima/riflex/MatrixStorage",""))
         self.add_attribute(Attribute("currentProfileScaling","number","Scaling factor to amplify or reduce the referred current profile",default=1.0))

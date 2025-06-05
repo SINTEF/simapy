@@ -5,7 +5,7 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from .command import CommandBlueprint
+from ...sima.blueprints.command import CommandBlueprint
 
 class ConditionRunCommandBlueprint(CommandBlueprint):
     """"""
@@ -22,3 +22,6 @@ class ConditionRunCommandBlueprint(CommandBlueprint):
         self.add_attribute(Attribute("dir","string","Optional working directory ( may be specified with sima resource urls: sima:// which are relative to the workspace).\nIf the working directory is given outside the workspace SIMA will not delete any of the files before running."))
         self.add_attribute(Attribute("output","string","If set will export all the condition results to the given file"))
         self.add_attribute(BlueprintAttribute("input","sima/sima/Property","Enables override of condition variables. Specify variable name and wanted value",True,Dimension("*")))
+        self.add_attribute(Attribute("copy","boolean","Copy selected files to destination folder",default=False))
+        self.add_attribute(Attribute("paths","string","Optional list of file names within the condition folder to copy after run",Dimension("*")))
+        self.add_attribute(Attribute("destination","string","Destination folder"))

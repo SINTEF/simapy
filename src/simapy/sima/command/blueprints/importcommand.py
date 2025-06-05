@@ -5,7 +5,7 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from .command import CommandBlueprint
+from ...sima.blueprints.command import CommandBlueprint
 
 class ImportCommandBlueprint(CommandBlueprint):
     """"""
@@ -17,3 +17,4 @@ class ImportCommandBlueprint(CommandBlueprint):
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("parameters","sima/sima/Property","Additional parameters",True,Dimension("*")))
         self.add_attribute(Attribute("file","string","Path to file, e.g stask",optional=False))
+        self.add_attribute(Attribute("configuration","string","Path to configuration file (context specific)",optional=False))

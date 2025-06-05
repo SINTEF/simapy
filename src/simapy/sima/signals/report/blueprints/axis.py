@@ -20,3 +20,5 @@ class AxisBlueprint(EntityBlueprint):
         self.add_attribute(Attribute("autoscale","boolean","",optional=False,default=True))
         self.add_attribute(Attribute("showgrid","boolean","",default=True))
         self.add_attribute(Attribute("dashgridline","boolean","",default=True))
+        self.add_attribute(Attribute("max","number","",default=0.0))
+        self.add_attribute(Attribute("min","number","",default=0.0))

@@ -28,9 +28,11 @@ from .gdfcylinder import GDFCylinder # noqa
 from .gdfgeometry import GDFGeometry # noqa
 from .hydrostaticstiffnessdata import HydrostaticStiffnessData # noqa
 from .hydrostaticstiffnessmatrix import HydrostaticStiffnessMatrix # noqa
+from .hydrostaticstiffnessmatrixdata import HydrostaticStiffnessMatrixData # noqa
 from .linearcurrentcoefficient import LinearCurrentCoefficient # noqa
 from .linearcurrentcoefficientitem import LinearCurrentCoefficientItem # noqa
 from .lineardampingmatrix import LinearDampingMatrix # noqa
+from .linearhydrostatics import LinearHydrostatics # noqa
 from .massmatrix import MassMatrix # noqa
 from .matrix3 import Matrix3 # noqa
 from .matrix6 import Matrix6 # noqa
@@ -47,13 +49,14 @@ from .radiationdatagroup import RadiationDataGroup # noqa
 from .retardationelementdata import RetardationElementData # noqa
 from .retardationfunction import RetardationFunction # noqa
 from .retardationfunctioncalculationnode import RetardationFunctionCalculationNode # noqa
+from .retardationfunctioncalculationparameters import RetardationFunctionCalculationParameters # noqa
 from .simplifiedwavedriftdamping import SimplifiedWaveDriftDamping # noqa
-from .sparseqtf import SparseQTF # noqa
 from .structuralmass import StructuralMass # noqa
 from .sumfrequencyqtf import SumFrequencyQTF # noqa
 from .sumfrequencywaveforce import SumFrequencyWaveForce # noqa
 from .twodofdata import TwoDofData # noqa
 from .values import Values # noqa
+from .wamitimportconfiguration import WamitImportConfiguration # noqa
 from .wavedriftdamping import WaveDriftDamping # noqa
 from .wavedriftdampingdofitem import WaveDriftDampingDofItem # noqa
 from .wavedriftdampingitem import WaveDriftDampingItem # noqa
@@ -64,5 +67,9 @@ from .depthdistribution import DepthDistribution # noqa
 from .directionsymmetry import DirectionSymmetry # noqa
 from .dof import DOF # noqa
 from .gdftype import GDFType # noqa
+from .qtfinput import QtfInput # noqa
+from .wamitqtfimportoption import WamitQtfImportOption # noqa
+from .wamitwavedriftforceoption import WamitWaveDriftForceOption # noqa
+from .wamitwaveforceoption import WamitWaveForceOption # noqa
 from .wavedriftdampingforce import WaveDriftDampingForce # noqa
 from .wavedriftdampingsource import WaveDriftDampingSource # noqa

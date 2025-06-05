@@ -4,10 +4,10 @@
 from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.conditionruncommand import ConditionRunCommandBlueprint
-from typing import Dict
+from numpy import ndarray,asarray
+from ..sima import Command
 from ..sima import Property
 from ..sima import ScriptableValue
-from .command import Command
 
 class ConditionRunCommand(Command):
     """
@@ -32,9 +32,15 @@ class ConditionRunCommand(Command):
          If set will export all the condition results to the given file(default None)
     input : List[Property]
          Enables override of condition variables. Specify variable name and wanted value
+    copy : bool
+         Copy selected files to destination folder(default False)
+    paths : ndarray of str
+         Optional list of file names within the condition folder to copy after run
+    destination : str
+         Destination folder(default None)
     """
 
-    def __init__(self , description="", **kwargs):
+    def __init__(self , description="", copy=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -46,6 +52,9 @@ class ConditionRunCommand(Command):
         self.dir = None
         self.output = None
         self.input = list()
+        self.copy = copy
+        self.paths = []
+        self.destination = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -163,3 +172,36 @@ If the working directory is given outside the workspace SIMA will not delete any
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__input = value
+
+    @property
+    def copy(self) -> bool:
+        """Copy selected files to destination folder"""
+        return self.__copy
+
+    @copy.setter
+    def copy(self, value: bool):
+        """Set copy"""
+        self.__copy = bool(value)
+
+    @property
+    def paths(self) -> ndarray:
+        """Optional list of file names within the condition folder to copy after run"""
+        return self.__paths
+
+    @paths.setter
+    def paths(self, value: ndarray):
+        """Set paths"""
+        array = asarray(value, dtype=str)
+        if len(array) > 0 and array.ndim != 1:
+            raise ValueError("Expected array with 1 dimensions")
+        self.__paths = array
+
+    @property
+    def destination(self) -> str:
+        """Destination folder"""
+        return self.__destination
+
+    @destination.setter
+    def destination(self, value: str):
+        """Set destination"""
+        self.__destination = value

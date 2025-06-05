@@ -5,9 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from .sparseqtf import SparseQTFBlueprint
+from ...sima.blueprints.moao import MOAOBlueprint
 
-class DifferenceFrequencyQTFBlueprint(SparseQTFBlueprint):
+class DifferenceFrequencyQTFBlueprint(MOAOBlueprint):
     """"""
 
     def __init__(self, name="DifferenceFrequencyQTF", package_path="sima/hydro", description=""):
@@ -31,4 +31,8 @@ class DifferenceFrequencyQTFBlueprint(SparseQTFBlueprint):
         self.add_attribute(BlueprintAttribute("roll","sima/hydro/QTFDof","",True))
         self.add_attribute(BlueprintAttribute("pitch","sima/hydro/QTFDof","",True))
         self.add_attribute(BlueprintAttribute("yaw","sima/hydro/QTFDof","",True))
+        self.add_attribute(EnumAttribute("symmetry","sima/hydro/DirectionSymmetry",""))
         self.add_attribute(Attribute("enableCurrentCorrection","boolean","Enable wave-current interaction using extended Aranha formula",default=False))
+        self.add_attribute(EnumAttribute("input","sima/hydro/QtfInput",""))
+        self.add_attribute(Attribute("file","string",""))
+        self.add_attribute(Attribute("bodyNumber","integer","If file is multi-body, give the number within the file for this data",default=1))

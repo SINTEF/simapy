@@ -27,7 +27,7 @@ class StationaryUniform(Wind):
     lowerEdgeZ : float
          Z coordinate of the lower edge of the wind field domain(default 0.0)
     domainResolution : float
-         Domain resolution in Z- (vertical) direction(default 0.0)
+         Distance between grid points in the vertical direction(default 0.0)
     numGridPoints : int
          Number of grid points in Z- (vertical) direction(default 0)
     shearProfile : ShearProfile
@@ -141,7 +141,7 @@ class StationaryUniform(Wind):
 
     @property
     def domainResolution(self) -> float:
-        """Domain resolution in Z- (vertical) direction"""
+        """Distance between grid points in the vertical direction"""
         return self.__domainResolution
 
     @domainResolution.setter

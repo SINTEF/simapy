@@ -5,7 +5,7 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from .command import CommandBlueprint
+from ...sima.blueprints.command import CommandBlueprint
 
 class CompoundCommandBlueprint(CommandBlueprint):
     """"""
@@ -16,4 +16,4 @@ class CompoundCommandBlueprint(CommandBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("parameters","sima/sima/Property","Additional parameters",True,Dimension("*")))
-        self.add_attribute(BlueprintAttribute("commands","sima/command/Command","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("commands","sima/sima/Command","",True,Dimension("*")))

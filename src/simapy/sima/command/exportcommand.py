@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.exportcommand import ExportCommandBlueprint
 from numpy import ndarray,asarray
+from ..sima import Command
 from ..sima import Property
 from ..sima import ScriptableValue
-from .command import Command
 
 class ExportCommand(Command):
     """

@@ -5,9 +5,9 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.scriptruncommand import ScriptRunCommandBlueprint
 from typing import Dict
+from ..sima import Command
 from ..sima import Property
 from ..sima import ScriptableValue
-from .command import Command
 
 class ScriptRunCommand(Command):
     """
