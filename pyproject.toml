@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=70.0.0", "wheel>=0.38.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simapy"
+version = "5.0.0-dev0"
+description = "Python utilities for SIMA"
+readme = "README.md"
+authors = [
+    {name = "SINTEF Ocean"}
+]
+requires-python = ">=3.8"
+license = {text = "MIT License"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "dmtpy==0.3.4",
+    "numpy",
+]
+
+[project.urls]
+Homepage = "https://github.com/SINTEF/simapy"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = {find = {where = ["src"], exclude = ["tests"]}}
