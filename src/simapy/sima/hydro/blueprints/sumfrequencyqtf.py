@@ -5,9 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from .sparseqtf import SparseQTFBlueprint
+from ...sima.blueprints.moao import MOAOBlueprint
 
-class SumFrequencyQTFBlueprint(SparseQTFBlueprint):
+class SumFrequencyQTFBlueprint(MOAOBlueprint):
     """"""
 
     def __init__(self, name="SumFrequencyQTF", package_path="sima/hydro", description=""):

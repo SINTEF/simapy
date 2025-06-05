@@ -39,6 +39,7 @@ class RIFLEXModelBlueprint(SIMOModelBlueprint):
         self.add_attribute(BlueprintAttribute("supportVessels","sima/riflex/SupportVessel","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("referenceFrames","sima/riflex/ReferenceFrame","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("combinedLoadingAnalyses","sima/riflex/CombinedLoading","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("capacityChecks","sima/riflex/CapacityCheck","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("riflexStaticCalculationParameters","sima/riflex/RIFLEXStaticCalculationParameters","",True))
         self.add_attribute(BlueprintAttribute("riflexDynamicCalculationParameters","sima/riflex/RIFLEXDynamicCalculationParameters","",True))
         self.add_attribute(BlueprintAttribute("riflexEigenvalueCalculationParameters","sima/riflex/RIFLEXEigenvalueCalculationParameters","",True))

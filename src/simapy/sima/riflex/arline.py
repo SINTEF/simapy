@@ -8,6 +8,7 @@ from .blueprints.arline import ARLineBlueprint
 from typing import Dict
 from ..sima import ScriptableValue
 from ..simo import LineForceProvider
+from .localelementaxis import LocalElementAxis
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .arlinetype import ARLineType
@@ -30,6 +31,7 @@ class ARLine(LineForceProvider):
          Supernode at end 2.
     disabled : bool
          Do not include this line in the calculations(default False)
+    localElementAxes : List[LocalElementAxis]
     """
 
     def __init__(self , description="", disabled=False, **kwargs):
@@ -41,6 +43,7 @@ class ARLine(LineForceProvider):
         self.end1 = None
         self.end2 = None
         self.disabled = disabled
+        self.localElementAxes = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -123,3 +126,15 @@ class ARLine(LineForceProvider):
     def disabled(self, value: bool):
         """Set disabled"""
         self.__disabled = bool(value)
+
+    @property
+    def localElementAxes(self) -> List[LocalElementAxis]:
+        """"""
+        return self.__localElementAxes
+
+    @localElementAxes.setter
+    def localElementAxes(self, value: List[LocalElementAxis]):
+        """Set localElementAxes"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__localElementAxes = value

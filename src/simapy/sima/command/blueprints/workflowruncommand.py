@@ -5,7 +5,7 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from .command import CommandBlueprint
+from ...sima.blueprints.command import CommandBlueprint
 
 class WorkflowRunCommandBlueprint(CommandBlueprint):
     """"""

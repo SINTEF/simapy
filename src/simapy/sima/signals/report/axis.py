@@ -27,9 +27,13 @@ class Axis(Entity):
          (default True)
     dashgridline : bool
          (default True)
+    max : float
+         (default 0.0)
+    min : float
+         (default 0.0)
     """
 
-    def __init__(self , description="", log=False, autoformat=True, autoscale=True, showgrid=True, dashgridline=True, **kwargs):
+    def __init__(self , description="", log=False, autoformat=True, autoscale=True, showgrid=True, dashgridline=True, max=0.0, min=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.font = None
@@ -39,6 +43,8 @@ class Axis(Entity):
         self.autoscale = autoscale
         self.showgrid = showgrid
         self.dashgridline = dashgridline
+        self.max = max
+        self.min = min
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -129,3 +135,23 @@ class Axis(Entity):
     def dashgridline(self, value: bool):
         """Set dashgridline"""
         self.__dashgridline = bool(value)
+
+    @property
+    def max(self) -> float:
+        """"""
+        return self.__max
+
+    @max.setter
+    def max(self, value: float):
+        """Set max"""
+        self.__max = float(value)
+
+    @property
+    def min(self) -> float:
+        """"""
+        return self.__min
+
+    @min.setter
+    def min(self, value: float):
+        """Set min"""
+        self.__min = float(value)

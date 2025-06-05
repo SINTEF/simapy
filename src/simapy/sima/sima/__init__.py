@@ -3,6 +3,7 @@ from .appearance import Appearance # noqa
 from .applicationstate import ApplicationState # noqa
 from .body import Body # noqa
 from .bodyviewpoint import BodyViewpoint # noqa
+from .command import Command # noqa
 from .condition import Condition # noqa
 from .conditionresultcontainer import ConditionResultContainer # noqa
 from .conditionselectable import ConditionSelectable # noqa

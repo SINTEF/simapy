@@ -95,7 +95,7 @@ class SIMODynamicCalculationParameters(MOAO):
     storeRetardationForces : bool
          Store retardation forces?(default False)
     storeHydrostaticStiffnessForces : bool
-         Store hydrostatic stiffness forces?(default False)
+         (default False)
     storeLinearDamping : bool
          Store linear damping?(default False)
     storeQuadraticDamping : bool
@@ -160,9 +160,11 @@ class SIMODynamicCalculationParameters(MOAO):
          Determines the ramp duration in seconds(default 2.5)
     requestedTimeSeriesLength : float
          Length of generated time series(default 16384.0)
+    storeDifferenceFrequencyWaveForce : bool
+         (default False)
     """
 
-    def __init__(self , description="", timeIncrement=0.5, waveMethod=WaveMethod.FFT_ONLY, integrationMethod=IntegrationMethod.RUNGE_KUTTA, randomSeedWaves=1, randomSeedWind=1, randomNumberGenerator=RandomGenerator.MERSENNE, headingCorrection=True, maxHeadingChange=45.0, largePatchLength=2048.0, smallPatchLength=256.0, cutFactorWaves=100, pointsLargePatch=256, pointsSmallPatch=128, writeVisFile=False, waveTimeSeriesFile=False, hydroSystemPeriod=0.0, hydroFilterMethod=HydroSystemFilterMethod.BLOCKED, nWindSeaComponents=2000, nSwellSeaComponents=400, windTimeSeriesMethod=WindTimeSeriesMethod.SAME, windVelocityDimension=WindVelocityDimension.TWO, windForceMethod=WindForceMethod.RELATIVE, windMethod=WindMethod.FFT, quadraticCurrentForceMethod=CurrentForceMethod.RELATIVE, linearCurrentForceMethod=CurrentForceMethod.RELATIVE, exportResultsToWasim=False, storeWindForces=False, storeSumGeneralLineForces=False, storeTotalForces=False, storeRetardationForces=False, storeHydrostaticStiffnessForces=False, storeLinearDamping=False, storeQuadraticDamping=False, storeDistributedHydrodynamicForces=False, storeFixedBodyAndSlenderElementStripResults=False, storeWaveDriftDamping=False, storeLinearCurrentDrag=False, storeQuadraticCurrentDrag=False, storeSmallBodyHydrodynamicForces=False, storeResultantPositioningElementForces=False, storePositioningElementForceComponents=False, storeTotalPositioningForces=False, storeThrusterForces=False, storeSumThrusterForces=False, storeDynamicPositioningEstimators=False, storeSumSpecifiedForces=False, storeSumExternalForces=False, storeSumCouplingForces=False, storeResultantCouplingElementForces=False, storeGlobalCouplingForceComponents=False, storeLocalCouplingForceComponents=False, storeGlobalLowFrequencyPosition=False, storeGlobalTotalPosition=True, storeGlobalAcceleration=False, storeLocalAccelerations=False, storeLocalVelocity=False, storeCatenarySystemForces=False, storeCatenarySystemNodes=False, timeStep=0.5, simulationLength=11000.0, simulationStartTime=0.0, rampDuration=2.5, requestedTimeSeriesLength=16384.0, **kwargs):
+    def __init__(self , description="", timeIncrement=0.5, waveMethod=WaveMethod.FFT_ONLY, integrationMethod=IntegrationMethod.RUNGE_KUTTA, randomSeedWaves=1, randomSeedWind=1, randomNumberGenerator=RandomGenerator.MERSENNE, headingCorrection=True, maxHeadingChange=45.0, largePatchLength=2048.0, smallPatchLength=256.0, cutFactorWaves=100, pointsLargePatch=256, pointsSmallPatch=128, writeVisFile=False, waveTimeSeriesFile=False, hydroSystemPeriod=0.0, hydroFilterMethod=HydroSystemFilterMethod.BLOCKED, nWindSeaComponents=2000, nSwellSeaComponents=400, windTimeSeriesMethod=WindTimeSeriesMethod.SAME, windVelocityDimension=WindVelocityDimension.TWO, windForceMethod=WindForceMethod.RELATIVE, windMethod=WindMethod.FFT, quadraticCurrentForceMethod=CurrentForceMethod.RELATIVE, linearCurrentForceMethod=CurrentForceMethod.RELATIVE, exportResultsToWasim=False, storeWindForces=False, storeSumGeneralLineForces=False, storeTotalForces=False, storeRetardationForces=False, storeHydrostaticStiffnessForces=False, storeLinearDamping=False, storeQuadraticDamping=False, storeDistributedHydrodynamicForces=False, storeFixedBodyAndSlenderElementStripResults=False, storeWaveDriftDamping=False, storeLinearCurrentDrag=False, storeQuadraticCurrentDrag=False, storeSmallBodyHydrodynamicForces=False, storeResultantPositioningElementForces=False, storePositioningElementForceComponents=False, storeTotalPositioningForces=False, storeThrusterForces=False, storeSumThrusterForces=False, storeDynamicPositioningEstimators=False, storeSumSpecifiedForces=False, storeSumExternalForces=False, storeSumCouplingForces=False, storeResultantCouplingElementForces=False, storeGlobalCouplingForceComponents=False, storeLocalCouplingForceComponents=False, storeGlobalLowFrequencyPosition=False, storeGlobalTotalPosition=True, storeGlobalAcceleration=False, storeLocalAccelerations=False, storeLocalVelocity=False, storeCatenarySystemForces=False, storeCatenarySystemNodes=False, timeStep=0.5, simulationLength=11000.0, simulationStartTime=0.0, rampDuration=2.5, requestedTimeSeriesLength=16384.0, storeDifferenceFrequencyWaveForce=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -235,6 +237,7 @@ class SIMODynamicCalculationParameters(MOAO):
         self.simulationStartTime = simulationStartTime
         self.rampDuration = rampDuration
         self.requestedTimeSeriesLength = requestedTimeSeriesLength
+        self.storeDifferenceFrequencyWaveForce = storeDifferenceFrequencyWaveForce
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -632,7 +635,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeHydrostaticStiffnessForces(self) -> bool:
-        """Store hydrostatic stiffness forces?"""
+        """"""
         return self.__storeHydrostaticStiffnessForces
 
     @storeHydrostaticStiffnessForces.setter
@@ -959,3 +962,13 @@ class SIMODynamicCalculationParameters(MOAO):
     def requestedTimeSeriesLength(self, value: float):
         """Set requestedTimeSeriesLength"""
         self.__requestedTimeSeriesLength = float(value)
+
+    @property
+    def storeDifferenceFrequencyWaveForce(self) -> bool:
+        """"""
+        return self.__storeDifferenceFrequencyWaveForce
+
+    @storeDifferenceFrequencyWaveForce.setter
+    def storeDifferenceFrequencyWaveForce(self, value: bool):
+        """Set storeDifferenceFrequencyWaveForce"""
+        self.__storeDifferenceFrequencyWaveForce = bool(value)

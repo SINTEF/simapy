@@ -26,9 +26,9 @@ class NonLinearIntegrationProcedure(MOAO):
          Maximum number of iterations for steps with iteration(default 10)
     convergenceNorm : ConvergenceNorm
     equilibriumIterationAccuracy : float
-         Desired accuracy for equilibrium iteration measured by a modified euclidian displacement norm (norm of squared translations). Recommended values: 10e-6 - 10e-5.(default 1e-05)
+         Desired accuracy for equilibrium iteration measured by a modified euclidian displacement norm (norm of squared translations). Recommended values: 10e-6 - 10e-5.(default 1e-06)
     energyAccuracy : float
-         Required accuracy measured by energy norm. This value is relevant only if Convergence Norm is 'Both'.(default 1e-05)
+         Required accuracy measured by energy norm. This value is relevant only if Convergence Norm is 'Both'.(default 1e-06)
     iterationContinuation : IterationContinuationCode
          Code for continuation after iteration
     autoTimeStepSubdivision : int
@@ -37,7 +37,7 @@ class NonLinearIntegrationProcedure(MOAO):
          Code for time integration information(default 1)
     """
 
-    def __init__(self , description="", equilibriumIterationFrequency=1, iterationType=IterationType.TRUE_NEWTON_RAPHSON, maxIterations=10, convergenceNorm=ConvergenceNorm.DISP, equilibriumIterationAccuracy=1e-05, energyAccuracy=1e-05, iterationContinuation=IterationContinuationCode.CONTINUED, autoTimeStepSubdivision=0, timeIntegrationInfo=1, **kwargs):
+    def __init__(self , description="", equilibriumIterationFrequency=1, iterationType=IterationType.TRUE_NEWTON_RAPHSON, maxIterations=10, convergenceNorm=ConvergenceNorm.DISP, equilibriumIterationAccuracy=1e-06, energyAccuracy=1e-06, iterationContinuation=IterationContinuationCode.CONTINUED, autoTimeStepSubdivision=0, timeIntegrationInfo=1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()

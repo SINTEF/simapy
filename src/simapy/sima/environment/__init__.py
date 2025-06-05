@@ -25,6 +25,7 @@ from .piersonmoskowitz import PiersonMoskowitz # noqa
 from .piersonmoskowitzissc import PiersonMoskowitzISSC # noqa
 from .piersonmoskowitzzero import PiersonMoskowitzZero # noqa
 from .regularcurrent import RegularCurrent # noqa
+from .regularcurrentfromfile import RegularCurrentFromFile # noqa
 from .regularwave import RegularWave # noqa
 from .regularwaveitem import RegularWaveItem # noqa
 from .seasurface import SeaSurface # noqa

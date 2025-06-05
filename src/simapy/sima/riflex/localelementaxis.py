@@ -6,22 +6,19 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.localelementaxis import LocalElementAxisBlueprint
 from typing import Dict
+from ..sima import MOAO
 from ..sima import ScriptableValue
-from .elementreference import ElementReference
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from .arline import ARLine
     from .referenceframe import ReferenceFrame
 
-class LocalElementAxis(ElementReference):
+class LocalElementAxis(MOAO):
     """
     Keyword arguments
     -----------------
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    line : ARLine
-         Line
     segment : int
          Segment on given line(default 1)
     allSegments : bool
@@ -44,7 +41,6 @@ class LocalElementAxis(ElementReference):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.line = None
         self.segment = segment
         self.allSegments = allSegments
         self.elementNumber = elementNumber
@@ -85,16 +81,6 @@ class LocalElementAxis(ElementReference):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
-
-    @property
-    def line(self) -> ARLine:
-        """Line"""
-        return self.__line
-
-    @line.setter
-    def line(self, value: ARLine):
-        """Set line"""
-        self.__line = value
 
     @property
     def segment(self) -> int:

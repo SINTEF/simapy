@@ -28,11 +28,11 @@ class FluctuatingThreeComponent(Wind):
     verticalFileName : str
          Path and filename for the fluctuating vertical wind time series(default None)
     lowerLeftX : float
-         X-coordinate of the lower left corner of the upstream border of the wind(default 0.0)
+         X-coordinate of the upwind lower left data point, in wind aligned coordinates(default 0.0)
     lowerLeftY : float
-         Y-coordinate of the lower left corner of the wind field domain(default 0.0)
+         Y-coordinate of the upwind lower left data point, in wind aligned coordinates(default 0.0)
     lowerLeftZ : float
-         Z-coordinate of the lower left corner of the wind field domain(default 0.0)
+         Z-coordinate of the upwind lower left data point, in wind aligned coordinates(default 0.0)
     numPointsX : int
          Number of grid points in X- (longitudinal) direction(default 0)
     numPointsY : int
@@ -47,9 +47,11 @@ class FluctuatingThreeComponent(Wind):
          Field size in Z- (vertical) direction(default 0.0)
     numSlices : int
          Buffer size: Number of wind crossectional planes (Slices) in memory(default 800)
+    reverseBox : bool
+         Read turbulence box in reverse direction(default False)
     """
 
-    def __init__(self , description="", direction=0.0, meanSpeed=0.0, lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, **kwargs):
+    def __init__(self , description="", direction=0.0, meanSpeed=0.0, lowerLeftX=0.0, lowerLeftY=0.0, lowerLeftZ=0.0, numPointsX=0, numPointsY=0, numPointsZ=0, sizeX=0.0, sizeY=0.0, sizeZ=0.0, numSlices=800, reverseBox=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -69,6 +71,7 @@ class FluctuatingThreeComponent(Wind):
         self.sizeY = sizeY
         self.sizeZ = sizeZ
         self.numSlices = numSlices
+        self.reverseBox = reverseBox
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -166,7 +169,7 @@ class FluctuatingThreeComponent(Wind):
 
     @property
     def lowerLeftX(self) -> float:
-        """X-coordinate of the lower left corner of the upstream border of the wind"""
+        """X-coordinate of the upwind lower left data point, in wind aligned coordinates"""
         return self.__lowerLeftX
 
     @lowerLeftX.setter
@@ -176,7 +179,7 @@ class FluctuatingThreeComponent(Wind):
 
     @property
     def lowerLeftY(self) -> float:
-        """Y-coordinate of the lower left corner of the wind field domain"""
+        """Y-coordinate of the upwind lower left data point, in wind aligned coordinates"""
         return self.__lowerLeftY
 
     @lowerLeftY.setter
@@ -186,7 +189,7 @@ class FluctuatingThreeComponent(Wind):
 
     @property
     def lowerLeftZ(self) -> float:
-        """Z-coordinate of the lower left corner of the wind field domain"""
+        """Z-coordinate of the upwind lower left data point, in wind aligned coordinates"""
         return self.__lowerLeftZ
 
     @lowerLeftZ.setter
@@ -263,3 +266,13 @@ class FluctuatingThreeComponent(Wind):
     def numSlices(self, value: int):
         """Set numSlices"""
         self.__numSlices = int(value)
+
+    @property
+    def reverseBox(self) -> bool:
+        """Read turbulence box in reverse direction"""
+        return self.__reverseBox
+
+    @reverseBox.setter
+    def reverseBox(self, value: bool):
+        """Set reverseBox"""
+        self.__reverseBox = bool(value)

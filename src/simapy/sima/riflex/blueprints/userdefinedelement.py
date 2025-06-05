@@ -23,3 +23,4 @@ class UserdefinedElementBlueprint(ElementReferenceBlueprint,NamedObjectBlueprint
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("file","string",""))
         self.add_attribute(Attribute("inputFile","string",""))
+        self.add_attribute(EnumAttribute("elementEnd","sima/riflex/EndReference","End number 1 or 2"))

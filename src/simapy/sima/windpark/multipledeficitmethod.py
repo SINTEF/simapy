@@ -8,6 +8,7 @@ class MultipleDeficitMethod(Enum):
     MAXOP = auto()
     DIRECT = auto()
     QUADRATIC = auto()
+    MCON = auto()
 
     def label(self):
         if self == MultipleDeficitMethod.MAXOP:
@@ -16,3 +17,5 @@ class MultipleDeficitMethod(Enum):
             return "Direct summation"
         if self == MultipleDeficitMethod.QUADRATIC:
             return "Quadratic square summation"
+        if self == MultipleDeficitMethod.MCON:
+            return "Momentum conserving summation"

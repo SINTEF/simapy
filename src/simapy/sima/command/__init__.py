@@ -1,5 +1,4 @@
 
-from .command import Command # noqa
 from .compoundcommand import CompoundCommand # noqa
 from .conditionruncommand import ConditionRunCommand # noqa
 from .exportblueprintcommand import ExportBlueprintCommand # noqa

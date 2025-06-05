@@ -9,6 +9,7 @@ from ..sima import MOAO
 from ..sima import ScriptableValue
 from .boundarychangegroup import BoundaryChangeGroup
 from .convergencenorm import ConvergenceNorm
+from .marinegrowthscaling import MarineGrowthScaling
 from .pressurevariationitem import PressureVariationItem
 from .staticloadtype import StaticLoadType
 from .temperaturevariationitem import TemperatureVariationItem
@@ -30,23 +31,24 @@ class StaticLoadTypeItem(MOAO):
     maxIterations : int
          Maximum number of iterations during application of load(default 10)
     accuracy : float
-         Required accuracy measured by displacement norm(default 1e-05)
+         Required accuracy measured by displacement norm(default 1e-06)
     convergenceNorm : ConvergenceNorm
     energyAccuracy : float
-          Required accuracy measured by energy norm. Value is not used if convergence norm is 'Displacement'.(default 1e-05)
+          Required accuracy measured by energy norm. Value is not used if convergence norm is 'Displacement'.(default 1e-06)
     entered : bool
-         start condition for pipe-in-pipe contact(default True)
+         start condition for pipe-in-pipe contact\nEntered should be used for analysis of slender structures such as risers, cables and umbilicals\nNot Entered is intended to be used for marine operations(default True)
     boundaryChangeGroup : BoundaryChangeGroup
     temperatureVariations : List[TemperatureVariationItem]
     pressureVariations : List[PressureVariationItem]
     winchVariations : List[WinchVariationItem]
     growthFactor : float
-         Scaling factor for growth profile(default 1.0)
+         Scaling factor for growth profile for all lines(default 1.0)
+    marineGrowthScalings : List[MarineGrowthScaling]
     windOnTurbineBlades : bool
          Enables wind force on turbine blades(default False)
     """
 
-    def __init__(self , description="", runWithPrevious=False, loadType=StaticLoadType.VOLU, nStep=10, maxIterations=10, accuracy=1e-05, convergenceNorm=ConvergenceNorm.DISP, energyAccuracy=1e-05, entered=True, growthFactor=1.0, windOnTurbineBlades=False, **kwargs):
+    def __init__(self , description="", runWithPrevious=False, loadType=StaticLoadType.VOLU, nStep=10, maxIterations=10, accuracy=1e-06, convergenceNorm=ConvergenceNorm.DISP, energyAccuracy=1e-06, entered=True, growthFactor=1.0, windOnTurbineBlades=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -63,6 +65,7 @@ class StaticLoadTypeItem(MOAO):
         self.pressureVariations = list()
         self.winchVariations = list()
         self.growthFactor = growthFactor
+        self.marineGrowthScalings = list()
         self.windOnTurbineBlades = windOnTurbineBlades
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -169,7 +172,9 @@ class StaticLoadTypeItem(MOAO):
 
     @property
     def entered(self) -> bool:
-        """start condition for pipe-in-pipe contact"""
+        """start condition for pipe-in-pipe contact
+Entered should be used for analysis of slender structures such as risers, cables and umbilicals
+Not Entered is intended to be used for marine operations"""
         return self.__entered
 
     @entered.setter
@@ -225,13 +230,25 @@ class StaticLoadTypeItem(MOAO):
 
     @property
     def growthFactor(self) -> float:
-        """Scaling factor for growth profile"""
+        """Scaling factor for growth profile for all lines"""
         return self.__growthFactor
 
     @growthFactor.setter
     def growthFactor(self, value: float):
         """Set growthFactor"""
         self.__growthFactor = float(value)
+
+    @property
+    def marineGrowthScalings(self) -> List[MarineGrowthScaling]:
+        """"""
+        return self.__marineGrowthScalings
+
+    @marineGrowthScalings.setter
+    def marineGrowthScalings(self, value: List[MarineGrowthScaling]):
+        """Set marineGrowthScalings"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__marineGrowthScalings = value
 
     @property
     def windOnTurbineBlades(self) -> bool:

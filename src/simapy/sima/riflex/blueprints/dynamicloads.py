@@ -17,3 +17,4 @@ class DynamicLoadsBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("dynamicNodalForces","sima/riflex/DynamicNodalForces","",True))
         self.add_attribute(BlueprintAttribute("dynamicCurrentVariation","sima/riflex/DynamicCurrentVariation","",True))
         self.add_attribute(BlueprintAttribute("rigidMoonpoolColumns","sima/riflex/RigidMoonpoolColumn","",True))
+        self.add_attribute(BlueprintAttribute("windVelocityRamping","sima/riflex/WindVelocityRamping","",True))

@@ -16,37 +16,28 @@ class EnvelopeCurveSpecification(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    compDisplacement : bool
-         Compute displacement envelopes?(default False)
-    compForce : bool
-         Compute force envelopes?(default False)
-    compCurvature : bool
-         Compute curvature envelopes?(default False)
+    storeDisplacement : bool
+         Store displacement envelopes(default False)
+    storeForce : bool
+         Store force envelopes(default False)
+    storeCurvature : bool
+         Store curvature envelopes(default False)
     startTime : float
          Simulation start time for computing envelopes(default 0.0)
     endTime : float
          Simulation end time for computing envelopes(default 10000000.0)
-    printDisplacement : bool
-         Print displacement envelopes?(default False)
-    printForce : bool
-         Print force envelopes?(default False)
-    printCurvature : bool
-         Print curvature envelopes?(default False)
     plotOption : MatrixPlotFileOption
     """
 
-    def __init__(self , description="", compDisplacement=False, compForce=False, compCurvature=False, startTime=0.0, endTime=10000000.0, printDisplacement=False, printForce=False, printCurvature=False, plotOption=MatrixPlotFileOption.MAX_AND_STANDARD_DEV, **kwargs):
+    def __init__(self , description="", storeDisplacement=False, storeForce=False, storeCurvature=False, startTime=0.0, endTime=10000000.0, plotOption=MatrixPlotFileOption.MAX_AND_STANDARD_DEV, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.compDisplacement = compDisplacement
-        self.compForce = compForce
-        self.compCurvature = compCurvature
+        self.storeDisplacement = storeDisplacement
+        self.storeForce = storeForce
+        self.storeCurvature = storeCurvature
         self.startTime = startTime
         self.endTime = endTime
-        self.printDisplacement = printDisplacement
-        self.printForce = printForce
-        self.printCurvature = printCurvature
         self.plotOption = plotOption
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -82,34 +73,34 @@ class EnvelopeCurveSpecification(MOAO):
         self.__scriptableValues = value
 
     @property
-    def compDisplacement(self) -> bool:
-        """Compute displacement envelopes?"""
-        return self.__compDisplacement
+    def storeDisplacement(self) -> bool:
+        """Store displacement envelopes"""
+        return self.__storeDisplacement
 
-    @compDisplacement.setter
-    def compDisplacement(self, value: bool):
-        """Set compDisplacement"""
-        self.__compDisplacement = bool(value)
-
-    @property
-    def compForce(self) -> bool:
-        """Compute force envelopes?"""
-        return self.__compForce
-
-    @compForce.setter
-    def compForce(self, value: bool):
-        """Set compForce"""
-        self.__compForce = bool(value)
+    @storeDisplacement.setter
+    def storeDisplacement(self, value: bool):
+        """Set storeDisplacement"""
+        self.__storeDisplacement = bool(value)
 
     @property
-    def compCurvature(self) -> bool:
-        """Compute curvature envelopes?"""
-        return self.__compCurvature
+    def storeForce(self) -> bool:
+        """Store force envelopes"""
+        return self.__storeForce
 
-    @compCurvature.setter
-    def compCurvature(self, value: bool):
-        """Set compCurvature"""
-        self.__compCurvature = bool(value)
+    @storeForce.setter
+    def storeForce(self, value: bool):
+        """Set storeForce"""
+        self.__storeForce = bool(value)
+
+    @property
+    def storeCurvature(self) -> bool:
+        """Store curvature envelopes"""
+        return self.__storeCurvature
+
+    @storeCurvature.setter
+    def storeCurvature(self, value: bool):
+        """Set storeCurvature"""
+        self.__storeCurvature = bool(value)
 
     @property
     def startTime(self) -> float:
@@ -130,36 +121,6 @@ class EnvelopeCurveSpecification(MOAO):
     def endTime(self, value: float):
         """Set endTime"""
         self.__endTime = float(value)
-
-    @property
-    def printDisplacement(self) -> bool:
-        """Print displacement envelopes?"""
-        return self.__printDisplacement
-
-    @printDisplacement.setter
-    def printDisplacement(self, value: bool):
-        """Set printDisplacement"""
-        self.__printDisplacement = bool(value)
-
-    @property
-    def printForce(self) -> bool:
-        """Print force envelopes?"""
-        return self.__printForce
-
-    @printForce.setter
-    def printForce(self, value: bool):
-        """Set printForce"""
-        self.__printForce = bool(value)
-
-    @property
-    def printCurvature(self) -> bool:
-        """Print curvature envelopes?"""
-        return self.__printCurvature
-
-    @printCurvature.setter
-    def printCurvature(self, value: bool):
-        """Set printCurvature"""
-        self.__printCurvature = bool(value)
 
     @property
     def plotOption(self) -> MatrixPlotFileOption:

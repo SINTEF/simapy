@@ -50,7 +50,7 @@ class SIMODynamicCalculationParametersBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("storeSumGeneralLineForces","boolean","Store sum general line forces?",default=False))
         self.add_attribute(Attribute("storeTotalForces","boolean","Store total forces?",default=False))
         self.add_attribute(Attribute("storeRetardationForces","boolean","Store retardation forces?",default=False))
-        self.add_attribute(Attribute("storeHydrostaticStiffnessForces","boolean","Store hydrostatic stiffness forces?",default=False))
+        self.add_attribute(Attribute("storeHydrostaticStiffnessForces","boolean","",default=False))
         self.add_attribute(Attribute("storeLinearDamping","boolean","Store linear damping?",default=False))
         self.add_attribute(Attribute("storeQuadraticDamping","boolean","Store quadratic damping?",default=False))
         self.add_attribute(Attribute("storeDistributedHydrodynamicForces","boolean","Store distributed hydrodynamic forces?",default=False))
@@ -83,3 +83,4 @@ class SIMODynamicCalculationParametersBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("simulationStartTime","number","Time (in generated time series) that dynamic simulation will start from",default=0.0))
         self.add_attribute(Attribute("rampDuration","number","Determines the ramp duration in seconds",default=2.5))
         self.add_attribute(Attribute("requestedTimeSeriesLength","number","Length of generated time series",default=16384.0))
+        self.add_attribute(Attribute("storeDifferenceFrequencyWaveForce","boolean","",default=False))

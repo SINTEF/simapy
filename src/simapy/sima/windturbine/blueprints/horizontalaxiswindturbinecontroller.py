@@ -19,7 +19,7 @@ class HorizontalAxisWindTurbineControllerBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("filterPeriod","number","Filter period for 1st order LP filter",default=0.0))
         self.add_attribute(Attribute("ratedOmega","number","Rated electrical omega",default=0.0))
         self.add_attribute(Attribute("ratedTorque","number","Rated electrical torque",default=0.0))
-        self.add_attribute(Attribute("gearBoxRatio","number","Gear box ratio",default=0.0))
+        self.add_attribute(Attribute("gearBoxRatio","number","Gear box ratio",default=1.0))
         self.add_attribute(Attribute("generatorEfficiency","number","Generator efficiency due to electrical and mechanical losses",default=1.0))
         self.add_attribute(Attribute("maxPitchRate","number","Maximum pitch rate",default=0.0))
         self.add_attribute(Attribute("maxPitch","number","Maximum pitch",default=0.0))
@@ -43,3 +43,4 @@ class HorizontalAxisWindTurbineControllerBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("sampleInterval","number","Controller sample interval",default=0.0))
         self.add_attribute(EnumAttribute("controllerType","sima/windturbine/ControllerType",""))
         self.add_attribute(Attribute("logFile","boolean","Log of signals to and from controller are written to a log file. The file <turbine name>.log is stored in the analysis folder. This option should be used for debugging purposes only. Avaliable for external controller only.",default=False))
+        self.add_attribute(Attribute("accelerationFromDisplacement","boolean","Acceleration is calculated from the displacements",default=False))

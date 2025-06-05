@@ -21,3 +21,4 @@ class FatigueAnalysisBlueprint(NamedBlueprint):
         self.add_attribute(Attribute("specifyTimeWindow","boolean","",default=False))
         self.add_attribute(Attribute("startTime","number","",default=0.0))
         self.add_attribute(Attribute("endTime","number","",default=0.0))
+        self.add_attribute(BlueprintAttribute("tnItems","sima/riflex/TnFatigueAnalysisItem","Specification of nodes for displacement storage",True,Dimension("*")))

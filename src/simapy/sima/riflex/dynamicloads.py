@@ -10,6 +10,7 @@ from ..sima import ScriptableValue
 from .dynamiccurrentvariation import DynamicCurrentVariation
 from .dynamicnodalforces import DynamicNodalForces
 from .rigidmoonpoolcolumn import RigidMoonpoolColumn
+from .windvelocityramping import WindVelocityRamping
 
 class DynamicLoads(MOAO):
     """
@@ -21,6 +22,7 @@ class DynamicLoads(MOAO):
     dynamicNodalForces : DynamicNodalForces
     dynamicCurrentVariation : DynamicCurrentVariation
     rigidMoonpoolColumns : RigidMoonpoolColumn
+    windVelocityRamping : WindVelocityRamping
     """
 
     def __init__(self , description="", **kwargs):
@@ -30,6 +32,7 @@ class DynamicLoads(MOAO):
         self.dynamicNodalForces = None
         self.dynamicCurrentVariation = None
         self.rigidMoonpoolColumns = None
+        self.windVelocityRamping = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -92,3 +95,13 @@ class DynamicLoads(MOAO):
     def rigidMoonpoolColumns(self, value: RigidMoonpoolColumn):
         """Set rigidMoonpoolColumns"""
         self.__rigidMoonpoolColumns = value
+
+    @property
+    def windVelocityRamping(self) -> WindVelocityRamping:
+        """"""
+        return self.__windVelocityRamping
+
+    @windVelocityRamping.setter
+    def windVelocityRamping(self, value: WindVelocityRamping):
+        """Set windVelocityRamping"""
+        self.__windVelocityRamping = value

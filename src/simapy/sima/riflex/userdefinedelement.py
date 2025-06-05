@@ -9,6 +9,7 @@ from typing import Dict
 from ..sima import NamedObject
 from ..sima import ScriptableValue
 from .elementreference import ElementReference
+from .endreference import EndReference
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .arline import ARLine
@@ -36,9 +37,11 @@ class UserdefinedElement(ElementReference,NamedObject):
          (default None)
     inputFile : str
          (default None)
+    elementEnd : EndReference
+         End number 1 or 2
     """
 
-    def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, elementEnd=EndReference.BOTH, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -50,6 +53,7 @@ class UserdefinedElement(ElementReference,NamedObject):
         self.name = None
         self.file = None
         self.inputFile = None
+        self.elementEnd = elementEnd
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -162,3 +166,13 @@ class UserdefinedElement(ElementReference,NamedObject):
     def inputFile(self, value: str):
         """Set inputFile"""
         self.__inputFile = value
+
+    @property
+    def elementEnd(self) -> EndReference:
+        """End number 1 or 2"""
+        return self.__elementEnd
+
+    @elementEnd.setter
+    def elementEnd(self, value: EndReference):
+        """Set elementEnd"""
+        self.__elementEnd = value

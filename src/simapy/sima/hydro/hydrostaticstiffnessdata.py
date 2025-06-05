@@ -6,9 +6,7 @@ from dmt.blueprint import Blueprint
 from .blueprints.hydrostaticstiffnessdata import HydrostaticStiffnessDataBlueprint
 from typing import Dict
 from ..sima import MOAO
-from ..sima import Position
 from ..sima import ScriptableValue
-from .hydrostaticstiffnessmatrix import HydrostaticStiffnessMatrix
 
 class HydrostaticStiffnessData(MOAO):
     """
@@ -17,16 +15,12 @@ class HydrostaticStiffnessData(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
-    matrix : HydrostaticStiffnessMatrix
-    reference : Position
     """
 
     def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
-        self.matrix = None
-        self.reference = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -59,23 +53,3 @@ class HydrostaticStiffnessData(MOAO):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
-
-    @property
-    def matrix(self) -> HydrostaticStiffnessMatrix:
-        """"""
-        return self.__matrix
-
-    @matrix.setter
-    def matrix(self, value: HydrostaticStiffnessMatrix):
-        """Set matrix"""
-        self.__matrix = value
-
-    @property
-    def reference(self) -> Position:
-        """"""
-        return self.__reference
-
-    @reference.setter
-    def reference(self, value: Position):
-        """Set reference"""
-        self.__reference = value

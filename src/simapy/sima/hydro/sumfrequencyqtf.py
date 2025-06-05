@@ -5,11 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.sumfrequencyqtf import SumFrequencyQTFBlueprint
 from numpy import ndarray,asarray
+from ..sima import MOAO
 from ..sima import ScriptableValue
 from .qtfdof import QTFDof
-from .sparseqtf import SparseQTF
 
-class SumFrequencyQTF(SparseQTF):
+class SumFrequencyQTF(MOAO):
     """
     Keyword arguments
     -----------------

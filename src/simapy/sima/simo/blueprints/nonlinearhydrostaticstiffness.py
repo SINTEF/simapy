@@ -5,9 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from ...sima.blueprints.moao import MOAOBlueprint
+from ...hydro.blueprints.hydrostaticstiffnessdata import HydrostaticStiffnessDataBlueprint
 
-class NonLinearHydrostaticStiffnessBlueprint(MOAOBlueprint):
+class NonLinearHydrostaticStiffnessBlueprint(HydrostaticStiffnessDataBlueprint):
     """"""
 
     def __init__(self, name="NonLinearHydrostaticStiffness", package_path="sima/simo", description=""):
