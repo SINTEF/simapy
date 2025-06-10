@@ -2,23 +2,113 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.6.0]
+## [5.0.0]
 
-### Added
+- Updated data model to reflect SIMA 5.0.0
 
-- Updated data model to reflect SIMA 4.6.0
-- New metocean package to enable creation of SIMA metocean data
+Model changes per package:
 
-### Changed
+### Package simo
 
-- Breaking changes:
-    - sima root package is moved into simapy
-    - marmo package is renamed and moved into simapy.sima.signals
-    - sima module renamed to sre
+Added:
+ - Field SIMODynamicCalculationParameters.storeDifferenceFrequencyWaveForce
+ - Field SIMOBody.differenceFrequencyQtf
+ - Field SIMOBody.sumFrequencyQtf
 
-### Fixed
+Changed:
+ - Field SIMOBody.qtf is split into two fields: differenceFrequencyQtf and sumFrequencyQtf
 
-- Fixed copy of cross references. Possibility to remove or keep (default) uncontained cross references when copying
+Removed:
+ - Enum NonlinearBuoyancyCorrectionMethod
+ - Class NonlinearBuoyancyCorrection
+ - Field SIMOBody.nonlinearBuoyancyCorrection
+
+### Package riflex
+
+Added:
+ - Class DNV_OS_E301CapacityCheck
+ - Enum UtilizationCheck
+ - Enum EndReference
+ - Class WindVelocityRamping
+ - Class TnFatigueAnalysisItem
+ - Class TensionAndCurvatureCapacityCheck
+ - Enum TypeOfUnit
+ - Class MarineGrowthScaling
+ - Field DynamicLoads.windVelocityRamping
+ - Field RIFLEXModel.capacityChecks
+ - Field EnvelopeCurveSpecification.storeDisplacement
+ - Field EnvelopeCurveSpecification.storeCurvature
+ - Field EnvelopeCurveSpecification.storeForce
+ - Field ARLine.localElementAxes
+ - Field ParameterVariation.deactivateCurrent
+ - Field StaticLoadTypeItem.marineGrowthScalings
+ - Field FatigueAnalysis.tnItems
+ - Field RIFLEXStaticCalculationParameters.automaticLoading
+ - Field HorizontalAxisController.pitchControl
+ - Field HorizontalAxisController.accelerationFromDisplacement
+ - Field UserdefinedElement.elementEnd
+ - Option MatrixStorage.Automatic
+
+Changed:
+ - Field SlenderSystem.localElementAxes is moved to the referenced Line
+ - Field EnvelopeCurveSpecification.compDisplacement is renamed to storeDisplacement
+ - Field EnvelopeCurveSpecification.compForce is renamed to storeForce
+ - Field EnvelopeCurveSpecification.compCurvature is renamed to storeCurvature
+
+Removed:
+ - Field EnvelopeCurveSpecification.printForce
+ - Field EnvelopeCurveSpecification.printDisplacement
+ - Field EnvelopeCurveSpecification.printCurvature
+
+### Package environment
+
+Added:
+ - Class RegularCurrentFromFile
+ - Field FluctuatingThreeComponent.reverseBox
+
+Removed:
+ - Wave.environment
+ - Wind.environment
+ - Current.environment
+
+### Package hydro
+
+Added:
+ - Enum WamitQtfImportOption
+ - Enum WamitWaveForceOption
+ - Enum WamitWaveDriftForceOption
+ - Class RetardationFunctionCalculationParameters
+ - Class LinearHydrostatics
+ - Class WamitImportConfiguration
+ - Enum QtfInput
+ - Class HydrostaticStiffnessMatrixData
+ - Field DifferenceFrequencyQTF.bodyNumber
+ - Field DifferenceFrequencyQTF.input
+ - Field DifferenceFrequencyQTF.file
+ - Field DifferenceFrequencyQTF.symmetry
+
+Changed:
+ - HydrostaticStiffnessData is renamed to HydrostaticStiffnessMatrixData
+
+Removed:
+ - Option DirectionSymmetry.X0_SYMMETRY
+
+### Package windturbine
+
+Added:
+ - Enum PitchControl
+ - Field HorizontalAxisWindTurbineController.pitchControl
+ - Field HorizontalAxisWindTurbineController.accelerationFromDisplacement
+
+
+### Package command
+
+Added:
+ - Field ImportCommand.configuration
+ - Field ConditionRunCommand.destination
+ - Field ConditionRunCommand.paths
+ - Field ConditionRunCommand.copy
+
 
 ## [4.8.0]
 
@@ -144,3 +234,22 @@ Removed:
  - Field Section.identifier
  - Field Appendix.identifier
  - Field Linkable.identifier
+
+
+## [4.6.0]
+
+### Added
+
+- Updated data model to reflect SIMA 4.6.0
+- New metocean package to enable creation of SIMA metocean data
+
+### Changed
+
+- Breaking changes:
+    - sima root package is moved into simapy
+    - marmo package is renamed and moved into simapy.sima.signals
+    - sima module renamed to sre
+
+### Fixed
+
+- Fixed copy of cross references. Possibility to remove or keep (default) uncontained cross references when copying

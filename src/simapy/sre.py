@@ -47,11 +47,12 @@ class SIMA:
         wdir.mkdir(parents=True, exist_ok=True)
         self.__add_command_args(working_dir, arguments, command_args)
         out_file = wdir / "stdout.txt"
-        with open(out_file, "w", encoding="utf8") as o_f:
+        err_file = wdir / "stderr.txt"
+        with open(out_file, "w", encoding="utf8") as o_f, open(err_file, "w", encoding="utf8") as e_f:
             proc = subprocess.Popen(arguments,
                         stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
-                        stderr=subprocess.STDOUT,
+                        stderr=e_f,
                         env=self.environment)
             self.__read_lines(proc, o_f)
             # Wait for the process to finish
