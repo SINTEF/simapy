@@ -1,6 +1,7 @@
 """Run a command using SIMA runtime engine (sre executable)"""
 import subprocess
 import os
+import sys
 from pathlib import Path
 from typing import Sequence,Callable
 from simapy.sima_writer import SIMAWriter
@@ -12,6 +13,9 @@ class SIMA:
     def __init__(self, exe=None, fail_on_error=True):
         self.fail_on_error = fail_on_error
         self.environment = os.environ.copy()
+        # Add python directory to PATH to ensure that python is found when running SIMA
+        python_dir = os.path.dirname(sys.executable)
+        self.environment["PATH"] = python_dir + os.pathsep + self.environment["PATH"]
         # A Console handler is a function that can handle standard out from the process
         # This can i.e. be used to parse @STATUS messages from the SIMA process wich can be used for progress indication
         self.console_handler: Callable[[str],None] = self.__handle_console_output
