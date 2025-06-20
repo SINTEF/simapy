@@ -20,6 +20,7 @@ classifiers = [
 dependencies = [
     "dmtpy==0.3.4",
     "numpy",
+    "tqdm",
 ]
 
 [project.urls]
