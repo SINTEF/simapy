@@ -84,7 +84,7 @@ class SIMA:
             if isinstance(command_args[0], str):
                 args.extend(command_args)
             else:
-                filename = working_dir / "commands.json"
+                filename = Path(working_dir / "commands.json").absolute()
                 SIMAWriter().write(command_args, filename)
                 args.extend(["--commands",f"file={filename}"])
 
