@@ -12,6 +12,15 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to (testpypi or pypi)'
+        required: true
+        default: 'testpypi'
+        type: choice
+        options:
+        - testpypi
+        - pypi
 
 permissions:
   contents: read
@@ -30,14 +39,22 @@ jobs:
     - name: Install uv
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-    - name: Install dependencies
-      run: |
-        uv pip install build twine
     - name: Build package
       run: |
+        uv venv
+        uv pip install build twine
         uv run python -m build
-    - name: Publish package
-      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+    - name: Publish package to PyPI
+      uses: pypa/gh-action-pypi-publish@v1.12.4
+      if: ${{ github.event_name == 'release' || github.event.inputs.environment == 'pypi' }}
       with:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
+        
+    - name: Publish package to TestPyPI
+      uses: pypa/gh-action-pypi-publish@v1.12.4
+      if: ${{ github.event.inputs.environment == 'testpypi' }}
+      with:
+        user: __token__
+        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        repository-url: https://test.pypi.org/legacy/
