@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simapy"
-version = "5.0.0-dev0"
+version = "5.0.0.dev0"
 description = "Python utilities for SIMA"
 readme = "README.md"
 authors = [
@@ -18,13 +18,19 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "dmtpy==0.3.4",
+    "dmtpy==0.3.5",
     "numpy",
     "tqdm",
 ]
 
 [project.urls]
 Homepage = "https://github.com/SINTEF/simapy"
+
+[dependency-groups]
+dev = [
+    "pylint>=3.2.7",
+    "pytest>=8.3.5",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [5.0.0]
 
 - Updated data model to reflect SIMA 5.0.0
+- Added default progress handler
 
 Model changes per package:
 
