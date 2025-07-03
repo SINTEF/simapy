@@ -7,6 +7,8 @@ Parts of the library is generated from [data models](https://github.com/SINTEF/s
 
 Please examine the tests for ways to interact
 
+You can find the example documentation [here](https://sintef.github.io/simapy-examples/)
+
 Also check out the examples in [simapy-examples](https://github.com/SINTEF/simapy-examples)
 
 ## Installation
