@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simapy"
-version = "5.0.0.dev0"
+version = "5.0.0"
 description = "Python utilities for SIMA"
 readme = "README.md"
 authors = [
