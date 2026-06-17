@@ -7,13 +7,13 @@ from dmt.blueprint import Blueprint
 from .blueprints.modelreferencevariable import ModelReferenceVariableBlueprint
 from typing import Dict
 from .modelreference import ModelReference
-from .namedobject import NamedObject
 from .scriptablevalue import ScriptableValue
+from .variable import Variable
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .moao import MOAO
 
-class ModelReferenceVariable(NamedObject,ModelReference):
+class ModelReferenceVariable(Variable,ModelReference):
     """
     Keyword arguments
     -----------------

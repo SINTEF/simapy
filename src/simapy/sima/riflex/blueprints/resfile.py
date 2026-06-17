@@ -25,3 +25,4 @@ class ResFileBlueprint(ResultBlueprint):
         self.add_attribute(BlueprintAttribute("messages","sima/sima/SimaMessage","",True,Dimension("*")))
         self.add_attribute(Attribute("runFailed","boolean","",default=False))
         self.add_attribute(Attribute("version","string",""))
+        self.add_attribute(BlueprintAttribute("nodeMessages","sima/riflex/NodeMessage","",True,Dimension("*")))

@@ -14,7 +14,7 @@ from .hydrosystemfiltermethod import HydroSystemFilterMethod
 from .integrationmethod import IntegrationMethod
 from .multienvironmentsetup import MultiEnvironmentSetup
 from .randomgenerator import RandomGenerator
-from .wasimresultexport import WasimResultExport
+from .sesamresultexport import SesamResultExport
 from .wavemethod import WaveMethod
 from .wavetimeseries import WaveTimeSeries
 from .windforcemethod import WindForceMethod
@@ -83,69 +83,69 @@ class SIMODynamicCalculationParameters(MOAO):
          Quadratic Current Force Method
     linearCurrentForceMethod : CurrentForceMethod
          Linear Current Force Method
-    exportResultsToWasim : bool
+    exportResultsToSesam : bool
          (default False)
-    wasimResultExport : WasimResultExport
+    sesamResultExport : SesamResultExport
     storeWindForces : bool
-         Store wind forces?(default False)
+         (default False)
     storeSumGeneralLineForces : bool
-         Store sum general line forces?(default False)
+         (default False)
     storeTotalForces : bool
-         Store total forces?(default False)
+         (default False)
     storeRetardationForces : bool
-         Store retardation forces?(default False)
+         (default False)
     storeHydrostaticStiffnessForces : bool
          (default False)
     storeLinearDamping : bool
-         Store linear damping?(default False)
+         (default False)
     storeQuadraticDamping : bool
-         Store quadratic damping?(default False)
+         (default False)
     storeDistributedHydrodynamicForces : bool
-         Store distributed hydrodynamic forces?(default False)
+         (default False)
     storeFixedBodyAndSlenderElementStripResults : bool
-         Store results for slender element strips and fixed body elements?(default False)
+         Store results for slender element strips and fixed body elements(default False)
     storeWaveDriftDamping : bool
-         Store wave-drift damping?(default False)
+         (default False)
     storeLinearCurrentDrag : bool
-         Store linear current drag?(default False)
+         (default False)
     storeQuadraticCurrentDrag : bool
-         Store quadratic current drag?(default False)
+         (default False)
     storeSmallBodyHydrodynamicForces : bool
-         Store small body hydrodynamic forces?(default False)
+         (default False)
     storeResultantPositioningElementForces : bool
-         Store resultant positioning element forces?(default False)
+         (default False)
     storePositioningElementForceComponents : bool
-         Store positioning element force components?(default False)
+         (default False)
     storeTotalPositioningForces : bool
-         Store total positioning element forces?(default False)
+         (default False)
     storeThrusterForces : bool
-         Store thruster forces?(default False)
+         (default False)
     storeSumThrusterForces : bool
-         Store sum thruster forces?(default False)
+         (default False)
     storeDynamicPositioningEstimators : bool
-         Store dynamic positioning estimators?(default False)
+         (default False)
     storeSumSpecifiedForces : bool
-         Store sum specified forces?(default False)
+         (default False)
     storeSumExternalForces : bool
-         Store sum external forces?(default False)
+         (default False)
     storeSumCouplingForces : bool
-         Store sum coupling forces?(default False)
+         (default False)
     storeResultantCouplingElementForces : bool
-         Store resultant coupling element forces?(default False)
+         (default False)
     storeGlobalCouplingForceComponents : bool
-         Store global coupling force components?(default False)
+         (default False)
     storeLocalCouplingForceComponents : bool
-         Store local coupling force components?(default False)
+         (default False)
     storeGlobalLowFrequencyPosition : bool
-         Store global low-frequency position?(default False)
+         (default False)
     storeGlobalTotalPosition : bool
-         Store global total position?(default True)
+         (default True)
     storeGlobalAcceleration : bool
-         Store global acceleration?(default False)
+         (default False)
     storeLocalAccelerations : bool
-         Store local acceleration?(default False)
+         (default False)
     storeLocalVelocity : bool
-         Store local velocity(default False)
+         (default False)
     storeCatenarySystemForces : bool
          Store catenery system forces. Requires visualization storage(default False)
     storeCatenarySystemNodes : bool
@@ -162,9 +162,19 @@ class SIMODynamicCalculationParameters(MOAO):
          Length of generated time series(default 16384.0)
     storeDifferenceFrequencyWaveForce : bool
          (default False)
+    storeSumFrequencyWaveForce : bool
+         (default False)
+    useOldResultStructure : bool
+         Using the new result structure increase simulation efficiency and use updated names for results. Note that signal selection in any old workflows or post processor will need to be updated.(default False)
+    storeWaveParticleMotions : bool
+         (default False)
+    storeWaveForces : bool
+         Store first and second order wave forces(default False)
+    storeWindVelocity : bool
+         (default False)
     """
 
-    def __init__(self , description="", timeIncrement=0.5, waveMethod=WaveMethod.FFT_ONLY, integrationMethod=IntegrationMethod.RUNGE_KUTTA, randomSeedWaves=1, randomSeedWind=1, randomNumberGenerator=RandomGenerator.MERSENNE, headingCorrection=True, maxHeadingChange=45.0, largePatchLength=2048.0, smallPatchLength=256.0, cutFactorWaves=100, pointsLargePatch=256, pointsSmallPatch=128, writeVisFile=False, waveTimeSeriesFile=False, hydroSystemPeriod=0.0, hydroFilterMethod=HydroSystemFilterMethod.BLOCKED, nWindSeaComponents=2000, nSwellSeaComponents=400, windTimeSeriesMethod=WindTimeSeriesMethod.SAME, windVelocityDimension=WindVelocityDimension.TWO, windForceMethod=WindForceMethod.RELATIVE, windMethod=WindMethod.FFT, quadraticCurrentForceMethod=CurrentForceMethod.RELATIVE, linearCurrentForceMethod=CurrentForceMethod.RELATIVE, exportResultsToWasim=False, storeWindForces=False, storeSumGeneralLineForces=False, storeTotalForces=False, storeRetardationForces=False, storeHydrostaticStiffnessForces=False, storeLinearDamping=False, storeQuadraticDamping=False, storeDistributedHydrodynamicForces=False, storeFixedBodyAndSlenderElementStripResults=False, storeWaveDriftDamping=False, storeLinearCurrentDrag=False, storeQuadraticCurrentDrag=False, storeSmallBodyHydrodynamicForces=False, storeResultantPositioningElementForces=False, storePositioningElementForceComponents=False, storeTotalPositioningForces=False, storeThrusterForces=False, storeSumThrusterForces=False, storeDynamicPositioningEstimators=False, storeSumSpecifiedForces=False, storeSumExternalForces=False, storeSumCouplingForces=False, storeResultantCouplingElementForces=False, storeGlobalCouplingForceComponents=False, storeLocalCouplingForceComponents=False, storeGlobalLowFrequencyPosition=False, storeGlobalTotalPosition=True, storeGlobalAcceleration=False, storeLocalAccelerations=False, storeLocalVelocity=False, storeCatenarySystemForces=False, storeCatenarySystemNodes=False, timeStep=0.5, simulationLength=11000.0, simulationStartTime=0.0, rampDuration=2.5, requestedTimeSeriesLength=16384.0, storeDifferenceFrequencyWaveForce=False, **kwargs):
+    def __init__(self , description="", timeIncrement=0.5, waveMethod=WaveMethod.FFT_ONLY, integrationMethod=IntegrationMethod.RUNGE_KUTTA, randomSeedWaves=1, randomSeedWind=1, randomNumberGenerator=RandomGenerator.MERSENNE, headingCorrection=True, maxHeadingChange=45.0, largePatchLength=2048.0, smallPatchLength=256.0, cutFactorWaves=100, pointsLargePatch=256, pointsSmallPatch=128, writeVisFile=False, waveTimeSeriesFile=False, hydroSystemPeriod=0.0, hydroFilterMethod=HydroSystemFilterMethod.BLOCKED, nWindSeaComponents=2000, nSwellSeaComponents=400, windTimeSeriesMethod=WindTimeSeriesMethod.SAME, windVelocityDimension=WindVelocityDimension.TWO, windForceMethod=WindForceMethod.RELATIVE, windMethod=WindMethod.FFT, quadraticCurrentForceMethod=CurrentForceMethod.RELATIVE, linearCurrentForceMethod=CurrentForceMethod.RELATIVE, exportResultsToSesam=False, storeWindForces=False, storeSumGeneralLineForces=False, storeTotalForces=False, storeRetardationForces=False, storeHydrostaticStiffnessForces=False, storeLinearDamping=False, storeQuadraticDamping=False, storeDistributedHydrodynamicForces=False, storeFixedBodyAndSlenderElementStripResults=False, storeWaveDriftDamping=False, storeLinearCurrentDrag=False, storeQuadraticCurrentDrag=False, storeSmallBodyHydrodynamicForces=False, storeResultantPositioningElementForces=False, storePositioningElementForceComponents=False, storeTotalPositioningForces=False, storeThrusterForces=False, storeSumThrusterForces=False, storeDynamicPositioningEstimators=False, storeSumSpecifiedForces=False, storeSumExternalForces=False, storeSumCouplingForces=False, storeResultantCouplingElementForces=False, storeGlobalCouplingForceComponents=False, storeLocalCouplingForceComponents=False, storeGlobalLowFrequencyPosition=False, storeGlobalTotalPosition=True, storeGlobalAcceleration=False, storeLocalAccelerations=False, storeLocalVelocity=False, storeCatenarySystemForces=False, storeCatenarySystemNodes=False, timeStep=0.5, simulationLength=11000.0, simulationStartTime=0.0, rampDuration=2.5, requestedTimeSeriesLength=16384.0, storeDifferenceFrequencyWaveForce=False, storeSumFrequencyWaveForce=False, useOldResultStructure=False, storeWaveParticleMotions=False, storeWaveForces=False, storeWindVelocity=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -198,8 +208,8 @@ class SIMODynamicCalculationParameters(MOAO):
         self.windSpectrumVerticalDomain = None
         self.quadraticCurrentForceMethod = quadraticCurrentForceMethod
         self.linearCurrentForceMethod = linearCurrentForceMethod
-        self.exportResultsToWasim = exportResultsToWasim
-        self.wasimResultExport = None
+        self.exportResultsToSesam = exportResultsToSesam
+        self.sesamResultExport = None
         self.storeWindForces = storeWindForces
         self.storeSumGeneralLineForces = storeSumGeneralLineForces
         self.storeTotalForces = storeTotalForces
@@ -238,6 +248,11 @@ class SIMODynamicCalculationParameters(MOAO):
         self.rampDuration = rampDuration
         self.requestedTimeSeriesLength = requestedTimeSeriesLength
         self.storeDifferenceFrequencyWaveForce = storeDifferenceFrequencyWaveForce
+        self.storeSumFrequencyWaveForce = storeSumFrequencyWaveForce
+        self.useOldResultStructure = useOldResultStructure
+        self.storeWaveParticleMotions = storeWaveParticleMotions
+        self.storeWaveForces = storeWaveForces
+        self.storeWindVelocity = storeWindVelocity
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -574,28 +589,28 @@ class SIMODynamicCalculationParameters(MOAO):
         self.__linearCurrentForceMethod = value
 
     @property
-    def exportResultsToWasim(self) -> bool:
+    def exportResultsToSesam(self) -> bool:
         """"""
-        return self.__exportResultsToWasim
+        return self.__exportResultsToSesam
 
-    @exportResultsToWasim.setter
-    def exportResultsToWasim(self, value: bool):
-        """Set exportResultsToWasim"""
-        self.__exportResultsToWasim = bool(value)
+    @exportResultsToSesam.setter
+    def exportResultsToSesam(self, value: bool):
+        """Set exportResultsToSesam"""
+        self.__exportResultsToSesam = bool(value)
 
     @property
-    def wasimResultExport(self) -> WasimResultExport:
+    def sesamResultExport(self) -> SesamResultExport:
         """"""
-        return self.__wasimResultExport
+        return self.__sesamResultExport
 
-    @wasimResultExport.setter
-    def wasimResultExport(self, value: WasimResultExport):
-        """Set wasimResultExport"""
-        self.__wasimResultExport = value
+    @sesamResultExport.setter
+    def sesamResultExport(self, value: SesamResultExport):
+        """Set sesamResultExport"""
+        self.__sesamResultExport = value
 
     @property
     def storeWindForces(self) -> bool:
-        """Store wind forces?"""
+        """"""
         return self.__storeWindForces
 
     @storeWindForces.setter
@@ -605,7 +620,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeSumGeneralLineForces(self) -> bool:
-        """Store sum general line forces?"""
+        """"""
         return self.__storeSumGeneralLineForces
 
     @storeSumGeneralLineForces.setter
@@ -615,7 +630,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeTotalForces(self) -> bool:
-        """Store total forces?"""
+        """"""
         return self.__storeTotalForces
 
     @storeTotalForces.setter
@@ -625,7 +640,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeRetardationForces(self) -> bool:
-        """Store retardation forces?"""
+        """"""
         return self.__storeRetardationForces
 
     @storeRetardationForces.setter
@@ -645,7 +660,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeLinearDamping(self) -> bool:
-        """Store linear damping?"""
+        """"""
         return self.__storeLinearDamping
 
     @storeLinearDamping.setter
@@ -655,7 +670,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeQuadraticDamping(self) -> bool:
-        """Store quadratic damping?"""
+        """"""
         return self.__storeQuadraticDamping
 
     @storeQuadraticDamping.setter
@@ -665,7 +680,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeDistributedHydrodynamicForces(self) -> bool:
-        """Store distributed hydrodynamic forces?"""
+        """"""
         return self.__storeDistributedHydrodynamicForces
 
     @storeDistributedHydrodynamicForces.setter
@@ -675,7 +690,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeFixedBodyAndSlenderElementStripResults(self) -> bool:
-        """Store results for slender element strips and fixed body elements?"""
+        """Store results for slender element strips and fixed body elements"""
         return self.__storeFixedBodyAndSlenderElementStripResults
 
     @storeFixedBodyAndSlenderElementStripResults.setter
@@ -685,7 +700,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeWaveDriftDamping(self) -> bool:
-        """Store wave-drift damping?"""
+        """"""
         return self.__storeWaveDriftDamping
 
     @storeWaveDriftDamping.setter
@@ -695,7 +710,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeLinearCurrentDrag(self) -> bool:
-        """Store linear current drag?"""
+        """"""
         return self.__storeLinearCurrentDrag
 
     @storeLinearCurrentDrag.setter
@@ -705,7 +720,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeQuadraticCurrentDrag(self) -> bool:
-        """Store quadratic current drag?"""
+        """"""
         return self.__storeQuadraticCurrentDrag
 
     @storeQuadraticCurrentDrag.setter
@@ -715,7 +730,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeSmallBodyHydrodynamicForces(self) -> bool:
-        """Store small body hydrodynamic forces?"""
+        """"""
         return self.__storeSmallBodyHydrodynamicForces
 
     @storeSmallBodyHydrodynamicForces.setter
@@ -725,7 +740,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeResultantPositioningElementForces(self) -> bool:
-        """Store resultant positioning element forces?"""
+        """"""
         return self.__storeResultantPositioningElementForces
 
     @storeResultantPositioningElementForces.setter
@@ -735,7 +750,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storePositioningElementForceComponents(self) -> bool:
-        """Store positioning element force components?"""
+        """"""
         return self.__storePositioningElementForceComponents
 
     @storePositioningElementForceComponents.setter
@@ -745,7 +760,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeTotalPositioningForces(self) -> bool:
-        """Store total positioning element forces?"""
+        """"""
         return self.__storeTotalPositioningForces
 
     @storeTotalPositioningForces.setter
@@ -755,7 +770,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeThrusterForces(self) -> bool:
-        """Store thruster forces?"""
+        """"""
         return self.__storeThrusterForces
 
     @storeThrusterForces.setter
@@ -765,7 +780,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeSumThrusterForces(self) -> bool:
-        """Store sum thruster forces?"""
+        """"""
         return self.__storeSumThrusterForces
 
     @storeSumThrusterForces.setter
@@ -775,7 +790,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeDynamicPositioningEstimators(self) -> bool:
-        """Store dynamic positioning estimators?"""
+        """"""
         return self.__storeDynamicPositioningEstimators
 
     @storeDynamicPositioningEstimators.setter
@@ -785,7 +800,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeSumSpecifiedForces(self) -> bool:
-        """Store sum specified forces?"""
+        """"""
         return self.__storeSumSpecifiedForces
 
     @storeSumSpecifiedForces.setter
@@ -795,7 +810,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeSumExternalForces(self) -> bool:
-        """Store sum external forces?"""
+        """"""
         return self.__storeSumExternalForces
 
     @storeSumExternalForces.setter
@@ -805,7 +820,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeSumCouplingForces(self) -> bool:
-        """Store sum coupling forces?"""
+        """"""
         return self.__storeSumCouplingForces
 
     @storeSumCouplingForces.setter
@@ -815,7 +830,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeResultantCouplingElementForces(self) -> bool:
-        """Store resultant coupling element forces?"""
+        """"""
         return self.__storeResultantCouplingElementForces
 
     @storeResultantCouplingElementForces.setter
@@ -825,7 +840,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeGlobalCouplingForceComponents(self) -> bool:
-        """Store global coupling force components?"""
+        """"""
         return self.__storeGlobalCouplingForceComponents
 
     @storeGlobalCouplingForceComponents.setter
@@ -835,7 +850,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeLocalCouplingForceComponents(self) -> bool:
-        """Store local coupling force components?"""
+        """"""
         return self.__storeLocalCouplingForceComponents
 
     @storeLocalCouplingForceComponents.setter
@@ -845,7 +860,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeGlobalLowFrequencyPosition(self) -> bool:
-        """Store global low-frequency position?"""
+        """"""
         return self.__storeGlobalLowFrequencyPosition
 
     @storeGlobalLowFrequencyPosition.setter
@@ -855,7 +870,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeGlobalTotalPosition(self) -> bool:
-        """Store global total position?"""
+        """"""
         return self.__storeGlobalTotalPosition
 
     @storeGlobalTotalPosition.setter
@@ -865,7 +880,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeGlobalAcceleration(self) -> bool:
-        """Store global acceleration?"""
+        """"""
         return self.__storeGlobalAcceleration
 
     @storeGlobalAcceleration.setter
@@ -875,7 +890,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeLocalAccelerations(self) -> bool:
-        """Store local acceleration?"""
+        """"""
         return self.__storeLocalAccelerations
 
     @storeLocalAccelerations.setter
@@ -885,7 +900,7 @@ class SIMODynamicCalculationParameters(MOAO):
 
     @property
     def storeLocalVelocity(self) -> bool:
-        """Store local velocity"""
+        """"""
         return self.__storeLocalVelocity
 
     @storeLocalVelocity.setter
@@ -972,3 +987,53 @@ class SIMODynamicCalculationParameters(MOAO):
     def storeDifferenceFrequencyWaveForce(self, value: bool):
         """Set storeDifferenceFrequencyWaveForce"""
         self.__storeDifferenceFrequencyWaveForce = bool(value)
+
+    @property
+    def storeSumFrequencyWaveForce(self) -> bool:
+        """"""
+        return self.__storeSumFrequencyWaveForce
+
+    @storeSumFrequencyWaveForce.setter
+    def storeSumFrequencyWaveForce(self, value: bool):
+        """Set storeSumFrequencyWaveForce"""
+        self.__storeSumFrequencyWaveForce = bool(value)
+
+    @property
+    def useOldResultStructure(self) -> bool:
+        """Using the new result structure increase simulation efficiency and use updated names for results. Note that signal selection in any old workflows or post processor will need to be updated."""
+        return self.__useOldResultStructure
+
+    @useOldResultStructure.setter
+    def useOldResultStructure(self, value: bool):
+        """Set useOldResultStructure"""
+        self.__useOldResultStructure = bool(value)
+
+    @property
+    def storeWaveParticleMotions(self) -> bool:
+        """"""
+        return self.__storeWaveParticleMotions
+
+    @storeWaveParticleMotions.setter
+    def storeWaveParticleMotions(self, value: bool):
+        """Set storeWaveParticleMotions"""
+        self.__storeWaveParticleMotions = bool(value)
+
+    @property
+    def storeWaveForces(self) -> bool:
+        """Store first and second order wave forces"""
+        return self.__storeWaveForces
+
+    @storeWaveForces.setter
+    def storeWaveForces(self, value: bool):
+        """Set storeWaveForces"""
+        self.__storeWaveForces = bool(value)
+
+    @property
+    def storeWindVelocity(self) -> bool:
+        """"""
+        return self.__storeWindVelocity
+
+    @storeWindVelocity.setter
+    def storeWindVelocity(self, value: bool):
+        """Set storeWindVelocity"""
+        self.__storeWindVelocity = bool(value)

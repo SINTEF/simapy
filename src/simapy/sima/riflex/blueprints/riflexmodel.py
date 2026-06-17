@@ -35,6 +35,7 @@ class RIFLEXModelBlueprint(SIMOModelBlueprint):
         self.add_attribute(BlueprintAttribute("stabilityCalculationParameters","sima/simo/StabilityCalculationParameters","",True))
         self.add_attribute(BlueprintAttribute("simoFrequencyDomainCalculation","sima/simo/SIMOFrequencyDomainCalculation","",True))
         self.add_attribute(BlueprintAttribute("fibreRopeModels","sima/simo/FibreRopeModel","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("disturbedWaveField","sima/simo/DisturbedWaveField","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("slenderSystem","sima/riflex/SlenderSystem","",True))
         self.add_attribute(BlueprintAttribute("supportVessels","sima/riflex/SupportVessel","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("referenceFrames","sima/riflex/ReferenceFrame","",True,Dimension("*")))

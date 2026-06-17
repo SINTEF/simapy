@@ -14,4 +14,4 @@ class LongTermStatsBlueprint(NamedEntityBlueprint):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(Attribute("name","string","name for the metocean data."))
-        self.add_attribute(BlueprintAttribute("periods","metocean/longTermStatistics/Period","statistical model for different time periods.",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("periods","/longTermStatistics/Period","statistical model for different time periods.",True,Dimension("*")))

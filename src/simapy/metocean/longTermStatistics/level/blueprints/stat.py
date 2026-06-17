@@ -15,4 +15,4 @@ class StatBlueprint(NamedEntityBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(Attribute("name","string","name for this statistical data, wind/current, which appear in SIMA, e.g. wind_12sec, or current_omni."))
         self.add_attribute(Attribute("duration","number","event duration in hours.",default=0.0))
-        self.add_attribute(BlueprintAttribute("levels","metocean/longTermStatistics/level/Profile","statistical representation of wind/current at this level and sampling rate.",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("levels","/longTermStatistics/level/Profile","statistical representation of wind/current at this level and sampling rate.",True,Dimension("*")))

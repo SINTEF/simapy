@@ -38,8 +38,8 @@ class MetoceanTask(ConditionTask):
     runNumber : int
          (default 0)
     scripts : List[SIMAScript]
-    variations : List[ModelVariation]
     referenceVariables : List[ModelReferenceVariable]
+    variations : List[ModelVariation]
     initialCondition : InitialCondition
     conditions : List[ConditionTaskCondition]
     hindcastData : List[HindcastData]
@@ -61,8 +61,8 @@ class MetoceanTask(ConditionTask):
         self.stringVariables = list()
         self.runNumber = runNumber
         self.scripts = list()
-        self.variations = list()
         self.referenceVariables = list()
+        self.variations = list()
         self.initialCondition = None
         self.conditions = list()
         self.hindcastData = list()
@@ -174,18 +174,6 @@ class MetoceanTask(ConditionTask):
         self.__scripts = value
 
     @property
-    def variations(self) -> List[ModelVariation]:
-        """"""
-        return self.__variations
-
-    @variations.setter
-    def variations(self, value: List[ModelVariation]):
-        """Set variations"""
-        if not isinstance(value, Sequence):
-            raise ValueError("Expected sequense, but was " , type(value))
-        self.__variations = value
-
-    @property
     def referenceVariables(self) -> List[ModelReferenceVariable]:
         """"""
         return self.__referenceVariables
@@ -196,6 +184,18 @@ class MetoceanTask(ConditionTask):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__referenceVariables = value
+
+    @property
+    def variations(self) -> List[ModelVariation]:
+        """"""
+        return self.__variations
+
+    @variations.setter
+    def variations(self, value: List[ModelVariation]):
+        """Set variations"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__variations = value
 
     @property
     def initialCondition(self) -> InitialCondition:

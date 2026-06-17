@@ -5,10 +5,11 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.body import BodyBlueprint
 from typing import Dict
+from .frameofreference import FrameOfReference
 from .namedobject import NamedObject
 from .scriptablevalue import ScriptableValue
 
-class Body(NamedObject):
+class Body(NamedObject,FrameOfReference):
     """
     Keyword arguments
     -----------------

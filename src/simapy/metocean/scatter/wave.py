@@ -14,7 +14,7 @@ class Wave(Entity):
     -----------------
     description : str
          (default "")
-    occurrence : ndarray
+    occurrence : ndarray of int
          the scatter data for occurrence of Hs-Tp.
     """
 

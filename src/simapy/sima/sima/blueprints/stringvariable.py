@@ -16,3 +16,4 @@ class StringVariableBlueprint(VariableBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(Attribute("value","string","The current value for the variable"))
+        self.add_attribute(Attribute("structured","boolean","Use JSON string to enable a structured variable in the scripting engine",default=False))

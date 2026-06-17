@@ -17,7 +17,7 @@ class SuperNodeBlueprint(NamedObjectBlueprint,SuperNodeReferenceBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(EnumAttribute("constraint","sima/riflex/NodeConstraint","Supernode type."))
-        self.add_attribute(BlueprintAttribute("referenceFrame","sima/riflex/ReferenceFrame","Reference frame for local coordinates.",False))
+        self.add_attribute(BlueprintAttribute("referenceFrame","sima/sima/FrameOfReference","Reference frame for local coordinates.",False))
         self.add_attribute(BlueprintAttribute("supportVessel","sima/riflex/SupportVessel","Support body reference.",False))
         self.add_attribute(Attribute("automaticInitialPosition","boolean","Initial position calculated using stress free reference line length, stress free coordinate of the other super node and static coordinates of both super nodes.",default=False))
         self.add_attribute(BlueprintAttribute("masterNode","sima/simo/SuperNodeReference","Master node for Slaved / Fixed Relative Orientation nodes.",False))

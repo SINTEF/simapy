@@ -20,7 +20,7 @@ class IrregularWaveProcedureBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("nodeStep","integer","Wave kinematics is calculated for every 'Node Step' node between Z Lower\nand Z Upper",default=1))
         self.add_attribute(Attribute("zLower","number","Z-coordinate indicating lowest node position for which wave kinematics are calculated",default=0.0))
         self.add_attribute(Attribute("zUpper","number","Upper limit for wave kinematics",default=0.0))
-        self.add_attribute(Attribute("applyDiffractedWaves","boolean","Whether diffracted wave points are to be specified",default=False))
+        self.add_attribute(Attribute("applyDiffractedWaves","boolean","Whether diffracted wave points are to be specified",default=True))
         self.add_attribute(BlueprintAttribute("waveKinematicDiffPoints","sima/riflex/WaveKinematicsDiffPoint","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("waveKinematicNodePoints","sima/riflex/WaveKinematicsNodePoint","",True,Dimension("*")))
         self.add_attribute(Attribute("waveKinematicsFile","boolean","Whether wave kinematics time series should be read from file or not",default=False))

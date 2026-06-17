@@ -1,1 +1,3 @@
-packages =  [{'name': 'hindcast', 'version': 1}, {'name': 'longTermStatistics', 'version': 1, 'packages': [{'name': 'level', 'version': 1}, {'name': 'wave', 'version': 1}]}, {'name': 'scatter', 'version': 1}]
+
+version = "1.0.0"
+packages =  {'hindcast': 1, 'longTermStatistics': 1, 'scatter': 1}

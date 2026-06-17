@@ -16,7 +16,7 @@ class LongTermStatisticsCalculationBlueprint(NamedObjectBlueprint,ConditionSelec
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
-        self.add_attribute(Attribute("relativeCompassAngle","number","Relative angle between analysis x-axis and north direction in anti-clockwise direction.\nShould match the angle given in the recieving SIMA task location.",default=0.0))
+        self.add_attribute(Attribute("relativeCompassAngle","number","This is the relative angle measured from the global x-axis to the compass North, measured counter-clockwise. Should match the angle given in the receiving SIMA task location.",default=0.0))
         self.add_attribute(EnumAttribute("inputReferenceSystem","sima/metocean/InputReferenceSystem","Defines the input reference system of the data.\nIf the data is defined in the Metocean system the corresponding SIMA coordinate system data is generated"))
         self.add_attribute(Attribute("applyNorsok","boolean"," Apply NORSOK N-006 ( A directional factor of 6 (corresponding to 12 directions) is applied to the return period)",default=True))
         self.add_attribute(BlueprintAttribute("longTermStatistics","sima/metocean/LongTermStatistics","",False))

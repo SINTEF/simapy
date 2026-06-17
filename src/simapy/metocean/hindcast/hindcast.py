@@ -19,18 +19,18 @@ class Hindcast(NamedEntity):
          (default "")
     name : str
          name for the metocean data.(default None)
-    date : ndarray
+    date : ndarray of str
          date string.
+    latitude : float
+         (default 0.0)
+    longitude : float
+         (default 0.0)
     wave : List[StochasticWave]
          wave models.
     wind : List[StochasticWind]
          wind models.
     current : List[StochasticCurrent]
          current models.
-    latitude : float
-         (default 0.0)
-    longitude : float
-         (default 0.0)
     """
 
     def __init__(self , description="", latitude=0.0, longitude=0.0, **kwargs):
@@ -38,11 +38,11 @@ class Hindcast(NamedEntity):
         self.description = description
         self.name = None
         self.date = []
+        self.latitude = latitude
+        self.longitude = longitude
         self.wave = list()
         self.wind = list()
         self.current = list()
-        self.latitude = latitude
-        self.longitude = longitude
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -88,6 +88,26 @@ class Hindcast(NamedEntity):
         self.__date = array
 
     @property
+    def latitude(self) -> float:
+        """"""
+        return self.__latitude
+
+    @latitude.setter
+    def latitude(self, value: float):
+        """Set latitude"""
+        self.__latitude = float(value)
+
+    @property
+    def longitude(self) -> float:
+        """"""
+        return self.__longitude
+
+    @longitude.setter
+    def longitude(self, value: float):
+        """Set longitude"""
+        self.__longitude = float(value)
+
+    @property
     def wave(self) -> List[StochasticWave]:
         """wave models."""
         return self.__wave
@@ -122,23 +142,3 @@ class Hindcast(NamedEntity):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__current = value
-
-    @property
-    def latitude(self) -> float:
-        """"""
-        return self.__latitude
-
-    @latitude.setter
-    def latitude(self, value: float):
-        """Set latitude"""
-        self.__latitude = float(value)
-
-    @property
-    def longitude(self) -> float:
-        """"""
-        return self.__longitude
-
-    @longitude.setter
-    def longitude(self, value: float):
-        """Set longitude"""
-        self.__longitude = float(value)

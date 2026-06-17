@@ -17,4 +17,4 @@ class HsBinnedSectorBlueprint(NamedEntityBlueprint):
         self.add_attribute(Attribute("direction","number","mean sector direction.",default=0.0))
         self.add_attribute(Attribute("sectorSize","number","sector size.",default=0.0))
         self.add_attribute(Attribute("probability","number","probability of this combination",default=0.0))
-        self.add_attribute(BlueprintAttribute("bins","metocean/longTermStatistics/HsBinned","different Hs bins.",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("bins","/longTermStatistics/HsBinned","different Hs bins.",True,Dimension("*")))

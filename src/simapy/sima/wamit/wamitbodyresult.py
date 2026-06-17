@@ -5,7 +5,6 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamitbodyresult import WamitBodyResultBlueprint
 from typing import Dict
-from ..hydro import ExternalStiffnessMatrix
 from ..hydro import FirstOrderMotionTransferFunction
 from ..hydro import HydrostaticStiffnessData
 from ..hydro import LinearDampingMatrix
@@ -14,6 +13,7 @@ from ..hydro import StructuralMass
 from ..sima import Named
 from ..sima import Point3
 from ..sima import ScriptableValue
+from .externalstiffnessmatrix import ExternalStiffnessMatrix
 from .wamitfirstorderwaveforcetransferfunction import WamitFirstOrderWaveForceTransferFunction
 from .wamitwavedriftforce import WamitWaveDriftForce
 

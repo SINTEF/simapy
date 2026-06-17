@@ -6,8 +6,9 @@ from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
 from ...sima.blueprints.namedobject import NamedObjectBlueprint
+from ...sima.blueprints.frameofreference import FrameOfReferenceBlueprint
 
-class ReferenceFrameBlueprint(NamedObjectBlueprint):
+class ReferenceFrameBlueprint(NamedObjectBlueprint,FrameOfReferenceBlueprint):
     """"""
 
     def __init__(self, name="ReferenceFrame", package_path="sima/riflex", description=""):
@@ -15,7 +16,7 @@ class ReferenceFrameBlueprint(NamedObjectBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
-        self.add_attribute(BlueprintAttribute("parent","sima/riflex/ReferenceFrame","",False))
+        self.add_attribute(BlueprintAttribute("parent","sima/sima/FrameOfReference","",False))
         self.add_attribute(Attribute("xLocal","number","Local (in parent frame) coordinate X",default=0.0))
         self.add_attribute(Attribute("yLocal","number","Local (in parent frame) coordinate Y",default=0.0))
         self.add_attribute(Attribute("zLocal","number","Local (in parent frame) coordinate Z",default=0.0))

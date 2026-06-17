@@ -6,6 +6,7 @@ from dmt.blueprint import Blueprint
 from .blueprints.fileinputnode import FileInputNodeBlueprint
 from typing import Dict
 from ..post import ControlSignalInputSlot
+from ..post import FileInputFormat
 from ..post import OutputSlot
 from ..post import RunNode
 from ..sima import ScriptableValue
@@ -30,14 +31,19 @@ class FileInputNode(RunNode):
     controlSignalInputSlots : List[ControlSignalInputSlot]
     filePath : str
          Path to the input file.(default None)
-    outputSlot : OutputSlot
+    fileFromInput : bool
+         Input the filename to be imported from an input slot(default False)
+    format : FileInputFormat
+    firstIsX : bool
+         Use the first signal as the x axis for all inputs(default False)
     readRawText : bool
          read the file in as raw text data(default False)
     splitLines : bool
          split separate lines into array(default False)
+    outputSlot : OutputSlot
     """
 
-    def __init__(self , description="", x=0, y=0, h=0, w=0, readRawText=False, splitLines=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFromInput=False, format=FileInputFormat.AUTOMATIC, firstIsX=False, readRawText=False, splitLines=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -48,9 +54,12 @@ class FileInputNode(RunNode):
         self.w = w
         self.controlSignalInputSlots = list()
         self.filePath = None
-        self.outputSlot = None
+        self.fileFromInput = fileFromInput
+        self.format = format
+        self.firstIsX = firstIsX
         self.readRawText = readRawText
         self.splitLines = splitLines
+        self.outputSlot = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -157,14 +166,34 @@ class FileInputNode(RunNode):
         self.__filePath = value
 
     @property
-    def outputSlot(self) -> OutputSlot:
-        """"""
-        return self.__outputSlot
+    def fileFromInput(self) -> bool:
+        """Input the filename to be imported from an input slot"""
+        return self.__fileFromInput
 
-    @outputSlot.setter
-    def outputSlot(self, value: OutputSlot):
-        """Set outputSlot"""
-        self.__outputSlot = value
+    @fileFromInput.setter
+    def fileFromInput(self, value: bool):
+        """Set fileFromInput"""
+        self.__fileFromInput = bool(value)
+
+    @property
+    def format(self) -> FileInputFormat:
+        """"""
+        return self.__format
+
+    @format.setter
+    def format(self, value: FileInputFormat):
+        """Set format"""
+        self.__format = value
+
+    @property
+    def firstIsX(self) -> bool:
+        """Use the first signal as the x axis for all inputs"""
+        return self.__firstIsX
+
+    @firstIsX.setter
+    def firstIsX(self, value: bool):
+        """Set firstIsX"""
+        self.__firstIsX = bool(value)
 
     @property
     def readRawText(self) -> bool:
@@ -185,3 +214,13 @@ class FileInputNode(RunNode):
     def splitLines(self, value: bool):
         """Set splitLines"""
         self.__splitLines = bool(value)
+
+    @property
+    def outputSlot(self) -> OutputSlot:
+        """"""
+        return self.__outputSlot
+
+    @outputSlot.setter
+    def outputSlot(self, value: OutputSlot):
+        """Set outputSlot"""
+        self.__outputSlot = value

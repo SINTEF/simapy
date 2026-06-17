@@ -39,9 +39,13 @@ class FileInputSource(OperationNode):
     format : FileInputFormat
     firstIsX : bool
          Use the first signal as the x axis for all inputs(default False)
+    readRawText : bool
+         read the file in as raw text data(default False)
+    splitLines : bool
+         split separate lines into array(default False)
     """
 
-    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFromInput=False, format=FileInputFormat.AUTOMATIC, firstIsX=False, **kwargs):
+    def __init__(self , description="", x=0, y=0, h=0, w=0, fileFromInput=False, format=FileInputFormat.AUTOMATIC, firstIsX=False, readRawText=False, splitLines=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -57,6 +61,8 @@ class FileInputSource(OperationNode):
         self.fileFromInput = fileFromInput
         self.format = format
         self.firstIsX = firstIsX
+        self.readRawText = readRawText
+        self.splitLines = splitLines
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -215,3 +221,23 @@ class FileInputSource(OperationNode):
     def firstIsX(self, value: bool):
         """Set firstIsX"""
         self.__firstIsX = bool(value)
+
+    @property
+    def readRawText(self) -> bool:
+        """read the file in as raw text data"""
+        return self.__readRawText
+
+    @readRawText.setter
+    def readRawText(self, value: bool):
+        """Set readRawText"""
+        self.__readRawText = bool(value)
+
+    @property
+    def splitLines(self) -> bool:
+        """split separate lines into array"""
+        return self.__splitLines
+
+    @splitLines.setter
+    def splitLines(self, value: bool):
+        """Set splitLines"""
+        self.__splitLines = bool(value)

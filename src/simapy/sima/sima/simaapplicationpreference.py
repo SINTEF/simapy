@@ -31,9 +31,13 @@ class SIMAApplicationPreference(SIMAPreference):
          (default None)
     numberOfSignificantDigits : int
          Maximum number of significant digits used to display floating point numbers (editors must be reopened) (default 5)
+    documentationLocation : str
+         (default None)
+    externalHelp : bool
+         (default False)
     """
 
-    def __init__(self , description="", createTimestamp=True, deleteAutomatically=True, interpolate=True, overrideTimeZone=True, minimumDiskSpace=1, autoSaveFrequency=5, numberOfSignificantDigits=5, **kwargs):
+    def __init__(self , description="", createTimestamp=True, deleteAutomatically=True, interpolate=True, overrideTimeZone=True, minimumDiskSpace=1, autoSaveFrequency=5, numberOfSignificantDigits=5, externalHelp=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -45,6 +49,8 @@ class SIMAApplicationPreference(SIMAPreference):
         self.autoSaveFrequency = autoSaveFrequency
         self.backupFolder = None
         self.numberOfSignificantDigits = numberOfSignificantDigits
+        self.documentationLocation = None
+        self.externalHelp = externalHelp
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -157,3 +163,23 @@ class SIMAApplicationPreference(SIMAPreference):
     def numberOfSignificantDigits(self, value: int):
         """Set numberOfSignificantDigits"""
         self.__numberOfSignificantDigits = int(value)
+
+    @property
+    def documentationLocation(self) -> str:
+        """"""
+        return self.__documentationLocation
+
+    @documentationLocation.setter
+    def documentationLocation(self, value: str):
+        """Set documentationLocation"""
+        self.__documentationLocation = value
+
+    @property
+    def externalHelp(self) -> bool:
+        """"""
+        return self.__externalHelp
+
+    @externalHelp.setter
+    def externalHelp(self, value: bool):
+        """Set externalHelp"""
+        self.__externalHelp = bool(value)

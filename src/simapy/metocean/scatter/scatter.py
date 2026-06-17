@@ -17,9 +17,9 @@ class Scatter(NamedEntity):
          (default "")
     name : str
          name for the scatter data as appear in SIMA.(default None)
-    hsUpperLimits : ndarray
+    hsUpperLimits : ndarray of float
          upper limits of the boundaries for each row in the scatter data.
-    tpUpperLimits : ndarray
+    tpUpperLimits : ndarray of float
          upper limits of the boundaries for each column in the scatter data.
     seaStateDuration : float
          duration of sea state.(default 0.0)

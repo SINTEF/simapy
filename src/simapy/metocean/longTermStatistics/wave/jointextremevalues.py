@@ -18,11 +18,11 @@ class JointExtremeValues(Entity):
          first variable.(default None)
     var2 : str
          second variable.(default None)
-    returnPeriods : ndarray
+    returnPeriods : ndarray of float
          return periods
-    var1Extremes : ndarray
+    var1Extremes : ndarray of float
          extreme values for the variable 1
-    var2Extremes : ndarray
+    var2Extremes : ndarray of float
          extreme values for the variable 2
     """
 

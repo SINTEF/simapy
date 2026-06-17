@@ -5,10 +5,10 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.commonlocation import CommonLocationBlueprint
 from typing import Dict
-from ..sima import Location
+from ..sima import NamedObject
 from ..sima import ScriptableValue
 
-class CommonLocation(Location):
+class CommonLocation(NamedObject):
     """
     Keyword arguments
     -----------------

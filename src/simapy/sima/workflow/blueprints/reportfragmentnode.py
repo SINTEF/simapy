@@ -5,10 +5,10 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from ...post.blueprints.runnode import RunNodeBlueprint
 from ...report.blueprints.reportfragmentreference import ReportFragmentReferenceBlueprint
+from ...post.blueprints.runnode import RunNodeBlueprint
 
-class ReportFragmentNodeBlueprint(RunNodeBlueprint,ReportFragmentReferenceBlueprint):
+class ReportFragmentNodeBlueprint(ReportFragmentReferenceBlueprint,RunNodeBlueprint):
     """"""
 
     def __init__(self, name="ReportFragmentNode", package_path="sima/workflow", description=""):

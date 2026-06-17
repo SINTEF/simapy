@@ -12,7 +12,7 @@ from ..report import ReportFragmentReference
 from ..sima import ScriptableValue
 from .reportfragmentitemcontainer import ReportFragmentItemContainer
 
-class ReportFragmentNode(RunNode,ReportFragmentReference):
+class ReportFragmentNode(ReportFragmentReference,RunNode):
     """
     Keyword arguments
     -----------------

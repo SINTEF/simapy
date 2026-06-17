@@ -19,6 +19,7 @@ class WamitBodyBlueprint(BodyBlueprint):
         self.add_attribute(Attribute("width","number","Width",default=5.0))
         self.add_attribute(Attribute("height","number","Height",default=5.0))
         self.add_attribute(BlueprintAttribute("appearance","sima/sima/Appearance","",True))
+        self.add_attribute(BlueprintAttribute("shapes","sima/sima/Shape","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("initialPosition","sima/sima/Position","",True))
         self.add_attribute(BlueprintAttribute("viewpoints","sima/sima/BodyViewpoint","",True,Dimension("*")))
         self.add_attribute(Attribute("geometryFilename","string","GDF Geometry"))

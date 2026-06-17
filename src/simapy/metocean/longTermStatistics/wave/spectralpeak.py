@@ -14,13 +14,13 @@ class SpectralPeak(Entity):
     -----------------
     description : str
          (default "")
-    Hs : ndarray
+    Hs : ndarray of float
          Hs.
-    int5 : ndarray
+    int5 : ndarray of float
          5%-interval
-    mean : ndarray
+    mean : ndarray of float
          mean.
-    int95 : ndarray
+    int95 : ndarray of float
          95 %-interval
     """
 

@@ -19,14 +19,17 @@ class StringVariable(Variable):
          (default None)
     value : str
          The current value for the variable(default None)
+    structured : bool
+         Use JSON string to enable a structured variable in the scripting engine(default False)
     """
 
-    def __init__(self , description="", **kwargs):
+    def __init__(self , description="", structured=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
         self.value = None
+        self.structured = structured
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -79,3 +82,13 @@ class StringVariable(Variable):
     def value(self, value: str):
         """Set value"""
         self.__value = value
+
+    @property
+    def structured(self) -> bool:
+        """Use JSON string to enable a structured variable in the scripting engine"""
+        return self.__structured
+
+    @structured.setter
+    def structured(self, value: bool):
+        """Set structured"""
+        self.__structured = bool(value)

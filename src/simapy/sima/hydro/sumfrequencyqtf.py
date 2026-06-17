@@ -7,7 +7,9 @@ from .blueprints.sumfrequencyqtf import SumFrequencyQTFBlueprint
 from numpy import ndarray,asarray
 from ..sima import MOAO
 from ..sima import ScriptableValue
+from .directionsymmetry import DirectionSymmetry
 from .qtfdof import QTFDof
+from .qtfinput import QtfInput
 
 class SumFrequencyQTF(MOAO):
     """
@@ -38,9 +40,15 @@ class SumFrequencyQTF(MOAO):
     roll : QTFDof
     pitch : QTFDof
     yaw : QTFDof
+    symmetry : DirectionSymmetry
+    input : QtfInput
+    file : str
+         (default None)
+    bodyNumber : int
+         If file is multi-body, give the number within the file for this data(default 1)
     """
 
-    def __init__(self , description="", nFreq=0, nDir=0, nValues=0, bidirectional=False, bichromatic=False, **kwargs):
+    def __init__(self , description="", nFreq=0, nDir=0, nValues=0, bidirectional=False, bichromatic=False, symmetry=DirectionSymmetry.NO_SYMMETRY, input=QtfInput.MANUAL, bodyNumber=1, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -61,6 +69,10 @@ class SumFrequencyQTF(MOAO):
         self.roll = None
         self.pitch = None
         self.yaw = None
+        self.symmetry = symmetry
+        self.input = input
+        self.file = None
+        self.bodyNumber = bodyNumber
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -281,3 +293,43 @@ class SumFrequencyQTF(MOAO):
     def yaw(self, value: QTFDof):
         """Set yaw"""
         self.__yaw = value
+
+    @property
+    def symmetry(self) -> DirectionSymmetry:
+        """"""
+        return self.__symmetry
+
+    @symmetry.setter
+    def symmetry(self, value: DirectionSymmetry):
+        """Set symmetry"""
+        self.__symmetry = value
+
+    @property
+    def input(self) -> QtfInput:
+        """"""
+        return self.__input
+
+    @input.setter
+    def input(self, value: QtfInput):
+        """Set input"""
+        self.__input = value
+
+    @property
+    def file(self) -> str:
+        """"""
+        return self.__file
+
+    @file.setter
+    def file(self, value: str):
+        """Set file"""
+        self.__file = value
+
+    @property
+    def bodyNumber(self) -> int:
+        """If file is multi-body, give the number within the file for this data"""
+        return self.__bodyNumber
+
+    @bodyNumber.setter
+    def bodyNumber(self, value: int):
+        """Set bodyNumber"""
+        self.__bodyNumber = int(value)

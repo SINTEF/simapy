@@ -1,15 +1,15 @@
-# Generated with HydrodynamicInputCode
+# Generated with DimensionalInput
 # 
 from enum import Enum
 from enum import auto
 
-class HydrodynamicInputCode(Enum):
+class DimensionalInput(Enum):
     """"""
     DIMENSIONAL = auto()
     NONDIMENSIONAL = auto()
 
     def label(self):
-        if self == HydrodynamicInputCode.DIMENSIONAL:
+        if self == DimensionalInput.DIMENSIONAL:
             return "Dimensional coefficients"
-        if self == HydrodynamicInputCode.NONDIMENSIONAL:
+        if self == DimensionalInput.NONDIMENSIONAL:
             return "Nondimensional coefficients"

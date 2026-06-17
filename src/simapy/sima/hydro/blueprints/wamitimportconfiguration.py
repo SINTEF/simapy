@@ -14,6 +14,7 @@ class WamitImportConfigurationBlueprint(MOAOBlueprint):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
+        self.add_attribute(Attribute("taskName","string","Name of task to import into. Required if bodyName is set."))
         self.add_attribute(BlueprintAttribute("retardationFunctionParameters","sima/hydro/RetardationFunctionCalculationParameters","",True))
         self.add_attribute(EnumAttribute("waveDriftForce","sima/hydro/WamitWaveDriftForceOption",""))
         self.add_attribute(EnumAttribute("waveForce","sima/hydro/WamitWaveForceOption",""))

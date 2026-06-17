@@ -62,9 +62,15 @@ class WindTurbine(NamedObject):
     measurementNodes : List[MeasurementNode]
     measurementElements : List[MeasurementElement]
     yawController : HorizontalAxisYawController
+    externalRotorLoads : bool
+         Specify external DLL to calculate rotor aerodynamic loads(default False)
+    externalRotorLoadFile : str
+         (default None)
+    externalRotorLoadConfigFile : str
+         (default None)
     """
 
-    def __init__(self , description="", windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=False, advancedOptions=False, inductionCalculation=True, prandtlTip=True, prandtlRoot=False, prandtlYaw=True, skewedWake=False, skewedWakeFactor=1.0, **kwargs):
+    def __init__(self , description="", windLoadOption=WindTurbineLoadOption.INCLUDE, turbineOrientation=TurbineOrientation.UPWIND, bakFactor=0.1, dragEffect=False, advancedOptions=False, inductionCalculation=True, prandtlTip=True, prandtlRoot=False, prandtlYaw=True, skewedWake=False, skewedWakeFactor=1.0, externalRotorLoads=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -88,6 +94,9 @@ class WindTurbine(NamedObject):
         self.measurementNodes = list()
         self.measurementElements = list()
         self.yawController = None
+        self.externalRotorLoads = externalRotorLoads
+        self.externalRotorLoadFile = None
+        self.externalRotorLoadConfigFile = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -327,3 +336,33 @@ If specified the incoming wind acting on the blades will be modified due to the 
     def yawController(self, value: HorizontalAxisYawController):
         """Set yawController"""
         self.__yawController = value
+
+    @property
+    def externalRotorLoads(self) -> bool:
+        """Specify external DLL to calculate rotor aerodynamic loads"""
+        return self.__externalRotorLoads
+
+    @externalRotorLoads.setter
+    def externalRotorLoads(self, value: bool):
+        """Set externalRotorLoads"""
+        self.__externalRotorLoads = bool(value)
+
+    @property
+    def externalRotorLoadFile(self) -> str:
+        """"""
+        return self.__externalRotorLoadFile
+
+    @externalRotorLoadFile.setter
+    def externalRotorLoadFile(self, value: str):
+        """Set externalRotorLoadFile"""
+        self.__externalRotorLoadFile = value
+
+    @property
+    def externalRotorLoadConfigFile(self) -> str:
+        """"""
+        return self.__externalRotorLoadConfigFile
+
+    @externalRotorLoadConfigFile.setter
+    def externalRotorLoadConfigFile(self, value: str):
+        """Set externalRotorLoadConfigFile"""
+        self.__externalRotorLoadConfigFile = value

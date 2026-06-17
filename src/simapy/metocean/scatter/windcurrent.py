@@ -16,9 +16,9 @@ class WindCurrent(Entity):
          (default "")
     level : float
          measured level.(default 0.0)
-    direction : ndarray
+    direction : ndarray of float
          the scatter data for direction.
-    speed : ndarray
+    speed : ndarray of float
          the scatter data for speed.
     """
 

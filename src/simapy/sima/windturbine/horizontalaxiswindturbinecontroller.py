@@ -10,6 +10,7 @@ from ..sima import MOAO
 from ..sima import ScriptableValue
 from .controllertype import ControllerType
 from .gainitem import GainItem
+from .pitchcontrol import PitchControl
 from .powerextraction import PowerExtraction
 from .tableformat import TableFormat
 
@@ -75,9 +76,10 @@ class HorizontalAxisWindTurbineController(MOAO):
          Log of signals to and from controller are written to a log file. The file <turbine name>.log is stored in the analysis folder. This option should be used for debugging purposes only. Avaliable for external controller only.(default False)
     accelerationFromDisplacement : bool
          Acceleration is calculated from the displacements(default False)
+    pitchControl : PitchControl
     """
 
-    def __init__(self , description="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=1.0, generatorEfficiency=1.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, accelerationFromDisplacement=False, **kwargs):
+    def __init__(self , description="", kp=0.0, ki=0.0, filterPeriod=0.0, ratedOmega=0.0, ratedTorque=0.0, gearBoxRatio=1.0, generatorEfficiency=1.0, maxPitchRate=0.0, maxPitch=0.0, maxTorqueRate=0.0, maxTorque=0.0, gainScheduling=TableFormat.DEFAULT, external=False, reg3MinPitch=0.0, transitionalSpeed15=0.0, transitionalSpeed20=0.0, transitionalSpeed25=0.0, transitionalSpeed30=0.0, reg2Torque=0.0, powerExtraction=PowerExtraction.POWER, minPitch=0.0, sampleInterval=0.0, controllerType=ControllerType.JAR_FILE_CONTROLLER, logFile=False, accelerationFromDisplacement=False, pitchControl=PitchControl.COLLECTIVE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -111,6 +113,7 @@ class HorizontalAxisWindTurbineController(MOAO):
         self.controllerType = controllerType
         self.logFile = logFile
         self.accelerationFromDisplacement = accelerationFromDisplacement
+        self.pitchControl = pitchControl
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -445,3 +448,13 @@ class HorizontalAxisWindTurbineController(MOAO):
     def accelerationFromDisplacement(self, value: bool):
         """Set accelerationFromDisplacement"""
         self.__accelerationFromDisplacement = bool(value)
+
+    @property
+    def pitchControl(self) -> PitchControl:
+        """"""
+        return self.__pitchControl
+
+    @pitchControl.setter
+    def pitchControl(self, value: PitchControl):
+        """Set pitchControl"""
+        self.__pitchControl = value

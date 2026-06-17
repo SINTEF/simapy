@@ -10,10 +10,10 @@ from ..sima import FlatBottom
 from ..sima import InfrastructureBody
 from ..sima import InitialViewpoint
 from ..sima import NamedViewpoint
-from ..sima import Point3
 from ..sima import ScriptableValue
 from ..simo import CommonLocation
 from ..simo import PhysicalConstants
+from .densitylevel import DensityLevel
 from .regular3dbottom import Regular3DBottom
 
 class RIFLEXLocation(CommonLocation):
@@ -26,16 +26,9 @@ class RIFLEXLocation(CommonLocation):
     name : str
          (default None)
     initialViewpoint : InitialViewpoint
-    initialRotationpoint : Point3
     viewpoints : List[NamedViewpoint]
     relativeCompassAngle : float
-         Relative angle between analysis x-axis and north direction in anti-clockwise direction(default 0.0)
-    utmX : float
-         Offset of local coordinate system origin (X) relative to UTM (Easting).(default 0.0)
-    utmY : float
-         Offset of local coordinate system origin (Y) relative to UTM (Northing).(default 0.0)
-    gridZone : str
-         Zone consists of a number from [01-60] and a letter from [C-Z], or just one of [A,B,Y,Z] if on the antarctic or arctic pole.(default None)
+         This is the relative angle measured from the global x-axis to the compass North, measured counter-clockwise(default 0.0)
     infrastructureBodies : List[InfrastructureBody]
     waterDepth : float
          Water depth for kinematics(default 1000.0)
@@ -43,26 +36,27 @@ class RIFLEXLocation(CommonLocation):
     flatBottom : FlatBottom
     physicalConstants : PhysicalConstants
     regular3DBottom : Regular3DBottom
+    depthDependentWaterDensity : bool
+         (default False)
+    densityLevels : List[DensityLevel]
     """
 
-    def __init__(self , description="", relativeCompassAngle=0.0, utmX=0.0, utmY=0.0, waterDepth=1000.0, **kwargs):
+    def __init__(self , description="", relativeCompassAngle=0.0, waterDepth=1000.0, depthDependentWaterDensity=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
         self.initialViewpoint = None
-        self.initialRotationpoint = None
         self.viewpoints = list()
         self.relativeCompassAngle = relativeCompassAngle
-        self.utmX = utmX
-        self.utmY = utmY
-        self.gridZone = None
         self.infrastructureBodies = list()
         self.waterDepth = waterDepth
         self.seaSurface = None
         self.flatBottom = None
         self.physicalConstants = None
         self.regular3DBottom = None
+        self.depthDependentWaterDensity = depthDependentWaterDensity
+        self.densityLevels = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -117,16 +111,6 @@ class RIFLEXLocation(CommonLocation):
         self.__initialViewpoint = value
 
     @property
-    def initialRotationpoint(self) -> Point3:
-        """"""
-        return self.__initialRotationpoint
-
-    @initialRotationpoint.setter
-    def initialRotationpoint(self, value: Point3):
-        """Set initialRotationpoint"""
-        self.__initialRotationpoint = value
-
-    @property
     def viewpoints(self) -> List[NamedViewpoint]:
         """"""
         return self.__viewpoints
@@ -140,43 +124,13 @@ class RIFLEXLocation(CommonLocation):
 
     @property
     def relativeCompassAngle(self) -> float:
-        """Relative angle between analysis x-axis and north direction in anti-clockwise direction"""
+        """This is the relative angle measured from the global x-axis to the compass North, measured counter-clockwise"""
         return self.__relativeCompassAngle
 
     @relativeCompassAngle.setter
     def relativeCompassAngle(self, value: float):
         """Set relativeCompassAngle"""
         self.__relativeCompassAngle = float(value)
-
-    @property
-    def utmX(self) -> float:
-        """Offset of local coordinate system origin (X) relative to UTM (Easting)."""
-        return self.__utmX
-
-    @utmX.setter
-    def utmX(self, value: float):
-        """Set utmX"""
-        self.__utmX = float(value)
-
-    @property
-    def utmY(self) -> float:
-        """Offset of local coordinate system origin (Y) relative to UTM (Northing)."""
-        return self.__utmY
-
-    @utmY.setter
-    def utmY(self, value: float):
-        """Set utmY"""
-        self.__utmY = float(value)
-
-    @property
-    def gridZone(self) -> str:
-        """Zone consists of a number from [01-60] and a letter from [C-Z], or just one of [A,B,Y,Z] if on the antarctic or arctic pole."""
-        return self.__gridZone
-
-    @gridZone.setter
-    def gridZone(self, value: str):
-        """Set gridZone"""
-        self.__gridZone = value
 
     @property
     def infrastructureBodies(self) -> List[InfrastructureBody]:
@@ -239,3 +193,25 @@ class RIFLEXLocation(CommonLocation):
     def regular3DBottom(self, value: Regular3DBottom):
         """Set regular3DBottom"""
         self.__regular3DBottom = value
+
+    @property
+    def depthDependentWaterDensity(self) -> bool:
+        """"""
+        return self.__depthDependentWaterDensity
+
+    @depthDependentWaterDensity.setter
+    def depthDependentWaterDensity(self, value: bool):
+        """Set depthDependentWaterDensity"""
+        self.__depthDependentWaterDensity = bool(value)
+
+    @property
+    def densityLevels(self) -> List[DensityLevel]:
+        """"""
+        return self.__densityLevels
+
+    @densityLevels.setter
+    def densityLevels(self, value: List[DensityLevel]):
+        """Set densityLevels"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__densityLevels = value

@@ -17,5 +17,5 @@ class SectorBlueprint(NamedEntityBlueprint):
         self.add_attribute(Attribute("direction","number","mean sector direction.",default=0.0))
         self.add_attribute(Attribute("sectorSize","number","sector size.",default=0.0))
         self.add_attribute(Attribute("probability","number","probability of this combination",default=0.0))
-        self.add_attribute(BlueprintAttribute("weibullDistribution","metocean/longTermStatistics/Weibull","Weibull parameters.",True))
-        self.add_attribute(BlueprintAttribute("extremeValues","metocean/longTermStatistics/ExtremeValues","extreme values.",True))
+        self.add_attribute(BlueprintAttribute("weibullDistribution","/longTermStatistics/Weibull","Weibull parameters.",True))
+        self.add_attribute(BlueprintAttribute("extremeValues","/longTermStatistics/ExtremeValues","extreme values.",True))

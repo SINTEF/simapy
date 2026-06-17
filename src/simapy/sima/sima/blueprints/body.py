@@ -6,8 +6,9 @@ from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
 from .namedobject import NamedObjectBlueprint
+from .frameofreference import FrameOfReferenceBlueprint
 
-class BodyBlueprint(NamedObjectBlueprint):
+class BodyBlueprint(NamedObjectBlueprint,FrameOfReferenceBlueprint):
     """"""
 
     def __init__(self, name="Body", package_path="sima/sima", description=""):

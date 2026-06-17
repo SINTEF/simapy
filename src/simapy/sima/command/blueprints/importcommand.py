@@ -17,4 +17,4 @@ class ImportCommandBlueprint(CommandBlueprint):
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(BlueprintAttribute("parameters","sima/sima/Property","Additional parameters",True,Dimension("*")))
         self.add_attribute(Attribute("file","string","Path to file, e.g stask",optional=False))
-        self.add_attribute(Attribute("configuration","string","Path to configuration file (context specific)",optional=False))
+        self.add_attribute(Attribute("configuration","string","Optional path to configuration file (context specific)"))

@@ -2,6 +2,150 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.2.0]
+
+- Updated data model to reflect SIMA 5.2.0
+
+Model changes per package:
+
+### Package sima
+
+Added:
+ - Class CylinderShape
+ - Class CurvedPlateShape
+ - Class BlockShape
+ - Class CurvedPlateProfileItem
+ - Class GeometricShape
+ - Field JobPreference.provisional
+ - Field InfrastructureBody.shapes
+ - Field InfrastructureBody.frame
+ - Field SIMAApplicationPreference.provisional
+ - Field SIMAApplicationPreference.documentationLocation
+ - Field SIMAApplicationPreference.externalHelp
+ - Field LicensePreference.provisional
+ - Field StringVariable.structured
+ - Field StringVariable.error
+ - Field VersioningPreference.provisional
+ - Field UnitPreference.provisional
+ - Field ScriptingPreference.provisional
+
+Changed:
+ - remove InfrastructureBody.location
+ - remove InfrastructureBody.utmX
+ - remove InfrastructureBody.utmY
+ - remove Location.utmX
+ - remove Location.utmY
+ - remove Location.gridZone
+ - remove Location.initialRotationpoint
+
+### Package post
+
+Added:
+ - Field FileInputSource.splitLines
+ - Field FileInputSource.readRawText
+
+### Package workflow
+
+Added:
+ - Field FileInputNode.firstIsX
+ - Field FileInputNode.format
+ - Field FileInputNode.fileFromInput
+
+### Package environment
+
+Changed:
+ - remove WaveFromFile
+
+### Package hydro
+
+Added:
+ - Class SIFImportConfiguration
+ - Enum QTFImportOption
+ - Enum SecondOrderWaveDriftOption
+ - Field WamitImportConfiguration.taskName
+ - Field SumFrequencyQTF.bodyNumber
+ - Field SumFrequencyQTF.input
+ - Field SumFrequencyQTF.file
+ - Field SumFrequencyQTF.symmetry
+
+Changed:
+ - remove DirectionalSimplifiedWaveDriftDamping
+ - remove DirectionalWaveDriftDampingItem
+ - move ExternalStiffnessMatrix to wamit
+
+### Package simo
+
+Added:
+ - Class DisturbedWaveField
+ - Class SesamResultExport
+ - Field SIMOPreference.provisional
+ - Field SIMOModel.disturbedWaveField
+ - Field SIMODynamicCalculationParameters.storeWindVelocity
+ - Field SIMODynamicCalculationParameters.sesamResultExport
+ - Field SIMODynamicCalculationParameters.useOldResultStructure
+ - Field SIMODynamicCalculationParameters.exportResultsToSesam
+ - Field SIMODynamicCalculationParameters.storeSumFrequencyWaveForce
+ - Field SIMODynamicCalculationParameters.storeWaveForces
+ - Field SIMODynamicCalculationParameters.storeWaveParticleMotions
+ - Field SIMOBody.shapes
+ - Field Thruster.directionDependentLoss
+ - Field Thruster.surfaceProximityLoss
+
+Changed:
+ - remove ThrustLoss
+ - Custom migration of Thruster.thrustLoss
+ - rename WasimResultExport to SesamResultExport
+ - rename SIMODynamicCalculationParameters.exportResultsToWasim to exportResultsToSesam
+ - rename SIMODynamicCalculationParameters.wasimResultExport to sesamResultExport
+
+### Package riflex
+
+Added:
+ - Enum DimensionalInput
+ - Enum AerodynamicLoadFormulation
+ - Class DensityLevel
+ - Class NodeMessage
+ - Field FibreRope.aerodynamicLoadFormulation
+ - Field FibreRope.aerodynamicInput
+ - Field RIFLEXModel.disturbedWaveField
+ - Field WindTurbine.externalRotorLoadFile
+ - Field WindTurbine.externalRotorLoads
+ - Field WindTurbine.externalRotorLoadConfigFile
+ - Field CoupledAxialTorsionStrainModel.aerodynamicLoadFormulation
+ - Field CoupledAxialTorsionStrainModel.aerodynamicVivCoefficients
+ - Field CoupledAxialTorsionStrainModel.aerodynamicInput
+ - Field ResFile.nodeMessages
+ - Field AxisymmetricCrossSection.aerodynamicLoadFormulation
+ - Field AxisymmetricCrossSection.aerodynamicVivCoefficients
+ - Field AxisymmetricCrossSection.aerodynamicInput
+ - Field SupportVessel.shapes
+ - Field GeneralCrossSection.aerodynamicLoadFormulation
+ - Field GeneralCrossSection.aerodynamicInput
+ - Field RIFLEXLocation.depthDependentWaterDensity
+ - Field RIFLEXLocation.densityLevels
+ - Field DoubleSymmetricCrossSection.aerodynamicLoadFormulation
+ - Field DoubleSymmetricCrossSection.aerodynamicInput
+ - Field ThinWalledPipe.aerodynamicLoadFormulation
+ - Field ThinWalledPipe.aerodynamicVivCoefficients
+ - Field ThinWalledPipe.aerodynamicInput
+ - Option FileFormatCode.HDF5
+
+Changed:
+ - remove SoilType.pvDamping
+ - remove SoilType.mtDamping
+ - remove SoilType.baseShearLoadDamping
+ - remove SoilType.baseMomentDamping
+ - rename HydrodynamicInputCode to DimensionalInput
+ - rename AerodynamicInputCode to DimensionalInput
+ - remove DimensionalInput.NONE
+ - Custom migration of CRSAeroDynamics.aerodynamicInputCode
+ - remove CoupledAxialTorsionStrainModel.axialStiffnessInput
+ - remove CoupledAxialTorsionStrainModel.coupledAxialTorsionItems
+ - remove CoupledAxialTorsionStrainItem
+ - rename MatrixPlotFileOption.Min values and standard deviation to Min, max and standard deviation
+ - rename MatrixPlotFileOption.Max values and standard deviation to Min, max and standard deviation
+ - rename MatrixPlotFileOption.Min / max values and standard deviation to Min, max, mean, standard deviation, mean period
+
 ## [5.0.0]
 
 - Updated data model to reflect SIMA 5.0.0
