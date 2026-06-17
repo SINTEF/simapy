@@ -14,7 +14,7 @@ from .boundaryconditionframe import BoundaryConditionFrame
 from .nodeconstraint import NodeConstraint
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from .referenceframe import ReferenceFrame
+    from ..sima import FrameOfReference
     from .supportvessel import SupportVessel
     from ..simo import SuperNodeReference
     from .arline import ARLine
@@ -30,7 +30,7 @@ class SuperNode(NamedObject,SuperNodeReference):
          (default None)
     constraint : NodeConstraint
          Supernode type.
-    referenceFrame : ReferenceFrame
+    referenceFrame : FrameOfReference
          Reference frame for local coordinates.
     supportVessel : SupportVessel
          Support body reference.
@@ -191,12 +191,12 @@ class SuperNode(NamedObject,SuperNodeReference):
         self.__constraint = value
 
     @property
-    def referenceFrame(self) -> ReferenceFrame:
+    def referenceFrame(self) -> FrameOfReference:
         """Reference frame for local coordinates."""
         return self.__referenceFrame
 
     @referenceFrame.setter
-    def referenceFrame(self, value: ReferenceFrame):
+    def referenceFrame(self, value: FrameOfReference):
         """Set referenceFrame"""
         self.__referenceFrame = value
 

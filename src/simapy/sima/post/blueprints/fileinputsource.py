@@ -26,3 +26,5 @@ class FileInputSourceBlueprint(OperationNodeBlueprint):
         self.add_attribute(Attribute("fileFromInput","boolean","Input the filename to be imported from an input slot",default=False))
         self.add_attribute(EnumAttribute("format","sima/post/FileInputFormat",""))
         self.add_attribute(Attribute("firstIsX","boolean","Use the first signal as the x axis for all inputs",default=False))
+        self.add_attribute(Attribute("readRawText","boolean","read the file in as raw text data",default=False))
+        self.add_attribute(Attribute("splitLines","boolean","split separate lines into array",default=False))

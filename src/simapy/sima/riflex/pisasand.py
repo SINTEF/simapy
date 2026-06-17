@@ -20,30 +20,18 @@ class PisaSand(CommonSoilType):
          (default None)
     requiredResolution : int
          Required resolution of soil reaction curves(default 50)
-    pvDamping : float
-         (default 0.0)
-    mtDamping : float
-         (default 0.0)
-    baseShearLoadDamping : float
-         (default 0.0)
-    baseMomentDamping : float
-         (default 0.0)
     lateralDisplacementForce : CommonSoilCoefficients
     inPlaneMomentRotation : CommonSoilCoefficients
     baseShearLoad : CommonSoilCoefficients
     baseMoment : CommonSoilCoefficients
     """
 
-    def __init__(self , description="", requiredResolution=50, pvDamping=0.0, mtDamping=0.0, baseShearLoadDamping=0.0, baseMomentDamping=0.0, **kwargs):
+    def __init__(self , description="", requiredResolution=50, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
         self.requiredResolution = requiredResolution
-        self.pvDamping = pvDamping
-        self.mtDamping = mtDamping
-        self.baseShearLoadDamping = baseShearLoadDamping
-        self.baseMomentDamping = baseMomentDamping
         self.lateralDisplacementForce = None
         self.inPlaneMomentRotation = None
         self.baseShearLoad = None
@@ -100,46 +88,6 @@ class PisaSand(CommonSoilType):
     def requiredResolution(self, value: int):
         """Set requiredResolution"""
         self.__requiredResolution = int(value)
-
-    @property
-    def pvDamping(self) -> float:
-        """"""
-        return self.__pvDamping
-
-    @pvDamping.setter
-    def pvDamping(self, value: float):
-        """Set pvDamping"""
-        self.__pvDamping = float(value)
-
-    @property
-    def mtDamping(self) -> float:
-        """"""
-        return self.__mtDamping
-
-    @mtDamping.setter
-    def mtDamping(self, value: float):
-        """Set mtDamping"""
-        self.__mtDamping = float(value)
-
-    @property
-    def baseShearLoadDamping(self) -> float:
-        """"""
-        return self.__baseShearLoadDamping
-
-    @baseShearLoadDamping.setter
-    def baseShearLoadDamping(self, value: float):
-        """Set baseShearLoadDamping"""
-        self.__baseShearLoadDamping = float(value)
-
-    @property
-    def baseMomentDamping(self) -> float:
-        """"""
-        return self.__baseMomentDamping
-
-    @baseMomentDamping.setter
-    def baseMomentDamping(self, value: float):
-        """Set baseMomentDamping"""
-        self.__baseMomentDamping = float(value)
 
     @property
     def lateralDisplacementForce(self) -> CommonSoilCoefficients:

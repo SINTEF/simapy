@@ -9,6 +9,7 @@ from ..sima import Property
 from ..sima import Result
 from ..sima import ScriptableValue
 from ..sima import SimaMessage
+from .nodemessage import NodeMessage
 
 class ResFile(Result):
     """
@@ -37,6 +38,7 @@ class ResFile(Result):
          (default False)
     version : str
          (default None)
+    nodeMessages : List[NodeMessage]
     """
 
     def __init__(self , description="", relative=False, time=-1, size=-1, runNumber=-1, runFailed=False, **kwargs):
@@ -54,6 +56,7 @@ class ResFile(Result):
         self.messages = list()
         self.runFailed = runFailed
         self.version = None
+        self.nodeMessages = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -200,3 +203,15 @@ class ResFile(Result):
     def version(self, value: str):
         """Set version"""
         self.__version = value
+
+    @property
+    def nodeMessages(self) -> List[NodeMessage]:
+        """"""
+        return self.__nodeMessages
+
+    @nodeMessages.setter
+    def nodeMessages(self, value: List[NodeMessage]):
+        """Set nodeMessages"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__nodeMessages = value

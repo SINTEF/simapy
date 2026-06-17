@@ -19,6 +19,7 @@ from .iecturbulencecharacteristics import IECTurbulenceCharacteristics # noqa
 from .iecwindprofiletype import IECWindProfileType # noqa
 from .iecwindtype import IECWindType # noqa
 from .manninputformat import MannInputFormat # noqa
+from .pitchcontrol import PitchControl # noqa
 from .powerextraction import PowerExtraction # noqa
 from .randomseedgeneration import RandomSeedGeneration # noqa
 from .tableformat import TableFormat # noqa

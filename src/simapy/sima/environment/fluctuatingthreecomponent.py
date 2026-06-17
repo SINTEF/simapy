@@ -28,11 +28,11 @@ class FluctuatingThreeComponent(Wind):
     verticalFileName : str
          Path and filename for the fluctuating vertical wind time series(default None)
     lowerLeftX : float
-         X-coordinate of the upwind lower left data point, in wind aligned coordinates(default 0.0)
+         X-coordinate of the front lower left data point, in wind aligned coordinates(default 0.0)
     lowerLeftY : float
-         Y-coordinate of the upwind lower left data point, in wind aligned coordinates(default 0.0)
+         Y-coordinate of the front lower left data point, in wind aligned coordinates(default 0.0)
     lowerLeftZ : float
-         Z-coordinate of the upwind lower left data point, in wind aligned coordinates(default 0.0)
+         Z-coordinate of the front lower left data point, in wind aligned coordinates(default 0.0)
     numPointsX : int
          Number of grid points in X- (longitudinal) direction(default 0)
     numPointsY : int
@@ -169,7 +169,7 @@ class FluctuatingThreeComponent(Wind):
 
     @property
     def lowerLeftX(self) -> float:
-        """X-coordinate of the upwind lower left data point, in wind aligned coordinates"""
+        """X-coordinate of the front lower left data point, in wind aligned coordinates"""
         return self.__lowerLeftX
 
     @lowerLeftX.setter
@@ -179,7 +179,7 @@ class FluctuatingThreeComponent(Wind):
 
     @property
     def lowerLeftY(self) -> float:
-        """Y-coordinate of the upwind lower left data point, in wind aligned coordinates"""
+        """Y-coordinate of the front lower left data point, in wind aligned coordinates"""
         return self.__lowerLeftY
 
     @lowerLeftY.setter
@@ -189,7 +189,7 @@ class FluctuatingThreeComponent(Wind):
 
     @property
     def lowerLeftZ(self) -> float:
-        """Z-coordinate of the upwind lower left data point, in wind aligned coordinates"""
+        """Z-coordinate of the front lower left data point, in wind aligned coordinates"""
         return self.__lowerLeftZ
 
     @lowerLeftZ.setter

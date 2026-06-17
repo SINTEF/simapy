@@ -40,7 +40,7 @@ class ScatterDataCalculation(NamedObject,ConditionSelectable):
     baseCurrentProfile : Profile
     currentLevels : List[CalculationLevel]
     relativeCompassAngle : float
-         Relative angle between analysis x-axis and north direction in anti-clockwise direction.\nShould match the angle given in the recieving SIMA task location.(default 0.0)
+         This is the relative angle measured from the global x-axis to the compass North, measured counter-clockwise. Should match the angle given in the receiving SIMA task location.(default 0.0)
     inputReferenceSystem : InputReferenceSystem
          Defines the input reference system of the data.\nIf the data is defined in the Metocean system the corresponding SIMA coordinate system data is generated
     scatterData : ScatterData
@@ -193,8 +193,7 @@ class ScatterDataCalculation(NamedObject,ConditionSelectable):
 
     @property
     def relativeCompassAngle(self) -> float:
-        """Relative angle between analysis x-axis and north direction in anti-clockwise direction.
-Should match the angle given in the recieving SIMA task location."""
+        """This is the relative angle measured from the global x-axis to the compass North, measured counter-clockwise. Should match the angle given in the receiving SIMA task location."""
         return self.__relativeCompassAngle
 
     @relativeCompassAngle.setter

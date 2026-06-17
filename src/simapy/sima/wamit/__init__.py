@@ -1,4 +1,5 @@
 
+from .externalstiffnessmatrix import ExternalStiffnessMatrix # noqa
 from .hydrodynamicalcoupling import HydrodynamicalCoupling # noqa
 from .modesofmotion import ModesOfMotion # noqa
 from .parameterlines import ParameterLines # noqa

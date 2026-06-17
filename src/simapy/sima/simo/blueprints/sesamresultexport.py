@@ -1,17 +1,18 @@
 # 
-# Generated with ExternalStiffnessMatrixBlueprint
+# Generated with SesamResultExportBlueprint
 from dmt.blueprint import Blueprint
 from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from .matrix6 import Matrix6Blueprint
+from ...sima.blueprints.moao import MOAOBlueprint
 
-class ExternalStiffnessMatrixBlueprint(Matrix6Blueprint):
+class SesamResultExportBlueprint(MOAOBlueprint):
     """"""
 
-    def __init__(self, name="ExternalStiffnessMatrix", package_path="sima/hydro", description=""):
+    def __init__(self, name="SesamResultExport", package_path="sima/simo", description=""):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(Attribute("values","number","",Dimension("*"),default=0.0))
+        self.add_attribute(BlueprintAttribute("floaterBody","sima/simo/SIMOBody","",False))
+        self.add_attribute(BlueprintAttribute("pointForces","sima/simo/BodyForceComponentReference","",True,Dimension("*")))

@@ -1,6 +1,7 @@
 
 from .appearance import Appearance # noqa
 from .applicationstate import ApplicationState # noqa
+from .blockshape import BlockShape # noqa
 from .body import Body # noqa
 from .bodyviewpoint import BodyViewpoint # noqa
 from .command import Command # noqa
@@ -8,12 +9,17 @@ from .condition import Condition # noqa
 from .conditionresultcontainer import ConditionResultContainer # noqa
 from .conditionselectable import ConditionSelectable # noqa
 from .csvresult import CSVResult # noqa
+from .curvedplateprofileitem import CurvedPlateProfileItem # noqa
+from .curvedplateshape import CurvedPlateShape # noqa
+from .cylindershape import CylinderShape # noqa
 from .doublevariable import DoubleVariable # noqa
 from .fileresource import FileResource # noqa
 from .filestorage import FileStorage # noqa
 from .flatbottom import FlatBottom # noqa
 from .folderstorage import FolderStorage # noqa
 from .fontdescription import FontDescription # noqa
+from .frameofreference import FrameOfReference # noqa
+from .geometricshape import GeometricShape # noqa
 from .gittaskfolder import GitTaskFolder # noqa
 from .infrastructurebody import InfrastructureBody # noqa
 from .initialviewpoint import InitialViewpoint # noqa
@@ -23,7 +29,6 @@ from .jobpreference import JobPreference # noqa
 from .librarypathitem import LibraryPathItem # noqa
 from .librarypaths import LibraryPaths # noqa
 from .licensepreference import LicensePreference # noqa
-from .location import Location # noqa
 from .moao import MOAO # noqa
 from .modelreference import ModelReference # noqa
 from .modelreferencevariable import ModelReferenceVariable # noqa
@@ -41,6 +46,7 @@ from .resultentry import ResultEntry # noqa
 from .resultentrycontainer import ResultEntryContainer # noqa
 from .scriptablevalue import ScriptableValue # noqa
 from .scriptingpreference import ScriptingPreference # noqa
+from .shape import Shape # noqa
 from .simaapplicationpreference import SIMAApplicationPreference # noqa
 from .simacolor import SIMAColor # noqa
 from .simamessage import SimaMessage # noqa

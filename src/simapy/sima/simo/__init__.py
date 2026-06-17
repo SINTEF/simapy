@@ -30,6 +30,7 @@ from .depthdependenthydrodynamiccoefficient import DepthDependenthydrodynamicCoe
 from .directinputlinetype import DirectInputLineType # noqa
 from .distance import Distance # noqa
 from .distancekey import DistanceKey # noqa
+from .disturbedwavefield import DisturbedWaveField # noqa
 from .dockingcone import DockingCone # noqa
 from .dockingconecrosssection import DockingConeCrossSection # noqa
 from .dockingconepositioning import DockingConePositioning # noqa
@@ -105,6 +106,7 @@ from .ratchetcoupling import RatchetCoupling # noqa
 from .rollerberthingfender import RollerBerthingFender # noqa
 from .rollerfender import RollerFender # noqa
 from .segmentedlinetype import SegmentedLineType # noqa
+from .sesamresultexport import SesamResultExport # noqa
 from .signalentity import SignalEntity # noqa
 from .simobody import SIMOBody # noqa
 from .simobodypoint import SIMOBodyPoint # noqa
@@ -161,7 +163,6 @@ from .verticalbladeitem import VerticalBladeItem # noqa
 from .volumeboxitem import VolumeBoxItem # noqa
 from .volumeconeitem import VolumeConeItem # noqa
 from .volumemassportion import VolumeMassPortion # noqa
-from .wasimresultexport import WasimResultExport # noqa
 from .wavetimeseries import WaveTimeSeries # noqa
 from .waypoint import Waypoint # noqa
 from .winch import Winch # noqa
@@ -225,7 +226,6 @@ from .thrustcoefficientmodel import ThrustCoefficientModel # noqa
 from .thrusterallocationmethod import ThrusterAllocationMethod # noqa
 from .thrusterfailuremode import ThrusterFailureMode # noqa
 from .thrustertype import ThrusterType # noqa
-from .thrustloss import ThrustLoss # noqa
 from .thrustsignaltype import ThrustSignalType # noqa
 from .volume import Volume # noqa
 from .volumetype import VolumeType # noqa

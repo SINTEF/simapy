@@ -7,14 +7,14 @@ from dmt.blueprint import Blueprint
 from .blueprints.fibrerope import FibreRopeBlueprint
 from typing import Dict
 from ..sima import ScriptableValue
-from .aerodynamicinputcode import AerodynamicInputCode
+from .aerodynamicloadformulation import AerodynamicLoadFormulation
 from .crosssection import CrossSection
 from .crsaxialdamping import CRSAxialDamping
 from .crsaxialfrictionmodel import CRSAxialFrictionModel
 from .crsmassdamping import CRSMassDamping
 from .crsstiffnessdamping import CRSStiffnessDamping
+from .dimensionalinput import DimensionalInput
 from .fibreropemassvolume import FibreRopeMassVolume
-from .hydrodynamicinputcode import HydrodynamicInputCode
 from .loadformulation import LoadFormulation
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -44,7 +44,7 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     loadFormulation : LoadFormulation
     hydrodynamicDiameter : float
          Hydrodynamic diameter(default 0.0)
-    hydrodynamicInputCode : HydrodynamicInputCode
+    hydrodynamicInputCode : DimensionalInput
          Hydrodynamic input code
     addedMassTanDir : float
          Added mass in tangential direction(default 0.0)
@@ -80,7 +80,7 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
          Linear drag force coefficient in tangential direction.(default 0.0)
     cdly : float
          Linear drag force coefficient in normal direction.(default 0.0)
-    hydrodynamicRadiationInputCode : HydrodynamicInputCode
+    hydrodynamicRadiationInputCode : DimensionalInput
          Code for input of simplified radiation force coefficients
     massDampingSpecification : bool
          Mass proportional Rayleigh damping(default False)
@@ -108,10 +108,12 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
          Quadratic aerodynamic drag force coefficient per unit length in normal direction(default 0.0)
     cdaz : float
          Quadratic aerodynamic drag force coefficient per unit length in z direction(default 0.0)
-    aerodynamicInputCode : AerodynamicInputCode
+    aerodynamicInput : DimensionalInput
          Aerodynamic input code
     aerodynamicDiameter : float
          Aerodynamic diameter(default 0.0)
+    aerodynamicLoadFormulation : AerodynamicLoadFormulation
+         Aerodynamic input code
     massVolume : FibreRopeMassVolume
     tmax : float
          (default 0.0)
@@ -119,7 +121,7 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     stiffnessDamping : CRSStiffnessDamping
     """
 
-    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, hydrodynamicInputCode=HydrodynamicInputCode.DIMENSIONAL, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, normalDirectionScaling=1.0, tangentialDirectionScaling=1.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicRadiationInputCode=HydrodynamicInputCode.DIMENSIONAL, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, tensionCapacity=0.0, maxCurvature=0.0, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInputCode=AerodynamicInputCode.NONE, aerodynamicDiameter=0.0, tmax=0.0, **kwargs):
+    def __init__(self , description="", staticFriction=0.0, staticElongation=0.0, dynamicFriction=0.0, dynamicElongation=0.0, axialFriction=False, scfkSpecification=False, loadFormulation=LoadFormulation.MORISON, hydrodynamicDiameter=0.0, hydrodynamicInputCode=DimensionalInput.DIMENSIONAL, addedMassTanDir=0.0, addedMassNormDir=0.0, dampingNormDir=0.0, normalDirectionScaling=1.0, tangentialDirectionScaling=1.0, cdt=0.0, cdn=0.0, cmt=0.0, cmn=0.0, cdtl=0.0, cdnl=0.0, cdx=0.0, cdy=0.0, amx=0.0, amy=0.0, cdlx=0.0, cdly=0.0, hydrodynamicRadiationInputCode=DimensionalInput.DIMENSIONAL, massDampingSpecification=False, stiffnessDampingSpecification=False, axialDampingSpecification=False, temperature=0.0, alpha=0.0, beta=0.0, defaultExpansion=True, tensionCapacity=0.0, maxCurvature=0.0, cdax=0.0, cday=0.0, cdaz=0.0, aerodynamicInput=DimensionalInput.DIMENSIONAL, aerodynamicDiameter=0.0, aerodynamicLoadFormulation=AerodynamicLoadFormulation.NONE, tmax=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -165,8 +167,9 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.cdax = cdax
         self.cday = cday
         self.cdaz = cdaz
-        self.aerodynamicInputCode = aerodynamicInputCode
+        self.aerodynamicInput = aerodynamicInput
         self.aerodynamicDiameter = aerodynamicDiameter
+        self.aerodynamicLoadFormulation = aerodynamicLoadFormulation
         self.massVolume = None
         self.tmax = tmax
         self.fibreRopeModel = None
@@ -295,12 +298,12 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.__hydrodynamicDiameter = float(value)
 
     @property
-    def hydrodynamicInputCode(self) -> HydrodynamicInputCode:
+    def hydrodynamicInputCode(self) -> DimensionalInput:
         """Hydrodynamic input code"""
         return self.__hydrodynamicInputCode
 
     @hydrodynamicInputCode.setter
-    def hydrodynamicInputCode(self, value: HydrodynamicInputCode):
+    def hydrodynamicInputCode(self, value: DimensionalInput):
         """Set hydrodynamicInputCode"""
         self.__hydrodynamicInputCode = value
 
@@ -475,12 +478,12 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.__cdly = float(value)
 
     @property
-    def hydrodynamicRadiationInputCode(self) -> HydrodynamicInputCode:
+    def hydrodynamicRadiationInputCode(self) -> DimensionalInput:
         """Code for input of simplified radiation force coefficients"""
         return self.__hydrodynamicRadiationInputCode
 
     @hydrodynamicRadiationInputCode.setter
-    def hydrodynamicRadiationInputCode(self, value: HydrodynamicInputCode):
+    def hydrodynamicRadiationInputCode(self, value: DimensionalInput):
         """Set hydrodynamicRadiationInputCode"""
         self.__hydrodynamicRadiationInputCode = value
 
@@ -625,14 +628,14 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
         self.__cdaz = float(value)
 
     @property
-    def aerodynamicInputCode(self) -> AerodynamicInputCode:
+    def aerodynamicInput(self) -> DimensionalInput:
         """Aerodynamic input code"""
-        return self.__aerodynamicInputCode
+        return self.__aerodynamicInput
 
-    @aerodynamicInputCode.setter
-    def aerodynamicInputCode(self, value: AerodynamicInputCode):
-        """Set aerodynamicInputCode"""
-        self.__aerodynamicInputCode = value
+    @aerodynamicInput.setter
+    def aerodynamicInput(self, value: DimensionalInput):
+        """Set aerodynamicInput"""
+        self.__aerodynamicInput = value
 
     @property
     def aerodynamicDiameter(self) -> float:
@@ -643,6 +646,16 @@ class FibreRope(CrossSection,CRSAxialFrictionModel):
     def aerodynamicDiameter(self, value: float):
         """Set aerodynamicDiameter"""
         self.__aerodynamicDiameter = float(value)
+
+    @property
+    def aerodynamicLoadFormulation(self) -> AerodynamicLoadFormulation:
+        """Aerodynamic input code"""
+        return self.__aerodynamicLoadFormulation
+
+    @aerodynamicLoadFormulation.setter
+    def aerodynamicLoadFormulation(self, value: AerodynamicLoadFormulation):
+        """Set aerodynamicLoadFormulation"""
+        self.__aerodynamicLoadFormulation = value
 
     @property
     def massVolume(self) -> FibreRopeMassVolume:

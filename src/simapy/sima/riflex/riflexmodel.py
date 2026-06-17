@@ -9,6 +9,7 @@ from ..environment import Environment
 from ..sima import ScriptableValue
 from ..simo import AdvancedBumper
 from ..simo import BumperGroup
+from ..simo import DisturbedWaveField
 from ..simo import DockingCone
 from ..simo import FibreRopeModel
 from ..simo import FixedElongationCoupling
@@ -69,6 +70,7 @@ class RIFLEXModel(SIMOModel):
     stabilityCalculationParameters : StabilityCalculationParameters
     simoFrequencyDomainCalculation : SIMOFrequencyDomainCalculation
     fibreRopeModels : List[FibreRopeModel]
+    disturbedWaveField : List[DisturbedWaveField]
     slenderSystem : SlenderSystem
     supportVessels : List[SupportVessel]
     referenceFrames : List[ReferenceFrame]
@@ -108,6 +110,7 @@ class RIFLEXModel(SIMOModel):
         self.stabilityCalculationParameters = None
         self.simoFrequencyDomainCalculation = None
         self.fibreRopeModels = list()
+        self.disturbedWaveField = list()
         self.slenderSystem = None
         self.supportVessels = list()
         self.referenceFrames = list()
@@ -394,6 +397,18 @@ class RIFLEXModel(SIMOModel):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__fibreRopeModels = value
+
+    @property
+    def disturbedWaveField(self) -> List[DisturbedWaveField]:
+        """"""
+        return self.__disturbedWaveField
+
+    @disturbedWaveField.setter
+    def disturbedWaveField(self, value: List[DisturbedWaveField]):
+        """Set disturbedWaveField"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__disturbedWaveField = value
 
     @property
     def slenderSystem(self) -> SlenderSystem:

@@ -19,6 +19,8 @@ class WamitImportConfiguration(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    taskName : str
+         Name of task to import into. Required if bodyName is set.(default None)
     retardationFunctionParameters : RetardationFunctionCalculationParameters
     waveDriftForce : WamitWaveDriftForceOption
     waveForce : WamitWaveForceOption
@@ -34,6 +36,7 @@ class WamitImportConfiguration(MOAO):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
+        self.taskName = None
         self.retardationFunctionParameters = None
         self.waveDriftForce = waveDriftForce
         self.waveForce = waveForce
@@ -73,6 +76,16 @@ class WamitImportConfiguration(MOAO):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def taskName(self) -> str:
+        """Name of task to import into. Required if bodyName is set."""
+        return self.__taskName
+
+    @taskName.setter
+    def taskName(self, value: str):
+        """Set taskName"""
+        self.__taskName = value
 
     @property
     def retardationFunctionParameters(self) -> RetardationFunctionCalculationParameters:

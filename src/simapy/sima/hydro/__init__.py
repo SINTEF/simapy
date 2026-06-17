@@ -14,12 +14,9 @@ from .diffractedwave import DiffractedWave # noqa
 from .diffractedwaveelevation import DiffractedWaveElevation # noqa
 from .diffractedwavefield import DiffractedWaveField # noqa
 from .diffractedwavevelocity import DiffractedWaveVelocity # noqa
-from .directionalsimplifiedwavedriftdamping import DirectionalSimplifiedWaveDriftDamping # noqa
-from .directionalwavedriftdampingitem import DirectionalWaveDriftDampingItem # noqa
 from .directiondependentcomplexvalues import DirectionDependentComplexValues # noqa
 from .directiondependentvalues import DirectionDependentValues # noqa
 from .dynamicdirectionfrequencycomplexdata import DynamicDirectionFrequencyComplexData # noqa
-from .externalstiffnessmatrix import ExternalStiffnessMatrix # noqa
 from .firstordermotiontransferfunction import FirstOrderMotionTransferFunction # noqa
 from .firstorderwaveforcetransferfunction import FirstOrderWaveForceTransferFunction # noqa
 from .frequencydependentaddedmass import FrequencyDependentAddedMass # noqa
@@ -50,6 +47,7 @@ from .retardationelementdata import RetardationElementData # noqa
 from .retardationfunction import RetardationFunction # noqa
 from .retardationfunctioncalculationnode import RetardationFunctionCalculationNode # noqa
 from .retardationfunctioncalculationparameters import RetardationFunctionCalculationParameters # noqa
+from .sifimportconfiguration import SIFImportConfiguration # noqa
 from .simplifiedwavedriftdamping import SimplifiedWaveDriftDamping # noqa
 from .structuralmass import StructuralMass # noqa
 from .sumfrequencyqtf import SumFrequencyQTF # noqa
@@ -67,7 +65,9 @@ from .depthdistribution import DepthDistribution # noqa
 from .directionsymmetry import DirectionSymmetry # noqa
 from .dof import DOF # noqa
 from .gdftype import GDFType # noqa
+from .qtfimportoption import QTFImportOption # noqa
 from .qtfinput import QtfInput # noqa
+from .secondorderwavedriftoption import SecondOrderWaveDriftOption # noqa
 from .wamitqtfimportoption import WamitQtfImportOption # noqa
 from .wamitwavedriftforceoption import WamitWaveDriftForceOption # noqa
 from .wamitwaveforceoption import WamitWaveForceOption # noqa

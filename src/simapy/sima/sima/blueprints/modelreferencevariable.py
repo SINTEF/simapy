@@ -5,10 +5,10 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from .namedobject import NamedObjectBlueprint
+from .variable import VariableBlueprint
 from .modelreference import ModelReferenceBlueprint
 
-class ModelReferenceVariableBlueprint(NamedObjectBlueprint,ModelReferenceBlueprint):
+class ModelReferenceVariableBlueprint(VariableBlueprint,ModelReferenceBlueprint):
     """"""
 
     def __init__(self, name="ModelReferenceVariable", package_path="sima/sima", description=""):

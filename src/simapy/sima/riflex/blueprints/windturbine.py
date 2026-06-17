@@ -34,3 +34,6 @@ class WindTurbineBlueprint(NamedObjectBlueprint):
         self.add_attribute(BlueprintAttribute("measurementNodes","sima/riflex/MeasurementNode","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("measurementElements","sima/riflex/MeasurementElement","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("yawController","sima/riflex/HorizontalAxisYawController","",True))
+        self.add_attribute(Attribute("externalRotorLoads","boolean","Specify external DLL to calculate rotor aerodynamic loads",default=False))
+        self.add_attribute(Attribute("externalRotorLoadFile","string",""))
+        self.add_attribute(Attribute("externalRotorLoadConfigFile","string",""))

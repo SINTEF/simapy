@@ -28,6 +28,7 @@ from ..sima import BodyViewpoint
 from ..sima import Point3
 from ..sima import Position
 from ..sima import ScriptableValue
+from ..sima import Shape
 from .articulatedstructuredata import ArticulatedStructureData
 from .ballastsystem import BallastSystem
 from .bodyshapedata import BodyShapeData
@@ -78,6 +79,7 @@ class SIMOBody(Body):
     height : float
          Height(default 5.0)
     appearance : Appearance
+    shapes : List[Shape]
     initialPosition : Position
     viewpoints : List[BodyViewpoint]
     _type : BodyType
@@ -153,6 +155,7 @@ class SIMOBody(Body):
         self.width = width
         self.height = height
         self.appearance = None
+        self.shapes = list()
         self.initialPosition = None
         self.viewpoints = list()
         self._type = _type
@@ -292,6 +295,18 @@ class SIMOBody(Body):
     def appearance(self, value: Appearance):
         """Set appearance"""
         self.__appearance = value
+
+    @property
+    def shapes(self) -> List[Shape]:
+        """"""
+        return self.__shapes
+
+    @shapes.setter
+    def shapes(self, value: List[Shape]):
+        """Set shapes"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__shapes = value
 
     @property
     def initialPosition(self) -> Position:

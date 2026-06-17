@@ -16,9 +16,9 @@ class StochasticWind(NamedEntity):
          (default "")
     name : str
          name for the metocean data.(default None)
-    speed : ndarray
+    speed : ndarray of float
          mean wind speed.
-    direction : ndarray
+    direction : ndarray of float
          wind direction.
     level : float
          at this level, upward positive.(default 0.0)

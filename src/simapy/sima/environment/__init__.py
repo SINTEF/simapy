@@ -35,7 +35,6 @@ from .sletringen import Sletringen # noqa
 from .stationaryuniform import StationaryUniform # noqa
 from .turbsimfluctuatingthreecomponent import TurbSimFluctuatingThreeComponent # noqa
 from .wave import Wave # noqa
-from .wavefromfile import WaveFromFile # noqa
 from .wills import Wills # noqa
 from .wind import Wind # noqa
 from .windfromfile import WindFromFile # noqa

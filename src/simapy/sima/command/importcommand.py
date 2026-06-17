@@ -23,7 +23,7 @@ class ImportCommand(Command):
     file : str
          Path to file, e.g stask(default None)
     configuration : str
-         Path to configuration file (context specific)(default None)
+         Optional path to configuration file (context specific)(default None)
     """
 
     def __init__(self , description="", **kwargs):
@@ -101,7 +101,7 @@ class ImportCommand(Command):
 
     @property
     def configuration(self) -> str:
-        """Path to configuration file (context specific)"""
+        """Optional path to configuration file (context specific)"""
         return self.__configuration
 
     @configuration.setter

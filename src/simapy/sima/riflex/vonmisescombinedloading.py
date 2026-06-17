@@ -38,7 +38,7 @@ class VonMisesCombinedLoading(CombinedLoading):
     seastateReturnPeriod : float
          Return period used for estimating the characteristic extreme value(default 3.0)
     usageFactor : float
-         Usage factor according to e.g. API 2RD(default 1.0)
+         Design factor, F_D according to eg. API 2RD, not  to exceed 1(default 1.0)
     stress : VonMisesStress
          Usage factor according to e.g. API 2RD
     """
@@ -197,7 +197,7 @@ Given as the Z coordinate in global coordinate system."""
 
     @property
     def usageFactor(self) -> float:
-        """Usage factor according to e.g. API 2RD"""
+        """Design factor, F_D according to eg. API 2RD, not  to exceed 1"""
         return self.__usageFactor
 
     @usageFactor.setter

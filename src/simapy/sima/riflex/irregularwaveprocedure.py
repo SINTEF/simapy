@@ -34,7 +34,7 @@ class IrregularWaveProcedure(MOAO):
     zUpper : float
          Upper limit for wave kinematics(default 0.0)
     applyDiffractedWaves : bool
-         Whether diffracted wave points are to be specified(default False)
+         Whether diffracted wave points are to be specified(default True)
     waveKinematicDiffPoints : List[WaveKinematicsDiffPoint]
     waveKinematicNodePoints : List[WaveKinematicsNodePoint]
     waveKinematicsFile : bool
@@ -51,7 +51,7 @@ class IrregularWaveProcedure(MOAO):
     fileFormat : StorageType
     """
 
-    def __init__(self , description="", kinematicsPosition=KinematicsPositions.STATIC, kinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, defaultProcedureOn=True, nodeStep=1, zLower=0.0, zUpper=0.0, applyDiffractedWaves=False, waveKinematicsFile=False, waveKinematicsMaxColumns=0, waveKinematicsTimeColumn=0, waveKinematicsStorage=False, fileFormat=StorageType.BINARY, **kwargs):
+    def __init__(self , description="", kinematicsPosition=KinematicsPositions.STATIC, kinematicsInWaveZone=KinematicsInWaveZone.MEAN_WATER_LEVEL, defaultProcedureOn=True, nodeStep=1, zLower=0.0, zUpper=0.0, applyDiffractedWaves=True, waveKinematicsFile=False, waveKinematicsMaxColumns=0, waveKinematicsTimeColumn=0, waveKinematicsStorage=False, fileFormat=StorageType.BINARY, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()

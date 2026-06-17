@@ -16,4 +16,4 @@ class HsBinnedBlueprint(NamedEntityBlueprint):
         self.add_attribute(Attribute("name","string","unique name for this bin."))
         self.add_attribute(Attribute("upperHsLimit","number","mean sector direction.",default=0.0))
         self.add_attribute(Attribute("lowerHsLimit","number","mean sector direction.",default=0.0))
-        self.add_attribute(BlueprintAttribute("weibullDistribution","metocean/longTermStatistics/Weibull","Weibull parameters.",True))
+        self.add_attribute(BlueprintAttribute("weibullDistribution","/longTermStatistics/Weibull","Weibull parameters.",True))

@@ -33,8 +33,8 @@ class SIMOTask(ConditionTask):
     runNumber : int
          (default 0)
     scripts : List[SIMAScript]
-    variations : List[ModelVariation]
     referenceVariables : List[ModelReferenceVariable]
+    variations : List[ModelVariation]
     initialCondition : InitialCondition
     conditions : List[ConditionTaskCondition]
     model : SIMOModel
@@ -56,8 +56,8 @@ class SIMOTask(ConditionTask):
         self.stringVariables = list()
         self.runNumber = runNumber
         self.scripts = list()
-        self.variations = list()
         self.referenceVariables = list()
+        self.variations = list()
         self.initialCondition = None
         self.conditions = list()
         self.model = None
@@ -166,18 +166,6 @@ class SIMOTask(ConditionTask):
         self.__scripts = value
 
     @property
-    def variations(self) -> List[ModelVariation]:
-        """"""
-        return self.__variations
-
-    @variations.setter
-    def variations(self, value: List[ModelVariation]):
-        """Set variations"""
-        if not isinstance(value, Sequence):
-            raise ValueError("Expected sequense, but was " , type(value))
-        self.__variations = value
-
-    @property
     def referenceVariables(self) -> List[ModelReferenceVariable]:
         """"""
         return self.__referenceVariables
@@ -188,6 +176,18 @@ class SIMOTask(ConditionTask):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__referenceVariables = value
+
+    @property
+    def variations(self) -> List[ModelVariation]:
+        """"""
+        return self.__variations
+
+    @variations.setter
+    def variations(self, value: List[ModelVariation]):
+        """Set variations"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__variations = value
 
     @property
     def initialCondition(self) -> InitialCondition:

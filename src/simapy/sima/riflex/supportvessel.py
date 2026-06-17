@@ -12,6 +12,7 @@ from ..sima import Body
 from ..sima import BodyViewpoint
 from ..sima import Position
 from ..sima import ScriptableValue
+from ..sima import Shape
 
 class SupportVessel(Body):
     """
@@ -29,6 +30,7 @@ class SupportVessel(Body):
     height : float
          Height(default 5.0)
     appearance : Appearance
+    shapes : List[Shape]
     initialPosition : Position
     viewpoints : List[BodyViewpoint]
     firstOrderMotionTransferFunction : FirstOrderMotionTransferFunction
@@ -44,6 +46,7 @@ class SupportVessel(Body):
         self.width = width
         self.height = height
         self.appearance = None
+        self.shapes = list()
         self.initialPosition = None
         self.viewpoints = list()
         self.firstOrderMotionTransferFunction = None
@@ -130,6 +133,18 @@ class SupportVessel(Body):
     def appearance(self, value: Appearance):
         """Set appearance"""
         self.__appearance = value
+
+    @property
+    def shapes(self) -> List[Shape]:
+        """"""
+        return self.__shapes
+
+    @shapes.setter
+    def shapes(self, value: List[Shape]):
+        """Set shapes"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__shapes = value
 
     @property
     def initialPosition(self) -> Position:

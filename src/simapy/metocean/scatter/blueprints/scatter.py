@@ -18,5 +18,5 @@ class ScatterBlueprint(NamedEntityBlueprint):
         self.add_attribute(Attribute("tpUpperLimits","number","upper limits of the boundaries for each column in the scatter data.",Dimension("*"),default=0.0))
         self.add_attribute(Attribute("seaStateDuration","number","duration of sea state.",default=0.0))
         self.add_attribute(Attribute("countingPeriod","number","the duration which is used to count the occurrence of events.",default=0.0))
-        self.add_attribute(BlueprintAttribute("sectors","metocean/scatter/Sector","sector scatter data.",True,Dimension("*")))
-        self.add_attribute(BlueprintAttribute("omni","metocean/scatter/Sector","omni scatter data.",True))
+        self.add_attribute(BlueprintAttribute("sectors","/scatter/Sector","sector scatter data.",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("omni","/scatter/Sector","omni scatter data.",True))

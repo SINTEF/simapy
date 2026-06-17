@@ -16,9 +16,9 @@ class ExtremeValues(Entity):
          (default "")
     variable : str
          variable.(default None)
-    returnPeriods : ndarray
+    returnPeriods : ndarray of float
          return periods
-    extremes : ndarray
+    extremes : ndarray of float
          extreme values for the variable
     """
 

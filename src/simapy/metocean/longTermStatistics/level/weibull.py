@@ -18,11 +18,11 @@ class Weibull(Entity):
          variable.(default None)
     unit : str
          unit.(default None)
-    shape : ndarray
+    shape : ndarray of float
          shape.
-    scale : ndarray
+    scale : ndarray of float
          scale.
-    location : ndarray
+    location : ndarray of float
          location.
     """
 

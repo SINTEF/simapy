@@ -29,7 +29,7 @@ class EnvelopeCurveSpecification(MOAO):
     plotOption : MatrixPlotFileOption
     """
 
-    def __init__(self , description="", storeDisplacement=False, storeForce=False, storeCurvature=False, startTime=0.0, endTime=10000000.0, plotOption=MatrixPlotFileOption.MAX_AND_STANDARD_DEV, **kwargs):
+    def __init__(self , description="", storeDisplacement=False, storeForce=False, storeCurvature=False, startTime=0.0, endTime=10000000.0, plotOption=MatrixPlotFileOption.MIN_AND_STANDARD_DEV, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()

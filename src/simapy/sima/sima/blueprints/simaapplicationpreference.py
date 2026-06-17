@@ -22,3 +22,5 @@ class SIMAApplicationPreferenceBlueprint(SIMAPreferenceBlueprint):
         self.add_attribute(Attribute("autoSaveFrequency","integer","",default=5))
         self.add_attribute(Attribute("backupFolder","string",""))
         self.add_attribute(Attribute("numberOfSignificantDigits","integer","Maximum number of significant digits used to display floating point numbers (editors must be reopened) ",default=5))
+        self.add_attribute(Attribute("documentationLocation","string",""))
+        self.add_attribute(Attribute("externalHelp","boolean","",default=False))

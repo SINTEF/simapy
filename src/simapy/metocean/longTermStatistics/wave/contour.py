@@ -14,9 +14,9 @@ class Contour(Entity):
     -----------------
     description : str
          (default "")
-    Hs : ndarray
+    Hs : ndarray of float
          Hs.
-    Tp : ndarray
+    Tp : ndarray of float
          Tp
     returnPeriod : float
          return period(default 0.0)

@@ -35,3 +35,4 @@ class SIMOModelBlueprint(EnvironmentsContainerBlueprint):
         self.add_attribute(BlueprintAttribute("stabilityCalculationParameters","sima/simo/StabilityCalculationParameters","",True))
         self.add_attribute(BlueprintAttribute("simoFrequencyDomainCalculation","sima/simo/SIMOFrequencyDomainCalculation","",True))
         self.add_attribute(BlueprintAttribute("fibreRopeModels","sima/simo/FibreRopeModel","",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("disturbedWaveField","sima/simo/DisturbedWaveField","",True,Dimension("*")))

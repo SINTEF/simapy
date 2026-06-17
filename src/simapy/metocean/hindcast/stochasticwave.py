@@ -16,13 +16,13 @@ class StochasticWave(NamedEntity):
          (default "")
     name : str
          name for the metocean data.(default None)
-    hs : ndarray
+    hs : ndarray of float
          significant wave height.
-    tp : ndarray
+    tp : ndarray of float
          peack period.
     tm : float
          mean period.(default 0.0)
-    direction : ndarray
+    direction : ndarray of float
          dominant wave direction.
     meanDirection : float
          mean wave direction.(default 0.0)

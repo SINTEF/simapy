@@ -14,11 +14,11 @@ class Sectors(Entity):
     -----------------
     description : str
          (default "")
-    direction : ndarray
+    direction : ndarray of float
          sector direction.
-    sectorSize : ndarray
+    sectorSize : ndarray of float
          sector size.
-    probability : ndarray
+    probability : ndarray of float
          probability of this combination
     """
 

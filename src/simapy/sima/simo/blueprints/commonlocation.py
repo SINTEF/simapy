@@ -5,9 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from ...sima.blueprints.location import LocationBlueprint
+from ...sima.blueprints.namedobject import NamedObjectBlueprint
 
-class CommonLocationBlueprint(LocationBlueprint):
+class CommonLocationBlueprint(NamedObjectBlueprint):
     """"""
 
     def __init__(self, name="CommonLocation", package_path="sima/simo", description=""):

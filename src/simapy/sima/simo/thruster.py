@@ -16,7 +16,6 @@ from .thrusterfailuremode import ThrusterFailureMode
 from .thrusterforbiddenzone import ThrusterForbiddenZone
 from .thrusterreduction import ThrusterReduction
 from .thrustertype import ThrusterType
-from .thrustloss import ThrustLoss
 from .thrustsignaltype import ThrustSignalType
 from .thrusttorquecoefficient import ThrustTorqueCoefficient
 
@@ -80,16 +79,19 @@ class Thruster(IThruster):
     coefficientModel : ThrustCoefficientModel
     forwardThrustTorqueCoefficients : List[ThrustTorqueCoefficient]
     reverseThrustTorqueCoefficients : List[ThrustTorqueCoefficient]
-    thrustLoss : ThrustLoss
     surfaceProximityReductionFactors : List[SurfaceProximityReductionFactor]
     specifyControlSequence : bool
          Should a list of control signals be specified for thruster?(default False)
     controlSequenceSignalType : ThrustSignalType
          Unit for demanded thrust force
     controlSequence : List[ControlSequenceItem]
+    surfaceProximityLoss : bool
+         (default False)
+    directionDependentLoss : bool
+         (default False)
     """
 
-    def __init__(self , description="", minForce=0.0, maxForce=0.0, _type=ThrusterType.FIXED_CONVENTIONAL, diameter=1.0, forceDirection=0.0, force=0.0, minTimeChange=0.0, maxRevolvingSpeed=10.0, failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, maxRudderAngle=0.0, rudderCoefficient=0.0, relativeDeadBand=0.01, thrustReductionFactor=1.0, minDirectionChange=0.0, formulation=Formulation.SIMO_41, ctForward=1.0, cqForward=1.0, ctReverse=1.0, cqReverse=1.0, pdRatio=1.0, tcThrust=0.0, tcAzimuth=0.0, coefficientModel=ThrustCoefficientModel.INTERNAL, thrustLoss=ThrustLoss.NONE, specifyControlSequence=False, controlSequenceSignalType=ThrustSignalType.FORCE, **kwargs):
+    def __init__(self , description="", minForce=0.0, maxForce=0.0, _type=ThrusterType.FIXED_CONVENTIONAL, diameter=1.0, forceDirection=0.0, force=0.0, minTimeChange=0.0, maxRevolvingSpeed=10.0, failureMode=ThrusterFailureMode.NO_FAILURE, failureTime=0.0, maxRudderAngle=0.0, rudderCoefficient=0.0, relativeDeadBand=0.01, thrustReductionFactor=1.0, minDirectionChange=0.0, formulation=Formulation.SIMO_41, ctForward=1.0, cqForward=1.0, ctReverse=1.0, cqReverse=1.0, pdRatio=1.0, tcThrust=0.0, tcAzimuth=0.0, coefficientModel=ThrustCoefficientModel.INTERNAL, specifyControlSequence=False, controlSequenceSignalType=ThrustSignalType.FORCE, surfaceProximityLoss=False, directionDependentLoss=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -123,11 +125,12 @@ class Thruster(IThruster):
         self.coefficientModel = coefficientModel
         self.forwardThrustTorqueCoefficients = list()
         self.reverseThrustTorqueCoefficients = list()
-        self.thrustLoss = thrustLoss
         self.surfaceProximityReductionFactors = list()
         self.specifyControlSequence = specifyControlSequence
         self.controlSequenceSignalType = controlSequenceSignalType
         self.controlSequence = list()
+        self.surfaceProximityLoss = surfaceProximityLoss
+        self.directionDependentLoss = directionDependentLoss
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -470,16 +473,6 @@ class Thruster(IThruster):
         self.__reverseThrustTorqueCoefficients = value
 
     @property
-    def thrustLoss(self) -> ThrustLoss:
-        """"""
-        return self.__thrustLoss
-
-    @thrustLoss.setter
-    def thrustLoss(self, value: ThrustLoss):
-        """Set thrustLoss"""
-        self.__thrustLoss = value
-
-    @property
     def surfaceProximityReductionFactors(self) -> List[SurfaceProximityReductionFactor]:
         """"""
         return self.__surfaceProximityReductionFactors
@@ -522,3 +515,23 @@ class Thruster(IThruster):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__controlSequence = value
+
+    @property
+    def surfaceProximityLoss(self) -> bool:
+        """"""
+        return self.__surfaceProximityLoss
+
+    @surfaceProximityLoss.setter
+    def surfaceProximityLoss(self, value: bool):
+        """Set surfaceProximityLoss"""
+        self.__surfaceProximityLoss = bool(value)
+
+    @property
+    def directionDependentLoss(self) -> bool:
+        """"""
+        return self.__directionDependentLoss
+
+    @directionDependentLoss.setter
+    def directionDependentLoss(self, value: bool):
+        """Set directionDependentLoss"""
+        self.__directionDependentLoss = bool(value)

@@ -35,7 +35,7 @@ class WamitBodyResultBlueprint(NamedBlueprint):
         self.add_attribute(BlueprintAttribute("waveDriftForceControlSurface","sima/wamit/WamitWaveDriftForce","",True))
         self.add_attribute(BlueprintAttribute("waveDriftForcePressure","sima/wamit/WamitWaveDriftForce","",True))
         self.add_attribute(Attribute("waterDepth","number","Depth at global origin",default=0.0))
-        self.add_attribute(BlueprintAttribute("externalStiffness","sima/hydro/ExternalStiffnessMatrix","",True))
+        self.add_attribute(BlueprintAttribute("externalStiffness","sima/wamit/ExternalStiffnessMatrix","",True))
         self.add_attribute(BlueprintAttribute("structuralMass","sima/hydro/StructuralMass","",True))
         self.add_attribute(BlueprintAttribute("linearDamping","sima/hydro/LinearDampingMatrix","",True))
         self.add_attribute(BlueprintAttribute("hydrostaticStiffness","sima/hydro/HydrostaticStiffnessData","",True))

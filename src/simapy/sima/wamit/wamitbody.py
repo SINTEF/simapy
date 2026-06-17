@@ -14,6 +14,7 @@ from ..sima import BodyViewpoint
 from ..sima import Point3
 from ..sima import Position
 from ..sima import ScriptableValue
+from ..sima import Shape
 from .directionsofnormalsoption import DirectionsOfNormalsOption
 from .evaluationmodeoption import EvaluationModeOption
 from .modesofmotion import ModesOfMotion
@@ -38,6 +39,7 @@ class WamitBody(Body):
     height : float
          Height(default 5.0)
     appearance : Appearance
+    shapes : List[Shape]
     initialPosition : Position
     viewpoints : List[BodyViewpoint]
     geometryFilename : str
@@ -89,6 +91,7 @@ class WamitBody(Body):
         self.width = width
         self.height = height
         self.appearance = None
+        self.shapes = list()
         self.initialPosition = None
         self.viewpoints = list()
         self.geometryFilename = None
@@ -197,6 +200,18 @@ class WamitBody(Body):
     def appearance(self, value: Appearance):
         """Set appearance"""
         self.__appearance = value
+
+    @property
+    def shapes(self) -> List[Shape]:
+        """"""
+        return self.__shapes
+
+    @shapes.setter
+    def shapes(self, value: List[Shape]):
+        """Set shapes"""
+        if not isinstance(value, Sequence):
+            raise ValueError("Expected sequense, but was " , type(value))
+        self.__shapes = value
 
     @property
     def initialPosition(self) -> Position:

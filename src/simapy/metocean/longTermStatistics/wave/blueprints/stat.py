@@ -15,5 +15,5 @@ class StatBlueprint(NamedEntityBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(Attribute("name","string","name for this statistical data which appear in SIMA, e.g. wave12sec, or waveomni."))
         self.add_attribute(Attribute("duration","number","sampling rate in hours.",default=0.0))
-        self.add_attribute(BlueprintAttribute("sectors","metocean/longTermStatistics/wave/Sector","sectoral wave at this sampling rate for Hs.",True,Dimension("*")))
-        self.add_attribute(BlueprintAttribute("omni","metocean/longTermStatistics/wave/Sector","omni wave at this sampling rate for Hs.",True))
+        self.add_attribute(BlueprintAttribute("sectors","/longTermStatistics/wave/Sector","sectoral wave at this sampling rate for Hs.",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("omni","/longTermStatistics/wave/Sector","omni wave at this sampling rate for Hs.",True))

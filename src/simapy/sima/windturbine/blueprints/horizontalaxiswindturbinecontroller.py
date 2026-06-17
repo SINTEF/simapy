@@ -44,3 +44,4 @@ class HorizontalAxisWindTurbineControllerBlueprint(MOAOBlueprint):
         self.add_attribute(EnumAttribute("controllerType","sima/windturbine/ControllerType",""))
         self.add_attribute(Attribute("logFile","boolean","Log of signals to and from controller are written to a log file. The file <turbine name>.log is stored in the analysis folder. This option should be used for debugging purposes only. Avaliable for external controller only.",default=False))
         self.add_attribute(Attribute("accelerationFromDisplacement","boolean","Acceleration is calculated from the displacements",default=False))
+        self.add_attribute(EnumAttribute("pitchControl","sima/windturbine/PitchControl",""))

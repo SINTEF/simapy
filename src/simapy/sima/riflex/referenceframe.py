@@ -6,10 +6,14 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.referenceframe import ReferenceFrameBlueprint
 from typing import Dict
+from ..sima import FrameOfReference
 from ..sima import NamedObject
 from ..sima import ScriptableValue
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from ..sima import FrameOfReference
 
-class ReferenceFrame(NamedObject):
+class ReferenceFrame(NamedObject,FrameOfReference):
     """
     Keyword arguments
     -----------------
@@ -18,7 +22,7 @@ class ReferenceFrame(NamedObject):
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
-    parent : ReferenceFrame
+    parent : FrameOfReference
     xLocal : float
          Local (in parent frame) coordinate X(default 0.0)
     yLocal : float
@@ -89,12 +93,12 @@ class ReferenceFrame(NamedObject):
         self.__name = value
 
     @property
-    def parent(self) -> ReferenceFrame:
+    def parent(self) -> FrameOfReference:
         """"""
         return self.__parent
 
     @parent.setter
-    def parent(self, value: ReferenceFrame):
+    def parent(self, value: FrameOfReference):
         """Set parent"""
         self.__parent = value
 

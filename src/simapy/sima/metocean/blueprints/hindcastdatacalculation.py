@@ -24,7 +24,7 @@ class HindcastDataCalculationBlueprint(NamedObjectBlueprint,ConditionSelectableB
         self.add_attribute(Attribute("baseCurrentSpeed","number","",default=0.0))
         self.add_attribute(BlueprintAttribute("baseCurrentProfile","sima/metocean/Profile","",False))
         self.add_attribute(BlueprintAttribute("currentLevels","sima/metocean/CalculationLevel","",True,Dimension("*")))
-        self.add_attribute(Attribute("relativeCompassAngle","number","Relative angle between analysis x-axis and north direction in anti-clockwise direction.\nShould match the angle given in the recieving SIMA task location.",default=0.0))
+        self.add_attribute(Attribute("relativeCompassAngle","number","This is the relative angle measured from the global x-axis to the compass North, measured counter-clockwise. Should match the angle given in the receiving SIMA task location.",default=0.0))
         self.add_attribute(EnumAttribute("inputReferenceSystem","sima/metocean/InputReferenceSystem","Defines the input reference system of the data.\nIf the data is defined in the Metocean system the corresponding SIMA coordinate system data is generated"))
         self.add_attribute(BlueprintAttribute("hindcastData","sima/metocean/HindcastData","",False))
         self.add_attribute(Attribute("from","string",""))
