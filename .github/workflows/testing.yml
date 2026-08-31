@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.10', '3.11','3.12']
+        python-version: ['3.11', '3.12', '3.13', '3.14']
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -26,7 +26,7 @@ jobs:
       - name: Create output directory
         run: mkdir -p output
       - name: Run pylint
-        if: matrix.python-version == '3.10'
+        if: matrix.python-version == '3.11'
         run: |
           uv run pylint src/ --errors-only
       - name: Run tests
