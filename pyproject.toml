@@ -10,7 +10,7 @@ readme = "README.md"
 authors = [
     {name = "SINTEF Ocean"}
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 license = {text = "MIT License"}
 classifiers = [
     "Programming Language :: Python :: 3",
