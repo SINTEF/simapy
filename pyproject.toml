@@ -31,7 +31,13 @@ dev = [
     "pylint>=3.2.7",
     "pytest>=8.3.5",
 ]
+docs = [
+    "sphinx>=8.0.0",
+    "sphinx-rtd-theme>=2.0.0",
+    "myst-parser>=2.0.0",
+    "sphinx-autodoc-typehints>=2.0.0",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-packages = {find = {where = ["src"], exclude = ["tests"]}}
+packages = {find = {where = ["src"], exclude = ["tests", "tests.*"]}}
