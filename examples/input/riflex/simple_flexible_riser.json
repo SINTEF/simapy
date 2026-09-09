@@ -1,0 +1,693 @@
+{
+ "type" : "sima/ModelContent",
+ "header" : {
+  "type" : "sima/Header",
+  "packages" : [{
+    "type" : "sima/PackageInfo",
+    "name" : "simo",
+    "version" : 47
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "condition",
+    "version" : 20
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "riflex",
+    "version" : 45
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "hydro",
+    "version" : 30
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "windturbine",
+    "version" : 12
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "sima",
+    "version" : 25
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "environment",
+    "version" : 24
+   }]
+ },
+ "contents" : [{
+   "name" : "Simple_Flexible_Riser",
+   "type" : "sima/riflex/RIFLEXTask",
+   "description" : "An example demonstrating a simple flexible riser.\n\nFeatures in the model include:\n* vessel with RAO\n* flexible riser with buoyancy section\n* internal fluids\n* numerical wave spectrum.\n\nTo run static and dynamic analysis, right-click **Conditions > Initial** and press **Run static analysis** or **Run dynamic analysis**.\n\nClick **Open 3D view** to get a 3D view of the model.\n\nThe environment (wave, wind and current) is found under **Model > Environments**.",
+   "initialCondition" : {
+    "name" : "Initial",
+    "type" : "sima/condition/InitialCondition"
+   },
+   "model" : {
+    "type" : "sima/riflex/RIFLEXModel",
+    "environments" : [{
+      "name" : "ENV1",
+      "type" : "sima/environment/SingleEnvironment",
+      "description" : "+ Environment for verification of reg/irregular dynamics",
+      "wave" : {
+       "type" : "sima/environment/NumericalWave",
+       "directions" : [0.0],
+       "frequencies" : [0.522293, 0.522324, 0.523827, 0.523858],
+       "values" : [0.0, 32594.93234, 32594.93234, 0.0]
+      },
+      "current" : {
+       "type" : "sima/environment/RegularCurrent",
+       "items" : [{
+         "type" : "sima/environment/CurrentItem",
+         "velocity" : 1.0
+        }, {
+         "type" : "sima/environment/CurrentItem",
+         "level" : -90.0,
+         "velocity" : 0.9
+        }, {
+         "type" : "sima/environment/CurrentItem",
+         "level" : -100.0
+        }]
+      }
+     }],
+    "location" : {
+     "name" : "location",
+     "type" : "sima/riflex/RIFLEXLocation",
+     "initialViewpoint" : {
+      "type" : "sima/sima/InitialViewpoint",
+      "eye" : {
+       "type" : "sima/sima/Point3",
+       "x" : -1.0
+      },
+      "dir" : {
+       "type" : "sima/sima/Vector3",
+       "x" : 1.0
+      },
+      "up" : {
+       "type" : "sima/sima/Vector3",
+       "z" : 1.0
+      }
+     },
+     "initialRotationpoint" : {
+      "type" : "sima/sima/Point3"
+     },
+     "waterDepth" : 100.0,
+     "seaSurface" : {
+      "type" : "sima/environment/SeaSurface",
+      "sizeX" : 300.0,
+      "sizeY" : 300.0,
+      "color" : {
+       "type" : "sima/sima/SIMAColor",
+       "red" : 0.0,
+       "blue" : 0.7
+      },
+      "z" : 0.0
+     },
+     "flatBottom" : {
+      "type" : "sima/sima/FlatBottom",
+      "sizeX" : 400.0,
+      "sizeY" : 400.0,
+      "color" : {
+       "type" : "sima/sima/SIMAColor",
+       "red" : 0.7,
+       "green" : 0.7,
+       "blue" : 0.7
+      }
+     },
+     "physicalConstants" : {
+      "type" : "sima/simo/PhysicalConstants",
+      "airDensity" : 1.2999999999999998,
+      "kinematicViscosityWater" : 1.88E-6
+     }
+    },
+    "sIMOStaticCalculationParameters" : {
+     "type" : "sima/simo/SIMOStaticCalculationParameters",
+     "equilibriumGridDefinition" : {
+      "type" : "sima/simo/EquilibriumGridDefinition",
+      "roll" : {
+       "type" : "sima/simo/EquilibriumGridDefinitionRow"
+      },
+      "pitch" : {
+       "type" : "sima/simo/EquilibriumGridDefinitionRow"
+      }
+     },
+     "storageParameters" : {
+      "type" : "sima/simo/SIMOStaticResultStorageParameters"
+     }
+    },
+    "sIMODynamicCalculationParameters" : {
+     "type" : "sima/simo/SIMODynamicCalculationParameters",
+     "externalControlSetup" : {
+      "type" : "sima/simo/ExternalControlSetup"
+     },
+     "multiEnvironmentSetup" : {
+      "type" : "sima/simo/MultiEnvironmentSetup"
+     },
+     "randomNumberGenerator" : "LEGACY",
+     "waveTimeSeries" : {
+      "type" : "sima/simo/WaveTimeSeries"
+     },
+     "windSpectrumVerticalDomain" : {
+      "type" : "sima/simo/WindSpectrumVerticalDomain"
+     },
+     "timeStep" : 0.1,
+     "simulationLength" : 100.0
+    },
+    "slenderSystem" : {
+     "type" : "sima/riflex/SlenderSystem",
+     "superNodes" : [{
+       "name" : "RiserAnchor",
+       "_id" : "cbcf8902-2e99-42ce-bb3c-b7e6313e3aed",
+       "type" : "sima/riflex/SuperNode",
+       "xConstraint" : "FIXED",
+       "yConstraint" : "FIXED",
+       "zConstraint" : "FIXED",
+       "rxConstraint" : "FIXED",
+       "ryConstraint" : "FIXED",
+       "rzConstraint" : "FIXED",
+       "zInitial" : -50.0,
+       "zStatic" : -100.0,
+       "rotation" : -90.0
+      }, {
+       "name" : "RiserHangoff",
+       "_id" : "90c92366-db12-42e7-92db-6211b7328032",
+       "type" : "sima/riflex/SuperNode",
+       "supportVessel" : {
+        "type" : "sima/riflex/SupportVessel",
+        "_id" : "f0baa23b-c7af-4f11-af45-94322ea23372"
+       },
+       "xConstraint" : "FIXED",
+       "yConstraint" : "FIXED",
+       "zConstraint" : "FIXED",
+       "rxConstraint" : "FIXED",
+       "ryConstraint" : "FIXED",
+       "rzConstraint" : "FIXED",
+       "xInitial" : 160.0,
+       "zInitial" : -50.0,
+       "xStatic" : 60.0,
+       "zStatic" : 10.0,
+       "rotation" : -90.0
+      }],
+     "lines" : [{
+       "name" : "RiserLine",
+       "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb",
+       "type" : "sima/riflex/ARLine",
+       "lineType" : {
+        "type" : "sima/riflex/RegularLineType",
+        "_id" : "49da5685-4369-4dec-a90e-6cfcf28fc1b9"
+       },
+       "end1" : {
+        "type" : "sima/riflex/SuperNode",
+        "_id" : "cbcf8902-2e99-42ce-bb3c-b7e6313e3aed"
+       },
+       "end2" : {
+        "type" : "sima/riflex/SuperNode",
+        "_id" : "90c92366-db12-42e7-92db-6211b7328032"
+       }
+      }],
+     "lineTypes" : [{
+       "name" : "RiserLineType",
+       "_id" : "49da5685-4369-4dec-a90e-6cfcf28fc1b9",
+       "type" : "sima/riflex/RegularLineType",
+       "internalFluid" : {
+        "type" : "sima/riflex/InternalFluidType",
+        "_id" : "944ef83c-1095-4eb7-9810-9ef59bdccca5"
+       },
+       "segments" : [{
+         "type" : "sima/riflex/RegularSegment",
+         "length" : 10.0,
+         "numElements" : 5,
+         "crossSection" : {
+          "type" : "sima/riflex/AxisymmetricCrossSection",
+          "_id" : "1f698440-c191-4661-903e-b3144550a0a4"
+         }
+        }, {
+         "type" : "sima/riflex/RegularSegment",
+         "length" : 50.0,
+         "numElements" : 20,
+         "crossSection" : {
+          "type" : "sima/riflex/AxisymmetricCrossSection",
+          "_id" : "15c70015-9336-468a-9058-85a1bd58925d"
+         }
+        }, {
+         "type" : "sima/riflex/RegularSegment",
+         "length" : 100.0,
+         "numElements" : 40,
+         "crossSection" : {
+          "type" : "sima/riflex/AxisymmetricCrossSection",
+          "_id" : "1f698440-c191-4661-903e-b3144550a0a4"
+         }
+        }]
+      }],
+     "crossSections" : [{
+       "name" : "BareRiser",
+       "_id" : "1f698440-c191-4661-903e-b3144550a0a4",
+       "type" : "sima/riflex/AxisymmetricCrossSection",
+       "cdy" : 100.0,
+       "amy" : 50.0,
+       "massDamping" : {
+        "type" : "sima/riflex/CRSMassDamping"
+       },
+       "axialDamping" : {
+        "type" : "sima/riflex/CRSAxialDamping"
+       },
+       "temperature" : 20.0,
+       "alpha" : 0.0,
+       "beta" : 0.0,
+       "defaultExpansion" : false,
+       "tensionCapacity" : 1.0E9,
+       "maxCurvature" : 0.4,
+       "vivCoefficients" : {
+        "type" : "sima/riflex/TimeDomainVIVLoadCoefficients"
+       },
+       "massVolume" : {
+        "type" : "sima/riflex/AxisymmetricCrossSectionMassVolume",
+        "massCoefficient" : 100.0,
+        "extCrossSectionalArea" : 0.04909,
+        "intCrossSectionalArea" : 0.007854
+       },
+       "axialStiffness" : 1.0E9,
+       "bendingStiffness" : 10000.0,
+       "negativeTorsionStiffness" : 100000.0,
+       "barBeam" : "BEAM",
+       "stiffnessDamping" : {
+        "type" : "sima/riflex/CRSStiffnessDamping"
+       }
+      }, {
+       "name" : "BuoyancySection",
+       "_id" : "15c70015-9336-468a-9058-85a1bd58925d",
+       "type" : "sima/riflex/AxisymmetricCrossSection",
+       "cdx" : 250.0,
+       "cdy" : 200.0,
+       "amx" : 200.0,
+       "amy" : 200.0,
+       "massDamping" : {
+        "type" : "sima/riflex/CRSMassDamping"
+       },
+       "axialDamping" : {
+        "type" : "sima/riflex/CRSAxialDamping"
+       },
+       "temperature" : 20.0,
+       "alpha" : 0.0,
+       "beta" : 0.0,
+       "defaultExpansion" : false,
+       "tensionCapacity" : 1.0E9,
+       "maxCurvature" : 0.4,
+       "vivCoefficients" : {
+        "type" : "sima/riflex/TimeDomainVIVLoadCoefficients"
+       },
+       "massVolume" : {
+        "type" : "sima/riflex/AxisymmetricCrossSectionMassVolume",
+        "massCoefficient" : 100.0,
+        "extCrossSectionalArea" : 0.3,
+        "intCrossSectionalArea" : 0.0078542
+       },
+       "axialStiffness" : 1.0E9,
+       "bendingStiffness" : 10000.0,
+       "negativeTorsionStiffness" : 100000.0,
+       "barBeam" : "BEAM",
+       "stiffnessDamping" : {
+        "type" : "sima/riflex/CRSStiffnessDamping"
+       }
+      }],
+     "internalFluids" : [{
+       "name" : "Water",
+       "_id" : "944ef83c-1095-4eb7-9810-9ef59bdccca5",
+       "type" : "sima/riflex/InternalFluidType",
+       "density" : 1000.0
+      }]
+    },
+    "supportVessels" : [{
+      "name" : "VESSEL",
+      "_id" : "f0baa23b-c7af-4f11-af45-94322ea23372",
+      "type" : "sima/riflex/SupportVessel",
+      "appearance" : {
+       "type" : "sima/sima/Appearance",
+       "graphicsfile" : "C:\\dev\\testing\\sima-4.2.0\\ws\\Simple_Flexible_Riser\\_resources\\vessel.hsf",
+       "translation" : {
+        "type" : "sima/sima/Vector3"
+       },
+       "rotation" : {
+        "type" : "sima/sima/Vector3"
+       },
+       "scaling" : {
+        "type" : "sima/sima/Vector3",
+        "x" : 1.0,
+        "y" : 1.0,
+        "z" : 1.0
+       },
+       "color" : {
+        "type" : "sima/sima/SIMAColor"
+       },
+       "geomRepresentationType" : "FILE"
+      },
+      "initialPosition" : {
+       "type" : "sima/sima/Position",
+       "x" : 82.3205,
+       "y" : 1.33975,
+       "z" : -3.0,
+       "rz" : 30.0
+      },
+      "firstOrderMotionTransferFunction" : {
+       "type" : "sima/hydro/FirstOrderMotionTransferFunction",
+       "directions" : [0.0, 30.0, 60.0, 90.0],
+       "frequencies" : [0.2, 0.262, 0.273, 0.279, 0.286, 0.299, 0.314, 0.349, 0.393, 0.449, 0.483, 0.524, 0.571, 0.628, 0.698, 0.785, 0.9, 1.0, 1.2],
+       "symmetry" : "DOUBLE_SYMMETRY",
+       "hfReference" : -3.0,
+       "surge" : {
+        "type" : "sima/hydro/DirectionDependentComplexValues",
+        "directionalValues" : [{
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-1.0822608648262334E-4, -5.579933204117775E-4, -4.7068490757229214E-4, -4.8028457110438995E-4, -5.0376224691701E-4, -5.505057649169762E-4, -6.345734698318063E-4, -8.685717879487969E-4, -0.0011867995698220512, -0.001534725956996787, -0.001639463208792262, -0.0011366477844912347, -6.3836605576963E-4, 7.645852715258855E-4, 0.004250513756065927, 0.012150940775599134, 0.025592333634167082, 0.0, 0.0],
+          "imagValues" : [-1.0339999943361287, -0.8879998346866144, -0.8699998726756906, -0.8599998758876253, -0.8489998305439165, -0.8299997974357602, -0.8079997808146437, -0.7539995097233482, -0.6799989743424479, -0.5709979174885292, -0.4969973059287013, -0.4019984030712238, -0.2879992825143475, -0.14799802501845274, 0.011221993263653937, 0.16354924224302564, 0.23662002708806704, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-9.367731647720132E-5, -5.234550703170705E-4, -4.4679975375706545E-4, -4.551465849559199E-4, -4.6248094504308424E-4, -5.145055519738177E-4, -5.863938997950016E-4, -7.99011508357464E-4, -0.0011018462551587557, -0.001451518470488313, -0.0015980122390167547, -0.0013847296073085733, -0.0012021276991839088, -5.732403483023341E-4, 8.560448063353873E-4, 0.0030117721222923813, 0.0023344465988781927, 0.0, 0.0],
+          "imagValues" : [-0.8949999750975197, -0.768999811843143, -0.7529998874435376, -0.7449998609674945, -0.7359998546952136, -0.7189997959137661, -0.6999997443872351, -0.653999491911584, -0.5899989411302625, -0.4979978846281677, -0.4359970615002859, -0.35899732941056073, -0.26799731388391745, -0.1609989794859057, -0.04999267233594887, 0.03687721828830616, 0.046941987293647784, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-2.7052011028177572E-5, -4.262093474800065E-4, -3.264562137592753E-4, -3.2270385099092067E-4, -3.2636912807550703E-4, -3.549416240321631E-4, -4.0190731267491776E-4, -5.343913155730789E-4, -7.261032085654874E-4, -9.701269696479172E-4, -0.0010862634708206417, -0.0011072316481708431, -0.0010700126221248447, -7.992069208133494E-4, -6.534341035219023E-5, 0.001092287283766679, 6.935573015501754E-4, 0.0, 0.0],
+          "imagValues" : [-0.5170000192922521, -0.4439998054341828, -0.4349998775015235, -0.4299998889095492, -0.42499988468609295, -0.4149998382125511, -0.40399981008722285, -0.3779996122563117, -0.34099921694064134, -0.28799835606069496, -0.2529976580359432, -0.20799705295526974, -0.15599633031898055, -0.09599667421477541, -0.03199993528491468, 0.017966827001163078, 0.02298954062763035, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+          "imagValues" : [0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+         }]
+       },
+       "sway" : {
+        "type" : "sima/hydro/DirectionDependentComplexValues",
+        "directionalValues" : [{
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+          "imagValues" : [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [3.1289724493568074E-17, 1.722340910401045E-4, 2.1885698796022344E-4, 2.45057488622256E-4, 2.763624916486004E-4, 3.65391530094867E-4, 4.667009258816518E-4, 7.618068607680444E-4, 0.001236092459100782, 0.0018765523430790817, 0.0021924424749219505, 0.0031127376635420017, 0.0030594692877744063, 0.0025860745930638617, 0.001827055186371208, 0.0015374491991686989, 0.001370829107622436, 0.0, 0.0],
+          "imagValues" : [-0.51099998, -0.42899995542589275, -0.4179999527052831, -0.41299991729639285, -0.40599989594059416, -0.39499984099873997, -0.3819997149085923, -0.35199917563867517, -0.31199756139340684, -0.25599313207838953, -0.21998907517418714, -0.17797278124544205, -0.12896370445856953, -0.07595598669097198, -0.023930354559553734, 0.012908766399620667, 0.012927522096585063, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-3.0841992458415754E-5, 2.589679977290798E-4, 3.407057059595181E-4, 3.8628622908028004E-4, 4.2948732050408274E-4, 5.841569775994161E-4, 7.729653379834483E-4, 0.0013052365939181928, 0.0021890650712968287, 0.003493169563398718, 0.004218460212707666, 0.00534648652702607, 0.005708718951523451, 0.005463332498355004, 0.004494598568474519, 0.0036408046809912626, 0.00175942192559951, 0.0, 0.0],
+          "imagValues" : [-0.8839999994619749, -0.7419999348083371, -0.7229999097231079, -0.7139998855062579, -0.7029998788055668, -0.6829997801907599, -0.660999558051733, -0.6079985789764926, -0.5359955398266982, -0.43698604841161853, -0.37297614480477675, -0.29395138217367905, -0.20592088414712217, -0.10886299645890893, -0.01325890582620854, 0.052874799623969, 0.04596634023378106, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-7.12436069701459E-5, 2.240853359960537E-4, 3.0610176414644325E-4, 3.447661560787722E-4, 4.1046980957032967E-4, 5.776341101782954E-4, 7.846384082292152E-4, 0.0014049646498753617, 0.0024512413049856932, 0.00402479894678913, 0.004962568260338256, 0.00589351749358743, 0.006570611700809505, 0.006724586986641438, 0.006726476943781345, 0.008774672222377964, 0.01685487915745551, 0.0, 0.0],
+          "imagValues" : [-1.0209999975143722, -0.8559999806692535, -0.8349999238932363, -0.8229999377863267, -0.8109998861248598, -0.7879997782860315, -0.7619996160252108, -0.6999985800516546, -0.6159951228833429, -0.496983712945845, -0.4199706710191339, -0.3209459033412841, -0.209897172115008, -0.0787132807209756, 0.06364554102154202, 0.18979727376174252, 0.23840492500908547, 0.0, 0.0]
+         }]
+       },
+       "heave" : {
+        "type" : "sima/hydro/DirectionDependentComplexValues",
+        "directionalValues" : [{
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [1.1259965418836875, -1.1128256690161678, -0.021264904364904715, 0.16842340216102675, 0.29528184446452427, 0.4166506541291866, 0.48141007520653617, 0.5227754584366788, 0.502865728233602, 0.43590548029326615, 0.38492230780300385, 0.32128198082347087, 0.24243612531402564, 0.15266327060615806, 0.061904890528871416, -0.008940480806323195, -0.03396591090024508, 0.0, 0.0],
+          "imagValues" : [-0.002790638990770451, -0.6243356712368106, -0.1262212597083057, -0.0789275465506502, -0.05299658790553008, -0.03355951092791698, -0.02383966966292222, -0.015323839477111495, -0.011622370157999055, -0.009077639026589259, -0.007733644393795489, -0.021491598315316628, -0.01654464090640987, -0.010145235720817651, -0.003432842059933331, 0.0010333420303881445, 0.0015221802510269747, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [1.1269964898912999, -1.1265853504916707, -0.02799979435199459, 0.1626761736576972, 0.29014706578964883, 0.4126185147442036, 0.4773975120898762, 0.5197700290351113, 0.49886252670919307, 0.4309030867638604, 0.3799200959396593, 0.31850012435023056, 0.24060520571195093, 0.1547465507978551, 0.06988497967697589, 0.004895156168209441, -0.018980724748547312, 0.0, 0.0],
+          "imagValues" : [-0.0028127873523035745, -0.6284150285102665, -0.12694885393829286, -0.07935653031786886, -0.0532885945926263, -0.033792917753390515, -0.02399178797831877, -0.015462733162024376, -0.011712788964193895, -0.009138993236517904, -0.0077923488884963565, -0.017851531275713657, -0.01378894427828959, -0.008860305647484547, -0.004011186301914567, -0.0010185504841887186, -8.555992168560324E-4, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [1.1279963378231264, -1.1522557025679818, -0.040640156319537324, 0.15209610201054946, 0.2808760079574115, 0.40455944008168376, 0.4703737161035443, 0.5117625810243448, 0.48985953200541743, 0.4199044687562426, 0.36692479716489373, 0.3038440945916881, 0.2228987065422042, 0.13296242403482628, 0.042999270391226765, -0.02391725958528869, -0.04098470738021389, 0.0, 0.0],
+          "imagValues" : [-0.0028743447278942623, -0.6357379931226124, -0.12768859657120354, -0.08031674291949742, -0.0538950264301652, -0.03417091337372508, -0.024280810920197984, -0.01559105972348561, -0.011732378421852338, -0.008957048539434272, -0.00742970830528976, -0.00973448004555918, -0.006720611714147264, -0.0031612963769716363, 2.506627658241556E-4, 0.0019911539191926806, 0.0011197512930298862, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [1.1289961334665186, -1.1642149968125994, -0.046899444735853814, 0.14727457858445758, 0.2767444212340254, 0.4005350111128535, 0.4663651114191804, 0.5077606410335294, 0.4848601535561093, 0.4129088074416584, 0.3579323449388551, 0.29094754585932897, 0.20597997011286104, 0.10599915335569517, 4.4518189402979497E-4, -0.08679123510610616, -0.1168887318699651, 0.0, 0.0],
+          "imagValues" : [-0.0029163020523379894, -0.6388952774881412, -0.12872233428379354, -0.08083438935731764, -0.05418976799954425, -0.03428867032747752, -0.024343216528954808, -0.015593323482175982, -0.011646509929853265, -0.008678045696328041, -0.006960144148830722, -0.005525520648204957, -0.0028726141935305595, 4.236600946713919E-4, 0.003975149642620776, 0.006023370049782256, 0.0051014078283751286, 0.0, 0.0]
+         }]
+       },
+       "roll" : {
+        "type" : "sima/hydro/DirectionDependentComplexValues",
+        "directionalValues" : [{
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+          "imagValues" : [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-9.516914188726385E-6, -1.944487573420498E-5, -2.1757798260369175E-5, -2.2971748637361705E-5, -2.433189526766543E-5, -2.8163288102411957E-5, -3.258541782189839E-5, -4.405721725169839E-5, -6.038978126176142E-5, -8.110038909990599E-5, -9.088046109763865E-5, -2.2944983956072417E-4, -2.2882833125106278E-4, -1.9517928914580335E-4, -1.1288592836247961E-4, -9.985337501558473E-6, 3.9607852886480396E-5, 0.0, 0.0],
+          "imagValues" : [-0.002042244024247216, -0.0028420857491662107, -0.0029752046879023175, -0.0030396356300040287, -0.0031187689949979274, -0.003253207115855464, -0.0034068616894395703, -0.003728460370068654, -0.004046562120630864, -0.004294041894325231, -0.004324162578994624, -0.00425041306257842, -0.0038917764297979507, -0.003212317532309249, -0.002083034440486299, -7.537311832816335E-4, 2.4451933670408655E-4, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-1.6592646800789187E-5, -3.49987011716231E-5, -3.926871640236686E-5, -4.1609822178068765E-5, -4.4319036656167956E-5, -5.165502668830308E-5, -6.026979303452333E-5, -8.343390295295252E-5, -1.1883240995322773E-4, -1.6953276966151406E-4, -1.9910974846251565E-4, -3.318141345764993E-4, -3.6352750291464205E-4, -3.6506173212658285E-4, -3.076610596583315E-4, -1.8113131298539927E-4, -4.288051493960623E-5, 0.0, 0.0],
+          "imagValues" : [-0.0034951139900547476, -0.004878902271372588, -0.005101762091320218, -0.005216655191781269, -0.00535704890204452, -0.0055945869893965165, -0.005862649776805141, -0.006433604680890582, -0.007047545832029661, -0.007593359108939208, -0.007753659988707694, -0.007857845082325478, -0.007521652253174598, -0.006708153375996288, -0.00520614484760613, -0.003009743827191046, -7.418811256825963E-4, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-1.8924674041118463E-5, -4.072064690015723E-5, -4.582466618605811E-5, -4.867174019969828E-5, -5.186784757143611E-5, -6.091109022244174E-5, -7.155008693849428E-5, -1.001705618107831E-4, -1.4498524516333092E-4, -2.125167577066383E-4, -2.553013154983933E-4, -3.3198405678180106E-4, -3.815560213837171E-4, -4.1055544749139393E-4, -3.837635511481787E-4, -2.687522388398644E-4, -9.698789601997512E-5, 0.0, 0.0],
+          "imagValues" : [-0.0040159554555978146, -0.0056083658864687375, -0.005860531661329055, -0.005997092597271151, -0.006152641937827571, -0.006438827111783307, -0.006753461491175128, -0.007414711195081292, -0.008143323028586554, -0.008840942429152778, -0.00910574685864317, -0.009324789333924147, -0.009088489411667315, -0.008317073349975305, -0.006694302233592911, -0.004074214315239717, -9.03063747236845E-4, 0.0, 0.0]
+         }]
+       },
+       "pitch" : {
+        "type" : "sima/hydro/DirectionDependentComplexValues",
+        "directionalValues" : [{
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [1.4109030276997182E-4, -1.4241821604091482E-4, -8.044831683564107E-6, 1.6590841506466142E-5, 3.42582501013417E-5, 5.7479825156920124E-5, 7.621335872025898E-5, 1.1295320761758117E-4, 1.6175743737320642E-4, 2.2920508095173713E-4, 2.67641063160698E-4, 6.461612168759047E-4, 6.91084385136349E-4, 6.613534954133287E-4, 5.081208951570496E-4, 2.4007112727951382E-4, -1.4498272724510802E-5, 0.0, 0.0],
+          "imagValues" : [0.003560891670859351, 0.005293961748739115, 0.005621084958118649, 0.005761071563547893, 0.005929986036052172, 0.006213705034080167, 0.006536695330570906, 0.007190217119939513, 0.00787315122518264, 0.008459571381339138, 0.00859774467832273, 0.00848864619401099, 0.008000446632526527, 0.0068471261388812245, 0.0048409517595269244, 0.0021222236549764966, -4.952007273814039E-4, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [1.3738677383163018E-4, -1.5121988562029034E-4, -1.7042017265189577E-5, 7.259677969654206E-6, 2.4425320569879402E-5, 4.621018995080492E-5, 6.27434885991678E-5, 9.384398982766736E-5, 1.329213608240616E-4, 1.8299574324919936E-4, 2.093263851802783E-4, 4.453063480040236E-4, 4.598243097881906E-4, 4.176058102174519E-4, 2.9105617136959987E-4, 1.141346933688066E-4, -1.193228638536307E-6, 0.0, 0.0],
+          "imagValues" : [0.00309461716757906, 0.004592323700175439, 0.004882231723189396, 0.005011429124429702, 0.0051450067406544776, 0.0054032553324914415, 0.005669989513224234, 0.006237191264192639, 0.006811174988186858, 0.007254436468445427, 0.007342467037167114, 0.0072309815744853395, 0.006748412547968558, 0.005737429476334601, 0.004062431423297104, 0.0020068834274688903, 2.4770358139901747E-4, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [1.2816014563944958E-4, -1.7250524663589442E-4, -3.895738988472646E-5, -1.562259664404596E-5, 3.131191532050324E-7, 1.82430023870904E-5, 3.0344266376671622E-5, 4.8853581826104393E-5, 6.784560615869787E-5, 8.757891232930774E-5, 9.478120303547502E-5, 1.349495907910662E-4, 1.1979005261475971E-4, 7.17326960365431E-5, -1.528111003777519E-5, -1.0435692546976207E-4, -1.3107265183653777E-4, 0.0, 0.0],
+          "imagValues" : [0.00180471102691039, 0.002637566438425232, 0.0028252528414559283, 0.0029061790159186805, 0.0029915634313557246, 0.0031294467142915536, 0.003286488242433777, 0.003602229677743765, 0.003894659173872153, 0.004082301685441115, 0.004082390459330605, 0.0038877981859186195, 0.003463260423480506, 0.0026138371598047783, 0.0012912993405009717, -2.962385317228093E-4, -0.0013975369113408548, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [1.1650457199895415E-4, -1.9522797358238552E-4, -6.840628986476297E-5, -4.0367100077215695E-5, -3.1330783851777675E-5, -1.1063500252431785E-5, 1.2038931590879475E-5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+          "imagValues" : [3.578774796258016E-7, -7.298498105773842E-5, -1.4320738117787806E-5, -7.605554121301759E-6, -5.587632974649925E-6, -2.0792727813959925E-6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+         }]
+       },
+       "yaw" : {
+        "type" : "sima/hydro/DirectionDependentComplexValues",
+        "directionalValues" : [{
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+          "imagValues" : [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-5.001586826846335E-4, -6.060401132409386E-4, -6.286705507854924E-4, -6.466070070720386E-4, -6.573308529530727E-4, -6.861995726823915E-4, -7.217159292704929E-4, -7.979840771657991E-4, -9.087560642450332E-4, -0.0010335680253602555, -0.0011076233790243122, -0.0012073122629883111, -0.001327662464423729, -0.001523445461750906, -0.0017821087322569369, -0.0021859470076669935, -0.0025165927017448335, 0.0, 0.0],
+          "imagValues" : [1.131534005508727E-5, 1.8611486009017894E-5, 2.0448844081319415E-5, 2.160833467798514E-5, 2.2609908124293175E-5, 2.5917237242089996E-5, 2.9920660161119402E-5, 4.0508048689406374E-5, 5.7572185511937054E-5, 8.023645522703609E-5, 9.2542518471389E-5, 1.0813206907418971E-4, 1.1713638798237612E-4, 1.2621347774307293E-4, 1.4598368500014583E-4, 2.353083423716003E-4, 4.674224542593143E-4, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-4.931388016287386E-4, -5.774120353750643E-4, -5.885208072967454E-4, -5.950457191492694E-4, -6.040661856631018E-4, -6.296534790913467E-4, -6.49182643845844E-4, -6.713787744999227E-4, -6.717919063950337E-4, -5.866853988451493E-4, -4.7417719881258087E-4, -2.326642759677207E-4, 1.3089692555254666E-4, 6.810423254157971E-4, 0.0015395922484007436, 0.0025054660162523155, 0.0031034337464813213, 0.0, 0.0],
+          "imagValues" : [1.7048440682466057E-5, 2.384750401203055E-5, 2.5345481375276644E-5, 2.6177960830009675E-5, 2.718750166698343E-5, 3.072920835021412E-5, 3.456759651223033E-5, 4.4498891850593905E-5, 6.040495514665512E-5, 8.199375973024677E-5, 9.321887522560289E-5, 1.0116042966272399E-4, 1.0306492515114867E-4, 6.21954397224196E-5, -2.088001143262009E-5, -1.8997014186618175E-4, -4.618733456105516E-4, 0.0, 0.0]
+         }, {
+          "type" : "sima/hydro/ComplexValues",
+          "realValues" : [-2.1290146426697844E-8, -7.539828082293429E-8, -4.513286123325085E-8, -4.911019543823258E-8, -5.406390776591278E-8, -6.719467358487313E-8, -8.341720374951605E-8, -1.321124403231245E-7, -2.1778059744492142E-7, -3.703419919941053E-7, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+          "imagValues" : [1.3706468245309587E-5, 1.8947532079461555E-5, 9.984072972001955E-6, 1.0269215112474978E-5, 1.0608242879274492E-5, 1.1256993293542204E-5, 1.2038642590424987E-5, 1.4017124275800862E-5, 1.6861147303601608E-5, 2.115344753723622E-5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+         }]
+       }
+      }
+     }],
+    "riflexStaticCalculationParameters" : {
+     "type" : "sima/riflex/RIFLEXStaticCalculationParameters",
+     "loadTypeItems" : [{
+       "type" : "sima/riflex/StaticLoadTypeItem",
+       "maxIterations" : 20,
+       "accuracy" : 1.0E-6,
+       "boundaryChangeGroup" : {
+        "type" : "sima/riflex/BoundaryChangeGroup"
+       }
+      }, {
+       "type" : "sima/riflex/StaticLoadTypeItem",
+       "loadType" : "DISP",
+       "nStep" : 200,
+       "maxIterations" : 20,
+       "accuracy" : 1.0E-6,
+       "boundaryChangeGroup" : {
+        "type" : "sima/riflex/BoundaryChangeGroup"
+       }
+      }, {
+       "type" : "sima/riflex/StaticLoadTypeItem",
+       "loadType" : "CURR",
+       "maxIterations" : 20,
+       "accuracy" : 1.0E-6,
+       "boundaryChangeGroup" : {
+        "type" : "sima/riflex/BoundaryChangeGroup"
+       }
+      }],
+     "matrixStorage" : "SKYLINE",
+     "parameterVariation" : {
+      "type" : "sima/riflex/ParameterVariation",
+      "offsetVariation" : {
+       "type" : "sima/riflex/OffsetVariationItem"
+      },
+      "currentVariation" : {
+       "type" : "sima/riflex/CurrentVariationItem"
+      },
+      "boundaryChangeGroup" : {
+       "type" : "sima/riflex/BoundaryChangeGroup"
+      }
+     },
+     "massSummary" : {
+      "type" : "sima/riflex/MassSummary"
+     }
+    },
+    "riflexDynamicCalculationParameters" : {
+     "type" : "sima/riflex/RIFLEXDynamicCalculationParameters",
+     "irregularTimeSeries" : {
+      "type" : "sima/riflex/IrregularTimeSeriesParameters",
+      "randomSeedWaves" : 29852,
+      "waveLength" : 4096.0
+     },
+     "irregularResponseAnalysis" : {
+      "type" : "sima/riflex/IrregularResponseAnalysis",
+      "simulationLength" : 100.0,
+      "irregularWaveProcedure" : {
+       "type" : "sima/riflex/IrregularWaveProcedure"
+      },
+      "waveTimeSeries" : {
+       "type" : "sima/riflex/WaveTimeSeries"
+      }
+     },
+     "timeDomainProcedure" : {
+      "type" : "sima/riflex/TimeDomainProcedure",
+      "displacementStorage" : true,
+      "forceResultStorage" : true,
+      "curvatureResponseStorage" : true,
+      "envelopeCurveSpecification" : true,
+      "inverseBeta" : 3.9,
+      "gamma" : 0.505,
+      "nonLinearForceModel" : {
+       "type" : "sima/riflex/NonLinearForceModel",
+       "startUpDuration" : 12.0,
+       "dampingMatrixCalculation" : "UPDATED_PROPORTIONAL",
+       "slugForceSpecification" : {
+        "type" : "sima/riflex/SlugForceSpecification"
+       }
+      },
+      "nonLinearIntegrationProcedure" : {
+       "type" : "sima/riflex/NonLinearIntegrationProcedure",
+       "equilibriumIterationAccuracy" : 1.0E-6,
+       "autoTimeStepSubdivision" : 2
+      }
+     },
+     "envelopeCurveSpecification" : {
+      "type" : "sima/riflex/EnvelopeCurveSpecification",
+      "storeDisplacement" : true,
+      "storeForce" : true,
+      "storeCurvature" : true,
+      "startTime" : 60.0,
+      "endTime" : 72.0
+     },
+     "displacementResponseStorage" : {
+      "type" : "sima/riflex/DisplacementResponseStorage",
+      "storageStep" : 5,
+      "nodes" : [{
+        "type" : "sima/riflex/NodeReference",
+        "line" : {
+         "type" : "sima/riflex/ARLine",
+         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+        },
+        "allNodes" : true
+       }, {
+        "type" : "sima/riflex/NodeReference",
+        "line" : {
+         "type" : "sima/riflex/ARLine",
+         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+        },
+        "segment" : 2,
+        "allNodes" : true
+       }, {
+        "type" : "sima/riflex/NodeReference",
+        "line" : {
+         "type" : "sima/riflex/ARLine",
+         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+        },
+        "segment" : 3,
+        "allNodes" : true
+       }]
+     },
+     "forceResponseStorage" : {
+      "type" : "sima/riflex/ForceResponseStorage",
+      "storageStep" : 5,
+      "elements" : [{
+        "type" : "sima/riflex/ElementReference",
+        "line" : {
+         "type" : "sima/riflex/ARLine",
+         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+        }
+       }, {
+        "type" : "sima/riflex/ElementReference",
+        "line" : {
+         "type" : "sima/riflex/ARLine",
+         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+        },
+        "segment" : 3,
+        "allElements" : true
+       }]
+     },
+     "sumForceResponseStorage" : {
+      "type" : "sima/riflex/SumForceResponseStorage"
+     },
+     "curvatureResponseStorage" : {
+      "type" : "sima/riflex/CurvatureResponseStorage",
+      "storageStep" : 5,
+      "elements" : [{
+        "type" : "sima/riflex/ElementReference",
+        "line" : {
+         "type" : "sima/riflex/ARLine",
+         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+        },
+        "segment" : 3,
+        "allElements" : true
+       }]
+     },
+     "stressStorage" : {
+      "type" : "sima/riflex/StressStorage"
+     },
+     "turbineResponseStorage" : {
+      "type" : "sima/riflex/TurbineResponseStorage"
+     },
+     "turbineBladeResponseStorage" : {
+      "type" : "sima/riflex/TurbineBladeResponseStorage"
+     },
+     "supportVesselForceStorage" : {
+      "type" : "sima/riflex/SupportVesselForceStorage"
+     },
+     "bodyForceStorage" : {
+      "type" : "sima/riflex/BodyForceStorage"
+     },
+     "hydrodynamicLoadStorage" : {
+      "type" : "sima/riflex/HydrodynamicLoadStorage"
+     },
+     "dynamicWindChange" : {
+      "type" : "sima/riflex/DynamicWindChange"
+     },
+     "windTurbineShutdown" : {
+      "type" : "sima/riflex/WindTurbineShutdown"
+     },
+     "bladePitchFault" : {
+      "type" : "sima/riflex/BladePitchFault"
+     },
+     "visualisationResponses" : {
+      "type" : "sima/riflex/DynmodVisualisationResponses",
+      "endTime" : 100.0,
+      "timeIncrement" : 0.2,
+      "storeVisualisationResponses" : true
+     },
+     "regularWaveAnalysis" : {
+      "type" : "sima/riflex/RegularWaveAnalaysis"
+     },
+     "regularWaveLoading" : {
+      "type" : "sima/riflex/RegularWaveLoading"
+     },
+     "dynamicLoads" : {
+      "type" : "sima/riflex/DynamicLoads",
+      "dynamicNodalForces" : {
+       "_id" : "3eaa5463-8b4d-4297-b762-e5c313e4991c",
+       "type" : "sima/riflex/DynamicNodalForces"
+      },
+      "dynamicCurrentVariation" : {
+       "_id" : "b3c42ea4-1fc0-416b-ae67-5af32e9e4e58",
+       "type" : "sima/riflex/DynamicCurrentVariation"
+      },
+      "rigidMoonpoolColumns" : {
+       "_id" : "4a51fdd7-9b0d-4b01-878e-c8e1049bda6d",
+       "type" : "sima/riflex/RigidMoonpoolColumn"
+      },
+      "windVelocityRamping" : {
+       "type" : "sima/riflex/WindVelocityRamping"
+      }
+     },
+     "bottomContactStorage" : {
+      "type" : "sima/riflex/BottomContactStorage"
+     }
+    }
+   }
+  }]
+}
