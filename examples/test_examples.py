@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Test runner for all simapy examples.
 
-This script discovers and runs all Python examples in the src/ directory that contain
+This script discovers and runs all Python examples in this directory that contain
 a main method (if __name__ == "__main__": block), capturing their output and reporting any failures.
 """
 import os
@@ -10,6 +10,10 @@ import subprocess
 import sys
 from pathlib import Path
 from typing import List, Tuple
+
+
+#: The examples live here, one subdirectory per domain, and run from here.
+EXAMPLES = Path(__file__).parent
 
 
 def has_main_method(file_path: Path) -> bool:
@@ -36,10 +40,10 @@ def has_main_method(file_path: Path) -> bool:
 
 
 def discover_examples(src_dir: Path) -> List[Path]:
-    """Discover all Python example files with main methods in the src directory.
+    """Discover all Python example files with main methods below a directory.
     
     Args:
-        src_dir: Path to the source directory containing examples
+        src_dir: Directory holding the examples, one subdirectory per domain
         
     Returns:
         List of paths to Python example files that have main methods
@@ -67,7 +71,9 @@ def run_example(example_path: Path, timeout: int = 60) -> Tuple[bool, str, str]:
     """
     try:
         # Change to the project root directory to ensure relative paths work
-        project_root = example_path.parents[2]  # Go up from src/category/file.py to project root
+        # Examples use paths relative to this directory -- input/simo/simo.stask
+        # and output/simo/condition -- so that is what they must run from.
+        project_root = EXAMPLES
         
         result = subprocess.run(
             [sys.executable, str(example_path)],
@@ -88,11 +94,10 @@ def run_example(example_path: Path, timeout: int = 60) -> Tuple[bool, str, str]:
 
 def main():
     """Main test runner function."""
-    project_root = Path(__file__).parent
-    src_dir = project_root / "src"
-    
+    src_dir = EXAMPLES
+
     if not src_dir.exists():
-        print(f"❌ Source directory not found: {src_dir}")
+        print(f"❌ Examples directory not found: {src_dir}")
         sys.exit(1)
     
     print("🔍 Discovering examples with main methods...")

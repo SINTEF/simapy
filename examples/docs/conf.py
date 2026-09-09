@@ -7,9 +7,9 @@
 # Add the project root directory to Python's path so autodoc can find the modules
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../..'))
 # Add the run_parallel directory to path so utils can be imported
-sys.path.insert(0, os.path.abspath('../src/riflex/run_parallel'))
+sys.path.insert(0, os.path.abspath('../riflex/run_parallel'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information

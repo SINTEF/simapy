@@ -2,7 +2,7 @@ Use SIMAPy to create a grid of connected bodies
 
 ![Example grid setup](../images/example_1.png)
 
-```{literalinclude} ../../src/simo/create_connected_bodies.py
+```{literalinclude} ../../simo/create_connected_bodies.py
 :language: python
 :linenos:
 :caption: create_connected_bodies.py
@@ -15,7 +15,7 @@ Use SIMAPy to create a grid of connected bodies
 # Create Connected Bodies
 
 ```{eval-rst}
-.. automodule:: src.simo.create_connected_bodies
+.. automodule:: examples.simo.create_connected_bodies
    :members:
    :undoc-members:
    :show-inheritance:
@@ -23,7 +23,7 @@ Use SIMAPy to create a grid of connected bodies
 
 ## Source Code
 
-```{literalinclude} ../../src/simo/create_connected_bodies.py
+```{literalinclude} ../../simo/create_connected_bodies.py
 :language: python
 :linenos:
 :caption: create_connected_bodies.py

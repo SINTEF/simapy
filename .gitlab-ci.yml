@@ -3,7 +3,7 @@
 # publish stage here — GitLab is for development and testing only.
 # All runners in the sima group are tagged; linux+sima are the docker executors.
 
-stages: [test]
+stages: [test, deploy]
 
 variables:
   UV_CACHE_DIR: "$CI_PROJECT_DIR/.cache/uv"
@@ -50,3 +50,30 @@ lint:
   script:
     - uv sync
     - uv run pylint src/ --errors-only
+
+
+# The examples moved in from the simapy-examples repository. Their docs autodoc
+# the example modules, so this fails if an example stops being importable --
+# easy to do by accident, since an example that runs as a script is not
+# necessarily importable as examples.<domain>.<module>.
+docs:
+  stage: test
+  script:
+    - uv sync --group docs
+    - cd examples/docs
+    - uv run --group docs python -m sphinx -b html . _build/html
+  artifacts:
+    paths: [examples/docs/_build/html]
+    expire_in: 1 week
+
+# Only from the default branch, matching the GitHub workflow the examples came
+# with. The project and its Pages site are private, so this is the team's copy.
+pages:
+  stage: deploy
+  needs: [docs]
+  script:
+    - mv examples/docs/_build/html public
+  artifacts:
+    paths: [public]
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
