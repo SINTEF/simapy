@@ -1,0 +1,64 @@
+# GitLab port of .github/workflows/docs.yml.
+#
+# The docs are built and published in both places, for different audiences.
+# GitHub Pages is the public site, deployed from GitHub when the examples are
+# released. GitLab Pages is the same content for the team while the examples
+# run ahead of a SIMA release: the project is private and its
+# pages_access_level is private, so that site is visible to members only.
+#
+# All runners in the sima group are tagged; linux+sima are the docker executors.
+
+stages: [test, deploy]
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_TAG
+    - if: $CI_PIPELINE_SOURCE == "web"
+    # Branch pipelines, but not a second one alongside an open MR.
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS == null
+
+default:
+  tags: [linux, sima]
+  image: python:3.12-slim
+  interruptible: true
+  before_script:
+    - pip install --quiet --upgrade pip
+
+variables:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+# The docs autodoc the example modules, so this fails if an example stops being
+# importable -- which is easy to do by accident, since an example that runs as a
+# script is not necessarily importable as src.<package>.<module>.
+docs:
+  stage: test
+  script:
+    - pip install --quiet -r requirements.txt -r requirements-dev.txt
+    - cd docs
+    - python -m sphinx -b html . _build/html
+  artifacts:
+    paths: [docs/_build/html]
+    expire_in: 1 week
+
+# Syntax only -- compileall does not import, so it will not catch an example
+# that imports a sibling in a way only a script invocation resolves. The docs
+# job is what catches that, and only for examples that have a page.
+compile:
+  stage: test
+  script:
+    - pip install --quiet -r requirements.txt
+    - python -m compileall -q src
+
+# Only from the default branch, as the GitHub workflow deploys only from main.
+# Verified once with this rule lifted: the job deployed to
+# simapy-examples-eb99ee.pages.sintef.no, which is members-only.
+pages:
+  stage: deploy
+  needs: [docs]
+  script:
+    - mv docs/_build/html public
+  artifacts:
+    paths: [public]
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
