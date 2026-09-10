@@ -62,8 +62,8 @@ def main():
     # Write signals to input file
     SIMAWriter().write([a, b], ws / "input.json")
 
-    # Locate stask file in folder "input" at the root of this repository
-    stask = Path(__file__).parent / ".." / ".." / "input" / "workflow" / "simple_workflow_run.stask"
+    # Locate stask file in the examples "input" folder
+    stask = Path(__file__).parents[1] / "input" / "workflow" / "simple_workflow_run.stask"
 
     # Prepare SRE commands
     commands = []

@@ -45,7 +45,7 @@ def __copy_and_move(sn: SuperNode, offset):
 def main():
     """Main function to execute the RIFLEX model example."""
     reader = SIMAReader()
-    root = Path(__file__).parent / ".." / ".."
+    root = Path(__file__).parents[1]
     input = root / "input"
     contents = reader.read(input / "riflex" / "simple_flexible_riser.json")
     # Using type hints is not necessary but is useful to get automatic help when using an IDE, such as vscode or pycharm

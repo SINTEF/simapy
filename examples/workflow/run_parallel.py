@@ -13,7 +13,7 @@ from simapy.sima.signals.equallyspacedsignal import EquallySpacedSignal
 
 def run_single(case_num: int, a: float, b: float):
     print(f'Starting case {case_num}')
-    ws_root = Path(__file__).parent / '..' / '..' / 'output' / 'workflow' / 'concurent'
+    ws_root = Path(__file__).parents[1] / 'output' / 'workflow' / 'concurent'
     ws = ws_root / f'ws_{case_num}'
     if ws.exists():
         shutil.rmtree(ws,ignore_errors=True)
@@ -26,8 +26,8 @@ def run_single(case_num: int, a: float, b: float):
 
     SIMAWriter().write([a_signal, b_signal], ws / 'input.json')
 
-    # Locate stask file in folder 'input' at the root of this repository
-    stask = Path(__file__).parent / '..' / '..' / 'input' / 'workflow' / 'simple_workflow_run.stask'
+    # Locate stask file in the examples 'input' folder
+    stask = Path(__file__).parents[1] / 'input' / 'workflow' / 'simple_workflow_run.stask'
 
     commands = []
     commands.append('--import')
