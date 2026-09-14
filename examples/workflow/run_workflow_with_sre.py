@@ -36,7 +36,7 @@ def main():
         shutil.rmtree(ws, ignore_errors=True)
     os.makedirs(ws, exist_ok=True)
 
-    input = Path(__file__).parent / ".." / ".." / "input"
+    input = Path(__file__).parents[1] / "input"
     json_file = input / "workflow" / "workflow_task.json"
     # This will be used as an input
     scale = 3.0

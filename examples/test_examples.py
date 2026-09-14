@@ -3,6 +3,14 @@
 
 This script discovers and runs all Python examples in this directory that contain
 a main method (if __name__ == "__main__": block), capturing their output and reporting any failures.
+
+Pass one or more directory names to run only those groups::
+
+    python test_examples.py             # every example
+    python test_examples.py riflex simo # only those two directories
+
+Useful in CI, where the metocean examples cannot run: they fetch hindcast data
+over the network and need metocean_api/metocean_stats.
 """
 import os
 import re
@@ -14,6 +22,9 @@ from typing import List, Tuple
 
 #: The examples live here, one subdirectory per domain, and run from here.
 EXAMPLES = Path(__file__).parent
+
+#: An example that drives SRE runs a solver, so minutes rather than seconds.
+DEFAULT_TIMEOUT = int(os.environ.get("EXAMPLE_TIMEOUT", "900"))
 
 
 def has_main_method(file_path: Path) -> bool:
@@ -39,17 +50,19 @@ def has_main_method(file_path: Path) -> bool:
         return False
 
 
-def discover_examples(src_dir: Path) -> List[Path]:
+def discover_examples(src_dir: Path, groups: List[str] = None) -> List[Path]:
     """Discover all Python example files with main methods below a directory.
-    
+
     Args:
         src_dir: Directory holding the examples, one subdirectory per domain
-        
+        groups: Names of the subdirectories to search; all of them when empty
+
     Returns:
         List of paths to Python example files that have main methods
     """
+    roots = [src_dir / group for group in groups] if groups else [src_dir]
     examples = []
-    for py_file in src_dir.rglob("*.py"):
+    for py_file in (f for root in roots for f in root.rglob("*.py")):
         # Skip __init__.py files and any test files
         if py_file.name != "__init__.py" and "test" not in py_file.name.lower():
             # Only include files with a main method
@@ -59,7 +72,7 @@ def discover_examples(src_dir: Path) -> List[Path]:
     return sorted(examples)
 
 
-def run_example(example_path: Path, timeout: int = 60) -> Tuple[bool, str, str]:
+def run_example(example_path: Path, timeout: int = DEFAULT_TIMEOUT) -> Tuple[bool, str, str]:
     """Run a single example and capture its output.
     
     Args:
@@ -70,16 +83,17 @@ def run_example(example_path: Path, timeout: int = 60) -> Tuple[bool, str, str]:
         Tuple of (success, stdout, stderr)
     """
     try:
-        # Change to the project root directory to ensure relative paths work
-        # Examples use paths relative to this directory -- input/simo/simo.stask
-        # and output/simo/condition -- so that is what they must run from.
-        project_root = EXAMPLES
-        
+        # Examples use paths relative to the examples directory --
+        # input/simo/simo.stask and output/simo/condition -- so that is what
+        # they must run from.
         result = subprocess.run(
             [sys.executable, str(example_path)],
-            cwd=project_root,
+            cwd=EXAMPLES,
             capture_output=True,
             text=True,
+            # An example's own output must not be able to fail the decode.
+            encoding="utf-8",
+            errors="replace",
             timeout=timeout
         )
         
@@ -94,19 +108,32 @@ def run_example(example_path: Path, timeout: int = 60) -> Tuple[bool, str, str]:
 
 def main():
     """Main test runner function."""
+    # The report is full of emoji, and a Windows console defaults to cp1252,
+    # where printing one raises UnicodeEncodeError.
+    for stream in (sys.stdout, sys.stderr):
+        stream.reconfigure(encoding="utf-8", errors="replace")
+
     src_dir = EXAMPLES
+    groups = sys.argv[1:]
 
     if not src_dir.exists():
         print(f"❌ Examples directory not found: {src_dir}")
         sys.exit(1)
-    
+
+    missing = [group for group in groups if not (src_dir / group).is_dir()]
+    if missing:
+        available = sorted({p.relative_to(src_dir).parts[0] for p in discover_examples(src_dir)})
+        print(f"❌ No such example group: {', '.join(missing)}")
+        print(f"   Available: {', '.join(available)}")
+        sys.exit(1)
+
     print("🔍 Discovering examples with main methods...")
-    examples = discover_examples(src_dir)
-    
+    examples = discover_examples(src_dir, groups)
+
     if not examples:
         print("❌ No examples with main methods found!")
         sys.exit(1)
-    
+
     print(f"📋 Found {len(examples)} examples with main methods to test")
     print()
     
@@ -114,7 +141,7 @@ def main():
     passed_examples = []
     
     for i, example in enumerate(examples, 1):
-        relative_path = example.relative_to(project_root)
+        relative_path = example.relative_to(EXAMPLES)
         print(f"[{i}/{len(examples)}] Running {relative_path}...")
         
         success, stdout, stderr = run_example(example)

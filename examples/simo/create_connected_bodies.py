@@ -61,7 +61,7 @@ if __name__ == "__main__":
             coupling.endPoint2 = model.bodies[idx2].bodyPoints[0]
             model.simpleWireCouplings.append(coupling)
 
-    output = Path(__file__).parent / ".." / ".." / "output" / "simo"
+    output = Path(__file__).parents[1] / "output" / "simo"
     os.makedirs(output, exist_ok=True)
 
     # Write model to JSON file
