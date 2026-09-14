@@ -6,11 +6,12 @@ a main method (if __name__ == "__main__": block), capturing their output and rep
 
 Pass one or more directory names to run only those groups::
 
-    python test_examples.py             # every example
-    python test_examples.py riflex simo # only those two directories
+    python test_examples.py               # every group that can run unattended
+    python test_examples.py riflex simo   # only those two directories
+    python test_examples.py metocean      # named explicitly, so it runs anyway
 
-Useful in CI, where the metocean examples cannot run: they fetch hindcast data
-over the network and need metocean_api/metocean_stats.
+Which groups are runnable is decided here rather than by the caller, so CI does
+not have to carry a second copy of the list and keep it in step.
 """
 import os
 import re
@@ -25,6 +26,11 @@ EXAMPLES = Path(__file__).parent
 
 #: An example that drives SRE runs a solver, so minutes rather than seconds.
 DEFAULT_TIMEOUT = int(os.environ.get("EXAMPLE_TIMEOUT", "900"))
+
+#: Groups left out when no group is named, and why. Naming one runs it anyway.
+NOT_UNATTENDED = {
+    "metocean": "downloads hindcast data and needs metocean_api/metocean_stats",
+}
 
 
 def has_main_method(file_path: Path) -> bool:
@@ -50,12 +56,25 @@ def has_main_method(file_path: Path) -> bool:
         return False
 
 
+def runnable_groups(src_dir: Path) -> List[str]:
+    """The groups to run when the caller names none: every one but NOT_UNATTENDED.
+
+    Args:
+        src_dir: Directory holding the examples, one subdirectory per domain
+
+    Returns:
+        Sorted group names, each holding at least one example with a main method
+    """
+    found = {path.relative_to(src_dir).parts[0] for path in discover_examples(src_dir, [])}
+    return sorted(found - set(NOT_UNATTENDED))
+
+
 def discover_examples(src_dir: Path, groups: List[str] = None) -> List[Path]:
     """Discover all Python example files with main methods below a directory.
 
     Args:
         src_dir: Directory holding the examples, one subdirectory per domain
-        groups: Names of the subdirectories to search; all of them when empty
+        groups: Names of the subdirectories to search; every directory when empty
 
     Returns:
         List of paths to Python example files that have main methods
@@ -126,6 +145,13 @@ def main():
         print(f"❌ No such example group: {', '.join(missing)}")
         print(f"   Available: {', '.join(available)}")
         sys.exit(1)
+
+    # No group named means every group that can run unattended. A caller that
+    # names one gets it regardless, so the skip is a default and not a ban.
+    if not groups:
+        groups = runnable_groups(src_dir)
+        for group, reason in sorted(NOT_UNATTENDED.items()):
+            print(f"⏭️  Skipping {group}: {reason}")
 
     print("🔍 Discovering examples with main methods...")
     examples = discover_examples(src_dir, groups)
