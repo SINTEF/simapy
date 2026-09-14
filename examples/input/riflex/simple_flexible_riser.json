@@ -4,32 +4,32 @@
   "type" : "sima/Header",
   "packages" : [{
     "type" : "sima/PackageInfo",
-    "name" : "simo",
-    "version" : 47
-   }, {
-    "type" : "sima/PackageInfo",
-    "name" : "condition",
-    "version" : 20
-   }, {
-    "type" : "sima/PackageInfo",
-    "name" : "riflex",
-    "version" : 45
-   }, {
-    "type" : "sima/PackageInfo",
-    "name" : "hydro",
-    "version" : 30
+    "name" : "sima",
+    "version" : 26
    }, {
     "type" : "sima/PackageInfo",
     "name" : "windturbine",
-    "version" : 12
-   }, {
-    "type" : "sima/PackageInfo",
-    "name" : "sima",
-    "version" : 25
+    "version" : 13
    }, {
     "type" : "sima/PackageInfo",
     "name" : "environment",
-    "version" : 24
+    "version" : 25
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "riflex",
+    "version" : 46
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "condition",
+    "version" : 21
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "hydro",
+    "version" : 31
+   }, {
+    "type" : "sima/PackageInfo",
+    "name" : "simo",
+    "version" : 48
    }]
  },
  "contents" : [{
@@ -84,9 +84,6 @@
        "type" : "sima/sima/Vector3",
        "z" : 1.0
       }
-     },
-     "initialRotationpoint" : {
-      "type" : "sima/sima/Point3"
      },
      "waterDepth" : 100.0,
      "seaSurface" : {
@@ -154,7 +151,7 @@
      "type" : "sima/riflex/SlenderSystem",
      "superNodes" : [{
        "name" : "RiserAnchor",
-       "_id" : "cbcf8902-2e99-42ce-bb3c-b7e6313e3aed",
+       "_id" : "5f342b1b-3556-403e-82d2-e2fa0ce2541f",
        "type" : "sima/riflex/SuperNode",
        "xConstraint" : "FIXED",
        "yConstraint" : "FIXED",
@@ -167,11 +164,11 @@
        "rotation" : -90.0
       }, {
        "name" : "RiserHangoff",
-       "_id" : "90c92366-db12-42e7-92db-6211b7328032",
+       "_id" : "f026f3df-1c24-4d16-beea-cba3df2c6364",
        "type" : "sima/riflex/SuperNode",
        "supportVessel" : {
         "type" : "sima/riflex/SupportVessel",
-        "_id" : "f0baa23b-c7af-4f11-af45-94322ea23372"
+        "_id" : "2b80dc94-e0c7-45fc-bb0c-156ae294a5a9"
        },
        "xConstraint" : "FIXED",
        "yConstraint" : "FIXED",
@@ -187,28 +184,28 @@
       }],
      "lines" : [{
        "name" : "RiserLine",
-       "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb",
+       "_id" : "4d459834-e791-486c-b20e-6a958d6fa33b",
        "type" : "sima/riflex/ARLine",
        "lineType" : {
         "type" : "sima/riflex/RegularLineType",
-        "_id" : "49da5685-4369-4dec-a90e-6cfcf28fc1b9"
+        "_id" : "e82b8a8a-0d63-4d8f-89ec-441a4ced3661"
        },
        "end1" : {
         "type" : "sima/riflex/SuperNode",
-        "_id" : "cbcf8902-2e99-42ce-bb3c-b7e6313e3aed"
+        "_id" : "5f342b1b-3556-403e-82d2-e2fa0ce2541f"
        },
        "end2" : {
         "type" : "sima/riflex/SuperNode",
-        "_id" : "90c92366-db12-42e7-92db-6211b7328032"
+        "_id" : "f026f3df-1c24-4d16-beea-cba3df2c6364"
        }
       }],
      "lineTypes" : [{
        "name" : "RiserLineType",
-       "_id" : "49da5685-4369-4dec-a90e-6cfcf28fc1b9",
+       "_id" : "e82b8a8a-0d63-4d8f-89ec-441a4ced3661",
        "type" : "sima/riflex/RegularLineType",
        "internalFluid" : {
         "type" : "sima/riflex/InternalFluidType",
-        "_id" : "944ef83c-1095-4eb7-9810-9ef59bdccca5"
+        "_id" : "0538c86a-a4f9-41d3-b8d8-f5c44c932b78"
        },
        "segments" : [{
          "type" : "sima/riflex/RegularSegment",
@@ -216,7 +213,7 @@
          "numElements" : 5,
          "crossSection" : {
           "type" : "sima/riflex/AxisymmetricCrossSection",
-          "_id" : "1f698440-c191-4661-903e-b3144550a0a4"
+          "_id" : "f0288119-542b-40f4-b86a-0fd47468880d"
          }
         }, {
          "type" : "sima/riflex/RegularSegment",
@@ -224,7 +221,7 @@
          "numElements" : 20,
          "crossSection" : {
           "type" : "sima/riflex/AxisymmetricCrossSection",
-          "_id" : "15c70015-9336-468a-9058-85a1bd58925d"
+          "_id" : "a0564e0e-3a99-472b-897f-49a845208985"
          }
         }, {
          "type" : "sima/riflex/RegularSegment",
@@ -232,13 +229,13 @@
          "numElements" : 40,
          "crossSection" : {
           "type" : "sima/riflex/AxisymmetricCrossSection",
-          "_id" : "1f698440-c191-4661-903e-b3144550a0a4"
+          "_id" : "f0288119-542b-40f4-b86a-0fd47468880d"
          }
         }]
       }],
      "crossSections" : [{
        "name" : "BareRiser",
-       "_id" : "1f698440-c191-4661-903e-b3144550a0a4",
+       "_id" : "f0288119-542b-40f4-b86a-0fd47468880d",
        "type" : "sima/riflex/AxisymmetricCrossSection",
        "cdy" : 100.0,
        "amy" : 50.0,
@@ -257,6 +254,9 @@
        "vivCoefficients" : {
         "type" : "sima/riflex/TimeDomainVIVLoadCoefficients"
        },
+       "aerodynamicVivCoefficients" : {
+        "type" : "sima/riflex/TimeDomainVIVLoadCoefficients"
+       },
        "massVolume" : {
         "type" : "sima/riflex/AxisymmetricCrossSectionMassVolume",
         "massCoefficient" : 100.0,
@@ -272,7 +272,7 @@
        }
       }, {
        "name" : "BuoyancySection",
-       "_id" : "15c70015-9336-468a-9058-85a1bd58925d",
+       "_id" : "a0564e0e-3a99-472b-897f-49a845208985",
        "type" : "sima/riflex/AxisymmetricCrossSection",
        "cdx" : 250.0,
        "cdy" : 200.0,
@@ -293,6 +293,9 @@
        "vivCoefficients" : {
         "type" : "sima/riflex/TimeDomainVIVLoadCoefficients"
        },
+       "aerodynamicVivCoefficients" : {
+        "type" : "sima/riflex/TimeDomainVIVLoadCoefficients"
+       },
        "massVolume" : {
         "type" : "sima/riflex/AxisymmetricCrossSectionMassVolume",
         "massCoefficient" : 100.0,
@@ -309,14 +312,14 @@
       }],
      "internalFluids" : [{
        "name" : "Water",
-       "_id" : "944ef83c-1095-4eb7-9810-9ef59bdccca5",
+       "_id" : "0538c86a-a4f9-41d3-b8d8-f5c44c932b78",
        "type" : "sima/riflex/InternalFluidType",
        "density" : 1000.0
       }]
     },
     "supportVessels" : [{
       "name" : "VESSEL",
-      "_id" : "f0baa23b-c7af-4f11-af45-94322ea23372",
+      "_id" : "2b80dc94-e0c7-45fc-bb0c-156ae294a5a9",
       "type" : "sima/riflex/SupportVessel",
       "appearance" : {
        "type" : "sima/sima/Appearance",
@@ -571,14 +574,14 @@
         "type" : "sima/riflex/NodeReference",
         "line" : {
          "type" : "sima/riflex/ARLine",
-         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+         "_id" : "4d459834-e791-486c-b20e-6a958d6fa33b"
         },
         "allNodes" : true
        }, {
         "type" : "sima/riflex/NodeReference",
         "line" : {
          "type" : "sima/riflex/ARLine",
-         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+         "_id" : "4d459834-e791-486c-b20e-6a958d6fa33b"
         },
         "segment" : 2,
         "allNodes" : true
@@ -586,7 +589,7 @@
         "type" : "sima/riflex/NodeReference",
         "line" : {
          "type" : "sima/riflex/ARLine",
-         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+         "_id" : "4d459834-e791-486c-b20e-6a958d6fa33b"
         },
         "segment" : 3,
         "allNodes" : true
@@ -599,13 +602,13 @@
         "type" : "sima/riflex/ElementReference",
         "line" : {
          "type" : "sima/riflex/ARLine",
-         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+         "_id" : "4d459834-e791-486c-b20e-6a958d6fa33b"
         }
        }, {
         "type" : "sima/riflex/ElementReference",
         "line" : {
          "type" : "sima/riflex/ARLine",
-         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+         "_id" : "4d459834-e791-486c-b20e-6a958d6fa33b"
         },
         "segment" : 3,
         "allElements" : true
@@ -621,7 +624,7 @@
         "type" : "sima/riflex/ElementReference",
         "line" : {
          "type" : "sima/riflex/ARLine",
-         "_id" : "bc8f9483-911f-4ea6-bf94-9050c0e3e0eb"
+         "_id" : "4d459834-e791-486c-b20e-6a958d6fa33b"
         },
         "segment" : 3,
         "allElements" : true
@@ -669,15 +672,15 @@
      "dynamicLoads" : {
       "type" : "sima/riflex/DynamicLoads",
       "dynamicNodalForces" : {
-       "_id" : "3eaa5463-8b4d-4297-b762-e5c313e4991c",
+       "_id" : "e488211a-2a1b-4056-a293-e97460e92bd7",
        "type" : "sima/riflex/DynamicNodalForces"
       },
       "dynamicCurrentVariation" : {
-       "_id" : "b3c42ea4-1fc0-416b-ae67-5af32e9e4e58",
+       "_id" : "486f5c3c-9c5c-41d4-8010-c34f9315f36f",
        "type" : "sima/riflex/DynamicCurrentVariation"
       },
       "rigidMoonpoolColumns" : {
-       "_id" : "4a51fdd7-9b0d-4b01-878e-c8e1049bda6d",
+       "_id" : "4d615db4-c9f5-4b47-8e3e-e42cf4a4be32",
        "type" : "sima/riflex/RigidMoonpoolColumn"
       },
       "windVelocityRamping" : {
