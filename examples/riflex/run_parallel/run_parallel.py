@@ -139,7 +139,7 @@ def __process_multiple(runs: list[dict], output_folder: Path):
 
 if __name__ == "__main__":
     here = Path(__file__).parent.absolute()
-    examples_root = (here / "../../../").resolve()
+    examples_root = (here / "../..").resolve()
     output_folder = examples_root / "output" / "run_parallel"
     input_folder = examples_root / "input"
 
