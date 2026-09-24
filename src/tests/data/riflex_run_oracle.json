@@ -1,0 +1,1447 @@
+{
+ "source": "Riflex_Results.h5, produced by the PostProcessorTask in TestWs.sima",
+ "note": "segment_* subtrees excluded: they come from the .bin storage reader, not the mpf",
+ "root": "Simple_Flexible_Riser/Initial",
+ "containers": [
+  {
+   "path": "Static",
+   "type": "static",
+   "children": [
+    "RiserLine",
+    "Static convergence - Displacement norm",
+    "Static iterations"
+   ]
+  },
+  {
+   "path": "Static/RiserLine",
+   "type": "line",
+   "children": [
+    "Static XZ configuration",
+    "Static YZ configuration",
+    "Static XY configuration",
+    "Static forces",
+    "Static bending moment",
+    "Static torsional moment",
+    "Static curvatures"
+   ]
+  },
+  {
+   "path": "Static/RiserLine/Static XZ configuration",
+   "type": null,
+   "children": [
+    "XZ"
+   ]
+  },
+  {
+   "path": "Static/RiserLine/Static YZ configuration",
+   "type": null,
+   "children": [
+    "YZ"
+   ]
+  },
+  {
+   "path": "Static/RiserLine/Static XY configuration",
+   "type": null,
+   "children": [
+    "XY"
+   ]
+  },
+  {
+   "path": "Static/RiserLine/Static forces",
+   "type": null,
+   "children": [
+    "EFF_ TENSION"
+   ]
+  },
+  {
+   "path": "Static/RiserLine/Static bending moment",
+   "type": null,
+   "children": [
+    "MY",
+    "MZ",
+    "MTOT"
+   ]
+  },
+  {
+   "path": "Static/RiserLine/Static torsional moment",
+   "type": null,
+   "children": [
+    "MT"
+   ]
+  },
+  {
+   "path": "Static/RiserLine/Static curvatures",
+   "type": null,
+   "children": [
+    "CY",
+    "CZ",
+    "CTOT"
+   ]
+  },
+  {
+   "path": "Static/Static convergence - Displacement norm",
+   "type": null,
+   "children": [
+    "DNORM",
+    "DLIMIT"
+   ]
+  },
+  {
+   "path": "Static/Static iterations",
+   "type": null,
+   "children": [
+    "ITER",
+    "MAXITER"
+   ]
+  },
+  {
+   "path": "Dynamic",
+   "type": "dynamic",
+   "children": [
+    "RiserLine"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine",
+   "type": "line",
+   "children": [
+    "segment_1",
+    "segment_2",
+    "segment_3",
+    "Displacement envelope curves",
+    "Displacement standard deviation",
+    "Force envelope curve",
+    "Force standard deviation",
+    "Moment envelope curves",
+    "Moment standard deviation",
+    "Torsional moment envelope curves",
+    "Torsional moment standard deviation",
+    "Curvature envelope curves",
+    "Curvature standard deviation"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Displacement envelope curves",
+   "type": null,
+   "children": [
+    "X-MIN",
+    "X-MAX",
+    "Y-MIN",
+    "Y-MAX",
+    "Z-MIN",
+    "Z-MAX"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Displacement standard deviation",
+   "type": null,
+   "children": [
+    "X",
+    "Y",
+    "Z"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Force envelope curve",
+   "type": null,
+   "children": [
+    "F-MIN",
+    "F-MAX"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Force standard deviation",
+   "type": null,
+   "children": [
+    "EFF_ TENSION"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Moment envelope curves",
+   "type": null,
+   "children": [
+    "MY-MIN",
+    "MY-MAX",
+    "MZ-MIN",
+    "MZ-MAX",
+    "MTOT-MAX"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Moment standard deviation",
+   "type": null,
+   "children": [
+    "MY",
+    "MZ"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Torsional moment envelope curves",
+   "type": null,
+   "children": [
+    "MT-MIN",
+    "MT-MAX"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Torsional moment standard deviation",
+   "type": null,
+   "children": [
+    "MT"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Curvature envelope curves",
+   "type": null,
+   "children": [
+    "CY-MIN",
+    "CY-MAX",
+    "CZ-MIN",
+    "CZ-MAX",
+    "CTOT-MAX"
+   ]
+  },
+  {
+   "path": "Dynamic/RiserLine/Curvature standard deviation",
+   "type": null,
+   "children": [
+    "CY",
+    "CZ"
+   ]
+  }
+ ],
+ "signals": [
+  {
+   "container": "Static/RiserLine/Static XZ configuration",
+   "h5_key": "XZ",
+   "name": "XZ",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    0.157018,
+    0.3239342
+   ],
+   "x_tail": [
+    59.85227,
+    59.93304,
+    60.0
+   ],
+   "y_head": [
+    -100.0,
+    -98.00581,
+    -96.01241
+   ],
+   "y_tail": [
+    5.001954,
+    7.50077,
+    10.0
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static YZ configuration",
+   "h5_key": "YZ",
+   "name": "YZ",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "x_tail": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "y_head": [
+    -100.0,
+    -98.00581,
+    -96.01241
+   ],
+   "y_tail": [
+    5.001954,
+    7.50077,
+    10.0
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static XY configuration",
+   "h5_key": "XY",
+   "name": "XY",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    0.157018,
+    0.3239342
+   ],
+   "x_tail": [
+    59.85227,
+    59.93304,
+    60.0
+   ],
+   "y_head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "y_tail": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static forces",
+   "h5_key": "EFF_ TENSION",
+   "name": "EFF. TENSION",
+   "xunit": "m",
+   "yunit": "N",
+   "n": 65,
+   "x_head": [
+    1.0,
+    3.0,
+    5.0
+   ],
+   "x_tail": [
+    153.75,
+    156.25,
+    158.75
+   ],
+   "y_head": [
+    183114.1,
+    184240.9,
+    185366.0
+   ],
+   "y_tail": [
+    45689.869999999995,
+    48333.579999999994,
+    50977.19
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static bending moment",
+   "h5_key": "MY",
+   "name": "MY",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    -1334.0,
+    313.3,
+    310.4
+   ],
+   "y_tail": [
+    -59.78,
+    -59.46,
+    351.1
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static bending moment",
+   "h5_key": "MZ",
+   "name": "MZ",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "y_tail": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static bending moment",
+   "h5_key": "MTOT",
+   "name": "MTOT",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    1334.0,
+    313.3,
+    310.4
+   ],
+   "y_tail": [
+    59.78,
+    59.46,
+    351.1
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static torsional moment",
+   "h5_key": "MT",
+   "name": "MT",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 65,
+   "x_head": [
+    1.0,
+    3.0,
+    5.0
+   ],
+   "x_tail": [
+    153.75,
+    156.25,
+    158.75
+   ],
+   "y_head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "y_tail": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static curvatures",
+   "h5_key": "CY",
+   "name": "CY",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    -0.1334,
+    0.03133,
+    0.03104
+   ],
+   "y_tail": [
+    -0.005978,
+    -0.005946,
+    0.03511
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static curvatures",
+   "h5_key": "CZ",
+   "name": "CZ",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "y_tail": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "container": "Static/RiserLine/Static curvatures",
+   "h5_key": "CTOT",
+   "name": "CTOT",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.1334,
+    0.03133,
+    0.03104
+   ],
+   "y_tail": [
+    0.005978,
+    0.005946,
+    0.03511
+   ]
+  },
+  {
+   "container": "Static/Static convergence - Displacement norm",
+   "h5_key": "DNORM",
+   "name": "DNORM",
+   "xunit": "-",
+   "yunit": "-",
+   "n": 1305,
+   "x_head": [
+    1.0,
+    1.047619,
+    1.095238
+   ],
+   "x_tail": [
+    220.381,
+    220.4286,
+    220.4762
+   ],
+   "y_head": [
+    1.0,
+    0.7376603,
+    0.5279264
+   ],
+   "y_tail": [
+    1.903248e-06,
+    1.329709e-06,
+    9.480424e-07
+   ]
+  },
+  {
+   "container": "Static/Static convergence - Displacement norm",
+   "h5_key": "DLIMIT",
+   "name": "DLIMIT",
+   "xunit": "-",
+   "yunit": "-",
+   "n": 1305,
+   "x_head": [
+    1.0,
+    1.047619,
+    1.095238
+   ],
+   "x_tail": [
+    220.381,
+    220.4286,
+    220.4762
+   ],
+   "y_head": [
+    1e-06,
+    1e-06,
+    1e-06
+   ],
+   "y_tail": [
+    1e-06,
+    1e-06,
+    1e-06
+   ]
+  },
+  {
+   "container": "Static/Static iterations",
+   "h5_key": "ITER",
+   "name": "ITER",
+   "xunit": "-",
+   "yunit": "-",
+   "n": 220,
+   "x_head": [
+    1.0,
+    2.0,
+    3.0
+   ],
+   "x_tail": [
+    218.0,
+    219.0,
+    220.0
+   ],
+   "y_head": [
+    20.0,
+    20.0,
+    18.0
+   ],
+   "y_tail": [
+    11.0,
+    11.0,
+    10.0
+   ]
+  },
+  {
+   "container": "Static/Static iterations",
+   "h5_key": "MAXITER",
+   "name": "MAXITER",
+   "xunit": "-",
+   "yunit": "-",
+   "n": 220,
+   "x_head": [
+    1.0,
+    2.0,
+    3.0
+   ],
+   "x_tail": [
+    218.0,
+    219.0,
+    220.0
+   ],
+   "y_head": [
+    20.0,
+    20.0,
+    20.0
+   ],
+   "y_tail": [
+    20.0,
+    20.0,
+    20.0
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Displacement envelope curves",
+   "h5_key": "X-MIN",
+   "name": "X-MIN",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    2.0,
+    4.0
+   ],
+   "x_tail": [
+    155.0,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    -0.023296811,
+    -0.047384668
+   ],
+   "y_tail": [
+    -2.6472301,
+    -2.7626989,
+    -2.8525157
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Displacement envelope curves",
+   "h5_key": "X-MAX",
+   "name": "X-MAX",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    2.0,
+    4.0
+   ],
+   "x_tail": [
+    155.0,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    0.11566724,
+    0.23680224
+   ],
+   "y_tail": [
+    3.1383147,
+    3.05478,
+    3.0089946
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Displacement envelope curves",
+   "h5_key": "Y-MIN",
+   "name": "Y-MIN",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    2.0,
+    4.0
+   ],
+   "x_tail": [
+    155.0,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    -0.00050140399,
+    -0.0010309794
+   ],
+   "y_tail": [
+    -0.35494816,
+    -0.37043771,
+    -0.3832221
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Displacement envelope curves",
+   "h5_key": "Y-MAX",
+   "name": "Y-MAX",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    2.0,
+    4.0
+   ],
+   "x_tail": [
+    155.0,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    0.0011167139,
+    0.0022732334
+   ],
+   "y_tail": [
+    0.35340714,
+    0.36915112,
+    0.38275379
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Displacement envelope curves",
+   "h5_key": "Z-MIN",
+   "name": "Z-MIN",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    2.0,
+    4.0
+   ],
+   "x_tail": [
+    155.0,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    -0.012494252,
+    -0.026359567
+   ],
+   "y_tail": [
+    -3.6549301,
+    -3.7017612,
+    -3.7305706
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Displacement envelope curves",
+   "h5_key": "Z-MAX",
+   "name": "Z-MAX",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    2.0,
+    4.0
+   ],
+   "x_tail": [
+    155.0,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    0.0016994557,
+    0.0035719515
+   ],
+   "y_tail": [
+    3.7601547,
+    3.726305,
+    3.7054729
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Displacement standard deviation",
+   "h5_key": "X",
+   "name": "X",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    2.0,
+    4.0
+   ],
+   "x_tail": [
+    155.0,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    0.050239339,
+    0.10281297
+   ],
+   "y_tail": [
+    2.0600762,
+    2.0612071,
+    2.0755177
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Displacement standard deviation",
+   "h5_key": "Y",
+   "name": "Y",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    2.0,
+    4.0
+   ],
+   "x_tail": [
+    155.0,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    0.00045848312,
+    0.00094276253
+   ],
+   "y_tail": [
+    0.25185665,
+    0.26157516,
+    0.26984075
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Displacement standard deviation",
+   "h5_key": "Z",
+   "name": "Z",
+   "xunit": "m",
+   "yunit": "m",
+   "n": 66,
+   "x_head": [
+    0.0,
+    2.0,
+    4.0
+   ],
+   "x_tail": [
+    155.0,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.0,
+    0.0051339879,
+    0.010834641
+   ],
+   "y_tail": [
+    2.6172309,
+    2.6188276,
+    2.619664
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Force envelope curve",
+   "h5_key": "F-MIN",
+   "name": "F-MIN",
+   "xunit": "m",
+   "yunit": "N",
+   "n": 65,
+   "x_head": [
+    1.0,
+    3.0,
+    5.0
+   ],
+   "x_tail": [
+    153.75,
+    156.25,
+    158.75
+   ],
+   "y_head": [
+    171528.02,
+    172657.27000000002,
+    173784.25999999998
+   ],
+   "y_tail": [
+    43464.214,
+    46303.348999999995,
+    49138.035
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Force envelope curve",
+   "h5_key": "F-MAX",
+   "name": "F-MAX",
+   "xunit": "m",
+   "yunit": "N",
+   "n": 65,
+   "x_head": [
+    1.0,
+    3.0,
+    5.0
+   ],
+   "x_tail": [
+    153.75,
+    156.25,
+    158.75
+   ],
+   "y_head": [
+    195935.81,
+    197055.56999999998,
+    198172.15999999997
+   ],
+   "y_tail": [
+    48158.573,
+    50698.825999999994,
+    53250.633
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Force standard deviation",
+   "h5_key": "EFF_ TENSION",
+   "name": "EFF. TENSION",
+   "xunit": "m",
+   "yunit": "N",
+   "n": 65,
+   "x_head": [
+    1.0,
+    3.0,
+    5.0
+   ],
+   "x_tail": [
+    153.75,
+    156.25,
+    158.75
+   ],
+   "y_head": [
+    8554.663700000001,
+    8551.5671,
+    8548.2121
+   ],
+   "y_tail": [
+    1175.1373,
+    1102.0306,
+    1059.3433
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Moment envelope curves",
+   "h5_key": "MY-MIN",
+   "name": "MY-MIN",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    -2319.0577,
+    260.84155,
+    262.40227
+   ],
+   "y_tail": [
+    -442.17353999999995,
+    -444.61599,
+    -2286.6675999999998
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Moment envelope curves",
+   "h5_key": "MY-MAX",
+   "name": "MY-MAX",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    -1133.5732999999998,
+    549.57855,
+    547.55515
+   ],
+   "y_tail": [
+    398.9712,
+    401.33324,
+    2567.2274
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Moment envelope curves",
+   "h5_key": "MZ-MIN",
+   "name": "MZ-MIN",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    -4.0705856,
+    -2.5623478,
+    -2.3624552
+   ],
+   "y_tail": [
+    -16.872491999999998,
+    -16.824018,
+    -115.23953
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Moment envelope curves",
+   "h5_key": "MZ-MAX",
+   "name": "MZ-MAX",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    9.6865427,
+    1.0358520999999998,
+    0.95471955
+   ],
+   "y_tail": [
+    19.145882,
+    19.209104,
+    95.672116
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Moment envelope curves",
+   "h5_key": "MTOT-MAX",
+   "name": "MTOT-MAX",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    2319.0620000000004,
+    549.57974,
+    547.5567
+   ],
+   "y_tail": [
+    442.30658,
+    444.77686,
+    2568.3968
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Moment standard deviation",
+   "h5_key": "MY",
+   "name": "MY",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    428.5225,
+    103.96521,
+    102.87347
+   ],
+   "y_tail": [
+    294.51555,
+    294.94044,
+    1716.9645
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Moment standard deviation",
+   "h5_key": "MZ",
+   "name": "MZ",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    3.9780969,
+    0.93607599,
+    1.0127868
+   ],
+   "y_tail": [
+    12.865384,
+    12.932802,
+    80.83301
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Torsional moment envelope curves",
+   "h5_key": "MT-MIN",
+   "name": "MT-MIN",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 65,
+   "x_head": [
+    1.0,
+    3.0,
+    5.0
+   ],
+   "x_tail": [
+    153.75,
+    156.25,
+    158.75
+   ],
+   "y_head": [
+    -13.426893,
+    -13.427529999999999,
+    -13.427323999999999
+   ],
+   "y_tail": [
+    -13.380147,
+    -13.351388,
+    -13.463406
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Torsional moment envelope curves",
+   "h5_key": "MT-MAX",
+   "name": "MT-MAX",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 65,
+   "x_head": [
+    1.0,
+    3.0,
+    5.0
+   ],
+   "x_tail": [
+    153.75,
+    156.25,
+    158.75
+   ],
+   "y_head": [
+    12.331849,
+    12.331686999999999,
+    12.331694
+   ],
+   "y_tail": [
+    12.319214,
+    12.328838999999999,
+    12.282572
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Torsional moment standard deviation",
+   "h5_key": "MT",
+   "name": "MT",
+   "xunit": "m",
+   "yunit": "N*m",
+   "n": 65,
+   "x_head": [
+    1.0,
+    3.0,
+    5.0
+   ],
+   "x_tail": [
+    153.75,
+    156.25,
+    158.75
+   ],
+   "y_head": [
+    9.3567334,
+    9.3569532,
+    9.3568629
+   ],
+   "y_tail": [
+    9.3384134,
+    9.329726899999999,
+    9.3508428
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Curvature envelope curves",
+   "h5_key": "CY-MIN",
+   "name": "CY-MIN",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    -0.23190576,
+    0.026084155,
+    0.026240224
+   ],
+   "y_tail": [
+    -0.044217356,
+    -0.0444616,
+    -0.22866675
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Curvature envelope curves",
+   "h5_key": "CY-MAX",
+   "name": "CY-MAX",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    -0.11335732,
+    0.054957859,
+    0.054755513
+   ],
+   "y_tail": [
+    0.039897118,
+    0.040133324,
+    0.25672272
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Curvature envelope curves",
+   "h5_key": "CZ-MIN",
+   "name": "CZ-MIN",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    -0.00040705857,
+    -0.00025623478,
+    -0.00023624551
+   ],
+   "y_tail": [
+    -0.0016872491,
+    -0.0016824019,
+    -0.011523953
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Curvature envelope curves",
+   "h5_key": "CZ-MAX",
+   "name": "CZ-MAX",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.00096865423,
+    0.00010358521,
+    9.5471958e-05
+   ],
+   "y_tail": [
+    0.0019145883,
+    0.0019209104,
+    0.0095672114
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Curvature envelope curves",
+   "h5_key": "CTOT-MAX",
+   "name": "CTOT-MAX",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.23190621,
+    0.054957978,
+    0.054755673
+   ],
+   "y_tail": [
+    0.044230659,
+    0.044477686,
+    0.25683969
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Curvature standard deviation",
+   "h5_key": "CY",
+   "name": "CY",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.042852249,
+    0.010396521,
+    0.010287346
+   ],
+   "y_tail": [
+    0.029451555,
+    0.029494043,
+    0.17169645
+   ]
+  },
+  {
+   "container": "Dynamic/RiserLine/Curvature standard deviation",
+   "h5_key": "CZ",
+   "name": "CZ",
+   "xunit": "m",
+   "yunit": "1/m",
+   "n": 130,
+   "x_head": [
+    0.0,
+    2.0,
+    2.0
+   ],
+   "x_tail": [
+    157.5,
+    157.5,
+    160.0
+   ],
+   "y_head": [
+    0.00039780966,
+    9.3607596e-05,
+    0.00010127867
+   ],
+   "y_tail": [
+    0.0012865384,
+    0.0012932802,
+    0.0080833007
+   ]
+  }
+ ]
+}

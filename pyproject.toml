@@ -23,6 +23,11 @@ dependencies = [
     "tqdm",
 ]
 
+[project.optional-dependencies]
+pandas = ["pandas>=2"]
+hdf5 = ["h5py>=3"]
+all = ["simapy[pandas,hdf5]"]
+
 [project.urls]
 Homepage = "https://github.com/SINTEF/simapy"
 
@@ -30,6 +35,8 @@ Homepage = "https://github.com/SINTEF/simapy"
 dev = [
     "pylint>=3.2.7",
     "pytest>=8.3.5",
+    "simapy[all]",
+    "matplotlib",
 ]
 docs = [
     "sphinx>=8.0.0",

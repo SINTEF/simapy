@@ -1,0 +1,279 @@
+'Version
+3.2.0
+'NBODIES
+5
+'Name
+Platform#Platform
+'Initial position
+-107.4
+115.1
+0.0
+-2.7
+-2.7
+0.0
+'Total mass
+5.583E7
+'Num specified forces
+1
+BallastForce
+'Num specified moments
+2
+BallastMoment1
+BallastMoment2
+'External forces
+0
+'Positioning elements
+8
+MooringLine1
+MooringLine2
+MooringLine3
+MooringLine4
+MooringLine5
+MooringLine6
+MooringLine7
+MooringLine8
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+11
+Seat1
+Seat1
+Module
+Seat2
+Seat2
+Module
+Seat3
+Seat3
+Module
+DockingCone1
+DockingCone1
+Module
+DockingCone2
+DockingCone2
+Module
+DockingCone3
+DockingCone3
+Module
+Bumper1
+Bumper1
+Module
+Bumper2
+Bumper2
+Module
+Bumper3
+Bumper3
+Module
+Bumper4
+Bumper4
+Module
+Bumper5
+Bumper5
+Module
+'Storage
+0
+'Name
+Lifter#Lifter
+'Initial position
+-80.2
+0.0
+0.0
+0.0
+0.0
+0.0
+'Total mass
+1.656E8
+'Num specified forces
+2
+StarboardCraneForce
+PortCraneForce
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+6
+Thruster1
+Thruster2
+Thruster3
+Thruster4
+Thruster5
+Thruster6
+'Slender Elements
+0
+'Couplings
+4
+StarboardLiftWire
+StarboardLiftWire
+HookStarboard
+PortLiftWire
+PortLiftWire
+HookPort
+TuggerStarboard
+TuggerStarboard
+Module
+TuggerPort
+TuggerPort
+Module
+'Storage
+0
+'Name
+Module#Module
+'Initial position
+-73.9
+79.3
+47.3
+-2.5
+-2.5
+0.0
+'Total mass
+950000.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+17
+StarboardSling1
+StarboardSling1
+HookStarboard
+StarboardSling2
+StarboardSling2
+HookStarboard
+PortSling1
+PortSling1
+HookPort
+PortSling2
+PortSling2
+HookPort
+TuggerStarboard
+TuggerStarboard
+Lifter
+TuggerPort
+TuggerPort
+Lifter
+Seat1
+Seat1
+Platform
+Seat2
+Seat2
+Platform
+Seat3
+Seat3
+Platform
+DockingCone1
+DockingCone1
+Platform
+DockingCone2
+DockingCone2
+Platform
+DockingCone3
+DockingCone3
+Platform
+Bumper1
+Bumper1
+Platform
+Bumper2
+Bumper2
+Platform
+Bumper3
+Bumper3
+Platform
+Bumper4
+Bumper4
+Platform
+Bumper5
+Bumper5
+Platform
+'Storage
+0
+'Name
+HookStarboard#Hook7dd1
+'Initial position
+-85.5
+81.2
+90.1
+0.0
+0.0
+0.0
+'Total mass
+30000.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+3
+StarboardLiftWire
+StarboardLiftWire
+Lifter
+StarboardSling1
+StarboardSling1
+Module
+StarboardSling2
+StarboardSling2
+Module
+'Storage
+0
+'Name
+HookPort#HookPort
+'Initial position
+-66.4
+81.0
+90.9
+0.0
+0.0
+0.0
+'Total mass
+30000.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+3
+PortLiftWire
+PortLiftWire
+Lifter
+PortSling1
+PortSling1
+Module
+PortSling2
+PortSling2
+Module
+'Storage
+0
+'Exported units
+'NUNITS
+4
+P=kPa
+W=kW
+F=kN
+M=Mg

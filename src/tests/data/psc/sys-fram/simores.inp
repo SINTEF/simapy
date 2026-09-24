@@ -1,0 +1,275 @@
+'Version
+3.2.0
+'NBODIES
+5
+'Name
+TROLLC#TROLLC
+'Initial position
+-107.4
+115.1
+0.0
+-2.7
+-2.7
+0.0
+'Total mass
+5.583E7
+'Num specified forces
+1
+BallastForce
+'Num specified moments
+2
+BallastMoment1
+BallastMoment2
+'External forces
+0
+'Positioning elements
+4
+MooringLine1
+MooringLine2
+MooringLine3
+MooringLine4
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+11
+Seat1
+Seat1
+FRAM
+Seat2
+Seat2
+FRAM
+Seat3
+Seat3
+FRAM
+DockingCone1
+DockingCone1
+FRAM
+DockingCone2
+DockingCone2
+FRAM
+DockingCone3
+DockingCone3
+FRAM
+Bumper1
+Bumper1
+FRAM
+Bumper2
+Bumper2
+FRAM
+Bumper3
+Bumper3
+FRAM
+Bumper4
+Bumper4
+FRAM
+Bumper5
+Bumper5
+FRAM
+'Storage
+0
+'Name
+S7000#S7000
+'Initial position
+-80.2
+0.0
+0.0
+0.0
+0.0
+0.0
+'Total mass
+1.656E8
+'Num specified forces
+2
+StarboardCraneForce
+PortCraneForce
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+6
+Thruster1
+Thruster2
+Thruster3
+Thruster4
+Thruster5
+Thruster6
+'Slender Elements
+0
+'Couplings
+4
+StarboardLiftWire
+StarboardLiftWire
+HOOKS
+PortLiftWire
+PortLiftWire
+HOOKP
+TuggerStarboard
+TuggerStarboard
+FRAM
+TuggerPort
+TuggerPort
+FRAM
+'Storage
+0
+'Name
+FRAM#FRAM
+'Initial position
+-73.9
+79.3
+47.3
+-2.5
+-2.5
+0.0
+'Total mass
+950000.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+17
+StarboardSling1
+StarboardSling1
+HOOKS
+StarboardSling2
+StarboardSling2
+HOOKS
+PortSling1
+PortSling1
+HOOKP
+PortSling2
+PortSling2
+HOOKP
+TuggerStarboard
+TuggerStarboard
+S7000
+TuggerPort
+TuggerPort
+S7000
+Seat1
+Seat1
+TROLLC
+Seat2
+Seat2
+TROLLC
+Seat3
+Seat3
+TROLLC
+DockingCone1
+DockingCone1
+TROLLC
+DockingCone2
+DockingCone2
+TROLLC
+DockingCone3
+DockingCone3
+TROLLC
+Bumper1
+Bumper1
+TROLLC
+Bumper2
+Bumper2
+TROLLC
+Bumper3
+Bumper3
+TROLLC
+Bumper4
+Bumper4
+TROLLC
+Bumper5
+Bumper5
+TROLLC
+'Storage
+0
+'Name
+HOOKS#HOOKS
+'Initial position
+-85.5
+81.2
+90.1
+0.0
+0.0
+0.0
+'Total mass
+30000.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+3
+StarboardLiftWire
+StarboardLiftWire
+S7000
+StarboardSling1
+StarboardSling1
+FRAM
+StarboardSling2
+StarboardSling2
+FRAM
+'Storage
+0
+'Name
+HOOKP#HOOKP
+'Initial position
+-66.4
+81.0
+90.9
+0.0
+0.0
+0.0
+'Total mass
+30000.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+3
+PortLiftWire
+PortLiftWire
+S7000
+PortSling1
+PortSling1
+FRAM
+PortSling2
+PortSling2
+FRAM
+'Storage
+0
+'Exported units
+'NUNITS
+4
+P=kPa
+W=kW
+F=kN
+M=Mg
