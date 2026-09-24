@@ -10,6 +10,7 @@ The examples demonstrate various capabilities and use cases of the SIMAPY tool.
 
 installation
 simapy
+results
 examples
 
 ```

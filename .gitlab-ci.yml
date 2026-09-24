@@ -43,6 +43,13 @@ test:
       junit: output/report.xml
     expire_in: 1 week
 
+# Without the optional extras, so the paths that run without pandas and h5py stay honest.
+test-minimal:
+  stage: test
+  script:
+    - uv sync --no-dev
+    - uv run --no-dev --with pytest pytest
+
 # Errors-only pylint on the lowest supported version.
 lint:
   stage: test
@@ -52,10 +59,8 @@ lint:
     - uv run pylint src/ --errors-only
 
 
-# The examples moved in from the simapy-examples repository. Their docs autodoc
-# the example modules, so this fails if an example stops being importable --
-# easy to do by accident, since an example that runs as a script is not
-# necessarily importable as examples.<domain>.<module>.
+# Autodoc import errors in the examples are only warnings, and some pages already
+# warn, so a broken example shows in the job log, not the exit code.
 docs:
   stage: test
   script:

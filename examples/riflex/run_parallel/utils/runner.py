@@ -10,77 +10,80 @@ from concurrent.futures import ThreadPoolExecutor
 from simapy.sre import SIMA
 from .progress import ProgressManager
 
-def __run_single(run: dict, progress_manager: ProgressManager):
+
+def _run_single(run: dict, progress_manager: ProgressManager):
     """Execute a single SIMA run with progress tracking.
-    
+
     Args:
-        run (dict): Run configuration containing name, ws, commands, exe, postprocess, cleanup
+        run (dict): Run configuration: name, ws, stask, task, condition, and
+            optionally run_type, variables, results_dir, exe, postprocess
         progress_manager (ProgressManager): Manager for handling progress bars
-        
+
     Notes:
         Monitors SIMA console output for "@STATUS" messages to track progress.
     """
     name: str = run["name"]
     ws: Path = run["ws"]
-    commands: list = run["commands"]
     if ws.exists():
-        shutil.rmtree(ws,ignore_errors=True)
-    os.makedirs(ws,exist_ok=True)
-    exe = run.get("exe", None)
-    sima = SIMA(exe=exe)
-    def __handle_output(line):
+        shutil.rmtree(ws, ignore_errors=True)
+    os.makedirs(ws, exist_ok=True)
+    sima = SIMA(exe=run.get("exe"))
+
+    def _handle_output(line):
         # "@STATUS "Total" 800 1000"
         if line.startswith("@STATUS"):
-            # Findt the last number
             parts = line.split()
-            worked = float(parts[-1-1])
+            worked = float(parts[-2])
             total = float(parts[-1])
-            progress = 100 * worked/total
-            progress_manager.update_progress(name, progress)
+            progress_manager.update_progress(name, 100 * worked / total)
 
-    sima.console_handler = __handle_output
-    sima.run(working_dir=ws, command_args=commands)
-    # Check if we have a postprocess function
-    postprocess = run.get("postprocess", None)
+    sima.console_handler = _handle_output
+    res = sima.run_condition(
+        ws,
+        task=run["task"],
+        condition=run["condition"],
+        run_type=run.get("run_type", "dynamic"),
+        stask=run.get("stask"),
+        variables=run.get("variables"),
+        results_dir=run.get("results_dir"),
+    )
+    # The postprocess function gets the results, so it does not have to know
+    # where they were written.
+    postprocess = run.get("postprocess")
     if postprocess:
-        postprocess()
+        postprocess(res)
 
     progress_manager.update_progress(name, 100)
     progress_manager.close_progress_bar(name)
-    cleanup = run.get("cleanup", False)
-    if cleanup:
-        shutil.rmtree(ws,ignore_errors=True)
 
-def run_multiple(runs: list[dict]):
+
+def run_multiple(runs: list[dict]) -> list[dict]:
     """Execute multiple SIMA runs concurrently with progress tracking.
-    
+
     Args:
         runs (list[dict]): List of run configuration dictionaries
-                          
-    Notes:
-        Uses (cpu_count() - 1) worker threads. Individual run failures don't stop
-        the entire batch. Provides summary of successes/failures at the end.
-    """
-    # Create progress manager
-    progress_manager = ProgressManager()
 
-    # Create progress bars for each run
+    Returns:
+        list[dict]: The runs that completed, in the order given.
+
+    Notes:
+        Uses cpu_count() - 1 worker threads. A failed run is reported and the
+        rest carry on.
+    """
+    progress_manager = ProgressManager()
     for run in runs:
         progress_manager.create_progress_bar(run["name"])
 
-    # Run a maximum of cpu_count() - 1 workflows at the same time
-    num_concurrent = os.cpu_count() - 1
-
+    completed = []
     try:
-        with ThreadPoolExecutor(max_workers=num_concurrent) as executor:
-            jobs = []
-            for run in runs:
-                # Submit job
-                jobs.append(executor.submit(__run_single, run, progress_manager))
-            for job in jobs:
+        with ThreadPoolExecutor(max_workers=max(1, (os.cpu_count() or 2) - 1)) as executor:
+            jobs = [executor.submit(_run_single, run, progress_manager) for run in runs]
+            for run, job in zip(runs, jobs):
                 try:
                     job.result()
-                except Exception as e:
-                    raise e
+                    completed.append(run)
+                except Exception as error:
+                    print(f"   {run['name']} failed: {error}")
     finally:
         progress_manager.close_all()
+    return completed

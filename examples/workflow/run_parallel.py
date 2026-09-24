@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from simapy.sre import SIMA
+from simapy.results import Status, open_results
 from simapy.sima_writer import SIMAWriter
 from simapy.sima.signals.equallyspacedsignal import EquallySpacedSignal
 
@@ -29,35 +30,33 @@ def run_single(case_num: int, a: float, b: float):
     # Locate stask file in the examples 'input' folder
     stask = Path(__file__).parents[1] / 'input' / 'workflow' / 'simple_workflow_run.stask'
 
-    commands = []
-    commands.append('--import')
-    commands.append('file='+str(stask.absolute()))
-    commands.append('--run')
-    commands.append('task=WorkflowTask')
-    commands.append('workflow=outer')
-
     # Requires that the environment is set, but an alternative path may be given
 
     sima = SIMA()
     # Create a handler to print the progress while running
-    def __handle_output(line):
+    def _handle_output(line):
         # "@STATUS "Total" 800 1000"
         if line.startswith("@STATUS"):
-            # Findt the last number
             parts = line.split()
-            worked = float(parts[-1-1])
+            worked = float(parts[-2])
             total = float(parts[-1])
             progress = 100 * worked/total
             print(f"Progress case {case_num}: ",progress,"%")
 
-    sima.console_handler = __handle_output
-    sima.run(working_dir=str(ws), command_args=commands)
-    print(f'Case {case_num} completed successfully')
+    sima.console_handler = _handle_output
+    sima.run_workflow(ws, task='WorkflowTask', workflow='outer', stask=stask)
+
+    res = open_results(ws / 'Output' / 'output.json')
+    failed = [s for s in res.sources if s.status is not Status.READ]
+    if failed:
+        raise RuntimeError(f'Case {case_num}: ' + '; '.join(f'{s.file}: {s.detail}' for s in failed))
+    values = ', '.join(f'{signal.y[0]:g}' for signal in res.select().values())
+    print(f'Case {case_num} completed successfully: {values}')
 
 
 def main():
     # Run a maximum of cpu_count() - 1 workflows at the same time
-    num_concurrent = os.cpu_count() - 1
+    num_concurrent = max(1, (os.cpu_count() or 2) - 1)
     # Total number of workflow runs
     num_cases = 10
     with ThreadPoolExecutor(max_workers=num_concurrent) as executor:
