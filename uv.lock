@@ -209,16 +209,16 @@ wheels = [
 
 [[package]]
 name = "dmtpy"
-version = "0.3.5"
+version = "0.3.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "h5py" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f7/78/3472fcf19233335ba59b4238f26e8dddae3ccfe323b1862905df1dc0ed7f/dmtpy-0.3.5.tar.gz", hash = "sha256:bde6862b3c1b12550bd6e49725d69b9a52f3f8bbc4e25c1e33f1aef33285dd25", size = 60490, upload-time = "2025-07-03T04:28:50.69Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/75/19/688179c7dd447d8a3bb62384d8c013c85b74c46df0ee22e171c9caa7fb7a/dmtpy-0.3.6.tar.gz", hash = "sha256:4cac0fa843e5d0cfc6cc450e665e2c5669762ad942017f8b33d9d32bcfb006db", size = 61290, upload-time = "2026-10-02T10:10:22.87Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/86/29/0b618099395cc75678c486d0e6496f3458e304da97a50c0f74650ebf4d60/dmtpy-0.3.5-py3-none-any.whl", hash = "sha256:daed45324b5d7b41fd487980f4c83c9b78e2e46681dce60790d90b1f4d0810f4", size = 14669, upload-time = "2025-07-03T04:28:49.58Z" },
+    { url = "https://files.pythonhosted.org/packages/32/ea/139144f089dcff95508a24be9f3d6da39a6adb9061da3c43e60d8896ee16/dmtpy-0.3.6-py3-none-any.whl", hash = "sha256:0bfbb6b3199fb8bdd6a80d644e2b176de7361d3215bdd83c945f8c45af579a33", size = 15009, upload-time = "2026-10-02T10:10:21.893Z" },
 ]
 
 [[package]]
@@ -797,7 +797,7 @@ docs = [
 
 [package.metadata]
 requires-dist = [
-    { name = "dmtpy", specifier = "==0.3.5" },
+    { name = "dmtpy", specifier = "==0.3.6" },
     { name = "numpy" },
     { name = "tqdm" },
 ]
