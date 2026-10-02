@@ -18,7 +18,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "dmtpy==0.3.5",
+    "dmtpy==0.3.6",
     "numpy",
     "tqdm",
 ]
