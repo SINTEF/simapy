@@ -1,49 +1,62 @@
 """Run a SIMO condition from a task file.
 
-Demonstrates importing a SIMA task file (stask) and running a specific 
-condition using the SIMA Runtime Engine (SRE).
+Imports a SIMA task file (stask), runs one condition and gets the results back
+in the same call. The condition here is a set of three members, and it comes
+back as one set holding them.
 
 Requirements:
     - Environment variable `SRE_EXE` which points to the SIMA executable
     - Input file: 'input/simo/simo.stask'
 
 Example:
-    >>> python run_simo_condition.py
+    >>> python simo/run_simo_condition.py
 """
 import os
 import shutil
 from pathlib import Path
 
+from simapy.results import Status
 from simapy.sre import SIMA
+
+EXAMPLES = Path(__file__).parents[1]
+
+#: Where the run puts its results, and what it runs. read_simo_results.py
+#: imports these so the reader looks exactly where the runner wrote.
+WORKSPACE = EXAMPLES / "output" / "simo" / "condition"
+STASK = EXAMPLES / "input" / "simo" / "simo.stask"
+TASK = "BouncingBalls"
+CONDITION = "conditionSet"
+RUN_TYPE = "dynamic"
 
 
 def main():
-    """Run a SIMO simulation condition using SRE.
-    
-    Imports a predefined SIMA task file and runs a specific condition.
-    Clears the workspace before running for a clean execution environment.
+    """Run the condition and report what came back.
+
+    Starts from an empty workspace so the run is repeatable.
+
+    Returns:
+        The `ResultSet`, so a caller can go straight on to reading it.
     """
-    ws = Path("output/simo/condition")
-    if ws.exists():
-        shutil.rmtree(ws, ignore_errors=True)
-    os.makedirs(ws, exist_ok=True)
+    if WORKSPACE.exists():
+        shutil.rmtree(WORKSPACE, ignore_errors=True)
 
-    stask = Path("input/simo/simo.stask")
+    sima = SIMA(exe=os.getenv("SRE_EXE"))
+    res = sima.run_condition(WORKSPACE, task=TASK, condition=CONDITION,
+                             run_type=RUN_TYPE, stask=STASK)
 
-    commands = []
-    commands.append("--import")
-    commands.append("file=" + str(stask.absolute()))
-    commands.append("--condition")
-    commands.append("task=BouncingBalls")
-    commands.append("condition=conditionSet")
-    commands.append("runType=dynamic")
+    members = res.description.members
+    print(f"\n{len(members)} member(s) in {WORKSPACE.relative_to(EXAMPLES)}")
+    for member in members:
+        # str(variable) is "500.0 [N*m]"
+        values = ", ".join(f"{n}={v}" for n, v in member.variables.items())
+        print(f"   {member.condition:16} {values:20} "
+              f"{len(res.run.container(member.condition).select())} signals")
 
-    # Requires that the environment is set, but an alternative path may be given
-    exe = os.getenv("SRE_EXE")
-    sima = SIMA(exe=exe)
-    sima.run(ws, commands)
-    
-    print(f"SIMO condition executed successfully. Results in {ws}")
+    unread = sum(1 for src in res.sources if src.status is not Status.READ)
+    if unread:
+        print(f"\n   {unread} file(s) could not be read; res.sources says why")
+
+    return res
 
 
 if __name__ == "__main__":

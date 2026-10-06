@@ -1,0 +1,176 @@
+'Version
+2.0.0
+'NBODIES
+5
+'Name
+TROLLC
+'Initial position
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+'Total mass
+1906000.0
+'Num specified forces
+3
+TROLLC_SF_1
+TROLLC_SF_2
+TROLLC_SF_3
+'Num specified moments
+1
+TROLLC_SM_1
+'External forces
+0
+'Positioning elements
+4
+line1
+line2
+line3
+line4
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+1
+swc4
+swc4
+HOOKS
+'Name
+S7000
+'Initial position
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+'Total mass
+0.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+2
+LIFTWS
+LIFTWS
+HOOKS
+LIFTWP
+LIFTWP
+HOOKP
+'Name
+FRAM
+'Initial position
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+'Total mass
+0.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+3
+swc3
+swc3
+HOOKP
+swc1
+swc1
+HOOKP
+mwc_part1
+mwc
+part1
+'Name
+HOOKS
+'Initial position
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+'Total mass
+0.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+4
+LIFTWS
+LIFTWS
+S7000
+swc4
+swc4
+TROLLC
+mwc_part2
+mwc
+part2
+mwc_part3
+mwc
+part3
+'Name
+HOOKP
+'Initial position
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+'Total mass
+0.0
+'Num specified forces
+0
+'Num specified moments
+0
+'External forces
+0
+'Positioning elements
+0
+'Thrusters
+0
+'Slender Elements
+0
+'Couplings
+3
+LIFTWP
+LIFTWP
+S7000
+swc3
+swc3
+FRAM
+swc1
+swc1
+FRAM

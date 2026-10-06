@@ -1,0 +1,6 @@
+# Result files byte-identical to what SIMA wrote (CRLF on Windows), so a clone
+# exercises the real file rather than a git-normalised one.
+*.mpf -text
+*.map -text
+*.lis -text
+*.inp -text

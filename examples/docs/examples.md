@@ -2,10 +2,10 @@
 
 To run an example:
 
-1. Navigate to the specific example directory in the `src` folder
+1. Navigate to the specific example directory under `examples/`
 2. Run the Python script for that example
 
-* `src/` - Contains all example scripts
+* `examples/` - Contains all example scripts, one directory per domain
 * `input/` - Contains input files used by the examples
 * `output/` - Directory where script outputs are saved
 
@@ -18,6 +18,8 @@ The examples are organized by category, with each category focusing on different
 
 simo/write_simo_task
 simo/run_simo_condition
+simo/read_simo_results
+simo/results_to_pandas
 simo/import_hydrodynamic_coefficients
 simo/create_connected_bodies
 ```

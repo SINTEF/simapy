@@ -1,0 +1,108 @@
+'Version
+2.6.0
+'Number of line name mappings
+10
+well18c5=well_line
+2
+1
+nElements=4
+1
+nElements=1
+riser=riser
+10
+1
+nElements=2
+1
+nElements=2
+1
+nElements=2
+1
+nElements=2
+1
+nElements=2
+1
+nElements=2
+1
+nElements=99
+1
+nElements=53
+1
+nElements=3
+1
+nElements=9
+slip0e68=slipjoint_above
+2
+1
+nElements=1
+1
+nElements=1
+tenscc81=tensioner1_line
+1
+1
+nElements=7
+tensa520=tensioner2_line
+1
+1
+nElements=7
+tens7dbf=tensioner3_line
+1
+1
+nElements=7
+tens565e=tensioner4_line
+1
+1
+nElements=7
+tens2efd=tensioner5_line
+1
+1
+nElements=7
+tens079c=tensioner6_line
+1
+1
+nElements=7
+global_x=global_x
+1
+1
+nElements=1
+'Number of relative angle specifications
+0
+'Number of element angle specifications
+0
+'Number of element force transformations
+0
+'Number of stress storage specifications
+0
+'Load steps
+3
+Volume Forces
+10
+Initially pre-stressed segments
+10
+Activate global springs
+20
+'nIDs
+9
+'IDs
+slip0e68=slipjoint_above
+well18c5=well_line
+tens7dbf=tensioner3_line
+tens565e=tensioner4_line
+tens2efd=tensioner5_line
+tens079c=tensioner6_line
+FATIGUE_1=fatigue Analysis
+tenscc81=tensioner1_line
+tensa520=tensioner2_line
+'nParams
+1
+'Parameters
+readMatrix=false
+'Exported units
+'NUNITS
+4
+W=kW
+M=Mg
+F=kN
+P=kPa
+'Number of support vessels
+1
+Drilling_vessel

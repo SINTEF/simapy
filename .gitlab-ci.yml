@@ -43,6 +43,13 @@ test:
       junit: output/report.xml
     expire_in: 1 week
 
+# Without the optional extras, so the paths that run without pandas and h5py stay honest.
+test-minimal:
+  stage: test
+  script:
+    - uv sync --no-dev
+    - uv run --no-dev --with pytest pytest
+
 # Errors-only pylint on the lowest supported version.
 lint:
   stage: test
@@ -52,16 +59,14 @@ lint:
     - uv run pylint src/ --errors-only
 
 
-# The examples moved in from the simapy-examples repository. Their docs autodoc
-# the example modules, so this fails if an example stops being importable --
-# easy to do by accident, since an example that runs as a script is not
-# necessarily importable as examples.<domain>.<module>.
+# -W: an example autodoc cannot import is only a warning, and would otherwise
+# publish as an empty page.
 docs:
   stage: test
   script:
     - uv sync --group docs
     - cd examples/docs
-    - uv run --group docs python -m sphinx -b html . _build/html
+    - uv run --group docs python -m sphinx -b html -W --keep-going . _build/html
   artifacts:
     paths: [examples/docs/_build/html]
     expire_in: 1 week

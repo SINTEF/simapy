@@ -168,60 +168,66 @@ It is possible to export the commands to the clipboard or as a file which itself
 
 ### Running SRE from SIMAPy – Example
 
-* Using Python to make SRE:
-    * Import JSON file
-    * Run simulation
-* Results are available as a HDF5 file
+`run_condition` imports the task, runs the condition and reads the results back,
+so the commands above need not be written by hand:
 
 ```python
-import os
 from pathlib import Path
 from simapy.sre import SIMA
-json = Path('riflex_task.json')
-commands = []
-# Use import command to import the json file
-commands.append('--import')
-commands.append('file=' + str(json.absolute()))
-# Then use condition command to run dynamic analysis for the given condition
-commands.append('--condition')
-commands.append('task=Simple_Flexible_Riser')
-commands.append('condition=Initial')
-commands.append('runType=dynamic')
-# Set variable values
-commands.append('input=hs=3;tp=5')
-# Set output file to export results to
-output = Path('output.h5')
-commands.append('output=' + str(output.absolute()))
 
-
-# Requires that the environment is set, but an 
-# alternative path may be given
-exe = os.getenv('SRE_EXE')
-sima = SIMA(exe=exe)
-sima.run('.', commands)
+sima = SIMA()          # or SIMA(exe=...) if SRE_EXE is not set
+res = sima.run_condition(
+    ".",
+    stask=Path("riflex_task.json"),
+    task="Simple_Flexible_Riser",
+    condition="Initial",
+    run_type="dynamic",
+    variables={"hs": 3, "tp": 5},
+)
 ```
-## Results
 
-![HDF5 File (HDFView)](images/results_1.png)
-
-The resulting h5 file can be read in Python using the h5py library.
+`run_workflow` does the same for a workflow, but returns nothing. Open the file
+the workflow's output node writes with `open_results`:
 
 ```python
-import h5py
-import matplotlib.pyplot as plt
+from simapy.results import open_results
 
-with h5py.File('output.h5', 'r') as f:
-    # Get FMAX signal in the h5 file
-    fmax=f['Simple_Flexible_Riser']['Initial']["Dynamic"]["RiserLine"]["Force envelope curve"]["F-MAX"]
-    plt.figure(figsize=(10, 5))  # Make the plot wider
-    plt.plot(fmax[0,:], fmax[1,:], marker='o')
-    plt.title("F-MAX")
-    plt.xlabel("Distance along the line [m]")
-    plt.ylabel("F-MAX [N]")
-    plt.tight_layout()
-    plt.savefig("fmax.png")
-
+sima.run_workflow(".", task="WorkflowTask", workflow="outer",
+                  stask=Path("simple_workflow_run.stask"))
+res = open_results("out.json")
 ```
 
-![Plot](images/results_2.png)
+For anything neither call covers, such as a storage root, pass the commands to
+`sima.run` yourself:
 
+```python
+storage = Path("storage").absolute()
+sima.run(".", [
+    "--storageroot", "task=ExternalStorage", f"root={storage}",
+    "--run", "task=WorkflowTask", "workflow=workflow", "input=scale=2.0",
+])
+```
+
+## Results
+
+`res.run` is the condition, as SIMA's post processor shows it. Signals are
+reached by the path SIMA shows them under, and the values are numpy arrays:
+
+```python
+import matplotlib.pyplot as plt
+
+fmax = res.run.signal("Dynamic/RiserLine/Force envelope curve/F-MAX")
+
+plt.figure(figsize=(10, 5))
+plt.plot(fmax.x, fmax.y, marker="o")
+plt.title(fmax.name)
+plt.xlabel(f"Distance along the line [{fmax.xunit}]")
+plt.ylabel(f"{fmax.name} [{fmax.unit}]")
+plt.tight_layout()
+plt.savefig("fmax.png")
+```
+
+Values are in SI base units, and the axis labels take the units from the signal.
+[Reading results](results.md) covers the rest.
+
+![Plot](images/results_2.png)

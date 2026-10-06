@@ -22,9 +22,9 @@ Example:
     >>> python create_excel_scatter.py
 
 Note:
-    Requires pandas and openpyxl to be installed:
-    
-    >>> pip install pandas openpyxl
+    Install the requirements with:
+
+    >>> pip install -r examples/metocean/requirements-metocean.txt
 """
 from pathlib import Path
 import pandas as pd

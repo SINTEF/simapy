@@ -35,9 +35,8 @@ import os
 import shutil
 from pathlib import Path
 from simapy.sre import SIMA
-from simapy.sima_reader import SIMAReader
+from simapy.results import open_results
 from simapy.sima_writer import SIMAWriter
-from simapy.sima.signals.container import Container
 from simapy.sima.signals.equallyspacedsignal import EquallySpacedSignal
 
 
@@ -47,8 +46,8 @@ def main():
     Creates input signals, writes them to a file, imports a workflow from a .stask file,
     runs the workflow, and processes the results.
     """
-    # Set up workspace
-    ws = Path("output/workflow/ws")
+    examples = Path(__file__).parents[1]
+    ws = examples / "output" / "workflow" / "stask_with_file"
     if ws.exists():
         shutil.rmtree(ws, ignore_errors=True)
     os.makedirs(ws, exist_ok=True)
@@ -63,21 +62,13 @@ def main():
     SIMAWriter().write([a, b], ws / "input.json")
 
     # Locate stask file in the examples "input" folder
-    stask = Path(__file__).parents[1] / "input" / "workflow" / "simple_workflow_run.stask"
-
-    # Prepare SRE commands
-    commands = []
-    commands.append("--import")
-    commands.append("file=" + str(stask.absolute()))
-    commands.append("--run")
-    commands.append("task=WorkflowTask")
-    commands.append("workflow=outer")
+    stask = examples / "input" / "workflow" / "simple_workflow_run.stask"
 
     # Run the workflow with SRE
     exe = os.getenv('SRE_EXE')
     sima = SIMA(exe=exe)
-    sima.run(ws, commands)
-    
+    sima.run_workflow(ws, task="WorkflowTask", workflow="outer", stask=stask)
+
     # Process results
     output = ws / "Output/output.json"
     process_results(output)
@@ -89,29 +80,16 @@ def process_results(output_file: Path):
     Args:
         output_file: Path to the output JSON file containing workflow results
     """
-    sima_reader = SIMAReader()
-    items = sima_reader.read(output_file)
-    
-    if not items:
+    res = open_results(output_file)
+    found = res.select()
+    if not found:
         print("No results found in output file")
         return
-        
-    set_container: Container = items[0]
-    run_containers = set_container.containers
-    
-    for run_container in run_containers:
-        print(f"Run {run_container.name}")
-        if run_container.signals:
-            result: EquallySpacedSignal = run_container.signals[0]
-            print(f"{result.name}={result.value}")
-        else:
-            print("No signals found in container")
+
+    # One path per run, nested exactly as the workflow nested its output.
+    for path, signal in found.items():
+        print(f"{path}={signal.y[0]}")
 
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
