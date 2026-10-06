@@ -33,7 +33,7 @@ Homepage = "https://github.com/SINTEF/simapy"
 
 [dependency-groups]
 dev = [
-    "pylint>=3.2.7",
+    "pylint>=4",
     "pytest>=8.3.5",
     "simapy[all]",
     "matplotlib",
