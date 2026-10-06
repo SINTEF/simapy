@@ -1,4 +1,4 @@
-"""Read wave data from nora3 and generate metocean hindcast readable from SIMA"""
+"""Read wave and wind data from NORA3 and generate a metocean hindcast SIMA can import."""
 
 from pathlib import Path
 import time

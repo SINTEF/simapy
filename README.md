@@ -9,7 +9,7 @@ Please examine the tests for ways to interact
 
 You can find the example documentation [here](https://sintef.github.io/simapy-examples/)
 
-Also check out the examples in [simapy-examples](https://github.com/SINTEF/simapy-examples)
+The examples themselves are in [examples/](examples/).
 
 ## Installation
 

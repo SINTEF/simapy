@@ -1,21 +1,26 @@
-# Examples using simapy Python library
+# Examples using simapy
 
-[simapy](https://github.com/SINTEF/simapy) is a Python library for interacting with SIMA
+[simapy](https://github.com/SINTEF/simapy) is a Python library for interacting with SIMA.
 
-You can find the documentation [here](https://sintef.github.io/simapy-examples/)
+The documentation for these examples is built from [docs/](docs/):
+[installation](docs/installation.md), then one page per example.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install simapy.
+From the repository root, install simapy from the checkout with the extras the
+examples use:
 
 ```bash
-pip install -r requirements.txt
+pip install -e ".[all]" matplotlib
 ```
+
+The metocean examples also need `pip install -r examples/metocean/requirements-metocean.txt`.
 
 ## Examples
 
-See src folder for different ways of interacting with simapy.
-You can also check out the [tests](https://github.com/SINTEF/simapy/tree/master/src/tests) in the simapy github repository
+One folder per domain: `simo/`, `riflex/`, `workflow/` and `metocean/`. Input
+files are in `input/`, and the scripts write to `output/`.
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)

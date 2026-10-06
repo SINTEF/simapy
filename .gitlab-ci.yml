@@ -59,14 +59,14 @@ lint:
     - uv run pylint src/ --errors-only
 
 
-# Autodoc import errors in the examples are only warnings, and some pages already
-# warn, so a broken example shows in the job log, not the exit code.
+# -W: an example autodoc cannot import is only a warning, and would otherwise
+# publish as an empty page.
 docs:
   stage: test
   script:
     - uv sync --group docs
     - cd examples/docs
-    - uv run --group docs python -m sphinx -b html . _build/html
+    - uv run --group docs python -m sphinx -b html -W --keep-going . _build/html
   artifacts:
     paths: [examples/docs/_build/html]
     expire_in: 1 week

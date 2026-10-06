@@ -11,6 +11,9 @@ sys.path.insert(0, os.path.abspath('../..'))
 # Add the run_parallel directory to path so utils can be imported
 sys.path.insert(0, os.path.abspath('../riflex/run_parallel'))
 
+# The metocean examples' own requirements, too heavy for a docs build.
+autodoc_mock_imports = ['metocean_api', 'metocean_stats', 'openpyxl', 'xarray']
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
