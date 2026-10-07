@@ -20,5 +20,5 @@ class TimeDependentPointMassBlueprint(NamedObjectBlueprint):
         self.add_attribute(Attribute("mass0","number","Mass at t=0 (may be negative).",default=0.0))
         self.add_attribute(Attribute("massMax","number","Maximum allowable mass Mass, (may be negative).",default=0.0))
         self.add_attribute(Attribute("massMin","number","Minimum allowable mass Mass, (may be negative).",default=0.0))
-        self.add_attribute(Attribute("massRateMax","number","Maximum allowable mass rate, (may be negative) (HLA only).",default=0.0))
-        self.add_attribute(Attribute("massRateMin","number","Minimum allowable mass rate, (may be negative) (HLA only).",default=0.0))
+        self.add_attribute(Attribute("massRateMax","number","Maximum allowable mass rate, (may be negative).",default=0.0))
+        self.add_attribute(Attribute("massRateMin","number","Minimum allowable mass rate, (may be negative).",default=0.0))

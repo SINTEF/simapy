@@ -5,14 +5,16 @@ from enum import auto
 
 class FileFormatCode(Enum):
     """"""
+    DEFAULT = auto()
     BINARY_OUTPUT_ONLY = auto()
     ASCII_OUTPUT_ONLY = auto()
     NO_ADDITIONAL_OUTPUT = auto()
     ASCII_OUTPUT = auto()
     BINARY_OUTPUT = auto()
-    HDF5 = auto()
 
     def label(self):
+        if self == FileFormatCode.DEFAULT:
+            return "Default"
         if self == FileFormatCode.BINARY_OUTPUT_ONLY:
             return "Binary format"
         if self == FileFormatCode.ASCII_OUTPUT_ONLY:
@@ -23,5 +25,3 @@ class FileFormatCode(Enum):
             return "Outmod (IFNDYN) and ASCII format"
         if self == FileFormatCode.BINARY_OUTPUT:
             return "Outmod (IFNDYN) and Binary format"
-        if self == FileFormatCode.HDF5:
-            return "HDF5"

@@ -20,4 +20,3 @@ class SegmentLengthVariationItemBlueprint(SegmentReferenceBlueprint):
         self.add_attribute(Attribute("startTime","number","Start time for segment length variation",default=0.0))
         self.add_attribute(Attribute("endTime","number","End time for segment length variation",default=0.0))
         self.add_attribute(Attribute("segmentLengthRate","number","Segment length variation per time unit",default=0.0))
-        self.add_attribute(Attribute("interactive","boolean","Activate interactive (HLA) control of segment variation",default=False))

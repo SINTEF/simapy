@@ -16,6 +16,7 @@ class WindTurbineMotionBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("turbine","sima/windpark/WindParkTurbine","",False))
         self.add_attribute(Attribute("timeColumn","integer","Column number for time",default=0))
-        self.add_attribute(Attribute("shaftDirectionColumn","integer","Column or time series number for shaft direction",default=0))
+        self.add_attribute(Attribute("shaftDirectionColumn","integer","Column number for shaft yaw direction (ICOZGR). 0 = no yaw motion",default=0))
         self.add_attribute(EnumAttribute("motionType","sima/windpark/MotionType","Kind of motion time series input"))
         self.add_attribute(Attribute("file","string","File name for hub positions"))
+        self.add_attribute(Attribute("shaftPitchColumn","integer","Column number for shaft pitch rotation (ICOYGR). 0 = no pitch motion",default=0))

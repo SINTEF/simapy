@@ -5,7 +5,6 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.simotask import SIMOTaskBlueprint
 from typing import Dict
-from ..condition import ConditionTask
 from ..condition import ConditionTaskCondition
 from ..condition import InitialCondition
 from ..condition import ModelVariation
@@ -15,10 +14,11 @@ from ..sima import ModelReferenceVariable
 from ..sima import SIMAScript
 from ..sima import ScriptableValue
 from ..sima import StringVariable
+from ..sima import Task
 from .massunit import MassUnit
 from .simomodel import SIMOModel
 
-class SIMOTask(ConditionTask):
+class SIMOTask(Task):
     """
     Keyword arguments
     -----------------

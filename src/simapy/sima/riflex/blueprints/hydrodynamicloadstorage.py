@@ -16,4 +16,5 @@ class HydrodynamicLoadStorageBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("store","boolean","Store hydrodynamic loads",default=False))
         self.add_attribute(Attribute("storageStep","integer","Storage for every <storage step> given.",default=1))
+        self.add_attribute(EnumAttribute("format","sima/riflex/AdditionalFileFormatCode","Format code for additional output of time series"))
         self.add_attribute(BlueprintAttribute("elements","sima/riflex/HydrodynamicLoadElementStorage","Specification of nodes for displacement storage",True,Dimension("*")))

@@ -80,7 +80,7 @@ class GeneralCrossSectionBlueprint(CrossSectionBlueprint,CRSAxialFrictionModelBl
         self.add_attribute(Attribute("massCoefficient","number","Mass / unit length",default=0.0))
         self.add_attribute(Attribute("extCrossSectionalArea","number","External cross-sectional area",default=0.0))
         self.add_attribute(Attribute("intCrossSectionalArea","number","Internal cross-sectional area",default=0.0))
-        self.add_attribute(Attribute("gyrationRadius","number","Radius of gyration about local x-axis",default=0.0))
+        self.add_attribute(Attribute("gyrationRadius","number","Radius of gyration about mass center (Ym,Zm)",default=0.0))
         self.add_attribute(Attribute("torsionStiffness","number","Torsion stiffness",default=0.0))
         self.add_attribute(Attribute("bendingStiffnessV","number","Bending stiffness around principal V-axis",default=0.0))
         self.add_attribute(Attribute("bendingStiffnessW","number","Bending stiffness around principal W-axis",default=0.0))

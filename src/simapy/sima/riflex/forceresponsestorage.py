@@ -36,7 +36,7 @@ class ForceResponseStorage(MOAO):
     transformations : List[ElementTransformation]
     """
 
-    def __init__(self , description="", storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, matrixFormat=AdditionalFileFormatCode.BINARY_OUTPUT, readTransformationMatrices=False, **kwargs):
+    def __init__(self , description="", storageStep=1, format=FileFormatCode.DEFAULT, matrixFormat=AdditionalFileFormatCode.DEFAULT, readTransformationMatrices=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()

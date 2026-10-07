@@ -20,7 +20,7 @@ class DynamicNodalForces(MOAO):
     _type : ForceSpecificationType
          Type of force specification
     fileName : str
-         File name for time series of force components\n\nNTDFO: : Number of time instants (given once) \nMDCOMP TIMDFO: Number of load components and \ntime instant for the given loads\nRLMAG:  Magnitude of load component (MDCOMP lines)\n\nThe block {MDCOMP TIMDFO RLMAG} must be given for \neach time instant. \n(default None)
+         Time series file of nodal force components. The first line specifies the units; each following line gives a time instant followed by its force components.(default None)
     items : List[DynamicNodalForceItem]
     """
 
@@ -76,16 +76,7 @@ class DynamicNodalForces(MOAO):
 
     @property
     def fileName(self) -> str:
-        """File name for time series of force components
-
-NTDFO: : Number of time instants (given once) 
-MDCOMP TIMDFO: Number of load components and 
-time instant for the given loads
-RLMAG:  Magnitude of load component (MDCOMP lines)
-
-The block {MDCOMP TIMDFO RLMAG} must be given for 
-each time instant. 
-"""
+        """Time series file of nodal force components. The first line specifies the units; each following line gives a time instant followed by its force components."""
         return self.__fileName
 
     @fileName.setter

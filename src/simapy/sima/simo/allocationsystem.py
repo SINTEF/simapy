@@ -7,8 +7,6 @@ from .blueprints.allocationsystem import AllocationSystemBlueprint
 from typing import Dict
 from ..sima import MOAO
 from ..sima import ScriptableValue
-from .formulation import Formulation
-from .thrusterallocation import ThrusterAllocation
 from .thrusterallocationmethod import ThrusterAllocationMethod
 from .thrustercontrol import ThrusterControl
 
@@ -25,29 +23,25 @@ class AllocationSystem(MOAO):
          Force allocation in sway(default True)
     yawAllocation : bool
          Force allocation in yaw(default True)
-    thrusters : List[ThrusterAllocation]
     manual : bool
          Manual input of force to allocation system(default False)
     allocationMethod : ThrusterAllocationMethod
          Thrust allocation method
     thrusterControls : List[ThrusterControl]
-    formulation : Formulation
     dpOff : bool
          Turn control system off(default False)
     """
 
-    def __init__(self , description="", surgeAllocation=True, swayAllocation=True, yawAllocation=True, manual=False, allocationMethod=ThrusterAllocationMethod.ORDINARY, formulation=Formulation.SIMO_41, dpOff=False, **kwargs):
+    def __init__(self , description="", surgeAllocation=True, swayAllocation=True, yawAllocation=True, manual=False, allocationMethod=ThrusterAllocationMethod.ORDINARY, dpOff=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.surgeAllocation = surgeAllocation
         self.swayAllocation = swayAllocation
         self.yawAllocation = yawAllocation
-        self.thrusters = list()
         self.manual = manual
         self.allocationMethod = allocationMethod
         self.thrusterControls = list()
-        self.formulation = formulation
         self.dpOff = dpOff
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -113,18 +107,6 @@ class AllocationSystem(MOAO):
         self.__yawAllocation = bool(value)
 
     @property
-    def thrusters(self) -> List[ThrusterAllocation]:
-        """"""
-        return self.__thrusters
-
-    @thrusters.setter
-    def thrusters(self, value: List[ThrusterAllocation]):
-        """Set thrusters"""
-        if not isinstance(value, Sequence):
-            raise ValueError("Expected sequense, but was " , type(value))
-        self.__thrusters = value
-
-    @property
     def manual(self) -> bool:
         """Manual input of force to allocation system"""
         return self.__manual
@@ -155,16 +137,6 @@ class AllocationSystem(MOAO):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__thrusterControls = value
-
-    @property
-    def formulation(self) -> Formulation:
-        """"""
-        return self.__formulation
-
-    @formulation.setter
-    def formulation(self, value: Formulation):
-        """Set formulation"""
-        self.__formulation = value
 
     @property
     def dpOff(self) -> bool:

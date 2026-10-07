@@ -20,7 +20,7 @@ class ARWinchBlueprint(SegmentReferenceBlueprint,NamedObjectBlueprint):
         self.add_attribute(Attribute("allSegments","boolean","All segments",default=False))
         self.add_attribute(Attribute("name","string",""))
         self.add_attribute(EnumAttribute("segmentEnd","sima/riflex/End","End of segment (and line) attached to winch (1 or 2)"))
-        self.add_attribute(Attribute("relativeSegmentLength","number","Relative segment length where segment is attached to winch point",default=0.0))
+        self.add_attribute(Attribute("relativeSegmentLength","number","Fraction of the segment length, from its start (0) to its end (1), where the segment is attached to the winch point",default=0.0))
         self.add_attribute(Attribute("x1","number","X-coordinate for static equilibrium position",default=0.0))
         self.add_attribute(Attribute("y1","number","Y-coordinate for static equilibrium position",default=0.0))
         self.add_attribute(Attribute("z1","number","Z-coordinate for static equilibrium position",default=0.0))

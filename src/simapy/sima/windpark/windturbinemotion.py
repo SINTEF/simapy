@@ -24,14 +24,16 @@ class WindTurbineMotion(MOAO):
     timeColumn : int
          Column number for time(default 0)
     shaftDirectionColumn : int
-         Column or time series number for shaft direction(default 0)
+         Column number for shaft yaw direction (ICOZGR). 0 = no yaw motion(default 0)
     motionType : MotionType
          Kind of motion time series input
     file : str
          File name for hub positions(default None)
+    shaftPitchColumn : int
+         Column number for shaft pitch rotation (ICOYGR). 0 = no pitch motion(default 0)
     """
 
-    def __init__(self , description="", timeColumn=0, shaftDirectionColumn=0, motionType=MotionType.POSI, **kwargs):
+    def __init__(self , description="", timeColumn=0, shaftDirectionColumn=0, motionType=MotionType.POSI, shaftPitchColumn=0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -40,6 +42,7 @@ class WindTurbineMotion(MOAO):
         self.shaftDirectionColumn = shaftDirectionColumn
         self.motionType = motionType
         self.file = None
+        self.shaftPitchColumn = shaftPitchColumn
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -95,7 +98,7 @@ class WindTurbineMotion(MOAO):
 
     @property
     def shaftDirectionColumn(self) -> int:
-        """Column or time series number for shaft direction"""
+        """Column number for shaft yaw direction (ICOZGR). 0 = no yaw motion"""
         return self.__shaftDirectionColumn
 
     @shaftDirectionColumn.setter
@@ -122,3 +125,13 @@ class WindTurbineMotion(MOAO):
     def file(self, value: str):
         """Set file"""
         self.__file = value
+
+    @property
+    def shaftPitchColumn(self) -> int:
+        """Column number for shaft pitch rotation (ICOYGR). 0 = no pitch motion"""
+        return self.__shaftPitchColumn
+
+    @shaftPitchColumn.setter
+    def shaftPitchColumn(self, value: int):
+        """Set shaftPitchColumn"""
+        self.__shaftPitchColumn = int(value)

@@ -32,9 +32,9 @@ class ElementAngle(ElementReference):
     allElements : bool
          All elements(default False)
     plane : Plane
-         Angle with axis
-    axis : Axis
          Projection in plane
+    axis : Axis
+         Angle with axis
     """
 
     def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, plane=Plane.XY, axis=Axis.X, **kwargs):
@@ -133,7 +133,7 @@ class ElementAngle(ElementReference):
 
     @property
     def plane(self) -> Plane:
-        """Angle with axis"""
+        """Projection in plane"""
         return self.__plane
 
     @plane.setter
@@ -143,7 +143,7 @@ class ElementAngle(ElementReference):
 
     @property
     def axis(self) -> Axis:
-        """Projection in plane"""
+        """Angle with axis"""
         return self.__axis
 
     @axis.setter

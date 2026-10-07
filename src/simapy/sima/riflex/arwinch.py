@@ -34,7 +34,7 @@ class ARWinch(SegmentReference,NamedObject):
     segmentEnd : End
          End of segment (and line) attached to winch (1 or 2)
     relativeSegmentLength : float
-         Relative segment length where segment is attached to winch point(default 0.0)
+         Fraction of the segment length, from its start (0) to its end (1), where the segment is attached to the winch point(default 0.0)
     x1 : float
          X-coordinate for static equilibrium position(default 0.0)
     y1 : float
@@ -167,7 +167,7 @@ class ARWinch(SegmentReference,NamedObject):
 
     @property
     def relativeSegmentLength(self) -> float:
-        """Relative segment length where segment is attached to winch point"""
+        """Fraction of the segment length, from its start (0) to its end (1), where the segment is attached to the winch point"""
         return self.__relativeSegmentLength
 
     @relativeSegmentLength.setter

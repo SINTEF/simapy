@@ -20,7 +20,6 @@ class SoilPenetrationBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("barArea","number","Soil buoyancy cross section area",default=0.0))
         self.add_attribute(Attribute("sodens","number","Soil mass density",default=0.0))
         self.add_attribute(Attribute("cArea","number","Section area of cavity",default=0.0))
-        self.add_attribute(EnumAttribute("seabedImport","sima/simo/HLA","Import of seabead depth values from HLA Depth value replaces ZCONT"))
         self.add_attribute(BlueprintAttribute("frictionElements","sima/simo/SoilFrictionElement","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("capacityElements","sima/simo/SoilCapacityElement","",True,Dimension("*")))
         self.add_attribute(Attribute("wstiff","number","Stiffness due to compressibility of water inside the cavity",default=0.0))

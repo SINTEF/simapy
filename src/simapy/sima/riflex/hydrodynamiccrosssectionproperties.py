@@ -28,9 +28,9 @@ class HydrodynamicCrossSectionProperties(MOAO):
     excitationZoneProperty : ExcitationZoneProperty
          Excitation zone
     addedMassCrossFlowProperty : AddedMassProperty
-         Cross-flow added mass
+         Added mass for pure cross flow or pure in-line. If Combined cross flow and in-line, the added mass is for cross flow. See VIV load type specification in Analysis Parameters
     excitationCoefficientCrossFlowProperty : ExcitationCoefficientsProperty
-         Cross-flow excitation coefficients
+         Excitation coefficients for pure cross flow or pure in-line. If Combined cross flow and in-line, the excitation coefficients are for cross flow. See VIV load type specification in Analysis Parameters
     dampingFactorProperty : DampingFactorProperty
          Hydrodynamic damping factor
     addedMassInLineProperty : AddedMassProperty
@@ -108,7 +108,7 @@ class HydrodynamicCrossSectionProperties(MOAO):
 
     @property
     def addedMassCrossFlowProperty(self) -> AddedMassProperty:
-        """Cross-flow added mass"""
+        """Added mass for pure cross flow or pure in-line. If Combined cross flow and in-line, the added mass is for cross flow. See VIV load type specification in Analysis Parameters"""
         return self.__addedMassCrossFlowProperty
 
     @addedMassCrossFlowProperty.setter
@@ -118,7 +118,7 @@ class HydrodynamicCrossSectionProperties(MOAO):
 
     @property
     def excitationCoefficientCrossFlowProperty(self) -> ExcitationCoefficientsProperty:
-        """Cross-flow excitation coefficients"""
+        """Excitation coefficients for pure cross flow or pure in-line. If Combined cross flow and in-line, the excitation coefficients are for cross flow. See VIV load type specification in Analysis Parameters"""
         return self.__excitationCoefficientCrossFlowProperty
 
     @excitationCoefficientCrossFlowProperty.setter

@@ -16,3 +16,4 @@ class SupportVesselForceStorageBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("items","sima/riflex/SupportVesselForceStorageItem","",True,Dimension("*")))
         self.add_attribute(Attribute("timeInterval","number","",default=0.0))
+        self.add_attribute(EnumAttribute("fileFormat","sima/riflex/StorageType","Support force storage file format"))

@@ -5,7 +5,6 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.wamittask import WamitTaskBlueprint
 from typing import Dict
-from ..condition import ConditionTask
 from ..condition import ConditionTaskCondition
 from ..condition import InitialCondition
 from ..condition import ModelVariation
@@ -15,9 +14,10 @@ from ..sima import ModelReferenceVariable
 from ..sima import SIMAScript
 from ..sima import ScriptableValue
 from ..sima import StringVariable
+from ..sima import Task
 from .wamitmodel import WamitModel
 
-class WamitTask(ConditionTask):
+class WamitTask(Task):
     """
     Keyword arguments
     -----------------

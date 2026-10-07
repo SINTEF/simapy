@@ -30,7 +30,7 @@ class BottomContactStorage(MOAO):
          Specification of nodes for displacement storage
     """
 
-    def __init__(self , description="", store=False, storageStep=1, format=FileFormatCode.BINARY_OUTPUT_ONLY, **kwargs):
+    def __init__(self , description="", store=False, storageStep=1, format=FileFormatCode.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()

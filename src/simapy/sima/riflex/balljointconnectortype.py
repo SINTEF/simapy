@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.balljointconnectortype import BallJointConnectorTypeBlueprint
 from typing import Dict
+from ..sima import Appearance
 from ..sima import ScriptableValue
 from ..simo import ReferenceFrameType
 from .boundarycondition import BoundaryCondition
@@ -19,6 +20,9 @@ class BallJointConnectorType(NodalComponentType):
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
+    appearance : Appearance
+    customGeometry : bool
+         Draw the component with a geometry of your own instead of the automatic sphere(default False)
     mass : float
          Mass(default 0.0)
     volume : float
@@ -45,11 +49,13 @@ class BallJointConnectorType(NodalComponentType):
          Rotation freedom code, z-axis.
     """
 
-    def __init__(self , description="", mass=0.0, volume=0.0, referenceFrame=ReferenceFrameType.LOCAL, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, boundaryRotX=BoundaryCondition.FREE, boundaryRotY=BoundaryCondition.FREE, boundaryRotZ=BoundaryCondition.FREE, **kwargs):
+    def __init__(self , description="", customGeometry=False, mass=0.0, volume=0.0, referenceFrame=ReferenceFrameType.LOCAL, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, boundaryRotX=BoundaryCondition.FREE, boundaryRotY=BoundaryCondition.FREE, boundaryRotZ=BoundaryCondition.FREE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
+        self.appearance = None
+        self.customGeometry = customGeometry
         self.mass = mass
         self.volume = volume
         self.referenceFrame = referenceFrame
@@ -104,6 +110,26 @@ class BallJointConnectorType(NodalComponentType):
     def name(self, value: str):
         """Set name"""
         self.__name = value
+
+    @property
+    def appearance(self) -> Appearance:
+        """"""
+        return self.__appearance
+
+    @appearance.setter
+    def appearance(self, value: Appearance):
+        """Set appearance"""
+        self.__appearance = value
+
+    @property
+    def customGeometry(self) -> bool:
+        """Draw the component with a geometry of your own instead of the automatic sphere"""
+        return self.__customGeometry
+
+    @customGeometry.setter
+    def customGeometry(self, value: bool):
+        """Set customGeometry"""
+        self.__customGeometry = bool(value)
 
     @property
     def mass(self) -> float:

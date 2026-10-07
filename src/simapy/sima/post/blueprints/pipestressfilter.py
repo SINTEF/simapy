@@ -28,3 +28,6 @@ class PipeStressFilterBlueprint(OperationNodeBlueprint):
         self.add_attribute(Attribute("externalPressure","number","",default=0.0))
         self.add_attribute(Attribute("numberOfPoints","integer","",default=8))
         self.add_attribute(EnumAttribute("positionForStressCalculation","sima/post/WallPoint",""))
+        self.add_attribute(BlueprintAttribute("torsion","sima/post/InputSlot","",True))
+        self.add_attribute(BlueprintAttribute("shearY","sima/post/InputSlot","",True))
+        self.add_attribute(BlueprintAttribute("shearZ","sima/post/InputSlot","",True))

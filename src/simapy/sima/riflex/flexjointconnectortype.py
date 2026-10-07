@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.flexjointconnectortype import FlexJointConnectorTypeBlueprint
 from typing import Dict
+from ..sima import Appearance
 from ..sima import ScriptableValue
 from .nodalcomponenttype import NodalComponentType
 from .rotationalstiffnessitem import RotationalStiffnessItem
@@ -19,6 +20,9 @@ class FlexJointConnectorType(NodalComponentType):
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
+    appearance : Appearance
+    customGeometry : bool
+         Draw the component with a geometry of your own instead of the automatic sphere(default False)
     mass : float
          Mass(default 0.0)
     volume : float
@@ -54,11 +58,11 @@ class FlexJointConnectorType(NodalComponentType):
     addedMassRotZ : float
          Added mass rotation around local z-axis(default 0.0)
     stiffnessTypeRotX : RotationalStiffnessType
-         Rotational stiffnes type - local x-axis.
+         Rotational stiffness type - local x-axis.
     stiffnessTypeRotY : RotationalStiffnessType
-         Rotational stiffnes type - local z-axis.
+         Rotational stiffness type - local y-axis.
     stiffnessTypeRotZ : RotationalStiffnessType
-         Rotational stiffnes type - local z-axis.
+         Rotational stiffness type - local z-axis.
     stiffnessDampingCoeffX : float
          Stiffness proportional damping coefficient.(default 0.0)
     stiffnessDampingCoeffY : float
@@ -72,17 +76,19 @@ class FlexJointConnectorType(NodalComponentType):
     linearStiffnessRotZ : float
          Stiffness with respect to z-axis rotation(default 0.0)
     yzStiffnessSymmetry : bool
-         Same stiffnes for y and z axis?(default False)
+         The same bending stiffness in all directions normal to the local x-axis.(default False)
     stiffnessCharacteristicsRotX : List[RotationalStiffnessItem]
     stiffnessCharacteristicsRotY : List[RotationalStiffnessItem]
     stiffnessCharacteristicsRotZ : List[RotationalStiffnessItem]
     """
 
-    def __init__(self , description="", mass=0.0, volume=0.0, gyrationRadiusX=0.0, gyrationRadiusY=0.0, gyrationRadiusZ=0.0, dampingRotX=0.0, dampingRotY=0.0, dampingRotZ=0.0, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, addedMassRotX=0.0, addedMassRotY=0.0, addedMassRotZ=0.0, stiffnessTypeRotX=RotationalStiffnessType.FIXED, stiffnessTypeRotY=RotationalStiffnessType.FIXED, stiffnessTypeRotZ=RotationalStiffnessType.FIXED, stiffnessDampingCoeffX=0.0, stiffnessDampingCoeffY=0.0, stiffnessDampingCoeffZ=0.0, linearStiffnessRotX=0.0, linearStiffnessRotY=0.0, linearStiffnessRotZ=0.0, yzStiffnessSymmetry=False, **kwargs):
+    def __init__(self , description="", customGeometry=False, mass=0.0, volume=0.0, gyrationRadiusX=0.0, gyrationRadiusY=0.0, gyrationRadiusZ=0.0, dampingRotX=0.0, dampingRotY=0.0, dampingRotZ=0.0, dragX=0.0, dragY=0.0, dragZ=0.0, addedMassX=0.0, addedMassY=0.0, addedMassZ=0.0, addedMassRotX=0.0, addedMassRotY=0.0, addedMassRotZ=0.0, stiffnessTypeRotX=RotationalStiffnessType.FIXED, stiffnessTypeRotY=RotationalStiffnessType.FIXED, stiffnessTypeRotZ=RotationalStiffnessType.FIXED, stiffnessDampingCoeffX=0.0, stiffnessDampingCoeffY=0.0, stiffnessDampingCoeffZ=0.0, linearStiffnessRotX=0.0, linearStiffnessRotY=0.0, linearStiffnessRotZ=0.0, yzStiffnessSymmetry=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
+        self.appearance = None
+        self.customGeometry = customGeometry
         self.mass = mass
         self.volume = volume
         self.gyrationRadiusX = gyrationRadiusX
@@ -155,6 +161,26 @@ class FlexJointConnectorType(NodalComponentType):
     def name(self, value: str):
         """Set name"""
         self.__name = value
+
+    @property
+    def appearance(self) -> Appearance:
+        """"""
+        return self.__appearance
+
+    @appearance.setter
+    def appearance(self, value: Appearance):
+        """Set appearance"""
+        self.__appearance = value
+
+    @property
+    def customGeometry(self) -> bool:
+        """Draw the component with a geometry of your own instead of the automatic sphere"""
+        return self.__customGeometry
+
+    @customGeometry.setter
+    def customGeometry(self, value: bool):
+        """Set customGeometry"""
+        self.__customGeometry = bool(value)
 
     @property
     def mass(self) -> float:
@@ -328,7 +354,7 @@ class FlexJointConnectorType(NodalComponentType):
 
     @property
     def stiffnessTypeRotX(self) -> RotationalStiffnessType:
-        """Rotational stiffnes type - local x-axis."""
+        """Rotational stiffness type - local x-axis."""
         return self.__stiffnessTypeRotX
 
     @stiffnessTypeRotX.setter
@@ -338,7 +364,7 @@ class FlexJointConnectorType(NodalComponentType):
 
     @property
     def stiffnessTypeRotY(self) -> RotationalStiffnessType:
-        """Rotational stiffnes type - local z-axis."""
+        """Rotational stiffness type - local y-axis."""
         return self.__stiffnessTypeRotY
 
     @stiffnessTypeRotY.setter
@@ -348,7 +374,7 @@ class FlexJointConnectorType(NodalComponentType):
 
     @property
     def stiffnessTypeRotZ(self) -> RotationalStiffnessType:
-        """Rotational stiffnes type - local z-axis."""
+        """Rotational stiffness type - local z-axis."""
         return self.__stiffnessTypeRotZ
 
     @stiffnessTypeRotZ.setter
@@ -418,7 +444,7 @@ class FlexJointConnectorType(NodalComponentType):
 
     @property
     def yzStiffnessSymmetry(self) -> bool:
-        """Same stiffnes for y and z axis?"""
+        """The same bending stiffness in all directions normal to the local x-axis."""
         return self.__yzStiffnessSymmetry
 
     @yzStiffnessSymmetry.setter

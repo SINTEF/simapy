@@ -37,17 +37,19 @@ class ElementStressStorage(ElementReference):
     elementEnd : End
          End number 1 or 2
     _type : StressType
+         Stress to calculate
     outerDiameter : float
-         (default 0.0)
+         Outer diameter. If not set, RIFLEX uses the stress diameter of a thin-walled pipe or axisymmetric cross section(default 0.0)
     thickness : float
-         (default 0.0)
+         Wall thickness. If not set, RIFLEX uses the stress thickness of a thin-walled pipe or axisymmetric cross section(default 0.0)
     internalPressure : float
-         (default 0.0)
+         Internal pressure. If not set, RIFLEX uses the static internal pressure at the element end(default 0.0)
     externalPressure : float
-         (default 0.0)
+         External pressure. If not set, RIFLEX uses the static external pressure at the element end(default 0.0)
     numberOfPoints : int
-         (default 8)
+         Number of points around the circumference, the first at the local y axis(default 8)
     position : WallPoint
+         Wall the stress is calculated at
     """
 
     def __init__(self , description="", segment=1, allSegments=False, elementNumber=1, allElements=False, allEnds=False, elementEnd=End.ONE, _type=StressType.AXIAL_BENDING, outerDiameter=0.0, thickness=0.0, internalPressure=0.0, externalPressure=0.0, numberOfPoints=8, position=WallPoint.OUTER_WALL, **kwargs):
@@ -173,7 +175,7 @@ class ElementStressStorage(ElementReference):
 
     @property
     def _type(self) -> StressType:
-        """"""
+        """Stress to calculate"""
         return self.___type
 
     @_type.setter
@@ -183,7 +185,7 @@ class ElementStressStorage(ElementReference):
 
     @property
     def outerDiameter(self) -> float:
-        """"""
+        """Outer diameter. If not set, RIFLEX uses the stress diameter of a thin-walled pipe or axisymmetric cross section"""
         return self.__outerDiameter
 
     @outerDiameter.setter
@@ -193,7 +195,7 @@ class ElementStressStorage(ElementReference):
 
     @property
     def thickness(self) -> float:
-        """"""
+        """Wall thickness. If not set, RIFLEX uses the stress thickness of a thin-walled pipe or axisymmetric cross section"""
         return self.__thickness
 
     @thickness.setter
@@ -203,7 +205,7 @@ class ElementStressStorage(ElementReference):
 
     @property
     def internalPressure(self) -> float:
-        """"""
+        """Internal pressure. If not set, RIFLEX uses the static internal pressure at the element end"""
         return self.__internalPressure
 
     @internalPressure.setter
@@ -213,7 +215,7 @@ class ElementStressStorage(ElementReference):
 
     @property
     def externalPressure(self) -> float:
-        """"""
+        """External pressure. If not set, RIFLEX uses the static external pressure at the element end"""
         return self.__externalPressure
 
     @externalPressure.setter
@@ -223,7 +225,7 @@ class ElementStressStorage(ElementReference):
 
     @property
     def numberOfPoints(self) -> int:
-        """"""
+        """Number of points around the circumference, the first at the local y axis"""
         return self.__numberOfPoints
 
     @numberOfPoints.setter
@@ -233,7 +235,7 @@ class ElementStressStorage(ElementReference):
 
     @property
     def position(self) -> WallPoint:
-        """"""
+        """Wall the stress is calculated at"""
         return self.__position
 
     @position.setter

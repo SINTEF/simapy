@@ -5,9 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from ...condition.blueprints.conditiontask import ConditionTaskBlueprint
+from ...sima.blueprints.task import TaskBlueprint
 
-class WamitTaskBlueprint(ConditionTaskBlueprint):
+class WamitTaskBlueprint(TaskBlueprint):
     """"""
 
     def __init__(self, name="WamitTask", package_path="sima/wamit", description=""):

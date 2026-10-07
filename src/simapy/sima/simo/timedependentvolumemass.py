@@ -31,9 +31,9 @@ class TimeDependentVolumeMass(NamedObject):
     volMin : float
          Minimum allowable volume(default 0.0)
     volRateMax : float
-         Maximum allowable volume rate (HLA only)(default 0.0)
+         Maximum allowable volume rate(default 0.0)
     volRateMin : float
-         Minimum allowable volume rate (HLA only)(default 0.0)
+         Minimum allowable volume rate(default 0.0)
     density : float
          Density of liquid in tank(default 0.0)
     vectorZ : Vector3
@@ -156,7 +156,7 @@ class TimeDependentVolumeMass(NamedObject):
 
     @property
     def volRateMax(self) -> float:
-        """Maximum allowable volume rate (HLA only)"""
+        """Maximum allowable volume rate"""
         return self.__volRateMax
 
     @volRateMax.setter
@@ -166,7 +166,7 @@ class TimeDependentVolumeMass(NamedObject):
 
     @property
     def volRateMin(self) -> float:
-        """Minimum allowable volume rate (HLA only)"""
+        """Minimum allowable volume rate"""
         return self.__volRateMin
 
     @volRateMin.setter

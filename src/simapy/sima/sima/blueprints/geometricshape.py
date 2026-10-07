@@ -21,7 +21,4 @@ class GeometricShapeBlueprint(ShapeBlueprint):
         self.add_attribute(Attribute("rotX","number","",default=0.0))
         self.add_attribute(Attribute("rotY","number","",default=0.0))
         self.add_attribute(Attribute("rotZ","number","",default=0.0))
-        self.add_attribute(Attribute("length","number","Length",default=10.0))
-        self.add_attribute(Attribute("width","number","Width",default=5.0))
-        self.add_attribute(Attribute("height","number","Height",default=5.0))
         self.add_attribute(BlueprintAttribute("appearance","sima/sima/Appearance","",True))

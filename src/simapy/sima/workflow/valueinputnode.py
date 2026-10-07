@@ -13,7 +13,7 @@ from ..sima import ScriptableValue
 from ..sima import SingleParameter
 from .workflowinput import WorkflowInput
 
-class ValueInputNode(WorkflowInput,SignalPropertiesContainer,SingleParameter):
+class ValueInputNode(WorkflowInput,SingleParameter,SignalPropertiesContainer):
     """
     Keyword arguments
     -----------------

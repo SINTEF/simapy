@@ -18,4 +18,5 @@ class SIFImportConfigurationBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("bodyName","string","Optional. Name of SIMOBody to merge hydrodynamic data into."))
         self.add_attribute(EnumAttribute("waveDriftOption","sima/hydro/SecondOrderWaveDriftOption",""))
         self.add_attribute(EnumAttribute("qtfImportOption","sima/hydro/QTFImportOption",""))
+        self.add_attribute(Attribute("overrideConstants","boolean","Override the water depth and physical constants of the task being imported into with the values from the file. Off keeps the values the task already has, and is what a run with no answer uses.",default=False))
         self.add_attribute(BlueprintAttribute("retardationFunctionParameters","sima/hydro/RetardationFunctionCalculationParameters","",True))

@@ -2,6 +2,89 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.4.0]
+
+- Updated data model to reflect SIMA 5.4.0
+- Removed package `simapy.sima.hla`, as SIMA no longer has an HLA model
+- Removed `ConditionTask`; `SIMOTask`, `MetoceanTask`, `WamitTask`, `WindParkTask` and `WindFieldTask` now extend `Task` directly
+
+Model changes per package:
+
+### Package sima
+
+Added:
+ - Field Appearance.length
+ - Field Appearance.width
+ - Field Appearance.height
+
+Changed:
+ - move AppearanceContainer.length to child feature appearance.length
+ - move AppearanceContainer.width to child feature appearance.width
+ - move AppearanceContainer.height to child feature appearance.height
+
+### Package post
+
+Added:
+ - Field PipeStressFilter.torsion
+ - Field PipeStressFilter.shearY
+ - Field PipeStressFilter.shearZ
+
+### Package hydro
+
+Added:
+ - Field SIFImportConfiguration.overrideConstants
+
+### Package simo
+
+Changed:
+ - remove SIMOFederate
+ - remove SIMOBody.positionsHLAObjectName
+ - remove SoilPenetration.seabedImport
+ - remove WinchControl.HLA
+ - remove PositionsImportType.FROM_HLA
+ - remove ArticulatedStructureType.HLA
+ - remove HLA
+ - remove OldThruster
+ - remove ThrusterForbiddenZone
+ - remove ThrusterAllocation
+ - remove Formulation
+ - remove Thruster.forbiddenZoneItems
+ - Custom migration of Thruster.formulation
+ - Custom migration of Thruster.relativeDeadBand
+ - Custom migration of Thruster.minDirectionChange
+ - Custom migration of Thruster.thrustReductionFactor
+ - Custom migration of AllocationSystem.formulation
+ - Custom migration of AllocationSystem.thrusters
+
+### Package riflex
+
+Added:
+ - Field BodyForceStorage.fileFormat
+ - Field FlexJointConnectorType.customGeometry
+ - Field FlexJointConnectorType.appearance
+ - Field BallJointConnectorType.customGeometry
+ - Field BallJointConnectorType.appearance
+ - Field DragChainType.customGeometry
+ - Field DragChainType.appearance
+ - Field HydrodynamicLoadStorage.format
+ - Field NodalBodyType.customGeometry
+ - Field NodalBodyType.appearance
+ - Field SupportVesselForceStorage.fileFormat
+ - Field EigenvalueAnalysisParameters.storeRotationAndCurvature
+ - Option StorageType.DEFAULT
+ - Option FileFormatCode.DEFAULT
+ - Option AdditionalFileFormatCode.DEFAULT
+ - Option MatrixPlotFileOption.MIN_MAX_MEAN_AND_STANDARD_DEV
+
+Changed:
+ - remove RIFLEXFederate
+ - remove RIFLEXDynamicCalculationParameters.hlaElementForces
+ - remove RIFLEXDynamicCalculationParameters.hlaImportedBodies
+ - remove SegmentLengthVariationItem.interactive
+ - remove HLAElementForce
+ - remove ImportVesselItem
+ - Custom migration of FileFormatCode.HDF5
+
 ## [5.2.0]
 
 - Updated data model to reflect SIMA 5.2.0

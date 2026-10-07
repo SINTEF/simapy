@@ -19,6 +19,12 @@ class Appearance(MOAO):
     description : str
          (default "")
     scriptableValues : List[ScriptableValue]
+    length : float
+         Length(default 10.0)
+    width : float
+         Width(default 5.0)
+    height : float
+         Height(default 5.0)
     graphicsfile : str
          Graphics file(default None)
     translation : Vector3
@@ -35,10 +41,13 @@ class Appearance(MOAO):
          Symmetric properties of the geometry
     """
 
-    def __init__(self , description="", geomRepresentationType=GeomRepresentationType.DEFAULT_BOX, radius=1.0, transparency=0.0, symmetry=Symmetry.NONE, **kwargs):
+    def __init__(self , description="", length=10.0, width=5.0, height=5.0, geomRepresentationType=GeomRepresentationType.DEFAULT_BOX, radius=1.0, transparency=0.0, symmetry=Symmetry.NONE, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
+        self.length = length
+        self.width = width
+        self.height = height
         self.graphicsfile = None
         self.translation = None
         self.rotation = None
@@ -80,6 +89,36 @@ class Appearance(MOAO):
         if not isinstance(value, Sequence):
             raise ValueError("Expected sequense, but was " , type(value))
         self.__scriptableValues = value
+
+    @property
+    def length(self) -> float:
+        """Length"""
+        return self.__length
+
+    @length.setter
+    def length(self, value: float):
+        """Set length"""
+        self.__length = float(value)
+
+    @property
+    def width(self) -> float:
+        """Width"""
+        return self.__width
+
+    @width.setter
+    def width(self, value: float):
+        """Set width"""
+        self.__width = float(value)
+
+    @property
+    def height(self) -> float:
+        """Height"""
+        return self.__height
+
+    @height.setter
+    def height(self, value: float):
+        """Set height"""
+        self.__height = float(value)
 
     @property
     def graphicsfile(self) -> str:

@@ -7,7 +7,6 @@ from .blueprints.soilpenetration import SoilPenetrationBlueprint
 from typing import Dict
 from ..sima import MOAO
 from ..sima import ScriptableValue
-from .hla import HLA
 from .soilcapacityelement import SoilCapacityElement
 from .soilfriction import SoilFriction
 from .soilfrictionelement import SoilFrictionElement
@@ -31,8 +30,6 @@ class SoilPenetration(MOAO):
          Soil mass density(default 0.0)
     cArea : float
          Section area of cavity(default 0.0)
-    seabedImport : HLA
-         Import of seabead depth values from HLA Depth value replaces ZCONT
     frictionElements : List[SoilFrictionElement]
     capacityElements : List[SoilCapacityElement]
     wstiff : float
@@ -43,7 +40,7 @@ class SoilPenetration(MOAO):
          Flow coefficient in/out of closed compartment(default 0.0)
     """
 
-    def __init__(self , description="", frictionModel=SoilFriction.OPEN_COMPARTMENT, zcont=0.0, penetrationDepth=0.0, barArea=0.0, sodens=0.0, cArea=0.0, seabedImport=HLA.NO_IMPORT, wstiff=0.0, tsuct=0.0, cflow=0.0, **kwargs):
+    def __init__(self , description="", frictionModel=SoilFriction.OPEN_COMPARTMENT, zcont=0.0, penetrationDepth=0.0, barArea=0.0, sodens=0.0, cArea=0.0, wstiff=0.0, tsuct=0.0, cflow=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -53,7 +50,6 @@ class SoilPenetration(MOAO):
         self.barArea = barArea
         self.sodens = sodens
         self.cArea = cArea
-        self.seabedImport = seabedImport
         self.frictionElements = list()
         self.capacityElements = list()
         self.wstiff = wstiff
@@ -152,16 +148,6 @@ contact with the soil (landing)"""
     def cArea(self, value: float):
         """Set cArea"""
         self.__cArea = float(value)
-
-    @property
-    def seabedImport(self) -> HLA:
-        """Import of seabead depth values from HLA Depth value replaces ZCONT"""
-        return self.__seabedImport
-
-    @seabedImport.setter
-    def seabedImport(self, value: HLA):
-        """Set seabedImport"""
-        self.__seabedImport = value
 
     @property
     def frictionElements(self) -> List[SoilFrictionElement]:

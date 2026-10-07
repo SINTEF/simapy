@@ -19,5 +19,5 @@ class ElementAngleBlueprint(ElementReferenceBlueprint):
         self.add_attribute(Attribute("allSegments","boolean","All segments",default=False))
         self.add_attribute(Attribute("elementNumber","integer","Local element number on actual segment",default=1))
         self.add_attribute(Attribute("allElements","boolean","All elements",default=False))
-        self.add_attribute(EnumAttribute("plane","sima/riflex/Plane","Angle with axis"))
-        self.add_attribute(EnumAttribute("axis","sima/riflex/Axis","Projection in plane"))
+        self.add_attribute(EnumAttribute("plane","sima/riflex/Plane","Projection in plane"))
+        self.add_attribute(EnumAttribute("axis","sima/riflex/Axis","Angle with axis"))

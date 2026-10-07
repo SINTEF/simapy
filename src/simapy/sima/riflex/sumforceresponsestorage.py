@@ -25,7 +25,7 @@ class SumForceResponseStorage(MOAO):
          Specification of nodes for displacement storage
     """
 
-    def __init__(self , description="", storageStep=1, format=AdditionalFileFormatCode.BINARY_OUTPUT, **kwargs):
+    def __init__(self , description="", storageStep=1, format=AdditionalFileFormatCode.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()

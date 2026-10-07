@@ -43,6 +43,9 @@ class PipeStressFilter(OperationNode):
     numberOfPoints : int
          (default 8)
     positionForStressCalculation : WallPoint
+    torsion : InputSlot
+    shearY : InputSlot
+    shearZ : InputSlot
     """
 
     def __init__(self , description="", x=0, y=0, h=0, w=0, outerDiameter=0.0, pipeThickness=0.0, internalPressure=0.0, externalPressure=0.0, numberOfPoints=8, positionForStressCalculation=WallPoint.OUTER_WALL, **kwargs):
@@ -63,6 +66,9 @@ class PipeStressFilter(OperationNode):
         self.externalPressure = externalPressure
         self.numberOfPoints = numberOfPoints
         self.positionForStressCalculation = positionForStressCalculation
+        self.torsion = None
+        self.shearY = None
+        self.shearZ = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -241,3 +247,33 @@ class PipeStressFilter(OperationNode):
     def positionForStressCalculation(self, value: WallPoint):
         """Set positionForStressCalculation"""
         self.__positionForStressCalculation = value
+
+    @property
+    def torsion(self) -> InputSlot:
+        """"""
+        return self.__torsion
+
+    @torsion.setter
+    def torsion(self, value: InputSlot):
+        """Set torsion"""
+        self.__torsion = value
+
+    @property
+    def shearY(self) -> InputSlot:
+        """"""
+        return self.__shearY
+
+    @shearY.setter
+    def shearY(self, value: InputSlot):
+        """Set shearY"""
+        self.__shearY = value
+
+    @property
+    def shearZ(self) -> InputSlot:
+        """"""
+        return self.__shearZ
+
+    @shearZ.setter
+    def shearZ(self, value: InputSlot):
+        """Set shearZ"""
+        self.__shearZ = value

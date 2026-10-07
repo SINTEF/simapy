@@ -36,13 +36,13 @@ class RetardationFunctionCalculationNode(RunNode):
     timeStep : float
          Retardation function timeStep(default 0.5)
     powerOfTwo : int
-         Length of array used for fft/ifft. Default 2**13.(default 13)
+         Exponent n: the FFT uses 2^n samples, and the retardation function has at most 2^(n-1) samples before the near-zero tail is truncated (see Cut factor). Default 13.(default 13)
     cutFactor : float
-         factor for cut of fft. Default 200(default 200.0)
+         Factor determining the duration of the significant part of the retardation function; the near-zero tail is truncated from the right. Large cut factor means longer duration (less truncation). Default 200.(default 200.0)
     useStructuralMass : bool
          Use structural mass together with a cut factor for removing certain degrees of freedom(default True)
     massCutFactor : float
-         Factor used together with structural mass to cut a degree of freedom.  Small factor means larger chance of cutting(default 100000.0)
+         Factor used together with structural mass to determine which coupling terms in the retardation function matrix are close to zero at all t and can be neglected. Small factor means larger chance of neglecting coupling terms. Only used when structural mass is available.(default 100000.0)
     """
 
     def __init__(self , description="", x=0, y=0, h=0, w=0, timeStep=0.5, powerOfTwo=13, cutFactor=200.0, useStructuralMass=True, massCutFactor=100000.0, **kwargs):
@@ -211,7 +211,7 @@ class RetardationFunctionCalculationNode(RunNode):
 
     @property
     def powerOfTwo(self) -> int:
-        """Length of array used for fft/ifft. Default 2**13."""
+        """Exponent n: the FFT uses 2^n samples, and the retardation function has at most 2^(n-1) samples before the near-zero tail is truncated (see Cut factor). Default 13."""
         return self.__powerOfTwo
 
     @powerOfTwo.setter
@@ -221,7 +221,7 @@ class RetardationFunctionCalculationNode(RunNode):
 
     @property
     def cutFactor(self) -> float:
-        """factor for cut of fft. Default 200"""
+        """Factor determining the duration of the significant part of the retardation function; the near-zero tail is truncated from the right. Large cut factor means longer duration (less truncation). Default 200."""
         return self.__cutFactor
 
     @cutFactor.setter
@@ -241,7 +241,7 @@ class RetardationFunctionCalculationNode(RunNode):
 
     @property
     def massCutFactor(self) -> float:
-        """Factor used together with structural mass to cut a degree of freedom.  Small factor means larger chance of cutting"""
+        """Factor used together with structural mass to determine which coupling terms in the retardation function matrix are close to zero at all t and can be neglected. Small factor means larger chance of neglecting coupling terms. Only used when structural mass is available."""
         return self.__massCutFactor
 
     @massCutFactor.setter

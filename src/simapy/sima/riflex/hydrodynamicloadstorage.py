@@ -7,6 +7,7 @@ from .blueprints.hydrodynamicloadstorage import HydrodynamicLoadStorageBlueprint
 from typing import Dict
 from ..sima import MOAO
 from ..sima import ScriptableValue
+from .additionalfileformatcode import AdditionalFileFormatCode
 from .hydrodynamicloadelementstorage import HydrodynamicLoadElementStorage
 
 class HydrodynamicLoadStorage(MOAO):
@@ -20,16 +21,19 @@ class HydrodynamicLoadStorage(MOAO):
          Store hydrodynamic loads(default False)
     storageStep : int
          Storage for every <storage step> given.(default 1)
+    format : AdditionalFileFormatCode
+         Format code for additional output of time series
     elements : List[HydrodynamicLoadElementStorage]
          Specification of nodes for displacement storage
     """
 
-    def __init__(self , description="", store=False, storageStep=1, **kwargs):
+    def __init__(self , description="", store=False, storageStep=1, format=AdditionalFileFormatCode.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.store = store
         self.storageStep = storageStep
+        self.format = format
         self.elements = list()
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -83,6 +87,16 @@ class HydrodynamicLoadStorage(MOAO):
     def storageStep(self, value: int):
         """Set storageStep"""
         self.__storageStep = int(value)
+
+    @property
+    def format(self) -> AdditionalFileFormatCode:
+        """Format code for additional output of time series"""
+        return self.__format
+
+    @format.setter
+    def format(self, value: AdditionalFileFormatCode):
+        """Set format"""
+        self.__format = value
 
     @property
     def elements(self) -> List[HydrodynamicLoadElementStorage]:

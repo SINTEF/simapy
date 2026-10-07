@@ -15,5 +15,5 @@ class DynamicNodalForcesBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("_type","sima/riflex/ForceSpecificationType","Type of force specification"))
-        self.add_attribute(Attribute("fileName","string","File name for time series of force components\n\nNTDFO: : Number of time instants (given once) \nMDCOMP TIMDFO: Number of load components and \ntime instant for the given loads\nRLMAG:  Magnitude of load component (MDCOMP lines)\n\nThe block {MDCOMP TIMDFO RLMAG} must be given for \neach time instant. \n"))
+        self.add_attribute(Attribute("fileName","string","Time series file of nodal force components. The first line specifies the units; each following line gives a time instant followed by its force components."))
         self.add_attribute(BlueprintAttribute("items","sima/riflex/DynamicNodalForceItem","",True,Dimension("*")))
