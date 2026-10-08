@@ -72,12 +72,6 @@ class SIMOBody(Body):
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
-    length : float
-         Length(default 10.0)
-    width : float
-         Width(default 5.0)
-    height : float
-         Height(default 5.0)
     appearance : Appearance
     shapes : List[Shape]
     initialPosition : Position
@@ -88,8 +82,6 @@ class SIMOBody(Body):
          Type of import for positions
     positionsFileName : str
          File name for body positions(default None)
-    positionsHLAObjectName : str
-         HLA object name for body(default None)
     applyGravityForce : bool
          Should gravity force be included(default False)
     bodyPoints : List[SIMOBodyPoint]
@@ -146,14 +138,11 @@ class SIMOBody(Body):
     sumFrequencyQtf : SumFrequencyQTF
     """
 
-    def __init__(self , description="", length=10.0, width=5.0, height=5.0, _type=BodyType.SIX_DOF_TIME_DOMAIN, positionsImportType=PositionsImportType.FIXED_POSITION, applyGravityForce=False, hydrodynamicSeparationMethod=HydrodynamicSeparationMethod.BW2_FILTERING, hydrodynamicFilterCutOffPeriod=0.0, **kwargs):
+    def __init__(self , description="", _type=BodyType.SIX_DOF_TIME_DOMAIN, positionsImportType=PositionsImportType.FIXED_POSITION, applyGravityForce=False, hydrodynamicSeparationMethod=HydrodynamicSeparationMethod.BW2_FILTERING, hydrodynamicFilterCutOffPeriod=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
-        self.length = length
-        self.width = width
-        self.height = height
         self.appearance = None
         self.shapes = list()
         self.initialPosition = None
@@ -161,7 +150,6 @@ class SIMOBody(Body):
         self._type = _type
         self.positionsImportType = positionsImportType
         self.positionsFileName = None
-        self.positionsHLAObjectName = None
         self.applyGravityForce = applyGravityForce
         self.bodyPoints = list()
         self.catenarySystem = None
@@ -257,36 +245,6 @@ class SIMOBody(Body):
         self.__name = value
 
     @property
-    def length(self) -> float:
-        """Length"""
-        return self.__length
-
-    @length.setter
-    def length(self, value: float):
-        """Set length"""
-        self.__length = float(value)
-
-    @property
-    def width(self) -> float:
-        """Width"""
-        return self.__width
-
-    @width.setter
-    def width(self, value: float):
-        """Set width"""
-        self.__width = float(value)
-
-    @property
-    def height(self) -> float:
-        """Height"""
-        return self.__height
-
-    @height.setter
-    def height(self, value: float):
-        """Set height"""
-        self.__height = float(value)
-
-    @property
     def appearance(self) -> Appearance:
         """"""
         return self.__appearance
@@ -359,16 +317,6 @@ class SIMOBody(Body):
     def positionsFileName(self, value: str):
         """Set positionsFileName"""
         self.__positionsFileName = value
-
-    @property
-    def positionsHLAObjectName(self) -> str:
-        """HLA object name for body"""
-        return self.__positionsHLAObjectName
-
-    @positionsHLAObjectName.setter
-    def positionsHLAObjectName(self, value: str):
-        """Set positionsHLAObjectName"""
-        self.__positionsHLAObjectName = value
 
     @property
     def applyGravityForce(self) -> bool:

@@ -28,8 +28,6 @@ class RIFLEXDynamicCalculationParametersBlueprint(MOAOBlueprint):
         self.add_attribute(BlueprintAttribute("supportVesselForceStorage","sima/riflex/SupportVesselForceStorage","",True))
         self.add_attribute(BlueprintAttribute("bodyForceStorage","sima/riflex/BodyForceStorage","",True))
         self.add_attribute(BlueprintAttribute("hydrodynamicLoadStorage","sima/riflex/HydrodynamicLoadStorage","",True))
-        self.add_attribute(BlueprintAttribute("hlaElementForces","sima/riflex/HLAElementForce","",True,Dimension("*")))
-        self.add_attribute(BlueprintAttribute("hlaImportedBodies","sima/riflex/ImportVesselItem","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("segmentLengthVariations","sima/riflex/SegmentLengthVariationItem","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("temperatureVariations","sima/riflex/DynamicTemperatureVariationItem","",True,Dimension("*")))
         self.add_attribute(BlueprintAttribute("pressureVariations","sima/riflex/DynamicPressureVariationItem","",True,Dimension("*")))

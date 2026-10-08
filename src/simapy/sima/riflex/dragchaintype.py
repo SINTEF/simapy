@@ -5,6 +5,7 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.dragchaintype import DragChainTypeBlueprint
 from typing import Dict
+from ..sima import Appearance
 from ..sima import ScriptableValue
 from .nodalcomponenttype import NodalComponentType
 
@@ -17,6 +18,9 @@ class DragChainType(NodalComponentType):
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
+    appearance : Appearance
+    customGeometry : bool
+         Draw the component with a geometry of your own instead of the automatic sphere(default False)
     length : float
          Drag chain length.(default 0.0)
     unitWeight : float
@@ -29,11 +33,13 @@ class DragChainType(NodalComponentType):
          Cable weight.(default 0.0)
     """
 
-    def __init__(self , description="", length=0.0, unitWeight=0.0, friction=0.0, cableLength=0.0, cableWeight=0.0, **kwargs):
+    def __init__(self , description="", customGeometry=False, length=0.0, unitWeight=0.0, friction=0.0, cableLength=0.0, cableWeight=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
+        self.appearance = None
+        self.customGeometry = customGeometry
         self.length = length
         self.unitWeight = unitWeight
         self.friction = friction
@@ -81,6 +87,26 @@ class DragChainType(NodalComponentType):
     def name(self, value: str):
         """Set name"""
         self.__name = value
+
+    @property
+    def appearance(self) -> Appearance:
+        """"""
+        return self.__appearance
+
+    @appearance.setter
+    def appearance(self, value: Appearance):
+        """Set appearance"""
+        self.__appearance = value
+
+    @property
+    def customGeometry(self) -> bool:
+        """Draw the component with a geometry of your own instead of the automatic sphere"""
+        return self.__customGeometry
+
+    @customGeometry.setter
+    def customGeometry(self, value: bool):
+        """Set customGeometry"""
+        self.__customGeometry = bool(value)
 
     @property
     def length(self) -> float:

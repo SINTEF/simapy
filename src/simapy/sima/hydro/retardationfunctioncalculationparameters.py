@@ -20,11 +20,11 @@ class RetardationFunctionCalculationParameters(MOAO):
     useLimitingFrequencies : bool
          Use added mass zero and/or added mass infinite if these exist(default True)
     cutFactor : float
-         factor for cut of fft. Default 200(default 200.0)
+         Factor determining the duration of the significant part of the retardation function; the near-zero tail is truncated from the right. Large cut factor means longer duration (less truncation). Default 200.(default 200.0)
     powerOfTwo : int
-         Length of array used for fft/ifft. Default 2**13.(default 13)
+         Exponent n: the FFT uses 2^n samples, and the retardation function has at most 2^(n-1) samples before the near-zero tail is truncated (see Cut factor). Default 13.(default 13)
     massCutFactor : float
-         Factor used together with structural mass to cut a degree of freedom.  Small factor means larger chance of cutting(default 100000.0)
+         Factor used together with structural mass to determine which coupling terms in the retardation function matrix are close to zero at all t and can be neglected. Small factor means larger chance of neglecting coupling terms. Only used when structural mass is available.(default 100000.0)
     """
 
     def __init__(self , description="", timeStep=0.5, useLimitingFrequencies=True, cutFactor=200.0, powerOfTwo=13, massCutFactor=100000.0, **kwargs):
@@ -91,7 +91,7 @@ class RetardationFunctionCalculationParameters(MOAO):
 
     @property
     def cutFactor(self) -> float:
-        """factor for cut of fft. Default 200"""
+        """Factor determining the duration of the significant part of the retardation function; the near-zero tail is truncated from the right. Large cut factor means longer duration (less truncation). Default 200."""
         return self.__cutFactor
 
     @cutFactor.setter
@@ -101,7 +101,7 @@ class RetardationFunctionCalculationParameters(MOAO):
 
     @property
     def powerOfTwo(self) -> int:
-        """Length of array used for fft/ifft. Default 2**13."""
+        """Exponent n: the FFT uses 2^n samples, and the retardation function has at most 2^(n-1) samples before the near-zero tail is truncated (see Cut factor). Default 13."""
         return self.__powerOfTwo
 
     @powerOfTwo.setter
@@ -111,7 +111,7 @@ class RetardationFunctionCalculationParameters(MOAO):
 
     @property
     def massCutFactor(self) -> float:
-        """Factor used together with structural mass to cut a degree of freedom.  Small factor means larger chance of cutting"""
+        """Factor used together with structural mass to determine which coupling terms in the retardation function matrix are close to zero at all t and can be neglected. Small factor means larger chance of neglecting coupling terms. Only used when structural mass is available."""
         return self.__massCutFactor
 
     @massCutFactor.setter

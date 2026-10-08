@@ -27,9 +27,11 @@ class EigenvalueAnalysisParameters(MOAO):
          Scaling of eigenvectors in visual results(default 10.0)
     numberOfEigenvectors : int
          Number of eigenvectors to be printed(default 0)
+    storeRotationAndCurvature : bool
+         Store mode shape rotations and curvature estimates on the matrix plot file in addition to the displacements(default False)
     """
 
-    def __init__(self , description="", numberOfEigenvalues=10, maxRelativeError=1e-10, numberOfLanczoSteps=0, storeVisualisationResponses=True, visualisationScaling=10.0, numberOfEigenvectors=0, **kwargs):
+    def __init__(self , description="", numberOfEigenvalues=10, maxRelativeError=1e-10, numberOfLanczoSteps=0, storeVisualisationResponses=True, visualisationScaling=10.0, numberOfEigenvectors=0, storeRotationAndCurvature=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -39,6 +41,7 @@ class EigenvalueAnalysisParameters(MOAO):
         self.storeVisualisationResponses = storeVisualisationResponses
         self.visualisationScaling = visualisationScaling
         self.numberOfEigenvectors = numberOfEigenvectors
+        self.storeRotationAndCurvature = storeRotationAndCurvature
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -131,3 +134,13 @@ class EigenvalueAnalysisParameters(MOAO):
     def numberOfEigenvectors(self, value: int):
         """Set numberOfEigenvectors"""
         self.__numberOfEigenvectors = int(value)
+
+    @property
+    def storeRotationAndCurvature(self) -> bool:
+        """Store mode shape rotations and curvature estimates on the matrix plot file in addition to the displacements"""
+        return self.__storeRotationAndCurvature
+
+    @storeRotationAndCurvature.setter
+    def storeRotationAndCurvature(self, value: bool):
+        """Set storeRotationAndCurvature"""
+        self.__storeRotationAndCurvature = bool(value)

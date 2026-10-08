@@ -5,7 +5,6 @@ from typing import Dict,Sequence,List
 from dmt.blueprint import Blueprint
 from .blueprints.metoceantask import MetoceanTaskBlueprint
 from typing import Dict
-from ..condition import ConditionTask
 from ..condition import ConditionTaskCondition
 from ..condition import InitialCondition
 from ..condition import ModelVariation
@@ -15,6 +14,7 @@ from ..sima import ModelReferenceVariable
 from ..sima import SIMAScript
 from ..sima import ScriptableValue
 from ..sima import StringVariable
+from ..sima import Task
 from .hindcastdata import HindcastData
 from .hindcastdatacalculation import HindcastDataCalculation
 from .longtermstatistics import LongTermStatistics
@@ -23,7 +23,7 @@ from .profile import Profile
 from .scatterdata import ScatterData
 from .scatterdatacalculation import ScatterDataCalculation
 
-class MetoceanTask(ConditionTask):
+class MetoceanTask(Task):
     """
     Keyword arguments
     -----------------

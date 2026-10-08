@@ -29,5 +29,5 @@ class SlugForceSpecificationBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("velocitySpecification","number","Velocity specification",default=0.0))
         self.add_attribute(Attribute("velocityExponent","number","Exponent for velocity",default=0.0))
         self.add_attribute(Attribute("importFlow","boolean","Import internal flow data from file",default=False))
-        self.add_attribute(Attribute("flowFile","string","Internal flow data specification"))
+        self.add_attribute(Attribute("flowFile","string","File specifying internal flow conditions (density and velocity) per flow element over time."))
         self.add_attribute(Attribute("addedFlow","boolean","Specified flow is in addition to that given on main riser line (default is replacement)",default=False))

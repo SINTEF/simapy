@@ -7,6 +7,7 @@ class MatrixPlotFileOption(Enum):
     """"""
     NO_PRINT = auto()
     MIN_AND_STANDARD_DEV = auto()
+    MIN_MAX_MEAN_AND_STANDARD_DEV = auto()
     MIN_MAX_AND_STANDARD_DEV = auto()
     MAX_STATISTICS = auto()
 
@@ -15,6 +16,8 @@ class MatrixPlotFileOption(Enum):
             return "No print"
         if self == MatrixPlotFileOption.MIN_AND_STANDARD_DEV:
             return "Min, max and standard deviation"
+        if self == MatrixPlotFileOption.MIN_MAX_MEAN_AND_STANDARD_DEV:
+            return "Min, max, mean, standard deviation"
         if self == MatrixPlotFileOption.MIN_MAX_AND_STANDARD_DEV:
             return "Min, max, mean, standard deviation, mean period"
         if self == MatrixPlotFileOption.MAX_STATISTICS:

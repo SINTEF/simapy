@@ -25,12 +25,6 @@ class InfrastructureBody(Body):
     scriptableValues : List[ScriptableValue]
     name : str
          (default None)
-    length : float
-         Length(default 10.0)
-    width : float
-         Width(default 5.0)
-    height : float
-         Height(default 5.0)
     appearance : Appearance
     shapes : List[Shape]
     initialPosition : Position
@@ -39,14 +33,11 @@ class InfrastructureBody(Body):
          Express position and orientation in selected frame
     """
 
-    def __init__(self , description="", length=10.0, width=5.0, height=5.0, **kwargs):
+    def __init__(self , description="", **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.name = None
-        self.length = length
-        self.width = width
-        self.height = height
         self.appearance = None
         self.shapes = list()
         self.initialPosition = None
@@ -94,36 +85,6 @@ class InfrastructureBody(Body):
     def name(self, value: str):
         """Set name"""
         self.__name = value
-
-    @property
-    def length(self) -> float:
-        """Length"""
-        return self.__length
-
-    @length.setter
-    def length(self, value: float):
-        """Set length"""
-        self.__length = float(value)
-
-    @property
-    def width(self) -> float:
-        """Width"""
-        return self.__width
-
-    @width.setter
-    def width(self, value: float):
-        """Set width"""
-        self.__width = float(value)
-
-    @property
-    def height(self) -> float:
-        """Height"""
-        return self.__height
-
-    @height.setter
-    def height(self, value: float):
-        """Set height"""
-        self.__height = float(value)
 
     @property
     def appearance(self) -> Appearance:

@@ -15,6 +15,7 @@ class ArticulatedStructureDataBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(EnumAttribute("_type","sima/simo/ArticulatedStructureType","Type of articulated structure coupling control"))
+        self.add_attribute(BlueprintAttribute("master","sima/simo/SIMOBody","",False))
         self.add_attribute(BlueprintAttribute("masterPoint","sima/sima/Point3","",True))
         self.add_attribute(BlueprintAttribute("localPoint","sima/sima/Point3","",True))
         self.add_attribute(EnumAttribute("motionMode","sima/simo/MotionMode","Mode of motion (X,Y,Z,PHI,THETA,PSI)"))

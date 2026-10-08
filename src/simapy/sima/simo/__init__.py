@@ -112,7 +112,6 @@ from .simobody import SIMOBody # noqa
 from .simobodypoint import SIMOBodyPoint # noqa
 from .simodynamiccalculationparameters import SIMODynamicCalculationParameters # noqa
 from .simodynamicresultentry import SIMODynamicResultEntry # noqa
-from .simofederate import SIMOFederate # noqa
 from .simofrequencydomaincalculation import SIMOFrequencyDomainCalculation # noqa
 from .simoheavecompensator import SIMOHeaveCompensator # noqa
 from .simolineardampingmatrix import SIMOLinearDampingMatrix # noqa
@@ -147,12 +146,10 @@ from .surfaceproximityreductionfactor import SurfaceProximityReductionFactor # n
 from .tensionitem import TensionItem # noqa
 from .tensionmap import TensionMap # noqa
 from .thruster import Thruster # noqa
-from .thrusterallocation import ThrusterAllocation # noqa
 from .thrustercontrol import ThrusterControl # noqa
 from .thrustercontrolsequence import ThrusterControlSequence # noqa
 from .thrusterdynamics import ThrusterDynamics # noqa
 from .thrusterfailurespecification import ThrusterFailureSpecification # noqa
-from .thrusterforbiddenzone import ThrusterForbiddenZone # noqa
 from .thrusterreduction import ThrusterReduction # noqa
 from .thrusttorquecoefficient import ThrustTorqueCoefficient # noqa
 from .timedependentpointmass import TimeDependentPointMass # noqa
@@ -193,11 +190,9 @@ from .fenderattachment import FenderAttachment # noqa
 from .fixedbodywaveparticlemethod import FixedBodyWaveParticleMethod # noqa
 from .fixedelongationmethod import FixedElongationMethod # noqa
 from .fixedforceelongationmethod import FixedForceElongationMethod # noqa
-from .formulation import Formulation # noqa
 from .frequencyanalysistype import FrequencyAnalysisType # noqa
 from .guidance import Guidance # noqa
 from .headingreference import HeadingReference # noqa
-from .hla import HLA # noqa
 from .hydrodynamicseparationmethod import HydrodynamicSeparationMethod # noqa
 from .hydrosystemfiltermethod import HydroSystemFilterMethod # noqa
 from .inputmethodtype import InputMethodType # noqa

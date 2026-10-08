@@ -7,7 +7,6 @@ class PositionsImportType(Enum):
     """"""
     FIXED_POSITION = auto()
     FROM_FILE = auto()
-    FROM_HLA = auto()
     ARTICULATED_STRUCTURE = auto()
 
     def label(self):
@@ -15,7 +14,5 @@ class PositionsImportType(Enum):
             return "Fixed position"
         if self == PositionsImportType.FROM_FILE:
             return "Read from file"
-        if self == PositionsImportType.FROM_HLA:
-            return "Import from HLA"
         if self == PositionsImportType.ARTICULATED_STRUCTURE:
             return "Articulated structure"

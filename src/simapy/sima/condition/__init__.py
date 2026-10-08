@@ -4,7 +4,6 @@ from .conditionresultentrycontainer import ConditionResultEntryContainer # noqa
 from .conditionset import ConditionSet # noqa
 from .conditionsetresultcontainer import ConditionSetResultContainer # noqa
 from .conditionspace import ConditionSpace # noqa
-from .conditiontask import ConditionTask # noqa
 from .conditiontaskcondition import ConditionTaskCondition # noqa
 from .initialcondition import InitialCondition # noqa
 from .modelvariation import ModelVariation # noqa

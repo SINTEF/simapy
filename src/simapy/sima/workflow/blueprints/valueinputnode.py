@@ -6,10 +6,10 @@ from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
 from .workflowinput import WorkflowInputBlueprint
-from ...post.blueprints.signalpropertiescontainer import SignalPropertiesContainerBlueprint
 from ...sima.blueprints.singleparameter import SingleParameterBlueprint
+from ...post.blueprints.signalpropertiescontainer import SignalPropertiesContainerBlueprint
 
-class ValueInputNodeBlueprint(WorkflowInputBlueprint,SignalPropertiesContainerBlueprint,SingleParameterBlueprint):
+class ValueInputNodeBlueprint(WorkflowInputBlueprint,SingleParameterBlueprint,SignalPropertiesContainerBlueprint):
     """"""
 
     def __init__(self, name="ValueInputNode", package_path="sima/workflow", description=""):

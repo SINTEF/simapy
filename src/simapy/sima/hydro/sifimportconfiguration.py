@@ -24,10 +24,12 @@ class SIFImportConfiguration(MOAO):
          Optional. Name of SIMOBody to merge hydrodynamic data into.(default None)
     waveDriftOption : SecondOrderWaveDriftOption
     qtfImportOption : QTFImportOption
+    overrideConstants : bool
+         Override the water depth and physical constants of the task being imported into with the values from the file. Off keeps the values the task already has, and is what a run with no answer uses.(default False)
     retardationFunctionParameters : RetardationFunctionCalculationParameters
     """
 
-    def __init__(self , description="", waveDriftOption=SecondOrderWaveDriftOption.COMBINED, qtfImportOption=QTFImportOption.ANY, **kwargs):
+    def __init__(self , description="", waveDriftOption=SecondOrderWaveDriftOption.COMBINED, qtfImportOption=QTFImportOption.ANY, overrideConstants=False, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -35,6 +37,7 @@ class SIFImportConfiguration(MOAO):
         self.bodyName = None
         self.waveDriftOption = waveDriftOption
         self.qtfImportOption = qtfImportOption
+        self.overrideConstants = overrideConstants
         self.retardationFunctionParameters = None
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
@@ -108,6 +111,16 @@ class SIFImportConfiguration(MOAO):
     def qtfImportOption(self, value: QTFImportOption):
         """Set qtfImportOption"""
         self.__qtfImportOption = value
+
+    @property
+    def overrideConstants(self) -> bool:
+        """Override the water depth and physical constants of the task being imported into with the values from the file. Off keeps the values the task already has, and is what a run with no answer uses."""
+        return self.__overrideConstants
+
+    @overrideConstants.setter
+    def overrideConstants(self, value: bool):
+        """Set overrideConstants"""
+        self.__overrideConstants = bool(value)
 
     @property
     def retardationFunctionParameters(self) -> RetardationFunctionCalculationParameters:

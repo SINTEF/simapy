@@ -21,9 +21,7 @@ from .dynamicwindchange import DynamicWindChange
 from .dynmodvisualisationresponses import DynmodVisualisationResponses
 from .envelopecurvespecification import EnvelopeCurveSpecification
 from .forceresponsestorage import ForceResponseStorage
-from .hlaelementforce import HLAElementForce
 from .hydrodynamicloadstorage import HydrodynamicLoadStorage
-from .importvesselitem import ImportVesselItem
 from .irregularresponseanalysis import IrregularResponseAnalysis
 from .irregulartimeseriesparameters import IrregularTimeSeriesParameters
 from .regularvesselmotion import RegularVesselMotion
@@ -59,8 +57,6 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     supportVesselForceStorage : SupportVesselForceStorage
     bodyForceStorage : BodyForceStorage
     hydrodynamicLoadStorage : HydrodynamicLoadStorage
-    hlaElementForces : List[HLAElementForce]
-    hlaImportedBodies : List[ImportVesselItem]
     segmentLengthVariations : List[SegmentLengthVariationItem]
     temperatureVariations : List[DynamicTemperatureVariationItem]
     pressureVariations : List[DynamicPressureVariationItem]
@@ -103,8 +99,6 @@ class RIFLEXDynamicCalculationParameters(MOAO):
         self.supportVesselForceStorage = None
         self.bodyForceStorage = None
         self.hydrodynamicLoadStorage = None
-        self.hlaElementForces = list()
-        self.hlaImportedBodies = list()
         self.segmentLengthVariations = list()
         self.temperatureVariations = list()
         self.pressureVariations = list()
@@ -295,30 +289,6 @@ class RIFLEXDynamicCalculationParameters(MOAO):
     def hydrodynamicLoadStorage(self, value: HydrodynamicLoadStorage):
         """Set hydrodynamicLoadStorage"""
         self.__hydrodynamicLoadStorage = value
-
-    @property
-    def hlaElementForces(self) -> List[HLAElementForce]:
-        """"""
-        return self.__hlaElementForces
-
-    @hlaElementForces.setter
-    def hlaElementForces(self, value: List[HLAElementForce]):
-        """Set hlaElementForces"""
-        if not isinstance(value, Sequence):
-            raise ValueError("Expected sequense, but was " , type(value))
-        self.__hlaElementForces = value
-
-    @property
-    def hlaImportedBodies(self) -> List[ImportVesselItem]:
-        """"""
-        return self.__hlaImportedBodies
-
-    @hlaImportedBodies.setter
-    def hlaImportedBodies(self, value: List[ImportVesselItem]):
-        """Set hlaImportedBodies"""
-        if not isinstance(value, Sequence):
-            raise ValueError("Expected sequense, but was " , type(value))
-        self.__hlaImportedBodies = value
 
     @property
     def segmentLengthVariations(self) -> List[SegmentLengthVariationItem]:

@@ -5,9 +5,9 @@ from dmt.dimension import Dimension
 from dmt.attribute import Attribute
 from dmt.enum_attribute import EnumAttribute
 from dmt.blueprint_attribute import BlueprintAttribute
-from ...condition.blueprints.conditiontask import ConditionTaskBlueprint
+from ...sima.blueprints.task import TaskBlueprint
 
-class WindFieldTaskBlueprint(ConditionTaskBlueprint):
+class WindFieldTaskBlueprint(TaskBlueprint):
     """"""
 
     def __init__(self, name="WindFieldTask", package_path="sima/windturbine", description=""):

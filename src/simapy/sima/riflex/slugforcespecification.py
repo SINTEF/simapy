@@ -49,7 +49,7 @@ class SlugForceSpecification(MOAO):
     importFlow : bool
          Import internal flow data from file(default False)
     flowFile : str
-         Internal flow data specification(default None)
+         File specifying internal flow conditions (density and velocity) per flow element over time.(default None)
     addedFlow : bool
          Specified flow is in addition to that given on main riser line (default is replacement)(default False)
     """
@@ -260,7 +260,7 @@ class SlugForceSpecification(MOAO):
 
     @property
     def flowFile(self) -> str:
-        """Internal flow data specification"""
+        """File specifying internal flow conditions (density and velocity) per flow element over time."""
         return self.__flowFile
 
     @flowFile.setter

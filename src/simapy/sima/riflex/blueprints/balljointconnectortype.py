@@ -15,6 +15,8 @@ class BallJointConnectorTypeBlueprint(NodalComponentTypeBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
+        self.add_attribute(BlueprintAttribute("appearance","sima/sima/Appearance","",True))
+        self.add_attribute(Attribute("customGeometry","boolean","Draw the component with a geometry of your own instead of the automatic sphere",default=False))
         self.add_attribute(Attribute("mass","number","Mass",default=0.0))
         self.add_attribute(Attribute("volume","number","Displacement volume",default=0.0))
         self.add_attribute(EnumAttribute("referenceFrame","sima/simo/ReferenceFrameType","Reference frame"))

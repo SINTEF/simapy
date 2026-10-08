@@ -17,7 +17,7 @@ class StressStorage(MOAO):
          (default "")
     scriptableValues : List[ScriptableValue]
     elements : List[ElementStressStorage]
-         Specification of nodes for displacement storage
+         Elements to calculate pipe wall stress for. RIFLEX calculates it from the element forces stored in HDF5
     """
 
     def __init__(self , description="", **kwargs):
@@ -60,7 +60,7 @@ class StressStorage(MOAO):
 
     @property
     def elements(self) -> List[ElementStressStorage]:
-        """Specification of nodes for displacement storage"""
+        """Elements to calculate pipe wall stress for. RIFLEX calculates it from the element forces stored in HDF5"""
         return self.__elements
 
     @elements.setter

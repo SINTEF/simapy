@@ -23,7 +23,7 @@ class TurbineResponseStorage(MOAO):
     fileFormat : StorageType
     """
 
-    def __init__(self , description="", store=False, timeInterval=0.0, fileFormat=StorageType.BINARY, **kwargs):
+    def __init__(self , description="", store=False, timeInterval=0.0, fileFormat=StorageType.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()

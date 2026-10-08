@@ -20,3 +20,4 @@ class EigenvalueAnalysisParametersBlueprint(MOAOBlueprint):
         self.add_attribute(Attribute("storeVisualisationResponses","boolean","Store eigenvalue visualization file",default=True))
         self.add_attribute(Attribute("visualisationScaling","number","Scaling of eigenvectors in visual results",default=10.0))
         self.add_attribute(Attribute("numberOfEigenvectors","integer","Number of eigenvectors to be printed",default=0))
+        self.add_attribute(Attribute("storeRotationAndCurvature","boolean","Store mode shape rotations and curvature estimates on the matrix plot file in addition to the displacements",default=False))

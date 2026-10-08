@@ -14,4 +14,4 @@ class StressStorageBlueprint(MOAOBlueprint):
         super().__init__(name,package_path,description)
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
-        self.add_attribute(BlueprintAttribute("elements","sima/riflex/ElementStressStorage","Specification of nodes for displacement storage",True,Dimension("*")))
+        self.add_attribute(BlueprintAttribute("elements","sima/riflex/ElementStressStorage","Elements to calculate pipe wall stress for. RIFLEX calculates it from the element forces stored in HDF5",True,Dimension("*")))

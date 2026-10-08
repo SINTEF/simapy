@@ -8,6 +8,7 @@ from typing import Dict
 from ..sima import MOAO
 from ..sima import ScriptableValue
 from .bodyforcestorageitem import BodyForceStorageItem
+from .storagetype import StorageType
 
 class BodyForceStorage(MOAO):
     """
@@ -19,14 +20,17 @@ class BodyForceStorage(MOAO):
     items : List[BodyForceStorageItem]
     timeInterval : float
          (default 0.0)
+    fileFormat : StorageType
+         Support force storage file format
     """
 
-    def __init__(self , description="", timeInterval=0.0, **kwargs):
+    def __init__(self , description="", timeInterval=0.0, fileFormat=StorageType.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
         self.items = list()
         self.timeInterval = timeInterval
+        self.fileFormat = fileFormat
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -81,3 +85,13 @@ class BodyForceStorage(MOAO):
     def timeInterval(self, value: float):
         """Set timeInterval"""
         self.__timeInterval = float(value)
+
+    @property
+    def fileFormat(self) -> StorageType:
+        """Support force storage file format"""
+        return self.__fileFormat
+
+    @fileFormat.setter
+    def fileFormat(self, value: StorageType):
+        """Set fileFormat"""
+        self.__fileFormat = value

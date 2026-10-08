@@ -31,11 +31,9 @@ class SegmentLengthVariationItem(SegmentReference):
          End time for segment length variation(default 0.0)
     segmentLengthRate : float
          Segment length variation per time unit(default 0.0)
-    interactive : bool
-         Activate interactive (HLA) control of segment variation(default False)
     """
 
-    def __init__(self , description="", segment=1, allSegments=False, startTime=0.0, endTime=0.0, segmentLengthRate=0.0, interactive=False, **kwargs):
+    def __init__(self , description="", segment=1, allSegments=False, startTime=0.0, endTime=0.0, segmentLengthRate=0.0, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()
@@ -45,7 +43,6 @@ class SegmentLengthVariationItem(SegmentReference):
         self.startTime = startTime
         self.endTime = endTime
         self.segmentLengthRate = segmentLengthRate
-        self.interactive = interactive
         for key, value in kwargs.items():
             if not isinstance(value, Dict):
                 setattr(self, key, value)
@@ -138,13 +135,3 @@ class SegmentLengthVariationItem(SegmentReference):
     def segmentLengthRate(self, value: float):
         """Set segmentLengthRate"""
         self.__segmentLengthRate = float(value)
-
-    @property
-    def interactive(self) -> bool:
-        """Activate interactive (HLA) control of segment variation"""
-        return self.__interactive
-
-    @interactive.setter
-    def interactive(self, value: bool):
-        """Set interactive"""
-        self.__interactive = bool(value)

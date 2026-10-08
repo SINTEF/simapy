@@ -153,7 +153,7 @@ class GeneralCrossSection(CrossSection,CRSAxialFrictionModel):
     intCrossSectionalArea : float
          Internal cross-sectional area(default 0.0)
     gyrationRadius : float
-         Radius of gyration about local x-axis(default 0.0)
+         Radius of gyration about mass center (Ym,Zm)(default 0.0)
     torsionStiffness : float
          Torsion stiffness(default 0.0)
     bendingStiffnessV : float
@@ -928,7 +928,7 @@ class GeneralCrossSection(CrossSection,CRSAxialFrictionModel):
 
     @property
     def gyrationRadius(self) -> float:
-        """Radius of gyration about local x-axis"""
+        """Radius of gyration about mass center (Ym,Zm)"""
         return self.__gyrationRadius
 
     @gyrationRadius.setter

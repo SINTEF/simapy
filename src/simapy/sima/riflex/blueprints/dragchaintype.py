@@ -15,6 +15,8 @@ class DragChainTypeBlueprint(NodalComponentTypeBlueprint):
         self.add_attribute(Attribute("description","string","",default=""))
         self.add_attribute(BlueprintAttribute("scriptableValues","sima/sima/ScriptableValue","",True,Dimension("*")))
         self.add_attribute(Attribute("name","string",""))
+        self.add_attribute(BlueprintAttribute("appearance","sima/sima/Appearance","",True))
+        self.add_attribute(Attribute("customGeometry","boolean","Draw the component with a geometry of your own instead of the automatic sphere",default=False))
         self.add_attribute(Attribute("length","number","Drag chain length.",default=0.0))
         self.add_attribute(Attribute("unitWeight","number","Drag chain weight.",default=0.0))
         self.add_attribute(Attribute("friction","number","Chain / seafloor friction coefficient.",default=0.0))

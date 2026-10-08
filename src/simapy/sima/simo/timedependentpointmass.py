@@ -29,9 +29,9 @@ class TimeDependentPointMass(NamedObject):
     massMin : float
          Minimum allowable mass Mass, (may be negative).(default 0.0)
     massRateMax : float
-         Maximum allowable mass rate, (may be negative) (HLA only).(default 0.0)
+         Maximum allowable mass rate, (may be negative).(default 0.0)
     massRateMin : float
-         Minimum allowable mass rate, (may be negative) (HLA only).(default 0.0)
+         Minimum allowable mass rate, (may be negative).(default 0.0)
     """
 
     def __init__(self , description="", mass0=0.0, massMax=0.0, massMin=0.0, massRateMax=0.0, massRateMin=0.0, **kwargs):
@@ -143,7 +143,7 @@ class TimeDependentPointMass(NamedObject):
 
     @property
     def massRateMax(self) -> float:
-        """Maximum allowable mass rate, (may be negative) (HLA only)."""
+        """Maximum allowable mass rate, (may be negative)."""
         return self.__massRateMax
 
     @massRateMax.setter
@@ -153,7 +153,7 @@ class TimeDependentPointMass(NamedObject):
 
     @property
     def massRateMin(self) -> float:
-        """Minimum allowable mass rate, (may be negative) (HLA only)."""
+        """Minimum allowable mass rate, (may be negative)."""
         return self.__massRateMin
 
     @massRateMin.setter

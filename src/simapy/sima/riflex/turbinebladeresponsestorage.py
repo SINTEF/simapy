@@ -28,7 +28,7 @@ class TurbineBladeResponseStorage(MOAO):
          Specification of elements for turbine blade response storage
     """
 
-    def __init__(self , description="", store=False, responseAmount=ResponseAmount.MIN, timeInterval=0.0, fileFormat=StorageType.BINARY, **kwargs):
+    def __init__(self , description="", store=False, responseAmount=ResponseAmount.MIN, timeInterval=0.0, fileFormat=StorageType.DEFAULT, **kwargs):
         super().__init__(**kwargs)
         self.description = description
         self.scriptableValues = list()

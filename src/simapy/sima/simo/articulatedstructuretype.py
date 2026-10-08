@@ -8,7 +8,6 @@ class ArticulatedStructureType(Enum):
     NRUN = auto()
     NONE = auto()
     TURRET = auto()
-    HLA = auto()
 
     def label(self):
         if self == ArticulatedStructureType.NRUN:
@@ -17,5 +16,3 @@ class ArticulatedStructureType(Enum):
             return "Member is fixed to its master"
         if self == ArticulatedStructureType.TURRET:
             return "Turret"
-        if self == ArticulatedStructureType.HLA:
-            return "Import from HLA"
