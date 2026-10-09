@@ -24,16 +24,22 @@ class Status(Enum):
     FAILED = "failed"
     #: Gone between listing the folder and reading it.
     MISSING = "missing"
+    #: A storage format SIMA still writes but no reader here reads.
+    UNSUPPORTED = "unsupported"
 
 
-def warn(message: str) -> None:
+class UnsupportedStorageWarning(UserWarning):
+    """Results were skipped because SIMA stored them in a format simapy does not read."""
+
+
+def warn(message: str, category: type[Warning] = UserWarning) -> None:
     """Warn at the first caller outside this package, wherever inside it the warning arose."""
     level = 2
     frame = sys._getframe(1)  # pylint: disable=protected-access
     while frame is not None and frame.f_code.co_filename.startswith(_PACKAGE):
         frame = frame.f_back
         level += 1
-    warnings.warn(message, stacklevel=level)
+    warnings.warn(message, category, stacklevel=level)
 
 
 @dataclass
