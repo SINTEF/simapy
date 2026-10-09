@@ -11,11 +11,13 @@ That the derivation is *right* is settled elsewhere and more strongly:
 
 import json
 import shutil
+import warnings
 from pathlib import Path
 
 import pytest
 
-from simapy.results import ResultsError, Variable, open_results
+from simapy.results import (ResultsError, Status, UnsupportedStorageWarning, Variable,
+                            open_results)
 from simapy.results import _scan as scan
 from simapy.results._scan import find_runs, holds_results
 
@@ -363,6 +365,80 @@ def test_solver_input_is_not_described(tmp_path):
     with pytest.warns(UserWarning, match="ts_buffer.b5"):
         res = open_results(folder)
     assert [s.file for s in res.sources] == ["ts_buffer.b5"]
+
+
+# -- storage formats simapy does not read ------------------------------------
+
+
+def _old_storage(folder: Path) -> Path:
+    """A RIFLEX run with binary and ASCII storage, and a SIMO one with the old result structure."""
+    _riflex_run(folder, "sima_stamod.mpf", "sima_dynmod.mpf")
+    return _touch(folder, "sima_noddis.bin", "key_sima_noddis.txt", "sima_elmfor.bin",
+                  "key_sima_elmfor.txt", "sima_elmcur.asc", "key_sima_elmcur.txt",
+                  "results.tda", "results.txt")
+
+
+def test_old_storage_is_reported_and_the_rest_still_read(tmp_path):
+    folder = _old_storage(tmp_path / "Simple_Flexible_Riser" / "Initial")
+
+    with pytest.warns(UnsupportedStorageWarning, match="cannot read 4 result files") as caught:
+        res = open_results(folder)
+
+    assert {s.file: s.status for s in res.sources} == {
+        "sima_stamod.mpf": Status.READ,
+        "sima_dynmod.mpf": Status.READ,
+        "results.tda": Status.UNSUPPORTED,
+        "sima_elmcur.asc": Status.UNSUPPORTED,
+        "sima_elmfor.bin": Status.UNSUPPORTED,
+        "sima_noddis.bin": Status.UNSUPPORTED,
+    }
+    assert res.run["Dynamic/RiserLine"]
+    message = str(caught[0].message)
+    assert '  sima_elmfor.bin, sima_noddis.bin: RIFLEX binary storage. In SIMA, set the RIFLEX ' \
+           'storage format to "Default" (HDF5), and run again.' in message
+    assert "sima_elmcur.asc: RIFLEX ASCII storage" in message
+    assert 'results.tda: SIMO\'s old result structure. In SIMA, clear "Use old result structure"' in message
+
+
+def test_an_asc_file_without_a_key_file_is_not_storage(tmp_path):
+    """RIFLEX writes other .asc files, such as the static configuration; only storage has a key file."""
+    folder = _riflex_run(tmp_path / "Task" / "Condition", "sima_stamod.mpf")
+    _touch(folder, "sima_consta.asc", "sima_massin.asc", "sima.bin")
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        res = open_results(folder)
+
+    assert [s.file for s in res.sources] == ["sima_stamod.mpf"]
+
+
+def test_a_folder_of_old_storage_alone_says_how_to_fix_it(tmp_path):
+    folder = _touch(tmp_path / "Task" / "Condition", "sima_noddis.bin", "key_sima_noddis.txt")
+
+    with pytest.raises(ResultsError, match=r'only results simapy cannot read:\n  sima_noddis.bin: .*"Default"'):
+        open_results(folder)
+
+
+def test_opening_an_old_storage_file_says_how_to_fix_it(tmp_path):
+    folder = _touch(tmp_path / "Task" / "Condition", "results.tda")
+
+    with pytest.raises(ResultsError, match="cannot read results.tda: .*Use old result structure"):
+        open_results(folder / "results.tda")
+
+
+def test_a_condition_reports_old_storage_in_its_run_folders(tmp_path):
+    condition = tmp_path / "Simple_Flexible_Riser" / "Initial"
+    _old_storage(condition / "1-20261002061613")
+    _manifest(condition, {"task": "Simple_Flexible_Riser", "condition": "Initial",
+                          "directories": {"Static": "1-20261002061613",
+                                          "Dynamic": "1-20261002061613"}})
+
+    with pytest.warns(UnsupportedStorageWarning, match="1-20261002061613/sima_noddis.bin"):
+        res = open_results(condition)
+
+    assert [s.file for s in res.sources if s.status is Status.UNSUPPORTED] == [
+        "1-20261002061613/results.tda", "1-20261002061613/sima_elmcur.asc",
+        "1-20261002061613/sima_elmfor.bin", "1-20261002061613/sima_noddis.bin"]
 
 
 # -- grouping by analysis ---------------------------------------------------

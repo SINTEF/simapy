@@ -16,10 +16,11 @@ from __future__ import annotations
 
 import json
 import re
+from dataclasses import replace
 from pathlib import Path
 from typing import Iterator
 
-from ._description import Entry, ResultFile, ResultsError, RunDescription, Variable
+from ._description import Entry, ResultFile, ResultsError, RunDescription, UnreadFile, Variable
 from ._registry import find_reader
 
 #: Hashed model id to real name. Alternating lines: short, long, short, long.
@@ -46,6 +47,38 @@ def is_result(path: Path) -> bool:
         and not is_internal(path.name)
         and find_reader(path) is not None
     )
+
+
+_RIFLEX_DEFAULT = 'set the RIFLEX storage format to "Default" (HDF5)'
+
+#: Storage SIMA still writes but no reader here reads, and the setting that replaces it.
+_UNREAD_STORAGE: dict[str, tuple[str, str]] = {
+    ".bin": ("RIFLEX binary storage", _RIFLEX_DEFAULT),
+    ".asc": ("RIFLEX ASCII storage", _RIFLEX_DEFAULT),
+    ".tda": ("SIMO's old result structure",
+             'clear "Use old result structure" in the SIMO dynamic calculation parameters'),
+}
+
+
+def unread_storage(path: Path) -> UnreadFile | None:
+    """The file as a result in a format no reader here reads, or None if it is not one."""
+    suffix = path.suffix.lower()
+    if suffix not in _UNREAD_STORAGE or not path.is_file():
+        return None
+    # RIFLEX writes other .asc files that are not results; a storage file always has its key file.
+    if suffix != ".tda" and not (path.parent / f"key_{path.stem}.txt").is_file():
+        return None
+    storage, remedy = _UNREAD_STORAGE[suffix]
+    return UnreadFile(file=path.name, storage=storage, remedy=remedy)
+
+
+def _unread(folder: Path, relative: str = ".") -> tuple[UnreadFile, ...]:
+    found = (unread_storage(child) for child in sorted(folder.iterdir()))
+    return tuple(replace(unread, file=_relative(relative, unread.file)) for unread in found if unread)
+
+
+def _relative(relative: str, name: str) -> str:
+    return f"{relative.rstrip('/')}/{name}" if relative != "." else name
 
 
 def _both(stem: str, suffix: str = ".h5") -> frozenset[str]:
@@ -451,6 +484,9 @@ def describe_file(
     """
     file = Path(path).absolute()
     if find_reader(file) is None:
+        unread = unread_storage(file)
+        if unread is not None:
+            raise ResultsError(f"simapy cannot read {file.name}: {unread.advice}")
         raise ResultsError(f"no reader for {file.name}")
     return _describe(file.parent, (_entry_for(ResultFile(file=file.name)),),
                      names, task, condition)
@@ -480,11 +516,12 @@ def describe(
     folder path.
     """
     path = Path(folder).absolute()
-    return _describe(path, _entries(path), names, task, condition)
+    return _describe(path, _entries(path), names, task, condition, _unread(path))
 
 
 def _describe(path: Path, entries: tuple[Entry, ...], names: dict[str, str] | None,
-              task: str | None, condition: str | None) -> RunDescription:
+              task: str | None, condition: str | None,
+              unread: tuple[UnreadFile, ...] = ()) -> RunDescription:
     manifests = list(_manifests(path))
     declared_task, variables = read_variables(path)
     from_manifest = _variables_for(manifests, path.name, is_member(path))
@@ -501,6 +538,7 @@ def _describe(path: Path, entries: tuple[Entry, ...], names: dict[str, str] | No
         entries=entries,
         variables=variables,
         names={**read_names(path), **(names or {})},
+        unread=unread,
     )
 
 
@@ -537,11 +575,12 @@ def describe_condition(
     directories = _directories_of(content.get("directories"))
     if not directories:
         return None
-    entries, found_names = _entries_in(root, directories)
+    entries, found_names, unread = _entries_in(root, directories)
     return RunDescription(
         task=task, condition=condition, entries=entries,
         variables=_variables_of(content.get("variables")),
         names={**found_names, **(names or {})},
+        unread=unread,
     )
 
 
@@ -551,11 +590,12 @@ def _member(root: Path, entry: dict, task: str,
     condition = entry.get("condition")
     if not directories or not isinstance(condition, str):
         return None
-    entries, found_names = _entries_in(root, directories)
+    entries, found_names, unread = _entries_in(root, directories)
     return RunDescription(
         task=task, condition=condition, entries=entries,
         variables=_variables_of(entry.get("variables")),
         names={**found_names, **(names or {})},
+        unread=unread,
     )
 
 
@@ -566,7 +606,8 @@ def _directories_of(value: object) -> dict[str, str]:
             if isinstance(name, str) and isinstance(path, str)}
 
 
-def _entries_in(root: Path, directories: dict[str, str]) -> tuple[tuple[Entry, ...], dict[str, str]]:
+def _entries_in(root: Path, directories: dict[str, str]
+                ) -> tuple[tuple[Entry, ...], dict[str, str], tuple[UnreadFile, ...]]:
     """Each analysis read from its own directory, with paths relative to ``root``.
 
     A directory contributes only the files of its analysis: SIMA copies static
@@ -577,6 +618,7 @@ def _entries_in(root: Path, directories: dict[str, str]) -> tuple[tuple[Entry, .
     run_types: dict[str, str] = {}
     unmatched: list[ResultFile] = []
     names: dict[str, str] = {}
+    unread: list[UnreadFile] = []
     seen: set[Path] = set()
     for name, relative in directories.items():
         folder = (root / relative).resolve()
@@ -586,10 +628,11 @@ def _entries_in(root: Path, directories: dict[str, str]) -> tuple[tuple[Entry, .
         seen.add(folder)
         if first_visit:
             names.update(read_names(folder))
+            unread.extend(_unread(folder, relative))
         for child in sorted(folder.iterdir()):
             if not is_result(child):
                 continue
-            result = ResultFile(file=f"{relative.rstrip('/')}/{child.name}" if relative != "." else child.name)
+            result = ResultFile(file=_relative(relative, child.name))
             phase = phase_of(child.name)
             if phase is None:
                 if first_visit:
@@ -603,4 +646,4 @@ def _entries_in(root: Path, directories: dict[str, str]) -> tuple[tuple[Entry, .
                for name in ordered if grouped[name]]
     if unmatched:
         entries.append(Entry(name="", container=False, results=tuple(unmatched)))
-    return tuple(entries), names
+    return tuple(entries), names, tuple(unread)

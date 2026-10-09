@@ -69,7 +69,16 @@ a denylist of working files (`simo.h5`, `env.h5`, intermediates) plus "some
 reader claims the extension". That is exact while the readers claim only `mpf`,
 `h5`, `hdf5`, `b5` and one exact name, `psc.lis`, because nothing else in a run
 folder (`.inp`, `.dat`, the other `.lis`, `.ldat`, …) uses those. Unclaimed
-files are left out of `sources` rather than reported as gaps.
+files are left out of `sources` rather than reported as gaps, with one
+exception below.
+
+**Storage simapy does not read is reported, not skipped.** RIFLEX binary or
+ASCII storage (`sima_noddis.bin` beside `key_sima_noddis.txt`) and SIMO's old
+result structure (`results.tda`) are results, so dropping them would leave a
+tree that looks complete without its time series. They show in `sources` as
+`unsupported`, and an `UnsupportedStorageWarning` names the SIMA setting that
+stores them as HDF5. The key file is what identifies RIFLEX storage: RIFLEX
+writes other `.asc` files that are not results.
 
 `simo-static-results.h5` and `simo-dynamic-results.h5` are results despite being
 on SIMA's list of working files; SIMA adds them back explicitly, and so does this.
@@ -239,7 +248,8 @@ treats pressure as its own quantity.
 
 * `ldat` and `res`, never: SIMA registers them for its own use (3D view, listing
   output), and they hold nothing to compare.
-* `bin`, being moved to HDF5 upstream, and TDA, being phased out for HDF5.
+* Reading `bin`/`asc` storage, being moved to HDF5 upstream, and TDA, being
+  phased out for HDF5. Both are reported instead.
 * Writing. The tree stays decoupled from the DMT signals model in
   `simapy.sima.signals`; if results ever go back into SIMA, those classes already
   serialise to signals JSON and HDF5.

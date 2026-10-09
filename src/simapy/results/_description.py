@@ -27,6 +27,21 @@ class ResultFile:
 
 
 @dataclass(frozen=True)
+class UnreadFile:
+    """A result SIMA wrote in a storage format no reader here reads."""
+
+    file: str
+    #: What the file holds, as the user knows it: "RIFLEX binary storage".
+    storage: str
+    #: The SIMA setting that writes a readable format instead.
+    remedy: str
+
+    @property
+    def advice(self) -> str:
+        return f"{self.storage}. In SIMA, {self.remedy}, and run again."
+
+
+@dataclass(frozen=True)
 class Variable:
     """One condition variable and its unit, if it has one."""
 
@@ -64,6 +79,7 @@ class RunDescription:
     #: ``names.map`` folded in, so no reader resolves hashed model ids itself.
     names: Mapping[str, str] = field(default_factory=dict)
     members: tuple[RunDescription, ...] = ()
+    unread: tuple[UnreadFile, ...] = ()
 
     def __post_init__(self):
         object.__setattr__(self, "variables", MappingProxyType(dict(self.variables)))

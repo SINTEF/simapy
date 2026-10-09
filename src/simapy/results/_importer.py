@@ -60,6 +60,11 @@ def build_tree(
     # a run whose only content is its variables would prune itself away.
     _add_variables(condition, description.variables)
 
+    reports.extend(
+        SourceReport(unread.file, extension_of(Path(unread.file)) or "", Status.UNSUPPORTED,
+                     detail=unread.advice)
+        for unread in description.unread
+    )
     return task, reports
 
 
