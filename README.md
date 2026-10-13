@@ -1,31 +1,21 @@
 SIMAPy - Python utilities for SIMA
 =================================================================
 
-This Python library can be used to interact with [SIMA](https://sima.sintef.no)
-
-Parts of the library is generated from [data models](https://github.com/SINTEF/sima-dmt-models) using a [Python code generator](https://github.com/SINTEF/dmt-gen-py)
-
-Please examine the tests for ways to interact
-
-You can find the example documentation [here](https://sintef.github.io/simapy-examples/)
-
-The examples themselves are in [examples/](examples/).
+Build SIMA models in Python, run [SIMA](https://sima.sintef.no) without its user interface,
+and read the results back as numpy arrays and pandas frames.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install simapy.
-
 ```bash
-pip install simapy
+pip install simapy[all]
 ```
 
-## Dependencies
+Use the SIMAPy version that matches SIMA: SIMAPy 5.4 reads and writes the models of SIMA 5.4.
 
-* [DMTPY](https://github.com/SINTEF/dmtpy)
+## Documentation
 
-## Authors
-
-* **Lasse Bjermeland** - [lassebje](https://github.com/lassebje)
+The [SIMAPy documentation](https://sima.sintef.no/docs/5.4/simapy/) is part of the SIMA
+documentation, with a user guide and examples to download.
 
 ## License
 

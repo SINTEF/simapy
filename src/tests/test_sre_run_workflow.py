@@ -2,8 +2,8 @@
 
 What is under test is the translation: arguments in, SIMA commands out. SIMA
 itself is not run -- these tests stand in for it, so they say nothing about
-whether SIMA accepts the commands. That is what the examples running against a
-real SRE are for.
+whether SIMA accepts the commands. That is what the SIMAPy examples in sima-doc,
+run against a real SRE, are for.
 """
 
 
