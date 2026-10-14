@@ -11,9 +11,9 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from simapy.results import Container, Signal, Status, open_results
-from simapy.results._readers import hdf5
-from simapy.results._sources import FolderContext, Source, SourceError
+from simapy_results import Container, Signal, Status, open_results
+from simapy_results._readers import hdf5
+from simapy_results._sources import FolderContext, Source, SourceError
 
 h5py = pytest.importorskip("h5py")
 

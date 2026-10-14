@@ -5,7 +5,7 @@ import re
 import numpy as np
 import pytest
 
-from simapy.results import open_results, signals_to_frame
+from simapy_results import open_results, signals_to_frame
 
 from .conftest import DATA, array_signal
 

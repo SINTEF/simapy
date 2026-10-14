@@ -373,7 +373,7 @@ class Unscaled:
     """Values whose unit SIMA's registry does not know, wrapped to say so.
 
     Forwards everything to the values it wraps -- including ``xstart`` and
-    ``xdelta``, which :class:`~simapy.results.Signal` reads off the
+    ``xdelta``, which :class:`~simapy_results.Signal` reads off the
     provider -- and warns once per axis the first time that axis is read.
 
     Once per axis, not once per call: a loop over a thousand signals should say

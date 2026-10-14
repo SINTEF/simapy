@@ -17,8 +17,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from simapy.results import Container, ErrorSignal, Signal, open_results
-from simapy.results._units import UNSCALED_ATTRIBUTE
+from simapy_results import Container, ErrorSignal, Signal, open_results
+from simapy_results._units import UNSCALED_ATTRIBUTE
 
 
 def _signals(container: Container) -> list[Signal]:

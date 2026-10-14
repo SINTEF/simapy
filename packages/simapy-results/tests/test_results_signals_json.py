@@ -10,14 +10,14 @@ import json
 import numpy as np
 import pytest
 
-from simapy.results import (
+from simapy_results import (
     Container,
     ResultsError,
     Signal,
     Status,
     open_results,
 )
-from simapy.results._scan import find_runs, holds_results
+from simapy_results._scan import find_runs, holds_results
 
 MODEL = "sima/ModelContent"
 

@@ -5,9 +5,9 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from simapy.results import Container, ErrorSignal, Status, open_results
-from simapy.results._readers import mpf
-from simapy.results._sources import FolderContext, Source, SourceError
+from simapy_results import Container, ErrorSignal, Status, open_results
+from simapy_results._readers import mpf
+from simapy_results._sources import FolderContext, Source, SourceError
 
 RUN = Path(__file__).parent / "data" / "Simple_Flexible_Riser" / "Initial"
 

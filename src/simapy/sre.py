@@ -1,24 +1,17 @@
 """Run a command using SIMA runtime engine (sre executable)"""
 import subprocess
 import os
-import shutil
 import sys
 import threading
 from pathlib import Path
 from typing import Mapping, Sequence
+from simapy_results import RESULTS_FILENAME, ResultsError, ResultSet, copy_results, open_results
 from .sima_writer import SIMAWriter
 from .progress_handler import ProgressHandler
-from .results import ResultsError, ResultSet, open_results
-from .results._readers.psc import MAPPER_FILENAME
-from .results._scan import (ID_MAP_FILENAME, RESULTS_FILENAME, RIFLEX_MAPPER_FILENAME,
-                            _directories_of, _read_manifest, is_result)
 from .sima.command.conditionruncommand import ConditionRunCommand
 from .sima.command.importcommand import ImportCommand
 from .sima.command.workflowruncommand import WorkflowRunCommand
 from .sima.sima.property import Property
-
-#: Not results, but a copy without them reads back with hashed names.
-READ_BESIDE_RESULTS = (ID_MAP_FILENAME, RIFLEX_MAPPER_FILENAME, MAPPER_FILENAME)
 
 
 class SIMA:
@@ -93,7 +86,7 @@ class SIMA:
         if results_dir is None:
             return open_results(produced)
         destination = Path(str(results_dir)).absolute()
-        _copy_results(produced, destination)
+        copy_results(produced, destination)
         return open_results(destination)
 
     def run_workflow(self, working_dir, task: str, workflow: str, stask=None,
@@ -194,28 +187,6 @@ def _commands(run, stask, variables: Mapping[str, object] | None) -> list:
 
 def _stamp(path: Path) -> tuple[int, int] | None:
     return (path.stat().st_mtime_ns, path.stat().st_size) if path.is_file() else None
-
-
-def _copy_results(condition: Path, destination: Path) -> None:
-    """Copy each directory `results.json` names, at the same relative path.
-
-    SIMA's own copy flattens the timestamp folder away, which breaks those paths.
-    """
-    content = _read_manifest(condition / RESULTS_FILENAME) or {}
-    described = [content, *(m for m in content.get("conditions", []) if isinstance(m, dict))]
-    folders = {path for entry in described
-               for path in _directories_of(entry.get("directories")).values()}
-    for folder in sorted(folders):
-        source = condition / folder
-        if not source.is_dir():
-            continue
-        target = destination / folder
-        target.mkdir(parents=True, exist_ok=True)
-        for file in source.iterdir():
-            if is_result(file) or file.name in READ_BESIDE_RESULTS:
-                shutil.copy2(file, target / file.name)
-    destination.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(condition / RESULTS_FILENAME, destination / RESULTS_FILENAME)
 
 
 def main():

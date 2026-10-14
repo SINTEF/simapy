@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from simapy.results import (
+from simapy_results import (
     Container,
     ErrorSignal,
     ResultsError,
@@ -18,15 +18,15 @@ from simapy.results import (
     Status,
     open_results,
 )
-from simapy.results import _scan as scan
-from simapy.results._build import add_signal, graft, prune_empty, rename_duplicates, shallow_copy
-from simapy.results._description import Entry, ResultFile
-from simapy.results._importer import build_tree
-from simapy.results._merge import merge_containers, merge_items
-from simapy.results._node import constant
-from simapy.results._registry import find_reader
-from simapy.results._sources import FolderContext
-from simapy.results._units import guard_unscaled
+from simapy_results import _scan as scan
+from simapy_results._build import add_signal, graft, prune_empty, rename_duplicates, shallow_copy
+from simapy_results._description import Entry, ResultFile
+from simapy_results._importer import build_tree
+from simapy_results._merge import merge_containers, merge_items
+from simapy_results._node import constant
+from simapy_results._registry import find_reader
+from simapy_results._sources import FolderContext
+from simapy_results._units import guard_unscaled
 
 from .conftest import DATA, ArrayValues, array_signal
 

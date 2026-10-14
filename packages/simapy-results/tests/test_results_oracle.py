@@ -13,7 +13,7 @@ import json
 import numpy as np
 import pytest
 
-from simapy.results import Container, Signal, Status, open_results
+from simapy_results import Container, Signal, Status, open_results
 
 from .conftest import DATA
 

@@ -9,9 +9,9 @@ called on is itself a candidate.
 
 import pytest
 
-from simapy.results import Container, open_results
-from simapy.results._build import add_signal, graft, rename_duplicates
-from simapy.results._node import constant
+from simapy_results import Container, open_results
+from simapy_results._build import add_signal, graft, rename_duplicates
+from simapy_results._node import constant
 
 from .conftest import DATA
 

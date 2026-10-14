@@ -14,8 +14,8 @@ import warnings
 
 import pytest
 
-from simapy.results import Signal
-from simapy.results._units import (
+from simapy_results import Signal
+from simapy_results._units import (
     BASE_BRIDGES,
     SIMA_UNITS,
     UNSCALED_ATTRIBUTE,

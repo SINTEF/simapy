@@ -19,18 +19,17 @@ jobs:
         run: |
           curl -LsSf https://astral.sh/uv/install.sh | sh
       - name: Install dependencies
-        run: |
-          uv venv
-          uv pip install -e .
-          uv pip install .[dev]
+        run: uv sync --all-packages
       - name: Create output directory
         run: mkdir -p output
       - name: Run pylint
         if: matrix.python-version == '3.11'
         run: |
-          uv run pylint src/ --errors-only
+          uv run pylint src/ packages/simapy-results/src --errors-only
       - name: Run tests
-        run: uv run pytest --junitxml output/report.xml
+        run: |
+          uv run pytest --junitxml output/report.xml
+          uv run pytest packages/simapy-results --junitxml output/report-results.xml
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         if: always()

@@ -39,11 +39,8 @@ jobs:
     - name: Install uv
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-    - name: Build package
-      run: |
-        uv venv
-        uv pip install build twine
-        uv run python -m build
+    - name: Build packages
+      run: uv build --all-packages -o dist
     - name: Publish package to PyPI
       uses: pypa/gh-action-pypi-publish@v1.12.4
       if: ${{ github.event_name == 'release' || github.event.inputs.environment == 'pypi' }}

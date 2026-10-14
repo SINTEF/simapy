@@ -1,7 +1,7 @@
 """HDF5 result files.
 
 Dispatch is on the file's root ``format`` attribute, as SIMA does it:
-``simos_r0`` goes to :mod:`simapy.results._readers.simos_r0`, everything else --
+``simos_r0`` goes to :mod:`simapy_results._readers.simos_r0`, everything else --
 including a file with no ``format`` at all -- stays here. One reader covers
 ``ts_buffer.b5`` and ``Riflex_Results.h5`` alike.
 
@@ -300,7 +300,7 @@ def _signal_attributes(dataset) -> tuple[dict[str, str], float, float, dict[str,
     """Textual attributes, the x and y unit factors, and the raw unit labels.
 
     The raw labels come back alongside the converted ones because
-    :func:`~simapy.results._units.guard_unscaled` needs the label as the file
+    :func:`~simapy_results._units.guard_unscaled` needs the label as the file
     wrote it, not the base unit it resolved to.
 
     Anything that is not text is ignored, which is how ``delta`` and ``start``

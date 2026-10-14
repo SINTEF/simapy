@@ -33,27 +33,36 @@ test:
       - PYTHON: ["3.11", "3.12", "3.13", "3.14"]
   image: python:$PYTHON-slim
   script:
-    - uv sync                     # project + dev group, from uv.lock
+    - uv sync --all-packages      # both distributions + dev group, from uv.lock
     - mkdir -p output
     - uv run pytest --junitxml output/report.xml
+    - uv run pytest packages/simapy-results --junitxml output/report-results.xml
   artifacts:
     when: always
-    paths: [output/report.xml]
+    paths: [output/report*.xml]
     reports:
-      junit: output/report.xml
+      junit: output/report*.xml
     expire_in: 1 week
 
 # Without the optional extras, so the paths that run without pandas and h5py stay honest.
 test-minimal:
   stage: test
   script:
-    - uv sync --no-dev
+    - uv sync --all-packages --no-dev
     - uv run --no-dev --with pytest pytest
+    - uv run --no-dev --with pytest pytest packages/simapy-results
+
+# simapy-results alone, without simapy and dmtpy, as a post-processing tool installs it.
+test-results-standalone:
+  stage: test
+  script:
+    - uv sync --package simapy-results --extra hdf5 --no-dev
+    - uv run --package simapy-results --no-dev --with pytest pytest packages/simapy-results
 
 # Errors-only pylint on the lowest supported version.
 lint:
   stage: test
   image: python:3.11-slim
   script:
-    - uv sync
-    - uv run pylint src/ --errors-only
+    - uv sync --all-packages
+    - uv run pylint src/ packages/simapy-results/src --errors-only

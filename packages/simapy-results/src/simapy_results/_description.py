@@ -1,6 +1,6 @@
 """What one run folder holds, as the tree builder needs it.
 
-Kept apart from :mod:`simapy.results._scan` so that the importer depends on the
+Kept apart from :mod:`simapy_results._scan` so that the importer depends on the
 shape of a run and not on how that shape was arrived at.
 """
 
@@ -15,7 +15,7 @@ class ResultsError(Exception):
     """A folder or file cannot be read at all.
 
     Not for a file inside a folder that could not be read -- that is best effort
-    and lands in :class:`~simapy.results.SourceReport` instead.
+    and lands in :class:`~simapy_results.SourceReport` instead.
     """
 
 
