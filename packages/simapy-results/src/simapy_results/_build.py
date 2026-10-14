@@ -1,4 +1,4 @@
-"""Filling the tree: the write half of :class:`~simapy.results.Container`.
+"""Filling the tree: the write half of :class:`~simapy_results.Container`.
 
 Kept out of the class so that what ``open_results`` returns cannot be altered by
 the code reading it, and how a tree is filled stays free to change.

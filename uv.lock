@@ -13,6 +13,12 @@ resolution-markers = [
     "python_full_version < '3.12' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 
+[manifest]
+members = [
+    "simapy",
+    "simapy-results",
+]
+
 [[package]]
 name = "astroid"
 version = "4.3.3"
@@ -433,7 +439,54 @@ dependencies = [
     { name = "dmtpy" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "simapy-results" },
     { name = "tqdm" },
+]
+
+[package.optional-dependencies]
+all = [
+    { name = "simapy-results", extra = ["hdf5", "pandas"] },
+]
+hdf5 = [
+    { name = "simapy-results", extra = ["hdf5"] },
+]
+pandas = [
+    { name = "simapy-results", extra = ["pandas"] },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pylint" },
+    { name = "pytest" },
+    { name = "simapy", extra = ["all"] },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "dmtpy", specifier = "==0.3.6" },
+    { name = "numpy" },
+    { name = "simapy", extras = ["pandas", "hdf5"], marker = "extra == 'all'" },
+    { name = "simapy-results", editable = "packages/simapy-results" },
+    { name = "simapy-results", extras = ["hdf5"], marker = "extra == 'hdf5'", editable = "packages/simapy-results" },
+    { name = "simapy-results", extras = ["pandas"], marker = "extra == 'pandas'", editable = "packages/simapy-results" },
+    { name = "tqdm" },
+]
+provides-extras = ["pandas", "hdf5", "all"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pylint", specifier = ">=4" },
+    { name = "pytest", specifier = ">=8.3.5" },
+    { name = "simapy", extras = ["all"] },
+]
+
+[[package]]
+name = "simapy-results"
+version = "5.4.0"
+source = { editable = "packages/simapy-results" }
+dependencies = [
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "numpy", version = "2.5.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
 
 [package.optional-dependencies]
@@ -450,27 +503,23 @@ pandas = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "pylint" },
     { name = "pytest" },
-    { name = "simapy", extra = ["all"] },
+    { name = "simapy-results", extra = ["all"] },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "dmtpy", specifier = "==0.3.6" },
     { name = "h5py", marker = "extra == 'hdf5'", specifier = ">=3" },
     { name = "numpy" },
     { name = "pandas", marker = "extra == 'pandas'", specifier = ">=2" },
-    { name = "simapy", extras = ["pandas", "hdf5"], marker = "extra == 'all'" },
-    { name = "tqdm" },
+    { name = "simapy-results", extras = ["pandas", "hdf5"], marker = "extra == 'all'", editable = "packages/simapy-results" },
 ]
 provides-extras = ["pandas", "hdf5", "all"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "pylint", specifier = ">=4" },
     { name = "pytest", specifier = ">=8.3.5" },
-    { name = "simapy", extras = ["all"] },
+    { name = "simapy-results", extras = ["all"], editable = "packages/simapy-results" },
 ]
 
 [[package]]

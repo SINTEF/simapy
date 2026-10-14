@@ -1,9 +1,9 @@
-# simapy.results
+# simapy_results
 
 Read SIMA results as a lazy signal hierarchy.
 
 ```python
-from simapy.results import open_results
+from simapy_results import open_results
 
 res = open_results(r"C:\ws\TestWs\Simple_Flexible_Riser\Initial")
 sig = res.run.signal("Static/RiserLine/Static forces/EFF. TENSION")
@@ -144,7 +144,7 @@ each key goes straight back into `[]`.
 ## numpy is the core; pandas is a view
 
 `Signal.x` and `Signal.y` are read-only ndarrays. pandas and h5py are optional:
-`pip install simapy[pandas]`, `simapy[hdf5]`, or `simapy[all]`.
+`pip install simapy-results[pandas]`, `simapy-results[hdf5]`, or `simapy-results[all]`.
 
 A container is the natural frame, since it is one source block -- one RIFLEX
 `MATRIX`, one HDF5 group -- and its signals normally share an x-axis. Signals
@@ -185,7 +185,7 @@ for src in res.sources:
 
 ## One public module, and a read-only tree
 
-`simapy.results` is the whole API; every module behind it is private, so readers,
+`simapy_results` is the whole API; every module behind it is private, so readers,
 registry, importer, merge rules and scanner can change. The tree is read-only:
 nodes expose accessors only, an array handed out is either fresh or
 non-writeable, and the functions that fill a tree live in `_build`. Adding a

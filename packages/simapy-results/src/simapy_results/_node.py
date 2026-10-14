@@ -285,7 +285,7 @@ class Container(Node):
     def to_dataframe(self, recursive: bool = False, index: bool = True):
         """This container's signals as a pandas DataFrame. Requires pandas.
 
-        See :func:`~simapy.results.signals_to_frame`.
+        See :func:`~simapy_results.signals_to_frame`.
         """
         from ._frames import container_to_frame  # pylint: disable=import-outside-toplevel
 

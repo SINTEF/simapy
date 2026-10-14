@@ -1,6 +1,6 @@
 """The ``simos_r0`` HDF5 layout SIMO writes.
 
-Reached from :mod:`simapy.results._readers.hdf5` when a file's root ``format``
+Reached from :mod:`simapy_results._readers.hdf5` when a file's root ``format``
 attribute says ``simos_r0``. SIMO serialises its result types generically, so
 the layout follows from the type definitions rather than being a designed file
 format.

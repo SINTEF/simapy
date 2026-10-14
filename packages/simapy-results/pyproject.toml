@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=70.0.0", "wheel>=0.38.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simapy-results"
+version = "5.4.0"
+description = "Read SIMA results with SIMA's own names, units and structure"
+readme = "README.md"
+authors = [
+    {name = "SINTEF Ocean"}
+]
+requires-python = ">=3.11"
+license = {text = "MIT License"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+]
+
+[project.optional-dependencies]
+pandas = ["pandas>=2"]
+hdf5 = ["h5py>=3"]
+all = ["simapy-results[pandas,hdf5]"]
+
+[project.urls]
+Homepage = "https://github.com/SINTEF/simapy"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "simapy-results[all]",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = {find = {where = ["src"]}}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

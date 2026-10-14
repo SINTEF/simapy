@@ -15,12 +15,12 @@ from pathlib import Path
 
 import pytest
 
-from simapy.results import Container, ErrorSignal, ResultsError, Signal, Status, open_results
-from simapy.results._scan import holds_results
-from simapy.results import _scan as scan
-from simapy.results._readers.psc import PscReader
-from simapy.results._registry import find_reader
-from simapy.results._sources import FolderContext, Source, SourceError
+from simapy_results import Container, ErrorSignal, ResultsError, Signal, Status, open_results
+from simapy_results._scan import holds_results
+from simapy_results import _scan as scan
+from simapy_results._readers.psc import PscReader
+from simapy_results._registry import find_reader
+from simapy_results._sources import FolderContext, Source, SourceError
 
 from .conftest import DATA
 from .test_results_simos_r0 import _equally_spaced, _string

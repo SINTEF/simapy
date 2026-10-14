@@ -16,8 +16,9 @@ import pytest
 
 from simapy.results import ResultsError
 
-DATA = Path(__file__).parent / "data"
-RIFLEX_RUN = DATA / "Simple_Flexible_Riser" / "Initial"
+from .conftest import RESULTS_DATA
+
+RIFLEX_RUN = RESULTS_DATA / "Simple_Flexible_Riser" / "Initial"
 
 
 def _leave_results(folder: Path) -> Path:

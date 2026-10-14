@@ -16,10 +16,10 @@ from pathlib import Path
 
 import pytest
 
-from simapy.results import (ResultsError, Status, UnsupportedStorageWarning, Variable,
+from simapy_results import (ResultsError, Status, UnsupportedStorageWarning, Variable,
                             open_results)
-from simapy.results import _scan as scan
-from simapy.results._scan import find_runs, holds_results
+from simapy_results import _scan as scan
+from simapy_results._scan import find_runs, holds_results
 
 from .conftest import DATA
 

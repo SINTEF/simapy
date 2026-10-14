@@ -20,12 +20,13 @@ classifiers = [
 dependencies = [
     "dmtpy==0.3.6",
     "numpy",
+    "simapy-results==5.4.0",
     "tqdm",
 ]
 
 [project.optional-dependencies]
-pandas = ["pandas>=2"]
-hdf5 = ["h5py>=3"]
+pandas = ["simapy-results[pandas]==5.4.0"]
+hdf5 = ["simapy-results[hdf5]==5.4.0"]
 all = ["simapy[pandas,hdf5]"]
 
 [project.urls]
@@ -41,3 +42,13 @@ dev = [
 [tool.setuptools]
 package-dir = {"" = "src"}
 packages = {find = {where = ["src"], exclude = ["tests", "tests.*"]}}
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.uv.sources]
+simapy-results = { workspace = true }
+
+# Each distribution runs its own tests: both test folders are packages named `tests`.
+[tool.pytest.ini_options]
+testpaths = ["src/tests"]
