@@ -1,0 +1,26 @@
+
+   R I F L E X  -  KEY FILE
+   ------------------------
+
+
+   This key-file describes the contents of : guide_noddis.asc
+   The format of guide_noddis.asc is ASCII
+   The file guide_noddis.asc contains a time series of nodal-displacements
+   The nodal-displacements are stored in columns on guide_noddis.asc
+
+   Column no. 1 contains the time.
+
+
+   For each node the following applies : 
+
+   DOF 1 = displacement in x - direction
+   DOF 2 = displacement in y - direction
+   DOF 3 = displacement in z - direction
+
+
+   The response is stored as follows
+
+   Line       Local     Local      No. of         Stored in
+    Id        segment   node       responses      column(s)
+   ----------------------------------------------------------
+ riser_l3        9         1           3         2   -      4

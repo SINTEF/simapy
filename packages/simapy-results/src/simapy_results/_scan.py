@@ -22,6 +22,9 @@ from typing import Iterator
 
 from ._description import Entry, ResultFile, ResultsError, RunDescription, UnreadFile, Variable
 from ._registry import find_reader
+from ._readers.riflex_storage import SUFFIXES as _STORAGE
+from ._readers.riflex_storage import storage_key
+from ._riflexres import read_ids
 
 #: Hashed model id to real name. Alternating lines: short, long, short, long.
 ID_MAP_FILENAME = "names.map"
@@ -45,16 +48,19 @@ def is_result(path: Path) -> bool:
         path.is_file()
         and path.suffix.lower() not in _NOT_BY_SCAN
         and not is_internal(path.name)
-        and find_reader(path) is not None
+        and is_claimed(path)
     )
 
 
-_RIFLEX_DEFAULT = 'set the RIFLEX storage format to "Default" (HDF5)'
+def is_claimed(path: Path) -> bool:
+    """Whether some reader reads this file."""
+    if path.suffix.lower() in _STORAGE and not storage_key(path).is_file():
+        return False
+    return find_reader(path) is not None
+
 
 #: Storage SIMA still writes but no reader here reads, and the setting that replaces it.
 _UNREAD_STORAGE: dict[str, tuple[str, str]] = {
-    ".bin": ("RIFLEX binary storage", _RIFLEX_DEFAULT),
-    ".asc": ("RIFLEX ASCII storage", _RIFLEX_DEFAULT),
     ".tda": ("SIMO's old result structure",
              'clear "Use old result structure" in the SIMO dynamic calculation parameters'),
 }
@@ -64,9 +70,6 @@ def unread_storage(path: Path) -> UnreadFile | None:
     """The file as a result in a format no reader here reads, or None if it is not one."""
     suffix = path.suffix.lower()
     if suffix not in _UNREAD_STORAGE or not path.is_file():
-        return None
-    # RIFLEX writes other .asc files that are not results; a storage file always has its key file.
-    if suffix != ".tda" and not (path.parent / f"key_{path.stem}.txt").is_file():
         return None
     storage, remedy = _UNREAD_STORAGE[suffix]
     return UnreadFile(file=path.name, storage=storage, remedy=remedy)
@@ -192,6 +195,10 @@ def phase_of(name: str) -> tuple[str, str] | None:
     flat entry would merge one into the other.
     """
     lower = name.lower()
+    # RIFLEXDynamicResultFactory adds every storage file to the dynamic entry,
+    # whatever it is called: sima_witurb.bin names no analysis.
+    if Path(lower).suffix in _STORAGE:
+        return "Dynamic", "dynamic"
     for fragment, entry, run_type in _PHASES:
         if fragment in lower:
             return entry, run_type
@@ -291,61 +298,7 @@ def read_names(folder: Path) -> dict[str, str]:
     -- cosmetic, never a failure, so a file that does not parse adds no names
     rather than half a map.
     """
-    return {**_read_id_map(folder), **_read_riflex_ids(folder)}
-
-
-#: Line and other model names, written by RIFLEX's ``RIFLEXResultMapperExporter``.
-RIFLEX_MAPPER_FILENAME = "riflexres.inp"
-
-
-def _read_riflex_ids(folder: Path) -> dict[str, str]:
-    """The ids ``RIFLEXResultMapperImporter`` maps: the line names, then ``readIds``.
-
-    The sections in between are walked as that importer walks them, only to
-    reach the ids after them.
-    """
-    try:
-        text = (folder / RIFLEX_MAPPER_FILENAME).read_text(encoding="utf-8")
-    except (OSError, UnicodeDecodeError):
-        return {}
-    rows = iter(line for line in text.splitlines() if not line.startswith("'"))
-    ids: dict[str, str] = {}
-    try:
-        version = tuple(int(part) for part in next(rows).strip().split("."))
-        if version < (2, 0, 0):
-            return {}
-        for _ in range(int(next(rows))):
-            key, value = _key_value(next(rows))
-            ids[key] = value
-            if version >= (2, 1, 0):
-                for _ in range(int(next(rows))):  # segments
-                    _skip(rows, int(next(rows)))  # their properties
-        for _ in range(int(next(rows))):  # relative angles
-            _skip(rows, 3)
-            _skip(rows, 3 * int(next(rows)))
-        _skip(rows, 5 * int(next(rows)))  # element angles
-        if version >= (2, 6, 0):
-            _skip(rows, 4 * int(next(rows)))  # transformations
-        _skip(rows, 2 * int(next(rows)))  # stress storage
-        if version >= (2, 1, 0):
-            _skip(rows, 2 * int(next(rows)))  # load steps
-        if version >= (2, 2, 0):
-            for _ in range(int(next(rows))):
-                key, value = _key_value(next(rows))
-                ids[key] = value
-    except (StopIteration, ValueError, IndexError):
-        return {}
-    return ids
-
-
-def _key_value(row: str) -> tuple[str, str]:
-    parts = row.split("=")
-    return parts[0], parts[1]
-
-
-def _skip(rows: Iterator[str], count: int) -> None:
-    for _ in range(count):
-        next(rows)
+    return {**_read_id_map(folder), **read_ids(folder)}
 
 
 def _read_id_map(folder: Path) -> dict[str, str]:
@@ -483,7 +436,7 @@ def describe_file(
     :raises ResultsError: if no reader claims the file.
     """
     file = Path(path).absolute()
-    if find_reader(file) is None:
+    if not is_claimed(file):
         unread = unread_storage(file)
         if unread is not None:
             raise ResultsError(f"simapy cannot read {file.name}: {unread.advice}")

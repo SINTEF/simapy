@@ -367,43 +367,51 @@ def test_solver_input_is_not_described(tmp_path):
     assert [s.file for s in res.sources] == ["ts_buffer.b5"]
 
 
-# -- storage formats simapy does not read ------------------------------------
+# -- storage formats ----------------------------------------------------------
+
+STORAGE = Path(__file__).parent / "data" / "riflex_storage" / "guide" / "bin"
+
+
+def _storage(folder: Path, *stems: str) -> Path:
+    """RIFLEX binary storage from a real run, each file beside its key file."""
+    folder.mkdir(parents=True, exist_ok=True)
+    for stem in stems:
+        for name in (f"{stem}.bin", f"key_{stem}.txt"):
+            (folder / name).write_bytes((STORAGE / name).read_bytes())
+    return folder
 
 
 def _old_storage(folder: Path) -> Path:
-    """A RIFLEX run with binary and ASCII storage, and a SIMO one with the old result structure."""
+    """A RIFLEX run with binary storage, and a SIMO one with the old result structure."""
     _riflex_run(folder, "sima_stamod.mpf", "sima_dynmod.mpf")
-    return _touch(folder, "sima_noddis.bin", "key_sima_noddis.txt", "sima_elmfor.bin",
-                  "key_sima_elmfor.txt", "sima_elmcur.asc", "key_sima_elmcur.txt",
-                  "results.tda", "results.txt")
+    _storage(folder, "guide_noddis", "guide_elmfor")
+    return _touch(folder, "results.tda", "results.txt")
 
 
-def test_old_storage_is_reported_and_the_rest_still_read(tmp_path):
+def test_riflex_storage_is_read_and_old_simo_results_reported(tmp_path):
     folder = _old_storage(tmp_path / "Simple_Flexible_Riser" / "Initial")
 
-    with pytest.warns(UnsupportedStorageWarning, match="cannot read 4 result files") as caught:
+    with pytest.warns(UnsupportedStorageWarning, match="cannot read 1 result file:") as caught:
         res = open_results(folder)
 
     assert {s.file: s.status for s in res.sources} == {
         "sima_stamod.mpf": Status.READ,
         "sima_dynmod.mpf": Status.READ,
+        "guide_elmfor.bin": Status.READ,
+        "guide_noddis.bin": Status.READ,
         "results.tda": Status.UNSUPPORTED,
-        "sima_elmcur.asc": Status.UNSUPPORTED,
-        "sima_elmfor.bin": Status.UNSUPPORTED,
-        "sima_noddis.bin": Status.UNSUPPORTED,
     }
     assert res.run["Dynamic/RiserLine"]
+    assert res.run["Dynamic/riser_l3/segment_9/node_1/Displacement in x - direction"]
     message = str(caught[0].message)
-    assert '  sima_elmfor.bin, sima_noddis.bin: RIFLEX binary storage. In SIMA, set the RIFLEX ' \
-           'storage format to "Default" (HDF5), and run again.' in message
-    assert "sima_elmcur.asc: RIFLEX ASCII storage" in message
     assert 'results.tda: SIMO\'s old result structure. In SIMA, clear "Use old result structure"' in message
+    assert ".bin" not in message
 
 
 def test_an_asc_file_without_a_key_file_is_not_storage(tmp_path):
     """RIFLEX writes other .asc files, such as the static configuration; only storage has a key file."""
     folder = _riflex_run(tmp_path / "Task" / "Condition", "sima_stamod.mpf")
-    _touch(folder, "sima_consta.asc", "sima_massin.asc", "sima.bin")
+    _touch(folder, "sima_consta.asc", "sima_massin.asc", "sima.bin", "wind_u.bin")
 
     with warnings.catch_warnings():
         warnings.simplefilter("error")
@@ -412,10 +420,27 @@ def test_an_asc_file_without_a_key_file_is_not_storage(tmp_path):
     assert [s.file for s in res.sources] == ["sima_stamod.mpf"]
 
 
-def test_a_folder_of_old_storage_alone_says_how_to_fix_it(tmp_path):
-    folder = _touch(tmp_path / "Task" / "Condition", "sima_noddis.bin", "key_sima_noddis.txt")
+def test_opening_a_bin_file_without_its_key_file_says_no_reader(tmp_path):
+    folder = _touch(tmp_path / "Task" / "Condition", "wind_u.bin")
 
-    with pytest.raises(ResultsError, match=r'only results simapy cannot read:\n  sima_noddis.bin: .*"Default"'):
+    with pytest.raises(ResultsError, match="no reader for wind_u.bin"):
+        open_results(folder / "wind_u.bin")
+
+
+def test_a_storage_file_names_no_analysis_but_is_dynamic(tmp_path):
+    """RIFLEXDynamicResultFactory puts every storage file in the dynamic entry."""
+    folder = _storage(tmp_path / "Task" / "Condition", "guide_supportforce")
+
+    res = open_results(folder)
+
+    assert [c.name for c in res.run.containers] == ["Dynamic"]
+    assert res.run.container("Dynamic").type == "dynamic"
+
+
+def test_a_folder_of_old_storage_alone_says_how_to_fix_it(tmp_path):
+    folder = _touch(tmp_path / "Task" / "Condition", "results.tda")
+
+    with pytest.raises(ResultsError, match=r'only results simapy cannot read:\n  results.tda: .*Use old result structure'):
         open_results(folder)
 
 
@@ -426,19 +451,20 @@ def test_opening_an_old_storage_file_says_how_to_fix_it(tmp_path):
         open_results(folder / "results.tda")
 
 
-def test_a_condition_reports_old_storage_in_its_run_folders(tmp_path):
+def test_a_condition_reads_storage_and_reports_old_results_in_its_run_folders(tmp_path):
     condition = tmp_path / "Simple_Flexible_Riser" / "Initial"
     _old_storage(condition / "1-20261002061613")
     _manifest(condition, {"task": "Simple_Flexible_Riser", "condition": "Initial",
                           "directories": {"Static": "1-20261002061613",
                                           "Dynamic": "1-20261002061613"}})
 
-    with pytest.warns(UnsupportedStorageWarning, match="1-20261002061613/sima_noddis.bin"):
+    with pytest.warns(UnsupportedStorageWarning, match="1-20261002061613/results.tda"):
         res = open_results(condition)
 
     assert [s.file for s in res.sources if s.status is Status.UNSUPPORTED] == [
-        "1-20261002061613/results.tda", "1-20261002061613/sima_elmcur.asc",
-        "1-20261002061613/sima_elmfor.bin", "1-20261002061613/sima_noddis.bin"]
+        "1-20261002061613/results.tda"]
+    assert {s.file for s in res.sources if s.status is Status.READ} >= {
+        "1-20261002061613/guide_elmfor.bin", "1-20261002061613/guide_noddis.bin"}
 
 
 # -- grouping by analysis ---------------------------------------------------

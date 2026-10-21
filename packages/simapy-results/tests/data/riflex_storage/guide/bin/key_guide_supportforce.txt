@@ -1,0 +1,35 @@
+' 
+'   R I F L E X  -  KEY FILE
+'   ------------------------
+' 
+' 
+'   This key-file describes the contents of : guide_supportforce.bin
+'   The format of guide_supportforce.bin is BINARY
+'   with numbers stored as real single precision (4 bytes)
+'   The file guide_supportforce.bin contains time series of support-force-results
+'   the support forces results are stored in columns on guide_supportforce.bin
+' 
+' 
+'   For nodes connected to bar elements : force in XYZ-dir
+'   For nodes connected to beam elements: force in XYZ-dir
+'                                         moment around in XYZ-axis
+' 
+' 
+' 
+'  column   contents     unit      contents   node      element    supernode    line               contents
+'    no    abbrivated              sforceID   number    Type       ID           ID                 descriptive text
+       1  FORTRAN specific data - IGNORE
+       2   Time          s         Time                                                                                            
+       3   Fx            kN               1        718   beam       ris_hang     riser_l3           Force in global X-direction    
+       4   Fy            kN               1        718   beam       ris_hang     riser_l3           Force in global Y-direction    
+       5   Fz            kN               1        718   beam       ris_hang     riser_l3           Force in global Z-direction    
+       6   Mx            kNm              1        718   beam       ris_hang     riser_l3           Moment around global X-axis    
+       7   My            kNm              1        718   beam       ris_hang     riser_l3           Moment around global Y-axis    
+       8   Mz            kNm              1        718   beam       ris_hang     riser_l3           Moment around global Z-axis    
+       9   Fx            kN               1        862   beam       bellm_f      bellm_16           Force in global X-direction    
+      10   Fy            kN               1        862   beam       bellm_f      bellm_16           Force in global Y-direction    
+      11   Fz            kN               1        862   beam       bellm_f      bellm_16           Force in global Z-direction    
+      12   Mx            kNm              1        862   beam       bellm_f      bellm_16           Moment around global X-axis    
+      13   My            kNm              1        862   beam       bellm_f      bellm_16           Moment around global Y-axis    
+      14   Mz            kNm              1        862   beam       bellm_f      bellm_16           Moment around global Z-axis    
+      15  FORTRAN specific data - IGNORE

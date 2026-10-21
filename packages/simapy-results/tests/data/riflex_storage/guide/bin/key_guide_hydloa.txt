@@ -1,0 +1,48 @@
+' 
+' 
+'   R I F L E X  -  KEY FILE
+'   ------------------------
+' 
+'   This key-file describes the contents of : guide_hydloa.bin
+'   The format of guide_hydloa.bin is BINARY
+'   with numbers stored as real single precision (4 bytes)
+'   The file guide_hydloa.bin contains a time series of hydro-loads
+'   The hydro-loads are stored in columns on guide_hydloa.bin
+' 
+' 
+'   Hydrodynamic loads for specified elements 
+' 
+' 
+'   The response is stored as follows
+' 
+'   Col.      Line       Local     Local    El.   Unit       Description
+'              Id       segment   element   end
+'   -----------------------------------------------------------------------
+    0         LINE       LSEG      LELM   ELEND   UNIT       DESC
+    1          -            -         -     -     -          FORTRAN specific data (please ignore)
+    2          -            -         -     -     s          Time
+    3        riser_l3       9         1     1     kN/m       Hydrodynamic load, global x direction
+    4        riser_l3       9         1     1     kN/m       Hydrodynamic load, global y direction
+    5        riser_l3       9         1     1     kN/m       Hydrodynamic load, global z direction
+    6        riser_l3       9         1     1     kN*m/m     Hydrodynamic load, moment around global x axis
+    7        riser_l3       9         1     1     kN*m/m     Hydrodynamic load, moment around global y axis
+    8        riser_l3       9         1     1     kN*m/m     Hydrodynamic load, moment around global z axis
+    9        riser_l3       9         1     2     kN/m       Hydrodynamic load, global x direction
+   10        riser_l3       9         1     2     kN/m       Hydrodynamic load, global y direction
+   11        riser_l3       9         1     2     kN/m       Hydrodynamic load, global z direction
+   12        riser_l3       9         1     2     kN*m/m     Hydrodynamic load, moment around global x axis
+   13        riser_l3       9         1     2     kN*m/m     Hydrodynamic load, moment around global y axis
+   14        riser_l3       9         1     2     kN*m/m     Hydrodynamic load, moment around global z axis
+   15        riser_l3       9         2     1     kN/m       Hydrodynamic load, global x direction
+   16        riser_l3       9         2     1     kN/m       Hydrodynamic load, global y direction
+   17        riser_l3       9         2     1     kN/m       Hydrodynamic load, global z direction
+   18        riser_l3       9         2     1     kN*m/m     Hydrodynamic load, moment around global x axis
+   19        riser_l3       9         2     1     kN*m/m     Hydrodynamic load, moment around global y axis
+   20        riser_l3       9         2     1     kN*m/m     Hydrodynamic load, moment around global z axis
+   21        riser_l3       9         2     2     kN/m       Hydrodynamic load, global x direction
+   22        riser_l3       9         2     2     kN/m       Hydrodynamic load, global y direction
+   23        riser_l3       9         2     2     kN/m       Hydrodynamic load, global z direction
+   24        riser_l3       9         2     2     kN*m/m     Hydrodynamic load, moment around global x axis
+   25        riser_l3       9         2     2     kN*m/m     Hydrodynamic load, moment around global y axis
+   26        riser_l3       9         2     2     kN*m/m     Hydrodynamic load, moment around global z axis
+   27          -            -         -     -     -          FORTRAN specific data (please ignore)

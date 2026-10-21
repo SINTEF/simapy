@@ -1,0 +1,46 @@
+
+   R I F L E X  -  KEY FILE
+   ------------------------
+
+
+   This key-file describes the contents of : dtu10mw_elmfor.bin
+   The format of dtu10mw_elmfor.bin is BINARY
+   with numbers stored as real single precision (4 bytes)
+   The file dtu10mw_elmfor.bin contains a time series of element-forces
+   The element-forces are stored in columns on dtu10mw_elmfor.bin
+
+   Column no. 1 contains FORTRAN specific data (please ignore)
+
+   Column no. 2 contains the time.
+
+
+   For each bar element the following applies : 
+
+   DOF 1 = Axial force
+
+
+   For each beam element the following applies : 
+
+   DOF 1 = Axial force
+   DOF 2 = Torsional moment
+   DOF 3 = Mom. about local y-axis, end 1
+   DOF 4 = Mom. about local y-axis, end 2
+   DOF 5 = Mom. about local z-axis, end 1
+   DOF 6 = Mom. about local z-axis, end 2
+   DOF 7 = Shear force in local y-direction, end 1
+   DOF 8 = Shear force in local y-direction, end 2
+   DOF 9 = Shear force in local z-direction, end 1
+   DOF10 = Shear force in local z-direction, end 2
+
+
+   The response is stored as follows
+
+   Line       Local     Local      No. of         Stored in
+    Id        segment   element    responses      column(s)
+   ----------------------------------------------------------
+ tower_1         1         1          10         3   -     12
+ tower_1        10         1          10        13   -     22
+ tower_2         1         1          10        23   -     32
+ tower_2        10         1          10        33   -     42
+
+   Column no.43 contains FORTRAN specific data (please ignore)

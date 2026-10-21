@@ -4,3 +4,6 @@
 *.map -text
 *.lis -text
 *.inp -text
+*.bin -text
+*.asc -text
+*.txt -text
