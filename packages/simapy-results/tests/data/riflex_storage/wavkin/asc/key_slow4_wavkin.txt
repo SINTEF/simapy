@@ -1,0 +1,50 @@
+' 
+'   R I F L E X  -  KEY FILE
+'   ------------------------
+' 
+' 
+'   This key-file describes the contents of the ASCII file
+'   slow4_wavkin.asc.
+'   The file contains time series of pre-generated wave kinematics
+'   stored as single precision (32-bit = 4 bytes) real numbers.
+' 
+'   The pre-generated wave kinematics for the selected FEM nodes are
+'   stored in columns on the file:
+'   
+'   Col.    Supernode     OR                 Global     -- Static global coordinates --
+'   nr. Type  Line        Segment  Node     FEM node    X           Y           Z        Unit      Description
+'   -------------------------------------------------------------------------------------------------------
+      0  TYPE  IDEN       SEGMENT  NODE     FEM-NODE  XG-STATIC   YG-STATIC   ZG-STATIC  UNIT      DESCRIPTION
+      1   -     -              -     -         -        -           -           -        s         Time
+      2  LINE  1               2    30        31       2.885       0.000    -117.445     m         Wave elevation
+      3  LINE  1               2    30        31       2.885       0.000    -117.445     m/s       Fluid velocity, global X-direction
+      4  LINE  1               2    30        31       2.885       0.000    -117.445     m/s       Fluid velocity, global Y-direction
+      5  LINE  1               2    30        31       2.885       0.000    -117.445     m/s       Fluid velocity, global Z-direction
+      6  LINE  1               2    30        31       2.885       0.000    -117.445     m/s^2     Fluid acceleration, global X-direction
+      7  LINE  1               2    30        31       2.885       0.000    -117.445     m/s^2     Fluid acceleration, global Y-direction
+      8  LINE  1               2    30        31       2.885       0.000    -117.445     m/s^2     Fluid acceleration, global Z-direction
+      9  LINE  1               2    30        31       2.885       0.000    -117.445     kN/m^2    Fluid dynamic pressure
+     10  LINE  1               2    35        36       2.532       0.000     -79.934     m         Wave elevation
+     11  LINE  1               2    35        36       2.532       0.000     -79.934     m/s       Fluid velocity, global X-direction
+     12  LINE  1               2    35        36       2.532       0.000     -79.934     m/s       Fluid velocity, global Y-direction
+     13  LINE  1               2    35        36       2.532       0.000     -79.934     m/s       Fluid velocity, global Z-direction
+     14  LINE  1               2    35        36       2.532       0.000     -79.934     m/s^2     Fluid acceleration, global X-direction
+     15  LINE  1               2    35        36       2.532       0.000     -79.934     m/s^2     Fluid acceleration, global Y-direction
+     16  LINE  1               2    35        36       2.532       0.000     -79.934     m/s^2     Fluid acceleration, global Z-direction
+     17  LINE  1               2    35        36       2.532       0.000     -79.934     kN/m^2    Fluid dynamic pressure
+     18  LINE  1               2    40        41       1.832       0.000     -42.429     m         Wave elevation
+     19  LINE  1               2    40        41       1.832       0.000     -42.429     m/s       Fluid velocity, global X-direction
+     20  LINE  1               2    40        41       1.832       0.000     -42.429     m/s       Fluid velocity, global Y-direction
+     21  LINE  1               2    40        41       1.832       0.000     -42.429     m/s       Fluid velocity, global Z-direction
+     22  LINE  1               2    40        41       1.832       0.000     -42.429     m/s^2     Fluid acceleration, global X-direction
+     23  LINE  1               2    40        41       1.832       0.000     -42.429     m/s^2     Fluid acceleration, global Y-direction
+     24  LINE  1               2    40        41       1.832       0.000     -42.429     m/s^2     Fluid acceleration, global Z-direction
+     25  LINE  1               2    40        41       1.832       0.000     -42.429     kN/m^2    Fluid dynamic pressure
+     26  LINE  1               3     5        46       0.849       0.000      -4.931     m         Wave elevation
+     27  LINE  1               3     5        46       0.849       0.000      -4.931     m/s       Fluid velocity, global X-direction
+     28  LINE  1               3     5        46       0.849       0.000      -4.931     m/s       Fluid velocity, global Y-direction
+     29  LINE  1               3     5        46       0.849       0.000      -4.931     m/s       Fluid velocity, global Z-direction
+     30  LINE  1               3     5        46       0.849       0.000      -4.931     m/s^2     Fluid acceleration, global X-direction
+     31  LINE  1               3     5        46       0.849       0.000      -4.931     m/s^2     Fluid acceleration, global Y-direction
+     32  LINE  1               3     5        46       0.849       0.000      -4.931     m/s^2     Fluid acceleration, global Z-direction
+     33  LINE  1               3     5        46       0.849       0.000      -4.931     kN/m^2    Fluid dynamic pressure

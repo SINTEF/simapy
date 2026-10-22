@@ -1,0 +1,33 @@
+' 
+'   R I F L E X  -  KEY FILE
+'   ------------------------
+' 
+' 
+'   This key-file describes the contents of : guide_supportforce.asc
+'   The format of guide_supportforce.asc is ASCII
+'   with numbers stored as real single precision (4 bytes)
+'   The file guide_supportforce.asc contains time series of support-force-results
+'   the support forces results are stored in columns on guide_supportforce.asc
+' 
+' 
+'   For nodes connected to bar elements : force in XYZ-dir
+'   For nodes connected to beam elements: force in XYZ-dir
+'                                         moment around in XYZ-axis
+' 
+' 
+' 
+'  column   contents     unit      contents   node      element    supernode    line               contents
+'    no    abbrivated              sforceID   number    Type       ID           ID                 descriptive text
+       1   Time          s         Time                                                                                            
+       2   Fx            kN               1        718   beam       ris_hang     riser_l3           Force in global X-direction    
+       3   Fy            kN               1        718   beam       ris_hang     riser_l3           Force in global Y-direction    
+       4   Fz            kN               1        718   beam       ris_hang     riser_l3           Force in global Z-direction    
+       5   Mx            kNm              1        718   beam       ris_hang     riser_l3           Moment around global X-axis    
+       6   My            kNm              1        718   beam       ris_hang     riser_l3           Moment around global Y-axis    
+       7   Mz            kNm              1        718   beam       ris_hang     riser_l3           Moment around global Z-axis    
+       8   Fx            kN               1        862   beam       bellm_f      bellm_16           Force in global X-direction    
+       9   Fy            kN               1        862   beam       bellm_f      bellm_16           Force in global Y-direction    
+      10   Fz            kN               1        862   beam       bellm_f      bellm_16           Force in global Z-direction    
+      11   Mx            kNm              1        862   beam       bellm_f      bellm_16           Moment around global X-axis    
+      12   My            kNm              1        862   beam       bellm_f      bellm_16           Moment around global Y-axis    
+      13   Mz            kNm              1        862   beam       bellm_f      bellm_16           Moment around global Z-axis    

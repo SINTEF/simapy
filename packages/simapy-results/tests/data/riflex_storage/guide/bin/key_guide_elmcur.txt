@@ -1,0 +1,37 @@
+
+   R I F L E X  -  KEY FILE
+   ------------------------
+
+
+   This key-file describes the contents of : guide_elmcur.bin
+   The format of guide_elmcur.bin is BINARY
+   with numbers stored as real single precision (4 bytes)
+   The file guide_elmcur.bin contains a time series of element-curvature
+   The element-curvature are stored in columns on guide_elmcur.bin
+
+   Column no. 1 contains FORTRAN specific data (please ignore)
+
+   Column no. 2 contains the time.
+
+
+   For each bar element the following applies : 
+
+   No calculation of curvature is performed ! 
+
+
+   For each beam element the following applies : 
+
+   DOF 1 = Curvature about local y-axis, end 1
+   DOF 2 = Curvature about local y-axis, end 2
+   DOF 3 = Curvature about local z-axis, end 1
+   DOF 4 = Curvature about local z-axis, end 2
+
+
+   The response is stored as follows
+
+   Line       Local     Local      No. of         Stored in
+    Id        segment   element    responses      column(s)
+   ----------------------------------------------------------
+ riser_l3        9         1           4         3   -      6
+
+   Column no.7 contains FORTRAN specific data (please ignore)

@@ -1,0 +1,31 @@
+
+   R I F L E X  -  KEY FILE
+   ------------------------
+
+
+   This key-file describes the contents of : guide_noddis.bin
+   The format of guide_noddis.bin is BINARY
+   with numbers stored as real single precision (4 bytes)
+   The file guide_noddis.bin contains a time series of nodal-displacements
+   The nodal-displacements are stored in columns on guide_noddis.bin
+
+   Column no. 1 contains FORTRAN specific data (please ignore)
+
+   Column no. 2 contains the time.
+
+
+   For each node the following applies : 
+
+   DOF 1 = displacement in x - direction
+   DOF 2 = displacement in y - direction
+   DOF 3 = displacement in z - direction
+
+
+   The response is stored as follows
+
+   Line       Local     Local      No. of         Stored in
+    Id        segment   node       responses      column(s)
+   ----------------------------------------------------------
+ riser_l3        9         1           3         3   -      5
+
+   Column no.6 contains FORTRAN specific data (please ignore)

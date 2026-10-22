@@ -1,0 +1,34 @@
+
+   R I F L E X  -  KEY FILE
+   ------------------------
+
+
+   This key-file describes the contents of : guide_elmsfo.bin
+   The format of guide_elmsfo.bin is BINARY
+   with numbers stored as real single precision (4 bytes)
+   The file guide_elmsfo.bin contains a time series of sum-element-forces
+   The sum-element-forces are stored in columns on guide_elmsfo.bin
+
+   Column no. 1 contains FORTRAN specific data (please ignore)
+
+   Column no. 2 contains the time.
+
+
+   For each bar element the following applies : 
+
+   DOF 1 = Axial sum force
+
+
+   For each beam element the following applies : 
+
+   DOF 1 = Axial sum force
+
+
+   The response is stored as follows
+
+   Line       Local     Local      No. of         Stored in
+    Id        segment   element    responses      column(s)
+   ----------------------------------------------------------
+ riser_l3        9         1           1                 3
+
+   Column no.4 contains FORTRAN specific data (please ignore)

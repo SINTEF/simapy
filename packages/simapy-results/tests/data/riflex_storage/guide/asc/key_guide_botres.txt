@@ -1,0 +1,205 @@
+' 
+' 
+'   R I F L E X  -  KEY FILE
+'   ------------------------
+' 
+'   This key-file describes the contents of : guide_botres.asc
+'   The format of guide_botres.asc is ASCII
+'   The file guide_botres.asc contains a time series of seafloor-contact
+'   The seafloor-contact are stored in columns on guide_botres.asc
+' 
+' 
+'   Dynamic results for seafloor contact elements 
+'   and soil layer profile contact elements
+' 
+' 
+'   The response is stored as follows
+' 
+'   Col.  Global            attached to element
+'         contact       Line   Local     Local    El.    Unit       Description
+'         FEM-el.        Id    segment   element  end
+'   -----------------------------------------------------------------------
+    1      -          -            -         -     -     T          Time
+    2   3323        riser_l3       9         1     1     L          Axial   spring elongation
+    3   3323        riser_l3       9         1     1     L          Lateral spring elongation
+    4   3323        riser_l3       9         1     1     L          Indentation into seafloor
+    5   3323        riser_l3       9         1     1     F/L**2     Axial   stiffness per length
+    6   3323        riser_l3       9         1     1     F/L**2     Lateral stiffness per length
+    7   3323        riser_l3       9         1     1     F/L**2     Normal  stiffness per length
+    8   3323        riser_l3       9         1     1     F/L        Axial   contact force per length
+    9   3323        riser_l3       9         1     1     F/L        Lateral contact force per length
+   10   3323        riser_l3       9         1     1     F/L        Normal  contact force per length
+   11   3324        riser_l3       9         1     2     L          Axial   spring elongation
+   12   3324        riser_l3       9         1     2     L          Lateral spring elongation
+   13   3324        riser_l3       9         1     2     L          Indentation into seafloor
+   14   3324        riser_l3       9         1     2     F/L**2     Axial   stiffness per length
+   15   3324        riser_l3       9         1     2     F/L**2     Lateral stiffness per length
+   16   3324        riser_l3       9         1     2     F/L**2     Normal  stiffness per length
+   17   3324        riser_l3       9         1     2     F/L        Axial   contact force per length
+   18   3324        riser_l3       9         1     2     F/L        Lateral contact force per length
+   19   3324        riser_l3       9         1     2     F/L        Normal  contact force per length
+   20   2603        riser_l1       1         9     1     L          Axial   spring elongation (TDP)
+   21   2603        riser_l1       1         9     1     L          Lateral spring elongation (TDP)
+   22   2603        riser_l1       1         9     1     L          Indentation into seafloor (TDP)
+   23   2603        riser_l1       1         9     1     F/L**2     Axial   stiffness per length (TDP)
+   24   2603        riser_l1       1         9     1     F/L**2     Lateral stiffness per length (TDP)
+   25   2603        riser_l1       1         9     1     F/L**2     Normal  stiffness per length (TDP)
+   26   2603        riser_l1       1         9     1     F/L        Axial   contact force per length (TDP)
+   27   2603        riser_l1       1         9     1     F/L        Lateral contact force per length (TDP)
+   28   2603        riser_l1       1         9     1     F/L        Normal  contact force per length (TDP)
+   29   2604        riser_l1       1         9     2     L          Axial   spring elongation (TDP)
+   30   2604        riser_l1       1         9     2     L          Lateral spring elongation (TDP)
+   31   2604        riser_l1       1         9     2     L          Indentation into seafloor (TDP)
+   32   2604        riser_l1       1         9     2     F/L**2     Axial   stiffness per length (TDP)
+   33   2604        riser_l1       1         9     2     F/L**2     Lateral stiffness per length (TDP)
+   34   2604        riser_l1       1         9     2     F/L**2     Normal  stiffness per length (TDP)
+   35   2604        riser_l1       1         9     2     F/L        Axial   contact force per length (TDP)
+   36   2604        riser_l1       1         9     2     F/L        Lateral contact force per length (TDP)
+   37   2604        riser_l1       1         9     2     F/L        Normal  contact force per length (TDP)
+   38   2605        riser_l1       1        10     1     L          Axial   spring elongation (TDP)
+   39   2605        riser_l1       1        10     1     L          Lateral spring elongation (TDP)
+   40   2605        riser_l1       1        10     1     L          Indentation into seafloor (TDP)
+   41   2605        riser_l1       1        10     1     F/L**2     Axial   stiffness per length (TDP)
+   42   2605        riser_l1       1        10     1     F/L**2     Lateral stiffness per length (TDP)
+   43   2605        riser_l1       1        10     1     F/L**2     Normal  stiffness per length (TDP)
+   44   2605        riser_l1       1        10     1     F/L        Axial   contact force per length (TDP)
+   45   2605        riser_l1       1        10     1     F/L        Lateral contact force per length (TDP)
+   46   2605        riser_l1       1        10     1     F/L        Normal  contact force per length (TDP)
+   47   2606        riser_l1       1        10     2     L          Axial   spring elongation (TDP)
+   48   2606        riser_l1       1        10     2     L          Lateral spring elongation (TDP)
+   49   2606        riser_l1       1        10     2     L          Indentation into seafloor (TDP)
+   50   2606        riser_l1       1        10     2     F/L**2     Axial   stiffness per length (TDP)
+   51   2606        riser_l1       1        10     2     F/L**2     Lateral stiffness per length (TDP)
+   52   2606        riser_l1       1        10     2     F/L**2     Normal  stiffness per length (TDP)
+   53   2606        riser_l1       1        10     2     F/L        Axial   contact force per length (TDP)
+   54   2606        riser_l1       1        10     2     F/L        Lateral contact force per length (TDP)
+   55   2606        riser_l1       1        10     2     F/L        Normal  contact force per length (TDP)
+   56   2607        riser_l1       1        11     1     L          Axial   spring elongation (TDP)
+   57   2607        riser_l1       1        11     1     L          Lateral spring elongation (TDP)
+   58   2607        riser_l1       1        11     1     L          Indentation into seafloor (TDP)
+   59   2607        riser_l1       1        11     1     F/L**2     Axial   stiffness per length (TDP)
+   60   2607        riser_l1       1        11     1     F/L**2     Lateral stiffness per length (TDP)
+   61   2607        riser_l1       1        11     1     F/L**2     Normal  stiffness per length (TDP)
+   62   2607        riser_l1       1        11     1     F/L        Axial   contact force per length (TDP)
+   63   2607        riser_l1       1        11     1     F/L        Lateral contact force per length (TDP)
+   64   2607        riser_l1       1        11     1     F/L        Normal  contact force per length (TDP)
+   65   2608        riser_l1       1        11     2     L          Axial   spring elongation (TDP)
+   66   2608        riser_l1       1        11     2     L          Lateral spring elongation (TDP)
+   67   2608        riser_l1       1        11     2     L          Indentation into seafloor (TDP)
+   68   2608        riser_l1       1        11     2     F/L**2     Axial   stiffness per length (TDP)
+   69   2608        riser_l1       1        11     2     F/L**2     Lateral stiffness per length (TDP)
+   70   2608        riser_l1       1        11     2     F/L**2     Normal  stiffness per length (TDP)
+   71   2608        riser_l1       1        11     2     F/L        Axial   contact force per length (TDP)
+   72   2608        riser_l1       1        11     2     F/L        Lateral contact force per length (TDP)
+   73   2608        riser_l1       1        11     2     F/L        Normal  contact force per length (TDP)
+   74   2609        riser_l1       1        12     1     L          Axial   spring elongation (TDP)
+   75   2609        riser_l1       1        12     1     L          Lateral spring elongation (TDP)
+   76   2609        riser_l1       1        12     1     L          Indentation into seafloor (TDP)
+   77   2609        riser_l1       1        12     1     F/L**2     Axial   stiffness per length (TDP)
+   78   2609        riser_l1       1        12     1     F/L**2     Lateral stiffness per length (TDP)
+   79   2609        riser_l1       1        12     1     F/L**2     Normal  stiffness per length (TDP)
+   80   2609        riser_l1       1        12     1     F/L        Axial   contact force per length (TDP)
+   81   2609        riser_l1       1        12     1     F/L        Lateral contact force per length (TDP)
+   82   2609        riser_l1       1        12     1     F/L        Normal  contact force per length (TDP)
+   83   2610        riser_l1       1        12     2     L          Axial   spring elongation (TDP)
+   84   2610        riser_l1       1        12     2     L          Lateral spring elongation (TDP)
+   85   2610        riser_l1       1        12     2     L          Indentation into seafloor (TDP)
+   86   2610        riser_l1       1        12     2     F/L**2     Axial   stiffness per length (TDP)
+   87   2610        riser_l1       1        12     2     F/L**2     Lateral stiffness per length (TDP)
+   88   2610        riser_l1       1        12     2     F/L**2     Normal  stiffness per length (TDP)
+   89   2610        riser_l1       1        12     2     F/L        Axial   contact force per length (TDP)
+   90   2610        riser_l1       1        12     2     F/L        Lateral contact force per length (TDP)
+   91   2610        riser_l1       1        12     2     F/L        Normal  contact force per length (TDP)
+   92   2611        riser_l1       1        13     1     L          Axial   spring elongation (TDP)
+   93   2611        riser_l1       1        13     1     L          Lateral spring elongation (TDP)
+   94   2611        riser_l1       1        13     1     L          Indentation into seafloor (TDP)
+   95   2611        riser_l1       1        13     1     F/L**2     Axial   stiffness per length (TDP)
+   96   2611        riser_l1       1        13     1     F/L**2     Lateral stiffness per length (TDP)
+   97   2611        riser_l1       1        13     1     F/L**2     Normal  stiffness per length (TDP)
+   98   2611        riser_l1       1        13     1     F/L        Axial   contact force per length (TDP)
+   99   2611        riser_l1       1        13     1     F/L        Lateral contact force per length (TDP)
+  100   2611        riser_l1       1        13     1     F/L        Normal  contact force per length (TDP)
+  101   2612        riser_l1       1        13     2     L          Axial   spring elongation (TDP)
+  102   2612        riser_l1       1        13     2     L          Lateral spring elongation (TDP)
+  103   2612        riser_l1       1        13     2     L          Indentation into seafloor (TDP)
+  104   2612        riser_l1       1        13     2     F/L**2     Axial   stiffness per length (TDP)
+  105   2612        riser_l1       1        13     2     F/L**2     Lateral stiffness per length (TDP)
+  106   2612        riser_l1       1        13     2     F/L**2     Normal  stiffness per length (TDP)
+  107   2612        riser_l1       1        13     2     F/L        Axial   contact force per length (TDP)
+  108   2612        riser_l1       1        13     2     F/L        Lateral contact force per length (TDP)
+  109   2612        riser_l1       1        13     2     F/L        Normal  contact force per length (TDP)
+  110   2613        riser_l1       1        14     1     L          Axial   spring elongation (TDP)
+  111   2613        riser_l1       1        14     1     L          Lateral spring elongation (TDP)
+  112   2613        riser_l1       1        14     1     L          Indentation into seafloor (TDP)
+  113   2613        riser_l1       1        14     1     F/L**2     Axial   stiffness per length (TDP)
+  114   2613        riser_l1       1        14     1     F/L**2     Lateral stiffness per length (TDP)
+  115   2613        riser_l1       1        14     1     F/L**2     Normal  stiffness per length (TDP)
+  116   2613        riser_l1       1        14     1     F/L        Axial   contact force per length (TDP)
+  117   2613        riser_l1       1        14     1     F/L        Lateral contact force per length (TDP)
+  118   2613        riser_l1       1        14     1     F/L        Normal  contact force per length (TDP)
+  119   2614        riser_l1       1        14     2     L          Axial   spring elongation (TDP)
+  120   2614        riser_l1       1        14     2     L          Lateral spring elongation (TDP)
+  121   2614        riser_l1       1        14     2     L          Indentation into seafloor (TDP)
+  122   2614        riser_l1       1        14     2     F/L**2     Axial   stiffness per length (TDP)
+  123   2614        riser_l1       1        14     2     F/L**2     Lateral stiffness per length (TDP)
+  124   2614        riser_l1       1        14     2     F/L**2     Normal  stiffness per length (TDP)
+  125   2614        riser_l1       1        14     2     F/L        Axial   contact force per length (TDP)
+  126   2614        riser_l1       1        14     2     F/L        Lateral contact force per length (TDP)
+  127   2614        riser_l1       1        14     2     F/L        Normal  contact force per length (TDP)
+  128   2615        riser_l1       1        15     1     L          Axial   spring elongation (TDP)
+  129   2615        riser_l1       1        15     1     L          Lateral spring elongation (TDP)
+  130   2615        riser_l1       1        15     1     L          Indentation into seafloor (TDP)
+  131   2615        riser_l1       1        15     1     F/L**2     Axial   stiffness per length (TDP)
+  132   2615        riser_l1       1        15     1     F/L**2     Lateral stiffness per length (TDP)
+  133   2615        riser_l1       1        15     1     F/L**2     Normal  stiffness per length (TDP)
+  134   2615        riser_l1       1        15     1     F/L        Axial   contact force per length (TDP)
+  135   2615        riser_l1       1        15     1     F/L        Lateral contact force per length (TDP)
+  136   2615        riser_l1       1        15     1     F/L        Normal  contact force per length (TDP)
+  137   2616        riser_l1       1        15     2     L          Axial   spring elongation (TDP)
+  138   2616        riser_l1       1        15     2     L          Lateral spring elongation (TDP)
+  139   2616        riser_l1       1        15     2     L          Indentation into seafloor (TDP)
+  140   2616        riser_l1       1        15     2     F/L**2     Axial   stiffness per length (TDP)
+  141   2616        riser_l1       1        15     2     F/L**2     Lateral stiffness per length (TDP)
+  142   2616        riser_l1       1        15     2     F/L**2     Normal  stiffness per length (TDP)
+  143   2616        riser_l1       1        15     2     F/L        Axial   contact force per length (TDP)
+  144   2616        riser_l1       1        15     2     F/L        Lateral contact force per length (TDP)
+  145   2616        riser_l1       1        15     2     F/L        Normal  contact force per length (TDP)
+  146   2617        riser_l1       1        16     1     L          Axial   spring elongation (TDP)
+  147   2617        riser_l1       1        16     1     L          Lateral spring elongation (TDP)
+  148   2617        riser_l1       1        16     1     L          Indentation into seafloor (TDP)
+  149   2617        riser_l1       1        16     1     F/L**2     Axial   stiffness per length (TDP)
+  150   2617        riser_l1       1        16     1     F/L**2     Lateral stiffness per length (TDP)
+  151   2617        riser_l1       1        16     1     F/L**2     Normal  stiffness per length (TDP)
+  152   2617        riser_l1       1        16     1     F/L        Axial   contact force per length (TDP)
+  153   2617        riser_l1       1        16     1     F/L        Lateral contact force per length (TDP)
+  154   2617        riser_l1       1        16     1     F/L        Normal  contact force per length (TDP)
+  155   2618        riser_l1       1        16     2     L          Axial   spring elongation (TDP)
+  156   2618        riser_l1       1        16     2     L          Lateral spring elongation (TDP)
+  157   2618        riser_l1       1        16     2     L          Indentation into seafloor (TDP)
+  158   2618        riser_l1       1        16     2     F/L**2     Axial   stiffness per length (TDP)
+  159   2618        riser_l1       1        16     2     F/L**2     Lateral stiffness per length (TDP)
+  160   2618        riser_l1       1        16     2     F/L**2     Normal  stiffness per length (TDP)
+  161   2618        riser_l1       1        16     2     F/L        Axial   contact force per length (TDP)
+  162   2618        riser_l1       1        16     2     F/L        Lateral contact force per length (TDP)
+  163   2618        riser_l1       1        16     2     F/L        Normal  contact force per length (TDP)
+  164   2619        riser_l1       1        17     1     L          Axial   spring elongation (TDP)
+  165   2619        riser_l1       1        17     1     L          Lateral spring elongation (TDP)
+  166   2619        riser_l1       1        17     1     L          Indentation into seafloor (TDP)
+  167   2619        riser_l1       1        17     1     F/L**2     Axial   stiffness per length (TDP)
+  168   2619        riser_l1       1        17     1     F/L**2     Lateral stiffness per length (TDP)
+  169   2619        riser_l1       1        17     1     F/L**2     Normal  stiffness per length (TDP)
+  170   2619        riser_l1       1        17     1     F/L        Axial   contact force per length (TDP)
+  171   2619        riser_l1       1        17     1     F/L        Lateral contact force per length (TDP)
+  172   2619        riser_l1       1        17     1     F/L        Normal  contact force per length (TDP)
+  173   2620        riser_l1       1        17     2     L          Axial   spring elongation (TDP)
+  174   2620        riser_l1       1        17     2     L          Lateral spring elongation (TDP)
+  175   2620        riser_l1       1        17     2     L          Indentation into seafloor (TDP)
+  176   2620        riser_l1       1        17     2     F/L**2     Axial   stiffness per length (TDP)
+  177   2620        riser_l1       1        17     2     F/L**2     Lateral stiffness per length (TDP)
+  178   2620        riser_l1       1        17     2     F/L**2     Normal  stiffness per length (TDP)
+  179   2620        riser_l1       1        17     2     F/L        Axial   contact force per length (TDP)
+  180   2620        riser_l1       1        17     2     F/L        Lateral contact force per length (TDP)
+  181   2620        riser_l1       1        17     2     F/L        Normal  contact force per length (TDP)
+  182      -        riser_l1       -         -     -     L          Arclength from super node no 1 to TDP
+  183      -        riser_l1       -         -     -     L          TDP x-coordinate
+  184      -        riser_l1       -         -     -     L          TDP y-coordinate

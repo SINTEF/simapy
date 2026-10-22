@@ -1,0 +1,166 @@
+' 
+' 
+'   R I F L E X  -  KEY FILE
+'   ------------------------
+' 
+'   This key-file describes the contents of : soil_PISA_botres.asc
+'   The format of soil_PISA_botres.asc is ASCII
+'   The file soil_PISA_botres.asc contains a time series of seafloor-contact
+'   The seafloor-contact are stored in columns on soil_PISA_botres.asc
+' 
+' 
+'   Dynamic results for seafloor contact elements 
+'   and soil layer profile contact elements
+' 
+' 
+'   The response is stored as follows
+' 
+'   Col.  Global            attached to element
+'         contact       Line   Local     Local    El.    Unit       Description
+'         FEM-el.        Id    segment   element  end
+'   -----------------------------------------------------------------------
+    1      -          -            -         -     -     T          Time
+    2    701        pile1          1         1     1     L          SLP lateral distance from ref. point (spring elongation)
+    3    701        pile1          1         1     1     deg        SLP rotation from reference orientation
+    4    701        pile1          1         1     1     F/L        SLP lateral stiffness
+    5    701        pile1          1         1     1     FL/deg     SLP rotational stiffness
+    6    701        pile1          1         1     1     F          SLP lateral force
+    7    701        pile1          1         1     1     FL         SLP moment
+    8    702        pile1          1         1     2     L          SLP lateral distance from ref. point
+    9    702        pile1          1         1     2     deg        SLP rotation from reference orientation
+   10    702        pile1          1         1     2     F/L**2     SLP lateral stiffness per length
+   11    702        pile1          1         1     2     FL/(L*deg) SLP rotational stiffness per length
+   12    702        pile1          1         1     2     F/L        SLP lateral force per length
+   13    702        pile1          1         1     2     FL/L       SLP moment per length
+   14    739        pile1          1        20     1     L          SLP lateral distance from ref. point
+   15    739        pile1          1        20     1     deg        SLP rotation from reference orientation
+   16    739        pile1          1        20     1     F/L**2     SLP lateral stiffness per length
+   17    739        pile1          1        20     1     FL/(L*deg) SLP rotational stiffness per length
+   18    739        pile1          1        20     1     F/L        SLP lateral force per length
+   19    739        pile1          1        20     1     FL/L       SLP moment per length
+   20    740        pile1          1        20     2     L          SLP lateral distance from ref. point
+   21    740        pile1          1        20     2     deg        SLP rotation from reference orientation
+   22    740        pile1          1        20     2     F/L**2     SLP lateral stiffness per length
+   23    740        pile1          1        20     2     FL/(L*deg) SLP rotational stiffness per length
+   24    740        pile1          1        20     2     F/L        SLP lateral force per length
+   25    740        pile1          1        20     2     FL/L       SLP moment per length
+   26    777        pile1          1        39     1     L          SLP lateral distance from ref. point
+   27    777        pile1          1        39     1     deg        SLP rotation from reference orientation
+   28    777        pile1          1        39     1     F/L**2     SLP lateral stiffness per length
+   29    777        pile1          1        39     1     FL/(L*deg) SLP rotational stiffness per length
+   30    777        pile1          1        39     1     F/L        SLP lateral force per length
+   31    777        pile1          1        39     1     FL/L       SLP moment per length
+   32    778        pile1          1        39     2     L          SLP lateral distance from ref. point
+   33    778        pile1          1        39     2     deg        SLP rotation from reference orientation
+   34    778        pile1          1        39     2     F/L**2     SLP lateral stiffness per length
+   35    778        pile1          1        39     2     FL/(L*deg) SLP rotational stiffness per length
+   36    778        pile1          1        39     2     F/L        SLP lateral force per length
+   37    778        pile1          1        39     2     FL/L       SLP moment per length
+   38    781        pile2          1         1     1     L          SLP lateral distance from ref. point (spring elongation)
+   39    781        pile2          1         1     1     deg        SLP rotation from reference orientation
+   40    781        pile2          1         1     1     F/L        SLP lateral stiffness
+   41    781        pile2          1         1     1     FL/deg     SLP rotational stiffness
+   42    781        pile2          1         1     1     F          SLP lateral force
+   43    781        pile2          1         1     1     FL         SLP moment
+   44    782        pile2          1         1     2     L          SLP lateral distance from ref. point
+   45    782        pile2          1         1     2     deg        SLP rotation from reference orientation
+   46    782        pile2          1         1     2     F/L**2     SLP lateral stiffness per length
+   47    782        pile2          1         1     2     FL/(L*deg) SLP rotational stiffness per length
+   48    782        pile2          1         1     2     F/L        SLP lateral force per length
+   49    782        pile2          1         1     2     FL/L       SLP moment per length
+   50    819        pile2          1        20     1     L          SLP lateral distance from ref. point
+   51    819        pile2          1        20     1     deg        SLP rotation from reference orientation
+   52    819        pile2          1        20     1     F/L**2     SLP lateral stiffness per length
+   53    819        pile2          1        20     1     FL/(L*deg) SLP rotational stiffness per length
+   54    819        pile2          1        20     1     F/L        SLP lateral force per length
+   55    819        pile2          1        20     1     FL/L       SLP moment per length
+   56    820        pile2          1        20     2     L          SLP lateral distance from ref. point
+   57    820        pile2          1        20     2     deg        SLP rotation from reference orientation
+   58    820        pile2          1        20     2     F/L**2     SLP lateral stiffness per length
+   59    820        pile2          1        20     2     FL/(L*deg) SLP rotational stiffness per length
+   60    820        pile2          1        20     2     F/L        SLP lateral force per length
+   61    820        pile2          1        20     2     FL/L       SLP moment per length
+   62    857        pile2          1        39     1     L          SLP lateral distance from ref. point
+   63    857        pile2          1        39     1     deg        SLP rotation from reference orientation
+   64    857        pile2          1        39     1     F/L**2     SLP lateral stiffness per length
+   65    857        pile2          1        39     1     FL/(L*deg) SLP rotational stiffness per length
+   66    857        pile2          1        39     1     F/L        SLP lateral force per length
+   67    857        pile2          1        39     1     FL/L       SLP moment per length
+   68    858        pile2          1        39     2     L          SLP lateral distance from ref. point
+   69    858        pile2          1        39     2     deg        SLP rotation from reference orientation
+   70    858        pile2          1        39     2     F/L**2     SLP lateral stiffness per length
+   71    858        pile2          1        39     2     FL/(L*deg) SLP rotational stiffness per length
+   72    858        pile2          1        39     2     F/L        SLP lateral force per length
+   73    858        pile2          1        39     2     FL/L       SLP moment per length
+   74    861        pile3          1         1     1     L          SLP lateral distance from ref. point (spring elongation)
+   75    861        pile3          1         1     1     deg        SLP rotation from reference orientation
+   76    861        pile3          1         1     1     F/L        SLP lateral stiffness
+   77    861        pile3          1         1     1     FL/deg     SLP rotational stiffness
+   78    861        pile3          1         1     1     F          SLP lateral force
+   79    861        pile3          1         1     1     FL         SLP moment
+   80    862        pile3          1         1     2     L          SLP lateral distance from ref. point
+   81    862        pile3          1         1     2     deg        SLP rotation from reference orientation
+   82    862        pile3          1         1     2     F/L**2     SLP lateral stiffness per length
+   83    862        pile3          1         1     2     FL/(L*deg) SLP rotational stiffness per length
+   84    862        pile3          1         1     2     F/L        SLP lateral force per length
+   85    862        pile3          1         1     2     FL/L       SLP moment per length
+   86    899        pile3          1        20     1     L          SLP lateral distance from ref. point
+   87    899        pile3          1        20     1     deg        SLP rotation from reference orientation
+   88    899        pile3          1        20     1     F/L**2     SLP lateral stiffness per length
+   89    899        pile3          1        20     1     FL/(L*deg) SLP rotational stiffness per length
+   90    899        pile3          1        20     1     F/L        SLP lateral force per length
+   91    899        pile3          1        20     1     FL/L       SLP moment per length
+   92    900        pile3          1        20     2     L          SLP lateral distance from ref. point
+   93    900        pile3          1        20     2     deg        SLP rotation from reference orientation
+   94    900        pile3          1        20     2     F/L**2     SLP lateral stiffness per length
+   95    900        pile3          1        20     2     FL/(L*deg) SLP rotational stiffness per length
+   96    900        pile3          1        20     2     F/L        SLP lateral force per length
+   97    900        pile3          1        20     2     FL/L       SLP moment per length
+   98    937        pile3          1        39     1     L          SLP lateral distance from ref. point
+   99    937        pile3          1        39     1     deg        SLP rotation from reference orientation
+  100    937        pile3          1        39     1     F/L**2     SLP lateral stiffness per length
+  101    937        pile3          1        39     1     FL/(L*deg) SLP rotational stiffness per length
+  102    937        pile3          1        39     1     F/L        SLP lateral force per length
+  103    937        pile3          1        39     1     FL/L       SLP moment per length
+  104    938        pile3          1        39     2     L          SLP lateral distance from ref. point
+  105    938        pile3          1        39     2     deg        SLP rotation from reference orientation
+  106    938        pile3          1        39     2     F/L**2     SLP lateral stiffness per length
+  107    938        pile3          1        39     2     FL/(L*deg) SLP rotational stiffness per length
+  108    938        pile3          1        39     2     F/L        SLP lateral force per length
+  109    938        pile3          1        39     2     FL/L       SLP moment per length
+  110    941        pile4          1         1     1     L          SLP lateral distance from ref. point (spring elongation)
+  111    941        pile4          1         1     1     deg        SLP rotation from reference orientation
+  112    941        pile4          1         1     1     F/L        SLP lateral stiffness
+  113    941        pile4          1         1     1     FL/deg     SLP rotational stiffness
+  114    941        pile4          1         1     1     F          SLP lateral force
+  115    941        pile4          1         1     1     FL         SLP moment
+  116    942        pile4          1         1     2     L          SLP lateral distance from ref. point
+  117    942        pile4          1         1     2     deg        SLP rotation from reference orientation
+  118    942        pile4          1         1     2     F/L**2     SLP lateral stiffness per length
+  119    942        pile4          1         1     2     FL/(L*deg) SLP rotational stiffness per length
+  120    942        pile4          1         1     2     F/L        SLP lateral force per length
+  121    942        pile4          1         1     2     FL/L       SLP moment per length
+  122    979        pile4          1        20     1     L          SLP lateral distance from ref. point
+  123    979        pile4          1        20     1     deg        SLP rotation from reference orientation
+  124    979        pile4          1        20     1     F/L**2     SLP lateral stiffness per length
+  125    979        pile4          1        20     1     FL/(L*deg) SLP rotational stiffness per length
+  126    979        pile4          1        20     1     F/L        SLP lateral force per length
+  127    979        pile4          1        20     1     FL/L       SLP moment per length
+  128    980        pile4          1        20     2     L          SLP lateral distance from ref. point
+  129    980        pile4          1        20     2     deg        SLP rotation from reference orientation
+  130    980        pile4          1        20     2     F/L**2     SLP lateral stiffness per length
+  131    980        pile4          1        20     2     FL/(L*deg) SLP rotational stiffness per length
+  132    980        pile4          1        20     2     F/L        SLP lateral force per length
+  133    980        pile4          1        20     2     FL/L       SLP moment per length
+  134   1017        pile4          1        39     1     L          SLP lateral distance from ref. point
+  135   1017        pile4          1        39     1     deg        SLP rotation from reference orientation
+  136   1017        pile4          1        39     1     F/L**2     SLP lateral stiffness per length
+  137   1017        pile4          1        39     1     FL/(L*deg) SLP rotational stiffness per length
+  138   1017        pile4          1        39     1     F/L        SLP lateral force per length
+  139   1017        pile4          1        39     1     FL/L       SLP moment per length
+  140   1018        pile4          1        39     2     L          SLP lateral distance from ref. point
+  141   1018        pile4          1        39     2     deg        SLP rotation from reference orientation
+  142   1018        pile4          1        39     2     F/L**2     SLP lateral stiffness per length
+  143   1018        pile4          1        39     2     FL/(L*deg) SLP rotational stiffness per length
+  144   1018        pile4          1        39     2     F/L        SLP lateral force per length
+  145   1018        pile4          1        39     2     FL/L       SLP moment per length

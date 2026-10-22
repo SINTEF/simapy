@@ -1,0 +1,41 @@
+
+   R I F L E X  -  KEY FILE
+   ------------------------
+
+
+   This key-file describes the contents of : dtu10mw_elmfor.asc
+   The format of dtu10mw_elmfor.asc is ASCII
+   The file dtu10mw_elmfor.asc contains a time series of element-forces
+   The element-forces are stored in columns on dtu10mw_elmfor.asc
+
+   Column no. 1 contains the time.
+
+
+   For each bar element the following applies : 
+
+   DOF 1 = Axial force
+
+
+   For each beam element the following applies : 
+
+   DOF 1 = Axial force
+   DOF 2 = Torsional moment
+   DOF 3 = Mom. about local y-axis, end 1
+   DOF 4 = Mom. about local y-axis, end 2
+   DOF 5 = Mom. about local z-axis, end 1
+   DOF 6 = Mom. about local z-axis, end 2
+   DOF 7 = Shear force in local y-direction, end 1
+   DOF 8 = Shear force in local y-direction, end 2
+   DOF 9 = Shear force in local z-direction, end 1
+   DOF10 = Shear force in local z-direction, end 2
+
+
+   The response is stored as follows
+
+   Line       Local     Local      No. of         Stored in
+    Id        segment   element    responses      column(s)
+   ----------------------------------------------------------
+ tower_1         1         1          10         2   -     11
+ tower_1        10         1          10        12   -     21
+ tower_2         1         1          10        22   -     31
+ tower_2        10         1          10        32   -     41

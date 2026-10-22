@@ -1,0 +1,62 @@
+' 
+'   R I F L E X  -  KEY FILE
+'   ------------------------
+' 
+' 
+'   This key-file describes the contents of : dtu10mw_witurb.bin
+'   The format of dtu10mw_witurb.bin is BINARY
+'   with numbers stored as real single precision (4 bytes)
+'   The file dtu10mw_witurb.bin contains time series of wind turbine results
+'   The wind turbine results are stored in columns on dtu10mw_witurb.bin
+'
+'  column   wind     contents     unit      contents
+'    no    turbine  abbrivated              descriptive text
+       1     -      FORTRAN       -         FORTRAN specific data - IGNORE
+       2     -      Time          s         Time                                                    
+       3  Turbine1  RotorSpeed    deg/s     Rotor speed                                             
+       4  Turbine1  GenSpeed_LP   rpm       Generator speed (LP-filtered)                           
+       5  Turbine1  GenTorq       kNm       Mechanical generator torque on LSS                      
+       6  Turbine1  GenPwr        kW        Electrical generator output                             
+       7  Turbine1  Azimuth       deg       Azimuth angle blade 1                                   
+       8  Turbine1  WiVel_x       m/s       Incoming wind speed X-dir in shaft system               
+       9  Turbine1  WiVel_y       m/s       Incoming wind speed Y-dir in shaft system               
+      10  Turbine1  WiVel_z       m/s       Incoming wind speed Z-dir in shaft system               
+      11  Turbine1  Fx            kN        Aero force X-dir in shaft system                        
+      12  Turbine1  Fy            kN        Aero force Y-dir in shaft system                        
+      13  Turbine1  Fz            kN        Aero force Z-dir in shaft system                        
+      14  Turbine1  Mx            kNm       Aero moment around X-axis in shaft system               
+      15  Turbine1  My            kNm       Aero moment around Y-axis in shaft system               
+      16  Turbine1  Mz            kNm       Aero moment around Z-axis in shaft system               
+      17  Turbine1  BlPitch1      deg       Pitch angle blade 1, Line: bl1foil1                     
+      18  Turbine1  BlPitch2      deg       Pitch angle blade 2, Line: bl2foil1                     
+      19  Turbine1  BlPitch3      deg       Pitch angle blade 3, Line: bl3foil1                     
+      20  Turbine1  BlDefl_IP1    m         Tip In-Plane deflection     blade 1, Line: bl1foil1     
+      21  Turbine1  BlDefl_OoP1   m         Tip Out-of-Plane deflection blade 1, Line: bl1foil1     
+      22  Turbine1  BlDefl_IP2    m         Tip In-Plane deflection     blade 2, Line: bl2foil1     
+      23  Turbine1  BlDefl_OoP2   m         Tip Out-of-Plane deflection blade 2, Line: bl2foil1     
+      24  Turbine1  BlDefl_IP3    m         Tip In-Plane deflection     blade 3, Line: bl3foil1     
+      25  Turbine1  BlDefl_OoP3   m         Tip Out-of-Plane deflection blade 3, Line: bl3foil1     
+      26  Turbine2  RotorSpeed    deg/s     Rotor speed                                             
+      27  Turbine2  GenSpeed_LP   rpm       Generator speed (LP-filtered)                           
+      28  Turbine2  GenTorq       kNm       Mechanical generator torque on LSS                      
+      29  Turbine2  GenPwr        kW        Electrical generator output                             
+      30  Turbine2  Azimuth       deg       Azimuth angle blade 1                                   
+      31  Turbine2  WiVel_x       m/s       Incoming wind speed X-dir in shaft system               
+      32  Turbine2  WiVel_y       m/s       Incoming wind speed Y-dir in shaft system               
+      33  Turbine2  WiVel_z       m/s       Incoming wind speed Z-dir in shaft system               
+      34  Turbine2  Fx            kN        Aero force X-dir in shaft system                        
+      35  Turbine2  Fy            kN        Aero force Y-dir in shaft system                        
+      36  Turbine2  Fz            kN        Aero force Z-dir in shaft system                        
+      37  Turbine2  Mx            kNm       Aero moment around X-axis in shaft system               
+      38  Turbine2  My            kNm       Aero moment around Y-axis in shaft system               
+      39  Turbine2  Mz            kNm       Aero moment around Z-axis in shaft system               
+      40  Turbine2  BlPitch1      deg       Pitch angle blade 1, Line: bl1foil2                     
+      41  Turbine2  BlPitch2      deg       Pitch angle blade 2, Line: bl2foil2                     
+      42  Turbine2  BlPitch3      deg       Pitch angle blade 3, Line: bl3foil2                     
+      43  Turbine2  BlDefl_IP1    m         Tip In-Plane deflection     blade 1, Line: bl1foil2     
+      44  Turbine2  BlDefl_OoP1   m         Tip Out-of-Plane deflection blade 1, Line: bl1foil2     
+      45  Turbine2  BlDefl_IP2    m         Tip In-Plane deflection     blade 2, Line: bl2foil2     
+      46  Turbine2  BlDefl_OoP2   m         Tip Out-of-Plane deflection blade 2, Line: bl2foil2     
+      47  Turbine2  BlDefl_IP3    m         Tip In-Plane deflection     blade 3, Line: bl3foil2     
+      48  Turbine2  BlDefl_OoP3   m         Tip Out-of-Plane deflection blade 3, Line: bl3foil2     
+      49     -      FORTRAN       -         FORTRAN specific data - IGNORE

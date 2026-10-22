@@ -36,6 +36,7 @@ what is not itself a result. All are optional:
 | file | gives | without it |
 |---|---|---|
 | `names.map`, `riflexres.inp` | hashed model id to name -- `Risea63d` to `RiserLine`; `riflexres.inp` wins, as in SIMA's MPF import | ids stay hashed |
+| `riflexres.inp`, for RIFLEX storage | the units the values were written in, the element angles to derive, support vessel names | values scaled from kN, Mg, kW and kPa; no angles; vessels by number |
 | `results.json` | the task and condition, the variables with their units, and each analysis's working directory | names from the path, variables from `variables.inp`, one folder at a time |
 | `variables.inp` | the variable values alone, and the task name | no `Variables` container |
 
@@ -67,18 +68,23 @@ open_results(condition / "1-20260901083937" / "ConditionSet_1")   # one set memb
 SIMA decides mostly by hard-coded name: an allowlist. What is reproduced here is
 a denylist of working files (`simo.h5`, `env.h5`, intermediates) plus "some
 reader claims the extension". That is exact while the readers claim only `mpf`,
-`h5`, `hdf5`, `b5` and one exact name, `psc.lis`, because nothing else in a run
-folder (`.inp`, `.dat`, the other `.lis`, `.ldat`, …) uses those. Unclaimed
-files are left out of `sources` rather than reported as gaps, with one
+`h5`, `hdf5`, `b5`, `bin`, `asc` and one exact name, `psc.lis`, because nothing
+else in a run folder (`.inp`, `.dat`, the other `.lis`, `.ldat`, …) uses those.
+Unclaimed files are left out of `sources` rather than reported as gaps, with one
 exception below.
 
-**Storage simapy does not read is reported, not skipped.** RIFLEX binary or
-ASCII storage (`sima_noddis.bin` beside `key_sima_noddis.txt`) and SIMO's old
-result structure (`results.tda`) are results, so dropping them would leave a
-tree that looks complete without its time series. They show in `sources` as
+**RIFLEX storage is a `.bin` or `.asc` beside its key file** --
+`sima_noddis.bin` beside `key_sima_noddis.txt`. SIMA claims every `.bin`, but
+turbulence boxes (`wind_u.bin`), FEM `*_eledat.asc` and fibre files share the
+extensions, so without its key file a file is no result here. Every storage file
+goes in `Dynamic`, as SIMA files it, whatever its name says. SIMA reads only the
+binary files; the ASCII ones have the same key-file layouts and are read too.
+
+**Storage simapy does not read is reported, not skipped.** SIMO's old result
+structure (`results.tda`) is a result, so dropping it would leave a tree that
+looks complete without its time series. It shows in `sources` as
 `unsupported`, and an `UnsupportedStorageWarning` names the SIMA setting that
-stores them as HDF5. The key file is what identifies RIFLEX storage: RIFLEX
-writes other `.asc` files that are not results.
+stores it as HDF5.
 
 `simo-static-results.h5` and `simo-dynamic-results.h5` are results despite being
 on SIMA's list of working files; SIMA adds them back explicitly, and so does this.
@@ -103,6 +109,7 @@ fails, because SIMA's fallback is the model.
 | MPF | headers, row counts and byte offsets | a matrix parsed whole on first touch, cached |
 | JSON | the whole document | already in memory |
 | `psc.lis` | the whole file, with `simores.inp` | already in memory |
+| RIFLEX storage | the key file and the first two time steps; an `.asc` is counted line by line | the file read whole on first touch, cached |
 
 `name`, `type`, `attributes`, `unit`, `xunit`, `len()` and navigation never
 parse a number. The HDF5 reader reopens rather than holding datasets open,
@@ -248,8 +255,9 @@ treats pressure as its own quantity.
 
 * `ldat` and `res`, never: SIMA registers them for its own use (3D view, listing
   output), and they hold nothing to compare.
-* Reading `bin`/`asc` storage, being moved to HDF5 upstream, and TDA, being
-  phased out for HDF5. Both are reported instead.
+* Reading TDA, being phased out for HDF5. It is reported instead.
+* The stress SIMA computed from RIFLEX element forces in run folders from before
+  sima/issue#940; RIFLEX computes it since.
 * Writing. The tree stays decoupled from the DMT signals model in
   `simapy.sima.signals`; if results ever go back into SIMA, those classes already
   serialise to signals JSON and HDF5.

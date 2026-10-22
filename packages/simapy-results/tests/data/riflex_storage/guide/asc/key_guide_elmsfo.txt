@@ -1,0 +1,29 @@
+
+   R I F L E X  -  KEY FILE
+   ------------------------
+
+
+   This key-file describes the contents of : guide_elmsfo.asc
+   The format of guide_elmsfo.asc is ASCII
+   The file guide_elmsfo.asc contains a time series of sum-element-forces
+   The sum-element-forces are stored in columns on guide_elmsfo.asc
+
+   Column no. 1 contains the time.
+
+
+   For each bar element the following applies : 
+
+   DOF 1 = Axial sum force
+
+
+   For each beam element the following applies : 
+
+   DOF 1 = Axial sum force
+
+
+   The response is stored as follows
+
+   Line       Local     Local      No. of         Stored in
+    Id        segment   element    responses      column(s)
+   ----------------------------------------------------------
+ riser_l3        9         1           1                 2

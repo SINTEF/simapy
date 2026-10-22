@@ -1,0 +1,44 @@
+' 
+' 
+'   R I F L E X  -  KEY FILE
+'   ------------------------
+' 
+'   This key-file describes the contents of : guide_hydloa.asc
+'   The format of guide_hydloa.asc is ASCII
+'   The file guide_hydloa.asc contains a time series of hydro-loads
+'   The hydro-loads are stored in columns on guide_hydloa.asc
+' 
+' 
+'   Hydrodynamic loads for specified elements 
+' 
+' 
+'   The response is stored as follows
+' 
+'   Col.      Line       Local     Local    El.   Unit       Description
+'              Id       segment   element   end
+'   -----------------------------------------------------------------------
+    1          -            -         -     -     s          Time
+    2        riser_l3       9         1     1     kN/m       Hydrodynamic load, global x direction
+    3        riser_l3       9         1     1     kN/m       Hydrodynamic load, global y direction
+    4        riser_l3       9         1     1     kN/m       Hydrodynamic load, global z direction
+    5        riser_l3       9         1     1     kN*m/m     Hydrodynamic load, moment around global x axis
+    6        riser_l3       9         1     1     kN*m/m     Hydrodynamic load, moment around global y axis
+    7        riser_l3       9         1     1     kN*m/m     Hydrodynamic load, moment around global z axis
+    8        riser_l3       9         1     2     kN/m       Hydrodynamic load, global x direction
+    9        riser_l3       9         1     2     kN/m       Hydrodynamic load, global y direction
+   10        riser_l3       9         1     2     kN/m       Hydrodynamic load, global z direction
+   11        riser_l3       9         1     2     kN*m/m     Hydrodynamic load, moment around global x axis
+   12        riser_l3       9         1     2     kN*m/m     Hydrodynamic load, moment around global y axis
+   13        riser_l3       9         1     2     kN*m/m     Hydrodynamic load, moment around global z axis
+   14        riser_l3       9         2     1     kN/m       Hydrodynamic load, global x direction
+   15        riser_l3       9         2     1     kN/m       Hydrodynamic load, global y direction
+   16        riser_l3       9         2     1     kN/m       Hydrodynamic load, global z direction
+   17        riser_l3       9         2     1     kN*m/m     Hydrodynamic load, moment around global x axis
+   18        riser_l3       9         2     1     kN*m/m     Hydrodynamic load, moment around global y axis
+   19        riser_l3       9         2     1     kN*m/m     Hydrodynamic load, moment around global z axis
+   20        riser_l3       9         2     2     kN/m       Hydrodynamic load, global x direction
+   21        riser_l3       9         2     2     kN/m       Hydrodynamic load, global y direction
+   22        riser_l3       9         2     2     kN/m       Hydrodynamic load, global z direction
+   23        riser_l3       9         2     2     kN*m/m     Hydrodynamic load, moment around global x axis
+   24        riser_l3       9         2     2     kN*m/m     Hydrodynamic load, moment around global y axis
+   25        riser_l3       9         2     2     kN*m/m     Hydrodynamic load, moment around global z axis

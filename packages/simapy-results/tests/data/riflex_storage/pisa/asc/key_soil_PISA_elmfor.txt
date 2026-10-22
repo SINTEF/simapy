@@ -1,0 +1,49 @@
+
+   R I F L E X  -  KEY FILE
+   ------------------------
+
+
+   This key-file describes the contents of : soil_PISA_elmfor.asc
+   The format of soil_PISA_elmfor.asc is ASCII
+   The file soil_PISA_elmfor.asc contains a time series of element-forces
+   The element-forces are stored in columns on soil_PISA_elmfor.asc
+
+   Column no. 1 contains the time.
+
+
+   For each bar element the following applies : 
+
+   DOF 1 = Axial force
+
+
+   For each beam element the following applies : 
+
+   DOF 1 = Axial force
+   DOF 2 = Torsional moment
+   DOF 3 = Mom. about local y-axis, end 1
+   DOF 4 = Mom. about local y-axis, end 2
+   DOF 5 = Mom. about local z-axis, end 1
+   DOF 6 = Mom. about local z-axis, end 2
+   DOF 7 = Shear force in local y-direction, end 1
+   DOF 8 = Shear force in local y-direction, end 2
+   DOF 9 = Shear force in local z-direction, end 1
+   DOF10 = Shear force in local z-direction, end 2
+
+
+   The response is stored as follows
+
+   Line       Local     Local      No. of         Stored in
+    Id        segment   element    responses      column(s)
+   ----------------------------------------------------------
+ pile1           1         1          10         2   -     11
+ pile1           1        20          10        12   -     21
+ pile1           1        39          10        22   -     31
+ pile2           1         1          10        32   -     41
+ pile2           1        20          10        42   -     51
+ pile2           1        39          10        52   -     61
+ pile3           1         1          10        62   -     71
+ pile3           1        20          10        72   -     81
+ pile3           1        39          10        82   -     91
+ pile4           1         1          10        92   -    101
+ pile4           1        20          10       102   -    111
+ pile4           1        39          10       112   -    121
