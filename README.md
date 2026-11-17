@@ -11,6 +11,7 @@ pip install simapy[all]
 ```
 
 Use the SIMAPy version that matches SIMA: SIMAPy 5.4 reads and writes the models of SIMA 5.4.
+Use Python 3.11 to 3.14: h5py, which SIMAPy needs, has no wheels for Python 3.15 yet.
 
 ## Documentation
 
