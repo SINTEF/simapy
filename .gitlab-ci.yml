@@ -10,11 +10,12 @@ variables:
 
 workflow:
   rules:
+    # Branch pipelines only: an MR shows its branch's pipeline, so an MR pipeline is a duplicate.
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
     - if: $CI_COMMIT_TAG
     - if: $CI_PIPELINE_SOURCE == "web"
-    # Branch pipelines, but not a second one alongside an open MR.
-    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS == null
+    - if: $CI_COMMIT_BRANCH
 
 default:
   tags: [linux, sima]

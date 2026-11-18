@@ -60,7 +60,7 @@ def ran_fixture(sima):
 
 
 def test_builds_an_import_and_a_condition_run(ran, tmp_path):
-    ran.run_condition(tmp_path / "ws", stask=tmp_path / "model.stask",
+    ran.run_condition(tmp_path / "ws", import_file=tmp_path / "model.stask",
                       task="T", condition="C", run_type="static")
 
     assert ran.recorded["commands"] == [
@@ -72,7 +72,14 @@ def test_builds_an_import_and_a_condition_run(ran, tmp_path):
         "--commands", f"file={(tmp_path / 'ws' / 'commands.json').absolute()}"]
 
 
-def test_a_stask_is_optional(ran, tmp_path):
+def test_any_importable_file_goes_to_the_import(ran, tmp_path):
+    """SIMA picks the importer by extension, so a task in JSON imports the same way."""
+    ran.run_condition(tmp_path / "ws", import_file=tmp_path / "task.json", task="T", condition="C")
+
+    assert ran.recorded["by_type"]["ImportCommand"]["file"] == str((tmp_path / "task.json").absolute())
+
+
+def test_an_import_is_optional(ran, tmp_path):
     """The workspace may already hold the task, so importing is a choice."""
     ran.run_condition(tmp_path / "ws", task="T", condition="C")
 

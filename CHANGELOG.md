@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [5.4.0.1]
+
+- `SIMA.run_condition` and `SIMA.run_workflow`: `stask` is renamed `import_file`, since it takes any file SIMA can import, not only `.stask`
+
 ## [5.4.0]
 
 - Updated data model to reflect SIMA 5.4.0

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simapy"
-version = "5.4.0"
+version = "5.4.0.1"
 description = "Python utilities for SIMA"
 readme = "README.md"
 authors = [
@@ -20,13 +20,13 @@ classifiers = [
 dependencies = [
     "dmtpy==0.3.6",
     "numpy",
-    "simapy-results==5.4.0",
+    "simapy-results==5.4.0.1",
     "tqdm",
 ]
 
 [project.optional-dependencies]
-pandas = ["simapy-results[pandas]==5.4.0"]
-hdf5 = ["simapy-results[hdf5]==5.4.0"]
+pandas = ["simapy-results[pandas]==5.4.0.1"]
+hdf5 = ["simapy-results[hdf5]==5.4.0.1"]
 all = ["simapy[pandas,hdf5]"]
 
 [project.urls]

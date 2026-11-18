@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simapy-results"
-version = "5.4.0"
+version = "5.4.0.1"
 description = "Read SIMA results with SIMA's own names, units and structure"
 readme = "README.md"
 authors = [
