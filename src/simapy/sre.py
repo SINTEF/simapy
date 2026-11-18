@@ -50,7 +50,7 @@ class SIMA:
 
 
     def run_condition(self, working_dir, task: str, condition: str,
-                      run_type: str = "dynamic", stask=None,
+                      run_type: str = "dynamic", import_file=None,
                       variables: Mapping[str, object] = None,
                       results_dir=None) -> ResultSet:
         """Run one condition and read its results back. Needs SIMA 5.4 or later.
@@ -60,7 +60,8 @@ class SIMA:
             task: Name of the task holding the condition.
             condition: Name of the condition to run.
             run_type: `dynamic`, `static`, or whatever the condition supports.
-            stask: A task file to import first. Only needed when the workspace
+            import_file: A file to import first, in any format SIMA imports
+                (`.stask`, `.json`, `.zip`, ...). Only needed when the workspace
                 does not already hold the task.
             variables: Condition variables to override, as `{name: value}`.
             results_dir: If given, results are copied here and the working
@@ -79,7 +80,7 @@ class SIMA:
         manifest = produced / RESULTS_FILENAME
         before = _stamp(manifest)
         self.run(wdir, _commands(ConditionRunCommand(task=task, condition=condition,
-                                                     runType=run_type), stask, variables))
+                                                     runType=run_type), import_file, variables))
         # SIMA rewrites it on every run, so an unchanged one describes an earlier run.
         if _stamp(manifest) in (None, before):
             raise ResultsError(f"running {task}/{condition} wrote no {manifest}")
@@ -89,7 +90,7 @@ class SIMA:
         copy_results(produced, destination)
         return open_results(destination)
 
-    def run_workflow(self, working_dir, task: str, workflow: str, stask=None,
+    def run_workflow(self, working_dir, task: str, workflow: str, import_file=None,
                      variables: Mapping[str, object] = None) -> None:
         """Run one workflow.
 
@@ -100,13 +101,14 @@ class SIMA:
             working_dir: The workspace SIMA runs in. Created if it does not exist.
             task: Name of the task holding the workflow.
             workflow: Name of the workflow to run.
-            stask: A task file to import first. Only needed when the workspace
+            import_file: A file to import first, in any format SIMA imports
+                (`.stask`, `.json`, `.zip`, ...). Only needed when the workspace
                 does not already hold the task.
             variables: Task variables or workflow inputs to override, as
                 `{name: value}`.
         """
         run = WorkflowRunCommand(task=task, workflow=workflow)
-        self.run(Path(str(working_dir)), _commands(run, stask, variables))
+        self.run(Path(str(working_dir)), _commands(run, import_file, variables))
 
     def run(self, working_dir, command_args: Sequence[str], timeout: float | None = None):
         """Run the sima executable.
@@ -175,14 +177,14 @@ class SIMA:
                 args.extend(["--commands",f"file={filename}"])
 
 
-def _commands(run, stask, variables: Mapping[str, object] | None) -> list:
-    """`run` with `variables` as its input, after an import of `stask` if given."""
+def _commands(run, import_file, variables: Mapping[str, object] | None) -> list:
+    """`run` with `variables` as its input, after an import of `import_file` if given."""
     if variables:
         # SIMA reads booleans with Boolean.parseBoolean, which ignores case.
         run.input = [Property(key=k, value=str(v)) for k, v in variables.items()]
-    if stask is None:
+    if import_file is None:
         return [run]
-    return [ImportCommand(file=str(Path(str(stask)).absolute())), run]
+    return [ImportCommand(file=str(Path(str(import_file)).absolute())), run]
 
 
 def _stamp(path: Path) -> tuple[int, int] | None:

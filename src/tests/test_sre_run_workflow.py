@@ -9,7 +9,7 @@ run against a real SRE, are for.
 
 def test_builds_an_import_and_a_workflow_run(sima, tmp_path):
     sima.run_workflow(tmp_path / "ws", task="WorkflowTask", workflow="outer",
-                      stask=tmp_path / "model.stask")
+                      import_file=tmp_path / "model.stask")
 
     commands = sima.recorded["by_type"]
     assert set(commands) == {"ImportCommand", "WorkflowRunCommand"}
@@ -20,13 +20,14 @@ def test_builds_an_import_and_a_workflow_run(sima, tmp_path):
 
 def test_the_import_comes_first(sima, tmp_path):
     """A workflow cannot run from a task that has not been imported yet."""
-    sima.run_workflow(tmp_path / "ws", task="T", workflow="w", stask=tmp_path / "model.stask")
+    sima.run_workflow(tmp_path / "ws", task="T", workflow="w",
+                      import_file=tmp_path / "model.stask")
 
     assert [c["type"] for c in sima.recorded["commands"]] == [
         "sima/command/ImportCommand", "sima/command/WorkflowRunCommand"]
 
 
-def test_a_stask_is_optional(sima, tmp_path):
+def test_an_import_is_optional(sima, tmp_path):
     """The workspace may already hold the task, so importing is a choice."""
     sima.run_workflow(tmp_path / "ws", task="T", workflow="w")
 
